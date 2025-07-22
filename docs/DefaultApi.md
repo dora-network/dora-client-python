@@ -1,6 +1,6 @@
 # dora_client.DefaultApi
 
-All URIs are relative to *https://localhost:8084/v1*
+All URIs are relative to *https://localhost:8084*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
