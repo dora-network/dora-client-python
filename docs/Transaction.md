@@ -5,7 +5,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **str** |  | [optional] 
 **created_at** | **datetime** |  | [optional] 
-**kind** | **str** |  | [optional] 
+**kind** | [**TransactionKind**](TransactionKind.md) |  | [optional] 
 **asset0** | **str** |  | [optional] 
 **quantity0** | **str** |  | [optional] 
 **quantity1** | **str** |  | [optional] 

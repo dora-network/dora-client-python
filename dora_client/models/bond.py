@@ -29,7 +29,7 @@ class Bond(object):
     """
     swagger_types = {
         'id': 'str',
-        'kind': 'str',
+        'kind': 'BondKind',
         'coupon_start_at': 'datetime',
         'created_at': 'datetime',
         'final_coupon_at': 'datetime',
@@ -114,7 +114,7 @@ class Bond(object):
 
 
         :return: The kind of this Bond.  # noqa: E501
-        :rtype: str
+        :rtype: BondKind
         """
         return self._kind
 
@@ -124,7 +124,7 @@ class Bond(object):
 
 
         :param kind: The kind of this Bond.  # noqa: E501
-        :type: str
+        :type: BondKind
         """
 
         self._kind = kind

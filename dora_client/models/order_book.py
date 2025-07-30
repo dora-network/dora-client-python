@@ -42,7 +42,7 @@ class OrderBook(object):
         'quote_quantity': 'float',
         'quote_asset_id': 'str',
         'shares_quantity': 'float',
-        'status': 'str',
+        'status': 'OrderBookStatus',
         'tick_size': 'float',
         'updated_at': 'datetime',
         'halted_at': 'datetime',
@@ -447,7 +447,7 @@ class OrderBook(object):
 
 
         :return: The status of this OrderBook.  # noqa: E501
-        :rtype: str
+        :rtype: OrderBookStatus
         """
         return self._status
 
@@ -457,7 +457,7 @@ class OrderBook(object):
 
 
         :param status: The status of this OrderBook.  # noqa: E501
-        :type: str
+        :type: OrderBookStatus
         """
 
         self._status = status

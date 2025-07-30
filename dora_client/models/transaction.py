@@ -30,7 +30,7 @@ class Transaction(object):
     swagger_types = {
         'id': 'str',
         'created_at': 'datetime',
-        'kind': 'str',
+        'kind': 'TransactionKind',
         'asset0': 'str',
         'quantity0': 'str',
         'quantity1': 'str',
@@ -125,7 +125,7 @@ class Transaction(object):
 
 
         :return: The kind of this Transaction.  # noqa: E501
-        :rtype: str
+        :rtype: TransactionKind
         """
         return self._kind
 
@@ -135,7 +135,7 @@ class Transaction(object):
 
 
         :param kind: The kind of this Transaction.  # noqa: E501
-        :type: str
+        :type: TransactionKind
         """
 
         self._kind = kind

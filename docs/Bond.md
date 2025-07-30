@@ -4,7 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **str** |  | [optional] 
-**kind** | **str** |  | [optional] 
+**kind** | [**BondKind**](BondKind.md) |  | [optional] 
 **coupon_start_at** | **datetime** |  | [optional] 
 **created_at** | **datetime** |  | [optional] 
 **final_coupon_at** | **datetime** |  | [optional] 

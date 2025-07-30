@@ -29,7 +29,7 @@ class InlineResponse200(ResponseEnvelope):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'data': 'list[Asset]'
+        'data': 'list[AssetPrice]'
     }
     if hasattr(ResponseEnvelope, "swagger_types"):
         swagger_types.update(ResponseEnvelope.swagger_types)
@@ -54,7 +54,7 @@ class InlineResponse200(ResponseEnvelope):
 
 
         :return: The data of this InlineResponse200.  # noqa: E501
-        :rtype: list[Asset]
+        :rtype: list[AssetPrice]
         """
         return self._data
 
@@ -64,7 +64,7 @@ class InlineResponse200(ResponseEnvelope):
 
 
         :param data: The data of this InlineResponse200.  # noqa: E501
-        :type: list[Asset]
+        :type: list[AssetPrice]
         """
 
         self._data = data

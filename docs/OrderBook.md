@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 **quote_quantity** | **float** |  | [optional] 
 **quote_asset_id** | **str** |  | [optional] 
 **shares_quantity** | **float** |  | [optional] 
-**status** | **str** |  | [optional] 
+**status** | [**OrderBookStatus**](OrderBookStatus.md) |  | [optional] 
 **tick_size** | **float** |  | [optional] 
 **updated_at** | **datetime** |  | [optional] 
 **halted_at** | **datetime** |  | [optional] 

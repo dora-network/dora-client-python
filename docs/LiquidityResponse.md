@@ -3,12 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**order_book_id** | **str** |  | [optional] 
-**position_id** | **str** |  | [optional] 
-**transaction_id** | **str** |  | [optional] 
-**base_quantity** | **str** |  | [optional] 
-**quote_quantity** | **str** |  | [optional] 
-**shares_quantity** | **str** |  | [optional] 
+**data** | [**Liquidity**](Liquidity.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

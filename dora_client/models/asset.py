@@ -39,7 +39,7 @@ class Asset(object):
         'max_utilization': 'int',
         'name': 'str',
         'symbol': 'str',
-        'kind': 'str',
+        'kind': 'AssetKind',
         '_yield': 'float',
         'can_add_liquidity': 'bool',
         'can_direct_borrow': 'bool',
@@ -369,7 +369,7 @@ class Asset(object):
 
 
         :return: The kind of this Asset.  # noqa: E501
-        :rtype: str
+        :rtype: AssetKind
         """
         return self._kind
 
@@ -379,7 +379,7 @@ class Asset(object):
 
 
         :param kind: The kind of this Asset.  # noqa: E501
-        :type: str
+        :type: AssetKind
         """
 
         self._kind = kind

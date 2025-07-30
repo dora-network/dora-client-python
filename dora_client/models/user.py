@@ -37,9 +37,10 @@ class User(object):
         'photo_url': 'str',
         'provider': 'str',
         'provider_id': 'str',
-        'roles': 'list[str]',
+        'roles': 'list[UserRole]',
         'timezone': 'str',
-        'timezone_offset': 'int'
+        'timezone_offset': 'int',
+        'verified_at': 'datetime'
     }
 
     attribute_map = {
@@ -54,10 +55,11 @@ class User(object):
         'provider_id': 'provider_id',
         'roles': 'roles',
         'timezone': 'timezone',
-        'timezone_offset': 'timezone_offset'
+        'timezone_offset': 'timezone_offset',
+        'verified_at': 'verified_at'
     }
 
-    def __init__(self, id=None, closed_at=None, disabled_at=None, email=None, name=None, native_asset_id=None, photo_url=None, provider=None, provider_id=None, roles=None, timezone=None, timezone_offset=None):  # noqa: E501
+    def __init__(self, id=None, closed_at=None, disabled_at=None, email=None, name=None, native_asset_id=None, photo_url=None, provider=None, provider_id=None, roles=None, timezone=None, timezone_offset=None, verified_at=None):  # noqa: E501
         """User - a model defined in Swagger"""  # noqa: E501
         self._id = None
         self._closed_at = None
@@ -71,6 +73,7 @@ class User(object):
         self._roles = None
         self._timezone = None
         self._timezone_offset = None
+        self._verified_at = None
         self.discriminator = None
         if id is not None:
             self.id = id
@@ -96,6 +99,8 @@ class User(object):
             self.timezone = timezone
         if timezone_offset is not None:
             self.timezone_offset = timezone_offset
+        if verified_at is not None:
+            self.verified_at = verified_at
 
     @property
     def id(self):
@@ -292,7 +297,7 @@ class User(object):
 
 
         :return: The roles of this User.  # noqa: E501
-        :rtype: list[str]
+        :rtype: list[UserRole]
         """
         return self._roles
 
@@ -302,7 +307,7 @@ class User(object):
 
 
         :param roles: The roles of this User.  # noqa: E501
-        :type: list[str]
+        :type: list[UserRole]
         """
 
         self._roles = roles
@@ -352,6 +357,27 @@ class User(object):
         """
 
         self._timezone_offset = timezone_offset
+
+    @property
+    def verified_at(self):
+        """Gets the verified_at of this User.  # noqa: E501
+
+
+        :return: The verified_at of this User.  # noqa: E501
+        :rtype: datetime
+        """
+        return self._verified_at
+
+    @verified_at.setter
+    def verified_at(self, verified_at):
+        """Sets the verified_at of this User.
+
+
+        :param verified_at: The verified_at of this User.  # noqa: E501
+        :type: datetime
+        """
+
+        self._verified_at = verified_at
 
     def to_dict(self):
         """Returns the model properties as a dict"""

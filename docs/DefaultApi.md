@@ -11,11 +11,11 @@ Method | HTTP request | Description
 [**get_all_asset_prices**](DefaultApi.md#get_all_asset_prices) | **GET** /v1/price | Get the current price of all assets
 [**get_asset_by_id**](DefaultApi.md#get_asset_by_id) | **GET** /v1/assets/{id} | Get asset by ID
 [**get_asset_price**](DefaultApi.md#get_asset_price) | **GET** /v1/price/asset/{asset_id} | Get the current price of an asset
-[**get_candle_data**](DefaultApi.md#get_candle_data) | **GET** /v1/charts/candle/{orderbook} | Get candlestick data for an orderbook
-[**get_coupons_by_asset_id**](DefaultApi.md#get_coupons_by_asset_id) | **GET** /v1/assets/{id}/coupons | Get coupons for a bond asset
-[**get_l1_depth**](DefaultApi.md#get_l1_depth) | **GET** /v1/orderbooks/{orderbook_id}/L1 | Get the top price levels for a specific orderbook (L1 market depth)
-[**get_l2_depth**](DefaultApi.md#get_l2_depth) | **GET** /v1/orderbooks/{orderbook_id}/L2 | Get the aggregated price levels for a specific orderbook (L2 market depth)
-[**get_l3_depth**](DefaultApi.md#get_l3_depth) | **GET** /v1/orderbooks/{orderbook_id}/L3 | Get all open orders for a specific orderbook (L3 market depth)
+[**get_candle_data**](DefaultApi.md#get_candle_data) | **GET** /v1/charts/{orderbook}/candle | Get candlestick data for an orderbook
+[**get_coupon_payments_by_asset_id**](DefaultApi.md#get_coupon_payments_by_asset_id) | **GET** /v1/assets/{id}/coupon_payments | Get coupon payments for a bond asset
+[**get_l1_depth**](DefaultApi.md#get_l1_depth) | **GET** /v1/orderbooks/{order_book_id}/L1 | Get the top price levels for a specific orderbook (L1 market depth)
+[**get_l2_depth**](DefaultApi.md#get_l2_depth) | **GET** /v1/orderbooks/{order_book_id}/L2 | Get the aggregated price levels for a specific orderbook (L2 market depth)
+[**get_l3_depth**](DefaultApi.md#get_l3_depth) | **GET** /v1/orderbooks/{order_book_id}/L3 | Get all open orders for a specific orderbook (L3 market depth)
 [**get_ledger_balances_self**](DefaultApi.md#get_ledger_balances_self) | **GET** /v1/ledger/balances/self | Get your own available, locked, and borrowed assets
 [**get_ledger_interest_self**](DefaultApi.md#get_ledger_interest_self) | **GET** /v1/ledger/interest/self | Get your own interest
 [**get_ledger_module**](DefaultApi.md#get_ledger_module) | **GET** /v1/ledger/module | Get the entire module object, including unborrowed leverage assets and total leverage trackers
@@ -23,21 +23,20 @@ Method | HTTP request | Description
 [**get_ledger_positions_self**](DefaultApi.md#get_ledger_positions_self) | **GET** /v1/ledger/positions/self | Get your own positions
 [**get_ledger_value_self**](DefaultApi.md#get_ledger_value_self) | **GET** /v1/ledger/value/self | Get your own available, locked, and borrowed USD value; and realized and unrealized PnL
 [**get_order_by_id**](DefaultApi.md#get_order_by_id) | **GET** /v1/orders/{order_id} | Get order by ID
-[**get_orderbook_bbo**](DefaultApi.md#get_orderbook_bbo) | **GET** /v1/orderbooks/{orderbook_id}/bbo | Get the top price levels for a specific orderbook (L1 market depth)
-[**get_orderbook_by_id**](DefaultApi.md#get_orderbook_by_id) | **GET** /v1/orderbooks/{orderbook_id} | Get orderbook by ID
-[**get_orderbook_depth**](DefaultApi.md#get_orderbook_depth) | **GET** /v1/orderbooks/{orderbook_id}/depth | Get the aggregated price levels for a specific orderbook (L2 market depth)
-[**get_orderbook_orders**](DefaultApi.md#get_orderbook_orders) | **GET** /v1/orderbooks/{orderbook_id}/orders | Get all open orders for a specific orderbook (L3 market depth)
-[**get_orderbook_summary**](DefaultApi.md#get_orderbook_summary) | **GET** /v1/orderbooks/{orderbook_id}/summary | Get summary of an orderbook
-[**get_orderbook_top**](DefaultApi.md#get_orderbook_top) | **GET** /v1/orderbooks/{orderbook_id}/top | Get the top price levels for a specific orderbook (L1 market depth)
+[**get_orderbook_by_id**](DefaultApi.md#get_orderbook_by_id) | **GET** /v1/orderbooks/{order_book_id} | Get orderbook by ID
+[**get_orderbook_depth**](DefaultApi.md#get_orderbook_depth) | **GET** /v1/orderbooks/{order_book_id}/depth | Get the aggregated price levels for a specific orderbook (L2 market depth)
+[**get_orderbook_orders**](DefaultApi.md#get_orderbook_orders) | **GET** /v1/orderbooks/{order_book_id}/orders | Get all open orders for a specific orderbook (L3 market depth)
+[**get_orderbook_summary**](DefaultApi.md#get_orderbook_summary) | **GET** /v1/orderbooks/{order_book_id}/summary | Get summary of an orderbook
+[**get_orderbook_top**](DefaultApi.md#get_orderbook_top) | **GET** /v1/orderbooks/{order_book_id}/top | Get the top price levels for a specific orderbook (L1 market depth)
 [**get_pool_price**](DefaultApi.md#get_pool_price) | **GET** /v1/price/pool/{pool_id} | Get the current price of a pool
 [**get_trade_by_id**](DefaultApi.md#get_trade_by_id) | **GET** /v1/trade/{trade_id} | Get a trade by ID
 [**get_trades**](DefaultApi.md#get_trades) | **GET** /v1/trade | Get a filtered, paginated list of trades
 [**get_transaction_by_id**](DefaultApi.md#get_transaction_by_id) | **GET** /v1/transactions/{id} | Get a transaction by ID
 [**get_transactions**](DefaultApi.md#get_transactions) | **GET** /v1/transactions | Get a filtered, paginated list of transactions
-[**get_user_by_id**](DefaultApi.md#get_user_by_id) | **GET** /v1/user/{user_id} | Get user by ID
+[**get_user_by_id**](DefaultApi.md#get_user_by_id) | **GET** /v1/user/{user_id} | Get user by ID (admin only)
 [**get_user_ledger_stream**](DefaultApi.md#get_user_ledger_stream) | **GET** /v1/user/{user_id}/ledger/stream | Get a snapshot of user&#x27;s ledger updates since a specific time, and opens a stream for further updates
-[**get_user_orders_stream**](DefaultApi.md#get_user_orders_stream) | **GET** /v1/user/{user_id}/orders/{orderbook_id}/stream | Get a snapshot of user&#x27;s order updates for the given order book since a specific time, and opens a stream for further updates
-[**get_user_orders_stream_all**](DefaultApi.md#get_user_orders_stream_all) | **GET** /v1/user/{user_id}/orders/all/stream | Get a snapshot of user&#x27;s order updates since a specific time, and opens a stream for further updates
+[**get_user_orders_stream**](DefaultApi.md#get_user_orders_stream) | **GET** /v1/user/{user_id}/orders/{order_book_id}/stream | Get a snapshot of user&#x27;s order updates for the given order book since a specific time, and opens a stream for further updates
+[**get_user_orders_stream_all**](DefaultApi.md#get_user_orders_stream_all) | **GET** /v1/user/{user_id}/orders/all/stream | Get a snapshot of user&#x27;s order updates across all order books since a specific time, and opens a stream for further updates
 [**get_user_self**](DefaultApi.md#get_user_self) | **GET** /v1/user/self | Get user details for the authenticated user
 [**get_user_transactions_stream**](DefaultApi.md#get_user_transactions_stream) | **GET** /v1/user/{user_id}/transactions/stream | Get a snapshot of user&#x27;s executed transactions since a specific time, and opens a stream for further updates
 [**ledger_deposit**](DefaultApi.md#ledger_deposit) | **POST** /v1/ledger/deposit | Deposit assets into your account from the outside world
@@ -57,16 +56,16 @@ Method | HTTP request | Description
 [**list_order_books**](DefaultApi.md#list_order_books) | **GET** /v1/orderbooks | List order books
 [**list_orders**](DefaultApi.md#list_orders) | **GET** /v1/orders | List all orders
 [**stream_asset_prices**](DefaultApi.md#stream_asset_prices) | **GET** /v1/price/stream | Get a snapshot of asset prices from a specific date and open a stream for real-time updates
-[**stream_candle_data**](DefaultApi.md#stream_candle_data) | **GET** /v1/charts/candle/stream/{orderbook} | Get a snapshot of candlestick data from date provided, and open a stream for real-time updates
-[**stream_order_book_balances**](DefaultApi.md#stream_order_book_balances) | **GET** /v1/orderbooks/{orderbook_id}/stream/balances | Get a snapshot of base and quote balances for an order book and open a stream for real-time updates
-[**stream_orderbook_open_orders**](DefaultApi.md#stream_orderbook_open_orders) | **GET** /v1/orderbooks/{orderbook_id}/stream/open | Get a snapshot of open orders in an order book and open a stream for real-time updates
-[**stream_trades**](DefaultApi.md#stream_trades) | **GET** /v1/trade/{orderbook_id}/stream | Get a snapshot of trades from a specific date and open a stream for real-time updates
+[**stream_candle_data**](DefaultApi.md#stream_candle_data) | **GET** /v1/charts/{orderbook}/candle/stream | Get a snapshot of candlestick data from date provided, and open a stream for real-time updates
+[**stream_order_book_balances**](DefaultApi.md#stream_order_book_balances) | **GET** /v1/orderbooks/{order_book_id}/stream/balances | Get a snapshot of base and quote balances for an order book and open a stream for real-time updates
+[**stream_orderbook_open_orders**](DefaultApi.md#stream_orderbook_open_orders) | **GET** /v1/orderbooks/{order_book_id}/stream/open | Get a snapshot of open orders in an order book and open a stream for real-time updates
+[**stream_trades**](DefaultApi.md#stream_trades) | **GET** /v1/trade/{order_book_id}/stream | Get a snapshot of trades executed on the given order book from a specific date and open a stream for real-time updates
 [**update_user_config**](DefaultApi.md#update_user_config) | **PUT** /v1/user/{user_id}/config | Update user configuration by ID
 [**update_user_config_self**](DefaultApi.md#update_user_config_self) | **PUT** /v1/user/config/self | Update user configuration for the authenticated user
 [**verify_user**](DefaultApi.md#verify_user) | **PUT** /v1/user/{user_id}/verify | Verify a user by ID
 
 # **cancel_all_open_orders**
-> InlineResponse20015 cancel_all_open_orders()
+> CancelOrdersResponse cancel_all_open_orders()
 
 Cancel all open orders
 
@@ -94,7 +93,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse20015**](InlineResponse20015.md)
+[**CancelOrdersResponse**](CancelOrdersResponse.md)
 
 ### Authorization
 
@@ -108,7 +107,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **cancel_order_by_id**
-> InlineResponse204 cancel_order_by_id(order_id)
+> OrderCancelledResponse cancel_order_by_id(order_id)
 
 Cancel an order by ID
 
@@ -140,7 +139,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse204**](InlineResponse204.md)
+[**OrderCancelledResponse**](OrderCancelledResponse.md)
 
 ### Authorization
 
@@ -200,7 +199,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_user**
-> InlineResponse2004 delete_user(user_id)
+> UserDeletedResponse delete_user(user_id)
 
 Delete user by ID
 
@@ -232,7 +231,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2004**](InlineResponse2004.md)
+[**UserDeletedResponse**](UserDeletedResponse.md)
 
 ### Authorization
 
@@ -246,7 +245,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_all_asset_prices**
-> InlineResponse20028 get_all_asset_prices()
+> ListAssetPriceResponse get_all_asset_prices()
 
 Get the current price of all assets
 
@@ -274,7 +273,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse20028**](InlineResponse20028.md)
+[**ListAssetPriceResponse**](ListAssetPriceResponse.md)
 
 ### Authorization
 
@@ -288,7 +287,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_asset_by_id**
-> InlineResponse2001 get_asset_by_id(id)
+> GetAssetByIDResponse get_asset_by_id(id)
 
 Get asset by ID
 
@@ -320,7 +319,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2001**](InlineResponse2001.md)
+[**GetAssetByIDResponse**](GetAssetByIDResponse.md)
 
 ### Authorization
 
@@ -334,7 +333,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_asset_price**
-> InlineResponse20029 get_asset_price(asset_id)
+> GetAssetPriceResponse get_asset_price(asset_id)
 
 Get the current price of an asset
 
@@ -366,7 +365,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20029**](InlineResponse20029.md)
+[**GetAssetPriceResponse**](GetAssetPriceResponse.md)
 
 ### Authorization
 
@@ -380,7 +379,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_candle_data**
-> InlineResponse20017 get_candle_data(orderbook, start=start, end=end, resolution=resolution)
+> ListCandlesResponse get_candle_data(orderbook, start=start, end=end, resolution=resolution)
 
 Get candlestick data for an orderbook
 
@@ -397,7 +396,7 @@ api_instance = dora_client.DefaultApi()
 orderbook = 'orderbook_example' # str | 
 start = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 end = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
-resolution = 'resolution_example' # str |  (optional)
+resolution = dora_client.CandleResolution() # CandleResolution |  (optional)
 
 try:
     # Get candlestick data for an orderbook
@@ -414,11 +413,11 @@ Name | Type | Description  | Notes
  **orderbook** | **str**|  | 
  **start** | **datetime**|  | [optional] 
  **end** | **datetime**|  | [optional] 
- **resolution** | **str**|  | [optional] 
+ **resolution** | [**CandleResolution**](.md)|  | [optional] 
 
 ### Return type
 
-[**InlineResponse20017**](InlineResponse20017.md)
+[**ListCandlesResponse**](ListCandlesResponse.md)
 
 ### Authorization
 
@@ -431,10 +430,10 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_coupons_by_asset_id**
-> InlineResponse2002 get_coupons_by_asset_id(id, start=start, end=end, page=page, limit=limit)
+# **get_coupon_payments_by_asset_id**
+> ListCouponPaymentsResponse get_coupon_payments_by_asset_id(id)
 
-Get coupons for a bond asset
+Get coupon payments for a bond asset
 
 ### Example
 ```python
@@ -447,17 +446,13 @@ from pprint import pprint
 # create an instance of the API class
 api_instance = dora_client.DefaultApi()
 id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
-start = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
-end = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
-page = 1 # int |  (optional) (default to 1)
-limit = 100 # int |  (optional) (default to 100)
 
 try:
-    # Get coupons for a bond asset
-    api_response = api_instance.get_coupons_by_asset_id(id, start=start, end=end, page=page, limit=limit)
+    # Get coupon payments for a bond asset
+    api_response = api_instance.get_coupon_payments_by_asset_id(id)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling DefaultApi->get_coupons_by_asset_id: %s\n" % e)
+    print("Exception when calling DefaultApi->get_coupon_payments_by_asset_id: %s\n" % e)
 ```
 
 ### Parameters
@@ -465,14 +460,10 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | [**str**](.md)|  | 
- **start** | **datetime**|  | [optional] 
- **end** | **datetime**|  | [optional] 
- **page** | **int**|  | [optional] [default to 1]
- **limit** | **int**|  | [optional] [default to 100]
 
 ### Return type
 
-[**InlineResponse2002**](InlineResponse2002.md)
+[**ListCouponPaymentsResponse**](ListCouponPaymentsResponse.md)
 
 ### Authorization
 
@@ -486,7 +477,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_l1_depth**
-> InlineResponse20012 get_l1_depth(orderbook_id)
+> GetTopOfBookResponse get_l1_depth(order_book_id)
 
 Get the top price levels for a specific orderbook (L1 market depth)
 
@@ -500,11 +491,11 @@ from pprint import pprint
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi()
-orderbook_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
+order_book_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
 
 try:
     # Get the top price levels for a specific orderbook (L1 market depth)
-    api_response = api_instance.get_l1_depth(orderbook_id)
+    api_response = api_instance.get_l1_depth(order_book_id)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->get_l1_depth: %s\n" % e)
@@ -514,11 +505,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **orderbook_id** | [**str**](.md)|  | 
+ **order_book_id** | [**str**](.md)|  | 
 
 ### Return type
 
-[**InlineResponse20012**](InlineResponse20012.md)
+[**GetTopOfBookResponse**](GetTopOfBookResponse.md)
 
 ### Authorization
 
@@ -532,7 +523,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_l2_depth**
-> InlineResponse20011 get_l2_depth(orderbook_id)
+> ListOrderBookDepthResponse get_l2_depth(order_book_id)
 
 Get the aggregated price levels for a specific orderbook (L2 market depth)
 
@@ -546,11 +537,11 @@ from pprint import pprint
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi()
-orderbook_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
+order_book_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
 
 try:
     # Get the aggregated price levels for a specific orderbook (L2 market depth)
-    api_response = api_instance.get_l2_depth(orderbook_id)
+    api_response = api_instance.get_l2_depth(order_book_id)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->get_l2_depth: %s\n" % e)
@@ -560,11 +551,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **orderbook_id** | [**str**](.md)|  | 
+ **order_book_id** | [**str**](.md)|  | 
 
 ### Return type
 
-[**InlineResponse20011**](InlineResponse20011.md)
+[**ListOrderBookDepthResponse**](ListOrderBookDepthResponse.md)
 
 ### Authorization
 
@@ -578,7 +569,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_l3_depth**
-> InlineResponse2006 get_l3_depth(orderbook_id)
+> ListOrdersResponse get_l3_depth(order_book_id)
 
 Get all open orders for a specific orderbook (L3 market depth)
 
@@ -592,11 +583,11 @@ from pprint import pprint
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi()
-orderbook_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
+order_book_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
 
 try:
     # Get all open orders for a specific orderbook (L3 market depth)
-    api_response = api_instance.get_l3_depth(orderbook_id)
+    api_response = api_instance.get_l3_depth(order_book_id)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->get_l3_depth: %s\n" % e)
@@ -606,11 +597,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **orderbook_id** | [**str**](.md)|  | 
+ **order_book_id** | [**str**](.md)|  | 
 
 ### Return type
 
-[**InlineResponse2006**](InlineResponse2006.md)
+[**ListOrdersResponse**](ListOrdersResponse.md)
 
 ### Authorization
 
@@ -624,7 +615,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_ledger_balances_self**
-> InlineResponse20021 get_ledger_balances_self()
+> UserBalanceResponse get_ledger_balances_self()
 
 Get your own available, locked, and borrowed assets
 
@@ -652,7 +643,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse20021**](InlineResponse20021.md)
+[**UserBalanceResponse**](UserBalanceResponse.md)
 
 ### Authorization
 
@@ -666,7 +657,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_ledger_interest_self**
-> InlineResponse20023 get_ledger_interest_self()
+> UserInterestResponse get_ledger_interest_self()
 
 Get your own interest
 
@@ -694,7 +685,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse20023**](InlineResponse20023.md)
+[**UserInterestResponse**](UserInterestResponse.md)
 
 ### Authorization
 
@@ -708,7 +699,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_ledger_module**
-> InlineResponse20018 get_ledger_module()
+> LedgerModuleResponse get_ledger_module()
 
 Get the entire module object, including unborrowed leverage assets and total leverage trackers
 
@@ -736,7 +727,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse20018**](InlineResponse20018.md)
+[**LedgerModuleResponse**](LedgerModuleResponse.md)
 
 ### Authorization
 
@@ -750,7 +741,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_ledger_module_by_asset**
-> InlineResponse20019 get_ledger_module_by_asset(asset_id)
+> LedgerModuleByAssetResponse get_ledger_module_by_asset(asset_id)
 
 Get the module object for a single asset ID
 
@@ -782,7 +773,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20019**](InlineResponse20019.md)
+[**LedgerModuleByAssetResponse**](LedgerModuleByAssetResponse.md)
 
 ### Authorization
 
@@ -796,7 +787,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_ledger_positions_self**
-> InlineResponse20020 get_ledger_positions_self()
+> UserPositionResponse get_ledger_positions_self()
 
 Get your own positions
 
@@ -824,7 +815,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse20020**](InlineResponse20020.md)
+[**UserPositionResponse**](UserPositionResponse.md)
 
 ### Authorization
 
@@ -838,7 +829,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_ledger_value_self**
-> InlineResponse20022 get_ledger_value_self()
+> UserValueResponse get_ledger_value_self()
 
 Get your own available, locked, and borrowed USD value; and realized and unrealized PnL
 
@@ -866,7 +857,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse20022**](InlineResponse20022.md)
+[**UserValueResponse**](UserValueResponse.md)
 
 ### Authorization
 
@@ -880,7 +871,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_order_by_id**
-> InlineResponse20016 get_order_by_id(order_id)
+> GetOrderResponse get_order_by_id(order_id)
 
 Get order by ID
 
@@ -912,53 +903,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20016**](InlineResponse20016.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **get_orderbook_bbo**
-> InlineResponse20012 get_orderbook_bbo(orderbook_id)
-
-Get the top price levels for a specific orderbook (L1 market depth)
-
-### Example
-```python
-from __future__ import print_function
-import time
-import dora_client
-from dora_client.rest import ApiException
-from pprint import pprint
-
-# create an instance of the API class
-api_instance = dora_client.DefaultApi()
-orderbook_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
-
-try:
-    # Get the top price levels for a specific orderbook (L1 market depth)
-    api_response = api_instance.get_orderbook_bbo(orderbook_id)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling DefaultApi->get_orderbook_bbo: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **orderbook_id** | [**str**](.md)|  | 
-
-### Return type
-
-[**InlineResponse20012**](InlineResponse20012.md)
+[**GetOrderResponse**](GetOrderResponse.md)
 
 ### Authorization
 
@@ -972,7 +917,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_orderbook_by_id**
-> InlineResponse20010 get_orderbook_by_id(orderbook_id)
+> GetOrderBookResponse get_orderbook_by_id(order_book_id)
 
 Get orderbook by ID
 
@@ -986,11 +931,11 @@ from pprint import pprint
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi()
-orderbook_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
+order_book_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
 
 try:
     # Get orderbook by ID
-    api_response = api_instance.get_orderbook_by_id(orderbook_id)
+    api_response = api_instance.get_orderbook_by_id(order_book_id)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->get_orderbook_by_id: %s\n" % e)
@@ -1000,11 +945,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **orderbook_id** | [**str**](.md)|  | 
+ **order_book_id** | [**str**](.md)|  | 
 
 ### Return type
 
-[**InlineResponse20010**](InlineResponse20010.md)
+[**GetOrderBookResponse**](GetOrderBookResponse.md)
 
 ### Authorization
 
@@ -1018,7 +963,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_orderbook_depth**
-> InlineResponse20011 get_orderbook_depth(orderbook_id)
+> ListOrderBookDepthResponse get_orderbook_depth(order_book_id)
 
 Get the aggregated price levels for a specific orderbook (L2 market depth)
 
@@ -1032,11 +977,11 @@ from pprint import pprint
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi()
-orderbook_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
+order_book_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
 
 try:
     # Get the aggregated price levels for a specific orderbook (L2 market depth)
-    api_response = api_instance.get_orderbook_depth(orderbook_id)
+    api_response = api_instance.get_orderbook_depth(order_book_id)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->get_orderbook_depth: %s\n" % e)
@@ -1046,11 +991,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **orderbook_id** | [**str**](.md)|  | 
+ **order_book_id** | [**str**](.md)|  | 
 
 ### Return type
 
-[**InlineResponse20011**](InlineResponse20011.md)
+[**ListOrderBookDepthResponse**](ListOrderBookDepthResponse.md)
 
 ### Authorization
 
@@ -1064,7 +1009,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_orderbook_orders**
-> InlineResponse2006 get_orderbook_orders(orderbook_id)
+> ListOrdersResponse get_orderbook_orders(order_book_id)
 
 Get all open orders for a specific orderbook (L3 market depth)
 
@@ -1078,11 +1023,11 @@ from pprint import pprint
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi()
-orderbook_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
+order_book_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
 
 try:
     # Get all open orders for a specific orderbook (L3 market depth)
-    api_response = api_instance.get_orderbook_orders(orderbook_id)
+    api_response = api_instance.get_orderbook_orders(order_book_id)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->get_orderbook_orders: %s\n" % e)
@@ -1092,11 +1037,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **orderbook_id** | [**str**](.md)|  | 
+ **order_book_id** | [**str**](.md)|  | 
 
 ### Return type
 
-[**InlineResponse2006**](InlineResponse2006.md)
+[**ListOrdersResponse**](ListOrdersResponse.md)
 
 ### Authorization
 
@@ -1110,7 +1055,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_orderbook_summary**
-> InlineResponse20013 get_orderbook_summary(orderbook_id)
+> GetOrderBookSummaryResponse get_orderbook_summary(order_book_id)
 
 Get summary of an orderbook
 
@@ -1124,11 +1069,11 @@ from pprint import pprint
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi()
-orderbook_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
+order_book_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
 
 try:
     # Get summary of an orderbook
-    api_response = api_instance.get_orderbook_summary(orderbook_id)
+    api_response = api_instance.get_orderbook_summary(order_book_id)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->get_orderbook_summary: %s\n" % e)
@@ -1138,11 +1083,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **orderbook_id** | [**str**](.md)|  | 
+ **order_book_id** | [**str**](.md)|  | 
 
 ### Return type
 
-[**InlineResponse20013**](InlineResponse20013.md)
+[**GetOrderBookSummaryResponse**](GetOrderBookSummaryResponse.md)
 
 ### Authorization
 
@@ -1156,7 +1101,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_orderbook_top**
-> InlineResponse20012 get_orderbook_top(orderbook_id)
+> GetTopOfBookResponse get_orderbook_top(order_book_id)
 
 Get the top price levels for a specific orderbook (L1 market depth)
 
@@ -1170,11 +1115,11 @@ from pprint import pprint
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi()
-orderbook_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
+order_book_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
 
 try:
     # Get the top price levels for a specific orderbook (L1 market depth)
-    api_response = api_instance.get_orderbook_top(orderbook_id)
+    api_response = api_instance.get_orderbook_top(order_book_id)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->get_orderbook_top: %s\n" % e)
@@ -1184,11 +1129,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **orderbook_id** | [**str**](.md)|  | 
+ **order_book_id** | [**str**](.md)|  | 
 
 ### Return type
 
-[**InlineResponse20012**](InlineResponse20012.md)
+[**GetTopOfBookResponse**](GetTopOfBookResponse.md)
 
 ### Authorization
 
@@ -1202,7 +1147,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_pool_price**
-> InlineResponse20030 get_pool_price(pool_id)
+> GetPoolPriceResponse get_pool_price(pool_id)
 
 Get the current price of a pool
 
@@ -1234,7 +1179,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20030**](InlineResponse20030.md)
+[**GetPoolPriceResponse**](GetPoolPriceResponse.md)
 
 ### Authorization
 
@@ -1248,7 +1193,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_trade_by_id**
-> InlineResponse20027 get_trade_by_id(trade_id)
+> TradeResponse get_trade_by_id(trade_id)
 
 Get a trade by ID
 
@@ -1280,7 +1225,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20027**](InlineResponse20027.md)
+[**TradeResponse**](TradeResponse.md)
 
 ### Authorization
 
@@ -1294,7 +1239,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_trades**
-> InlineResponse20026 get_trades(pools=pools, user_ids=user_ids, start=start, end=end, page=page, limit=limit)
+> ListTradeResponse get_trades(pools=pools, user_ids=user_ids, start=start, end=end, page=page, limit=limit)
 
 Get a filtered, paginated list of trades
 
@@ -1336,7 +1281,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20026**](InlineResponse20026.md)
+[**ListTradeResponse**](ListTradeResponse.md)
 
 ### Authorization
 
@@ -1350,7 +1295,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_transaction_by_id**
-> InlineResponse20025 get_transaction_by_id(id)
+> GetTransactionResponse get_transaction_by_id(id)
 
 Get a transaction by ID
 
@@ -1382,7 +1327,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20025**](InlineResponse20025.md)
+[**GetTransactionResponse**](GetTransactionResponse.md)
 
 ### Authorization
 
@@ -1396,7 +1341,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_transactions**
-> InlineResponse2008 get_transactions(pools=pools, user_ids=user_ids, tx_kinds=tx_kinds, start=start, end=end, page=page, limit=limit)
+> ListTransactionsResponse get_transactions(pools=pools, user_ids=user_ids, tx_kinds=tx_kinds, start=start, end=end, page=page, limit=limit)
 
 Get a filtered, paginated list of transactions
 
@@ -1412,7 +1357,7 @@ from pprint import pprint
 api_instance = dora_client.DefaultApi()
 pools = ['pools_example'] # list[str] |  (optional)
 user_ids = ['user_ids_example'] # list[str] |  (optional)
-tx_kinds = ['tx_kinds_example'] # list[str] |  (optional)
+tx_kinds = [dora_client.TransactionKind()] # list[TransactionKind] |  (optional)
 start = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 end = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 page = 1 # int |  (optional) (default to 1)
@@ -1432,7 +1377,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **pools** | [**list[str]**](str.md)|  | [optional] 
  **user_ids** | [**list[str]**](str.md)|  | [optional] 
- **tx_kinds** | [**list[str]**](str.md)|  | [optional] 
+ **tx_kinds** | [**list[TransactionKind]**](TransactionKind.md)|  | [optional] 
  **start** | **datetime**|  | [optional] 
  **end** | **datetime**|  | [optional] 
  **page** | **int**|  | [optional] [default to 1]
@@ -1440,7 +1385,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2008**](InlineResponse2008.md)
+[**ListTransactionsResponse**](ListTransactionsResponse.md)
 
 ### Authorization
 
@@ -1454,9 +1399,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_user_by_id**
-> InlineResponse2003 get_user_by_id(user_id)
+> GetUserResponse get_user_by_id(user_id)
 
-Get user by ID
+Get user by ID (admin only)
 
 ### Example
 ```python
@@ -1471,7 +1416,7 @@ api_instance = dora_client.DefaultApi()
 user_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
 
 try:
-    # Get user by ID
+    # Get user by ID (admin only)
     api_response = api_instance.get_user_by_id(user_id)
     pprint(api_response)
 except ApiException as e:
@@ -1486,7 +1431,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2003**](InlineResponse2003.md)
+[**GetUserResponse**](GetUserResponse.md)
 
 ### Authorization
 
@@ -1500,7 +1445,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_user_ledger_stream**
-> InlineResponse2007 get_user_ledger_stream(user_id, since=since)
+> ListPositionsResponse get_user_ledger_stream(user_id, since=since)
 
 Get a snapshot of user's ledger updates since a specific time, and opens a stream for further updates
 
@@ -1534,7 +1479,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2007**](InlineResponse2007.md)
+[**ListPositionsResponse**](ListPositionsResponse.md)
 
 ### Authorization
 
@@ -1548,7 +1493,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_user_orders_stream**
-> InlineResponse2006 get_user_orders_stream(user_id, orderbook_id, since=since)
+> ListOrdersResponse get_user_orders_stream(user_id, order_book_id, since=since)
 
 Get a snapshot of user's order updates for the given order book since a specific time, and opens a stream for further updates
 
@@ -1563,12 +1508,12 @@ from pprint import pprint
 # create an instance of the API class
 api_instance = dora_client.DefaultApi()
 user_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
-orderbook_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
+order_book_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
 since = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 
 try:
     # Get a snapshot of user's order updates for the given order book since a specific time, and opens a stream for further updates
-    api_response = api_instance.get_user_orders_stream(user_id, orderbook_id, since=since)
+    api_response = api_instance.get_user_orders_stream(user_id, order_book_id, since=since)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->get_user_orders_stream: %s\n" % e)
@@ -1579,12 +1524,12 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **user_id** | [**str**](.md)|  | 
- **orderbook_id** | [**str**](.md)|  | 
+ **order_book_id** | [**str**](.md)|  | 
  **since** | **datetime**|  | [optional] 
 
 ### Return type
 
-[**InlineResponse2006**](InlineResponse2006.md)
+[**ListOrdersResponse**](ListOrdersResponse.md)
 
 ### Authorization
 
@@ -1598,9 +1543,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_user_orders_stream_all**
-> InlineResponse2006 get_user_orders_stream_all(user_id, since=since, orderbook_ids=orderbook_ids)
+> ListOrdersResponse get_user_orders_stream_all(user_id, order_book_id, since=since)
 
-Get a snapshot of user's order updates since a specific time, and opens a stream for further updates
+Get a snapshot of user's order updates across all order books since a specific time, and opens a stream for further updates
 
 ### Example
 ```python
@@ -1613,12 +1558,12 @@ from pprint import pprint
 # create an instance of the API class
 api_instance = dora_client.DefaultApi()
 user_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
+order_book_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
 since = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
-orderbook_ids = ['orderbook_ids_example'] # list[str] |  (optional)
 
 try:
-    # Get a snapshot of user's order updates since a specific time, and opens a stream for further updates
-    api_response = api_instance.get_user_orders_stream_all(user_id, since=since, orderbook_ids=orderbook_ids)
+    # Get a snapshot of user's order updates across all order books since a specific time, and opens a stream for further updates
+    api_response = api_instance.get_user_orders_stream_all(user_id, order_book_id, since=since)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->get_user_orders_stream_all: %s\n" % e)
@@ -1629,12 +1574,12 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **user_id** | [**str**](.md)|  | 
+ **order_book_id** | [**str**](.md)|  | 
  **since** | **datetime**|  | [optional] 
- **orderbook_ids** | [**list[str]**](str.md)|  | [optional] 
 
 ### Return type
 
-[**InlineResponse2006**](InlineResponse2006.md)
+[**ListOrdersResponse**](ListOrdersResponse.md)
 
 ### Authorization
 
@@ -1648,7 +1593,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_user_self**
-> InlineResponse2003 get_user_self()
+> GetUserResponse get_user_self()
 
 Get user details for the authenticated user
 
@@ -1676,7 +1621,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse2003**](InlineResponse2003.md)
+[**GetUserResponse**](GetUserResponse.md)
 
 ### Authorization
 
@@ -1690,7 +1635,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_user_transactions_stream**
-> InlineResponse2008 get_user_transactions_stream(user_id, since=since)
+> ListTransactionsResponse get_user_transactions_stream(user_id, since=since)
 
 Get a snapshot of user's executed transactions since a specific time, and opens a stream for further updates
 
@@ -1724,7 +1669,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2008**](InlineResponse2008.md)
+[**ListTransactionsResponse**](ListTransactionsResponse.md)
 
 ### Authorization
 
@@ -1738,7 +1683,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **ledger_deposit**
-> InlineResponse201 ledger_deposit(body)
+> FundUserResponse ledger_deposit(body)
 
 Deposit assets into your account from the outside world
 
@@ -1772,7 +1717,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse201**](InlineResponse201.md)
+[**FundUserResponse**](FundUserResponse.md)
 
 ### Authorization
 
@@ -1786,7 +1731,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **ledger_withdraw**
-> InlineResponse201 ledger_withdraw(body)
+> FundUserResponse ledger_withdraw(body)
 
 Withdraw assets from your account to the outside world
 
@@ -1820,7 +1765,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse201**](InlineResponse201.md)
+[**FundUserResponse**](FundUserResponse.md)
 
 ### Authorization
 
@@ -1834,7 +1779,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **leverage_borrow**
-> InlineResponse2015 leverage_borrow(body)
+> InlineResponse201 leverage_borrow(body)
 
 Directly borrow assets
 
@@ -1868,7 +1813,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2015**](InlineResponse2015.md)
+[**InlineResponse201**](InlineResponse201.md)
 
 ### Authorization
 
@@ -1882,7 +1827,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **leverage_collateralize**
-> InlineResponse2011 leverage_collateralize(body)
+> CollateralizeResponse leverage_collateralize(body)
 
 Move supplied and available to supplied_collateral and collateral, for a specified position
 
@@ -1914,7 +1859,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2011**](InlineResponse2011.md)
+[**CollateralizeResponse**](CollateralizeResponse.md)
 
 ### Authorization
 
@@ -1928,7 +1873,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **leverage_de_collateralize**
-> InlineResponse2012 leverage_de_collateralize(body)
+> DeCollateralizeResponse leverage_de_collateralize(body)
 
 Move collateral and supplied_collateral to available and supplied, for a specified position.
 
@@ -1960,7 +1905,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2012**](InlineResponse2012.md)
+[**DeCollateralizeResponse**](DeCollateralizeResponse.md)
 
 ### Authorization
 
@@ -1974,7 +1919,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **leverage_isolate_collateral**
-> InlineResponse2016 leverage_isolate_collateral(body)
+> IsolateCollateralResponse leverage_isolate_collateral(body)
 
 Create an isolated position by transferring collateral to the position from the user's global collateral
 
@@ -2006,7 +1951,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2016**](InlineResponse2016.md)
+[**IsolateCollateralResponse**](IsolateCollateralResponse.md)
 
 ### Authorization
 
@@ -2020,7 +1965,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **leverage_isolate_position**
-> InlineResponse2017 leverage_isolate_position(body)
+> IsolatePositionResponse leverage_isolate_position(body)
 
 Create an isolated position using all collateral, supplied_collateral, and borrows from the user's global position
 
@@ -2052,7 +1997,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2017**](InlineResponse2017.md)
+[**IsolatePositionResponse**](IsolatePositionResponse.md)
 
 ### Authorization
 
@@ -2066,7 +2011,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **leverage_repay**
-> InlineResponse2015 leverage_repay(body)
+> InlineResponse201 leverage_repay(body)
 
 Repay borrowed assets
 
@@ -2100,7 +2045,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2015**](InlineResponse2015.md)
+[**InlineResponse201**](InlineResponse201.md)
 
 ### Authorization
 
@@ -2114,7 +2059,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **leverage_supply**
-> InlineResponse2013 leverage_supply(body)
+> SupplyResponse leverage_supply(body)
 
 Supply leverage for a specific asset
 
@@ -2146,7 +2091,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2013**](InlineResponse2013.md)
+[**SupplyResponse**](SupplyResponse.md)
 
 ### Authorization
 
@@ -2160,7 +2105,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **leverage_unite**
-> InlineResponse20024 leverage_unite(body)
+> UnitePositionResponse leverage_unite(body)
 
 Combines all isolated positions into a single global position
 
@@ -2194,7 +2139,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20024**](InlineResponse20024.md)
+[**UnitePositionResponse**](UnitePositionResponse.md)
 
 ### Authorization
 
@@ -2208,7 +2153,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **leverage_withdraw**
-> InlineResponse2014 leverage_withdraw(body)
+> WithdrawResponse leverage_withdraw(body)
 
 Withdraw leverage for a specific asset
 
@@ -2240,7 +2185,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2014**](InlineResponse2014.md)
+[**WithdrawResponse**](WithdrawResponse.md)
 
 ### Authorization
 
@@ -2254,7 +2199,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **liquidity_add**
-> InlineResponse2018 liquidity_add(body, pool_id)
+> LiquidityResponse liquidity_add(body, pool_id)
 
 Add liquidity to a pool
 
@@ -2288,7 +2233,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2018**](InlineResponse2018.md)
+[**LiquidityResponse**](LiquidityResponse.md)
 
 ### Authorization
 
@@ -2302,7 +2247,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **liquidity_subtract**
-> InlineResponse2018 liquidity_subtract(body, pool_id)
+> LiquidityResponse liquidity_subtract(body, pool_id)
 
 Subtract liquidity from a pool
 
@@ -2336,7 +2281,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2018**](InlineResponse2018.md)
+[**LiquidityResponse**](LiquidityResponse.md)
 
 ### Authorization
 
@@ -2350,7 +2295,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_assets**
-> InlineResponse200 list_assets(created_after=created_after, created_before=created_before, asset_kind=asset_kind, can_add_liquidity=can_add_liquidity, can_direct_borrow=can_direct_borrow, can_onboard=can_onboard, can_trade=can_trade, can_virtual_borrow=can_virtual_borrow, page=page, limit=limit)
+> ListAssetsResponse list_assets(created_after=created_after, created_before=created_before, asset_kind=asset_kind, can_add_liquidity=can_add_liquidity, can_direct_borrow=can_direct_borrow, can_onboard=can_onboard, can_trade=can_trade, can_virtual_borrow=can_virtual_borrow, page=page, limit=limit)
 
 List assets
 
@@ -2366,7 +2311,7 @@ from pprint import pprint
 api_instance = dora_client.DefaultApi()
 created_after = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 created_before = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
-asset_kind = 'asset_kind_example' # str | Asset kind (BOND, CURRENCY, INTEREST, POOL_SHARE) (optional)
+asset_kind = dora_client.AssetKind() # AssetKind | Asset kind (BOND, CURRENCY, INTEREST, POOL_SHARE) (optional)
 can_add_liquidity = true # bool |  (optional)
 can_direct_borrow = true # bool |  (optional)
 can_onboard = true # bool |  (optional)
@@ -2389,7 +2334,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **created_after** | **datetime**|  | [optional] 
  **created_before** | **datetime**|  | [optional] 
- **asset_kind** | **str**| Asset kind (BOND, CURRENCY, INTEREST, POOL_SHARE) | [optional] 
+ **asset_kind** | [**AssetKind**](.md)| Asset kind (BOND, CURRENCY, INTEREST, POOL_SHARE) | [optional] 
  **can_add_liquidity** | **bool**|  | [optional] 
  **can_direct_borrow** | **bool**|  | [optional] 
  **can_onboard** | **bool**|  | [optional] 
@@ -2400,7 +2345,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse200**](InlineResponse200.md)
+[**ListAssetsResponse**](ListAssetsResponse.md)
 
 ### Authorization
 
@@ -2414,7 +2359,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_order_books**
-> InlineResponse2009 list_order_books(status=status, base_asset_id=base_asset_id, quote_asset_id=quote_asset_id, page=page, limit=limit)
+> ListOrderBooksResponse list_order_books(status=status, base_asset_id=base_asset_id, quote_asset_id=quote_asset_id, page=page, limit=limit)
 
 List order books
 
@@ -2428,7 +2373,7 @@ from pprint import pprint
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi()
-status = 'status_example' # str |  (optional)
+status = dora_client.OrderBookStatus() # OrderBookStatus |  (optional)
 base_asset_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str |  (optional)
 quote_asset_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str |  (optional)
 page = 1 # int |  (optional) (default to 1)
@@ -2446,7 +2391,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **status** | **str**|  | [optional] 
+ **status** | [**OrderBookStatus**](.md)|  | [optional] 
  **base_asset_id** | [**str**](.md)|  | [optional] 
  **quote_asset_id** | [**str**](.md)|  | [optional] 
  **page** | **int**|  | [optional] [default to 1]
@@ -2454,7 +2399,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2009**](InlineResponse2009.md)
+[**ListOrderBooksResponse**](ListOrderBooksResponse.md)
 
 ### Authorization
 
@@ -2468,7 +2413,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_orders**
-> InlineResponse2006 list_orders(orderbook_id=orderbook_id, kind=kind, status=status, side=side, _from=_from, to=to, page=page, limit=limit)
+> ListOrdersResponse list_orders(order_book_id=order_book_id, kind=kind, status=status, side=side, _from=_from, to=to, page=page, limit=limit)
 
 List all orders
 
@@ -2482,10 +2427,10 @@ from pprint import pprint
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi()
-orderbook_id = ['orderbook_id_example'] # list[str] |  (optional)
-kind = 'kind_example' # str |  (optional)
-status = 'status_example' # str |  (optional)
-side = 'side_example' # str |  (optional)
+order_book_id = ['order_book_id_example'] # list[str] |  (optional)
+kind = dora_client.OrderKind() # OrderKind |  (optional)
+status = dora_client.OrderStatus() # OrderStatus |  (optional)
+side = dora_client.Side() # Side |  (optional)
 _from = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 to = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 page = 1 # int |  (optional) (default to 1)
@@ -2493,7 +2438,7 @@ limit = 100 # int |  (optional) (default to 100)
 
 try:
     # List all orders
-    api_response = api_instance.list_orders(orderbook_id=orderbook_id, kind=kind, status=status, side=side, _from=_from, to=to, page=page, limit=limit)
+    api_response = api_instance.list_orders(order_book_id=order_book_id, kind=kind, status=status, side=side, _from=_from, to=to, page=page, limit=limit)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->list_orders: %s\n" % e)
@@ -2503,10 +2448,10 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **orderbook_id** | [**list[str]**](str.md)|  | [optional] 
- **kind** | **str**|  | [optional] 
- **status** | **str**|  | [optional] 
- **side** | **str**|  | [optional] 
+ **order_book_id** | [**list[str]**](str.md)|  | [optional] 
+ **kind** | [**OrderKind**](.md)|  | [optional] 
+ **status** | [**OrderStatus**](.md)|  | [optional] 
+ **side** | [**Side**](.md)|  | [optional] 
  **_from** | **datetime**|  | [optional] 
  **to** | **datetime**|  | [optional] 
  **page** | **int**|  | [optional] [default to 1]
@@ -2514,7 +2459,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2006**](InlineResponse2006.md)
+[**ListOrdersResponse**](ListOrdersResponse.md)
 
 ### Authorization
 
@@ -2528,7 +2473,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **stream_asset_prices**
-> InlineResponse20028 stream_asset_prices(since=since)
+> InlineResponse200 stream_asset_prices(since=since)
 
 Get a snapshot of asset prices from a specific date and open a stream for real-time updates
 
@@ -2560,7 +2505,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20028**](InlineResponse20028.md)
+[**InlineResponse200**](InlineResponse200.md)
 
 ### Authorization
 
@@ -2574,7 +2519,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **stream_candle_data**
-> InlineResponse20017 stream_candle_data(orderbook, since=since, resolution=resolution)
+> ListCandlesResponse stream_candle_data(orderbook, since=since, resolution=resolution)
 
 Get a snapshot of candlestick data from date provided, and open a stream for real-time updates
 
@@ -2590,7 +2535,7 @@ from pprint import pprint
 api_instance = dora_client.DefaultApi()
 orderbook = 'orderbook_example' # str | 
 since = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
-resolution = 'resolution_example' # str |  (optional)
+resolution = dora_client.CandleResolution() # CandleResolution |  (optional)
 
 try:
     # Get a snapshot of candlestick data from date provided, and open a stream for real-time updates
@@ -2606,11 +2551,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **orderbook** | **str**|  | 
  **since** | **datetime**|  | [optional] 
- **resolution** | **str**|  | [optional] 
+ **resolution** | [**CandleResolution**](.md)|  | [optional] 
 
 ### Return type
 
-[**InlineResponse20017**](InlineResponse20017.md)
+[**ListCandlesResponse**](ListCandlesResponse.md)
 
 ### Authorization
 
@@ -2624,7 +2569,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **stream_order_book_balances**
-> InlineResponse20014 stream_order_book_balances(orderbook_id, since=since)
+> OrderBookBalanceResponse stream_order_book_balances(order_book_id, since=since)
 
 Get a snapshot of base and quote balances for an order book and open a stream for real-time updates
 
@@ -2638,12 +2583,12 @@ from pprint import pprint
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi()
-orderbook_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
+order_book_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
 since = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 
 try:
     # Get a snapshot of base and quote balances for an order book and open a stream for real-time updates
-    api_response = api_instance.stream_order_book_balances(orderbook_id, since=since)
+    api_response = api_instance.stream_order_book_balances(order_book_id, since=since)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->stream_order_book_balances: %s\n" % e)
@@ -2653,12 +2598,12 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **orderbook_id** | [**str**](.md)|  | 
+ **order_book_id** | [**str**](.md)|  | 
  **since** | **datetime**|  | [optional] 
 
 ### Return type
 
-[**InlineResponse20014**](InlineResponse20014.md)
+[**OrderBookBalanceResponse**](OrderBookBalanceResponse.md)
 
 ### Authorization
 
@@ -2672,7 +2617,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **stream_orderbook_open_orders**
-> InlineResponse2006 stream_orderbook_open_orders(orderbook_id, since=since)
+> ListOrdersResponse stream_orderbook_open_orders(order_book_id, since=since)
 
 Get a snapshot of open orders in an order book and open a stream for real-time updates
 
@@ -2686,12 +2631,12 @@ from pprint import pprint
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi()
-orderbook_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
+order_book_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
 since = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 
 try:
     # Get a snapshot of open orders in an order book and open a stream for real-time updates
-    api_response = api_instance.stream_orderbook_open_orders(orderbook_id, since=since)
+    api_response = api_instance.stream_orderbook_open_orders(order_book_id, since=since)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->stream_orderbook_open_orders: %s\n" % e)
@@ -2701,12 +2646,12 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **orderbook_id** | [**str**](.md)|  | 
+ **order_book_id** | [**str**](.md)|  | 
  **since** | **datetime**|  | [optional] 
 
 ### Return type
 
-[**InlineResponse2006**](InlineResponse2006.md)
+[**ListOrdersResponse**](ListOrdersResponse.md)
 
 ### Authorization
 
@@ -2720,9 +2665,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **stream_trades**
-> TradeResponse stream_trades(orderbook_id, since=since)
+> ListTradeResponse stream_trades(orderbook_id, since=since)
 
-Get a snapshot of trades from a specific date and open a stream for real-time updates
+Get a snapshot of trades executed on the given order book from a specific date and open a stream for real-time updates
 
 ### Example
 ```python
@@ -2738,7 +2683,7 @@ orderbook_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str |
 since = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 
 try:
-    # Get a snapshot of trades from a specific date and open a stream for real-time updates
+    # Get a snapshot of trades executed on the given order book from a specific date and open a stream for real-time updates
     api_response = api_instance.stream_trades(orderbook_id, since=since)
     pprint(api_response)
 except ApiException as e:
@@ -2754,7 +2699,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TradeResponse**](TradeResponse.md)
+[**ListTradeResponse**](ListTradeResponse.md)
 
 ### Authorization
 
@@ -2768,7 +2713,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_user_config**
-> InlineResponse2005 update_user_config(body, user_id)
+> UserUpdatedResponse update_user_config(body, user_id)
 
 Update user configuration by ID
 
@@ -2802,7 +2747,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2005**](InlineResponse2005.md)
+[**UserUpdatedResponse**](UserUpdatedResponse.md)
 
 ### Authorization
 
@@ -2816,7 +2761,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_user_config_self**
-> InlineResponse2005 update_user_config_self(body)
+> UserUpdatedResponse update_user_config_self(body)
 
 Update user configuration for the authenticated user
 
@@ -2848,7 +2793,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2005**](InlineResponse2005.md)
+[**UserUpdatedResponse**](UserUpdatedResponse.md)
 
 ### Authorization
 
@@ -2862,7 +2807,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **verify_user**
-> InlineResponse2005 verify_user(user_id)
+> UserUpdatedResponse verify_user(user_id)
 
 Verify a user by ID
 
@@ -2894,7 +2839,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2005**](InlineResponse2005.md)
+[**UserUpdatedResponse**](UserUpdatedResponse.md)
 
 ### Authorization
 

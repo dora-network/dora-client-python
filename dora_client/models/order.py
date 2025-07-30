@@ -31,12 +31,15 @@ class Order(object):
         'id': 'str',
         'order_book_id': 'str',
         'quantity': 'str',
-        'kind': 'str',
+        'kind': 'OrderKind',
         'price': 'str',
-        'status': 'str',
+        'inverse_leverage': 'float',
+        'side': 'Side',
+        'status': 'OrderStatus',
         'user_id': 'str',
         'user_text': 'str',
-        'order_modifiers': 'list[str]'
+        'order_modifiers': 'list[OrderModifierKind]',
+        'position_id': 'str'
     }
 
     attribute_map = {
@@ -45,23 +48,29 @@ class Order(object):
         'quantity': 'quantity',
         'kind': 'kind',
         'price': 'price',
+        'inverse_leverage': 'inverse_leverage',
+        'side': 'side',
         'status': 'status',
         'user_id': 'user_id',
         'user_text': 'user_text',
-        'order_modifiers': 'order_modifiers'
+        'order_modifiers': 'order_modifiers',
+        'position_id': 'position_id'
     }
 
-    def __init__(self, id=None, order_book_id=None, quantity=None, kind=None, price=None, status=None, user_id=None, user_text=None, order_modifiers=None):  # noqa: E501
+    def __init__(self, id=None, order_book_id=None, quantity=None, kind=None, price=None, inverse_leverage=None, side=None, status=None, user_id=None, user_text=None, order_modifiers=None, position_id=None):  # noqa: E501
         """Order - a model defined in Swagger"""  # noqa: E501
         self._id = None
         self._order_book_id = None
         self._quantity = None
         self._kind = None
         self._price = None
+        self._inverse_leverage = None
+        self._side = None
         self._status = None
         self._user_id = None
         self._user_text = None
         self._order_modifiers = None
+        self._position_id = None
         self.discriminator = None
         if id is not None:
             self.id = id
@@ -73,6 +82,10 @@ class Order(object):
             self.kind = kind
         if price is not None:
             self.price = price
+        if inverse_leverage is not None:
+            self.inverse_leverage = inverse_leverage
+        if side is not None:
+            self.side = side
         if status is not None:
             self.status = status
         if user_id is not None:
@@ -81,6 +94,8 @@ class Order(object):
             self.user_text = user_text
         if order_modifiers is not None:
             self.order_modifiers = order_modifiers
+        if position_id is not None:
+            self.position_id = position_id
 
     @property
     def id(self):
@@ -151,7 +166,7 @@ class Order(object):
 
 
         :return: The kind of this Order.  # noqa: E501
-        :rtype: str
+        :rtype: OrderKind
         """
         return self._kind
 
@@ -161,7 +176,7 @@ class Order(object):
 
 
         :param kind: The kind of this Order.  # noqa: E501
-        :type: str
+        :type: OrderKind
         """
 
         self._kind = kind
@@ -188,12 +203,54 @@ class Order(object):
         self._price = price
 
     @property
+    def inverse_leverage(self):
+        """Gets the inverse_leverage of this Order.  # noqa: E501
+
+
+        :return: The inverse_leverage of this Order.  # noqa: E501
+        :rtype: float
+        """
+        return self._inverse_leverage
+
+    @inverse_leverage.setter
+    def inverse_leverage(self, inverse_leverage):
+        """Sets the inverse_leverage of this Order.
+
+
+        :param inverse_leverage: The inverse_leverage of this Order.  # noqa: E501
+        :type: float
+        """
+
+        self._inverse_leverage = inverse_leverage
+
+    @property
+    def side(self):
+        """Gets the side of this Order.  # noqa: E501
+
+
+        :return: The side of this Order.  # noqa: E501
+        :rtype: Side
+        """
+        return self._side
+
+    @side.setter
+    def side(self, side):
+        """Sets the side of this Order.
+
+
+        :param side: The side of this Order.  # noqa: E501
+        :type: Side
+        """
+
+        self._side = side
+
+    @property
     def status(self):
         """Gets the status of this Order.  # noqa: E501
 
 
         :return: The status of this Order.  # noqa: E501
-        :rtype: str
+        :rtype: OrderStatus
         """
         return self._status
 
@@ -203,7 +260,7 @@ class Order(object):
 
 
         :param status: The status of this Order.  # noqa: E501
-        :type: str
+        :type: OrderStatus
         """
 
         self._status = status
@@ -256,7 +313,7 @@ class Order(object):
 
 
         :return: The order_modifiers of this Order.  # noqa: E501
-        :rtype: list[str]
+        :rtype: list[OrderModifierKind]
         """
         return self._order_modifiers
 
@@ -266,10 +323,31 @@ class Order(object):
 
 
         :param order_modifiers: The order_modifiers of this Order.  # noqa: E501
-        :type: list[str]
+        :type: list[OrderModifierKind]
         """
 
         self._order_modifiers = order_modifiers
+
+    @property
+    def position_id(self):
+        """Gets the position_id of this Order.  # noqa: E501
+
+
+        :return: The position_id of this Order.  # noqa: E501
+        :rtype: str
+        """
+        return self._position_id
+
+    @position_id.setter
+    def position_id(self, position_id):
+        """Sets the position_id of this Order.
+
+
+        :param position_id: The position_id of this Order.  # noqa: E501
+        :type: str
+        """
+
+        self._position_id = position_id
 
     def to_dict(self):
         """Returns the model properties as a dict"""

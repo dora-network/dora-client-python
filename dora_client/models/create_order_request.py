@@ -31,11 +31,11 @@ class CreateOrderRequest(object):
         'quantity': 'str',
         'inverse_leverage': 'float',
         'price': 'str',
-        'kind': 'str',
-        'side': 'str',
+        'kind': 'OrderKind',
+        'side': 'Side',
         'order_book_id': 'str',
         'user_text': 'str',
-        'order_modifiers': 'list[str]'
+        'order_modifiers': 'list[OrderModifierKind]'
     }
 
     attribute_map = {
@@ -148,7 +148,7 @@ class CreateOrderRequest(object):
 
 
         :return: The kind of this CreateOrderRequest.  # noqa: E501
-        :rtype: str
+        :rtype: OrderKind
         """
         return self._kind
 
@@ -158,14 +158,8 @@ class CreateOrderRequest(object):
 
 
         :param kind: The kind of this CreateOrderRequest.  # noqa: E501
-        :type: str
+        :type: OrderKind
         """
-        allowed_values = ["MARKET", "LIMIT"]  # noqa: E501
-        if kind not in allowed_values:
-            raise ValueError(
-                "Invalid value for `kind` ({0}), must be one of {1}"  # noqa: E501
-                .format(kind, allowed_values)
-            )
 
         self._kind = kind
 
@@ -173,10 +167,9 @@ class CreateOrderRequest(object):
     def side(self):
         """Gets the side of this CreateOrderRequest.  # noqa: E501
 
-        Required: Must be either 'BUY' or 'SELL'  # noqa: E501
 
         :return: The side of this CreateOrderRequest.  # noqa: E501
-        :rtype: str
+        :rtype: Side
         """
         return self._side
 
@@ -184,10 +177,9 @@ class CreateOrderRequest(object):
     def side(self, side):
         """Sets the side of this CreateOrderRequest.
 
-        Required: Must be either 'BUY' or 'SELL'  # noqa: E501
 
         :param side: The side of this CreateOrderRequest.  # noqa: E501
-        :type: str
+        :type: Side
         """
 
         self._side = side
@@ -244,7 +236,7 @@ class CreateOrderRequest(object):
 
 
         :return: The order_modifiers of this CreateOrderRequest.  # noqa: E501
-        :rtype: list[str]
+        :rtype: list[OrderModifierKind]
         """
         return self._order_modifiers
 
@@ -254,15 +246,8 @@ class CreateOrderRequest(object):
 
 
         :param order_modifiers: The order_modifiers of this CreateOrderRequest.  # noqa: E501
-        :type: list[str]
+        :type: list[OrderModifierKind]
         """
-        allowed_values = ["MAX_BUY"]  # noqa: E501
-        if not set(order_modifiers).issubset(set(allowed_values)):
-            raise ValueError(
-                "Invalid values for `order_modifiers` [{0}], must be a subset of [{1}]"  # noqa: E501
-                .format(", ".join(map(str, set(order_modifiers) - set(allowed_values))),  # noqa: E501
-                        ", ".join(map(str, allowed_values)))
-            )
 
         self._order_modifiers = order_modifiers
 

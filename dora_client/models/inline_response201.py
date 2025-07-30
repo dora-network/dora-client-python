@@ -29,7 +29,7 @@ class InlineResponse201(ResponseEnvelope):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'data': 'FundUserResponse'
+        'data': 'dict'
     }
     if hasattr(ResponseEnvelope, "swagger_types"):
         swagger_types.update(ResponseEnvelope.swagger_types)
@@ -54,7 +54,7 @@ class InlineResponse201(ResponseEnvelope):
 
 
         :return: The data of this InlineResponse201.  # noqa: E501
-        :rtype: FundUserResponse
+        :rtype: dict
         """
         return self._data
 
@@ -64,7 +64,7 @@ class InlineResponse201(ResponseEnvelope):
 
 
         :param data: The data of this InlineResponse201.  # noqa: E501
-        :type: FundUserResponse
+        :type: dict
         """
 
         self._data = data
