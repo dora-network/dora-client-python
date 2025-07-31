@@ -3520,8 +3520,8 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param dict body: (required)
-        :return: InlineResponse201
+        :param BorrowRequest body: (required)
+        :return: BorrowResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -3542,8 +3542,8 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param dict body: (required)
-        :return: InlineResponse201
+        :param BorrowRequest body: (required)
+        :return: BorrowResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -3601,7 +3601,7 @@ class DefaultApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='InlineResponse201',  # noqa: E501
+            response_type='BorrowResponse',  # noqa: E501
             auth_settings=auth_settings,
             async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
@@ -4007,8 +4007,8 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param dict body: (required)
-        :return: InlineResponse201
+        :param RepayRequest body: (required)
+        :return: RepayResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -4029,8 +4029,8 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param dict body: (required)
-        :return: InlineResponse201
+        :param RepayRequest body: (required)
+        :return: RepayResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -4088,7 +4088,7 @@ class DefaultApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='InlineResponse201',  # noqa: E501
+            response_type='RepayResponse',  # noqa: E501
             auth_settings=auth_settings,
             async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
@@ -4957,7 +4957,7 @@ class DefaultApi(object):
 
         :param async_req bool
         :param datetime since:
-        :return: InlineResponse200
+        :return: ListAssetPriceResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -4978,7 +4978,7 @@ class DefaultApi(object):
 
         :param async_req bool
         :param datetime since:
-        :return: InlineResponse200
+        :return: ListAssetPriceResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -5028,7 +5028,7 @@ class DefaultApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='InlineResponse200',  # noqa: E501
+            response_type='ListAssetPriceResponse',  # noqa: E501
             auth_settings=auth_settings,
             async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),

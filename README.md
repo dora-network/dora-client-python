@@ -472,7 +472,7 @@ except ApiException as e:
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
-body = NULL # dict | 
+body = dora_client.BorrowRequest() # BorrowRequest | 
 
 try:
     # Directly borrow assets
@@ -527,7 +527,7 @@ except ApiException as e:
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
-body = NULL # dict | 
+body = dora_client.RepayRequest() # RepayRequest | 
 
 try:
     # Repay borrowed assets
@@ -812,9 +812,12 @@ Class | Method | HTTP request | Description
  - [Asset](docs/Asset.md)
  - [AssetKind](docs/AssetKind.md)
  - [AssetPrice](docs/AssetPrice.md)
+ - [AssetRequestError](docs/AssetRequestError.md)
  - [BalancesResponse](docs/BalancesResponse.md)
  - [Bond](docs/Bond.md)
  - [BondKind](docs/BondKind.md)
+ - [BorrowRequest](docs/BorrowRequest.md)
+ - [BorrowResponse](docs/BorrowResponse.md)
  - [CancelOrdersResponse](docs/CancelOrdersResponse.md)
  - [CancelOrdersResponseData](docs/CancelOrdersResponseData.md)
  - [Candle](docs/Candle.md)
@@ -839,9 +842,6 @@ Class | Method | HTTP request | Description
  - [GetTransactionResponse](docs/GetTransactionResponse.md)
  - [GetUserConfigResponse](docs/GetUserConfigResponse.md)
  - [GetUserResponse](docs/GetUserResponse.md)
- - [InlineResponse200](docs/InlineResponse200.md)
- - [InlineResponse201](docs/InlineResponse201.md)
- - [InlineResponse400](docs/InlineResponse400.md)
  - [IsolateCollateralRequest](docs/IsolateCollateralRequest.md)
  - [IsolateCollateralResponse](docs/IsolateCollateralResponse.md)
  - [IsolatePositionRequest](docs/IsolatePositionRequest.md)
@@ -852,6 +852,7 @@ Class | Method | HTTP request | Description
  - [LedgerModuleResponse](docs/LedgerModuleResponse.md)
  - [LeverageBalanceResponse](docs/LeverageBalanceResponse.md)
  - [LeverageModuleResponse](docs/LeverageModuleResponse.md)
+ - [LeverageRequestError](docs/LeverageRequestError.md)
  - [LeverageType](docs/LeverageType.md)
  - [LiquidationTargetsResponse](docs/LiquidationTargetsResponse.md)
  - [Liquidity](docs/Liquidity.md)
@@ -886,20 +887,25 @@ Class | Method | HTTP request | Description
  - [OrderModifierKind](docs/OrderModifierKind.md)
  - [OrderStatus](docs/OrderStatus.md)
  - [PoolPrice](docs/PoolPrice.md)
+ - [PoolRequestError](docs/PoolRequestError.md)
  - [Portfolio](docs/Portfolio.md)
  - [Position](docs/Position.md)
  - [PositionResponse](docs/PositionResponse.md)
  - [PositionType](docs/PositionType.md)
  - [PriceLevel](docs/PriceLevel.md)
+ - [RepayRequest](docs/RepayRequest.md)
+ - [RepayResponse](docs/RepayResponse.md)
  - [ResponseEnvelope](docs/ResponseEnvelope.md)
  - [Side](docs/Side.md)
  - [Supply](docs/Supply.md)
  - [SupplyRequest](docs/SupplyRequest.md)
  - [SupplyResponse](docs/SupplyResponse.md)
  - [Trade](docs/Trade.md)
+ - [TradeRequestError](docs/TradeRequestError.md)
  - [TradeResponse](docs/TradeResponse.md)
  - [Transaction](docs/Transaction.md)
  - [TransactionKind](docs/TransactionKind.md)
+ - [TransactionRequestError](docs/TransactionRequestError.md)
  - [TransformedAssets](docs/TransformedAssets.md)
  - [UnitePositionRequest](docs/UnitePositionRequest.md)
  - [UnitePositionResponse](docs/UnitePositionResponse.md)

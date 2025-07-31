@@ -1779,7 +1779,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **leverage_borrow**
-> InlineResponse201 leverage_borrow(body)
+> BorrowResponse leverage_borrow(body)
 
 Directly borrow assets
 
@@ -1795,7 +1795,7 @@ from pprint import pprint
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi()
-body = NULL # dict | 
+body = dora_client.BorrowRequest() # BorrowRequest | 
 
 try:
     # Directly borrow assets
@@ -1809,11 +1809,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**dict**](dict.md)|  | 
+ **body** | [**BorrowRequest**](BorrowRequest.md)|  | 
 
 ### Return type
 
-[**InlineResponse201**](InlineResponse201.md)
+[**BorrowResponse**](BorrowResponse.md)
 
 ### Authorization
 
@@ -2011,7 +2011,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **leverage_repay**
-> InlineResponse201 leverage_repay(body)
+> RepayResponse leverage_repay(body)
 
 Repay borrowed assets
 
@@ -2027,7 +2027,7 @@ from pprint import pprint
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi()
-body = NULL # dict | 
+body = dora_client.RepayRequest() # RepayRequest | 
 
 try:
     # Repay borrowed assets
@@ -2041,11 +2041,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**dict**](dict.md)|  | 
+ **body** | [**RepayRequest**](RepayRequest.md)|  | 
 
 ### Return type
 
-[**InlineResponse201**](InlineResponse201.md)
+[**RepayResponse**](RepayResponse.md)
 
 ### Authorization
 
@@ -2473,7 +2473,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **stream_asset_prices**
-> InlineResponse200 stream_asset_prices(since=since)
+> ListAssetPriceResponse stream_asset_prices(since=since)
 
 Get a snapshot of asset prices from a specific date and open a stream for real-time updates
 
@@ -2505,7 +2505,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse200**](InlineResponse200.md)
+[**ListAssetPriceResponse**](ListAssetPriceResponse.md)
 
 ### Authorization
 
