@@ -28,50 +28,50 @@ class FundUserRequest(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'user_id': 'str',
+        'position_id': 'str',
         'asset_id': 'str',
         'amount': 'str'
     }
 
     attribute_map = {
-        'user_id': 'user_id',
+        'position_id': 'position_id',
         'asset_id': 'asset_id',
         'amount': 'amount'
     }
 
-    def __init__(self, user_id=None, asset_id=None, amount=None):  # noqa: E501
+    def __init__(self, position_id=None, asset_id=None, amount=None):  # noqa: E501
         """FundUserRequest - a model defined in Swagger"""  # noqa: E501
-        self._user_id = None
+        self._position_id = None
         self._asset_id = None
         self._amount = None
         self.discriminator = None
-        if user_id is not None:
-            self.user_id = user_id
+        if position_id is not None:
+            self.position_id = position_id
         if asset_id is not None:
             self.asset_id = asset_id
         if amount is not None:
             self.amount = amount
 
     @property
-    def user_id(self):
-        """Gets the user_id of this FundUserRequest.  # noqa: E501
+    def position_id(self):
+        """Gets the position_id of this FundUserRequest.  # noqa: E501
 
 
-        :return: The user_id of this FundUserRequest.  # noqa: E501
+        :return: The position_id of this FundUserRequest.  # noqa: E501
         :rtype: str
         """
-        return self._user_id
+        return self._position_id
 
-    @user_id.setter
-    def user_id(self, user_id):
-        """Sets the user_id of this FundUserRequest.
+    @position_id.setter
+    def position_id(self, position_id):
+        """Sets the position_id of this FundUserRequest.
 
 
-        :param user_id: The user_id of this FundUserRequest.  # noqa: E501
+        :param position_id: The position_id of this FundUserRequest.  # noqa: E501
         :type: str
         """
 
-        self._user_id = user_id
+        self._position_id = position_id
 
     @property
     def asset_id(self):

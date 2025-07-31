@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**user_id** | **str** |  | [optional] 
+**position_id** | **str** |  | [optional] 
 **asset_id** | **str** |  | [optional] 
 **amount** | **str** |  | [optional] 
 
