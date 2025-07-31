@@ -29,7 +29,7 @@ class ListAssetsResponse(ResponseEnvelope):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'data': 'Asset'
+        'data': 'list[Asset]'
     }
     if hasattr(ResponseEnvelope, "swagger_types"):
         swagger_types.update(ResponseEnvelope.swagger_types)
@@ -54,7 +54,7 @@ class ListAssetsResponse(ResponseEnvelope):
 
 
         :return: The data of this ListAssetsResponse.  # noqa: E501
-        :rtype: Asset
+        :rtype: list[Asset]
         """
         return self._data
 
@@ -64,7 +64,7 @@ class ListAssetsResponse(ResponseEnvelope):
 
 
         :param data: The data of this ListAssetsResponse.  # noqa: E501
-        :type: Asset
+        :type: list[Asset]
         """
 
         self._data = data
