@@ -28,50 +28,22 @@ class LiquidityRequest(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'order_book_id': 'str',
         'position_id': 'str',
         'quantity': 'str'
     }
 
     attribute_map = {
-        'order_book_id': 'order_book_id',
         'position_id': 'position_id',
         'quantity': 'quantity'
     }
 
-    def __init__(self, order_book_id=None, position_id=None, quantity=None):  # noqa: E501
+    def __init__(self, position_id=None, quantity=None):  # noqa: E501
         """LiquidityRequest - a model defined in Swagger"""  # noqa: E501
-        self._order_book_id = None
         self._position_id = None
         self._quantity = None
         self.discriminator = None
-        if order_book_id is not None:
-            self.order_book_id = order_book_id
-        if position_id is not None:
-            self.position_id = position_id
-        if quantity is not None:
-            self.quantity = quantity
-
-    @property
-    def order_book_id(self):
-        """Gets the order_book_id of this LiquidityRequest.  # noqa: E501
-
-
-        :return: The order_book_id of this LiquidityRequest.  # noqa: E501
-        :rtype: str
-        """
-        return self._order_book_id
-
-    @order_book_id.setter
-    def order_book_id(self, order_book_id):
-        """Sets the order_book_id of this LiquidityRequest.
-
-
-        :param order_book_id: The order_book_id of this LiquidityRequest.  # noqa: E501
-        :type: str
-        """
-
-        self._order_book_id = order_book_id
+        self.position_id = position_id
+        self.quantity = quantity
 
     @property
     def position_id(self):
@@ -91,6 +63,8 @@ class LiquidityRequest(object):
         :param position_id: The position_id of this LiquidityRequest.  # noqa: E501
         :type: str
         """
+        if position_id is None:
+            raise ValueError("Invalid value for `position_id`, must not be `None`")  # noqa: E501
 
         self._position_id = position_id
 
@@ -112,6 +86,8 @@ class LiquidityRequest(object):
         :param quantity: The quantity of this LiquidityRequest.  # noqa: E501
         :type: str
         """
+        if quantity is None:
+            raise ValueError("Invalid value for `quantity`, must not be `None`")  # noqa: E501
 
         self._quantity = quantity
 

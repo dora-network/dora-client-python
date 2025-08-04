@@ -30,27 +30,24 @@ class FundUserRequest(object):
     swagger_types = {
         'position_id': 'str',
         'asset_id': 'str',
-        'amount': 'str'
+        'quantity': 'str'
     }
 
     attribute_map = {
         'position_id': 'position_id',
         'asset_id': 'asset_id',
-        'amount': 'amount'
+        'quantity': 'quantity'
     }
 
-    def __init__(self, position_id=None, asset_id=None, amount=None):  # noqa: E501
+    def __init__(self, position_id=None, asset_id=None, quantity=None):  # noqa: E501
         """FundUserRequest - a model defined in Swagger"""  # noqa: E501
         self._position_id = None
         self._asset_id = None
-        self._amount = None
+        self._quantity = None
         self.discriminator = None
-        if position_id is not None:
-            self.position_id = position_id
-        if asset_id is not None:
-            self.asset_id = asset_id
-        if amount is not None:
-            self.amount = amount
+        self.position_id = position_id
+        self.asset_id = asset_id
+        self.quantity = quantity
 
     @property
     def position_id(self):
@@ -70,6 +67,8 @@ class FundUserRequest(object):
         :param position_id: The position_id of this FundUserRequest.  # noqa: E501
         :type: str
         """
+        if position_id is None:
+            raise ValueError("Invalid value for `position_id`, must not be `None`")  # noqa: E501
 
         self._position_id = position_id
 
@@ -91,29 +90,33 @@ class FundUserRequest(object):
         :param asset_id: The asset_id of this FundUserRequest.  # noqa: E501
         :type: str
         """
+        if asset_id is None:
+            raise ValueError("Invalid value for `asset_id`, must not be `None`")  # noqa: E501
 
         self._asset_id = asset_id
 
     @property
-    def amount(self):
-        """Gets the amount of this FundUserRequest.  # noqa: E501
+    def quantity(self):
+        """Gets the quantity of this FundUserRequest.  # noqa: E501
 
 
-        :return: The amount of this FundUserRequest.  # noqa: E501
+        :return: The quantity of this FundUserRequest.  # noqa: E501
         :rtype: str
         """
-        return self._amount
+        return self._quantity
 
-    @amount.setter
-    def amount(self, amount):
-        """Sets the amount of this FundUserRequest.
+    @quantity.setter
+    def quantity(self, quantity):
+        """Sets the quantity of this FundUserRequest.
 
 
-        :param amount: The amount of this FundUserRequest.  # noqa: E501
+        :param quantity: The quantity of this FundUserRequest.  # noqa: E501
         :type: str
         """
+        if quantity is None:
+            raise ValueError("Invalid value for `quantity`, must not be `None`")  # noqa: E501
 
-        self._amount = amount
+        self._quantity = quantity
 
     def to_dict(self):
         """Returns the model properties as a dict"""

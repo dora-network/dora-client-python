@@ -3,12 +3,12 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**quantity** | **str** |  | [optional] 
-**inverse_leverage** | **float** | Required: Inverse leverage for the order, must be between 0 and 1 (inclusive) | [optional] 
-**price** | **str** |  | [optional] 
-**kind** | [**OrderKind**](OrderKind.md) |  | [optional] 
-**side** | [**Side**](Side.md) |  | [optional] 
-**order_book_id** | **str** | Required: the order book to submit the order to | [optional] 
+**quantity** | **str** |  | 
+**inverse_leverage** | **float** | Required: Inverse leverage for the order, must be between 0 and 1 (inclusive) | 
+**price** | **str** |  | 
+**kind** | [**OrderKind**](OrderKind.md) |  | 
+**side** | [**Side**](Side.md) |  | 
+**order_book_id** | **str** | Required: the order book to submit the order to | 
 **user_text** | **str** | Optional: User-defined text for the order, e.g., &#x27;buying dips&#x27; | [optional] 
 **order_modifiers** | [**list[OrderModifierKind]**](OrderModifierKind.md) |  | [optional] 
 

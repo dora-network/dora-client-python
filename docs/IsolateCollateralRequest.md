@@ -3,9 +3,9 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**global_position_id** | **str** |  | [optional] 
-**asset_id** | **str** |  | [optional] 
-**quantity** | **str** |  | [optional] 
+**global_position_id** | **str** |  | 
+**asset_id** | **str** |  | 
+**quantity** | **str** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

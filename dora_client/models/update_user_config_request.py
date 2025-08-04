@@ -42,10 +42,8 @@ class UpdateUserConfigRequest(object):
         self._photo_url = None
         self._timezone = None
         self.discriminator = None
-        if photo_url is not None:
-            self.photo_url = photo_url
-        if timezone is not None:
-            self.timezone = timezone
+        self.photo_url = photo_url
+        self.timezone = timezone
 
     @property
     def photo_url(self):
@@ -65,6 +63,8 @@ class UpdateUserConfigRequest(object):
         :param photo_url: The photo_url of this UpdateUserConfigRequest.  # noqa: E501
         :type: UpdateFieldString
         """
+        if photo_url is None:
+            raise ValueError("Invalid value for `photo_url`, must not be `None`")  # noqa: E501
 
         self._photo_url = photo_url
 
@@ -86,6 +86,8 @@ class UpdateUserConfigRequest(object):
         :param timezone: The timezone of this UpdateUserConfigRequest.  # noqa: E501
         :type: UpdateFieldString
         """
+        if timezone is None:
+            raise ValueError("Invalid value for `timezone`, must not be `None`")  # noqa: E501
 
         self._timezone = timezone
 

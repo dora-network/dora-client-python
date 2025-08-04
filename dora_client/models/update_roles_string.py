@@ -42,8 +42,7 @@ class UpdateRolesString(object):
         self._update = None
         self._value = None
         self.discriminator = None
-        if update is not None:
-            self.update = update
+        self.update = update
         if value is not None:
             self.value = value
 
@@ -67,6 +66,8 @@ class UpdateRolesString(object):
         :param update: The update of this UpdateRolesString.  # noqa: E501
         :type: bool
         """
+        if update is None:
+            raise ValueError("Invalid value for `update`, must not be `None`")  # noqa: E501
 
         self._update = update
 

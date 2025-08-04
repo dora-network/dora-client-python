@@ -39,8 +39,7 @@ class IsolatePositionRequest(object):
         """IsolatePositionRequest - a model defined in Swagger"""  # noqa: E501
         self._global_position_id = None
         self.discriminator = None
-        if global_position_id is not None:
-            self.global_position_id = global_position_id
+        self.global_position_id = global_position_id
 
     @property
     def global_position_id(self):
@@ -60,6 +59,8 @@ class IsolatePositionRequest(object):
         :param global_position_id: The global_position_id of this IsolatePositionRequest.  # noqa: E501
         :type: str
         """
+        if global_position_id is None:
+            raise ValueError("Invalid value for `global_position_id`, must not be `None`")  # noqa: E501
 
         self._global_position_id = global_position_id
 

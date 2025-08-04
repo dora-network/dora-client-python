@@ -31,22 +31,22 @@ class FundUser(object):
         'user_id': 'str',
         'position_id': 'str',
         'asset_id': 'str',
-        'final_amount': 'str'
+        'final_quantity': 'str'
     }
 
     attribute_map = {
         'user_id': 'user_id',
         'position_id': 'position_id',
         'asset_id': 'asset_id',
-        'final_amount': 'final_amount'
+        'final_quantity': 'final_quantity'
     }
 
-    def __init__(self, user_id=None, position_id=None, asset_id=None, final_amount=None):  # noqa: E501
+    def __init__(self, user_id=None, position_id=None, asset_id=None, final_quantity=None):  # noqa: E501
         """FundUser - a model defined in Swagger"""  # noqa: E501
         self._user_id = None
         self._position_id = None
         self._asset_id = None
-        self._final_amount = None
+        self._final_quantity = None
         self.discriminator = None
         if user_id is not None:
             self.user_id = user_id
@@ -54,8 +54,8 @@ class FundUser(object):
             self.position_id = position_id
         if asset_id is not None:
             self.asset_id = asset_id
-        if final_amount is not None:
-            self.final_amount = final_amount
+        if final_quantity is not None:
+            self.final_quantity = final_quantity
 
     @property
     def user_id(self):
@@ -121,25 +121,25 @@ class FundUser(object):
         self._asset_id = asset_id
 
     @property
-    def final_amount(self):
-        """Gets the final_amount of this FundUser.  # noqa: E501
+    def final_quantity(self):
+        """Gets the final_quantity of this FundUser.  # noqa: E501
 
 
-        :return: The final_amount of this FundUser.  # noqa: E501
+        :return: The final_quantity of this FundUser.  # noqa: E501
         :rtype: str
         """
-        return self._final_amount
+        return self._final_quantity
 
-    @final_amount.setter
-    def final_amount(self, final_amount):
-        """Sets the final_amount of this FundUser.
+    @final_quantity.setter
+    def final_quantity(self, final_quantity):
+        """Sets the final_quantity of this FundUser.
 
 
-        :param final_amount: The final_amount of this FundUser.  # noqa: E501
+        :param final_quantity: The final_quantity of this FundUser.  # noqa: E501
         :type: str
         """
 
-        self._final_amount = final_amount
+        self._final_quantity = final_quantity
 
     def to_dict(self):
         """Returns the model properties as a dict"""

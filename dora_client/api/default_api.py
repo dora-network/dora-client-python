@@ -2395,7 +2395,7 @@ class DefaultApi(object):
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/v1/trade/{trade_id}', 'GET',
+            '/v1/trades/{trade_id}', 'GET',
             path_params,
             query_params,
             header_params,
@@ -2506,7 +2506,7 @@ class DefaultApi(object):
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/v1/trade', 'GET',
+            '/v1/trades', 'GET',
             path_params,
             query_params,
             header_params,
@@ -5413,7 +5413,7 @@ class DefaultApi(object):
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/v1/trade/{order_book_id}/stream', 'GET',
+            '/v1/trades/{order_book_id}/stream', 'GET',
             path_params,
             query_params,
             header_params,

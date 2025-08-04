@@ -45,12 +45,9 @@ class WithdrawRequest(object):
         self._asset_id = None
         self._quantity = None
         self.discriminator = None
-        if position_id is not None:
-            self.position_id = position_id
-        if asset_id is not None:
-            self.asset_id = asset_id
-        if quantity is not None:
-            self.quantity = quantity
+        self.position_id = position_id
+        self.asset_id = asset_id
+        self.quantity = quantity
 
     @property
     def position_id(self):
@@ -70,6 +67,8 @@ class WithdrawRequest(object):
         :param position_id: The position_id of this WithdrawRequest.  # noqa: E501
         :type: str
         """
+        if position_id is None:
+            raise ValueError("Invalid value for `position_id`, must not be `None`")  # noqa: E501
 
         self._position_id = position_id
 
@@ -91,6 +90,8 @@ class WithdrawRequest(object):
         :param asset_id: The asset_id of this WithdrawRequest.  # noqa: E501
         :type: str
         """
+        if asset_id is None:
+            raise ValueError("Invalid value for `asset_id`, must not be `None`")  # noqa: E501
 
         self._asset_id = asset_id
 
@@ -112,6 +113,8 @@ class WithdrawRequest(object):
         :param quantity: The quantity of this WithdrawRequest.  # noqa: E501
         :type: str
         """
+        if quantity is None:
+            raise ValueError("Invalid value for `quantity`, must not be `None`")  # noqa: E501
 
         self._quantity = quantity
 

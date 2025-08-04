@@ -37,6 +37,7 @@ from dora_client.models.collateral import Collateral
 from dora_client.models.collateralize_request import CollateralizeRequest
 from dora_client.models.collateralize_response import CollateralizeResponse
 from dora_client.models.coupon_payment import CouponPayment
+from dora_client.models.create_or_update_user_response import CreateOrUpdateUserResponse
 from dora_client.models.create_order_request import CreateOrderRequest
 from dora_client.models.de_collateralize_request import DeCollateralizeRequest
 from dora_client.models.de_collateralize_response import DeCollateralizeResponse

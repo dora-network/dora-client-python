@@ -772,8 +772,8 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**get_orderbook_summary**](docs/DefaultApi.md#get_orderbook_summary) | **GET** /v1/orderbooks/{order_book_id}/summary | Get summary of an orderbook
 *DefaultApi* | [**get_orderbook_top**](docs/DefaultApi.md#get_orderbook_top) | **GET** /v1/orderbooks/{order_book_id}/top | Get the top price levels for a specific orderbook (L1 market depth)
 *DefaultApi* | [**get_pool_price**](docs/DefaultApi.md#get_pool_price) | **GET** /v1/price/pool/{pool_id} | Get the current price of a pool
-*DefaultApi* | [**get_trade_by_id**](docs/DefaultApi.md#get_trade_by_id) | **GET** /v1/trade/{trade_id} | Get a trade by ID
-*DefaultApi* | [**get_trades**](docs/DefaultApi.md#get_trades) | **GET** /v1/trade | Get a filtered, paginated list of trades
+*DefaultApi* | [**get_trade_by_id**](docs/DefaultApi.md#get_trade_by_id) | **GET** /v1/trades/{trade_id} | Get a trade by ID
+*DefaultApi* | [**get_trades**](docs/DefaultApi.md#get_trades) | **GET** /v1/trades | Get a filtered, paginated list of trades
 *DefaultApi* | [**get_transaction_by_id**](docs/DefaultApi.md#get_transaction_by_id) | **GET** /v1/transactions/{id} | Get a transaction by ID
 *DefaultApi* | [**get_transactions**](docs/DefaultApi.md#get_transactions) | **GET** /v1/transactions | Get a filtered, paginated list of transactions
 *DefaultApi* | [**get_user_by_id**](docs/DefaultApi.md#get_user_by_id) | **GET** /v1/user/{user_id} | Get user by ID (admin only)
@@ -802,7 +802,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**stream_candle_data**](docs/DefaultApi.md#stream_candle_data) | **GET** /v1/charts/{orderbook}/candle/stream | Get a snapshot of candlestick data from date provided, and open a stream for real-time updates
 *DefaultApi* | [**stream_order_book_balances**](docs/DefaultApi.md#stream_order_book_balances) | **GET** /v1/orderbooks/{order_book_id}/stream/balances | Get a snapshot of base and quote balances for an order book and open a stream for real-time updates
 *DefaultApi* | [**stream_orderbook_open_orders**](docs/DefaultApi.md#stream_orderbook_open_orders) | **GET** /v1/orderbooks/{order_book_id}/stream/open | Get a snapshot of open orders in an order book and open a stream for real-time updates
-*DefaultApi* | [**stream_trades**](docs/DefaultApi.md#stream_trades) | **GET** /v1/trade/{order_book_id}/stream | Get a snapshot of trades executed on the given order book from a specific date and open a stream for real-time updates
+*DefaultApi* | [**stream_trades**](docs/DefaultApi.md#stream_trades) | **GET** /v1/trades/{order_book_id}/stream | Get a snapshot of trades executed on the given order book from a specific date and open a stream for real-time updates
 *DefaultApi* | [**update_user_config**](docs/DefaultApi.md#update_user_config) | **PUT** /v1/user/{user_id}/config | Update user configuration by ID
 *DefaultApi* | [**update_user_config_self**](docs/DefaultApi.md#update_user_config_self) | **PUT** /v1/user/config/self | Update user configuration for the authenticated user
 *DefaultApi* | [**verify_user**](docs/DefaultApi.md#verify_user) | **PUT** /v1/user/{user_id}/verify | Verify a user by ID
@@ -826,6 +826,7 @@ Class | Method | HTTP request | Description
  - [CollateralizeRequest](docs/CollateralizeRequest.md)
  - [CollateralizeResponse](docs/CollateralizeResponse.md)
  - [CouponPayment](docs/CouponPayment.md)
+ - [CreateOrUpdateUserResponse](docs/CreateOrUpdateUserResponse.md)
  - [CreateOrderRequest](docs/CreateOrderRequest.md)
  - [DeCollateralizeRequest](docs/DeCollateralizeRequest.md)
  - [DeCollateralizeResponse](docs/DeCollateralizeResponse.md)

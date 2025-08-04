@@ -60,18 +60,12 @@ class CreateOrderRequest(object):
         self._user_text = None
         self._order_modifiers = None
         self.discriminator = None
-        if quantity is not None:
-            self.quantity = quantity
-        if inverse_leverage is not None:
-            self.inverse_leverage = inverse_leverage
-        if price is not None:
-            self.price = price
-        if kind is not None:
-            self.kind = kind
-        if side is not None:
-            self.side = side
-        if order_book_id is not None:
-            self.order_book_id = order_book_id
+        self.quantity = quantity
+        self.inverse_leverage = inverse_leverage
+        self.price = price
+        self.kind = kind
+        self.side = side
+        self.order_book_id = order_book_id
         if user_text is not None:
             self.user_text = user_text
         if order_modifiers is not None:
@@ -95,6 +89,8 @@ class CreateOrderRequest(object):
         :param quantity: The quantity of this CreateOrderRequest.  # noqa: E501
         :type: str
         """
+        if quantity is None:
+            raise ValueError("Invalid value for `quantity`, must not be `None`")  # noqa: E501
 
         self._quantity = quantity
 
@@ -118,6 +114,8 @@ class CreateOrderRequest(object):
         :param inverse_leverage: The inverse_leverage of this CreateOrderRequest.  # noqa: E501
         :type: float
         """
+        if inverse_leverage is None:
+            raise ValueError("Invalid value for `inverse_leverage`, must not be `None`")  # noqa: E501
 
         self._inverse_leverage = inverse_leverage
 
@@ -139,6 +137,8 @@ class CreateOrderRequest(object):
         :param price: The price of this CreateOrderRequest.  # noqa: E501
         :type: str
         """
+        if price is None:
+            raise ValueError("Invalid value for `price`, must not be `None`")  # noqa: E501
 
         self._price = price
 
@@ -160,6 +160,8 @@ class CreateOrderRequest(object):
         :param kind: The kind of this CreateOrderRequest.  # noqa: E501
         :type: OrderKind
         """
+        if kind is None:
+            raise ValueError("Invalid value for `kind`, must not be `None`")  # noqa: E501
 
         self._kind = kind
 
@@ -181,6 +183,8 @@ class CreateOrderRequest(object):
         :param side: The side of this CreateOrderRequest.  # noqa: E501
         :type: Side
         """
+        if side is None:
+            raise ValueError("Invalid value for `side`, must not be `None`")  # noqa: E501
 
         self._side = side
 
@@ -204,6 +208,8 @@ class CreateOrderRequest(object):
         :param order_book_id: The order_book_id of this CreateOrderRequest.  # noqa: E501
         :type: str
         """
+        if order_book_id is None:
+            raise ValueError("Invalid value for `order_book_id`, must not be `None`")  # noqa: E501
 
         self._order_book_id = order_book_id
 
