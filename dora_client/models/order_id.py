@@ -28,40 +28,40 @@ class OrderId(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'id': 'str'
+        'order_id': 'str'
     }
 
     attribute_map = {
-        'id': 'id'
+        'order_id': 'order_id'
     }
 
-    def __init__(self, id=None):  # noqa: E501
+    def __init__(self, order_id=None):  # noqa: E501
         """OrderId - a model defined in Swagger"""  # noqa: E501
-        self._id = None
+        self._order_id = None
         self.discriminator = None
-        if id is not None:
-            self.id = id
+        if order_id is not None:
+            self.order_id = order_id
 
     @property
-    def id(self):
-        """Gets the id of this OrderId.  # noqa: E501
+    def order_id(self):
+        """Gets the order_id of this OrderId.  # noqa: E501
 
 
-        :return: The id of this OrderId.  # noqa: E501
+        :return: The order_id of this OrderId.  # noqa: E501
         :rtype: str
         """
-        return self._id
+        return self._order_id
 
-    @id.setter
-    def id(self, id):
-        """Sets the id of this OrderId.
+    @order_id.setter
+    def order_id(self, order_id):
+        """Sets the order_id of this OrderId.
 
 
-        :param id: The id of this OrderId.  # noqa: E501
+        :param order_id: The order_id of this OrderId.  # noqa: E501
         :type: str
         """
 
-        self._id = id
+        self._order_id = order_id
 
     def to_dict(self):
         """Returns the model properties as a dict"""

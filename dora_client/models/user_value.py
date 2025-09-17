@@ -31,6 +31,12 @@ class UserValue(object):
         'available': 'dict(str, str)',
         'locked': 'dict(str, str)',
         'borrowed': 'dict(str, str)',
+        'supplied': 'dict(str, str)',
+        'collateral': 'dict(str, str)',
+        'supplied_collateral': 'dict(str, str)',
+        'impending_borrows': 'dict(str, str)',
+        'borrow_limit': 'dict(str, str)',
+        'liquidation_threshold': 'dict(str, str)',
         'notional_long': 'dict(str, str)',
         'notional_short': 'dict(str, str)',
         'portfolio_value': 'dict(str, str)',
@@ -43,6 +49,12 @@ class UserValue(object):
         'available': 'available',
         'locked': 'locked',
         'borrowed': 'borrowed',
+        'supplied': 'supplied',
+        'collateral': 'collateral',
+        'supplied_collateral': 'supplied_collateral',
+        'impending_borrows': 'impending_borrows',
+        'borrow_limit': 'borrow_limit',
+        'liquidation_threshold': 'liquidation_threshold',
         'notional_long': 'notional_long',
         'notional_short': 'notional_short',
         'portfolio_value': 'portfolio_value',
@@ -51,11 +63,17 @@ class UserValue(object):
         'realized_pnl': 'realized_pnl'
     }
 
-    def __init__(self, available=None, locked=None, borrowed=None, notional_long=None, notional_short=None, portfolio_value=None, net_liquidation_value=None, unrealized_pnl=None, realized_pnl=None):  # noqa: E501
+    def __init__(self, available=None, locked=None, borrowed=None, supplied=None, collateral=None, supplied_collateral=None, impending_borrows=None, borrow_limit=None, liquidation_threshold=None, notional_long=None, notional_short=None, portfolio_value=None, net_liquidation_value=None, unrealized_pnl=None, realized_pnl=None):  # noqa: E501
         """UserValue - a model defined in Swagger"""  # noqa: E501
         self._available = None
         self._locked = None
         self._borrowed = None
+        self._supplied = None
+        self._collateral = None
+        self._supplied_collateral = None
+        self._impending_borrows = None
+        self._borrow_limit = None
+        self._liquidation_threshold = None
         self._notional_long = None
         self._notional_short = None
         self._portfolio_value = None
@@ -69,6 +87,18 @@ class UserValue(object):
             self.locked = locked
         if borrowed is not None:
             self.borrowed = borrowed
+        if supplied is not None:
+            self.supplied = supplied
+        if collateral is not None:
+            self.collateral = collateral
+        if supplied_collateral is not None:
+            self.supplied_collateral = supplied_collateral
+        if impending_borrows is not None:
+            self.impending_borrows = impending_borrows
+        if borrow_limit is not None:
+            self.borrow_limit = borrow_limit
+        if liquidation_threshold is not None:
+            self.liquidation_threshold = liquidation_threshold
         if notional_long is not None:
             self.notional_long = notional_long
         if notional_short is not None:
@@ -144,6 +174,132 @@ class UserValue(object):
         """
 
         self._borrowed = borrowed
+
+    @property
+    def supplied(self):
+        """Gets the supplied of this UserValue.  # noqa: E501
+
+
+        :return: The supplied of this UserValue.  # noqa: E501
+        :rtype: dict(str, str)
+        """
+        return self._supplied
+
+    @supplied.setter
+    def supplied(self, supplied):
+        """Sets the supplied of this UserValue.
+
+
+        :param supplied: The supplied of this UserValue.  # noqa: E501
+        :type: dict(str, str)
+        """
+
+        self._supplied = supplied
+
+    @property
+    def collateral(self):
+        """Gets the collateral of this UserValue.  # noqa: E501
+
+
+        :return: The collateral of this UserValue.  # noqa: E501
+        :rtype: dict(str, str)
+        """
+        return self._collateral
+
+    @collateral.setter
+    def collateral(self, collateral):
+        """Sets the collateral of this UserValue.
+
+
+        :param collateral: The collateral of this UserValue.  # noqa: E501
+        :type: dict(str, str)
+        """
+
+        self._collateral = collateral
+
+    @property
+    def supplied_collateral(self):
+        """Gets the supplied_collateral of this UserValue.  # noqa: E501
+
+
+        :return: The supplied_collateral of this UserValue.  # noqa: E501
+        :rtype: dict(str, str)
+        """
+        return self._supplied_collateral
+
+    @supplied_collateral.setter
+    def supplied_collateral(self, supplied_collateral):
+        """Sets the supplied_collateral of this UserValue.
+
+
+        :param supplied_collateral: The supplied_collateral of this UserValue.  # noqa: E501
+        :type: dict(str, str)
+        """
+
+        self._supplied_collateral = supplied_collateral
+
+    @property
+    def impending_borrows(self):
+        """Gets the impending_borrows of this UserValue.  # noqa: E501
+
+
+        :return: The impending_borrows of this UserValue.  # noqa: E501
+        :rtype: dict(str, str)
+        """
+        return self._impending_borrows
+
+    @impending_borrows.setter
+    def impending_borrows(self, impending_borrows):
+        """Sets the impending_borrows of this UserValue.
+
+
+        :param impending_borrows: The impending_borrows of this UserValue.  # noqa: E501
+        :type: dict(str, str)
+        """
+
+        self._impending_borrows = impending_borrows
+
+    @property
+    def borrow_limit(self):
+        """Gets the borrow_limit of this UserValue.  # noqa: E501
+
+
+        :return: The borrow_limit of this UserValue.  # noqa: E501
+        :rtype: dict(str, str)
+        """
+        return self._borrow_limit
+
+    @borrow_limit.setter
+    def borrow_limit(self, borrow_limit):
+        """Sets the borrow_limit of this UserValue.
+
+
+        :param borrow_limit: The borrow_limit of this UserValue.  # noqa: E501
+        :type: dict(str, str)
+        """
+
+        self._borrow_limit = borrow_limit
+
+    @property
+    def liquidation_threshold(self):
+        """Gets the liquidation_threshold of this UserValue.  # noqa: E501
+
+
+        :return: The liquidation_threshold of this UserValue.  # noqa: E501
+        :rtype: dict(str, str)
+        """
+        return self._liquidation_threshold
+
+    @liquidation_threshold.setter
+    def liquidation_threshold(self, liquidation_threshold):
+        """Sets the liquidation_threshold of this UserValue.
+
+
+        :param liquidation_threshold: The liquidation_threshold of this UserValue.  # noqa: E501
+        :type: dict(str, str)
+        """
+
+        self._liquidation_threshold = liquidation_threshold
 
     @property
     def notional_long(self):

@@ -28,7 +28,7 @@ class UserRole(object):
     SELF = "SELF"
     ADMIN = "ADMIN"
     BOND_PROVIDER = "BOND_PROVIDER"
-    LIQUIDY_PROVIDER = "LIQUIDY_PROVIDER"
+    LIQUIDITY_PROVIDER = "LIQUIDITY_PROVIDER"
     TRADER = "TRADER"
     """
     Attributes:

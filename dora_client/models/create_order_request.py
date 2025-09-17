@@ -29,12 +29,13 @@ class CreateOrderRequest(object):
     """
     swagger_types = {
         'quantity': 'str',
-        'inverse_leverage': 'float',
+        'inverse_leverage': 'str',
         'price': 'str',
         'kind': 'OrderKind',
         'side': 'Side',
+        'position_id': 'str',
         'order_book_id': 'str',
-        'user_text': 'str',
+        'order_info': 'str',
         'order_modifiers': 'list[OrderModifierKind]'
     }
 
@@ -44,30 +45,34 @@ class CreateOrderRequest(object):
         'price': 'price',
         'kind': 'kind',
         'side': 'side',
+        'position_id': 'position_id',
         'order_book_id': 'order_book_id',
-        'user_text': 'user_text',
+        'order_info': 'order_info',
         'order_modifiers': 'order_modifiers'
     }
 
-    def __init__(self, quantity=None, inverse_leverage=None, price=None, kind=None, side=None, order_book_id=None, user_text=None, order_modifiers=None):  # noqa: E501
+    def __init__(self, quantity=None, inverse_leverage=None, price=None, kind=None, side=None, position_id=None, order_book_id=None, order_info=None, order_modifiers=None):  # noqa: E501
         """CreateOrderRequest - a model defined in Swagger"""  # noqa: E501
         self._quantity = None
         self._inverse_leverage = None
         self._price = None
         self._kind = None
         self._side = None
+        self._position_id = None
         self._order_book_id = None
-        self._user_text = None
+        self._order_info = None
         self._order_modifiers = None
         self.discriminator = None
         self.quantity = quantity
         self.inverse_leverage = inverse_leverage
-        self.price = price
+        if price is not None:
+            self.price = price
         self.kind = kind
         self.side = side
+        self.position_id = position_id
         self.order_book_id = order_book_id
-        if user_text is not None:
-            self.user_text = user_text
+        if order_info is not None:
+            self.order_info = order_info
         if order_modifiers is not None:
             self.order_modifiers = order_modifiers
 
@@ -98,10 +103,9 @@ class CreateOrderRequest(object):
     def inverse_leverage(self):
         """Gets the inverse_leverage of this CreateOrderRequest.  # noqa: E501
 
-        Required: Inverse leverage for the order, must be between 0 and 1 (inclusive)  # noqa: E501
 
         :return: The inverse_leverage of this CreateOrderRequest.  # noqa: E501
-        :rtype: float
+        :rtype: str
         """
         return self._inverse_leverage
 
@@ -109,10 +113,9 @@ class CreateOrderRequest(object):
     def inverse_leverage(self, inverse_leverage):
         """Sets the inverse_leverage of this CreateOrderRequest.
 
-        Required: Inverse leverage for the order, must be between 0 and 1 (inclusive)  # noqa: E501
 
         :param inverse_leverage: The inverse_leverage of this CreateOrderRequest.  # noqa: E501
-        :type: float
+        :type: str
         """
         if inverse_leverage is None:
             raise ValueError("Invalid value for `inverse_leverage`, must not be `None`")  # noqa: E501
@@ -137,8 +140,6 @@ class CreateOrderRequest(object):
         :param price: The price of this CreateOrderRequest.  # noqa: E501
         :type: str
         """
-        if price is None:
-            raise ValueError("Invalid value for `price`, must not be `None`")  # noqa: E501
 
         self._price = price
 
@@ -189,6 +190,31 @@ class CreateOrderRequest(object):
         self._side = side
 
     @property
+    def position_id(self):
+        """Gets the position_id of this CreateOrderRequest.  # noqa: E501
+
+        position ID to use for the order. required.  # noqa: E501
+
+        :return: The position_id of this CreateOrderRequest.  # noqa: E501
+        :rtype: str
+        """
+        return self._position_id
+
+    @position_id.setter
+    def position_id(self, position_id):
+        """Sets the position_id of this CreateOrderRequest.
+
+        position ID to use for the order. required.  # noqa: E501
+
+        :param position_id: The position_id of this CreateOrderRequest.  # noqa: E501
+        :type: str
+        """
+        if position_id is None:
+            raise ValueError("Invalid value for `position_id`, must not be `None`")  # noqa: E501
+
+        self._position_id = position_id
+
+    @property
     def order_book_id(self):
         """Gets the order_book_id of this CreateOrderRequest.  # noqa: E501
 
@@ -214,27 +240,27 @@ class CreateOrderRequest(object):
         self._order_book_id = order_book_id
 
     @property
-    def user_text(self):
-        """Gets the user_text of this CreateOrderRequest.  # noqa: E501
+    def order_info(self):
+        """Gets the order_info of this CreateOrderRequest.  # noqa: E501
 
         Optional: User-defined text for the order, e.g., 'buying dips'  # noqa: E501
 
-        :return: The user_text of this CreateOrderRequest.  # noqa: E501
+        :return: The order_info of this CreateOrderRequest.  # noqa: E501
         :rtype: str
         """
-        return self._user_text
+        return self._order_info
 
-    @user_text.setter
-    def user_text(self, user_text):
-        """Sets the user_text of this CreateOrderRequest.
+    @order_info.setter
+    def order_info(self, order_info):
+        """Sets the order_info of this CreateOrderRequest.
 
         Optional: User-defined text for the order, e.g., 'buying dips'  # noqa: E501
 
-        :param user_text: The user_text of this CreateOrderRequest.  # noqa: E501
+        :param order_info: The order_info of this CreateOrderRequest.  # noqa: E501
         :type: str
         """
 
-        self._user_text = user_text
+        self._order_info = order_info
 
     @property
     def order_modifiers(self):

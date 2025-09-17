@@ -28,49 +28,22 @@ class FundUserRequest(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'position_id': 'str',
         'asset_id': 'str',
         'quantity': 'str'
     }
 
     attribute_map = {
-        'position_id': 'position_id',
         'asset_id': 'asset_id',
         'quantity': 'quantity'
     }
 
-    def __init__(self, position_id=None, asset_id=None, quantity=None):  # noqa: E501
+    def __init__(self, asset_id=None, quantity=None):  # noqa: E501
         """FundUserRequest - a model defined in Swagger"""  # noqa: E501
-        self._position_id = None
         self._asset_id = None
         self._quantity = None
         self.discriminator = None
-        self.position_id = position_id
         self.asset_id = asset_id
         self.quantity = quantity
-
-    @property
-    def position_id(self):
-        """Gets the position_id of this FundUserRequest.  # noqa: E501
-
-
-        :return: The position_id of this FundUserRequest.  # noqa: E501
-        :rtype: str
-        """
-        return self._position_id
-
-    @position_id.setter
-    def position_id(self, position_id):
-        """Sets the position_id of this FundUserRequest.
-
-
-        :param position_id: The position_id of this FundUserRequest.  # noqa: E501
-        :type: str
-        """
-        if position_id is None:
-            raise ValueError("Invalid value for `position_id`, must not be `None`")  # noqa: E501
-
-        self._position_id = position_id
 
     @property
     def asset_id(self):

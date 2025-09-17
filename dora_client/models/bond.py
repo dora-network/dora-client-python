@@ -37,7 +37,9 @@ class Bond(object):
         'issued_at': 'datetime',
         'issuer': 'str',
         'maturity_at': 'datetime',
-        'payments_per_year': 'int'
+        'principal_value': 'str',
+        'payments_per_year': 'int',
+        'payments_every': 'int'
     }
 
     attribute_map = {
@@ -50,10 +52,12 @@ class Bond(object):
         'issued_at': 'issued_at',
         'issuer': 'issuer',
         'maturity_at': 'maturity_at',
-        'payments_per_year': 'payments_per_year'
+        'principal_value': 'principal_value',
+        'payments_per_year': 'payments_per_year',
+        'payments_every': 'payments_every'
     }
 
-    def __init__(self, id=None, kind=None, coupon_start_at=None, created_at=None, final_coupon_at=None, isin=None, issued_at=None, issuer=None, maturity_at=None, payments_per_year=None):  # noqa: E501
+    def __init__(self, id=None, kind=None, coupon_start_at=None, created_at=None, final_coupon_at=None, isin=None, issued_at=None, issuer=None, maturity_at=None, principal_value=None, payments_per_year=None, payments_every=None):  # noqa: E501
         """Bond - a model defined in Swagger"""  # noqa: E501
         self._id = None
         self._kind = None
@@ -64,7 +68,9 @@ class Bond(object):
         self._issued_at = None
         self._issuer = None
         self._maturity_at = None
+        self._principal_value = None
         self._payments_per_year = None
+        self._payments_every = None
         self.discriminator = None
         if id is not None:
             self.id = id
@@ -84,8 +90,12 @@ class Bond(object):
             self.issuer = issuer
         if maturity_at is not None:
             self.maturity_at = maturity_at
+        if principal_value is not None:
+            self.principal_value = principal_value
         if payments_per_year is not None:
             self.payments_per_year = payments_per_year
+        if payments_every is not None:
+            self.payments_every = payments_every
 
     @property
     def id(self):
@@ -277,6 +287,27 @@ class Bond(object):
         self._maturity_at = maturity_at
 
     @property
+    def principal_value(self):
+        """Gets the principal_value of this Bond.  # noqa: E501
+
+
+        :return: The principal_value of this Bond.  # noqa: E501
+        :rtype: str
+        """
+        return self._principal_value
+
+    @principal_value.setter
+    def principal_value(self, principal_value):
+        """Sets the principal_value of this Bond.
+
+
+        :param principal_value: The principal_value of this Bond.  # noqa: E501
+        :type: str
+        """
+
+        self._principal_value = principal_value
+
+    @property
     def payments_per_year(self):
         """Gets the payments_per_year of this Bond.  # noqa: E501
 
@@ -296,6 +327,29 @@ class Bond(object):
         """
 
         self._payments_per_year = payments_per_year
+
+    @property
+    def payments_every(self):
+        """Gets the payments_every of this Bond.  # noqa: E501
+
+        Coupon payment frequency in nanoseconds (minimum 1000 i.e. 1 microsecond)  # noqa: E501
+
+        :return: The payments_every of this Bond.  # noqa: E501
+        :rtype: int
+        """
+        return self._payments_every
+
+    @payments_every.setter
+    def payments_every(self, payments_every):
+        """Sets the payments_every of this Bond.
+
+        Coupon payment frequency in nanoseconds (minimum 1000 i.e. 1 microsecond)  # noqa: E501
+
+        :param payments_every: The payments_every of this Bond.  # noqa: E501
+        :type: int
+        """
+
+        self._payments_every = payments_every
 
     def to_dict(self):
         """Returns the model properties as a dict"""

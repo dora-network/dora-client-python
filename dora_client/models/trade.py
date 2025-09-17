@@ -29,68 +29,68 @@ class Trade(object):
     """
     swagger_types = {
         'transaction_id': 'str',
-        'user_id': 'str',
-        'order_id': 'str',
-        'order_seq': 'int',
-        'order_book_id': 'str',
-        'asset_id': 'str',
-        'quantity': 'str',
-        'price': 'str',
+        'asset_0': 'str',
+        'created_at': 'datetime',
         'fee_asset_id': 'str',
         'fee_quantity': 'str',
-        'created_at': 'datetime'
+        'order_book_id': 'str',
+        'order_id': 'str',
+        'order_seq': 'int',
+        'price': 'str',
+        'quantity_0': 'str',
+        'user_id': 'str'
     }
 
     attribute_map = {
         'transaction_id': 'transaction_id',
-        'user_id': 'user_id',
-        'order_id': 'order_id',
-        'order_seq': 'order_seq',
-        'order_book_id': 'order_book_id',
-        'asset_id': 'asset_id',
-        'quantity': 'quantity',
-        'price': 'price',
+        'asset_0': 'asset_0',
+        'created_at': 'created_at',
         'fee_asset_id': 'fee_asset_id',
         'fee_quantity': 'fee_quantity',
-        'created_at': 'created_at'
+        'order_book_id': 'order_book_id',
+        'order_id': 'order_id',
+        'order_seq': 'order_seq',
+        'price': 'price',
+        'quantity_0': 'quantity_0',
+        'user_id': 'user_id'
     }
 
-    def __init__(self, transaction_id=None, user_id=None, order_id=None, order_seq=None, order_book_id=None, asset_id=None, quantity=None, price=None, fee_asset_id=None, fee_quantity=None, created_at=None):  # noqa: E501
+    def __init__(self, transaction_id=None, asset_0=None, created_at=None, fee_asset_id=None, fee_quantity=None, order_book_id=None, order_id=None, order_seq=None, price=None, quantity_0=None, user_id=None):  # noqa: E501
         """Trade - a model defined in Swagger"""  # noqa: E501
         self._transaction_id = None
-        self._user_id = None
-        self._order_id = None
-        self._order_seq = None
-        self._order_book_id = None
-        self._asset_id = None
-        self._quantity = None
-        self._price = None
+        self._asset_0 = None
+        self._created_at = None
         self._fee_asset_id = None
         self._fee_quantity = None
-        self._created_at = None
+        self._order_book_id = None
+        self._order_id = None
+        self._order_seq = None
+        self._price = None
+        self._quantity_0 = None
+        self._user_id = None
         self.discriminator = None
         if transaction_id is not None:
             self.transaction_id = transaction_id
-        if user_id is not None:
-            self.user_id = user_id
-        if order_id is not None:
-            self.order_id = order_id
-        if order_seq is not None:
-            self.order_seq = order_seq
-        if order_book_id is not None:
-            self.order_book_id = order_book_id
-        if asset_id is not None:
-            self.asset_id = asset_id
-        if quantity is not None:
-            self.quantity = quantity
-        if price is not None:
-            self.price = price
+        if asset_0 is not None:
+            self.asset_0 = asset_0
+        if created_at is not None:
+            self.created_at = created_at
         if fee_asset_id is not None:
             self.fee_asset_id = fee_asset_id
         if fee_quantity is not None:
             self.fee_quantity = fee_quantity
-        if created_at is not None:
-            self.created_at = created_at
+        if order_book_id is not None:
+            self.order_book_id = order_book_id
+        if order_id is not None:
+            self.order_id = order_id
+        if order_seq is not None:
+            self.order_seq = order_seq
+        if price is not None:
+            self.price = price
+        if quantity_0 is not None:
+            self.quantity_0 = quantity_0
+        if user_id is not None:
+            self.user_id = user_id
 
     @property
     def transaction_id(self):
@@ -114,151 +114,46 @@ class Trade(object):
         self._transaction_id = transaction_id
 
     @property
-    def user_id(self):
-        """Gets the user_id of this Trade.  # noqa: E501
+    def asset_0(self):
+        """Gets the asset_0 of this Trade.  # noqa: E501
 
 
-        :return: The user_id of this Trade.  # noqa: E501
+        :return: The asset_0 of this Trade.  # noqa: E501
         :rtype: str
         """
-        return self._user_id
+        return self._asset_0
 
-    @user_id.setter
-    def user_id(self, user_id):
-        """Sets the user_id of this Trade.
+    @asset_0.setter
+    def asset_0(self, asset_0):
+        """Sets the asset_0 of this Trade.
 
 
-        :param user_id: The user_id of this Trade.  # noqa: E501
+        :param asset_0: The asset_0 of this Trade.  # noqa: E501
         :type: str
         """
 
-        self._user_id = user_id
+        self._asset_0 = asset_0
 
     @property
-    def order_id(self):
-        """Gets the order_id of this Trade.  # noqa: E501
+    def created_at(self):
+        """Gets the created_at of this Trade.  # noqa: E501
 
 
-        :return: The order_id of this Trade.  # noqa: E501
-        :rtype: str
+        :return: The created_at of this Trade.  # noqa: E501
+        :rtype: datetime
         """
-        return self._order_id
+        return self._created_at
 
-    @order_id.setter
-    def order_id(self, order_id):
-        """Sets the order_id of this Trade.
-
-
-        :param order_id: The order_id of this Trade.  # noqa: E501
-        :type: str
-        """
-
-        self._order_id = order_id
-
-    @property
-    def order_seq(self):
-        """Gets the order_seq of this Trade.  # noqa: E501
+    @created_at.setter
+    def created_at(self, created_at):
+        """Sets the created_at of this Trade.
 
 
-        :return: The order_seq of this Trade.  # noqa: E501
-        :rtype: int
-        """
-        return self._order_seq
-
-    @order_seq.setter
-    def order_seq(self, order_seq):
-        """Sets the order_seq of this Trade.
-
-
-        :param order_seq: The order_seq of this Trade.  # noqa: E501
-        :type: int
+        :param created_at: The created_at of this Trade.  # noqa: E501
+        :type: datetime
         """
 
-        self._order_seq = order_seq
-
-    @property
-    def order_book_id(self):
-        """Gets the order_book_id of this Trade.  # noqa: E501
-
-
-        :return: The order_book_id of this Trade.  # noqa: E501
-        :rtype: str
-        """
-        return self._order_book_id
-
-    @order_book_id.setter
-    def order_book_id(self, order_book_id):
-        """Sets the order_book_id of this Trade.
-
-
-        :param order_book_id: The order_book_id of this Trade.  # noqa: E501
-        :type: str
-        """
-
-        self._order_book_id = order_book_id
-
-    @property
-    def asset_id(self):
-        """Gets the asset_id of this Trade.  # noqa: E501
-
-
-        :return: The asset_id of this Trade.  # noqa: E501
-        :rtype: str
-        """
-        return self._asset_id
-
-    @asset_id.setter
-    def asset_id(self, asset_id):
-        """Sets the asset_id of this Trade.
-
-
-        :param asset_id: The asset_id of this Trade.  # noqa: E501
-        :type: str
-        """
-
-        self._asset_id = asset_id
-
-    @property
-    def quantity(self):
-        """Gets the quantity of this Trade.  # noqa: E501
-
-
-        :return: The quantity of this Trade.  # noqa: E501
-        :rtype: str
-        """
-        return self._quantity
-
-    @quantity.setter
-    def quantity(self, quantity):
-        """Sets the quantity of this Trade.
-
-
-        :param quantity: The quantity of this Trade.  # noqa: E501
-        :type: str
-        """
-
-        self._quantity = quantity
-
-    @property
-    def price(self):
-        """Gets the price of this Trade.  # noqa: E501
-
-
-        :return: The price of this Trade.  # noqa: E501
-        :rtype: str
-        """
-        return self._price
-
-    @price.setter
-    def price(self, price):
-        """Sets the price of this Trade.
-
-
-        :param price: The price of this Trade.  # noqa: E501
-        :type: str
-        """
-
-        self._price = price
+        self._created_at = created_at
 
     @property
     def fee_asset_id(self):
@@ -303,25 +198,130 @@ class Trade(object):
         self._fee_quantity = fee_quantity
 
     @property
-    def created_at(self):
-        """Gets the created_at of this Trade.  # noqa: E501
+    def order_book_id(self):
+        """Gets the order_book_id of this Trade.  # noqa: E501
 
 
-        :return: The created_at of this Trade.  # noqa: E501
-        :rtype: datetime
+        :return: The order_book_id of this Trade.  # noqa: E501
+        :rtype: str
         """
-        return self._created_at
+        return self._order_book_id
 
-    @created_at.setter
-    def created_at(self, created_at):
-        """Sets the created_at of this Trade.
+    @order_book_id.setter
+    def order_book_id(self, order_book_id):
+        """Sets the order_book_id of this Trade.
 
 
-        :param created_at: The created_at of this Trade.  # noqa: E501
-        :type: datetime
+        :param order_book_id: The order_book_id of this Trade.  # noqa: E501
+        :type: str
         """
 
-        self._created_at = created_at
+        self._order_book_id = order_book_id
+
+    @property
+    def order_id(self):
+        """Gets the order_id of this Trade.  # noqa: E501
+
+
+        :return: The order_id of this Trade.  # noqa: E501
+        :rtype: str
+        """
+        return self._order_id
+
+    @order_id.setter
+    def order_id(self, order_id):
+        """Sets the order_id of this Trade.
+
+
+        :param order_id: The order_id of this Trade.  # noqa: E501
+        :type: str
+        """
+
+        self._order_id = order_id
+
+    @property
+    def order_seq(self):
+        """Gets the order_seq of this Trade.  # noqa: E501
+
+
+        :return: The order_seq of this Trade.  # noqa: E501
+        :rtype: int
+        """
+        return self._order_seq
+
+    @order_seq.setter
+    def order_seq(self, order_seq):
+        """Sets the order_seq of this Trade.
+
+
+        :param order_seq: The order_seq of this Trade.  # noqa: E501
+        :type: int
+        """
+
+        self._order_seq = order_seq
+
+    @property
+    def price(self):
+        """Gets the price of this Trade.  # noqa: E501
+
+
+        :return: The price of this Trade.  # noqa: E501
+        :rtype: str
+        """
+        return self._price
+
+    @price.setter
+    def price(self, price):
+        """Sets the price of this Trade.
+
+
+        :param price: The price of this Trade.  # noqa: E501
+        :type: str
+        """
+
+        self._price = price
+
+    @property
+    def quantity_0(self):
+        """Gets the quantity_0 of this Trade.  # noqa: E501
+
+
+        :return: The quantity_0 of this Trade.  # noqa: E501
+        :rtype: str
+        """
+        return self._quantity_0
+
+    @quantity_0.setter
+    def quantity_0(self, quantity_0):
+        """Sets the quantity_0 of this Trade.
+
+
+        :param quantity_0: The quantity_0 of this Trade.  # noqa: E501
+        :type: str
+        """
+
+        self._quantity_0 = quantity_0
+
+    @property
+    def user_id(self):
+        """Gets the user_id of this Trade.  # noqa: E501
+
+
+        :return: The user_id of this Trade.  # noqa: E501
+        :rtype: str
+        """
+        return self._user_id
+
+    @user_id.setter
+    def user_id(self, user_id):
+        """Sets the user_id of this Trade.
+
+
+        :param user_id: The user_id of this Trade.  # noqa: E501
+        :type: str
+        """
+
+        self._user_id = user_id
 
     def to_dict(self):
         """Returns the model properties as a dict"""

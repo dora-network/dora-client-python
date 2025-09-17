@@ -29,7 +29,7 @@ class Portfolio(object):
     """
     swagger_types = {
         'user_id': 'str',
-        'position': 'dict(str, dict(str, dict(str, Position)))',
+        'position': 'dict(str, dict(str, Position))',
         'net_stablecoin_equivalence': 'TransformedAssets'
     }
 
@@ -79,7 +79,7 @@ class Portfolio(object):
 
 
         :return: The position of this Portfolio.  # noqa: E501
-        :rtype: dict(str, dict(str, dict(str, Position)))
+        :rtype: dict(str, dict(str, Position))
         """
         return self._position
 
@@ -89,7 +89,7 @@ class Portfolio(object):
 
 
         :param position: The position of this Portfolio.  # noqa: E501
-        :type: dict(str, dict(str, dict(str, Position)))
+        :type: dict(str, dict(str, Position))
         """
 
         self._position = position

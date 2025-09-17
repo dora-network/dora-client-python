@@ -29,8 +29,6 @@ class OrderBook(object):
     """
     swagger_types = {
         'order_book_id': 'str',
-        'order_book_seq': 'int',
-        'accumulated_fees_id': 'str',
         'base_quantity': 'float',
         'base_asset_id': 'str',
         'created_at': 'datetime',
@@ -38,7 +36,6 @@ class OrderBook(object):
         'fee_factor': 'float',
         'initial_assets_ratio': 'float',
         'maturity_at': 'datetime',
-        'price_display_multiplier': 'float',
         'quote_quantity': 'float',
         'quote_asset_id': 'str',
         'shares_quantity': 'float',
@@ -48,14 +45,11 @@ class OrderBook(object):
         'halted_at': 'datetime',
         'terminated_at': 'datetime',
         'pool_updated_at': 'datetime',
-        'pool_seq': 'int',
         'shares_asset_id': 'str'
     }
 
     attribute_map = {
         'order_book_id': 'order_book_id',
-        'order_book_seq': 'order_book_seq',
-        'accumulated_fees_id': 'accumulated_fees_id',
         'base_quantity': 'base_quantity',
         'base_asset_id': 'base_asset_id',
         'created_at': 'created_at',
@@ -63,7 +57,6 @@ class OrderBook(object):
         'fee_factor': 'fee_factor',
         'initial_assets_ratio': 'initial_assets_ratio',
         'maturity_at': 'maturity_at',
-        'price_display_multiplier': 'price_display_multiplier',
         'quote_quantity': 'quote_quantity',
         'quote_asset_id': 'quote_asset_id',
         'shares_quantity': 'shares_quantity',
@@ -73,15 +66,12 @@ class OrderBook(object):
         'halted_at': 'halted_at',
         'terminated_at': 'terminated_at',
         'pool_updated_at': 'pool_updated_at',
-        'pool_seq': 'pool_seq',
         'shares_asset_id': 'shares_asset_id'
     }
 
-    def __init__(self, order_book_id=None, order_book_seq=None, accumulated_fees_id=None, base_quantity=None, base_asset_id=None, created_at=None, display_name=None, fee_factor=None, initial_assets_ratio=None, maturity_at=None, price_display_multiplier=None, quote_quantity=None, quote_asset_id=None, shares_quantity=None, status=None, tick_size=None, updated_at=None, halted_at=None, terminated_at=None, pool_updated_at=None, pool_seq=None, shares_asset_id=None):  # noqa: E501
+    def __init__(self, order_book_id=None, base_quantity=None, base_asset_id=None, created_at=None, display_name=None, fee_factor=None, initial_assets_ratio=None, maturity_at=None, quote_quantity=None, quote_asset_id=None, shares_quantity=None, status=None, tick_size=None, updated_at=None, halted_at=None, terminated_at=None, pool_updated_at=None, shares_asset_id=None):  # noqa: E501
         """OrderBook - a model defined in Swagger"""  # noqa: E501
         self._order_book_id = None
-        self._order_book_seq = None
-        self._accumulated_fees_id = None
         self._base_quantity = None
         self._base_asset_id = None
         self._created_at = None
@@ -89,7 +79,6 @@ class OrderBook(object):
         self._fee_factor = None
         self._initial_assets_ratio = None
         self._maturity_at = None
-        self._price_display_multiplier = None
         self._quote_quantity = None
         self._quote_asset_id = None
         self._shares_quantity = None
@@ -99,15 +88,10 @@ class OrderBook(object):
         self._halted_at = None
         self._terminated_at = None
         self._pool_updated_at = None
-        self._pool_seq = None
         self._shares_asset_id = None
         self.discriminator = None
         if order_book_id is not None:
             self.order_book_id = order_book_id
-        if order_book_seq is not None:
-            self.order_book_seq = order_book_seq
-        if accumulated_fees_id is not None:
-            self.accumulated_fees_id = accumulated_fees_id
         if base_quantity is not None:
             self.base_quantity = base_quantity
         if base_asset_id is not None:
@@ -122,8 +106,6 @@ class OrderBook(object):
             self.initial_assets_ratio = initial_assets_ratio
         if maturity_at is not None:
             self.maturity_at = maturity_at
-        if price_display_multiplier is not None:
-            self.price_display_multiplier = price_display_multiplier
         if quote_quantity is not None:
             self.quote_quantity = quote_quantity
         if quote_asset_id is not None:
@@ -142,8 +124,6 @@ class OrderBook(object):
             self.terminated_at = terminated_at
         if pool_updated_at is not None:
             self.pool_updated_at = pool_updated_at
-        if pool_seq is not None:
-            self.pool_seq = pool_seq
         if shares_asset_id is not None:
             self.shares_asset_id = shares_asset_id
 
@@ -167,48 +147,6 @@ class OrderBook(object):
         """
 
         self._order_book_id = order_book_id
-
-    @property
-    def order_book_seq(self):
-        """Gets the order_book_seq of this OrderBook.  # noqa: E501
-
-
-        :return: The order_book_seq of this OrderBook.  # noqa: E501
-        :rtype: int
-        """
-        return self._order_book_seq
-
-    @order_book_seq.setter
-    def order_book_seq(self, order_book_seq):
-        """Sets the order_book_seq of this OrderBook.
-
-
-        :param order_book_seq: The order_book_seq of this OrderBook.  # noqa: E501
-        :type: int
-        """
-
-        self._order_book_seq = order_book_seq
-
-    @property
-    def accumulated_fees_id(self):
-        """Gets the accumulated_fees_id of this OrderBook.  # noqa: E501
-
-
-        :return: The accumulated_fees_id of this OrderBook.  # noqa: E501
-        :rtype: str
-        """
-        return self._accumulated_fees_id
-
-    @accumulated_fees_id.setter
-    def accumulated_fees_id(self, accumulated_fees_id):
-        """Sets the accumulated_fees_id of this OrderBook.
-
-
-        :param accumulated_fees_id: The accumulated_fees_id of this OrderBook.  # noqa: E501
-        :type: str
-        """
-
-        self._accumulated_fees_id = accumulated_fees_id
 
     @property
     def base_quantity(self):
@@ -356,27 +294,6 @@ class OrderBook(object):
         """
 
         self._maturity_at = maturity_at
-
-    @property
-    def price_display_multiplier(self):
-        """Gets the price_display_multiplier of this OrderBook.  # noqa: E501
-
-
-        :return: The price_display_multiplier of this OrderBook.  # noqa: E501
-        :rtype: float
-        """
-        return self._price_display_multiplier
-
-    @price_display_multiplier.setter
-    def price_display_multiplier(self, price_display_multiplier):
-        """Sets the price_display_multiplier of this OrderBook.
-
-
-        :param price_display_multiplier: The price_display_multiplier of this OrderBook.  # noqa: E501
-        :type: float
-        """
-
-        self._price_display_multiplier = price_display_multiplier
 
     @property
     def quote_quantity(self):
@@ -566,27 +483,6 @@ class OrderBook(object):
         """
 
         self._pool_updated_at = pool_updated_at
-
-    @property
-    def pool_seq(self):
-        """Gets the pool_seq of this OrderBook.  # noqa: E501
-
-
-        :return: The pool_seq of this OrderBook.  # noqa: E501
-        :rtype: int
-        """
-        return self._pool_seq
-
-    @pool_seq.setter
-    def pool_seq(self, pool_seq):
-        """Sets the pool_seq of this OrderBook.
-
-
-        :param pool_seq: The pool_seq of this OrderBook.  # noqa: E501
-        :type: int
-        """
-
-        self._pool_seq = pool_seq
 
     @property
     def shares_asset_id(self):

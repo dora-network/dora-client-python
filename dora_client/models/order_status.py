@@ -26,6 +26,7 @@ class OrderStatus(object):
     """
     OPEN = "OPEN"
     FILLED = "FILLED"
+    PARTIAL_FILL = "PARTIAL_FILL"
     CANCELLED = "CANCELLED"
     """
     Attributes:

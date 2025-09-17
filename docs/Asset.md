@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **collateral_weight** | **float** |  | [optional] 
 **created_at** | **datetime** |  | [optional] 
 **decimals** | **int** |  | [optional] 
+**fractionalized_units** | **int** |  | [optional] 
 **description** | **str** |  | [optional] 
 **liquidation_threshold** | **float** |  | [optional] 
 **maturity_id** | **str** |  | [optional] 

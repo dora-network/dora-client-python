@@ -41,7 +41,7 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :return: CancelOrdersResponse
+        :return: ListOrdersResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -61,7 +61,7 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :return: CancelOrdersResponse
+        :return: ListOrdersResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -109,7 +109,7 @@ class DefaultApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='CancelOrdersResponse',  # noqa: E501
+            response_type='ListOrdersResponse',  # noqa: E501
             auth_settings=auth_settings,
             async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
@@ -127,7 +127,7 @@ class DefaultApi(object):
 
         :param async_req bool
         :param str order_id: (required)
-        :return: OrderCancelledResponse
+        :return: CancelOrderResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -148,7 +148,7 @@ class DefaultApi(object):
 
         :param async_req bool
         :param str order_id: (required)
-        :return: OrderCancelledResponse
+        :return: CancelOrderResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -202,7 +202,7 @@ class DefaultApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='OrderCancelledResponse',  # noqa: E501
+            response_type='CancelOrderResponse',  # noqa: E501
             auth_settings=auth_settings,
             async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
@@ -220,7 +220,7 @@ class DefaultApi(object):
 
         :param async_req bool
         :param CreateOrderRequest body: (required)
-        :return: OrderId
+        :return: CreateOrderResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -241,7 +241,7 @@ class DefaultApi(object):
 
         :param async_req bool
         :param CreateOrderRequest body: (required)
-        :return: OrderId
+        :return: CreateOrderResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -299,7 +299,7 @@ class DefaultApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='OrderId',  # noqa: E501
+            response_type='CreateOrderResponse',  # noqa: E501
             auth_settings=auth_settings,
             async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
@@ -485,43 +485,43 @@ class DefaultApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def get_asset_by_id(self, id, **kwargs):  # noqa: E501
+    def get_asset_by_id(self, asset_id, **kwargs):  # noqa: E501
         """Get asset by ID  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_asset_by_id(id, async_req=True)
+        >>> thread = api.get_asset_by_id(asset_id, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
-        :param str id: (required)
+        :param str asset_id: (required)
         :return: GetAssetByIDResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.get_asset_by_id_with_http_info(id, **kwargs)  # noqa: E501
+            return self.get_asset_by_id_with_http_info(asset_id, **kwargs)  # noqa: E501
         else:
-            (data) = self.get_asset_by_id_with_http_info(id, **kwargs)  # noqa: E501
+            (data) = self.get_asset_by_id_with_http_info(asset_id, **kwargs)  # noqa: E501
             return data
 
-    def get_asset_by_id_with_http_info(self, id, **kwargs):  # noqa: E501
+    def get_asset_by_id_with_http_info(self, asset_id, **kwargs):  # noqa: E501
         """Get asset by ID  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_asset_by_id_with_http_info(id, async_req=True)
+        >>> thread = api.get_asset_by_id_with_http_info(asset_id, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
-        :param str id: (required)
+        :param str asset_id: (required)
         :return: GetAssetByIDResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['id']  # noqa: E501
+        all_params = ['asset_id']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -536,16 +536,16 @@ class DefaultApi(object):
                 )
             params[key] = val
         del params['kwargs']
-        # verify the required parameter 'id' is set
-        if ('id' not in params or
-                params['id'] is None):
-            raise ValueError("Missing the required parameter `id` when calling `get_asset_by_id`")  # noqa: E501
+        # verify the required parameter 'asset_id' is set
+        if ('asset_id' not in params or
+                params['asset_id'] is None):
+            raise ValueError("Missing the required parameter `asset_id` when calling `get_asset_by_id`")  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'id' in params:
-            path_params['id'] = params['id']  # noqa: E501
+        if 'asset_id' in params:
+            path_params['asset_id'] = params['asset_id']  # noqa: E501
 
         query_params = []
 
@@ -563,7 +563,7 @@ class DefaultApi(object):
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/v1/assets/{id}', 'GET',
+            '/v1/assets/{asset_id}', 'GET',
             path_params,
             query_params,
             header_params,
@@ -671,16 +671,16 @@ class DefaultApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def get_candle_data(self, orderbook, **kwargs):  # noqa: E501
+    def get_candle_data(self, order_book_id, **kwargs):  # noqa: E501
         """Get candlestick data for an orderbook  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_candle_data(orderbook, async_req=True)
+        >>> thread = api.get_candle_data(order_book_id, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
-        :param str orderbook: (required)
+        :param str order_book_id: (required)
         :param datetime start:
         :param datetime end:
         :param CandleResolution resolution:
@@ -690,21 +690,21 @@ class DefaultApi(object):
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.get_candle_data_with_http_info(orderbook, **kwargs)  # noqa: E501
+            return self.get_candle_data_with_http_info(order_book_id, **kwargs)  # noqa: E501
         else:
-            (data) = self.get_candle_data_with_http_info(orderbook, **kwargs)  # noqa: E501
+            (data) = self.get_candle_data_with_http_info(order_book_id, **kwargs)  # noqa: E501
             return data
 
-    def get_candle_data_with_http_info(self, orderbook, **kwargs):  # noqa: E501
+    def get_candle_data_with_http_info(self, order_book_id, **kwargs):  # noqa: E501
         """Get candlestick data for an orderbook  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_candle_data_with_http_info(orderbook, async_req=True)
+        >>> thread = api.get_candle_data_with_http_info(order_book_id, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
-        :param str orderbook: (required)
+        :param str order_book_id: (required)
         :param datetime start:
         :param datetime end:
         :param CandleResolution resolution:
@@ -713,7 +713,7 @@ class DefaultApi(object):
                  returns the request thread.
         """
 
-        all_params = ['orderbook', 'start', 'end', 'resolution']  # noqa: E501
+        all_params = ['order_book_id', 'start', 'end', 'resolution']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -728,16 +728,16 @@ class DefaultApi(object):
                 )
             params[key] = val
         del params['kwargs']
-        # verify the required parameter 'orderbook' is set
-        if ('orderbook' not in params or
-                params['orderbook'] is None):
-            raise ValueError("Missing the required parameter `orderbook` when calling `get_candle_data`")  # noqa: E501
+        # verify the required parameter 'order_book_id' is set
+        if ('order_book_id' not in params or
+                params['order_book_id'] is None):
+            raise ValueError("Missing the required parameter `order_book_id` when calling `get_candle_data`")  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'orderbook' in params:
-            path_params['orderbook'] = params['orderbook']  # noqa: E501
+        if 'order_book_id' in params:
+            path_params['order_book_id'] = params['order_book_id']  # noqa: E501
 
         query_params = []
         if 'start' in params:
@@ -761,7 +761,7 @@ class DefaultApi(object):
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/v1/charts/{orderbook}/candle', 'GET',
+            '/v1/charts/{order_book_id}/candle', 'GET',
             path_params,
             query_params,
             header_params,
@@ -776,43 +776,43 @@ class DefaultApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def get_coupon_payments_by_asset_id(self, id, **kwargs):  # noqa: E501
+    def get_coupon_payments_by_asset_id(self, asset_id, **kwargs):  # noqa: E501
         """Get coupon payments for a bond asset  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_coupon_payments_by_asset_id(id, async_req=True)
+        >>> thread = api.get_coupon_payments_by_asset_id(asset_id, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
-        :param str id: (required)
+        :param str asset_id: (required)
         :return: ListCouponPaymentsResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.get_coupon_payments_by_asset_id_with_http_info(id, **kwargs)  # noqa: E501
+            return self.get_coupon_payments_by_asset_id_with_http_info(asset_id, **kwargs)  # noqa: E501
         else:
-            (data) = self.get_coupon_payments_by_asset_id_with_http_info(id, **kwargs)  # noqa: E501
+            (data) = self.get_coupon_payments_by_asset_id_with_http_info(asset_id, **kwargs)  # noqa: E501
             return data
 
-    def get_coupon_payments_by_asset_id_with_http_info(self, id, **kwargs):  # noqa: E501
+    def get_coupon_payments_by_asset_id_with_http_info(self, asset_id, **kwargs):  # noqa: E501
         """Get coupon payments for a bond asset  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_coupon_payments_by_asset_id_with_http_info(id, async_req=True)
+        >>> thread = api.get_coupon_payments_by_asset_id_with_http_info(asset_id, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
-        :param str id: (required)
+        :param str asset_id: (required)
         :return: ListCouponPaymentsResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['id']  # noqa: E501
+        all_params = ['asset_id']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -827,16 +827,16 @@ class DefaultApi(object):
                 )
             params[key] = val
         del params['kwargs']
-        # verify the required parameter 'id' is set
-        if ('id' not in params or
-                params['id'] is None):
-            raise ValueError("Missing the required parameter `id` when calling `get_coupon_payments_by_asset_id`")  # noqa: E501
+        # verify the required parameter 'asset_id' is set
+        if ('asset_id' not in params or
+                params['asset_id'] is None):
+            raise ValueError("Missing the required parameter `asset_id` when calling `get_coupon_payments_by_asset_id`")  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'id' in params:
-            path_params['id'] = params['id']  # noqa: E501
+        if 'asset_id' in params:
+            path_params['asset_id'] = params['asset_id']  # noqa: E501
 
         query_params = []
 
@@ -854,7 +854,7 @@ class DefaultApi(object):
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/v1/assets/{id}/coupon_payments', 'GET',
+            '/v1/assets/{asset_id}/coupon_payments', 'GET',
             path_params,
             query_params,
             header_params,
@@ -2521,43 +2521,43 @@ class DefaultApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def get_transaction_by_id(self, id, **kwargs):  # noqa: E501
+    def get_transaction_by_id(self, transaction_id, **kwargs):  # noqa: E501
         """Get a transaction by ID  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_transaction_by_id(id, async_req=True)
+        >>> thread = api.get_transaction_by_id(transaction_id, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
-        :param str id: (required)
+        :param str transaction_id: (required)
         :return: GetTransactionResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.get_transaction_by_id_with_http_info(id, **kwargs)  # noqa: E501
+            return self.get_transaction_by_id_with_http_info(transaction_id, **kwargs)  # noqa: E501
         else:
-            (data) = self.get_transaction_by_id_with_http_info(id, **kwargs)  # noqa: E501
+            (data) = self.get_transaction_by_id_with_http_info(transaction_id, **kwargs)  # noqa: E501
             return data
 
-    def get_transaction_by_id_with_http_info(self, id, **kwargs):  # noqa: E501
+    def get_transaction_by_id_with_http_info(self, transaction_id, **kwargs):  # noqa: E501
         """Get a transaction by ID  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_transaction_by_id_with_http_info(id, async_req=True)
+        >>> thread = api.get_transaction_by_id_with_http_info(transaction_id, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
-        :param str id: (required)
+        :param str transaction_id: (required)
         :return: GetTransactionResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['id']  # noqa: E501
+        all_params = ['transaction_id']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -2572,16 +2572,16 @@ class DefaultApi(object):
                 )
             params[key] = val
         del params['kwargs']
-        # verify the required parameter 'id' is set
-        if ('id' not in params or
-                params['id'] is None):
-            raise ValueError("Missing the required parameter `id` when calling `get_transaction_by_id`")  # noqa: E501
+        # verify the required parameter 'transaction_id' is set
+        if ('transaction_id' not in params or
+                params['transaction_id'] is None):
+            raise ValueError("Missing the required parameter `transaction_id` when calling `get_transaction_by_id`")  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'id' in params:
-            path_params['id'] = params['id']  # noqa: E501
+        if 'transaction_id' in params:
+            path_params['transaction_id'] = params['transaction_id']  # noqa: E501
 
         query_params = []
 
@@ -2599,7 +2599,7 @@ class DefaultApi(object):
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/v1/transactions/{id}', 'GET',
+            '/v1/transactions/{transaction_id}', 'GET',
             path_params,
             query_params,
             header_params,
@@ -2834,7 +2834,7 @@ class DefaultApi(object):
         :param async_req bool
         :param str user_id: (required)
         :param datetime since:
-        :return: ListPositionsResponse
+        :return: StreamPositionsResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -2856,7 +2856,7 @@ class DefaultApi(object):
         :param async_req bool
         :param str user_id: (required)
         :param datetime since:
-        :return: ListPositionsResponse
+        :return: StreamPositionsResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -2912,7 +2912,7 @@ class DefaultApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='ListPositionsResponse',  # noqa: E501
+            response_type='StreamPositionsResponse',  # noqa: E501
             auth_settings=auth_settings,
             async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
@@ -2920,42 +2920,42 @@ class DefaultApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def get_user_orders_stream(self, user_id, order_book_id, **kwargs):  # noqa: E501
+    def get_user_order_updates_stream(self, user_id, order_book_id, **kwargs):  # noqa: E501
         """Get a snapshot of user's order updates for the given order book since a specific time, and opens a stream for further updates  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_user_orders_stream(user_id, order_book_id, async_req=True)
+        >>> thread = api.get_user_order_updates_stream(user_id, order_book_id, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str user_id: (required)
         :param str order_book_id: (required)
         :param datetime since:
-        :return: ListOrdersResponse
+        :return: StreamOrderUpdatesResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.get_user_orders_stream_with_http_info(user_id, order_book_id, **kwargs)  # noqa: E501
+            return self.get_user_order_updates_stream_with_http_info(user_id, order_book_id, **kwargs)  # noqa: E501
         else:
-            (data) = self.get_user_orders_stream_with_http_info(user_id, order_book_id, **kwargs)  # noqa: E501
+            (data) = self.get_user_order_updates_stream_with_http_info(user_id, order_book_id, **kwargs)  # noqa: E501
             return data
 
-    def get_user_orders_stream_with_http_info(self, user_id, order_book_id, **kwargs):  # noqa: E501
+    def get_user_order_updates_stream_with_http_info(self, user_id, order_book_id, **kwargs):  # noqa: E501
         """Get a snapshot of user's order updates for the given order book since a specific time, and opens a stream for further updates  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_user_orders_stream_with_http_info(user_id, order_book_id, async_req=True)
+        >>> thread = api.get_user_order_updates_stream_with_http_info(user_id, order_book_id, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str user_id: (required)
         :param str order_book_id: (required)
         :param datetime since:
-        :return: ListOrdersResponse
+        :return: StreamOrderUpdatesResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -2971,18 +2971,18 @@ class DefaultApi(object):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method get_user_orders_stream" % key
+                    " to method get_user_order_updates_stream" % key
                 )
             params[key] = val
         del params['kwargs']
         # verify the required parameter 'user_id' is set
         if ('user_id' not in params or
                 params['user_id'] is None):
-            raise ValueError("Missing the required parameter `user_id` when calling `get_user_orders_stream`")  # noqa: E501
+            raise ValueError("Missing the required parameter `user_id` when calling `get_user_order_updates_stream`")  # noqa: E501
         # verify the required parameter 'order_book_id' is set
         if ('order_book_id' not in params or
                 params['order_book_id'] is None):
-            raise ValueError("Missing the required parameter `order_book_id` when calling `get_user_orders_stream`")  # noqa: E501
+            raise ValueError("Missing the required parameter `order_book_id` when calling `get_user_order_updates_stream`")  # noqa: E501
 
         collection_formats = {}
 
@@ -3010,14 +3010,14 @@ class DefaultApi(object):
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/v1/user/{user_id}/orders/{order_book_id}/stream', 'GET',
+            '/v1/user/{user_id}/orders/{order_book_id}/updates/stream', 'GET',
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='ListOrdersResponse',  # noqa: E501
+            response_type='StreamOrderUpdatesResponse',  # noqa: E501
             auth_settings=auth_settings,
             async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
@@ -3025,42 +3025,42 @@ class DefaultApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def get_user_orders_stream_all(self, user_id, order_book_id, **kwargs):  # noqa: E501
+    def get_user_orders_updates_stream_all(self, user_id, order_book_id, **kwargs):  # noqa: E501
         """Get a snapshot of user's order updates across all order books since a specific time, and opens a stream for further updates  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_user_orders_stream_all(user_id, order_book_id, async_req=True)
+        >>> thread = api.get_user_orders_updates_stream_all(user_id, order_book_id, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str user_id: (required)
         :param str order_book_id: (required)
         :param datetime since:
-        :return: ListOrdersResponse
+        :return: StreamOrderUpdatesResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.get_user_orders_stream_all_with_http_info(user_id, order_book_id, **kwargs)  # noqa: E501
+            return self.get_user_orders_updates_stream_all_with_http_info(user_id, order_book_id, **kwargs)  # noqa: E501
         else:
-            (data) = self.get_user_orders_stream_all_with_http_info(user_id, order_book_id, **kwargs)  # noqa: E501
+            (data) = self.get_user_orders_updates_stream_all_with_http_info(user_id, order_book_id, **kwargs)  # noqa: E501
             return data
 
-    def get_user_orders_stream_all_with_http_info(self, user_id, order_book_id, **kwargs):  # noqa: E501
+    def get_user_orders_updates_stream_all_with_http_info(self, user_id, order_book_id, **kwargs):  # noqa: E501
         """Get a snapshot of user's order updates across all order books since a specific time, and opens a stream for further updates  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_user_orders_stream_all_with_http_info(user_id, order_book_id, async_req=True)
+        >>> thread = api.get_user_orders_updates_stream_all_with_http_info(user_id, order_book_id, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str user_id: (required)
         :param str order_book_id: (required)
         :param datetime since:
-        :return: ListOrdersResponse
+        :return: StreamOrderUpdatesResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -3076,18 +3076,18 @@ class DefaultApi(object):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method get_user_orders_stream_all" % key
+                    " to method get_user_orders_updates_stream_all" % key
                 )
             params[key] = val
         del params['kwargs']
         # verify the required parameter 'user_id' is set
         if ('user_id' not in params or
                 params['user_id'] is None):
-            raise ValueError("Missing the required parameter `user_id` when calling `get_user_orders_stream_all`")  # noqa: E501
+            raise ValueError("Missing the required parameter `user_id` when calling `get_user_orders_updates_stream_all`")  # noqa: E501
         # verify the required parameter 'order_book_id' is set
         if ('order_book_id' not in params or
                 params['order_book_id'] is None):
-            raise ValueError("Missing the required parameter `order_book_id` when calling `get_user_orders_stream_all`")  # noqa: E501
+            raise ValueError("Missing the required parameter `order_book_id` when calling `get_user_orders_updates_stream_all`")  # noqa: E501
 
         collection_formats = {}
 
@@ -3115,14 +3115,14 @@ class DefaultApi(object):
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/v1/user/{user_id}/orders/all/stream', 'GET',
+            '/v1/user/{user_id}/orders/all/updates/stream', 'GET',
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='ListOrdersResponse',  # noqa: E501
+            response_type='StreamOrderUpdatesResponse',  # noqa: E501
             auth_settings=auth_settings,
             async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
@@ -3226,7 +3226,7 @@ class DefaultApi(object):
         :param async_req bool
         :param str user_id: (required)
         :param datetime since:
-        :return: ListTransactionsResponse
+        :return: StreamTransactionsResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -3248,7 +3248,7 @@ class DefaultApi(object):
         :param async_req bool
         :param str user_id: (required)
         :param datetime since:
-        :return: ListTransactionsResponse
+        :return: StreamTransactionsResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -3304,7 +3304,7 @@ class DefaultApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='ListTransactionsResponse',  # noqa: E501
+            response_type='StreamTransactionsResponse',  # noqa: E501
             auth_settings=auth_settings,
             async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
@@ -4839,8 +4839,8 @@ class DefaultApi(object):
 
         :param async_req bool
         :param list[str] order_book_id:
-        :param OrderKind kind:
-        :param OrderStatus status:
+        :param list[OrderKind] kind:
+        :param list[OrderStatus] status:
         :param Side side:
         :param datetime _from:
         :param datetime to:
@@ -4867,8 +4867,8 @@ class DefaultApi(object):
 
         :param async_req bool
         :param list[str] order_book_id:
-        :param OrderKind kind:
-        :param OrderStatus status:
+        :param list[OrderKind] kind:
+        :param list[OrderStatus] status:
         :param Side side:
         :param datetime _from:
         :param datetime to:
@@ -4905,8 +4905,10 @@ class DefaultApi(object):
             collection_formats['order_book_id'] = 'multi'  # noqa: E501
         if 'kind' in params:
             query_params.append(('kind', params['kind']))  # noqa: E501
+            collection_formats['kind'] = 'multi'  # noqa: E501
         if 'status' in params:
             query_params.append(('status', params['status']))  # noqa: E501
+            collection_formats['status'] = 'multi'  # noqa: E501
         if 'side' in params:
             query_params.append(('side', params['side']))  # noqa: E501
         if '_from' in params:
@@ -4948,8 +4950,9 @@ class DefaultApi(object):
             collection_formats=collection_formats)
 
     def stream_asset_prices(self, **kwargs):  # noqa: E501
-        """Get a snapshot of asset prices from a specific date and open a stream for real-time updates  # noqa: E501
+        """Stream real-time asset prices as map objects  # noqa: E501
 
+        Opens a WebSocket stream for real-time asset price updates. First message contains all current prices, subsequent messages contain only changed prices. Data is sent as JSON objects keyed by asset ID.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.stream_asset_prices(async_req=True)
@@ -4957,7 +4960,7 @@ class DefaultApi(object):
 
         :param async_req bool
         :param datetime since:
-        :return: ListAssetPriceResponse
+        :return: StreamAssetPricesResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -4969,8 +4972,9 @@ class DefaultApi(object):
             return data
 
     def stream_asset_prices_with_http_info(self, **kwargs):  # noqa: E501
-        """Get a snapshot of asset prices from a specific date and open a stream for real-time updates  # noqa: E501
+        """Stream real-time asset prices as map objects  # noqa: E501
 
+        Opens a WebSocket stream for real-time asset price updates. First message contains all current prices, subsequent messages contain only changed prices. Data is sent as JSON objects keyed by asset ID.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.stream_asset_prices_with_http_info(async_req=True)
@@ -4978,7 +4982,7 @@ class DefaultApi(object):
 
         :param async_req bool
         :param datetime since:
-        :return: ListAssetPriceResponse
+        :return: StreamAssetPricesResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -5021,14 +5025,14 @@ class DefaultApi(object):
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/v1/price/stream', 'GET',
+            '/v1/prices/stream', 'GET',
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='ListAssetPriceResponse',  # noqa: E501
+            response_type='StreamAssetPricesResponse',  # noqa: E501
             auth_settings=auth_settings,
             async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
@@ -5036,47 +5040,47 @@ class DefaultApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def stream_candle_data(self, orderbook, **kwargs):  # noqa: E501
+    def stream_candle_data(self, order_book_id, **kwargs):  # noqa: E501
         """Get a snapshot of candlestick data from date provided, and open a stream for real-time updates  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.stream_candle_data(orderbook, async_req=True)
+        >>> thread = api.stream_candle_data(order_book_id, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
-        :param str orderbook: (required)
+        :param str order_book_id: (required)
         :param datetime since:
         :param CandleResolution resolution:
-        :return: ListCandlesResponse
+        :return: StreamCandlesResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.stream_candle_data_with_http_info(orderbook, **kwargs)  # noqa: E501
+            return self.stream_candle_data_with_http_info(order_book_id, **kwargs)  # noqa: E501
         else:
-            (data) = self.stream_candle_data_with_http_info(orderbook, **kwargs)  # noqa: E501
+            (data) = self.stream_candle_data_with_http_info(order_book_id, **kwargs)  # noqa: E501
             return data
 
-    def stream_candle_data_with_http_info(self, orderbook, **kwargs):  # noqa: E501
+    def stream_candle_data_with_http_info(self, order_book_id, **kwargs):  # noqa: E501
         """Get a snapshot of candlestick data from date provided, and open a stream for real-time updates  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.stream_candle_data_with_http_info(orderbook, async_req=True)
+        >>> thread = api.stream_candle_data_with_http_info(order_book_id, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
-        :param str orderbook: (required)
+        :param str order_book_id: (required)
         :param datetime since:
         :param CandleResolution resolution:
-        :return: ListCandlesResponse
+        :return: StreamCandlesResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['orderbook', 'since', 'resolution']  # noqa: E501
+        all_params = ['order_book_id', 'since', 'resolution']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -5091,16 +5095,16 @@ class DefaultApi(object):
                 )
             params[key] = val
         del params['kwargs']
-        # verify the required parameter 'orderbook' is set
-        if ('orderbook' not in params or
-                params['orderbook'] is None):
-            raise ValueError("Missing the required parameter `orderbook` when calling `stream_candle_data`")  # noqa: E501
+        # verify the required parameter 'order_book_id' is set
+        if ('order_book_id' not in params or
+                params['order_book_id'] is None):
+            raise ValueError("Missing the required parameter `order_book_id` when calling `stream_candle_data`")  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'orderbook' in params:
-            path_params['orderbook'] = params['orderbook']  # noqa: E501
+        if 'order_book_id' in params:
+            path_params['order_book_id'] = params['order_book_id']  # noqa: E501
 
         query_params = []
         if 'since' in params:
@@ -5122,14 +5126,14 @@ class DefaultApi(object):
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/v1/charts/{orderbook}/candle/stream', 'GET',
+            '/v1/charts/{order_book_id}/candle/stream', 'GET',
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='ListCandlesResponse',  # noqa: E501
+            response_type='StreamCandlesResponse',  # noqa: E501
             auth_settings=auth_settings,
             async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
@@ -5148,7 +5152,7 @@ class DefaultApi(object):
         :param async_req bool
         :param str order_book_id: (required)
         :param datetime since:
-        :return: OrderBookBalanceResponse
+        :return: StreamOrderBookBalancesResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -5170,7 +5174,7 @@ class DefaultApi(object):
         :param async_req bool
         :param str order_book_id: (required)
         :param datetime since:
-        :return: OrderBookBalanceResponse
+        :return: StreamOrderBookBalancesResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -5219,14 +5223,14 @@ class DefaultApi(object):
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/v1/orderbooks/{order_book_id}/stream/balances', 'GET',
+            '/v1/orderbooks/{order_book_id}/balances/stream', 'GET',
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='OrderBookBalanceResponse',  # noqa: E501
+            response_type='StreamOrderBookBalancesResponse',  # noqa: E501
             auth_settings=auth_settings,
             async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
@@ -5245,7 +5249,7 @@ class DefaultApi(object):
         :param async_req bool
         :param str order_book_id: (required)
         :param datetime since:
-        :return: ListOrdersResponse
+        :return: LiveOrderbook
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -5267,7 +5271,7 @@ class DefaultApi(object):
         :param async_req bool
         :param str order_book_id: (required)
         :param datetime since:
-        :return: ListOrdersResponse
+        :return: LiveOrderbook
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -5316,14 +5320,14 @@ class DefaultApi(object):
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/v1/orderbooks/{order_book_id}/stream/open', 'GET',
+            '/v1/orderbooks/{order_book_id}/open/stream', 'GET',
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='ListOrdersResponse',  # noqa: E501
+            response_type='LiveOrderbook',  # noqa: E501
             auth_settings=auth_settings,
             async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
@@ -5331,45 +5335,45 @@ class DefaultApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def stream_trades(self, orderbook_id, **kwargs):  # noqa: E501
+    def stream_trades(self, order_book_id, **kwargs):  # noqa: E501
         """Get a snapshot of trades executed on the given order book from a specific date and open a stream for real-time updates  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.stream_trades(orderbook_id, async_req=True)
+        >>> thread = api.stream_trades(order_book_id, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
-        :param str orderbook_id: (required)
+        :param str order_book_id: (required)
         :param datetime since:
-        :return: ListTradeResponse
+        :return: StreamTradesResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.stream_trades_with_http_info(orderbook_id, **kwargs)  # noqa: E501
+            return self.stream_trades_with_http_info(order_book_id, **kwargs)  # noqa: E501
         else:
-            (data) = self.stream_trades_with_http_info(orderbook_id, **kwargs)  # noqa: E501
+            (data) = self.stream_trades_with_http_info(order_book_id, **kwargs)  # noqa: E501
             return data
 
-    def stream_trades_with_http_info(self, orderbook_id, **kwargs):  # noqa: E501
+    def stream_trades_with_http_info(self, order_book_id, **kwargs):  # noqa: E501
         """Get a snapshot of trades executed on the given order book from a specific date and open a stream for real-time updates  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.stream_trades_with_http_info(orderbook_id, async_req=True)
+        >>> thread = api.stream_trades_with_http_info(order_book_id, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
-        :param str orderbook_id: (required)
+        :param str order_book_id: (required)
         :param datetime since:
-        :return: ListTradeResponse
+        :return: StreamTradesResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['orderbook_id', 'since']  # noqa: E501
+        all_params = ['order_book_id', 'since']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -5384,16 +5388,16 @@ class DefaultApi(object):
                 )
             params[key] = val
         del params['kwargs']
-        # verify the required parameter 'orderbook_id' is set
-        if ('orderbook_id' not in params or
-                params['orderbook_id'] is None):
-            raise ValueError("Missing the required parameter `orderbook_id` when calling `stream_trades`")  # noqa: E501
+        # verify the required parameter 'order_book_id' is set
+        if ('order_book_id' not in params or
+                params['order_book_id'] is None):
+            raise ValueError("Missing the required parameter `order_book_id` when calling `stream_trades`")  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'orderbook_id' in params:
-            path_params['orderbookId'] = params['orderbook_id']  # noqa: E501
+        if 'order_book_id' in params:
+            path_params['order_book_id'] = params['order_book_id']  # noqa: E501
 
         query_params = []
         if 'since' in params:
@@ -5420,7 +5424,7 @@ class DefaultApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='ListTradeResponse',  # noqa: E501
+            response_type='StreamTradesResponse',  # noqa: E501
             auth_settings=auth_settings,
             async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),

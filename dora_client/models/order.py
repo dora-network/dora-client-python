@@ -28,60 +28,87 @@ class Order(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'id': 'str',
+        'order_id': 'str',
         'order_book_id': 'str',
-        'quantity': 'str',
         'kind': 'OrderKind',
-        'price': 'str',
-        'inverse_leverage': 'float',
+        'original_price': 'str',
+        'avg_fill_price': 'str',
+        'cancelled_quantity': 'str',
+        'open_quantity': 'str',
+        'original_quantity': 'str',
+        'filled_quantity': 'str',
+        'last_update_at': 'datetime',
+        'opened_at': 'datetime',
+        'inverse_leverage': 'str',
         'side': 'Side',
         'status': 'OrderStatus',
         'user_id': 'str',
-        'user_text': 'str',
         'order_modifiers': 'list[OrderModifierKind]',
         'position_id': 'str'
     }
 
     attribute_map = {
-        'id': 'id',
+        'order_id': 'order_id',
         'order_book_id': 'order_book_id',
-        'quantity': 'quantity',
         'kind': 'kind',
-        'price': 'price',
+        'original_price': 'original_price',
+        'avg_fill_price': 'avg_fill_price',
+        'cancelled_quantity': 'cancelled_quantity',
+        'open_quantity': 'open_quantity',
+        'original_quantity': 'original_quantity',
+        'filled_quantity': 'filled_quantity',
+        'last_update_at': 'last_update_at',
+        'opened_at': 'opened_at',
         'inverse_leverage': 'inverse_leverage',
         'side': 'side',
         'status': 'status',
         'user_id': 'user_id',
-        'user_text': 'user_text',
         'order_modifiers': 'order_modifiers',
         'position_id': 'position_id'
     }
 
-    def __init__(self, id=None, order_book_id=None, quantity=None, kind=None, price=None, inverse_leverage=None, side=None, status=None, user_id=None, user_text=None, order_modifiers=None, position_id=None):  # noqa: E501
+    def __init__(self, order_id=None, order_book_id=None, kind=None, original_price=None, avg_fill_price=None, cancelled_quantity=None, open_quantity=None, original_quantity=None, filled_quantity=None, last_update_at=None, opened_at=None, inverse_leverage=None, side=None, status=None, user_id=None, order_modifiers=None, position_id=None):  # noqa: E501
         """Order - a model defined in Swagger"""  # noqa: E501
-        self._id = None
+        self._order_id = None
         self._order_book_id = None
-        self._quantity = None
         self._kind = None
-        self._price = None
+        self._original_price = None
+        self._avg_fill_price = None
+        self._cancelled_quantity = None
+        self._open_quantity = None
+        self._original_quantity = None
+        self._filled_quantity = None
+        self._last_update_at = None
+        self._opened_at = None
         self._inverse_leverage = None
         self._side = None
         self._status = None
         self._user_id = None
-        self._user_text = None
         self._order_modifiers = None
         self._position_id = None
         self.discriminator = None
-        if id is not None:
-            self.id = id
+        if order_id is not None:
+            self.order_id = order_id
         if order_book_id is not None:
             self.order_book_id = order_book_id
-        if quantity is not None:
-            self.quantity = quantity
         if kind is not None:
             self.kind = kind
-        if price is not None:
-            self.price = price
+        if original_price is not None:
+            self.original_price = original_price
+        if avg_fill_price is not None:
+            self.avg_fill_price = avg_fill_price
+        if cancelled_quantity is not None:
+            self.cancelled_quantity = cancelled_quantity
+        if open_quantity is not None:
+            self.open_quantity = open_quantity
+        if original_quantity is not None:
+            self.original_quantity = original_quantity
+        if filled_quantity is not None:
+            self.filled_quantity = filled_quantity
+        if last_update_at is not None:
+            self.last_update_at = last_update_at
+        if opened_at is not None:
+            self.opened_at = opened_at
         if inverse_leverage is not None:
             self.inverse_leverage = inverse_leverage
         if side is not None:
@@ -90,33 +117,31 @@ class Order(object):
             self.status = status
         if user_id is not None:
             self.user_id = user_id
-        if user_text is not None:
-            self.user_text = user_text
         if order_modifiers is not None:
             self.order_modifiers = order_modifiers
         if position_id is not None:
             self.position_id = position_id
 
     @property
-    def id(self):
-        """Gets the id of this Order.  # noqa: E501
+    def order_id(self):
+        """Gets the order_id of this Order.  # noqa: E501
 
 
-        :return: The id of this Order.  # noqa: E501
+        :return: The order_id of this Order.  # noqa: E501
         :rtype: str
         """
-        return self._id
+        return self._order_id
 
-    @id.setter
-    def id(self, id):
-        """Sets the id of this Order.
+    @order_id.setter
+    def order_id(self, order_id):
+        """Sets the order_id of this Order.
 
 
-        :param id: The id of this Order.  # noqa: E501
+        :param order_id: The order_id of this Order.  # noqa: E501
         :type: str
         """
 
-        self._id = id
+        self._order_id = order_id
 
     @property
     def order_book_id(self):
@@ -140,27 +165,6 @@ class Order(object):
         self._order_book_id = order_book_id
 
     @property
-    def quantity(self):
-        """Gets the quantity of this Order.  # noqa: E501
-
-
-        :return: The quantity of this Order.  # noqa: E501
-        :rtype: str
-        """
-        return self._quantity
-
-    @quantity.setter
-    def quantity(self, quantity):
-        """Sets the quantity of this Order.
-
-
-        :param quantity: The quantity of this Order.  # noqa: E501
-        :type: str
-        """
-
-        self._quantity = quantity
-
-    @property
     def kind(self):
         """Gets the kind of this Order.  # noqa: E501
 
@@ -182,25 +186,182 @@ class Order(object):
         self._kind = kind
 
     @property
-    def price(self):
-        """Gets the price of this Order.  # noqa: E501
+    def original_price(self):
+        """Gets the original_price of this Order.  # noqa: E501
 
+        If Kind is LIMIT, this is the original limit price. If Kind is MARKET, this may be 0 or omitted.  # noqa: E501
 
-        :return: The price of this Order.  # noqa: E501
+        :return: The original_price of this Order.  # noqa: E501
         :rtype: str
         """
-        return self._price
+        return self._original_price
 
-    @price.setter
-    def price(self, price):
-        """Sets the price of this Order.
+    @original_price.setter
+    def original_price(self, original_price):
+        """Sets the original_price of this Order.
 
+        If Kind is LIMIT, this is the original limit price. If Kind is MARKET, this may be 0 or omitted.  # noqa: E501
 
-        :param price: The price of this Order.  # noqa: E501
+        :param original_price: The original_price of this Order.  # noqa: E501
         :type: str
         """
 
-        self._price = price
+        self._original_price = original_price
+
+    @property
+    def avg_fill_price(self):
+        """Gets the avg_fill_price of this Order.  # noqa: E501
+
+
+        :return: The avg_fill_price of this Order.  # noqa: E501
+        :rtype: str
+        """
+        return self._avg_fill_price
+
+    @avg_fill_price.setter
+    def avg_fill_price(self, avg_fill_price):
+        """Sets the avg_fill_price of this Order.
+
+
+        :param avg_fill_price: The avg_fill_price of this Order.  # noqa: E501
+        :type: str
+        """
+
+        self._avg_fill_price = avg_fill_price
+
+    @property
+    def cancelled_quantity(self):
+        """Gets the cancelled_quantity of this Order.  # noqa: E501
+
+        Quantity that was cancelled, if any.  # noqa: E501
+
+        :return: The cancelled_quantity of this Order.  # noqa: E501
+        :rtype: str
+        """
+        return self._cancelled_quantity
+
+    @cancelled_quantity.setter
+    def cancelled_quantity(self, cancelled_quantity):
+        """Sets the cancelled_quantity of this Order.
+
+        Quantity that was cancelled, if any.  # noqa: E501
+
+        :param cancelled_quantity: The cancelled_quantity of this Order.  # noqa: E501
+        :type: str
+        """
+
+        self._cancelled_quantity = cancelled_quantity
+
+    @property
+    def open_quantity(self):
+        """Gets the open_quantity of this Order.  # noqa: E501
+
+        Quantity that is still open, i.e., not filled or cancelled.  # noqa: E501
+
+        :return: The open_quantity of this Order.  # noqa: E501
+        :rtype: str
+        """
+        return self._open_quantity
+
+    @open_quantity.setter
+    def open_quantity(self, open_quantity):
+        """Sets the open_quantity of this Order.
+
+        Quantity that is still open, i.e., not filled or cancelled.  # noqa: E501
+
+        :param open_quantity: The open_quantity of this Order.  # noqa: E501
+        :type: str
+        """
+
+        self._open_quantity = open_quantity
+
+    @property
+    def original_quantity(self):
+        """Gets the original_quantity of this Order.  # noqa: E501
+
+        The original quantity of the order when it was created.  # noqa: E501
+
+        :return: The original_quantity of this Order.  # noqa: E501
+        :rtype: str
+        """
+        return self._original_quantity
+
+    @original_quantity.setter
+    def original_quantity(self, original_quantity):
+        """Sets the original_quantity of this Order.
+
+        The original quantity of the order when it was created.  # noqa: E501
+
+        :param original_quantity: The original_quantity of this Order.  # noqa: E501
+        :type: str
+        """
+
+        self._original_quantity = original_quantity
+
+    @property
+    def filled_quantity(self):
+        """Gets the filled_quantity of this Order.  # noqa: E501
+
+        Quantity that has been filled so far.  # noqa: E501
+
+        :return: The filled_quantity of this Order.  # noqa: E501
+        :rtype: str
+        """
+        return self._filled_quantity
+
+    @filled_quantity.setter
+    def filled_quantity(self, filled_quantity):
+        """Sets the filled_quantity of this Order.
+
+        Quantity that has been filled so far.  # noqa: E501
+
+        :param filled_quantity: The filled_quantity of this Order.  # noqa: E501
+        :type: str
+        """
+
+        self._filled_quantity = filled_quantity
+
+    @property
+    def last_update_at(self):
+        """Gets the last_update_at of this Order.  # noqa: E501
+
+
+        :return: The last_update_at of this Order.  # noqa: E501
+        :rtype: datetime
+        """
+        return self._last_update_at
+
+    @last_update_at.setter
+    def last_update_at(self, last_update_at):
+        """Sets the last_update_at of this Order.
+
+
+        :param last_update_at: The last_update_at of this Order.  # noqa: E501
+        :type: datetime
+        """
+
+        self._last_update_at = last_update_at
+
+    @property
+    def opened_at(self):
+        """Gets the opened_at of this Order.  # noqa: E501
+
+
+        :return: The opened_at of this Order.  # noqa: E501
+        :rtype: datetime
+        """
+        return self._opened_at
+
+    @opened_at.setter
+    def opened_at(self, opened_at):
+        """Sets the opened_at of this Order.
+
+
+        :param opened_at: The opened_at of this Order.  # noqa: E501
+        :type: datetime
+        """
+
+        self._opened_at = opened_at
 
     @property
     def inverse_leverage(self):
@@ -208,7 +369,7 @@ class Order(object):
 
 
         :return: The inverse_leverage of this Order.  # noqa: E501
-        :rtype: float
+        :rtype: str
         """
         return self._inverse_leverage
 
@@ -218,7 +379,7 @@ class Order(object):
 
 
         :param inverse_leverage: The inverse_leverage of this Order.  # noqa: E501
-        :type: float
+        :type: str
         """
 
         self._inverse_leverage = inverse_leverage
@@ -285,27 +446,6 @@ class Order(object):
         """
 
         self._user_id = user_id
-
-    @property
-    def user_text(self):
-        """Gets the user_text of this Order.  # noqa: E501
-
-
-        :return: The user_text of this Order.  # noqa: E501
-        :rtype: str
-        """
-        return self._user_text
-
-    @user_text.setter
-    def user_text(self, user_text):
-        """Sets the user_text of this Order.
-
-
-        :param user_text: The user_text of this Order.  # noqa: E501
-        :type: str
-        """
-
-        self._user_text = user_text
 
     @property
     def order_modifiers(self):

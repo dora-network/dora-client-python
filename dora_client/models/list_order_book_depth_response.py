@@ -29,7 +29,7 @@ class ListOrderBookDepthResponse(ResponseEnvelope):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'data': 'list[OrderBookDepth]'
+        'data': 'OrderBookDepth'
     }
     if hasattr(ResponseEnvelope, "swagger_types"):
         swagger_types.update(ResponseEnvelope.swagger_types)
@@ -54,7 +54,7 @@ class ListOrderBookDepthResponse(ResponseEnvelope):
 
 
         :return: The data of this ListOrderBookDepthResponse.  # noqa: E501
-        :rtype: list[OrderBookDepth]
+        :rtype: OrderBookDepth
         """
         return self._data
 
@@ -64,7 +64,7 @@ class ListOrderBookDepthResponse(ResponseEnvelope):
 
 
         :param data: The data of this ListOrderBookDepthResponse.  # noqa: E501
-        :type: list[OrderBookDepth]
+        :type: OrderBookDepth
         """
 
         self._data = data

@@ -30,47 +30,67 @@ class CouponPayment(object):
     swagger_types = {
         'id': 'str',
         'asset_id': 'str',
+        '_yield': 'float',
         'start_at': 'datetime',
+        'end_at': 'datetime',
         'pay_at': 'datetime',
+        'available_to_pay': 'str',
+        'completed_at': 'datetime',
         'created_at': 'datetime',
-        'processed_at': 'datetime',
-        '_yield': 'float'
+        'process_every': 'int',
+        'last_processed_at': 'datetime'
     }
 
     attribute_map = {
         'id': 'id',
         'asset_id': 'asset_id',
+        '_yield': 'yield',
         'start_at': 'start_at',
+        'end_at': 'end_at',
         'pay_at': 'pay_at',
+        'available_to_pay': 'available_to_pay',
+        'completed_at': 'completed_at',
         'created_at': 'created_at',
-        'processed_at': 'processed_at',
-        '_yield': 'yield'
+        'process_every': 'process_every',
+        'last_processed_at': 'last_processed_at'
     }
 
-    def __init__(self, id=None, asset_id=None, start_at=None, pay_at=None, created_at=None, processed_at=None, _yield=None):  # noqa: E501
+    def __init__(self, id=None, asset_id=None, _yield=None, start_at=None, end_at=None, pay_at=None, available_to_pay=None, completed_at=None, created_at=None, process_every=None, last_processed_at=None):  # noqa: E501
         """CouponPayment - a model defined in Swagger"""  # noqa: E501
         self._id = None
         self._asset_id = None
-        self._start_at = None
-        self._pay_at = None
-        self._created_at = None
-        self._processed_at = None
         self.__yield = None
+        self._start_at = None
+        self._end_at = None
+        self._pay_at = None
+        self._available_to_pay = None
+        self._completed_at = None
+        self._created_at = None
+        self._process_every = None
+        self._last_processed_at = None
         self.discriminator = None
         if id is not None:
             self.id = id
         if asset_id is not None:
             self.asset_id = asset_id
-        if start_at is not None:
-            self.start_at = start_at
-        if pay_at is not None:
-            self.pay_at = pay_at
-        if created_at is not None:
-            self.created_at = created_at
-        if processed_at is not None:
-            self.processed_at = processed_at
         if _yield is not None:
             self._yield = _yield
+        if start_at is not None:
+            self.start_at = start_at
+        if end_at is not None:
+            self.end_at = end_at
+        if pay_at is not None:
+            self.pay_at = pay_at
+        if available_to_pay is not None:
+            self.available_to_pay = available_to_pay
+        if completed_at is not None:
+            self.completed_at = completed_at
+        if created_at is not None:
+            self.created_at = created_at
+        if process_every is not None:
+            self.process_every = process_every
+        if last_processed_at is not None:
+            self.last_processed_at = last_processed_at
 
     @property
     def id(self):
@@ -115,6 +135,27 @@ class CouponPayment(object):
         self._asset_id = asset_id
 
     @property
+    def _yield(self):
+        """Gets the _yield of this CouponPayment.  # noqa: E501
+
+
+        :return: The _yield of this CouponPayment.  # noqa: E501
+        :rtype: float
+        """
+        return self.__yield
+
+    @_yield.setter
+    def _yield(self, _yield):
+        """Sets the _yield of this CouponPayment.
+
+
+        :param _yield: The _yield of this CouponPayment.  # noqa: E501
+        :type: float
+        """
+
+        self.__yield = _yield
+
+    @property
     def start_at(self):
         """Gets the start_at of this CouponPayment.  # noqa: E501
 
@@ -134,6 +175,27 @@ class CouponPayment(object):
         """
 
         self._start_at = start_at
+
+    @property
+    def end_at(self):
+        """Gets the end_at of this CouponPayment.  # noqa: E501
+
+
+        :return: The end_at of this CouponPayment.  # noqa: E501
+        :rtype: datetime
+        """
+        return self._end_at
+
+    @end_at.setter
+    def end_at(self, end_at):
+        """Sets the end_at of this CouponPayment.
+
+
+        :param end_at: The end_at of this CouponPayment.  # noqa: E501
+        :type: datetime
+        """
+
+        self._end_at = end_at
 
     @property
     def pay_at(self):
@@ -157,6 +219,48 @@ class CouponPayment(object):
         self._pay_at = pay_at
 
     @property
+    def available_to_pay(self):
+        """Gets the available_to_pay of this CouponPayment.  # noqa: E501
+
+
+        :return: The available_to_pay of this CouponPayment.  # noqa: E501
+        :rtype: str
+        """
+        return self._available_to_pay
+
+    @available_to_pay.setter
+    def available_to_pay(self, available_to_pay):
+        """Sets the available_to_pay of this CouponPayment.
+
+
+        :param available_to_pay: The available_to_pay of this CouponPayment.  # noqa: E501
+        :type: str
+        """
+
+        self._available_to_pay = available_to_pay
+
+    @property
+    def completed_at(self):
+        """Gets the completed_at of this CouponPayment.  # noqa: E501
+
+
+        :return: The completed_at of this CouponPayment.  # noqa: E501
+        :rtype: datetime
+        """
+        return self._completed_at
+
+    @completed_at.setter
+    def completed_at(self, completed_at):
+        """Sets the completed_at of this CouponPayment.
+
+
+        :param completed_at: The completed_at of this CouponPayment.  # noqa: E501
+        :type: datetime
+        """
+
+        self._completed_at = completed_at
+
+    @property
     def created_at(self):
         """Gets the created_at of this CouponPayment.  # noqa: E501
 
@@ -178,46 +282,48 @@ class CouponPayment(object):
         self._created_at = created_at
 
     @property
-    def processed_at(self):
-        """Gets the processed_at of this CouponPayment.  # noqa: E501
+    def process_every(self):
+        """Gets the process_every of this CouponPayment.  # noqa: E501
+
+        Number of nanoseconds to wait between coupon payment processing, must be at least 1000 (1 microsecond)  # noqa: E501
+
+        :return: The process_every of this CouponPayment.  # noqa: E501
+        :rtype: int
+        """
+        return self._process_every
+
+    @process_every.setter
+    def process_every(self, process_every):
+        """Sets the process_every of this CouponPayment.
+
+        Number of nanoseconds to wait between coupon payment processing, must be at least 1000 (1 microsecond)  # noqa: E501
+
+        :param process_every: The process_every of this CouponPayment.  # noqa: E501
+        :type: int
+        """
+
+        self._process_every = process_every
+
+    @property
+    def last_processed_at(self):
+        """Gets the last_processed_at of this CouponPayment.  # noqa: E501
 
 
-        :return: The processed_at of this CouponPayment.  # noqa: E501
+        :return: The last_processed_at of this CouponPayment.  # noqa: E501
         :rtype: datetime
         """
-        return self._processed_at
+        return self._last_processed_at
 
-    @processed_at.setter
-    def processed_at(self, processed_at):
-        """Sets the processed_at of this CouponPayment.
+    @last_processed_at.setter
+    def last_processed_at(self, last_processed_at):
+        """Sets the last_processed_at of this CouponPayment.
 
 
-        :param processed_at: The processed_at of this CouponPayment.  # noqa: E501
+        :param last_processed_at: The last_processed_at of this CouponPayment.  # noqa: E501
         :type: datetime
         """
 
-        self._processed_at = processed_at
-
-    @property
-    def _yield(self):
-        """Gets the _yield of this CouponPayment.  # noqa: E501
-
-
-        :return: The _yield of this CouponPayment.  # noqa: E501
-        :rtype: float
-        """
-        return self.__yield
-
-    @_yield.setter
-    def _yield(self, _yield):
-        """Sets the _yield of this CouponPayment.
-
-
-        :param _yield: The _yield of this CouponPayment.  # noqa: E501
-        :type: float
-        """
-
-        self.__yield = _yield
+        self._last_processed_at = last_processed_at
 
     def to_dict(self):
         """Returns the model properties as a dict"""

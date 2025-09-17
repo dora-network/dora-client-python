@@ -29,33 +29,39 @@ class OrderBookBalance(object):
     """
     swagger_types = {
         'order_book_id': 'str',
-        'base_balance': 'str',
-        'quote_balance': 'str'
+        'base_quantity': 'float',
+        'quote_quantity': 'float',
+        'shares_quantity': 'float'
     }
 
     attribute_map = {
         'order_book_id': 'order_book_id',
-        'base_balance': 'base_balance',
-        'quote_balance': 'quote_balance'
+        'base_quantity': 'base_quantity',
+        'quote_quantity': 'quote_quantity',
+        'shares_quantity': 'shares_quantity'
     }
 
-    def __init__(self, order_book_id=None, base_balance=None, quote_balance=None):  # noqa: E501
+    def __init__(self, order_book_id=None, base_quantity=None, quote_quantity=None, shares_quantity=None):  # noqa: E501
         """OrderBookBalance - a model defined in Swagger"""  # noqa: E501
         self._order_book_id = None
-        self._base_balance = None
-        self._quote_balance = None
+        self._base_quantity = None
+        self._quote_quantity = None
+        self._shares_quantity = None
         self.discriminator = None
         if order_book_id is not None:
             self.order_book_id = order_book_id
-        if base_balance is not None:
-            self.base_balance = base_balance
-        if quote_balance is not None:
-            self.quote_balance = quote_balance
+        if base_quantity is not None:
+            self.base_quantity = base_quantity
+        if quote_quantity is not None:
+            self.quote_quantity = quote_quantity
+        if shares_quantity is not None:
+            self.shares_quantity = shares_quantity
 
     @property
     def order_book_id(self):
         """Gets the order_book_id of this OrderBookBalance.  # noqa: E501
 
+        The ID of the order book.  # noqa: E501
 
         :return: The order_book_id of this OrderBookBalance.  # noqa: E501
         :rtype: str
@@ -66,6 +72,7 @@ class OrderBookBalance(object):
     def order_book_id(self, order_book_id):
         """Sets the order_book_id of this OrderBookBalance.
 
+        The ID of the order book.  # noqa: E501
 
         :param order_book_id: The order_book_id of this OrderBookBalance.  # noqa: E501
         :type: str
@@ -74,46 +81,73 @@ class OrderBookBalance(object):
         self._order_book_id = order_book_id
 
     @property
-    def base_balance(self):
-        """Gets the base_balance of this OrderBookBalance.  # noqa: E501
+    def base_quantity(self):
+        """Gets the base_quantity of this OrderBookBalance.  # noqa: E501
 
+        The quantity of the base asset.  # noqa: E501
 
-        :return: The base_balance of this OrderBookBalance.  # noqa: E501
-        :rtype: str
+        :return: The base_quantity of this OrderBookBalance.  # noqa: E501
+        :rtype: float
         """
-        return self._base_balance
+        return self._base_quantity
 
-    @base_balance.setter
-    def base_balance(self, base_balance):
-        """Sets the base_balance of this OrderBookBalance.
+    @base_quantity.setter
+    def base_quantity(self, base_quantity):
+        """Sets the base_quantity of this OrderBookBalance.
 
+        The quantity of the base asset.  # noqa: E501
 
-        :param base_balance: The base_balance of this OrderBookBalance.  # noqa: E501
-        :type: str
+        :param base_quantity: The base_quantity of this OrderBookBalance.  # noqa: E501
+        :type: float
         """
 
-        self._base_balance = base_balance
+        self._base_quantity = base_quantity
 
     @property
-    def quote_balance(self):
-        """Gets the quote_balance of this OrderBookBalance.  # noqa: E501
+    def quote_quantity(self):
+        """Gets the quote_quantity of this OrderBookBalance.  # noqa: E501
 
+        The quantity of the quote asset.  # noqa: E501
 
-        :return: The quote_balance of this OrderBookBalance.  # noqa: E501
-        :rtype: str
+        :return: The quote_quantity of this OrderBookBalance.  # noqa: E501
+        :rtype: float
         """
-        return self._quote_balance
+        return self._quote_quantity
 
-    @quote_balance.setter
-    def quote_balance(self, quote_balance):
-        """Sets the quote_balance of this OrderBookBalance.
+    @quote_quantity.setter
+    def quote_quantity(self, quote_quantity):
+        """Sets the quote_quantity of this OrderBookBalance.
 
+        The quantity of the quote asset.  # noqa: E501
 
-        :param quote_balance: The quote_balance of this OrderBookBalance.  # noqa: E501
-        :type: str
+        :param quote_quantity: The quote_quantity of this OrderBookBalance.  # noqa: E501
+        :type: float
         """
 
-        self._quote_balance = quote_balance
+        self._quote_quantity = quote_quantity
+
+    @property
+    def shares_quantity(self):
+        """Gets the shares_quantity of this OrderBookBalance.  # noqa: E501
+
+        The quantity of pool shares.  # noqa: E501
+
+        :return: The shares_quantity of this OrderBookBalance.  # noqa: E501
+        :rtype: float
+        """
+        return self._shares_quantity
+
+    @shares_quantity.setter
+    def shares_quantity(self, shares_quantity):
+        """Sets the shares_quantity of this OrderBookBalance.
+
+        The quantity of pool shares.  # noqa: E501
+
+        :param shares_quantity: The shares_quantity of this OrderBookBalance.  # noqa: E501
+        :type: float
+        """
+
+        self._shares_quantity = shares_quantity
 
     def to_dict(self):
         """Returns the model properties as a dict"""

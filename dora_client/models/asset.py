@@ -32,6 +32,7 @@ class Asset(object):
         'collateral_weight': 'float',
         'created_at': 'datetime',
         'decimals': 'int',
+        'fractionalized_units': 'int',
         'description': 'str',
         'liquidation_threshold': 'float',
         'maturity_id': 'str',
@@ -54,6 +55,7 @@ class Asset(object):
         'collateral_weight': 'collateral_weight',
         'created_at': 'created_at',
         'decimals': 'decimals',
+        'fractionalized_units': 'fractionalized_units',
         'description': 'description',
         'liquidation_threshold': 'liquidation_threshold',
         'maturity_id': 'maturity_id',
@@ -71,12 +73,13 @@ class Asset(object):
         'bond': 'bond'
     }
 
-    def __init__(self, id=None, collateral_weight=None, created_at=None, decimals=None, description=None, liquidation_threshold=None, maturity_id=None, max_supply=None, max_utilization=None, name=None, symbol=None, kind=None, _yield=None, can_add_liquidity=None, can_direct_borrow=None, can_onboard=None, can_trade=None, can_virtual_borrow=None, bond=None):  # noqa: E501
+    def __init__(self, id=None, collateral_weight=None, created_at=None, decimals=None, fractionalized_units=None, description=None, liquidation_threshold=None, maturity_id=None, max_supply=None, max_utilization=None, name=None, symbol=None, kind=None, _yield=None, can_add_liquidity=None, can_direct_borrow=None, can_onboard=None, can_trade=None, can_virtual_borrow=None, bond=None):  # noqa: E501
         """Asset - a model defined in Swagger"""  # noqa: E501
         self._id = None
         self._collateral_weight = None
         self._created_at = None
         self._decimals = None
+        self._fractionalized_units = None
         self._description = None
         self._liquidation_threshold = None
         self._maturity_id = None
@@ -101,6 +104,8 @@ class Asset(object):
             self.created_at = created_at
         if decimals is not None:
             self.decimals = decimals
+        if fractionalized_units is not None:
+            self.fractionalized_units = fractionalized_units
         if description is not None:
             self.description = description
         if liquidation_threshold is not None:
@@ -215,6 +220,27 @@ class Asset(object):
         """
 
         self._decimals = decimals
+
+    @property
+    def fractionalized_units(self):
+        """Gets the fractionalized_units of this Asset.  # noqa: E501
+
+
+        :return: The fractionalized_units of this Asset.  # noqa: E501
+        :rtype: int
+        """
+        return self._fractionalized_units
+
+    @fractionalized_units.setter
+    def fractionalized_units(self, fractionalized_units):
+        """Sets the fractionalized_units of this Asset.
+
+
+        :param fractionalized_units: The fractionalized_units of this Asset.  # noqa: E501
+        :type: int
+        """
+
+        self._fractionalized_units = fractionalized_units
 
     @property
     def description(self):

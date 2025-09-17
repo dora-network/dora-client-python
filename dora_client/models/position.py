@@ -38,7 +38,9 @@ class Position(object):
         'collateral': 'str',
         'supplied_collateral': 'str',
         'borrowed': 'str',
-        'impending_borrows': 'str'
+        'impending_borrows': 'str',
+        'avg_entry_price': 'str',
+        'created_at': 'datetime'
     }
 
     attribute_map = {
@@ -52,10 +54,12 @@ class Position(object):
         'collateral': 'collateral',
         'supplied_collateral': 'supplied_collateral',
         'borrowed': 'borrowed',
-        'impending_borrows': 'impending_borrows'
+        'impending_borrows': 'impending_borrows',
+        'avg_entry_price': 'avg_entry_price',
+        'created_at': 'created_at'
     }
 
-    def __init__(self, id=None, asset_id=None, seq=None, is_global=None, available=None, locked=None, supplied=None, collateral=None, supplied_collateral=None, borrowed=None, impending_borrows=None):  # noqa: E501
+    def __init__(self, id=None, asset_id=None, seq=None, is_global=None, available=None, locked=None, supplied=None, collateral=None, supplied_collateral=None, borrowed=None, impending_borrows=None, avg_entry_price=None, created_at=None):  # noqa: E501
         """Position - a model defined in Swagger"""  # noqa: E501
         self._id = None
         self._asset_id = None
@@ -68,6 +72,8 @@ class Position(object):
         self._supplied_collateral = None
         self._borrowed = None
         self._impending_borrows = None
+        self._avg_entry_price = None
+        self._created_at = None
         self.discriminator = None
         if id is not None:
             self.id = id
@@ -91,6 +97,10 @@ class Position(object):
             self.borrowed = borrowed
         if impending_borrows is not None:
             self.impending_borrows = impending_borrows
+        if avg_entry_price is not None:
+            self.avg_entry_price = avg_entry_price
+        if created_at is not None:
+            self.created_at = created_at
 
     @property
     def id(self):
@@ -338,6 +348,50 @@ class Position(object):
         """
 
         self._impending_borrows = impending_borrows
+
+    @property
+    def avg_entry_price(self):
+        """Gets the avg_entry_price of this Position.  # noqa: E501
+
+        average cost per unit quantity that was paid (long positions) or received (short positions) for this asset.  # noqa: E501
+
+        :return: The avg_entry_price of this Position.  # noqa: E501
+        :rtype: str
+        """
+        return self._avg_entry_price
+
+    @avg_entry_price.setter
+    def avg_entry_price(self, avg_entry_price):
+        """Sets the avg_entry_price of this Position.
+
+        average cost per unit quantity that was paid (long positions) or received (short positions) for this asset.  # noqa: E501
+
+        :param avg_entry_price: The avg_entry_price of this Position.  # noqa: E501
+        :type: str
+        """
+
+        self._avg_entry_price = avg_entry_price
+
+    @property
+    def created_at(self):
+        """Gets the created_at of this Position.  # noqa: E501
+
+
+        :return: The created_at of this Position.  # noqa: E501
+        :rtype: datetime
+        """
+        return self._created_at
+
+    @created_at.setter
+    def created_at(self, created_at):
+        """Sets the created_at of this Position.
+
+
+        :param created_at: The created_at of this Position.  # noqa: E501
+        :type: datetime
+        """
+
+        self._created_at = created_at
 
     def to_dict(self):
         """Returns the model properties as a dict"""

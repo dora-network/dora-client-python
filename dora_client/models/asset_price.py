@@ -30,27 +30,27 @@ class AssetPrice(object):
     swagger_types = {
         'asset_id': 'str',
         'price': 'str',
-        'timestamp': 'datetime'
+        'time': 'datetime'
     }
 
     attribute_map = {
         'asset_id': 'asset_id',
         'price': 'price',
-        'timestamp': 'timestamp'
+        'time': 'time'
     }
 
-    def __init__(self, asset_id=None, price=None, timestamp=None):  # noqa: E501
+    def __init__(self, asset_id=None, price=None, time=None):  # noqa: E501
         """AssetPrice - a model defined in Swagger"""  # noqa: E501
         self._asset_id = None
         self._price = None
-        self._timestamp = None
+        self._time = None
         self.discriminator = None
         if asset_id is not None:
             self.asset_id = asset_id
         if price is not None:
             self.price = price
-        if timestamp is not None:
-            self.timestamp = timestamp
+        if time is not None:
+            self.time = time
 
     @property
     def asset_id(self):
@@ -95,25 +95,25 @@ class AssetPrice(object):
         self._price = price
 
     @property
-    def timestamp(self):
-        """Gets the timestamp of this AssetPrice.  # noqa: E501
+    def time(self):
+        """Gets the time of this AssetPrice.  # noqa: E501
 
 
-        :return: The timestamp of this AssetPrice.  # noqa: E501
+        :return: The time of this AssetPrice.  # noqa: E501
         :rtype: datetime
         """
-        return self._timestamp
+        return self._time
 
-    @timestamp.setter
-    def timestamp(self, timestamp):
-        """Sets the timestamp of this AssetPrice.
+    @time.setter
+    def time(self, time):
+        """Sets the time of this AssetPrice.
 
 
-        :param timestamp: The timestamp of this AssetPrice.  # noqa: E501
+        :param time: The time of this AssetPrice.  # noqa: E501
         :type: datetime
         """
 
-        self._timestamp = timestamp
+        self._time = time
 
     def to_dict(self):
         """Returns the model properties as a dict"""

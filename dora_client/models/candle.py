@@ -30,11 +30,11 @@ class Candle(object):
     swagger_types = {
         'order_book_id': 'str',
         'start_timestamp': 'datetime',
-        'open': 'float',
-        'high': 'float',
-        'low': 'float',
-        'close': 'float',
-        'volume': 'int'
+        'open': 'str',
+        'high': 'str',
+        'low': 'str',
+        'close': 'str',
+        'volume': 'str'
     }
 
     attribute_map = {
@@ -120,7 +120,7 @@ class Candle(object):
 
 
         :return: The open of this Candle.  # noqa: E501
-        :rtype: float
+        :rtype: str
         """
         return self._open
 
@@ -130,7 +130,7 @@ class Candle(object):
 
 
         :param open: The open of this Candle.  # noqa: E501
-        :type: float
+        :type: str
         """
 
         self._open = open
@@ -141,7 +141,7 @@ class Candle(object):
 
 
         :return: The high of this Candle.  # noqa: E501
-        :rtype: float
+        :rtype: str
         """
         return self._high
 
@@ -151,7 +151,7 @@ class Candle(object):
 
 
         :param high: The high of this Candle.  # noqa: E501
-        :type: float
+        :type: str
         """
 
         self._high = high
@@ -162,7 +162,7 @@ class Candle(object):
 
 
         :return: The low of this Candle.  # noqa: E501
-        :rtype: float
+        :rtype: str
         """
         return self._low
 
@@ -172,7 +172,7 @@ class Candle(object):
 
 
         :param low: The low of this Candle.  # noqa: E501
-        :type: float
+        :type: str
         """
 
         self._low = low
@@ -183,7 +183,7 @@ class Candle(object):
 
 
         :return: The close of this Candle.  # noqa: E501
-        :rtype: float
+        :rtype: str
         """
         return self._close
 
@@ -193,7 +193,7 @@ class Candle(object):
 
 
         :param close: The close of this Candle.  # noqa: E501
-        :type: float
+        :type: str
         """
 
         self._close = close
@@ -204,7 +204,7 @@ class Candle(object):
 
 
         :return: The volume of this Candle.  # noqa: E501
-        :rtype: int
+        :rtype: str
         """
         return self._volume
 
@@ -214,7 +214,7 @@ class Candle(object):
 
 
         :param volume: The volume of this Candle.  # noqa: E501
-        :type: int
+        :type: str
         """
 
         self._volume = volume

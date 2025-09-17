@@ -106,11 +106,11 @@ except ApiException as e:
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
-id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
+asset_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
 
 try:
     # Get asset by ID
-    api_response = api_instance.get_asset_by_id(id)
+    api_response = api_instance.get_asset_by_id(asset_id)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->get_asset_by_id: %s\n" % e)
@@ -128,25 +128,25 @@ except ApiException as e:
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
-orderbook = 'orderbook_example' # str | 
+order_book_id = 'order_book_id_example' # str | 
 start = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 end = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 resolution = dora_client.CandleResolution() # CandleResolution |  (optional)
 
 try:
     # Get candlestick data for an orderbook
-    api_response = api_instance.get_candle_data(orderbook, start=start, end=end, resolution=resolution)
+    api_response = api_instance.get_candle_data(order_book_id, start=start, end=end, resolution=resolution)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->get_candle_data: %s\n" % e)
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
-id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
+asset_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
 
 try:
     # Get coupon payments for a bond asset
-    api_response = api_instance.get_coupon_payments_by_asset_id(id)
+    api_response = api_instance.get_coupon_payments_by_asset_id(asset_id)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->get_coupon_payments_by_asset_id: %s\n" % e)
@@ -351,11 +351,11 @@ except ApiException as e:
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
-id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
+transaction_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
 
 try:
     # Get a transaction by ID
-    api_response = api_instance.get_transaction_by_id(id)
+    api_response = api_instance.get_transaction_by_id(transaction_id)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->get_transaction_by_id: %s\n" % e)
@@ -408,10 +408,10 @@ since = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 
 try:
     # Get a snapshot of user's order updates for the given order book since a specific time, and opens a stream for further updates
-    api_response = api_instance.get_user_orders_stream(user_id, order_book_id, since=since)
+    api_response = api_instance.get_user_order_updates_stream(user_id, order_book_id, since=since)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling DefaultApi->get_user_orders_stream: %s\n" % e)
+    print("Exception when calling DefaultApi->get_user_order_updates_stream: %s\n" % e)
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
@@ -421,10 +421,10 @@ since = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 
 try:
     # Get a snapshot of user's order updates across all order books since a specific time, and opens a stream for further updates
-    api_response = api_instance.get_user_orders_stream_all(user_id, order_book_id, since=since)
+    api_response = api_instance.get_user_orders_updates_stream_all(user_id, order_book_id, since=since)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling DefaultApi->get_user_orders_stream_all: %s\n" % e)
+    print("Exception when calling DefaultApi->get_user_orders_updates_stream_all: %s\n" % e)
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
@@ -631,8 +631,8 @@ except ApiException as e:
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
 order_book_id = ['order_book_id_example'] # list[str] |  (optional)
-kind = dora_client.OrderKind() # OrderKind |  (optional)
-status = dora_client.OrderStatus() # OrderStatus |  (optional)
+kind = [dora_client.OrderKind()] # list[OrderKind] |  (optional)
+status = [dora_client.OrderStatus()] # list[OrderStatus] |  (optional)
 side = dora_client.Side() # Side |  (optional)
 _from = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 to = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
@@ -651,7 +651,7 @@ api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
 since = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 
 try:
-    # Get a snapshot of asset prices from a specific date and open a stream for real-time updates
+    # Stream real-time asset prices as map objects
     api_response = api_instance.stream_asset_prices(since=since)
     pprint(api_response)
 except ApiException as e:
@@ -659,13 +659,13 @@ except ApiException as e:
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
-orderbook = 'orderbook_example' # str | 
+order_book_id = 'order_book_id_example' # str | 
 since = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 resolution = dora_client.CandleResolution() # CandleResolution |  (optional)
 
 try:
     # Get a snapshot of candlestick data from date provided, and open a stream for real-time updates
-    api_response = api_instance.stream_candle_data(orderbook, since=since, resolution=resolution)
+    api_response = api_instance.stream_candle_data(order_book_id, since=since, resolution=resolution)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->stream_candle_data: %s\n" % e)
@@ -696,12 +696,12 @@ except ApiException as e:
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
-orderbook_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
+order_book_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
 since = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 
 try:
     # Get a snapshot of trades executed on the given order book from a specific date and open a stream for real-time updates
-    api_response = api_instance.stream_trades(orderbook_id, since=since)
+    api_response = api_instance.stream_trades(order_book_id, since=since)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->stream_trades: %s\n" % e)
@@ -752,10 +752,10 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**create_order**](docs/DefaultApi.md#create_order) | **POST** /v1/orders | Create a new order
 *DefaultApi* | [**delete_user**](docs/DefaultApi.md#delete_user) | **DELETE** /v1/user/{user_id} | Delete user by ID
 *DefaultApi* | [**get_all_asset_prices**](docs/DefaultApi.md#get_all_asset_prices) | **GET** /v1/price | Get the current price of all assets
-*DefaultApi* | [**get_asset_by_id**](docs/DefaultApi.md#get_asset_by_id) | **GET** /v1/assets/{id} | Get asset by ID
+*DefaultApi* | [**get_asset_by_id**](docs/DefaultApi.md#get_asset_by_id) | **GET** /v1/assets/{asset_id} | Get asset by ID
 *DefaultApi* | [**get_asset_price**](docs/DefaultApi.md#get_asset_price) | **GET** /v1/price/asset/{asset_id} | Get the current price of an asset
-*DefaultApi* | [**get_candle_data**](docs/DefaultApi.md#get_candle_data) | **GET** /v1/charts/{orderbook}/candle | Get candlestick data for an orderbook
-*DefaultApi* | [**get_coupon_payments_by_asset_id**](docs/DefaultApi.md#get_coupon_payments_by_asset_id) | **GET** /v1/assets/{id}/coupon_payments | Get coupon payments for a bond asset
+*DefaultApi* | [**get_candle_data**](docs/DefaultApi.md#get_candle_data) | **GET** /v1/charts/{order_book_id}/candle | Get candlestick data for an orderbook
+*DefaultApi* | [**get_coupon_payments_by_asset_id**](docs/DefaultApi.md#get_coupon_payments_by_asset_id) | **GET** /v1/assets/{asset_id}/coupon_payments | Get coupon payments for a bond asset
 *DefaultApi* | [**get_l1_depth**](docs/DefaultApi.md#get_l1_depth) | **GET** /v1/orderbooks/{order_book_id}/L1 | Get the top price levels for a specific orderbook (L1 market depth)
 *DefaultApi* | [**get_l2_depth**](docs/DefaultApi.md#get_l2_depth) | **GET** /v1/orderbooks/{order_book_id}/L2 | Get the aggregated price levels for a specific orderbook (L2 market depth)
 *DefaultApi* | [**get_l3_depth**](docs/DefaultApi.md#get_l3_depth) | **GET** /v1/orderbooks/{order_book_id}/L3 | Get all open orders for a specific orderbook (L3 market depth)
@@ -774,12 +774,12 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**get_pool_price**](docs/DefaultApi.md#get_pool_price) | **GET** /v1/price/pool/{pool_id} | Get the current price of a pool
 *DefaultApi* | [**get_trade_by_id**](docs/DefaultApi.md#get_trade_by_id) | **GET** /v1/trades/{trade_id} | Get a trade by ID
 *DefaultApi* | [**get_trades**](docs/DefaultApi.md#get_trades) | **GET** /v1/trades | Get a filtered, paginated list of trades
-*DefaultApi* | [**get_transaction_by_id**](docs/DefaultApi.md#get_transaction_by_id) | **GET** /v1/transactions/{id} | Get a transaction by ID
+*DefaultApi* | [**get_transaction_by_id**](docs/DefaultApi.md#get_transaction_by_id) | **GET** /v1/transactions/{transaction_id} | Get a transaction by ID
 *DefaultApi* | [**get_transactions**](docs/DefaultApi.md#get_transactions) | **GET** /v1/transactions | Get a filtered, paginated list of transactions
 *DefaultApi* | [**get_user_by_id**](docs/DefaultApi.md#get_user_by_id) | **GET** /v1/user/{user_id} | Get user by ID (admin only)
 *DefaultApi* | [**get_user_ledger_stream**](docs/DefaultApi.md#get_user_ledger_stream) | **GET** /v1/user/{user_id}/ledger/stream | Get a snapshot of user&#x27;s ledger updates since a specific time, and opens a stream for further updates
-*DefaultApi* | [**get_user_orders_stream**](docs/DefaultApi.md#get_user_orders_stream) | **GET** /v1/user/{user_id}/orders/{order_book_id}/stream | Get a snapshot of user&#x27;s order updates for the given order book since a specific time, and opens a stream for further updates
-*DefaultApi* | [**get_user_orders_stream_all**](docs/DefaultApi.md#get_user_orders_stream_all) | **GET** /v1/user/{user_id}/orders/all/stream | Get a snapshot of user&#x27;s order updates across all order books since a specific time, and opens a stream for further updates
+*DefaultApi* | [**get_user_order_updates_stream**](docs/DefaultApi.md#get_user_order_updates_stream) | **GET** /v1/user/{user_id}/orders/{order_book_id}/updates/stream | Get a snapshot of user&#x27;s order updates for the given order book since a specific time, and opens a stream for further updates
+*DefaultApi* | [**get_user_orders_updates_stream_all**](docs/DefaultApi.md#get_user_orders_updates_stream_all) | **GET** /v1/user/{user_id}/orders/all/updates/stream | Get a snapshot of user&#x27;s order updates across all order books since a specific time, and opens a stream for further updates
 *DefaultApi* | [**get_user_self**](docs/DefaultApi.md#get_user_self) | **GET** /v1/user/self | Get user details for the authenticated user
 *DefaultApi* | [**get_user_transactions_stream**](docs/DefaultApi.md#get_user_transactions_stream) | **GET** /v1/user/{user_id}/transactions/stream | Get a snapshot of user&#x27;s executed transactions since a specific time, and opens a stream for further updates
 *DefaultApi* | [**ledger_deposit**](docs/DefaultApi.md#ledger_deposit) | **POST** /v1/ledger/deposit | Deposit assets into your account from the outside world
@@ -798,10 +798,10 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**list_assets**](docs/DefaultApi.md#list_assets) | **GET** /v1/assets | List assets
 *DefaultApi* | [**list_order_books**](docs/DefaultApi.md#list_order_books) | **GET** /v1/orderbooks | List order books
 *DefaultApi* | [**list_orders**](docs/DefaultApi.md#list_orders) | **GET** /v1/orders | List all orders
-*DefaultApi* | [**stream_asset_prices**](docs/DefaultApi.md#stream_asset_prices) | **GET** /v1/price/stream | Get a snapshot of asset prices from a specific date and open a stream for real-time updates
-*DefaultApi* | [**stream_candle_data**](docs/DefaultApi.md#stream_candle_data) | **GET** /v1/charts/{orderbook}/candle/stream | Get a snapshot of candlestick data from date provided, and open a stream for real-time updates
-*DefaultApi* | [**stream_order_book_balances**](docs/DefaultApi.md#stream_order_book_balances) | **GET** /v1/orderbooks/{order_book_id}/stream/balances | Get a snapshot of base and quote balances for an order book and open a stream for real-time updates
-*DefaultApi* | [**stream_orderbook_open_orders**](docs/DefaultApi.md#stream_orderbook_open_orders) | **GET** /v1/orderbooks/{order_book_id}/stream/open | Get a snapshot of open orders in an order book and open a stream for real-time updates
+*DefaultApi* | [**stream_asset_prices**](docs/DefaultApi.md#stream_asset_prices) | **GET** /v1/prices/stream | Stream real-time asset prices as map objects
+*DefaultApi* | [**stream_candle_data**](docs/DefaultApi.md#stream_candle_data) | **GET** /v1/charts/{order_book_id}/candle/stream | Get a snapshot of candlestick data from date provided, and open a stream for real-time updates
+*DefaultApi* | [**stream_order_book_balances**](docs/DefaultApi.md#stream_order_book_balances) | **GET** /v1/orderbooks/{order_book_id}/balances/stream | Get a snapshot of base and quote balances for an order book and open a stream for real-time updates
+*DefaultApi* | [**stream_orderbook_open_orders**](docs/DefaultApi.md#stream_orderbook_open_orders) | **GET** /v1/orderbooks/{order_book_id}/open/stream | Get a snapshot of open orders in an order book and open a stream for real-time updates
 *DefaultApi* | [**stream_trades**](docs/DefaultApi.md#stream_trades) | **GET** /v1/trades/{order_book_id}/stream | Get a snapshot of trades executed on the given order book from a specific date and open a stream for real-time updates
 *DefaultApi* | [**update_user_config**](docs/DefaultApi.md#update_user_config) | **PUT** /v1/user/{user_id}/config | Update user configuration by ID
 *DefaultApi* | [**update_user_config_self**](docs/DefaultApi.md#update_user_config_self) | **PUT** /v1/user/config/self | Update user configuration for the authenticated user
@@ -818,8 +818,7 @@ Class | Method | HTTP request | Description
  - [BondKind](docs/BondKind.md)
  - [BorrowRequest](docs/BorrowRequest.md)
  - [BorrowResponse](docs/BorrowResponse.md)
- - [CancelOrdersResponse](docs/CancelOrdersResponse.md)
- - [CancelOrdersResponseData](docs/CancelOrdersResponseData.md)
+ - [CancelOrderResponse](docs/CancelOrderResponse.md)
  - [Candle](docs/Candle.md)
  - [CandleResolution](docs/CandleResolution.md)
  - [Collateral](docs/Collateral.md)
@@ -828,6 +827,7 @@ Class | Method | HTTP request | Description
  - [CouponPayment](docs/CouponPayment.md)
  - [CreateOrUpdateUserResponse](docs/CreateOrUpdateUserResponse.md)
  - [CreateOrderRequest](docs/CreateOrderRequest.md)
+ - [CreateOrderResponse](docs/CreateOrderResponse.md)
  - [DeCollateralizeRequest](docs/DeCollateralizeRequest.md)
  - [DeCollateralizeResponse](docs/DeCollateralizeResponse.md)
  - [FundUser](docs/FundUser.md)
@@ -869,12 +869,12 @@ Class | Method | HTTP request | Description
  - [ListPositionsResponse](docs/ListPositionsResponse.md)
  - [ListTradeResponse](docs/ListTradeResponse.md)
  - [ListTransactionsResponse](docs/ListTransactionsResponse.md)
+ - [LiveOrderbook](docs/LiveOrderbook.md)
  - [Metadata](docs/Metadata.md)
  - [ModuleBalance](docs/ModuleBalance.md)
  - [Order](docs/Order.md)
  - [OrderBook](docs/OrderBook.md)
  - [OrderBookBalance](docs/OrderBookBalance.md)
- - [OrderBookBalanceResponse](docs/OrderBookBalanceResponse.md)
  - [OrderBookDepth](docs/OrderBookDepth.md)
  - [OrderBookHaltResponse](docs/OrderBookHaltResponse.md)
  - [OrderBookResumeResponse](docs/OrderBookResumeResponse.md)
@@ -882,7 +882,6 @@ Class | Method | HTTP request | Description
  - [OrderBookSummary](docs/OrderBookSummary.md)
  - [OrderBookTerminateResponse](docs/OrderBookTerminateResponse.md)
  - [OrderBookTop](docs/OrderBookTop.md)
- - [OrderCancelledResponse](docs/OrderCancelledResponse.md)
  - [OrderId](docs/OrderId.md)
  - [OrderKind](docs/OrderKind.md)
  - [OrderModifierKind](docs/OrderModifierKind.md)
@@ -898,6 +897,22 @@ Class | Method | HTTP request | Description
  - [RepayResponse](docs/RepayResponse.md)
  - [ResponseEnvelope](docs/ResponseEnvelope.md)
  - [Side](docs/Side.md)
+ - [StreamAssetPricesResponse](docs/StreamAssetPricesResponse.md)
+ - [StreamCandlesEntry](docs/StreamCandlesEntry.md)
+ - [StreamCandlesResponse](docs/StreamCandlesResponse.md)
+ - [StreamEntry](docs/StreamEntry.md)
+ - [StreamOrderBookBalanceEntry](docs/StreamOrderBookBalanceEntry.md)
+ - [StreamOrderBookBalancesResponse](docs/StreamOrderBookBalancesResponse.md)
+ - [StreamOrderUpdatesEntry](docs/StreamOrderUpdatesEntry.md)
+ - [StreamOrderUpdatesResponse](docs/StreamOrderUpdatesResponse.md)
+ - [StreamOrdersEntry](docs/StreamOrdersEntry.md)
+ - [StreamOrdersResponse](docs/StreamOrdersResponse.md)
+ - [StreamPositionsEntry](docs/StreamPositionsEntry.md)
+ - [StreamPositionsResponse](docs/StreamPositionsResponse.md)
+ - [StreamTradesEntry](docs/StreamTradesEntry.md)
+ - [StreamTradesResponse](docs/StreamTradesResponse.md)
+ - [StreamTransactionsEntry](docs/StreamTransactionsEntry.md)
+ - [StreamTransactionsResponse](docs/StreamTransactionsResponse.md)
  - [Supply](docs/Supply.md)
  - [SupplyRequest](docs/SupplyRequest.md)
  - [SupplyResponse](docs/SupplyResponse.md)
