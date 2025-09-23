@@ -2833,7 +2833,6 @@ class DefaultApi(object):
 
         :param async_req bool
         :param str user_id: (required)
-        :param datetime since:
         :return: StreamPositionsResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -2855,13 +2854,12 @@ class DefaultApi(object):
 
         :param async_req bool
         :param str user_id: (required)
-        :param datetime since:
         :return: StreamPositionsResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['user_id', 'since']  # noqa: E501
+        all_params = ['user_id']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -2888,8 +2886,6 @@ class DefaultApi(object):
             path_params['user_id'] = params['user_id']  # noqa: E501
 
         query_params = []
-        if 'since' in params:
-            query_params.append(('since', params['since']))  # noqa: E501
 
         header_params = {}
 
@@ -4584,7 +4580,7 @@ class DefaultApi(object):
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/v1/liquidity/pool/{pool_id}/subtract', 'POST',
+            '/v1/liquidity/pool/{pool_id}/remove', 'POST',
             path_params,
             query_params,
             header_params,

@@ -51,7 +51,7 @@ Method | HTTP request | Description
 [**leverage_unite**](DefaultApi.md#leverage_unite) | **POST** /v1/leverage/unite | Combines all isolated positions into a single global position
 [**leverage_withdraw**](DefaultApi.md#leverage_withdraw) | **POST** /v1/leverage/withdraw | Withdraw leverage for a specific asset
 [**liquidity_add**](DefaultApi.md#liquidity_add) | **POST** /v1/liquidity/pool/{pool_id}/add | Add liquidity to a pool
-[**liquidity_subtract**](DefaultApi.md#liquidity_subtract) | **POST** /v1/liquidity/pool/{pool_id}/subtract | Subtract liquidity from a pool
+[**liquidity_subtract**](DefaultApi.md#liquidity_subtract) | **POST** /v1/liquidity/pool/{pool_id}/remove | Subtract liquidity from a pool
 [**list_assets**](DefaultApi.md#list_assets) | **GET** /v1/assets | List assets
 [**list_order_books**](DefaultApi.md#list_order_books) | **GET** /v1/orderbooks | List order books
 [**list_orders**](DefaultApi.md#list_orders) | **GET** /v1/orders | List all orders
@@ -1445,7 +1445,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_user_ledger_stream**
-> StreamPositionsResponse get_user_ledger_stream(user_id, since=since)
+> StreamPositionsResponse get_user_ledger_stream(user_id)
 
 Get a snapshot of user's ledger updates since a specific time, and opens a stream for further updates
 
@@ -1460,11 +1460,10 @@ from pprint import pprint
 # create an instance of the API class
 api_instance = dora_client.DefaultApi()
 user_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
-since = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 
 try:
     # Get a snapshot of user's ledger updates since a specific time, and opens a stream for further updates
-    api_response = api_instance.get_user_ledger_stream(user_id, since=since)
+    api_response = api_instance.get_user_ledger_stream(user_id)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->get_user_ledger_stream: %s\n" % e)
@@ -1475,7 +1474,6 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **user_id** | [**str**](.md)|  | 
- **since** | **datetime**|  | [optional] 
 
 ### Return type
 

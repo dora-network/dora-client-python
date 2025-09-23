@@ -391,11 +391,10 @@ except ApiException as e:
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
 user_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
-since = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 
 try:
     # Get a snapshot of user's ledger updates since a specific time, and opens a stream for further updates
-    api_response = api_instance.get_user_ledger_stream(user_id, since=since)
+    api_response = api_instance.get_user_ledger_stream(user_id)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->get_user_ledger_stream: %s\n" % e)
@@ -794,7 +793,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**leverage_unite**](docs/DefaultApi.md#leverage_unite) | **POST** /v1/leverage/unite | Combines all isolated positions into a single global position
 *DefaultApi* | [**leverage_withdraw**](docs/DefaultApi.md#leverage_withdraw) | **POST** /v1/leverage/withdraw | Withdraw leverage for a specific asset
 *DefaultApi* | [**liquidity_add**](docs/DefaultApi.md#liquidity_add) | **POST** /v1/liquidity/pool/{pool_id}/add | Add liquidity to a pool
-*DefaultApi* | [**liquidity_subtract**](docs/DefaultApi.md#liquidity_subtract) | **POST** /v1/liquidity/pool/{pool_id}/subtract | Subtract liquidity from a pool
+*DefaultApi* | [**liquidity_subtract**](docs/DefaultApi.md#liquidity_subtract) | **POST** /v1/liquidity/pool/{pool_id}/remove | Subtract liquidity from a pool
 *DefaultApi* | [**list_assets**](docs/DefaultApi.md#list_assets) | **GET** /v1/assets | List assets
 *DefaultApi* | [**list_order_books**](docs/DefaultApi.md#list_order_books) | **GET** /v1/orderbooks | List order books
 *DefaultApi* | [**list_orders**](docs/DefaultApi.md#list_orders) | **GET** /v1/orders | List all orders
