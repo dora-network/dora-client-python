@@ -15,6 +15,8 @@ Name | Type | Description | Notes
 **borrowed** | **str** | The total amount of debt outstanding for this position. The position&#x27;s collateral + supplied_collateral must support a borrow limit sufficient to cover all borrowed assets. This position cannot be closed until all debt is fully repaid, i.e. borrowed &#x3D; 0. | [optional] 
 **impending_borrows** | **str** | The equivalent of locked balances, but for leveraged orders. If a user has an active order that would borrow assets as part of its input, then their borrow limit must be reduced until the order is executed or cancelled. | [optional] 
 **avg_entry_price** | **str** | average cost per unit quantity that was paid (long positions) or received (short positions) for this asset. | [optional] 
+**borrow_limit** | **str** | The borrow limit | [optional] 
+**liquidation_threshold** | **str** | The borrow limit | [optional] 
 **created_at** | **datetime** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

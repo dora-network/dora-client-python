@@ -40,6 +40,8 @@ class Position(object):
         'borrowed': 'str',
         'impending_borrows': 'str',
         'avg_entry_price': 'str',
+        'borrow_limit': 'str',
+        'liquidation_threshold': 'str',
         'created_at': 'datetime'
     }
 
@@ -56,10 +58,12 @@ class Position(object):
         'borrowed': 'borrowed',
         'impending_borrows': 'impending_borrows',
         'avg_entry_price': 'avg_entry_price',
+        'borrow_limit': 'borrow_limit',
+        'liquidation_threshold': 'liquidation_threshold',
         'created_at': 'created_at'
     }
 
-    def __init__(self, id=None, asset_id=None, seq=None, is_global=None, available=None, locked=None, supplied=None, collateral=None, supplied_collateral=None, borrowed=None, impending_borrows=None, avg_entry_price=None, created_at=None):  # noqa: E501
+    def __init__(self, id=None, asset_id=None, seq=None, is_global=None, available=None, locked=None, supplied=None, collateral=None, supplied_collateral=None, borrowed=None, impending_borrows=None, avg_entry_price=None, borrow_limit=None, liquidation_threshold=None, created_at=None):  # noqa: E501
         """Position - a model defined in Swagger"""  # noqa: E501
         self._id = None
         self._asset_id = None
@@ -73,6 +77,8 @@ class Position(object):
         self._borrowed = None
         self._impending_borrows = None
         self._avg_entry_price = None
+        self._borrow_limit = None
+        self._liquidation_threshold = None
         self._created_at = None
         self.discriminator = None
         if id is not None:
@@ -99,6 +105,10 @@ class Position(object):
             self.impending_borrows = impending_borrows
         if avg_entry_price is not None:
             self.avg_entry_price = avg_entry_price
+        if borrow_limit is not None:
+            self.borrow_limit = borrow_limit
+        if liquidation_threshold is not None:
+            self.liquidation_threshold = liquidation_threshold
         if created_at is not None:
             self.created_at = created_at
 
@@ -371,6 +381,52 @@ class Position(object):
         """
 
         self._avg_entry_price = avg_entry_price
+
+    @property
+    def borrow_limit(self):
+        """Gets the borrow_limit of this Position.  # noqa: E501
+
+        The borrow limit  # noqa: E501
+
+        :return: The borrow_limit of this Position.  # noqa: E501
+        :rtype: str
+        """
+        return self._borrow_limit
+
+    @borrow_limit.setter
+    def borrow_limit(self, borrow_limit):
+        """Sets the borrow_limit of this Position.
+
+        The borrow limit  # noqa: E501
+
+        :param borrow_limit: The borrow_limit of this Position.  # noqa: E501
+        :type: str
+        """
+
+        self._borrow_limit = borrow_limit
+
+    @property
+    def liquidation_threshold(self):
+        """Gets the liquidation_threshold of this Position.  # noqa: E501
+
+        The borrow limit  # noqa: E501
+
+        :return: The liquidation_threshold of this Position.  # noqa: E501
+        :rtype: str
+        """
+        return self._liquidation_threshold
+
+    @liquidation_threshold.setter
+    def liquidation_threshold(self, liquidation_threshold):
+        """Sets the liquidation_threshold of this Position.
+
+        The borrow limit  # noqa: E501
+
+        :param liquidation_threshold: The liquidation_threshold of this Position.  # noqa: E501
+        :type: str
+        """
+
+        self._liquidation_threshold = liquidation_threshold
 
     @property
     def created_at(self):

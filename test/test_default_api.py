@@ -77,6 +77,13 @@ class TestDefaultApi(unittest.TestCase):
         """
         pass
 
+    def test_get_assets_stream(self):
+        """Test case for get_assets_stream
+
+        Get all inserts or updates for assets  # noqa: E501
+        """
+        pass
+
     def test_get_candle_data(self):
         """Test case for get_candle_data
 
@@ -287,13 +294,6 @@ class TestDefaultApi(unittest.TestCase):
         """
         pass
 
-    def test_leverage_borrow(self):
-        """Test case for leverage_borrow
-
-        Directly borrow assets  # noqa: E501
-        """
-        pass
-
     def test_leverage_collateralize(self):
         """Test case for leverage_collateralize
 
@@ -319,13 +319,6 @@ class TestDefaultApi(unittest.TestCase):
         """Test case for leverage_isolate_position
 
         Create an isolated position using all collateral, supplied_collateral, and borrows from the user's global position  # noqa: E501
-        """
-        pass
-
-    def test_leverage_repay(self):
-        """Test case for leverage_repay
-
-        Repay borrowed assets  # noqa: E501
         """
         pass
 

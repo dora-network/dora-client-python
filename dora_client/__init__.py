@@ -109,6 +109,8 @@ from dora_client.models.repay_response import RepayResponse
 from dora_client.models.response_envelope import ResponseEnvelope
 from dora_client.models.side import Side
 from dora_client.models.stream_asset_prices_response import StreamAssetPricesResponse
+from dora_client.models.stream_assets_entry import StreamAssetsEntry
+from dora_client.models.stream_assets_response import StreamAssetsResponse
 from dora_client.models.stream_candles_entry import StreamCandlesEntry
 from dora_client.models.stream_candles_response import StreamCandlesResponse
 from dora_client.models.stream_entry import StreamEntry

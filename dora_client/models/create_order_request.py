@@ -35,7 +35,6 @@ class CreateOrderRequest(object):
         'side': 'Side',
         'position_id': 'str',
         'order_book_id': 'str',
-        'order_info': 'str',
         'order_modifiers': 'list[OrderModifierKind]'
     }
 
@@ -47,11 +46,10 @@ class CreateOrderRequest(object):
         'side': 'side',
         'position_id': 'position_id',
         'order_book_id': 'order_book_id',
-        'order_info': 'order_info',
         'order_modifiers': 'order_modifiers'
     }
 
-    def __init__(self, quantity=None, inverse_leverage=None, price=None, kind=None, side=None, position_id=None, order_book_id=None, order_info=None, order_modifiers=None):  # noqa: E501
+    def __init__(self, quantity=None, inverse_leverage=None, price=None, kind=None, side=None, position_id=None, order_book_id=None, order_modifiers=None):  # noqa: E501
         """CreateOrderRequest - a model defined in Swagger"""  # noqa: E501
         self._quantity = None
         self._inverse_leverage = None
@@ -60,7 +58,6 @@ class CreateOrderRequest(object):
         self._side = None
         self._position_id = None
         self._order_book_id = None
-        self._order_info = None
         self._order_modifiers = None
         self.discriminator = None
         self.quantity = quantity
@@ -71,8 +68,6 @@ class CreateOrderRequest(object):
         self.side = side
         self.position_id = position_id
         self.order_book_id = order_book_id
-        if order_info is not None:
-            self.order_info = order_info
         if order_modifiers is not None:
             self.order_modifiers = order_modifiers
 
@@ -238,29 +233,6 @@ class CreateOrderRequest(object):
             raise ValueError("Invalid value for `order_book_id`, must not be `None`")  # noqa: E501
 
         self._order_book_id = order_book_id
-
-    @property
-    def order_info(self):
-        """Gets the order_info of this CreateOrderRequest.  # noqa: E501
-
-        Optional: User-defined text for the order, e.g., 'buying dips'  # noqa: E501
-
-        :return: The order_info of this CreateOrderRequest.  # noqa: E501
-        :rtype: str
-        """
-        return self._order_info
-
-    @order_info.setter
-    def order_info(self, order_info):
-        """Sets the order_info of this CreateOrderRequest.
-
-        Optional: User-defined text for the order, e.g., 'buying dips'  # noqa: E501
-
-        :param order_info: The order_info of this CreateOrderRequest.  # noqa: E501
-        :type: str
-        """
-
-        self._order_info = order_info
 
     @property
     def order_modifiers(self):

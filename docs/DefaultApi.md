@@ -11,6 +11,7 @@ Method | HTTP request | Description
 [**get_all_asset_prices**](DefaultApi.md#get_all_asset_prices) | **GET** /v1/price | Get the current price of all assets
 [**get_asset_by_id**](DefaultApi.md#get_asset_by_id) | **GET** /v1/assets/{asset_id} | Get asset by ID
 [**get_asset_price**](DefaultApi.md#get_asset_price) | **GET** /v1/price/asset/{asset_id} | Get the current price of an asset
+[**get_assets_stream**](DefaultApi.md#get_assets_stream) | **GET** /v1/assets/stream | Get all inserts or updates for assets
 [**get_candle_data**](DefaultApi.md#get_candle_data) | **GET** /v1/charts/{order_book_id}/candle | Get candlestick data for an orderbook
 [**get_coupon_payments_by_asset_id**](DefaultApi.md#get_coupon_payments_by_asset_id) | **GET** /v1/assets/{asset_id}/coupon_payments | Get coupon payments for a bond asset
 [**get_l1_depth**](DefaultApi.md#get_l1_depth) | **GET** /v1/orderbooks/{order_book_id}/L1 | Get the top price levels for a specific orderbook (L1 market depth)
@@ -41,12 +42,10 @@ Method | HTTP request | Description
 [**get_user_transactions_stream**](DefaultApi.md#get_user_transactions_stream) | **GET** /v1/user/{user_id}/transactions/stream | Get a snapshot of user&#x27;s executed transactions since a specific time, and opens a stream for further updates
 [**ledger_deposit**](DefaultApi.md#ledger_deposit) | **POST** /v1/ledger/deposit | Deposit assets into your account from the outside world
 [**ledger_withdraw**](DefaultApi.md#ledger_withdraw) | **POST** /v1/ledger/withdraw | Withdraw assets from your account to the outside world
-[**leverage_borrow**](DefaultApi.md#leverage_borrow) | **POST** /v1/leverage/borrow | Directly borrow assets
 [**leverage_collateralize**](DefaultApi.md#leverage_collateralize) | **POST** /v1/leverage/collateralize | Move supplied and available to supplied_collateral and collateral, for a specified position
 [**leverage_de_collateralize**](DefaultApi.md#leverage_de_collateralize) | **POST** /v1/leverage/de-collateralize | Move collateral and supplied_collateral to available and supplied, for a specified position.
 [**leverage_isolate_collateral**](DefaultApi.md#leverage_isolate_collateral) | **POST** /v1/leverage/isolate_collateral | Create an isolated position by transferring collateral to the position from the user&#x27;s global collateral
 [**leverage_isolate_position**](DefaultApi.md#leverage_isolate_position) | **POST** /v1/leverage/isolate_position | Create an isolated position using all collateral, supplied_collateral, and borrows from the user&#x27;s global position
-[**leverage_repay**](DefaultApi.md#leverage_repay) | **POST** /v1/leverage/repay | Repay borrowed assets
 [**leverage_supply**](DefaultApi.md#leverage_supply) | **POST** /v1/leverage/supply | Supply leverage for a specific asset
 [**leverage_unite**](DefaultApi.md#leverage_unite) | **POST** /v1/leverage/unite | Combines all isolated positions into a single global position
 [**leverage_withdraw**](DefaultApi.md#leverage_withdraw) | **POST** /v1/leverage/withdraw | Withdraw leverage for a specific asset
@@ -366,6 +365,54 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**GetAssetPriceResponse**](GetAssetPriceResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_assets_stream**
+> StreamAssetsResponse get_assets_stream(since=since, until=until)
+
+Get all inserts or updates for assets
+
+### Example
+```python
+from __future__ import print_function
+import time
+import dora_client
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi()
+since = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
+until = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
+
+try:
+    # Get all inserts or updates for assets
+    api_response = api_instance.get_assets_stream(since=since, until=until)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->get_assets_stream: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **since** | **datetime**|  | [optional] 
+ **until** | **datetime**|  | [optional] 
+
+### Return type
+
+[**StreamAssetsResponse**](StreamAssetsResponse.md)
 
 ### Authorization
 
@@ -1541,7 +1588,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_user_orders_updates_stream_all**
-> StreamOrderUpdatesResponse get_user_orders_updates_stream_all(user_id, order_book_id, since=since)
+> StreamOrderUpdatesResponse get_user_orders_updates_stream_all(user_id, since=since)
 
 Get a snapshot of user's order updates across all order books since a specific time, and opens a stream for further updates
 
@@ -1556,12 +1603,11 @@ from pprint import pprint
 # create an instance of the API class
 api_instance = dora_client.DefaultApi()
 user_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
-order_book_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
 since = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 
 try:
     # Get a snapshot of user's order updates across all order books since a specific time, and opens a stream for further updates
-    api_response = api_instance.get_user_orders_updates_stream_all(user_id, order_book_id, since=since)
+    api_response = api_instance.get_user_orders_updates_stream_all(user_id, since=since)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->get_user_orders_updates_stream_all: %s\n" % e)
@@ -1572,7 +1618,6 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **user_id** | [**str**](.md)|  | 
- **order_book_id** | [**str**](.md)|  | 
  **since** | **datetime**|  | [optional] 
 
 ### Return type
@@ -1776,54 +1821,6 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **leverage_borrow**
-> BorrowResponse leverage_borrow(body)
-
-Directly borrow assets
-
-TODO: Finish this when implementation has been completed
-
-### Example
-```python
-from __future__ import print_function
-import time
-import dora_client
-from dora_client.rest import ApiException
-from pprint import pprint
-
-# create an instance of the API class
-api_instance = dora_client.DefaultApi()
-body = dora_client.BorrowRequest() # BorrowRequest | 
-
-try:
-    # Directly borrow assets
-    api_response = api_instance.leverage_borrow(body)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling DefaultApi->leverage_borrow: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**BorrowRequest**](BorrowRequest.md)|  | 
-
-### Return type
-
-[**BorrowResponse**](BorrowResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **leverage_collateralize**
 > CollateralizeResponse leverage_collateralize(body)
 
@@ -2008,54 +2005,6 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **leverage_repay**
-> RepayResponse leverage_repay(body)
-
-Repay borrowed assets
-
-TODO: Finish this when implementation has been completed
-
-### Example
-```python
-from __future__ import print_function
-import time
-import dora_client
-from dora_client.rest import ApiException
-from pprint import pprint
-
-# create an instance of the API class
-api_instance = dora_client.DefaultApi()
-body = dora_client.RepayRequest() # RepayRequest | 
-
-try:
-    # Repay borrowed assets
-    api_response = api_instance.leverage_repay(body)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling DefaultApi->leverage_repay: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**RepayRequest**](RepayRequest.md)|  | 
-
-### Return type
-
-[**RepayResponse**](RepayResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **leverage_supply**
 > SupplyResponse leverage_supply(body)
 
@@ -2107,7 +2056,7 @@ No authorization required
 
 Combines all isolated positions into a single global position
 
-TODO: Finish this when implementation has been completed
+Combines all isolated positions into a single global position
 
 ### Example
 ```python
