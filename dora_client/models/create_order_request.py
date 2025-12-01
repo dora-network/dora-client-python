@@ -35,7 +35,9 @@ class CreateOrderRequest(object):
         'side': 'Side',
         'position_id': 'str',
         'order_book_id': 'str',
-        'order_modifiers': 'list[OrderModifierKind]'
+        'order_modifiers': 'list[OrderModifierKind]',
+        'good_till_date': 'datetime',
+        'trigger_price': 'str'
     }
 
     attribute_map = {
@@ -46,10 +48,12 @@ class CreateOrderRequest(object):
         'side': 'side',
         'position_id': 'position_id',
         'order_book_id': 'order_book_id',
-        'order_modifiers': 'order_modifiers'
+        'order_modifiers': 'order_modifiers',
+        'good_till_date': 'good_till_date',
+        'trigger_price': 'trigger_price'
     }
 
-    def __init__(self, quantity=None, inverse_leverage=None, price=None, kind=None, side=None, position_id=None, order_book_id=None, order_modifiers=None):  # noqa: E501
+    def __init__(self, quantity=None, inverse_leverage=None, price=None, kind=None, side=None, position_id=None, order_book_id=None, order_modifiers=None, good_till_date=None, trigger_price=None):  # noqa: E501
         """CreateOrderRequest - a model defined in Swagger"""  # noqa: E501
         self._quantity = None
         self._inverse_leverage = None
@@ -59,6 +63,8 @@ class CreateOrderRequest(object):
         self._position_id = None
         self._order_book_id = None
         self._order_modifiers = None
+        self._good_till_date = None
+        self._trigger_price = None
         self.discriminator = None
         self.quantity = quantity
         self.inverse_leverage = inverse_leverage
@@ -70,6 +76,10 @@ class CreateOrderRequest(object):
         self.order_book_id = order_book_id
         if order_modifiers is not None:
             self.order_modifiers = order_modifiers
+        if good_till_date is not None:
+            self.good_till_date = good_till_date
+        if trigger_price is not None:
+            self.trigger_price = trigger_price
 
     @property
     def quantity(self):
@@ -254,6 +264,48 @@ class CreateOrderRequest(object):
         """
 
         self._order_modifiers = order_modifiers
+
+    @property
+    def good_till_date(self):
+        """Gets the good_till_date of this CreateOrderRequest.  # noqa: E501
+
+
+        :return: The good_till_date of this CreateOrderRequest.  # noqa: E501
+        :rtype: datetime
+        """
+        return self._good_till_date
+
+    @good_till_date.setter
+    def good_till_date(self, good_till_date):
+        """Sets the good_till_date of this CreateOrderRequest.
+
+
+        :param good_till_date: The good_till_date of this CreateOrderRequest.  # noqa: E501
+        :type: datetime
+        """
+
+        self._good_till_date = good_till_date
+
+    @property
+    def trigger_price(self):
+        """Gets the trigger_price of this CreateOrderRequest.  # noqa: E501
+
+
+        :return: The trigger_price of this CreateOrderRequest.  # noqa: E501
+        :rtype: str
+        """
+        return self._trigger_price
+
+    @trigger_price.setter
+    def trigger_price(self, trigger_price):
+        """Sets the trigger_price of this CreateOrderRequest.
+
+
+        :param trigger_price: The trigger_price of this CreateOrderRequest.  # noqa: E501
+        :type: str
+        """
+
+        self._trigger_price = trigger_price
 
     def to_dict(self):
         """Returns the model properties as a dict"""

@@ -14,6 +14,8 @@ Name | Type | Description | Notes
 **price** | **str** |  | [optional] 
 **quantity_0** | **str** |  | [optional] 
 **user_id** | **str** |  | [optional] 
+**side** | [**Side**](Side.md) |  | [optional] 
+**aggressor_indicator** | **bool** | If true, then this order is the aggressor (taker); otherwise it is the maker. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

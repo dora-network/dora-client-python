@@ -53,10 +53,13 @@ from pprint import pprint
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+order_book_id = 'order_book_id_example' # str |  (optional)
+user_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str |  (optional)
+order_kind = dora_client.OrderKind() # OrderKind |  (optional)
 
 try:
-    # Cancel all open orders
-    api_response = api_instance.cancel_all_open_orders()
+    # Cancel all open orders, if user passes orderbook on query param it will cancel all orders on specific orderbook, admin can cancel user's orders on specific orderbook
+    api_response = api_instance.cancel_all_open_orders(order_book_id=order_book_id, user_id=user_id, order_kind=order_kind)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->cancel_all_open_orders: %s\n" % e)
@@ -71,6 +74,28 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->cancel_order_by_id: %s\n" % e)
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+email = 'email_example' # str | 
+
+try:
+    # Check whether a user email exists
+    api_response = api_instance.check_user_email_exists(email)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->check_user_email_exists: %s\n" % e)
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+body = dora_client.NewIsolatedPositionRequest() # NewIsolatedPositionRequest | 
+
+try:
+    # Create a new isolated position for a user transferring available assets into the position
+    api_response = api_instance.create_new_isolated_position(body)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->create_new_isolated_position: %s\n" % e)
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
@@ -347,7 +372,7 @@ except ApiException as e:
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
-pools = ['pools_example'] # list[str] |  (optional)
+order_book_ids = ['order_book_ids_example'] # list[str] |  (optional)
 user_ids = ['user_ids_example'] # list[str] |  (optional)
 start = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 end = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
@@ -356,7 +381,7 @@ limit = 100 # int |  (optional) (default to 100)
 
 try:
     # Get a filtered, paginated list of trades
-    api_response = api_instance.get_trades(pools=pools, user_ids=user_ids, start=start, end=end, page=page, limit=limit)
+    api_response = api_instance.get_trades(order_book_ids=order_book_ids, user_ids=user_ids, start=start, end=end, page=page, limit=limit)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->get_trades: %s\n" % e)
@@ -460,50 +485,6 @@ except ApiException as e:
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
-body = dora_client.FundUserRequest() # FundUserRequest | 
-
-try:
-    # Deposit assets into your account from the outside world
-    api_response = api_instance.ledger_deposit(body)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling DefaultApi->ledger_deposit: %s\n" % e)
-
-# create an instance of the API class
-api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
-body = dora_client.FundUserRequest() # FundUserRequest | 
-
-try:
-    # Withdraw assets from your account to the outside world
-    api_response = api_instance.ledger_withdraw(body)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling DefaultApi->ledger_withdraw: %s\n" % e)
-
-# create an instance of the API class
-api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
-body = dora_client.CollateralizeRequest() # CollateralizeRequest | 
-
-try:
-    # Move supplied and available to supplied_collateral and collateral, for a specified position
-    api_response = api_instance.leverage_collateralize(body)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling DefaultApi->leverage_collateralize: %s\n" % e)
-
-# create an instance of the API class
-api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
-body = dora_client.DeCollateralizeRequest() # DeCollateralizeRequest | 
-
-try:
-    # Move collateral and supplied_collateral to available and supplied, for a specified position.
-    api_response = api_instance.leverage_de_collateralize(body)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling DefaultApi->leverage_de_collateralize: %s\n" % e)
-
-# create an instance of the API class
-api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
 body = dora_client.IsolateCollateralRequest() # IsolateCollateralRequest | 
 
 try:
@@ -512,17 +493,6 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->leverage_isolate_collateral: %s\n" % e)
-
-# create an instance of the API class
-api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
-body = dora_client.IsolatePositionRequest() # IsolatePositionRequest | 
-
-try:
-    # Create an isolated position using all collateral, supplied_collateral, and borrows from the user's global position
-    api_response = api_instance.leverage_isolate_position(body)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling DefaultApi->leverage_isolate_position: %s\n" % e)
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
@@ -696,6 +666,17 @@ except ApiException as e:
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+body = dora_client.TransferBalancesRequest() # TransferBalancesRequest | 
+
+try:
+    # Transfer available balance between a user's accounts (e.g. global to isolated position)
+    api_response = api_instance.transfer_available_balances(body)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->transfer_available_balances: %s\n" % e)
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
 body = dora_client.UpdateUserConfigRequest() # UpdateUserConfigRequest | 
 user_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
 
@@ -719,6 +700,17 @@ except ApiException as e:
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+body = dora_client.ValidateSubmitOrderRequest() # ValidateSubmitOrderRequest | 
+
+try:
+    # Validate submit order request data
+    api_response = api_instance.validate_submit_order(body)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->validate_submit_order: %s\n" % e)
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
 user_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
 
 try:
@@ -735,8 +727,10 @@ All URIs are relative to *https://localhost:8084*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DefaultApi* | [**cancel_all_open_orders**](docs/DefaultApi.md#cancel_all_open_orders) | **DELETE** /v1/orders | Cancel all open orders
+*DefaultApi* | [**cancel_all_open_orders**](docs/DefaultApi.md#cancel_all_open_orders) | **DELETE** /v1/orders | Cancel all open orders, if user passes orderbook on query param it will cancel all orders on specific orderbook, admin can cancel user&#x27;s orders on specific orderbook
 *DefaultApi* | [**cancel_order_by_id**](docs/DefaultApi.md#cancel_order_by_id) | **DELETE** /v1/orders/{order_id} | Cancel an order by ID
+*DefaultApi* | [**check_user_email_exists**](docs/DefaultApi.md#check_user_email_exists) | **GET** /v1/user/{email}/exists | Check whether a user email exists
+*DefaultApi* | [**create_new_isolated_position**](docs/DefaultApi.md#create_new_isolated_position) | **POST** /v1/positions/new_isolated | Create a new isolated position for a user transferring available assets into the position
 *DefaultApi* | [**create_order**](docs/DefaultApi.md#create_order) | **POST** /v1/orders | Create a new order
 *DefaultApi* | [**delete_user**](docs/DefaultApi.md#delete_user) | **DELETE** /v1/user/{user_id} | Delete user by ID
 *DefaultApi* | [**get_all_asset_prices**](docs/DefaultApi.md#get_all_asset_prices) | **GET** /v1/price | Get the current price of all assets
@@ -771,12 +765,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**get_user_orders_updates_stream_all**](docs/DefaultApi.md#get_user_orders_updates_stream_all) | **GET** /v1/user/{user_id}/orders/all/updates/stream | Get a snapshot of user&#x27;s order updates across all order books since a specific time, and opens a stream for further updates
 *DefaultApi* | [**get_user_self**](docs/DefaultApi.md#get_user_self) | **GET** /v1/user/self | Get user details for the authenticated user
 *DefaultApi* | [**get_user_transactions_stream**](docs/DefaultApi.md#get_user_transactions_stream) | **GET** /v1/user/{user_id}/transactions/stream | Get a snapshot of user&#x27;s executed transactions since a specific time, and opens a stream for further updates
-*DefaultApi* | [**ledger_deposit**](docs/DefaultApi.md#ledger_deposit) | **POST** /v1/ledger/deposit | Deposit assets into your account from the outside world
-*DefaultApi* | [**ledger_withdraw**](docs/DefaultApi.md#ledger_withdraw) | **POST** /v1/ledger/withdraw | Withdraw assets from your account to the outside world
-*DefaultApi* | [**leverage_collateralize**](docs/DefaultApi.md#leverage_collateralize) | **POST** /v1/leverage/collateralize | Move supplied and available to supplied_collateral and collateral, for a specified position
-*DefaultApi* | [**leverage_de_collateralize**](docs/DefaultApi.md#leverage_de_collateralize) | **POST** /v1/leverage/de-collateralize | Move collateral and supplied_collateral to available and supplied, for a specified position.
 *DefaultApi* | [**leverage_isolate_collateral**](docs/DefaultApi.md#leverage_isolate_collateral) | **POST** /v1/leverage/isolate_collateral | Create an isolated position by transferring collateral to the position from the user&#x27;s global collateral
-*DefaultApi* | [**leverage_isolate_position**](docs/DefaultApi.md#leverage_isolate_position) | **POST** /v1/leverage/isolate_position | Create an isolated position using all collateral, supplied_collateral, and borrows from the user&#x27;s global position
 *DefaultApi* | [**leverage_supply**](docs/DefaultApi.md#leverage_supply) | **POST** /v1/leverage/supply | Supply leverage for a specific asset
 *DefaultApi* | [**leverage_unite**](docs/DefaultApi.md#leverage_unite) | **POST** /v1/leverage/unite | Combines all isolated positions into a single global position
 *DefaultApi* | [**leverage_withdraw**](docs/DefaultApi.md#leverage_withdraw) | **POST** /v1/leverage/withdraw | Withdraw leverage for a specific asset
@@ -790,8 +779,10 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**stream_order_book_balances**](docs/DefaultApi.md#stream_order_book_balances) | **GET** /v1/orderbooks/{order_book_id}/balances/stream | Get a snapshot of base and quote balances for an order book and open a stream for real-time updates
 *DefaultApi* | [**stream_orderbook_open_orders**](docs/DefaultApi.md#stream_orderbook_open_orders) | **GET** /v1/orderbooks/{order_book_id}/open/stream | Get a snapshot of open orders in an order book and open a stream for real-time updates
 *DefaultApi* | [**stream_trades**](docs/DefaultApi.md#stream_trades) | **GET** /v1/trades/{order_book_id}/stream | Get a snapshot of trades executed on the given order book from a specific date and open a stream for real-time updates
+*DefaultApi* | [**transfer_available_balances**](docs/DefaultApi.md#transfer_available_balances) | **POST** /v1/positions/transfer_balances | Transfer available balance between a user&#x27;s accounts (e.g. global to isolated position)
 *DefaultApi* | [**update_user_config**](docs/DefaultApi.md#update_user_config) | **PUT** /v1/user/{user_id}/config | Update user configuration by ID
 *DefaultApi* | [**update_user_config_self**](docs/DefaultApi.md#update_user_config_self) | **PUT** /v1/user/config/self | Update user configuration for the authenticated user
+*DefaultApi* | [**validate_submit_order**](docs/DefaultApi.md#validate_submit_order) | **POST** /v1/orders/validate | Validate submit order request data
 *DefaultApi* | [**verify_user**](docs/DefaultApi.md#verify_user) | **PUT** /v1/user/{user_id}/verify | Verify a user by ID
 
 ## Documentation For Models
@@ -800,6 +791,7 @@ Class | Method | HTTP request | Description
  - [AssetKind](docs/AssetKind.md)
  - [AssetPrice](docs/AssetPrice.md)
  - [AssetRequestError](docs/AssetRequestError.md)
+ - [BalanceTransfer](docs/BalanceTransfer.md)
  - [BalancesResponse](docs/BalancesResponse.md)
  - [Bond](docs/Bond.md)
  - [BondKind](docs/BondKind.md)
@@ -809,17 +801,10 @@ Class | Method | HTTP request | Description
  - [Candle](docs/Candle.md)
  - [CandleResolution](docs/CandleResolution.md)
  - [Collateral](docs/Collateral.md)
- - [CollateralizeRequest](docs/CollateralizeRequest.md)
- - [CollateralizeResponse](docs/CollateralizeResponse.md)
  - [CouponPayment](docs/CouponPayment.md)
  - [CreateOrUpdateUserResponse](docs/CreateOrUpdateUserResponse.md)
  - [CreateOrderRequest](docs/CreateOrderRequest.md)
  - [CreateOrderResponse](docs/CreateOrderResponse.md)
- - [DeCollateralizeRequest](docs/DeCollateralizeRequest.md)
- - [DeCollateralizeResponse](docs/DeCollateralizeResponse.md)
- - [FundUser](docs/FundUser.md)
- - [FundUserRequest](docs/FundUserRequest.md)
- - [FundUserResponse](docs/FundUserResponse.md)
  - [GetAssetByIDResponse](docs/GetAssetByIDResponse.md)
  - [GetAssetPriceResponse](docs/GetAssetPriceResponse.md)
  - [GetOrderBookResponse](docs/GetOrderBookResponse.md)
@@ -832,8 +817,6 @@ Class | Method | HTTP request | Description
  - [GetUserResponse](docs/GetUserResponse.md)
  - [IsolateCollateralRequest](docs/IsolateCollateralRequest.md)
  - [IsolateCollateralResponse](docs/IsolateCollateralResponse.md)
- - [IsolatePositionRequest](docs/IsolatePositionRequest.md)
- - [IsolatePositionResponse](docs/IsolatePositionResponse.md)
  - [IsolatedCollateral](docs/IsolatedCollateral.md)
  - [IsolatedPosition](docs/IsolatedPosition.md)
  - [LedgerModuleByAssetResponse](docs/LedgerModuleByAssetResponse.md)
@@ -859,6 +842,8 @@ Class | Method | HTTP request | Description
  - [LiveOrderbook](docs/LiveOrderbook.md)
  - [Metadata](docs/Metadata.md)
  - [ModuleBalance](docs/ModuleBalance.md)
+ - [NewIsolatedPositionRequest](docs/NewIsolatedPositionRequest.md)
+ - [NewIsolatedPositionResponse](docs/NewIsolatedPositionResponse.md)
  - [Order](docs/Order.md)
  - [OrderBook](docs/OrderBook.md)
  - [OrderBookBalance](docs/OrderBookBalance.md)
@@ -911,6 +896,8 @@ Class | Method | HTTP request | Description
  - [Transaction](docs/Transaction.md)
  - [TransactionKind](docs/TransactionKind.md)
  - [TransactionRequestError](docs/TransactionRequestError.md)
+ - [TransferBalancesRequest](docs/TransferBalancesRequest.md)
+ - [TransferBalancesResponse](docs/TransferBalancesResponse.md)
  - [TransformedAssets](docs/TransformedAssets.md)
  - [UnitePositionRequest](docs/UnitePositionRequest.md)
  - [UnitePositionResponse](docs/UnitePositionResponse.md)
@@ -929,13 +916,17 @@ Class | Method | HTTP request | Description
  - [UserUpdatedResponse](docs/UserUpdatedResponse.md)
  - [UserValue](docs/UserValue.md)
  - [UserValueResponse](docs/UserValueResponse.md)
+ - [ValidateSubmitOrderRequest](docs/ValidateSubmitOrderRequest.md)
+ - [ValidateSubmitOrderResponse](docs/ValidateSubmitOrderResponse.md)
  - [Withdraw](docs/Withdraw.md)
  - [WithdrawRequest](docs/WithdrawRequest.md)
  - [WithdrawResponse](docs/WithdrawResponse.md)
 
 ## Documentation For Authorization
 
- All endpoints do not require authorization.
+
+## BearerAuth
+
 
 
 ## Author

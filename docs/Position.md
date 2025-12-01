@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **borrow_limit** | **str** | The borrow limit | [optional] 
 **liquidation_threshold** | **str** | The borrow limit | [optional] 
 **created_at** | **datetime** |  | [optional] 
+**position_name** | **str** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

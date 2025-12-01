@@ -31,7 +31,7 @@ class TestDefaultApi(unittest.TestCase):
     def test_cancel_all_open_orders(self):
         """Test case for cancel_all_open_orders
 
-        Cancel all open orders  # noqa: E501
+        Cancel all open orders, if user passes orderbook on query param it will cancel all orders on specific orderbook, admin can cancel user's orders on specific orderbook  # noqa: E501
         """
         pass
 
@@ -39,6 +39,20 @@ class TestDefaultApi(unittest.TestCase):
         """Test case for cancel_order_by_id
 
         Cancel an order by ID  # noqa: E501
+        """
+        pass
+
+    def test_check_user_email_exists(self):
+        """Test case for check_user_email_exists
+
+        Check whether a user email exists  # noqa: E501
+        """
+        pass
+
+    def test_create_new_isolated_position(self):
+        """Test case for create_new_isolated_position
+
+        Create a new isolated position for a user transferring available assets into the position  # noqa: E501
         """
         pass
 
@@ -280,45 +294,10 @@ class TestDefaultApi(unittest.TestCase):
         """
         pass
 
-    def test_ledger_deposit(self):
-        """Test case for ledger_deposit
-
-        Deposit assets into your account from the outside world  # noqa: E501
-        """
-        pass
-
-    def test_ledger_withdraw(self):
-        """Test case for ledger_withdraw
-
-        Withdraw assets from your account to the outside world  # noqa: E501
-        """
-        pass
-
-    def test_leverage_collateralize(self):
-        """Test case for leverage_collateralize
-
-        Move supplied and available to supplied_collateral and collateral, for a specified position  # noqa: E501
-        """
-        pass
-
-    def test_leverage_de_collateralize(self):
-        """Test case for leverage_de_collateralize
-
-        Move collateral and supplied_collateral to available and supplied, for a specified position.  # noqa: E501
-        """
-        pass
-
     def test_leverage_isolate_collateral(self):
         """Test case for leverage_isolate_collateral
 
         Create an isolated position by transferring collateral to the position from the user's global collateral  # noqa: E501
-        """
-        pass
-
-    def test_leverage_isolate_position(self):
-        """Test case for leverage_isolate_position
-
-        Create an isolated position using all collateral, supplied_collateral, and borrows from the user's global position  # noqa: E501
         """
         pass
 
@@ -413,6 +392,13 @@ class TestDefaultApi(unittest.TestCase):
         """
         pass
 
+    def test_transfer_available_balances(self):
+        """Test case for transfer_available_balances
+
+        Transfer available balance between a user's accounts (e.g. global to isolated position)  # noqa: E501
+        """
+        pass
+
     def test_update_user_config(self):
         """Test case for update_user_config
 
@@ -424,6 +410,13 @@ class TestDefaultApi(unittest.TestCase):
         """Test case for update_user_config_self
 
         Update user configuration for the authenticated user  # noqa: E501
+        """
+        pass
+
+    def test_validate_submit_order(self):
+        """Test case for validate_submit_order
+
+        Validate submit order request data  # noqa: E501
         """
         pass
 

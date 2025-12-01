@@ -15,12 +15,12 @@ from __future__ import absolute_import
 import unittest
 
 import dora_client
-from dora_client.models.de_collateralize_request import DeCollateralizeRequest  # noqa: E501
+from dora_client.models.transfer_balances_request import TransferBalancesRequest  # noqa: E501
 from dora_client.rest import ApiException
 
 
-class TestDeCollateralizeRequest(unittest.TestCase):
-    """DeCollateralizeRequest unit test stubs"""
+class TestTransferBalancesRequest(unittest.TestCase):
+    """TransferBalancesRequest unit test stubs"""
 
     def setUp(self):
         pass
@@ -28,10 +28,10 @@ class TestDeCollateralizeRequest(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def testDeCollateralizeRequest(self):
-        """Test DeCollateralizeRequest"""
+    def testTransferBalancesRequest(self):
+        """Test TransferBalancesRequest"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = dora_client.models.de_collateralize_request.DeCollateralizeRequest()  # noqa: E501
+        # model = dora_client.models.transfer_balances_request.TransferBalancesRequest()  # noqa: E501
         pass
 
 

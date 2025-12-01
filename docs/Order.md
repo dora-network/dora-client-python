@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **open_quantity** | **str** | Quantity that is still open, i.e., not filled or cancelled. | [optional] 
 **original_quantity** | **str** | The original quantity of the order when it was created. | [optional] 
 **filled_quantity** | **str** | Quantity that has been filled so far. | [optional] 
+**filled_notional** | **str** | Quote quantity that has been filled so far. | [optional] 
 **last_update_at** | **datetime** |  | [optional] 
 **opened_at** | **datetime** |  | [optional] 
 **inverse_leverage** | **str** |  | [optional] 
@@ -20,6 +21,9 @@ Name | Type | Description | Notes
 **user_id** | **str** |  | [optional] 
 **order_modifiers** | [**list[OrderModifierKind]**](OrderModifierKind.md) |  | [optional] 
 **position_id** | **str** |  | [optional] 
+**order_info** | **str** |  | [optional] 
+**good_till_date** | **datetime** |  | [optional] 
+**trigger_price** | **str** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

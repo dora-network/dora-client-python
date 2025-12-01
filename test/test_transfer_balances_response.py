@@ -15,12 +15,12 @@ from __future__ import absolute_import
 import unittest
 
 import dora_client
-from dora_client.models.fund_user_request import FundUserRequest  # noqa: E501
+from dora_client.models.transfer_balances_response import TransferBalancesResponse  # noqa: E501
 from dora_client.rest import ApiException
 
 
-class TestFundUserRequest(unittest.TestCase):
-    """FundUserRequest unit test stubs"""
+class TestTransferBalancesResponse(unittest.TestCase):
+    """TransferBalancesResponse unit test stubs"""
 
     def setUp(self):
         pass
@@ -28,10 +28,10 @@ class TestFundUserRequest(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def testFundUserRequest(self):
-        """Test FundUserRequest"""
+    def testTransferBalancesResponse(self):
+        """Test TransferBalancesResponse"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = dora_client.models.fund_user_request.FundUserRequest()  # noqa: E501
+        # model = dora_client.models.transfer_balances_response.TransferBalancesResponse()  # noqa: E501
         pass
 
 

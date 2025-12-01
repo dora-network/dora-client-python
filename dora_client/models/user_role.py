@@ -30,6 +30,7 @@ class UserRole(object):
     BOND_PROVIDER = "BOND_PROVIDER"
     LIQUIDITY_PROVIDER = "LIQUIDITY_PROVIDER"
     TRADER = "TRADER"
+    INTEGRATOR = "INTEGRATOR"
     """
     Attributes:
       swagger_types (dict): The key is attribute name

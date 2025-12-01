@@ -15,12 +15,12 @@ from __future__ import absolute_import
 import unittest
 
 import dora_client
-from dora_client.models.de_collateralize_response import DeCollateralizeResponse  # noqa: E501
+from dora_client.models.new_isolated_position_response import NewIsolatedPositionResponse  # noqa: E501
 from dora_client.rest import ApiException
 
 
-class TestDeCollateralizeResponse(unittest.TestCase):
-    """DeCollateralizeResponse unit test stubs"""
+class TestNewIsolatedPositionResponse(unittest.TestCase):
+    """NewIsolatedPositionResponse unit test stubs"""
 
     def setUp(self):
         pass
@@ -28,10 +28,10 @@ class TestDeCollateralizeResponse(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def testDeCollateralizeResponse(self):
-        """Test DeCollateralizeResponse"""
+    def testNewIsolatedPositionResponse(self):
+        """Test NewIsolatedPositionResponse"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = dora_client.models.de_collateralize_response.DeCollateralizeResponse()  # noqa: E501
+        # model = dora_client.models.new_isolated_position_response.NewIsolatedPositionResponse()  # noqa: E501
         pass
 
 

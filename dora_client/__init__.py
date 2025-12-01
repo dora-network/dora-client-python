@@ -24,6 +24,7 @@ from dora_client.models.asset import Asset
 from dora_client.models.asset_kind import AssetKind
 from dora_client.models.asset_price import AssetPrice
 from dora_client.models.asset_request_error import AssetRequestError
+from dora_client.models.balance_transfer import BalanceTransfer
 from dora_client.models.balances_response import BalancesResponse
 from dora_client.models.bond import Bond
 from dora_client.models.bond_kind import BondKind
@@ -33,17 +34,10 @@ from dora_client.models.cancel_order_response import CancelOrderResponse
 from dora_client.models.candle import Candle
 from dora_client.models.candle_resolution import CandleResolution
 from dora_client.models.collateral import Collateral
-from dora_client.models.collateralize_request import CollateralizeRequest
-from dora_client.models.collateralize_response import CollateralizeResponse
 from dora_client.models.coupon_payment import CouponPayment
 from dora_client.models.create_or_update_user_response import CreateOrUpdateUserResponse
 from dora_client.models.create_order_request import CreateOrderRequest
 from dora_client.models.create_order_response import CreateOrderResponse
-from dora_client.models.de_collateralize_request import DeCollateralizeRequest
-from dora_client.models.de_collateralize_response import DeCollateralizeResponse
-from dora_client.models.fund_user import FundUser
-from dora_client.models.fund_user_request import FundUserRequest
-from dora_client.models.fund_user_response import FundUserResponse
 from dora_client.models.get_asset_by_id_response import GetAssetByIDResponse
 from dora_client.models.get_asset_price_response import GetAssetPriceResponse
 from dora_client.models.get_order_book_response import GetOrderBookResponse
@@ -56,8 +50,6 @@ from dora_client.models.get_user_config_response import GetUserConfigResponse
 from dora_client.models.get_user_response import GetUserResponse
 from dora_client.models.isolate_collateral_request import IsolateCollateralRequest
 from dora_client.models.isolate_collateral_response import IsolateCollateralResponse
-from dora_client.models.isolate_position_request import IsolatePositionRequest
-from dora_client.models.isolate_position_response import IsolatePositionResponse
 from dora_client.models.isolated_collateral import IsolatedCollateral
 from dora_client.models.isolated_position import IsolatedPosition
 from dora_client.models.ledger_module_by_asset_response import LedgerModuleByAssetResponse
@@ -83,6 +75,8 @@ from dora_client.models.list_transactions_response import ListTransactionsRespon
 from dora_client.models.live_orderbook import LiveOrderbook
 from dora_client.models.metadata import Metadata
 from dora_client.models.module_balance import ModuleBalance
+from dora_client.models.new_isolated_position_request import NewIsolatedPositionRequest
+from dora_client.models.new_isolated_position_response import NewIsolatedPositionResponse
 from dora_client.models.order import Order
 from dora_client.models.order_book import OrderBook
 from dora_client.models.order_book_balance import OrderBookBalance
@@ -135,6 +129,8 @@ from dora_client.models.trade_response import TradeResponse
 from dora_client.models.transaction import Transaction
 from dora_client.models.transaction_kind import TransactionKind
 from dora_client.models.transaction_request_error import TransactionRequestError
+from dora_client.models.transfer_balances_request import TransferBalancesRequest
+from dora_client.models.transfer_balances_response import TransferBalancesResponse
 from dora_client.models.transformed_assets import TransformedAssets
 from dora_client.models.unite_position_request import UnitePositionRequest
 from dora_client.models.unite_position_response import UnitePositionResponse
@@ -153,6 +149,8 @@ from dora_client.models.user_role import UserRole
 from dora_client.models.user_updated_response import UserUpdatedResponse
 from dora_client.models.user_value import UserValue
 from dora_client.models.user_value_response import UserValueResponse
+from dora_client.models.validate_submit_order_request import ValidateSubmitOrderRequest
+from dora_client.models.validate_submit_order_response import ValidateSubmitOrderResponse
 from dora_client.models.withdraw import Withdraw
 from dora_client.models.withdraw_request import WithdrawRequest
 from dora_client.models.withdraw_response import WithdrawResponse

@@ -15,12 +15,12 @@ from __future__ import absolute_import
 import unittest
 
 import dora_client
-from dora_client.models.fund_user import FundUser  # noqa: E501
+from dora_client.models.new_isolated_position_request import NewIsolatedPositionRequest  # noqa: E501
 from dora_client.rest import ApiException
 
 
-class TestFundUser(unittest.TestCase):
-    """FundUser unit test stubs"""
+class TestNewIsolatedPositionRequest(unittest.TestCase):
+    """NewIsolatedPositionRequest unit test stubs"""
 
     def setUp(self):
         pass
@@ -28,10 +28,10 @@ class TestFundUser(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def testFundUser(self):
-        """Test FundUser"""
+    def testNewIsolatedPositionRequest(self):
+        """Test NewIsolatedPositionRequest"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = dora_client.models.fund_user.FundUser()  # noqa: E501
+        # model = dora_client.models.new_isolated_position_request.NewIsolatedPositionRequest()  # noqa: E501
         pass
 
 

@@ -28,6 +28,7 @@ class OrderStatus(object):
     FILLED = "FILLED"
     PARTIAL_FILL = "PARTIAL_FILL"
     CANCELLED = "CANCELLED"
+    PENDING = "PENDING"
     """
     Attributes:
       swagger_types (dict): The key is attribute name

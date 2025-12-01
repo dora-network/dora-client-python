@@ -15,12 +15,12 @@ from __future__ import absolute_import
 import unittest
 
 import dora_client
-from dora_client.models.isolate_position_response import IsolatePositionResponse  # noqa: E501
+from dora_client.models.validate_submit_order_request import ValidateSubmitOrderRequest  # noqa: E501
 from dora_client.rest import ApiException
 
 
-class TestIsolatePositionResponse(unittest.TestCase):
-    """IsolatePositionResponse unit test stubs"""
+class TestValidateSubmitOrderRequest(unittest.TestCase):
+    """ValidateSubmitOrderRequest unit test stubs"""
 
     def setUp(self):
         pass
@@ -28,10 +28,10 @@ class TestIsolatePositionResponse(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def testIsolatePositionResponse(self):
-        """Test IsolatePositionResponse"""
+    def testValidateSubmitOrderRequest(self):
+        """Test ValidateSubmitOrderRequest"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = dora_client.models.isolate_position_response.IsolatePositionResponse()  # noqa: E501
+        # model = dora_client.models.validate_submit_order_request.ValidateSubmitOrderRequest()  # noqa: E501
         pass
 
 

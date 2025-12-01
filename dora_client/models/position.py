@@ -42,7 +42,8 @@ class Position(object):
         'avg_entry_price': 'str',
         'borrow_limit': 'str',
         'liquidation_threshold': 'str',
-        'created_at': 'datetime'
+        'created_at': 'datetime',
+        'position_name': 'str'
     }
 
     attribute_map = {
@@ -60,10 +61,11 @@ class Position(object):
         'avg_entry_price': 'avg_entry_price',
         'borrow_limit': 'borrow_limit',
         'liquidation_threshold': 'liquidation_threshold',
-        'created_at': 'created_at'
+        'created_at': 'created_at',
+        'position_name': 'position_name'
     }
 
-    def __init__(self, id=None, asset_id=None, seq=None, is_global=None, available=None, locked=None, supplied=None, collateral=None, supplied_collateral=None, borrowed=None, impending_borrows=None, avg_entry_price=None, borrow_limit=None, liquidation_threshold=None, created_at=None):  # noqa: E501
+    def __init__(self, id=None, asset_id=None, seq=None, is_global=None, available=None, locked=None, supplied=None, collateral=None, supplied_collateral=None, borrowed=None, impending_borrows=None, avg_entry_price=None, borrow_limit=None, liquidation_threshold=None, created_at=None, position_name=None):  # noqa: E501
         """Position - a model defined in Swagger"""  # noqa: E501
         self._id = None
         self._asset_id = None
@@ -80,6 +82,7 @@ class Position(object):
         self._borrow_limit = None
         self._liquidation_threshold = None
         self._created_at = None
+        self._position_name = None
         self.discriminator = None
         if id is not None:
             self.id = id
@@ -111,6 +114,8 @@ class Position(object):
             self.liquidation_threshold = liquidation_threshold
         if created_at is not None:
             self.created_at = created_at
+        if position_name is not None:
+            self.position_name = position_name
 
     @property
     def id(self):
@@ -448,6 +453,27 @@ class Position(object):
         """
 
         self._created_at = created_at
+
+    @property
+    def position_name(self):
+        """Gets the position_name of this Position.  # noqa: E501
+
+
+        :return: The position_name of this Position.  # noqa: E501
+        :rtype: str
+        """
+        return self._position_name
+
+    @position_name.setter
+    def position_name(self, position_name):
+        """Sets the position_name of this Position.
+
+
+        :param position_name: The position_name of this Position.  # noqa: E501
+        :type: str
+        """
+
+        self._position_name = position_name
 
     def to_dict(self):
         """Returns the model properties as a dict"""

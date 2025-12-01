@@ -15,12 +15,12 @@ from __future__ import absolute_import
 import unittest
 
 import dora_client
-from dora_client.models.collateralize_response import CollateralizeResponse  # noqa: E501
+from dora_client.models.validate_submit_order_response import ValidateSubmitOrderResponse  # noqa: E501
 from dora_client.rest import ApiException
 
 
-class TestCollateralizeResponse(unittest.TestCase):
-    """CollateralizeResponse unit test stubs"""
+class TestValidateSubmitOrderResponse(unittest.TestCase):
+    """ValidateSubmitOrderResponse unit test stubs"""
 
     def setUp(self):
         pass
@@ -28,10 +28,10 @@ class TestCollateralizeResponse(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def testCollateralizeResponse(self):
-        """Test CollateralizeResponse"""
+    def testValidateSubmitOrderResponse(self):
+        """Test ValidateSubmitOrderResponse"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = dora_client.models.collateralize_response.CollateralizeResponse()  # noqa: E501
+        # model = dora_client.models.validate_submit_order_response.ValidateSubmitOrderResponse()  # noqa: E501
         pass
 
 

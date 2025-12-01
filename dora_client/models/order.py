@@ -37,6 +37,7 @@ class Order(object):
         'open_quantity': 'str',
         'original_quantity': 'str',
         'filled_quantity': 'str',
+        'filled_notional': 'str',
         'last_update_at': 'datetime',
         'opened_at': 'datetime',
         'inverse_leverage': 'str',
@@ -44,7 +45,10 @@ class Order(object):
         'status': 'OrderStatus',
         'user_id': 'str',
         'order_modifiers': 'list[OrderModifierKind]',
-        'position_id': 'str'
+        'position_id': 'str',
+        'order_info': 'str',
+        'good_till_date': 'datetime',
+        'trigger_price': 'str'
     }
 
     attribute_map = {
@@ -57,6 +61,7 @@ class Order(object):
         'open_quantity': 'open_quantity',
         'original_quantity': 'original_quantity',
         'filled_quantity': 'filled_quantity',
+        'filled_notional': 'filled_notional',
         'last_update_at': 'last_update_at',
         'opened_at': 'opened_at',
         'inverse_leverage': 'inverse_leverage',
@@ -64,10 +69,13 @@ class Order(object):
         'status': 'status',
         'user_id': 'user_id',
         'order_modifiers': 'order_modifiers',
-        'position_id': 'position_id'
+        'position_id': 'position_id',
+        'order_info': 'order_info',
+        'good_till_date': 'good_till_date',
+        'trigger_price': 'trigger_price'
     }
 
-    def __init__(self, order_id=None, order_book_id=None, kind=None, original_price=None, avg_fill_price=None, cancelled_quantity=None, open_quantity=None, original_quantity=None, filled_quantity=None, last_update_at=None, opened_at=None, inverse_leverage=None, side=None, status=None, user_id=None, order_modifiers=None, position_id=None):  # noqa: E501
+    def __init__(self, order_id=None, order_book_id=None, kind=None, original_price=None, avg_fill_price=None, cancelled_quantity=None, open_quantity=None, original_quantity=None, filled_quantity=None, filled_notional=None, last_update_at=None, opened_at=None, inverse_leverage=None, side=None, status=None, user_id=None, order_modifiers=None, position_id=None, order_info=None, good_till_date=None, trigger_price=None):  # noqa: E501
         """Order - a model defined in Swagger"""  # noqa: E501
         self._order_id = None
         self._order_book_id = None
@@ -78,6 +86,7 @@ class Order(object):
         self._open_quantity = None
         self._original_quantity = None
         self._filled_quantity = None
+        self._filled_notional = None
         self._last_update_at = None
         self._opened_at = None
         self._inverse_leverage = None
@@ -86,6 +95,9 @@ class Order(object):
         self._user_id = None
         self._order_modifiers = None
         self._position_id = None
+        self._order_info = None
+        self._good_till_date = None
+        self._trigger_price = None
         self.discriminator = None
         if order_id is not None:
             self.order_id = order_id
@@ -105,6 +117,8 @@ class Order(object):
             self.original_quantity = original_quantity
         if filled_quantity is not None:
             self.filled_quantity = filled_quantity
+        if filled_notional is not None:
+            self.filled_notional = filled_notional
         if last_update_at is not None:
             self.last_update_at = last_update_at
         if opened_at is not None:
@@ -121,6 +135,12 @@ class Order(object):
             self.order_modifiers = order_modifiers
         if position_id is not None:
             self.position_id = position_id
+        if order_info is not None:
+            self.order_info = order_info
+        if good_till_date is not None:
+            self.good_till_date = good_till_date
+        if trigger_price is not None:
+            self.trigger_price = trigger_price
 
     @property
     def order_id(self):
@@ -322,6 +342,29 @@ class Order(object):
         self._filled_quantity = filled_quantity
 
     @property
+    def filled_notional(self):
+        """Gets the filled_notional of this Order.  # noqa: E501
+
+        Quote quantity that has been filled so far.  # noqa: E501
+
+        :return: The filled_notional of this Order.  # noqa: E501
+        :rtype: str
+        """
+        return self._filled_notional
+
+    @filled_notional.setter
+    def filled_notional(self, filled_notional):
+        """Sets the filled_notional of this Order.
+
+        Quote quantity that has been filled so far.  # noqa: E501
+
+        :param filled_notional: The filled_notional of this Order.  # noqa: E501
+        :type: str
+        """
+
+        self._filled_notional = filled_notional
+
+    @property
     def last_update_at(self):
         """Gets the last_update_at of this Order.  # noqa: E501
 
@@ -488,6 +531,69 @@ class Order(object):
         """
 
         self._position_id = position_id
+
+    @property
+    def order_info(self):
+        """Gets the order_info of this Order.  # noqa: E501
+
+
+        :return: The order_info of this Order.  # noqa: E501
+        :rtype: str
+        """
+        return self._order_info
+
+    @order_info.setter
+    def order_info(self, order_info):
+        """Sets the order_info of this Order.
+
+
+        :param order_info: The order_info of this Order.  # noqa: E501
+        :type: str
+        """
+
+        self._order_info = order_info
+
+    @property
+    def good_till_date(self):
+        """Gets the good_till_date of this Order.  # noqa: E501
+
+
+        :return: The good_till_date of this Order.  # noqa: E501
+        :rtype: datetime
+        """
+        return self._good_till_date
+
+    @good_till_date.setter
+    def good_till_date(self, good_till_date):
+        """Sets the good_till_date of this Order.
+
+
+        :param good_till_date: The good_till_date of this Order.  # noqa: E501
+        :type: datetime
+        """
+
+        self._good_till_date = good_till_date
+
+    @property
+    def trigger_price(self):
+        """Gets the trigger_price of this Order.  # noqa: E501
+
+
+        :return: The trigger_price of this Order.  # noqa: E501
+        :rtype: str
+        """
+        return self._trigger_price
+
+    @trigger_price.setter
+    def trigger_price(self, trigger_price):
+        """Sets the trigger_price of this Order.
+
+
+        :param trigger_price: The trigger_price of this Order.  # noqa: E501
+        :type: str
+        """
+
+        self._trigger_price = trigger_price
 
     def to_dict(self):
         """Returns the model properties as a dict"""

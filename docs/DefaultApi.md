@@ -4,8 +4,10 @@ All URIs are relative to *https://localhost:8084*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**cancel_all_open_orders**](DefaultApi.md#cancel_all_open_orders) | **DELETE** /v1/orders | Cancel all open orders
+[**cancel_all_open_orders**](DefaultApi.md#cancel_all_open_orders) | **DELETE** /v1/orders | Cancel all open orders, if user passes orderbook on query param it will cancel all orders on specific orderbook, admin can cancel user&#x27;s orders on specific orderbook
 [**cancel_order_by_id**](DefaultApi.md#cancel_order_by_id) | **DELETE** /v1/orders/{order_id} | Cancel an order by ID
+[**check_user_email_exists**](DefaultApi.md#check_user_email_exists) | **GET** /v1/user/{email}/exists | Check whether a user email exists
+[**create_new_isolated_position**](DefaultApi.md#create_new_isolated_position) | **POST** /v1/positions/new_isolated | Create a new isolated position for a user transferring available assets into the position
 [**create_order**](DefaultApi.md#create_order) | **POST** /v1/orders | Create a new order
 [**delete_user**](DefaultApi.md#delete_user) | **DELETE** /v1/user/{user_id} | Delete user by ID
 [**get_all_asset_prices**](DefaultApi.md#get_all_asset_prices) | **GET** /v1/price | Get the current price of all assets
@@ -40,12 +42,7 @@ Method | HTTP request | Description
 [**get_user_orders_updates_stream_all**](DefaultApi.md#get_user_orders_updates_stream_all) | **GET** /v1/user/{user_id}/orders/all/updates/stream | Get a snapshot of user&#x27;s order updates across all order books since a specific time, and opens a stream for further updates
 [**get_user_self**](DefaultApi.md#get_user_self) | **GET** /v1/user/self | Get user details for the authenticated user
 [**get_user_transactions_stream**](DefaultApi.md#get_user_transactions_stream) | **GET** /v1/user/{user_id}/transactions/stream | Get a snapshot of user&#x27;s executed transactions since a specific time, and opens a stream for further updates
-[**ledger_deposit**](DefaultApi.md#ledger_deposit) | **POST** /v1/ledger/deposit | Deposit assets into your account from the outside world
-[**ledger_withdraw**](DefaultApi.md#ledger_withdraw) | **POST** /v1/ledger/withdraw | Withdraw assets from your account to the outside world
-[**leverage_collateralize**](DefaultApi.md#leverage_collateralize) | **POST** /v1/leverage/collateralize | Move supplied and available to supplied_collateral and collateral, for a specified position
-[**leverage_de_collateralize**](DefaultApi.md#leverage_de_collateralize) | **POST** /v1/leverage/de-collateralize | Move collateral and supplied_collateral to available and supplied, for a specified position.
 [**leverage_isolate_collateral**](DefaultApi.md#leverage_isolate_collateral) | **POST** /v1/leverage/isolate_collateral | Create an isolated position by transferring collateral to the position from the user&#x27;s global collateral
-[**leverage_isolate_position**](DefaultApi.md#leverage_isolate_position) | **POST** /v1/leverage/isolate_position | Create an isolated position using all collateral, supplied_collateral, and borrows from the user&#x27;s global position
 [**leverage_supply**](DefaultApi.md#leverage_supply) | **POST** /v1/leverage/supply | Supply leverage for a specific asset
 [**leverage_unite**](DefaultApi.md#leverage_unite) | **POST** /v1/leverage/unite | Combines all isolated positions into a single global position
 [**leverage_withdraw**](DefaultApi.md#leverage_withdraw) | **POST** /v1/leverage/withdraw | Withdraw leverage for a specific asset
@@ -59,14 +56,16 @@ Method | HTTP request | Description
 [**stream_order_book_balances**](DefaultApi.md#stream_order_book_balances) | **GET** /v1/orderbooks/{order_book_id}/balances/stream | Get a snapshot of base and quote balances for an order book and open a stream for real-time updates
 [**stream_orderbook_open_orders**](DefaultApi.md#stream_orderbook_open_orders) | **GET** /v1/orderbooks/{order_book_id}/open/stream | Get a snapshot of open orders in an order book and open a stream for real-time updates
 [**stream_trades**](DefaultApi.md#stream_trades) | **GET** /v1/trades/{order_book_id}/stream | Get a snapshot of trades executed on the given order book from a specific date and open a stream for real-time updates
+[**transfer_available_balances**](DefaultApi.md#transfer_available_balances) | **POST** /v1/positions/transfer_balances | Transfer available balance between a user&#x27;s accounts (e.g. global to isolated position)
 [**update_user_config**](DefaultApi.md#update_user_config) | **PUT** /v1/user/{user_id}/config | Update user configuration by ID
 [**update_user_config_self**](DefaultApi.md#update_user_config_self) | **PUT** /v1/user/config/self | Update user configuration for the authenticated user
+[**validate_submit_order**](DefaultApi.md#validate_submit_order) | **POST** /v1/orders/validate | Validate submit order request data
 [**verify_user**](DefaultApi.md#verify_user) | **PUT** /v1/user/{user_id}/verify | Verify a user by ID
 
 # **cancel_all_open_orders**
-> ListOrdersResponse cancel_all_open_orders()
+> ListOrdersResponse cancel_all_open_orders(order_book_id=order_book_id, user_id=user_id, order_kind=order_kind)
 
-Cancel all open orders
+Cancel all open orders, if user passes orderbook on query param it will cancel all orders on specific orderbook, admin can cancel user's orders on specific orderbook
 
 ### Example
 ```python
@@ -78,17 +77,25 @@ from pprint import pprint
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi()
+order_book_id = 'order_book_id_example' # str |  (optional)
+user_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str |  (optional)
+order_kind = dora_client.OrderKind() # OrderKind |  (optional)
 
 try:
-    # Cancel all open orders
-    api_response = api_instance.cancel_all_open_orders()
+    # Cancel all open orders, if user passes orderbook on query param it will cancel all orders on specific orderbook, admin can cancel user's orders on specific orderbook
+    api_response = api_instance.cancel_all_open_orders(order_book_id=order_book_id, user_id=user_id, order_kind=order_kind)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->cancel_all_open_orders: %s\n" % e)
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **order_book_id** | **str**|  | [optional] 
+ **user_id** | [**str**](.md)|  | [optional] 
+ **order_kind** | [**OrderKind**](.md)|  | [optional] 
 
 ### Return type
 
@@ -147,6 +154,98 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **check_user_email_exists**
+> bool check_user_email_exists(email)
+
+Check whether a user email exists
+
+### Example
+```python
+from __future__ import print_function
+import time
+import dora_client
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi()
+email = 'email_example' # str | 
+
+try:
+    # Check whether a user email exists
+    api_response = api_instance.check_user_email_exists(email)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->check_user_email_exists: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **email** | **str**|  | 
+
+### Return type
+
+**bool**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **create_new_isolated_position**
+> NewIsolatedPositionResponse create_new_isolated_position(body)
+
+Create a new isolated position for a user transferring available assets into the position
+
+### Example
+```python
+from __future__ import print_function
+import time
+import dora_client
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi()
+body = dora_client.NewIsolatedPositionRequest() # NewIsolatedPositionRequest | 
+
+try:
+    # Create a new isolated position for a user transferring available assets into the position
+    api_response = api_instance.create_new_isolated_position(body)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->create_new_isolated_position: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**NewIsolatedPositionRequest**](NewIsolatedPositionRequest.md)|  | 
+
+### Return type
+
+[**NewIsolatedPositionResponse**](NewIsolatedPositionResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1286,7 +1385,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_trades**
-> ListTradeResponse get_trades(pools=pools, user_ids=user_ids, start=start, end=end, page=page, limit=limit)
+> ListTradeResponse get_trades(order_book_ids=order_book_ids, user_ids=user_ids, start=start, end=end, page=page, limit=limit)
 
 Get a filtered, paginated list of trades
 
@@ -1300,7 +1399,7 @@ from pprint import pprint
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi()
-pools = ['pools_example'] # list[str] |  (optional)
+order_book_ids = ['order_book_ids_example'] # list[str] |  (optional)
 user_ids = ['user_ids_example'] # list[str] |  (optional)
 start = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 end = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
@@ -1309,7 +1408,7 @@ limit = 100 # int |  (optional) (default to 100)
 
 try:
     # Get a filtered, paginated list of trades
-    api_response = api_instance.get_trades(pools=pools, user_ids=user_ids, start=start, end=end, page=page, limit=limit)
+    api_response = api_instance.get_trades(order_book_ids=order_book_ids, user_ids=user_ids, start=start, end=end, page=page, limit=limit)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->get_trades: %s\n" % e)
@@ -1319,7 +1418,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pools** | [**list[str]**](str.md)|  | [optional] 
+ **order_book_ids** | [**list[str]**](str.md)|  | [optional] 
  **user_ids** | [**list[str]**](str.md)|  | [optional] 
  **start** | **datetime**|  | [optional] 
  **end** | **datetime**|  | [optional] 
@@ -1725,194 +1824,6 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **ledger_deposit**
-> FundUserResponse ledger_deposit(body)
-
-Deposit assets into your account from the outside world
-
-TODO: finish this when implementation has been completed
-
-### Example
-```python
-from __future__ import print_function
-import time
-import dora_client
-from dora_client.rest import ApiException
-from pprint import pprint
-
-# create an instance of the API class
-api_instance = dora_client.DefaultApi()
-body = dora_client.FundUserRequest() # FundUserRequest | 
-
-try:
-    # Deposit assets into your account from the outside world
-    api_response = api_instance.ledger_deposit(body)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling DefaultApi->ledger_deposit: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**FundUserRequest**](FundUserRequest.md)|  | 
-
-### Return type
-
-[**FundUserResponse**](FundUserResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **ledger_withdraw**
-> FundUserResponse ledger_withdraw(body)
-
-Withdraw assets from your account to the outside world
-
-TODO: Finish this when implementation has been completed
-
-### Example
-```python
-from __future__ import print_function
-import time
-import dora_client
-from dora_client.rest import ApiException
-from pprint import pprint
-
-# create an instance of the API class
-api_instance = dora_client.DefaultApi()
-body = dora_client.FundUserRequest() # FundUserRequest | 
-
-try:
-    # Withdraw assets from your account to the outside world
-    api_response = api_instance.ledger_withdraw(body)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling DefaultApi->ledger_withdraw: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**FundUserRequest**](FundUserRequest.md)|  | 
-
-### Return type
-
-[**FundUserResponse**](FundUserResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **leverage_collateralize**
-> CollateralizeResponse leverage_collateralize(body)
-
-Move supplied and available to supplied_collateral and collateral, for a specified position
-
-### Example
-```python
-from __future__ import print_function
-import time
-import dora_client
-from dora_client.rest import ApiException
-from pprint import pprint
-
-# create an instance of the API class
-api_instance = dora_client.DefaultApi()
-body = dora_client.CollateralizeRequest() # CollateralizeRequest | 
-
-try:
-    # Move supplied and available to supplied_collateral and collateral, for a specified position
-    api_response = api_instance.leverage_collateralize(body)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling DefaultApi->leverage_collateralize: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**CollateralizeRequest**](CollateralizeRequest.md)|  | 
-
-### Return type
-
-[**CollateralizeResponse**](CollateralizeResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **leverage_de_collateralize**
-> DeCollateralizeResponse leverage_de_collateralize(body)
-
-Move collateral and supplied_collateral to available and supplied, for a specified position.
-
-### Example
-```python
-from __future__ import print_function
-import time
-import dora_client
-from dora_client.rest import ApiException
-from pprint import pprint
-
-# create an instance of the API class
-api_instance = dora_client.DefaultApi()
-body = dora_client.DeCollateralizeRequest() # DeCollateralizeRequest | 
-
-try:
-    # Move collateral and supplied_collateral to available and supplied, for a specified position.
-    api_response = api_instance.leverage_de_collateralize(body)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling DefaultApi->leverage_de_collateralize: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**DeCollateralizeRequest**](DeCollateralizeRequest.md)|  | 
-
-### Return type
-
-[**DeCollateralizeResponse**](DeCollateralizeResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **leverage_isolate_collateral**
 > IsolateCollateralResponse leverage_isolate_collateral(body)
 
@@ -1947,52 +1858,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**IsolateCollateralResponse**](IsolateCollateralResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **leverage_isolate_position**
-> IsolatePositionResponse leverage_isolate_position(body)
-
-Create an isolated position using all collateral, supplied_collateral, and borrows from the user's global position
-
-### Example
-```python
-from __future__ import print_function
-import time
-import dora_client
-from dora_client.rest import ApiException
-from pprint import pprint
-
-# create an instance of the API class
-api_instance = dora_client.DefaultApi()
-body = dora_client.IsolatePositionRequest() # IsolatePositionRequest | 
-
-try:
-    # Create an isolated position using all collateral, supplied_collateral, and borrows from the user's global position
-    api_response = api_instance.leverage_isolate_position(body)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling DefaultApi->leverage_isolate_position: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**IsolatePositionRequest**](IsolatePositionRequest.md)|  | 
-
-### Return type
-
-[**IsolatePositionResponse**](IsolatePositionResponse.md)
 
 ### Authorization
 
@@ -2661,6 +2526,52 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **transfer_available_balances**
+> TransferBalancesResponse transfer_available_balances(body)
+
+Transfer available balance between a user's accounts (e.g. global to isolated position)
+
+### Example
+```python
+from __future__ import print_function
+import time
+import dora_client
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi()
+body = dora_client.TransferBalancesRequest() # TransferBalancesRequest | 
+
+try:
+    # Transfer available balance between a user's accounts (e.g. global to isolated position)
+    api_response = api_instance.transfer_available_balances(body)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->transfer_available_balances: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**TransferBalancesRequest**](TransferBalancesRequest.md)|  | 
+
+### Return type
+
+[**TransferBalancesResponse**](TransferBalancesResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **update_user_config**
 > UserUpdatedResponse update_user_config(body, user_id)
 
@@ -2743,6 +2654,52 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**UserUpdatedResponse**](UserUpdatedResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **validate_submit_order**
+> ValidateSubmitOrderResponse validate_submit_order(body)
+
+Validate submit order request data
+
+### Example
+```python
+from __future__ import print_function
+import time
+import dora_client
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi()
+body = dora_client.ValidateSubmitOrderRequest() # ValidateSubmitOrderRequest | 
+
+try:
+    # Validate submit order request data
+    api_response = api_instance.validate_submit_order(body)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->validate_submit_order: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**ValidateSubmitOrderRequest**](ValidateSubmitOrderRequest.md)|  | 
+
+### Return type
+
+[**ValidateSubmitOrderResponse**](ValidateSubmitOrderResponse.md)
 
 ### Authorization
 

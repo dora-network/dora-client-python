@@ -38,7 +38,9 @@ class Trade(object):
         'order_seq': 'int',
         'price': 'str',
         'quantity_0': 'str',
-        'user_id': 'str'
+        'user_id': 'str',
+        'side': 'Side',
+        'aggressor_indicator': 'bool'
     }
 
     attribute_map = {
@@ -52,10 +54,12 @@ class Trade(object):
         'order_seq': 'order_seq',
         'price': 'price',
         'quantity_0': 'quantity_0',
-        'user_id': 'user_id'
+        'user_id': 'user_id',
+        'side': 'side',
+        'aggressor_indicator': 'aggressor_indicator'
     }
 
-    def __init__(self, transaction_id=None, asset_0=None, created_at=None, fee_asset_id=None, fee_quantity=None, order_book_id=None, order_id=None, order_seq=None, price=None, quantity_0=None, user_id=None):  # noqa: E501
+    def __init__(self, transaction_id=None, asset_0=None, created_at=None, fee_asset_id=None, fee_quantity=None, order_book_id=None, order_id=None, order_seq=None, price=None, quantity_0=None, user_id=None, side=None, aggressor_indicator=None):  # noqa: E501
         """Trade - a model defined in Swagger"""  # noqa: E501
         self._transaction_id = None
         self._asset_0 = None
@@ -68,6 +72,8 @@ class Trade(object):
         self._price = None
         self._quantity_0 = None
         self._user_id = None
+        self._side = None
+        self._aggressor_indicator = None
         self.discriminator = None
         if transaction_id is not None:
             self.transaction_id = transaction_id
@@ -91,6 +97,10 @@ class Trade(object):
             self.quantity_0 = quantity_0
         if user_id is not None:
             self.user_id = user_id
+        if side is not None:
+            self.side = side
+        if aggressor_indicator is not None:
+            self.aggressor_indicator = aggressor_indicator
 
     @property
     def transaction_id(self):
@@ -322,6 +332,50 @@ class Trade(object):
         """
 
         self._user_id = user_id
+
+    @property
+    def side(self):
+        """Gets the side of this Trade.  # noqa: E501
+
+
+        :return: The side of this Trade.  # noqa: E501
+        :rtype: Side
+        """
+        return self._side
+
+    @side.setter
+    def side(self, side):
+        """Sets the side of this Trade.
+
+
+        :param side: The side of this Trade.  # noqa: E501
+        :type: Side
+        """
+
+        self._side = side
+
+    @property
+    def aggressor_indicator(self):
+        """Gets the aggressor_indicator of this Trade.  # noqa: E501
+
+        If true, then this order is the aggressor (taker); otherwise it is the maker.  # noqa: E501
+
+        :return: The aggressor_indicator of this Trade.  # noqa: E501
+        :rtype: bool
+        """
+        return self._aggressor_indicator
+
+    @aggressor_indicator.setter
+    def aggressor_indicator(self, aggressor_indicator):
+        """Sets the aggressor_indicator of this Trade.
+
+        If true, then this order is the aggressor (taker); otherwise it is the maker.  # noqa: E501
+
+        :param aggressor_indicator: The aggressor_indicator of this Trade.  # noqa: E501
+        :type: bool
+        """
+
+        self._aggressor_indicator = aggressor_indicator
 
     def to_dict(self):
         """Returns the model properties as a dict"""
