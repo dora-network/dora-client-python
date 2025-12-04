@@ -159,7 +159,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **check_user_email_exists**
-> bool check_user_email_exists(email)
+> EmailExistsResponse check_user_email_exists(email)
 
 Check whether a user email exists
 
@@ -191,7 +191,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**bool**
+[**EmailExistsResponse**](EmailExistsResponse.md)
 
 ### Authorization
 
