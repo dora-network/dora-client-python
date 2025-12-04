@@ -45,12 +45,9 @@ class AssetPrice(object):
         self._price = None
         self._time = None
         self.discriminator = None
-        if asset_id is not None:
-            self.asset_id = asset_id
-        if price is not None:
-            self.price = price
-        if time is not None:
-            self.time = time
+        self.asset_id = asset_id
+        self.price = price
+        self.time = time
 
     @property
     def asset_id(self):
@@ -70,6 +67,8 @@ class AssetPrice(object):
         :param asset_id: The asset_id of this AssetPrice.  # noqa: E501
         :type: str
         """
+        if asset_id is None:
+            raise ValueError("Invalid value for `asset_id`, must not be `None`")  # noqa: E501
 
         self._asset_id = asset_id
 
@@ -91,6 +90,8 @@ class AssetPrice(object):
         :param price: The price of this AssetPrice.  # noqa: E501
         :type: str
         """
+        if price is None:
+            raise ValueError("Invalid value for `price`, must not be `None`")  # noqa: E501
 
         self._price = price
 
@@ -112,6 +113,8 @@ class AssetPrice(object):
         :param time: The time of this AssetPrice.  # noqa: E501
         :type: datetime
         """
+        if time is None:
+            raise ValueError("Invalid value for `time`, must not be `None`")  # noqa: E501
 
         self._time = time
 

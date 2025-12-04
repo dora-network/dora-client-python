@@ -35,7 +35,6 @@ class Asset(object):
         'fractionalized_units': 'int',
         'description': 'str',
         'liquidation_threshold': 'float',
-        'maturity_id': 'str',
         'max_supply': 'int',
         'max_utilization': 'int',
         'name': 'str',
@@ -58,7 +57,6 @@ class Asset(object):
         'fractionalized_units': 'fractionalized_units',
         'description': 'description',
         'liquidation_threshold': 'liquidation_threshold',
-        'maturity_id': 'maturity_id',
         'max_supply': 'max_supply',
         'max_utilization': 'max_utilization',
         'name': 'name',
@@ -73,7 +71,7 @@ class Asset(object):
         'bond': 'bond'
     }
 
-    def __init__(self, id=None, collateral_weight=None, created_at=None, decimals=None, fractionalized_units=None, description=None, liquidation_threshold=None, maturity_id=None, max_supply=None, max_utilization=None, name=None, symbol=None, kind=None, _yield=None, can_add_liquidity=None, can_direct_borrow=None, can_onboard=None, can_trade=None, can_virtual_borrow=None, bond=None):  # noqa: E501
+    def __init__(self, id=None, collateral_weight=None, created_at=None, decimals=None, fractionalized_units=None, description=None, liquidation_threshold=None, max_supply=None, max_utilization=None, name=None, symbol=None, kind=None, _yield=None, can_add_liquidity=None, can_direct_borrow=None, can_onboard=None, can_trade=None, can_virtual_borrow=None, bond=None):  # noqa: E501
         """Asset - a model defined in Swagger"""  # noqa: E501
         self._id = None
         self._collateral_weight = None
@@ -82,7 +80,6 @@ class Asset(object):
         self._fractionalized_units = None
         self._description = None
         self._liquidation_threshold = None
-        self._maturity_id = None
         self._max_supply = None
         self._max_utilization = None
         self._name = None
@@ -110,8 +107,6 @@ class Asset(object):
             self.description = description
         if liquidation_threshold is not None:
             self.liquidation_threshold = liquidation_threshold
-        if maturity_id is not None:
-            self.maturity_id = maturity_id
         if max_supply is not None:
             self.max_supply = max_supply
         if max_utilization is not None:
@@ -283,27 +278,6 @@ class Asset(object):
         """
 
         self._liquidation_threshold = liquidation_threshold
-
-    @property
-    def maturity_id(self):
-        """Gets the maturity_id of this Asset.  # noqa: E501
-
-
-        :return: The maturity_id of this Asset.  # noqa: E501
-        :rtype: str
-        """
-        return self._maturity_id
-
-    @maturity_id.setter
-    def maturity_id(self, maturity_id):
-        """Sets the maturity_id of this Asset.
-
-
-        :param maturity_id: The maturity_id of this Asset.  # noqa: E501
-        :type: str
-        """
-
-        self._maturity_id = maturity_id
 
     @property
     def max_supply(self):

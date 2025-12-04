@@ -58,7 +58,7 @@ user_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str |  (optional)
 order_kind = dora_client.OrderKind() # OrderKind |  (optional)
 
 try:
-    # Cancel all open orders, if user passes orderbook on query param it will cancel all orders on specific orderbook, admin can cancel user's orders on specific orderbook
+    # Cancel all open orders, if user pass orderbook on query it will cancel all orders on specific orderbook, admin can cancel user's orders on specific orderbook
     api_response = api_instance.cancel_all_open_orders(order_book_id=order_book_id, user_id=user_id, order_kind=order_kind)
     pprint(api_response)
 except ApiException as e:
@@ -88,6 +88,64 @@ except ApiException as e:
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+body = dora_client.CompleteCouponPaymentReq() # CompleteCouponPaymentReq | 
+asset_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
+coupon_payment_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
+
+try:
+    # Update coupon payment to completed
+    api_response = api_instance.complete_coupon_payment(body, asset_id, coupon_payment_id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->complete_coupon_payment: %s\n" % e)
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+body = dora_client.CreateAssetReq() # CreateAssetReq | 
+
+try:
+    # Create an asset
+    api_response = api_instance.create_asset(body)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->create_asset: %s\n" % e)
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+body = dora_client.CreateBotRequest() # CreateBotRequest | 
+
+try:
+    # Create a new bot
+    api_response = api_instance.create_bot(body)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->create_bot: %s\n" % e)
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+body = dora_client.CreateBotStrategyReq() # CreateBotStrategyReq | 
+
+try:
+    # Create Bot Strategy
+    api_response = api_instance.create_bot_strategy_by_id(body)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->create_bot_strategy_by_id: %s\n" % e)
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+body = dora_client.CreateCouponPaymentReq() # CreateCouponPaymentReq | 
+asset_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
+
+try:
+    # Create a coupon payment for a bond asset
+    api_response = api_instance.create_coupon_payment(body, asset_id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->create_coupon_payment: %s\n" % e)
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
 body = dora_client.NewIsolatedPositionRequest() # NewIsolatedPositionRequest | 
 
 try:
@@ -110,6 +168,28 @@ except ApiException as e:
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+body = dora_client.CreateOrderBookRequest() # CreateOrderBookRequest | 
+
+try:
+    # Create a new orderbook
+    api_response = api_instance.create_orderbook(body)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->create_orderbook: %s\n" % e)
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+body = dora_client.CreateUserRequest() # CreateUserRequest | 
+
+try:
+    # Create a new user
+    api_response = api_instance.create_user(body)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->create_user: %s\n" % e)
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
 user_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
 
 try:
@@ -118,6 +198,17 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->delete_user: %s\n" % e)
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+user_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
+
+try:
+    # Enable a disabled user
+    api_response = api_instance.enable_user(user_id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->enable_user: %s\n" % e)
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
@@ -162,6 +253,38 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->get_assets_stream: %s\n" % e)
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+bot_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | Bot ID
+
+try:
+    # Get bot by ID
+    api_response = api_instance.get_bot_by_id(bot_id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->get_bot_by_id: %s\n" % e)
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+
+try:
+    # Get all bot strategies
+    api_response = api_instance.get_bot_strategies()
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->get_bot_strategies: %s\n" % e)
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+strategy_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
+
+try:
+    # Get a bot strategy by ID
+    api_response = api_instance.get_bot_strategy_by_id(strategy_id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->get_bot_strategy_by_id: %s\n" % e)
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
@@ -223,6 +346,19 @@ except ApiException as e:
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+user_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
+is_global = true # bool |  (optional)
+asset_ids = ['asset_ids_example'] # list[str] |  (optional)
+
+try:
+    # Get a specific user's available, locked, and borrowed assets
+    api_response = api_instance.get_ledger_balances_by_user_id(user_id, is_global=is_global, asset_ids=asset_ids)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->get_ledger_balances_by_user_id: %s\n" % e)
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
 
 try:
     # Get your own available, locked, and borrowed assets
@@ -230,6 +366,17 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->get_ledger_balances_self: %s\n" % e)
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+user_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
+
+try:
+    # Get a specific user's interest
+    api_response = api_instance.get_ledger_interest_by_user_id(user_id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->get_ledger_interest_by_user_id: %s\n" % e)
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
@@ -264,6 +411,17 @@ except ApiException as e:
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+user_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
+
+try:
+    # Get a specific user's positions
+    api_response = api_instance.get_ledger_positions_by_user_id(user_id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->get_ledger_positions_by_user_id: %s\n" % e)
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
 
 try:
     # Get your own positions
@@ -274,6 +432,17 @@ except ApiException as e:
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+user_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
+
+try:
+    # Get a specific user's available, locked, and borrowed USD value
+    api_response = api_instance.get_ledger_value_by_user_id(user_id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->get_ledger_value_by_user_id: %s\n" % e)
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
 
 try:
     # Get your own available, locked, and borrowed USD value; and realized and unrealized PnL
@@ -281,6 +450,16 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->get_ledger_value_self: %s\n" % e)
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+
+try:
+    # Get a list of users who are eligible for automatic liquidation
+    api_response = api_instance.get_leverage_liquidation_targets()
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->get_leverage_liquidation_targets: %s\n" % e)
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
@@ -303,6 +482,19 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->get_orderbook_by_id: %s\n" % e)
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+order_book_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
+page = 1 # int |  (optional) (default to 1)
+limit = 100 # int |  (optional) (default to 100)
+
+try:
+    # List coupon payments for an orderbook by admin only
+    api_response = api_instance.get_orderbook_coupon_payments(order_book_id, page=page, limit=limit)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->get_orderbook_coupon_payments: %s\n" % e)
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
@@ -350,6 +542,27 @@ except ApiException as e:
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+
+try:
+    # Get account-by-account PL breakdown for the logged in user
+    api_response = api_instance.get_pl_for_self_by_account()
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->get_pl_for_self_by_account: %s\n" % e)
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+user_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
+
+try:
+    # Get account-by-account PL breakdown for a user
+    api_response = api_instance.get_pl_for_user_by_account(user_id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->get_pl_for_user_by_account: %s\n" % e)
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
 pool_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
 
 try:
@@ -358,6 +571,29 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->get_pool_price: %s\n" % e)
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+tenant_id = 'tenant_id_example' # str | Tenant ID
+
+try:
+    # Get tenant details by ID
+    api_response = api_instance.get_tenant_details_by_id(tenant_id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->get_tenant_details_by_id: %s\n" % e)
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+page = 1 # int | Page number for pagination (optional) (default to 1)
+limit = 100 # int | Number of items per page (optional) (default to 100)
+
+try:
+    # Get tenants
+    api_response = api_instance.get_tenants(page=page, limit=limit)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->get_tenants: %s\n" % e)
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
@@ -430,6 +666,42 @@ api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
 user_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
 
 try:
+    # Get user configuration by admin only
+    api_response = api_instance.get_user_config_by_admin(user_id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->get_user_config_by_admin: %s\n" % e)
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+
+try:
+    # Get user configuration by self
+    api_response = api_instance.get_user_config_self()
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->get_user_config_self: %s\n" % e)
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+user_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
+asset_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str |  (optional)
+position_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str |  (optional)
+page = 1 # int |  (optional) (default to 1)
+limit = 100 # int |  (optional) (default to 100)
+
+try:
+    # List coupon payments for a user
+    api_response = api_instance.get_user_coupon_payments(user_id, asset_id=asset_id, position_id=position_id, page=page, limit=limit)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->get_user_coupon_payments: %s\n" % e)
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+user_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
+
+try:
     # Get a snapshot of user's ledger updates since a specific time, and opens a stream for further updates
     api_response = api_instance.get_user_ledger_stream(user_id)
     pprint(api_response)
@@ -456,10 +728,10 @@ since = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 
 try:
     # Get a snapshot of user's order updates across all order books since a specific time, and opens a stream for further updates
-    api_response = api_instance.get_user_orders_updates_stream_all(user_id, since=since)
+    api_response = api_instance.get_user_order_updates_stream_all(user_id, since=since)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling DefaultApi->get_user_orders_updates_stream_all: %s\n" % e)
+    print("Exception when calling DefaultApi->get_user_order_updates_stream_all: %s\n" % e)
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
@@ -482,6 +754,109 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->get_user_transactions_stream: %s\n" % e)
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str |  (optional)
+limit = 100 # int |  (optional) (default to 100)
+offset = 0 # int |  (optional) (default to 0)
+email = 'email_example' # str |  (optional)
+name = 'name_example' # str |  (optional)
+
+try:
+    # Get all users (admin only)
+    api_response = api_instance.get_users(id=id, limit=limit, offset=offset, email=email, name=name)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->get_users: %s\n" % e)
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+order_book_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
+
+try:
+    # Halt trading on an order book
+    api_response = api_instance.halt_orderbook(order_book_id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->halt_orderbook: %s\n" % e)
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+body = dora_client.InsertNewTenantReq() # InsertNewTenantReq | 
+
+try:
+    # Insert tenant details by admin
+    api_response = api_instance.insert_new_tenant(body)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->insert_new_tenant: %s\n" % e)
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+body = dora_client.FundUserRequest() # FundUserRequest | 
+user_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
+
+try:
+    # Deposit assets into this user's account from the outside world
+    api_response = api_instance.ledger_deposit(body, user_id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->ledger_deposit: %s\n" % e)
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+body = dora_client.DefundUserRequest() # DefundUserRequest | 
+user_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
+
+try:
+    # Withdraw assets from this user to the outside world
+    api_response = api_instance.ledger_withdraw(body, user_id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->ledger_withdraw: %s\n" % e)
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+asset_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
+start = '2013-10-20T19:20:30+01:00' # datetime | 
+end = '2013-10-20T19:20:30+01:00' # datetime | 
+
+try:
+    # Get average leverage utilization for a specific asset
+    api_response = api_instance.leverage_get_average_utilization(asset_id, start, end)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->leverage_get_average_utilization: %s\n" % e)
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+user_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
+asset_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
+position_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
+start = '2013-10-20T19:20:30+01:00' # datetime | 
+end = '2013-10-20T19:20:30+01:00' # datetime | 
+
+try:
+    # Get accrued leverage interest for a specific user and asset over a time range
+    api_response = api_instance.leverage_get_interest_by_user_and_asset(user_id, asset_id, position_id, start, end)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->leverage_get_interest_by_user_and_asset: %s\n" % e)
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+user_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
+asset_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
+start = '2013-10-20T19:20:30+01:00' # datetime | 
+end = '2013-10-20T19:20:30+01:00' # datetime | 
+
+try:
+    # Get borrow/supply balances for a specific user and asset over a time range
+    api_response = api_instance.leverage_get_utilization_by_user_and_asset(user_id, asset_id, start, end)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->leverage_get_utilization_by_user_and_asset: %s\n" % e)
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
@@ -573,6 +948,16 @@ except ApiException as e:
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+
+try:
+    # List all bots
+    api_response = api_instance.list_bots()
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->list_bots: %s\n" % e)
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
 status = dora_client.OrderBookStatus() # OrderBookStatus |  (optional)
 base_asset_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str |  (optional)
 quote_asset_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str |  (optional)
@@ -603,6 +988,52 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->list_orders: %s\n" % e)
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+body = dora_client.PayCouponPaymentReq() # PayCouponPaymentReq | 
+asset_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
+coupon_payment_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
+
+try:
+    # Update payment information (pay date and quantity)
+    api_response = api_instance.pay_coupon_payment(body, asset_id, coupon_payment_id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->pay_coupon_payment: %s\n" % e)
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+order_book_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
+
+try:
+    # Resume trading on a halted order book
+    api_response = api_instance.resume_orderbook(order_book_id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->resume_orderbook: %s\n" % e)
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+bot_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | Bot ID
+
+try:
+    # Start a bot
+    api_response = api_instance.start_bot(bot_id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->start_bot: %s\n" % e)
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+bot_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | Bot ID
+
+try:
+    # Stop a bot
+    api_response = api_instance.stop_bot(bot_id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->stop_bot: %s\n" % e)
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
@@ -666,6 +1097,17 @@ except ApiException as e:
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+order_book_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
+
+try:
+    # Terminate an order book
+    api_response = api_instance.terminate_orderbook(order_book_id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->terminate_orderbook: %s\n" % e)
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
 body = dora_client.TransferBalancesRequest() # TransferBalancesRequest | 
 
 try:
@@ -674,6 +1116,78 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->transfer_available_balances: %s\n" % e)
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+body = dora_client.UpdateAssetReq() # UpdateAssetReq | 
+asset_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
+
+try:
+    # Update asset by ID
+    api_response = api_instance.update_asset(body, asset_id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->update_asset: %s\n" % e)
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+body = dora_client.UpdateBotRequest() # UpdateBotRequest | 
+bot_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | Bot ID
+
+try:
+    # Update bot by ID
+    api_response = api_instance.update_bot_by_id(body, bot_id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->update_bot_by_id: %s\n" % e)
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+body = dora_client.CreateBotStrategyReq() # CreateBotStrategyReq | 
+strategy_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
+
+try:
+    # Update Bot Strategy by ID
+    api_response = api_instance.update_bot_strategy_by_id(body, strategy_id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->update_bot_strategy_by_id: %s\n" % e)
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+body = dora_client.UpdateOrderBookRequest() # UpdateOrderBookRequest | 
+order_book_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
+
+try:
+    # Update an existing orderbook
+    api_response = api_instance.update_orderbook(body, order_book_id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->update_orderbook: %s\n" % e)
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+body = dora_client.UpdateTenantDetailsReq() # UpdateTenantDetailsReq | 
+tenant_id = 'tenant_id_example' # str | Tenant ID
+
+try:
+    # Update tenant details by ID
+    api_response = api_instance.update_tenant_details_by_id(body, tenant_id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->update_tenant_details_by_id: %s\n" % e)
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+body = dora_client.UpdateUserRequest() # UpdateUserRequest | 
+user_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
+
+try:
+    # Update user by ID (admin only)
+    api_response = api_instance.update_user(body, user_id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->update_user: %s\n" % e)
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
@@ -727,44 +1241,76 @@ All URIs are relative to *https://localhost:8084*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DefaultApi* | [**cancel_all_open_orders**](docs/DefaultApi.md#cancel_all_open_orders) | **DELETE** /v1/orders | Cancel all open orders, if user passes orderbook on query param it will cancel all orders on specific orderbook, admin can cancel user&#x27;s orders on specific orderbook
+*DefaultApi* | [**cancel_all_open_orders**](docs/DefaultApi.md#cancel_all_open_orders) | **DELETE** /v1/orders | Cancel all open orders, if user pass orderbook on query it will cancel all orders on specific orderbook, admin can cancel user&#x27;s orders on specific orderbook
 *DefaultApi* | [**cancel_order_by_id**](docs/DefaultApi.md#cancel_order_by_id) | **DELETE** /v1/orders/{order_id} | Cancel an order by ID
 *DefaultApi* | [**check_user_email_exists**](docs/DefaultApi.md#check_user_email_exists) | **GET** /v1/user/{email}/exists | Check whether a user email exists
+*DefaultApi* | [**complete_coupon_payment**](docs/DefaultApi.md#complete_coupon_payment) | **PUT** /v1/assets/{asset_id}/coupon_payments/{coupon_payment_id}/complete | Update coupon payment to completed
+*DefaultApi* | [**create_asset**](docs/DefaultApi.md#create_asset) | **POST** /v1/assets | Create an asset
+*DefaultApi* | [**create_bot**](docs/DefaultApi.md#create_bot) | **POST** /v1/bots | Create a new bot
+*DefaultApi* | [**create_bot_strategy_by_id**](docs/DefaultApi.md#create_bot_strategy_by_id) | **POST** /v1/bot/strategies | Create Bot Strategy
+*DefaultApi* | [**create_coupon_payment**](docs/DefaultApi.md#create_coupon_payment) | **POST** /v1/assets/{asset_id}/coupon_payments | Create a coupon payment for a bond asset
 *DefaultApi* | [**create_new_isolated_position**](docs/DefaultApi.md#create_new_isolated_position) | **POST** /v1/positions/new_isolated | Create a new isolated position for a user transferring available assets into the position
 *DefaultApi* | [**create_order**](docs/DefaultApi.md#create_order) | **POST** /v1/orders | Create a new order
+*DefaultApi* | [**create_orderbook**](docs/DefaultApi.md#create_orderbook) | **POST** /v1/orderbooks | Create a new orderbook
+*DefaultApi* | [**create_user**](docs/DefaultApi.md#create_user) | **POST** /v1/user | Create a new user
 *DefaultApi* | [**delete_user**](docs/DefaultApi.md#delete_user) | **DELETE** /v1/user/{user_id} | Delete user by ID
+*DefaultApi* | [**enable_user**](docs/DefaultApi.md#enable_user) | **PUT** /v1/user/{user_id}/enable | Enable a disabled user
 *DefaultApi* | [**get_all_asset_prices**](docs/DefaultApi.md#get_all_asset_prices) | **GET** /v1/price | Get the current price of all assets
 *DefaultApi* | [**get_asset_by_id**](docs/DefaultApi.md#get_asset_by_id) | **GET** /v1/assets/{asset_id} | Get asset by ID
 *DefaultApi* | [**get_asset_price**](docs/DefaultApi.md#get_asset_price) | **GET** /v1/price/asset/{asset_id} | Get the current price of an asset
 *DefaultApi* | [**get_assets_stream**](docs/DefaultApi.md#get_assets_stream) | **GET** /v1/assets/stream | Get all inserts or updates for assets
+*DefaultApi* | [**get_bot_by_id**](docs/DefaultApi.md#get_bot_by_id) | **GET** /v1/bots/{bot_id} | Get bot by ID
+*DefaultApi* | [**get_bot_strategies**](docs/DefaultApi.md#get_bot_strategies) | **GET** /v1/bot/strategies | Get all bot strategies
+*DefaultApi* | [**get_bot_strategy_by_id**](docs/DefaultApi.md#get_bot_strategy_by_id) | **GET** /v1/bot/strategies/{strategy_id} | Get a bot strategy by ID
 *DefaultApi* | [**get_candle_data**](docs/DefaultApi.md#get_candle_data) | **GET** /v1/charts/{order_book_id}/candle | Get candlestick data for an orderbook
 *DefaultApi* | [**get_coupon_payments_by_asset_id**](docs/DefaultApi.md#get_coupon_payments_by_asset_id) | **GET** /v1/assets/{asset_id}/coupon_payments | Get coupon payments for a bond asset
 *DefaultApi* | [**get_l1_depth**](docs/DefaultApi.md#get_l1_depth) | **GET** /v1/orderbooks/{order_book_id}/L1 | Get the top price levels for a specific orderbook (L1 market depth)
 *DefaultApi* | [**get_l2_depth**](docs/DefaultApi.md#get_l2_depth) | **GET** /v1/orderbooks/{order_book_id}/L2 | Get the aggregated price levels for a specific orderbook (L2 market depth)
 *DefaultApi* | [**get_l3_depth**](docs/DefaultApi.md#get_l3_depth) | **GET** /v1/orderbooks/{order_book_id}/L3 | Get all open orders for a specific orderbook (L3 market depth)
+*DefaultApi* | [**get_ledger_balances_by_user_id**](docs/DefaultApi.md#get_ledger_balances_by_user_id) | **GET** /v1/ledger/balances/{user_id} | Get a specific user&#x27;s available, locked, and borrowed assets
 *DefaultApi* | [**get_ledger_balances_self**](docs/DefaultApi.md#get_ledger_balances_self) | **GET** /v1/ledger/balances/self | Get your own available, locked, and borrowed assets
+*DefaultApi* | [**get_ledger_interest_by_user_id**](docs/DefaultApi.md#get_ledger_interest_by_user_id) | **GET** /v1/ledger/interest/{user_id} | Get a specific user&#x27;s interest
 *DefaultApi* | [**get_ledger_interest_self**](docs/DefaultApi.md#get_ledger_interest_self) | **GET** /v1/ledger/interest/self | Get your own interest
 *DefaultApi* | [**get_ledger_module**](docs/DefaultApi.md#get_ledger_module) | **GET** /v1/ledger/module | Get the entire module object, including unborrowed leverage assets and total leverage trackers
 *DefaultApi* | [**get_ledger_module_by_asset**](docs/DefaultApi.md#get_ledger_module_by_asset) | **GET** /v1/ledger/module/{asset_id} | Get the module object for a single asset ID
+*DefaultApi* | [**get_ledger_positions_by_user_id**](docs/DefaultApi.md#get_ledger_positions_by_user_id) | **GET** /v1/ledger/positions/{user_id} | Get a specific user&#x27;s positions
 *DefaultApi* | [**get_ledger_positions_self**](docs/DefaultApi.md#get_ledger_positions_self) | **GET** /v1/ledger/positions/self | Get your own positions
+*DefaultApi* | [**get_ledger_value_by_user_id**](docs/DefaultApi.md#get_ledger_value_by_user_id) | **GET** /v1/ledger/value/{user_id} | Get a specific user&#x27;s available, locked, and borrowed USD value
 *DefaultApi* | [**get_ledger_value_self**](docs/DefaultApi.md#get_ledger_value_self) | **GET** /v1/ledger/value/self | Get your own available, locked, and borrowed USD value; and realized and unrealized PnL
+*DefaultApi* | [**get_leverage_liquidation_targets**](docs/DefaultApi.md#get_leverage_liquidation_targets) | **GET** /v1/leverage/liquidation-targets | Get a list of users who are eligible for automatic liquidation
 *DefaultApi* | [**get_order_by_id**](docs/DefaultApi.md#get_order_by_id) | **GET** /v1/orders/{order_id} | Get order by ID
 *DefaultApi* | [**get_orderbook_by_id**](docs/DefaultApi.md#get_orderbook_by_id) | **GET** /v1/orderbooks/{order_book_id} | Get orderbook by ID
+*DefaultApi* | [**get_orderbook_coupon_payments**](docs/DefaultApi.md#get_orderbook_coupon_payments) | **GET** /v1/orderbooks/{order_book_id}/coupon_payments | List coupon payments for an orderbook by admin only
 *DefaultApi* | [**get_orderbook_depth**](docs/DefaultApi.md#get_orderbook_depth) | **GET** /v1/orderbooks/{order_book_id}/depth | Get the aggregated price levels for a specific orderbook (L2 market depth)
 *DefaultApi* | [**get_orderbook_orders**](docs/DefaultApi.md#get_orderbook_orders) | **GET** /v1/orderbooks/{order_book_id}/orders | Get all open orders for a specific orderbook (L3 market depth)
 *DefaultApi* | [**get_orderbook_summary**](docs/DefaultApi.md#get_orderbook_summary) | **GET** /v1/orderbooks/{order_book_id}/summary | Get summary of an orderbook
 *DefaultApi* | [**get_orderbook_top**](docs/DefaultApi.md#get_orderbook_top) | **GET** /v1/orderbooks/{order_book_id}/top | Get the top price levels for a specific orderbook (L1 market depth)
+*DefaultApi* | [**get_pl_for_self_by_account**](docs/DefaultApi.md#get_pl_for_self_by_account) | **GET** /v1/pl/self | Get account-by-account PL breakdown for the logged in user
+*DefaultApi* | [**get_pl_for_user_by_account**](docs/DefaultApi.md#get_pl_for_user_by_account) | **GET** /v1/pl/{user_id} | Get account-by-account PL breakdown for a user
 *DefaultApi* | [**get_pool_price**](docs/DefaultApi.md#get_pool_price) | **GET** /v1/price/pool/{pool_id} | Get the current price of a pool
+*DefaultApi* | [**get_tenant_details_by_id**](docs/DefaultApi.md#get_tenant_details_by_id) | **GET** /v1/tenants/{tenant_id} | Get tenant details by ID
+*DefaultApi* | [**get_tenants**](docs/DefaultApi.md#get_tenants) | **GET** /v1/tenants | Get tenants
 *DefaultApi* | [**get_trade_by_id**](docs/DefaultApi.md#get_trade_by_id) | **GET** /v1/trades/{trade_id} | Get a trade by ID
 *DefaultApi* | [**get_trades**](docs/DefaultApi.md#get_trades) | **GET** /v1/trades | Get a filtered, paginated list of trades
 *DefaultApi* | [**get_transaction_by_id**](docs/DefaultApi.md#get_transaction_by_id) | **GET** /v1/transactions/{transaction_id} | Get a transaction by ID
 *DefaultApi* | [**get_transactions**](docs/DefaultApi.md#get_transactions) | **GET** /v1/transactions | Get a filtered, paginated list of transactions
 *DefaultApi* | [**get_user_by_id**](docs/DefaultApi.md#get_user_by_id) | **GET** /v1/user/{user_id} | Get user by ID (admin only)
+*DefaultApi* | [**get_user_config_by_admin**](docs/DefaultApi.md#get_user_config_by_admin) | **GET** /v1/user/{user_id}/config | Get user configuration by admin only
+*DefaultApi* | [**get_user_config_self**](docs/DefaultApi.md#get_user_config_self) | **GET** /v1/user/config/self | Get user configuration by self
+*DefaultApi* | [**get_user_coupon_payments**](docs/DefaultApi.md#get_user_coupon_payments) | **GET** /v1/user/{user_id}/coupon_payments | List coupon payments for a user
 *DefaultApi* | [**get_user_ledger_stream**](docs/DefaultApi.md#get_user_ledger_stream) | **GET** /v1/user/{user_id}/ledger/stream | Get a snapshot of user&#x27;s ledger updates since a specific time, and opens a stream for further updates
 *DefaultApi* | [**get_user_order_updates_stream**](docs/DefaultApi.md#get_user_order_updates_stream) | **GET** /v1/user/{user_id}/orders/{order_book_id}/updates/stream | Get a snapshot of user&#x27;s order updates for the given order book since a specific time, and opens a stream for further updates
-*DefaultApi* | [**get_user_orders_updates_stream_all**](docs/DefaultApi.md#get_user_orders_updates_stream_all) | **GET** /v1/user/{user_id}/orders/all/updates/stream | Get a snapshot of user&#x27;s order updates across all order books since a specific time, and opens a stream for further updates
+*DefaultApi* | [**get_user_order_updates_stream_all**](docs/DefaultApi.md#get_user_order_updates_stream_all) | **GET** /v1/user/{user_id}/orders/all/updates/stream | Get a snapshot of user&#x27;s order updates across all order books since a specific time, and opens a stream for further updates
 *DefaultApi* | [**get_user_self**](docs/DefaultApi.md#get_user_self) | **GET** /v1/user/self | Get user details for the authenticated user
 *DefaultApi* | [**get_user_transactions_stream**](docs/DefaultApi.md#get_user_transactions_stream) | **GET** /v1/user/{user_id}/transactions/stream | Get a snapshot of user&#x27;s executed transactions since a specific time, and opens a stream for further updates
+*DefaultApi* | [**get_users**](docs/DefaultApi.md#get_users) | **GET** /v1/user | Get all users (admin only)
+*DefaultApi* | [**halt_orderbook**](docs/DefaultApi.md#halt_orderbook) | **POST** /v1/orderbooks/{order_book_id}/halt | Halt trading on an order book
+*DefaultApi* | [**insert_new_tenant**](docs/DefaultApi.md#insert_new_tenant) | **POST** /v1/tenants | Insert tenant details by admin
+*DefaultApi* | [**ledger_deposit**](docs/DefaultApi.md#ledger_deposit) | **POST** /v1/ledger/deposit/{user_id} | Deposit assets into this user&#x27;s account from the outside world
+*DefaultApi* | [**ledger_withdraw**](docs/DefaultApi.md#ledger_withdraw) | **POST** /v1/ledger/withdraw/{user_id} | Withdraw assets from this user to the outside world
+*DefaultApi* | [**leverage_get_average_utilization**](docs/DefaultApi.md#leverage_get_average_utilization) | **GET** /v1/leverage/average_utilization/{asset_id} | Get average leverage utilization for a specific asset
+*DefaultApi* | [**leverage_get_interest_by_user_and_asset**](docs/DefaultApi.md#leverage_get_interest_by_user_and_asset) | **GET** /v1/leverage/interest/{user_id} | Get accrued leverage interest for a specific user and asset over a time range
+*DefaultApi* | [**leverage_get_utilization_by_user_and_asset**](docs/DefaultApi.md#leverage_get_utilization_by_user_and_asset) | **GET** /v1/leverage/utilization/{user_id} | Get borrow/supply balances for a specific user and asset over a time range
 *DefaultApi* | [**leverage_isolate_collateral**](docs/DefaultApi.md#leverage_isolate_collateral) | **POST** /v1/leverage/isolate_collateral | Create an isolated position by transferring collateral to the position from the user&#x27;s global collateral
 *DefaultApi* | [**leverage_supply**](docs/DefaultApi.md#leverage_supply) | **POST** /v1/leverage/supply | Supply leverage for a specific asset
 *DefaultApi* | [**leverage_unite**](docs/DefaultApi.md#leverage_unite) | **POST** /v1/leverage/unite | Combines all isolated positions into a single global position
@@ -772,14 +1318,26 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**liquidity_add**](docs/DefaultApi.md#liquidity_add) | **POST** /v1/liquidity/pool/{pool_id}/add | Add liquidity to a pool
 *DefaultApi* | [**liquidity_subtract**](docs/DefaultApi.md#liquidity_subtract) | **POST** /v1/liquidity/pool/{pool_id}/remove | Subtract liquidity from a pool
 *DefaultApi* | [**list_assets**](docs/DefaultApi.md#list_assets) | **GET** /v1/assets | List assets
+*DefaultApi* | [**list_bots**](docs/DefaultApi.md#list_bots) | **GET** /v1/bots | List all bots
 *DefaultApi* | [**list_order_books**](docs/DefaultApi.md#list_order_books) | **GET** /v1/orderbooks | List order books
 *DefaultApi* | [**list_orders**](docs/DefaultApi.md#list_orders) | **GET** /v1/orders | List all orders
+*DefaultApi* | [**pay_coupon_payment**](docs/DefaultApi.md#pay_coupon_payment) | **PUT** /v1/assets/{asset_id}/coupon_payments/{coupon_payment_id}/pay | Update payment information (pay date and quantity)
+*DefaultApi* | [**resume_orderbook**](docs/DefaultApi.md#resume_orderbook) | **POST** /v1/orderbooks/{order_book_id}/resume | Resume trading on a halted order book
+*DefaultApi* | [**start_bot**](docs/DefaultApi.md#start_bot) | **PUT** /v1/bots/{bot_id}/start | Start a bot
+*DefaultApi* | [**stop_bot**](docs/DefaultApi.md#stop_bot) | **PUT** /v1/bots/{bot_id}/stop | Stop a bot
 *DefaultApi* | [**stream_asset_prices**](docs/DefaultApi.md#stream_asset_prices) | **GET** /v1/prices/stream | Stream real-time asset prices as map objects
 *DefaultApi* | [**stream_candle_data**](docs/DefaultApi.md#stream_candle_data) | **GET** /v1/charts/{order_book_id}/candle/stream | Get a snapshot of candlestick data from date provided, and open a stream for real-time updates
 *DefaultApi* | [**stream_order_book_balances**](docs/DefaultApi.md#stream_order_book_balances) | **GET** /v1/orderbooks/{order_book_id}/balances/stream | Get a snapshot of base and quote balances for an order book and open a stream for real-time updates
 *DefaultApi* | [**stream_orderbook_open_orders**](docs/DefaultApi.md#stream_orderbook_open_orders) | **GET** /v1/orderbooks/{order_book_id}/open/stream | Get a snapshot of open orders in an order book and open a stream for real-time updates
 *DefaultApi* | [**stream_trades**](docs/DefaultApi.md#stream_trades) | **GET** /v1/trades/{order_book_id}/stream | Get a snapshot of trades executed on the given order book from a specific date and open a stream for real-time updates
+*DefaultApi* | [**terminate_orderbook**](docs/DefaultApi.md#terminate_orderbook) | **PUT** /v1/orderbooks/{order_book_id}/terminate | Terminate an order book
 *DefaultApi* | [**transfer_available_balances**](docs/DefaultApi.md#transfer_available_balances) | **POST** /v1/positions/transfer_balances | Transfer available balance between a user&#x27;s accounts (e.g. global to isolated position)
+*DefaultApi* | [**update_asset**](docs/DefaultApi.md#update_asset) | **PUT** /v1/assets/{asset_id} | Update asset by ID
+*DefaultApi* | [**update_bot_by_id**](docs/DefaultApi.md#update_bot_by_id) | **PUT** /v1/bots/{bot_id} | Update bot by ID
+*DefaultApi* | [**update_bot_strategy_by_id**](docs/DefaultApi.md#update_bot_strategy_by_id) | **PUT** /v1/bot/strategies/{strategy_id} | Update Bot Strategy by ID
+*DefaultApi* | [**update_orderbook**](docs/DefaultApi.md#update_orderbook) | **PUT** /v1/orderbooks/{order_book_id} | Update an existing orderbook
+*DefaultApi* | [**update_tenant_details_by_id**](docs/DefaultApi.md#update_tenant_details_by_id) | **PUT** /v1/tenants/{tenant_id} | Update tenant details by ID
+*DefaultApi* | [**update_user**](docs/DefaultApi.md#update_user) | **PUT** /v1/user/{user_id} | Update user by ID (admin only)
 *DefaultApi* | [**update_user_config**](docs/DefaultApi.md#update_user_config) | **PUT** /v1/user/{user_id}/config | Update user configuration by ID
 *DefaultApi* | [**update_user_config_self**](docs/DefaultApi.md#update_user_config_self) | **PUT** /v1/user/config/self | Update user configuration for the authenticated user
 *DefaultApi* | [**validate_submit_order**](docs/DefaultApi.md#validate_submit_order) | **POST** /v1/orders/validate | Validate submit order request data
@@ -787,9 +1345,12 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
+ - [AnyOfCreateBondReq](docs/AnyOfCreateBondReq.md)
+ - [AnyOfUpdateBondReq](docs/AnyOfUpdateBondReq.md)
  - [Asset](docs/Asset.md)
  - [AssetKind](docs/AssetKind.md)
  - [AssetPrice](docs/AssetPrice.md)
+ - [AssetPriceResponseEnvelope](docs/AssetPriceResponseEnvelope.md)
  - [AssetRequestError](docs/AssetRequestError.md)
  - [BalanceTransfer](docs/BalanceTransfer.md)
  - [BalancesResponse](docs/BalancesResponse.md)
@@ -797,77 +1358,160 @@ Class | Method | HTTP request | Description
  - [BondKind](docs/BondKind.md)
  - [BorrowRequest](docs/BorrowRequest.md)
  - [BorrowResponse](docs/BorrowResponse.md)
+ - [Bot](docs/Bot.md)
+ - [BotsResponse](docs/BotsResponse.md)
  - [CancelOrderResponse](docs/CancelOrderResponse.md)
  - [Candle](docs/Candle.md)
  - [CandleResolution](docs/CandleResolution.md)
  - [Collateral](docs/Collateral.md)
+ - [CompleteCouponPaymentReq](docs/CompleteCouponPaymentReq.md)
  - [CouponPayment](docs/CouponPayment.md)
+ - [CreateAssetReq](docs/CreateAssetReq.md)
+ - [CreateAssetReqCapabilities](docs/CreateAssetReqCapabilities.md)
+ - [CreateAssetResponse](docs/CreateAssetResponse.md)
+ - [CreateAssetResponseEnvelope](docs/CreateAssetResponseEnvelope.md)
+ - [CreateAssetResponseEnvelopeData](docs/CreateAssetResponseEnvelopeData.md)
+ - [CreateBondReq](docs/CreateBondReq.md)
+ - [CreateBotRequest](docs/CreateBotRequest.md)
+ - [CreateBotResponse](docs/CreateBotResponse.md)
+ - [CreateBotStrategyReq](docs/CreateBotStrategyReq.md)
+ - [CreateCouponPaymentReq](docs/CreateCouponPaymentReq.md)
+ - [CreateCouponPaymentResponse](docs/CreateCouponPaymentResponse.md)
  - [CreateOrUpdateUserResponse](docs/CreateOrUpdateUserResponse.md)
+ - [CreateOrderBookRequest](docs/CreateOrderBookRequest.md)
+ - [CreateOrderBookResponse](docs/CreateOrderBookResponse.md)
  - [CreateOrderRequest](docs/CreateOrderRequest.md)
  - [CreateOrderResponse](docs/CreateOrderResponse.md)
+ - [CreateOrderResponseEnvelope](docs/CreateOrderResponseEnvelope.md)
+ - [CreateUserRequest](docs/CreateUserRequest.md)
+ - [CreatedBotStrategyResponse](docs/CreatedBotStrategyResponse.md)
+ - [CreatedOrderBook](docs/CreatedOrderBook.md)
+ - [DefundUserRequest](docs/DefundUserRequest.md)
+ - [EmailExistsResponse](docs/EmailExistsResponse.md)
+ - [FundUser](docs/FundUser.md)
+ - [FundUserRequest](docs/FundUserRequest.md)
+ - [FundUserResponse](docs/FundUserResponse.md)
  - [GetAssetByIDResponse](docs/GetAssetByIDResponse.md)
+ - [GetAssetByIDResponseEnvelope](docs/GetAssetByIDResponseEnvelope.md)
  - [GetAssetPriceResponse](docs/GetAssetPriceResponse.md)
+ - [GetBotStrategyResponse](docs/GetBotStrategyResponse.md)
  - [GetOrderBookResponse](docs/GetOrderBookResponse.md)
  - [GetOrderBookSummaryResponse](docs/GetOrderBookSummaryResponse.md)
  - [GetOrderResponse](docs/GetOrderResponse.md)
  - [GetPoolPriceResponse](docs/GetPoolPriceResponse.md)
+ - [GetTenantResponse](docs/GetTenantResponse.md)
+ - [GetTenantsResponse](docs/GetTenantsResponse.md)
  - [GetTopOfBookResponse](docs/GetTopOfBookResponse.md)
+ - [GetTopOfBookResponseEnvelope](docs/GetTopOfBookResponseEnvelope.md)
  - [GetTransactionResponse](docs/GetTransactionResponse.md)
  - [GetUserConfigResponse](docs/GetUserConfigResponse.md)
  - [GetUserResponse](docs/GetUserResponse.md)
+ - [InlineResponse201](docs/InlineResponse201.md)
+ - [InsertNewTenantReq](docs/InsertNewTenantReq.md)
  - [IsolateCollateralRequest](docs/IsolateCollateralRequest.md)
  - [IsolateCollateralResponse](docs/IsolateCollateralResponse.md)
  - [IsolatedCollateral](docs/IsolatedCollateral.md)
  - [IsolatedPosition](docs/IsolatedPosition.md)
  - [LedgerModuleByAssetResponse](docs/LedgerModuleByAssetResponse.md)
+ - [LedgerModuleByAssetResponseEnvelope](docs/LedgerModuleByAssetResponseEnvelope.md)
  - [LedgerModuleResponse](docs/LedgerModuleResponse.md)
+ - [LedgerModuleResponseEnvelope](docs/LedgerModuleResponseEnvelope.md)
+ - [LeverageAccruedInterest](docs/LeverageAccruedInterest.md)
+ - [LeverageAccruedInterestResponse](docs/LeverageAccruedInterestResponse.md)
+ - [LeverageAccruedInterestResponseEnvelope](docs/LeverageAccruedInterestResponseEnvelope.md)
  - [LeverageBalanceResponse](docs/LeverageBalanceResponse.md)
  - [LeverageModuleResponse](docs/LeverageModuleResponse.md)
  - [LeverageRequestError](docs/LeverageRequestError.md)
  - [LeverageType](docs/LeverageType.md)
+ - [LeverageUsagePeriod](docs/LeverageUsagePeriod.md)
+ - [LeverageUtilization](docs/LeverageUtilization.md)
+ - [LeverageUtilizationResponse](docs/LeverageUtilizationResponse.md)
+ - [LeverageUtilizationResponseEnvelope](docs/LeverageUtilizationResponseEnvelope.md)
  - [LiquidationTargetsResponse](docs/LiquidationTargetsResponse.md)
+ - [LiquidationTargetsResponseEnvelope](docs/LiquidationTargetsResponseEnvelope.md)
  - [Liquidity](docs/Liquidity.md)
  - [LiquidityRequest](docs/LiquidityRequest.md)
  - [LiquidityResponse](docs/LiquidityResponse.md)
  - [ListAssetPriceResponse](docs/ListAssetPriceResponse.md)
+ - [ListAssetPriceResponseEnvelope](docs/ListAssetPriceResponseEnvelope.md)
  - [ListAssetsResponse](docs/ListAssetsResponse.md)
+ - [ListBotStrategies](docs/ListBotStrategies.md)
+ - [ListBotStrategiesMarketStrategies](docs/ListBotStrategiesMarketStrategies.md)
+ - [ListBotStrategiesPricingStrategies](docs/ListBotStrategiesPricingStrategies.md)
+ - [ListBotStrategiesRandomStrategies](docs/ListBotStrategiesRandomStrategies.md)
+ - [ListBotStrategiesTrades](docs/ListBotStrategiesTrades.md)
+ - [ListBotStrategiesTradingStrategies](docs/ListBotStrategiesTradingStrategies.md)
  - [ListCandlesResponse](docs/ListCandlesResponse.md)
+ - [ListCandlesResponseEnvelope](docs/ListCandlesResponseEnvelope.md)
  - [ListCouponPaymentsResponse](docs/ListCouponPaymentsResponse.md)
+ - [ListCouponPaymentsResponseEnvelope](docs/ListCouponPaymentsResponseEnvelope.md)
  - [ListOrderBookDepthResponse](docs/ListOrderBookDepthResponse.md)
+ - [ListOrderBookDepthResponseEnvelope](docs/ListOrderBookDepthResponseEnvelope.md)
  - [ListOrderBooksResponse](docs/ListOrderBooksResponse.md)
+ - [ListOrderbookCouponPayments](docs/ListOrderbookCouponPayments.md)
+ - [ListOrderbookCouponPaymentsEnvelope](docs/ListOrderbookCouponPaymentsEnvelope.md)
+ - [ListOrderbookResponseEnvelope](docs/ListOrderbookResponseEnvelope.md)
  - [ListOrdersResponse](docs/ListOrdersResponse.md)
+ - [ListOrdersResponseEnvelope](docs/ListOrdersResponseEnvelope.md)
  - [ListPositionsResponse](docs/ListPositionsResponse.md)
  - [ListTradeResponse](docs/ListTradeResponse.md)
+ - [ListTradeResponseEnvelope](docs/ListTradeResponseEnvelope.md)
  - [ListTransactionsResponse](docs/ListTransactionsResponse.md)
+ - [ListTransactionsResponseEnvelope](docs/ListTransactionsResponseEnvelope.md)
+ - [ListUserCouponPaymentsResponse](docs/ListUserCouponPaymentsResponse.md)
+ - [ListUserCouponPaymentsResponseEnvelope](docs/ListUserCouponPaymentsResponseEnvelope.md)
+ - [ListUsersResponse](docs/ListUsersResponse.md)
+ - [ListUsersResponseEnvelope](docs/ListUsersResponseEnvelope.md)
  - [LiveOrderbook](docs/LiveOrderbook.md)
+ - [LiveOrderbookResponse](docs/LiveOrderbookResponse.md)
+ - [Margin](docs/Margin.md)
+ - [MarketStrategy](docs/MarketStrategy.md)
  - [Metadata](docs/Metadata.md)
  - [ModuleBalance](docs/ModuleBalance.md)
  - [NewIsolatedPositionRequest](docs/NewIsolatedPositionRequest.md)
  - [NewIsolatedPositionResponse](docs/NewIsolatedPositionResponse.md)
+ - [OneOfCreateBotStrategyReq](docs/OneOfCreateBotStrategyReq.md)
+ - [OneOfCreateUserRequest](docs/OneOfCreateUserRequest.md)
  - [Order](docs/Order.md)
  - [OrderBook](docs/OrderBook.md)
  - [OrderBookBalance](docs/OrderBookBalance.md)
  - [OrderBookDepth](docs/OrderBookDepth.md)
  - [OrderBookHaltResponse](docs/OrderBookHaltResponse.md)
+ - [OrderBookResponseEnvelope](docs/OrderBookResponseEnvelope.md)
  - [OrderBookResumeResponse](docs/OrderBookResumeResponse.md)
  - [OrderBookStatus](docs/OrderBookStatus.md)
  - [OrderBookSummary](docs/OrderBookSummary.md)
+ - [OrderBookSummaryResponseEnvelope](docs/OrderBookSummaryResponseEnvelope.md)
  - [OrderBookTerminateResponse](docs/OrderBookTerminateResponse.md)
  - [OrderBookTop](docs/OrderBookTop.md)
+ - [OrderCancelledResponse](docs/OrderCancelledResponse.md)
  - [OrderId](docs/OrderId.md)
  - [OrderKind](docs/OrderKind.md)
  - [OrderModifierKind](docs/OrderModifierKind.md)
+ - [OrderResponseEnvelope](docs/OrderResponseEnvelope.md)
  - [OrderStatus](docs/OrderStatus.md)
+ - [OrderbookCouponPayment](docs/OrderbookCouponPayment.md)
+ - [PLAccount](docs/PLAccount.md)
+ - [PLAccounts](docs/PLAccounts.md)
+ - [PLAsset](docs/PLAsset.md)
+ - [PLResponse](docs/PLResponse.md)
+ - [PLResponseEnvelope](docs/PLResponseEnvelope.md)
+ - [PLSummary](docs/PLSummary.md)
+ - [PayCouponPaymentReq](docs/PayCouponPaymentReq.md)
  - [PoolPrice](docs/PoolPrice.md)
+ - [PoolPriceResponseEnvelope](docs/PoolPriceResponseEnvelope.md)
  - [PoolRequestError](docs/PoolRequestError.md)
  - [Portfolio](docs/Portfolio.md)
  - [Position](docs/Position.md)
  - [PositionResponse](docs/PositionResponse.md)
  - [PositionType](docs/PositionType.md)
  - [PriceLevel](docs/PriceLevel.md)
+ - [PricingStrategy](docs/PricingStrategy.md)
+ - [RandomStrategy](docs/RandomStrategy.md)
  - [RepayRequest](docs/RepayRequest.md)
  - [RepayResponse](docs/RepayResponse.md)
  - [ResponseEnvelope](docs/ResponseEnvelope.md)
+ - [ResponseEnvelopeOfListAssets](docs/ResponseEnvelopeOfListAssets.md)
  - [Side](docs/Side.md)
  - [StreamAssetPricesResponse](docs/StreamAssetPricesResponse.md)
  - [StreamAssetsEntry](docs/StreamAssetsEntry.md)
@@ -890,32 +1534,62 @@ Class | Method | HTTP request | Description
  - [Supply](docs/Supply.md)
  - [SupplyRequest](docs/SupplyRequest.md)
  - [SupplyResponse](docs/SupplyResponse.md)
+ - [Tenant](docs/Tenant.md)
+ - [TenantResponseEnvelope](docs/TenantResponseEnvelope.md)
+ - [TenantsResponseEnvelope](docs/TenantsResponseEnvelope.md)
  - [Trade](docs/Trade.md)
  - [TradeRequestError](docs/TradeRequestError.md)
  - [TradeResponse](docs/TradeResponse.md)
+ - [TradeResponseEnvelope](docs/TradeResponseEnvelope.md)
+ - [TradingStrategy](docs/TradingStrategy.md)
+ - [TradingStrategyTrades](docs/TradingStrategyTrades.md)
  - [Transaction](docs/Transaction.md)
  - [TransactionKind](docs/TransactionKind.md)
  - [TransactionRequestError](docs/TransactionRequestError.md)
+ - [TransactionResponseEnvelope](docs/TransactionResponseEnvelope.md)
  - [TransferBalancesRequest](docs/TransferBalancesRequest.md)
  - [TransferBalancesResponse](docs/TransferBalancesResponse.md)
  - [TransformedAssets](docs/TransformedAssets.md)
  - [UnitePositionRequest](docs/UnitePositionRequest.md)
  - [UnitePositionResponse](docs/UnitePositionResponse.md)
  - [UnitedPosition](docs/UnitedPosition.md)
+ - [UpdateAssetReq](docs/UpdateAssetReq.md)
+ - [UpdateAssetResponse](docs/UpdateAssetResponse.md)
+ - [UpdateBondReq](docs/UpdateBondReq.md)
+ - [UpdateBotRequest](docs/UpdateBotRequest.md)
+ - [UpdateBotResponse](docs/UpdateBotResponse.md)
+ - [UpdateFieldDateTime](docs/UpdateFieldDateTime.md)
  - [UpdateFieldString](docs/UpdateFieldString.md)
- - [UpdateRolesString](docs/UpdateRolesString.md)
+ - [UpdateFieldUUID](docs/UpdateFieldUUID.md)
+ - [UpdateOrderBookRequest](docs/UpdateOrderBookRequest.md)
+ - [UpdateOrderBookResponse](docs/UpdateOrderBookResponse.md)
+ - [UpdateRolesList](docs/UpdateRolesList.md)
+ - [UpdateTenantDetailsReq](docs/UpdateTenantDetailsReq.md)
  - [UpdateUserConfigRequest](docs/UpdateUserConfigRequest.md)
+ - [UpdateUserRequest](docs/UpdateUserRequest.md)
+ - [UpdatedBotStrategyResponse](docs/UpdatedBotStrategyResponse.md)
+ - [UpdatedOrderBook](docs/UpdatedOrderBook.md)
  - [User](docs/User.md)
  - [UserBalanceResponse](docs/UserBalanceResponse.md)
+ - [UserBalanceResponseEnvelope](docs/UserBalanceResponseEnvelope.md)
  - [UserConfig](docs/UserConfig.md)
+ - [UserConfigResponseEnvelope](docs/UserConfigResponseEnvelope.md)
+ - [UserCouponPayment](docs/UserCouponPayment.md)
+ - [UserCreatedResponse](docs/UserCreatedResponse.md)
  - [UserDeletedResponse](docs/UserDeletedResponse.md)
+ - [UserEnvelope](docs/UserEnvelope.md)
  - [UserInterest](docs/UserInterest.md)
  - [UserInterestResponse](docs/UserInterestResponse.md)
+ - [UserInterestResponseEnvelope](docs/UserInterestResponseEnvelope.md)
+ - [UserLeverageUtilization](docs/UserLeverageUtilization.md)
+ - [UserLeverageUtilizationResponse](docs/UserLeverageUtilizationResponse.md)
  - [UserPositionResponse](docs/UserPositionResponse.md)
+ - [UserPositionResponseEnvelope](docs/UserPositionResponseEnvelope.md)
  - [UserRole](docs/UserRole.md)
  - [UserUpdatedResponse](docs/UserUpdatedResponse.md)
  - [UserValue](docs/UserValue.md)
  - [UserValueResponse](docs/UserValueResponse.md)
+ - [UserValueResponseEnvelope](docs/UserValueResponseEnvelope.md)
  - [ValidateSubmitOrderRequest](docs/ValidateSubmitOrderRequest.md)
  - [ValidateSubmitOrderResponse](docs/ValidateSubmitOrderResponse.md)
  - [Withdraw](docs/Withdraw.md)

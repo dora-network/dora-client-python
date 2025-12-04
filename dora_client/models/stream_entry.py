@@ -28,7 +28,7 @@ class StreamEntry(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'val': 'dict',
+        'val': 'object',
         'time': 'datetime'
     }
 
@@ -54,7 +54,7 @@ class StreamEntry(object):
         The data being streamed  # noqa: E501
 
         :return: The val of this StreamEntry.  # noqa: E501
-        :rtype: dict
+        :rtype: object
         """
         return self._val
 
@@ -65,7 +65,7 @@ class StreamEntry(object):
         The data being streamed  # noqa: E501
 
         :param val: The val of this StreamEntry.  # noqa: E501
-        :type: dict
+        :type: object
         """
 
         self._val = val

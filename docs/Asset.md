@@ -10,7 +10,6 @@ Name | Type | Description | Notes
 **fractionalized_units** | **int** |  | [optional] 
 **description** | **str** |  | [optional] 
 **liquidation_threshold** | **float** |  | [optional] 
-**maturity_id** | **str** |  | [optional] 
 **max_supply** | **int** |  | [optional] 
 **max_utilization** | **int** |  | [optional] 
 **name** | **str** |  | [optional] 

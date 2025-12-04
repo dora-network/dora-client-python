@@ -28,27 +28,27 @@ class ResponseEnvelope(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'data': 'dict',
-        'error': 'str',
+        'data': 'object',
+        'error_msg': 'str',
         'metadata': 'Metadata'
     }
 
     attribute_map = {
         'data': 'data',
-        'error': 'error',
+        'error_msg': 'error_msg',
         'metadata': 'metadata'
     }
 
-    def __init__(self, data=None, error=None, metadata=None):  # noqa: E501
+    def __init__(self, data=None, error_msg=None, metadata=None):  # noqa: E501
         """ResponseEnvelope - a model defined in Swagger"""  # noqa: E501
         self._data = None
-        self._error = None
+        self._error_msg = None
         self._metadata = None
         self.discriminator = None
         if data is not None:
             self.data = data
-        if error is not None:
-            self.error = error
+        if error_msg is not None:
+            self.error_msg = error_msg
         if metadata is not None:
             self.metadata = metadata
 
@@ -59,7 +59,7 @@ class ResponseEnvelope(object):
         The response data. Present for successful (2xx) responses.  # noqa: E501
 
         :return: The data of this ResponseEnvelope.  # noqa: E501
-        :rtype: dict
+        :rtype: object
         """
         return self._data
 
@@ -70,33 +70,33 @@ class ResponseEnvelope(object):
         The response data. Present for successful (2xx) responses.  # noqa: E501
 
         :param data: The data of this ResponseEnvelope.  # noqa: E501
-        :type: dict
+        :type: object
         """
 
         self._data = data
 
     @property
-    def error(self):
-        """Gets the error of this ResponseEnvelope.  # noqa: E501
+    def error_msg(self):
+        """Gets the error_msg of this ResponseEnvelope.  # noqa: E501
 
         The error message. Present for error (non-2xx) responses.  # noqa: E501
 
-        :return: The error of this ResponseEnvelope.  # noqa: E501
+        :return: The error_msg of this ResponseEnvelope.  # noqa: E501
         :rtype: str
         """
-        return self._error
+        return self._error_msg
 
-    @error.setter
-    def error(self, error):
-        """Sets the error of this ResponseEnvelope.
+    @error_msg.setter
+    def error_msg(self, error_msg):
+        """Sets the error_msg of this ResponseEnvelope.
 
         The error message. Present for error (non-2xx) responses.  # noqa: E501
 
-        :param error: The error of this ResponseEnvelope.  # noqa: E501
+        :param error_msg: The error_msg of this ResponseEnvelope.  # noqa: E501
         :type: str
         """
 
-        self._error = error
+        self._error_msg = error_msg
 
     @property
     def metadata(self):
