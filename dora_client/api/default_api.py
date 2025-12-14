@@ -325,7 +325,7 @@ class DefaultApi(object):
 
         :param async_req bool
         :param CreateAPIKeyRequest body: (required)
-        :return: CreateAPIKeyResponseEnvelope
+        :return: CreateAPIKeyResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -346,7 +346,7 @@ class DefaultApi(object):
 
         :param async_req bool
         :param CreateAPIKeyRequest body: (required)
-        :return: CreateAPIKeyResponseEnvelope
+        :return: CreateAPIKeyResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -404,7 +404,7 @@ class DefaultApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='CreateAPIKeyResponseEnvelope',  # noqa: E501
+            response_type='CreateAPIKeyResponse',  # noqa: E501
             auth_settings=auth_settings,
             async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
@@ -4822,7 +4822,7 @@ class DefaultApi(object):
 
         :param async_req bool
         :param str key_id: (required)
-        :return: RevokeAPIKeyResponseEnvelope
+        :return: RevokeAPIKeyResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -4843,7 +4843,7 @@ class DefaultApi(object):
 
         :param async_req bool
         :param str key_id: (required)
-        :return: RevokeAPIKeyResponseEnvelope
+        :return: RevokeAPIKeyResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -4897,7 +4897,7 @@ class DefaultApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='RevokeAPIKeyResponseEnvelope',  # noqa: E501
+            response_type='RevokeAPIKeyResponse',  # noqa: E501
             auth_settings=auth_settings,
             async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),

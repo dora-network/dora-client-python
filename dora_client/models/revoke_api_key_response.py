@@ -28,118 +28,14 @@ class RevokeAPIKeyResponse(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'user_id': 'str',
-        'key_id': 'str',
-        'label': 'str',
-        'is_active': 'bool'
     }
 
     attribute_map = {
-        'user_id': 'user_id',
-        'key_id': 'key_id',
-        'label': 'label',
-        'is_active': 'is_active'
     }
 
-    def __init__(self, user_id=None, key_id=None, label=None, is_active=None):  # noqa: E501
+    def __init__(self):  # noqa: E501
         """RevokeAPIKeyResponse - a model defined in Swagger"""  # noqa: E501
-        self._user_id = None
-        self._key_id = None
-        self._label = None
-        self._is_active = None
         self.discriminator = None
-        if user_id is not None:
-            self.user_id = user_id
-        if key_id is not None:
-            self.key_id = key_id
-        if label is not None:
-            self.label = label
-        if is_active is not None:
-            self.is_active = is_active
-
-    @property
-    def user_id(self):
-        """Gets the user_id of this RevokeAPIKeyResponse.  # noqa: E501
-
-
-        :return: The user_id of this RevokeAPIKeyResponse.  # noqa: E501
-        :rtype: str
-        """
-        return self._user_id
-
-    @user_id.setter
-    def user_id(self, user_id):
-        """Sets the user_id of this RevokeAPIKeyResponse.
-
-
-        :param user_id: The user_id of this RevokeAPIKeyResponse.  # noqa: E501
-        :type: str
-        """
-
-        self._user_id = user_id
-
-    @property
-    def key_id(self):
-        """Gets the key_id of this RevokeAPIKeyResponse.  # noqa: E501
-
-
-        :return: The key_id of this RevokeAPIKeyResponse.  # noqa: E501
-        :rtype: str
-        """
-        return self._key_id
-
-    @key_id.setter
-    def key_id(self, key_id):
-        """Sets the key_id of this RevokeAPIKeyResponse.
-
-
-        :param key_id: The key_id of this RevokeAPIKeyResponse.  # noqa: E501
-        :type: str
-        """
-
-        self._key_id = key_id
-
-    @property
-    def label(self):
-        """Gets the label of this RevokeAPIKeyResponse.  # noqa: E501
-
-
-        :return: The label of this RevokeAPIKeyResponse.  # noqa: E501
-        :rtype: str
-        """
-        return self._label
-
-    @label.setter
-    def label(self, label):
-        """Sets the label of this RevokeAPIKeyResponse.
-
-
-        :param label: The label of this RevokeAPIKeyResponse.  # noqa: E501
-        :type: str
-        """
-
-        self._label = label
-
-    @property
-    def is_active(self):
-        """Gets the is_active of this RevokeAPIKeyResponse.  # noqa: E501
-
-
-        :return: The is_active of this RevokeAPIKeyResponse.  # noqa: E501
-        :rtype: bool
-        """
-        return self._is_active
-
-    @is_active.setter
-    def is_active(self, is_active):
-        """Sets the is_active of this RevokeAPIKeyResponse.
-
-
-        :param is_active: The is_active of this RevokeAPIKeyResponse.  # noqa: E501
-        :type: bool
-        """
-
-        self._is_active = is_active
 
     def to_dict(self):
         """Returns the model properties as a dict"""

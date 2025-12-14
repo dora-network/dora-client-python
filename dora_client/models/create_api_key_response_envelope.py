@@ -29,7 +29,7 @@ class CreateAPIKeyResponseEnvelope(ResponseEnvelope):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'data': 'CreateAPIKeyResponse'
+        'data': 'CreateAPIKeyData'
     }
     if hasattr(ResponseEnvelope, "swagger_types"):
         swagger_types.update(ResponseEnvelope.swagger_types)
@@ -54,7 +54,7 @@ class CreateAPIKeyResponseEnvelope(ResponseEnvelope):
 
 
         :return: The data of this CreateAPIKeyResponseEnvelope.  # noqa: E501
-        :rtype: CreateAPIKeyResponse
+        :rtype: CreateAPIKeyData
         """
         return self._data
 
@@ -64,7 +64,7 @@ class CreateAPIKeyResponseEnvelope(ResponseEnvelope):
 
 
         :param data: The data of this CreateAPIKeyResponseEnvelope.  # noqa: E501
-        :type: CreateAPIKeyResponse
+        :type: CreateAPIKeyData
         """
 
         self._data = data
