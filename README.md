@@ -606,6 +606,16 @@ except ApiException as e:
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+
+try:
+    # List all position accounts for the authenticated user
+    api_response = api_instance.list_position_accounts_self()
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->list_position_accounts_self: %s\n" % e)
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
 since = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 
 try:
@@ -729,7 +739,7 @@ Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *DefaultApi* | [**cancel_all_open_orders**](docs/DefaultApi.md#cancel_all_open_orders) | **DELETE** /v1/orders | Cancel all open orders, if user passes orderbook on query param it will cancel all orders on specific orderbook, admin can cancel user&#x27;s orders on specific orderbook
 *DefaultApi* | [**cancel_order_by_id**](docs/DefaultApi.md#cancel_order_by_id) | **DELETE** /v1/orders/{order_id} | Cancel an order by ID
-*DefaultApi* | [**check_user_email_exists**](docs/DefaultApi.md#check_user_email_exists) | **GET** /v1/user/{email}/exists | Check whether a user email exists
+*DefaultApi* | [**check_user_email_exists**](docs/DefaultApi.md#check_user_email_exists) | **GET** /v1/user/exists | Check whether a user email exists
 *DefaultApi* | [**create_new_isolated_position**](docs/DefaultApi.md#create_new_isolated_position) | **POST** /v1/positions/new_isolated | Create a new isolated position for a user transferring available assets into the position
 *DefaultApi* | [**create_order**](docs/DefaultApi.md#create_order) | **POST** /v1/orders | Create a new order
 *DefaultApi* | [**delete_user**](docs/DefaultApi.md#delete_user) | **DELETE** /v1/user/{user_id} | Delete user by ID
@@ -774,6 +784,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**list_assets**](docs/DefaultApi.md#list_assets) | **GET** /v1/assets | List assets
 *DefaultApi* | [**list_order_books**](docs/DefaultApi.md#list_order_books) | **GET** /v1/orderbooks | List order books
 *DefaultApi* | [**list_orders**](docs/DefaultApi.md#list_orders) | **GET** /v1/orders | List all orders
+*DefaultApi* | [**list_position_accounts_self**](docs/DefaultApi.md#list_position_accounts_self) | **GET** /v1/user/self/position_accounts | List all position accounts for the authenticated user
 *DefaultApi* | [**stream_asset_prices**](docs/DefaultApi.md#stream_asset_prices) | **GET** /v1/prices/stream | Stream real-time asset prices as map objects
 *DefaultApi* | [**stream_candle_data**](docs/DefaultApi.md#stream_candle_data) | **GET** /v1/charts/{order_book_id}/candle/stream | Get a snapshot of candlestick data from date provided, and open a stream for real-time updates
 *DefaultApi* | [**stream_order_book_balances**](docs/DefaultApi.md#stream_order_book_balances) | **GET** /v1/orderbooks/{order_book_id}/balances/stream | Get a snapshot of base and quote balances for an order book and open a stream for real-time updates
@@ -853,6 +864,8 @@ Class | Method | HTTP request | Description
  - [ListOrderbookResponseEnvelope](docs/ListOrderbookResponseEnvelope.md)
  - [ListOrdersResponse](docs/ListOrdersResponse.md)
  - [ListOrdersResponseEnvelope](docs/ListOrdersResponseEnvelope.md)
+ - [ListPositionAccountsResponse](docs/ListPositionAccountsResponse.md)
+ - [ListPositionAccountsResponseEnvelope](docs/ListPositionAccountsResponseEnvelope.md)
  - [ListPositionsResponse](docs/ListPositionsResponse.md)
  - [ListTradeResponse](docs/ListTradeResponse.md)
  - [ListTradeResponseEnvelope](docs/ListTradeResponseEnvelope.md)
@@ -889,6 +902,8 @@ Class | Method | HTTP request | Description
  - [PoolRequestError](docs/PoolRequestError.md)
  - [Portfolio](docs/Portfolio.md)
  - [Position](docs/Position.md)
+ - [PositionAccount](docs/PositionAccount.md)
+ - [PositionAccounts](docs/PositionAccounts.md)
  - [PositionResponse](docs/PositionResponse.md)
  - [PositionType](docs/PositionType.md)
  - [PriceLevel](docs/PriceLevel.md)

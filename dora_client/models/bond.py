@@ -39,7 +39,8 @@ class Bond(object):
         'maturity_at': 'datetime',
         'principal_value': 'str',
         'payments_per_year': 'int',
-        'payments_every': 'int'
+        'payments_every': 'int',
+        'next_coupon_payment': 'datetime'
     }
 
     attribute_map = {
@@ -54,10 +55,11 @@ class Bond(object):
         'maturity_at': 'maturity_at',
         'principal_value': 'principal_value',
         'payments_per_year': 'payments_per_year',
-        'payments_every': 'payments_every'
+        'payments_every': 'payments_every',
+        'next_coupon_payment': 'next_coupon_payment'
     }
 
-    def __init__(self, id=None, kind=None, coupon_start_at=None, created_at=None, final_coupon_at=None, isin=None, issued_at=None, issuer=None, maturity_at=None, principal_value=None, payments_per_year=None, payments_every=None):  # noqa: E501
+    def __init__(self, id=None, kind=None, coupon_start_at=None, created_at=None, final_coupon_at=None, isin=None, issued_at=None, issuer=None, maturity_at=None, principal_value=None, payments_per_year=None, payments_every=None, next_coupon_payment=None):  # noqa: E501
         """Bond - a model defined in Swagger"""  # noqa: E501
         self._id = None
         self._kind = None
@@ -71,6 +73,7 @@ class Bond(object):
         self._principal_value = None
         self._payments_per_year = None
         self._payments_every = None
+        self._next_coupon_payment = None
         self.discriminator = None
         if id is not None:
             self.id = id
@@ -96,6 +99,8 @@ class Bond(object):
             self.payments_per_year = payments_per_year
         if payments_every is not None:
             self.payments_every = payments_every
+        if next_coupon_payment is not None:
+            self.next_coupon_payment = next_coupon_payment
 
     @property
     def id(self):
@@ -350,6 +355,27 @@ class Bond(object):
         """
 
         self._payments_every = payments_every
+
+    @property
+    def next_coupon_payment(self):
+        """Gets the next_coupon_payment of this Bond.  # noqa: E501
+
+
+        :return: The next_coupon_payment of this Bond.  # noqa: E501
+        :rtype: datetime
+        """
+        return self._next_coupon_payment
+
+    @next_coupon_payment.setter
+    def next_coupon_payment(self, next_coupon_payment):
+        """Sets the next_coupon_payment of this Bond.
+
+
+        :param next_coupon_payment: The next_coupon_payment of this Bond.  # noqa: E501
+        :type: datetime
+        """
+
+        self._next_coupon_payment = next_coupon_payment
 
     def to_dict(self):
         """Returns the model properties as a dict"""

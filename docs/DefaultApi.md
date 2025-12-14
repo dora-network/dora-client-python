@@ -6,7 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**cancel_all_open_orders**](DefaultApi.md#cancel_all_open_orders) | **DELETE** /v1/orders | Cancel all open orders, if user passes orderbook on query param it will cancel all orders on specific orderbook, admin can cancel user&#x27;s orders on specific orderbook
 [**cancel_order_by_id**](DefaultApi.md#cancel_order_by_id) | **DELETE** /v1/orders/{order_id} | Cancel an order by ID
-[**check_user_email_exists**](DefaultApi.md#check_user_email_exists) | **GET** /v1/user/{email}/exists | Check whether a user email exists
+[**check_user_email_exists**](DefaultApi.md#check_user_email_exists) | **GET** /v1/user/exists | Check whether a user email exists
 [**create_new_isolated_position**](DefaultApi.md#create_new_isolated_position) | **POST** /v1/positions/new_isolated | Create a new isolated position for a user transferring available assets into the position
 [**create_order**](DefaultApi.md#create_order) | **POST** /v1/orders | Create a new order
 [**delete_user**](DefaultApi.md#delete_user) | **DELETE** /v1/user/{user_id} | Delete user by ID
@@ -51,6 +51,7 @@ Method | HTTP request | Description
 [**list_assets**](DefaultApi.md#list_assets) | **GET** /v1/assets | List assets
 [**list_order_books**](DefaultApi.md#list_order_books) | **GET** /v1/orderbooks | List order books
 [**list_orders**](DefaultApi.md#list_orders) | **GET** /v1/orders | List all orders
+[**list_position_accounts_self**](DefaultApi.md#list_position_accounts_self) | **GET** /v1/user/self/position_accounts | List all position accounts for the authenticated user
 [**stream_asset_prices**](DefaultApi.md#stream_asset_prices) | **GET** /v1/prices/stream | Stream real-time asset prices as map objects
 [**stream_candle_data**](DefaultApi.md#stream_candle_data) | **GET** /v1/charts/{order_book_id}/candle/stream | Get a snapshot of candlestick data from date provided, and open a stream for real-time updates
 [**stream_order_book_balances**](DefaultApi.md#stream_order_book_balances) | **GET** /v1/orderbooks/{order_book_id}/balances/stream | Get a snapshot of base and quote balances for an order book and open a stream for real-time updates
@@ -2272,6 +2273,48 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ListOrdersResponse**](ListOrdersResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **list_position_accounts_self**
+> ListPositionAccountsResponse list_position_accounts_self()
+
+List all position accounts for the authenticated user
+
+### Example
+```python
+from __future__ import print_function
+import time
+import dora_client
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi()
+
+try:
+    # List all position accounts for the authenticated user
+    api_response = api_instance.list_position_accounts_self()
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->list_position_accounts_self: %s\n" % e)
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**ListPositionAccountsResponse**](ListPositionAccountsResponse.md)
 
 ### Authorization
 

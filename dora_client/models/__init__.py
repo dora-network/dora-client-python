@@ -80,6 +80,8 @@ from dora_client.models.list_order_books_response import ListOrderBooksResponse
 from dora_client.models.list_orderbook_response_envelope import ListOrderbookResponseEnvelope
 from dora_client.models.list_orders_response import ListOrdersResponse
 from dora_client.models.list_orders_response_envelope import ListOrdersResponseEnvelope
+from dora_client.models.list_position_accounts_response import ListPositionAccountsResponse
+from dora_client.models.list_position_accounts_response_envelope import ListPositionAccountsResponseEnvelope
 from dora_client.models.list_positions_response import ListPositionsResponse
 from dora_client.models.list_trade_response import ListTradeResponse
 from dora_client.models.list_trade_response_envelope import ListTradeResponseEnvelope
@@ -116,6 +118,8 @@ from dora_client.models.pool_price_response_envelope import PoolPriceResponseEnv
 from dora_client.models.pool_request_error import PoolRequestError
 from dora_client.models.portfolio import Portfolio
 from dora_client.models.position import Position
+from dora_client.models.position_account import PositionAccount
+from dora_client.models.position_accounts import PositionAccounts
 from dora_client.models.position_response import PositionResponse
 from dora_client.models.position_type import PositionType
 from dora_client.models.price_level import PriceLevel

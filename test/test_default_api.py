@@ -357,6 +357,13 @@ class TestDefaultApi(unittest.TestCase):
         """
         pass
 
+    def test_list_position_accounts_self(self):
+        """Test case for list_position_accounts_self
+
+        List all position accounts for the authenticated user  # noqa: E501
+        """
+        pass
+
     def test_stream_asset_prices(self):
         """Test case for stream_asset_prices
 

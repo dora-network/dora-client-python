@@ -47,6 +47,7 @@ class Asset(object):
         'can_onboard': 'bool',
         'can_trade': 'bool',
         'can_virtual_borrow': 'bool',
+        'max_leverage': 'float',
         'bond': 'Bond'
     }
 
@@ -70,10 +71,11 @@ class Asset(object):
         'can_onboard': 'can_onboard',
         'can_trade': 'can_trade',
         'can_virtual_borrow': 'can_virtual_borrow',
+        'max_leverage': 'max_leverage',
         'bond': 'bond'
     }
 
-    def __init__(self, id=None, collateral_weight=None, created_at=None, decimals=None, fractionalized_units=None, description=None, liquidation_threshold=None, maturity_id=None, max_supply=None, max_utilization=None, name=None, symbol=None, kind=None, _yield=None, can_add_liquidity=None, can_direct_borrow=None, can_onboard=None, can_trade=None, can_virtual_borrow=None, bond=None):  # noqa: E501
+    def __init__(self, id=None, collateral_weight=None, created_at=None, decimals=None, fractionalized_units=None, description=None, liquidation_threshold=None, maturity_id=None, max_supply=None, max_utilization=None, name=None, symbol=None, kind=None, _yield=None, can_add_liquidity=None, can_direct_borrow=None, can_onboard=None, can_trade=None, can_virtual_borrow=None, max_leverage=None, bond=None):  # noqa: E501
         """Asset - a model defined in Swagger"""  # noqa: E501
         self._id = None
         self._collateral_weight = None
@@ -94,6 +96,7 @@ class Asset(object):
         self._can_onboard = None
         self._can_trade = None
         self._can_virtual_borrow = None
+        self._max_leverage = None
         self._bond = None
         self.discriminator = None
         if id is not None:
@@ -134,6 +137,8 @@ class Asset(object):
             self.can_trade = can_trade
         if can_virtual_borrow is not None:
             self.can_virtual_borrow = can_virtual_borrow
+        if max_leverage is not None:
+            self.max_leverage = max_leverage
         if bond is not None:
             self.bond = bond
 
@@ -535,6 +540,27 @@ class Asset(object):
         """
 
         self._can_virtual_borrow = can_virtual_borrow
+
+    @property
+    def max_leverage(self):
+        """Gets the max_leverage of this Asset.  # noqa: E501
+
+
+        :return: The max_leverage of this Asset.  # noqa: E501
+        :rtype: float
+        """
+        return self._max_leverage
+
+    @max_leverage.setter
+    def max_leverage(self, max_leverage):
+        """Sets the max_leverage of this Asset.
+
+
+        :param max_leverage: The max_leverage of this Asset.  # noqa: E501
+        :type: float
+        """
+
+        self._max_leverage = max_leverage
 
     @property
     def bond(self):

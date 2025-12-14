@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **principal_value** | **str** |  | [optional] 
 **payments_per_year** | **int** |  | [optional] 
 **payments_every** | **int** | Coupon payment frequency in nanoseconds (minimum 1000 i.e. 1 microsecond) | [optional] 
+**next_coupon_payment** | **datetime** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
