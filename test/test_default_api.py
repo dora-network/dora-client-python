@@ -49,6 +49,13 @@ class TestDefaultApi(unittest.TestCase):
         """
         pass
 
+    def test_create_api_key_for_user(self):
+        """Test case for create_api_key_for_user
+
+        Create apikey for a user  # noqa: E501
+        """
+        pass
+
     def test_create_new_isolated_position(self):
         """Test case for create_new_isolated_position
 
@@ -294,6 +301,13 @@ class TestDefaultApi(unittest.TestCase):
         """
         pass
 
+    def test_get_users_api_keys(self):
+        """Test case for get_users_api_keys
+
+        Get user's api keys  # noqa: E501
+        """
+        pass
+
     def test_leverage_isolate_collateral(self):
         """Test case for leverage_isolate_collateral
 
@@ -361,6 +375,13 @@ class TestDefaultApi(unittest.TestCase):
         """Test case for list_position_accounts_self
 
         List all position accounts for the authenticated user  # noqa: E501
+        """
+        pass
+
+    def test_revoke_api_key_for_user(self):
+        """Test case for revoke_api_key_for_user
+
+        Revoke apikey for a user  # noqa: E501
         """
         pass
 

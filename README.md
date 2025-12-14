@@ -88,6 +88,17 @@ except ApiException as e:
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+body = dora_client.CreateAPIKeyRequest() # CreateAPIKeyRequest | 
+
+try:
+    # Create apikey for a user
+    api_response = api_instance.create_api_key_for_user(body)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->create_api_key_for_user: %s\n" % e)
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
 body = dora_client.NewIsolatedPositionRequest() # NewIsolatedPositionRequest | 
 
 try:
@@ -485,6 +496,16 @@ except ApiException as e:
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+
+try:
+    # Get user's api keys
+    api_response = api_instance.get_users_api_keys()
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->get_users_api_keys: %s\n" % e)
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
 body = dora_client.IsolateCollateralRequest() # IsolateCollateralRequest | 
 
 try:
@@ -616,6 +637,17 @@ except ApiException as e:
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+key_id = 'key_id_example' # str | 
+
+try:
+    # Revoke apikey for a user
+    api_response = api_instance.revoke_api_key_for_user(key_id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->revoke_api_key_for_user: %s\n" % e)
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
 since = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 
 try:
@@ -740,6 +772,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**cancel_all_open_orders**](docs/DefaultApi.md#cancel_all_open_orders) | **DELETE** /v1/orders | Cancel all open orders, if user passes orderbook on query param it will cancel all orders on specific orderbook, admin can cancel user&#x27;s orders on specific orderbook
 *DefaultApi* | [**cancel_order_by_id**](docs/DefaultApi.md#cancel_order_by_id) | **DELETE** /v1/orders/{order_id} | Cancel an order by ID
 *DefaultApi* | [**check_user_email_exists**](docs/DefaultApi.md#check_user_email_exists) | **GET** /v1/user/exists | Check whether a user email exists
+*DefaultApi* | [**create_api_key_for_user**](docs/DefaultApi.md#create_api_key_for_user) | **POST** /v1/user/apikey | Create apikey for a user
 *DefaultApi* | [**create_new_isolated_position**](docs/DefaultApi.md#create_new_isolated_position) | **POST** /v1/positions/new_isolated | Create a new isolated position for a user transferring available assets into the position
 *DefaultApi* | [**create_order**](docs/DefaultApi.md#create_order) | **POST** /v1/orders | Create a new order
 *DefaultApi* | [**delete_user**](docs/DefaultApi.md#delete_user) | **DELETE** /v1/user/{user_id} | Delete user by ID
@@ -775,6 +808,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**get_user_orders_updates_stream_all**](docs/DefaultApi.md#get_user_orders_updates_stream_all) | **GET** /v1/user/{user_id}/orders/all/updates/stream | Get a snapshot of user&#x27;s order updates across all order books since a specific time, and opens a stream for further updates
 *DefaultApi* | [**get_user_self**](docs/DefaultApi.md#get_user_self) | **GET** /v1/user/self | Get user details for the authenticated user
 *DefaultApi* | [**get_user_transactions_stream**](docs/DefaultApi.md#get_user_transactions_stream) | **GET** /v1/user/{user_id}/transactions/stream | Get a snapshot of user&#x27;s executed transactions since a specific time, and opens a stream for further updates
+*DefaultApi* | [**get_users_api_keys**](docs/DefaultApi.md#get_users_api_keys) | **GET** /v1/user/apikey | Get user&#x27;s api keys
 *DefaultApi* | [**leverage_isolate_collateral**](docs/DefaultApi.md#leverage_isolate_collateral) | **POST** /v1/leverage/isolate_collateral | Create an isolated position by transferring collateral to the position from the user&#x27;s global collateral
 *DefaultApi* | [**leverage_supply**](docs/DefaultApi.md#leverage_supply) | **POST** /v1/leverage/supply | Supply leverage for a specific asset
 *DefaultApi* | [**leverage_unite**](docs/DefaultApi.md#leverage_unite) | **POST** /v1/leverage/unite | Combines all isolated positions into a single global position
@@ -785,6 +819,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**list_order_books**](docs/DefaultApi.md#list_order_books) | **GET** /v1/orderbooks | List order books
 *DefaultApi* | [**list_orders**](docs/DefaultApi.md#list_orders) | **GET** /v1/orders | List all orders
 *DefaultApi* | [**list_position_accounts_self**](docs/DefaultApi.md#list_position_accounts_self) | **GET** /v1/user/self/position_accounts | List all position accounts for the authenticated user
+*DefaultApi* | [**revoke_api_key_for_user**](docs/DefaultApi.md#revoke_api_key_for_user) | **PUT** /v1/user/apikey/{key_id}/revoke | Revoke apikey for a user
 *DefaultApi* | [**stream_asset_prices**](docs/DefaultApi.md#stream_asset_prices) | **GET** /v1/prices/stream | Stream real-time asset prices as map objects
 *DefaultApi* | [**stream_candle_data**](docs/DefaultApi.md#stream_candle_data) | **GET** /v1/charts/{order_book_id}/candle/stream | Get a snapshot of candlestick data from date provided, and open a stream for real-time updates
 *DefaultApi* | [**stream_order_book_balances**](docs/DefaultApi.md#stream_order_book_balances) | **GET** /v1/orderbooks/{order_book_id}/balances/stream | Get a snapshot of base and quote balances for an order book and open a stream for real-time updates
@@ -798,6 +833,8 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
+ - [APIKeyResponse](docs/APIKeyResponse.md)
+ - [APIKeyResponseEnvelope](docs/APIKeyResponseEnvelope.md)
  - [Asset](docs/Asset.md)
  - [AssetKind](docs/AssetKind.md)
  - [AssetPrice](docs/AssetPrice.md)
@@ -815,12 +852,15 @@ Class | Method | HTTP request | Description
  - [CandleResolution](docs/CandleResolution.md)
  - [Collateral](docs/Collateral.md)
  - [CouponPayment](docs/CouponPayment.md)
+ - [CreateAPIKeyRequest](docs/CreateAPIKeyRequest.md)
+ - [CreateAPIKeyResponse](docs/CreateAPIKeyResponse.md)
  - [CreateOrUpdateUserResponse](docs/CreateOrUpdateUserResponse.md)
  - [CreateOrderRequest](docs/CreateOrderRequest.md)
  - [CreateOrderResponse](docs/CreateOrderResponse.md)
  - [CreateOrderResponseEnvelope](docs/CreateOrderResponseEnvelope.md)
  - [EmailExistsResponse](docs/EmailExistsResponse.md)
  - [EmailExistsResponseEnvelope](docs/EmailExistsResponseEnvelope.md)
+ - [GetAPIKeyResponse](docs/GetAPIKeyResponse.md)
  - [GetAssetByIDResponse](docs/GetAssetByIDResponse.md)
  - [GetAssetByIDResponseEnvelope](docs/GetAssetByIDResponseEnvelope.md)
  - [GetAssetPriceResponse](docs/GetAssetPriceResponse.md)
@@ -911,6 +951,7 @@ Class | Method | HTTP request | Description
  - [RepayResponse](docs/RepayResponse.md)
  - [ResponseEnvelope](docs/ResponseEnvelope.md)
  - [ResponseEnvelopeOfListAssets](docs/ResponseEnvelopeOfListAssets.md)
+ - [RevokeAPIKeyResponse](docs/RevokeAPIKeyResponse.md)
  - [Side](docs/Side.md)
  - [StreamAssetPricesResponse](docs/StreamAssetPricesResponse.md)
  - [StreamAssetsEntry](docs/StreamAssetsEntry.md)
