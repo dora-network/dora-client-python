@@ -209,7 +209,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_api_key_for_user**
-> CreateAPIKeyResponse create_api_key_for_user(body)
+> CreateAPIKeyResponseEnvelope create_api_key_for_user(body)
 
 Create apikey for a user
 
@@ -241,7 +241,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CreateAPIKeyResponse**](CreateAPIKeyResponse.md)
+[**CreateAPIKeyResponseEnvelope**](CreateAPIKeyResponseEnvelope.md)
 
 ### Authorization
 
@@ -2419,7 +2419,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **revoke_api_key_for_user**
-> RevokeAPIKeyResponse revoke_api_key_for_user(key_id)
+> RevokeAPIKeyResponseEnvelope revoke_api_key_for_user(key_id)
 
 Revoke apikey for a user
 
@@ -2451,7 +2451,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**RevokeAPIKeyResponse**](RevokeAPIKeyResponse.md)
+[**RevokeAPIKeyResponseEnvelope**](RevokeAPIKeyResponseEnvelope.md)
 
 ### Authorization
 

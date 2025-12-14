@@ -35,6 +35,7 @@ from dora_client.models.collateral import Collateral
 from dora_client.models.coupon_payment import CouponPayment
 from dora_client.models.create_api_key_request import CreateAPIKeyRequest
 from dora_client.models.create_api_key_response import CreateAPIKeyResponse
+from dora_client.models.create_api_key_response_envelope import CreateAPIKeyResponseEnvelope
 from dora_client.models.create_or_update_user_response import CreateOrUpdateUserResponse
 from dora_client.models.create_order_request import CreateOrderRequest
 from dora_client.models.create_order_response import CreateOrderResponse
@@ -133,6 +134,7 @@ from dora_client.models.repay_response import RepayResponse
 from dora_client.models.response_envelope import ResponseEnvelope
 from dora_client.models.response_envelope_of_list_assets import ResponseEnvelopeOfListAssets
 from dora_client.models.revoke_api_key_response import RevokeAPIKeyResponse
+from dora_client.models.revoke_api_key_response_envelope import RevokeAPIKeyResponseEnvelope
 from dora_client.models.side import Side
 from dora_client.models.stream_asset_prices_response import StreamAssetPricesResponse
 from dora_client.models.stream_assets_entry import StreamAssetsEntry
