@@ -7,8 +7,6 @@ Name | Type | Description | Notes
 **locked** | **dict(str, str)** |  | [optional] 
 **borrowed** | **dict(str, str)** |  | [optional] 
 **supplied** | **dict(str, str)** |  | [optional] 
-**collateral** | **dict(str, str)** |  | [optional] 
-**supplied_collateral** | **dict(str, str)** |  | [optional] 
 **impending_borrows** | **dict(str, str)** |  | [optional] 
 **borrow_limit** | **dict(str, str)** |  | [optional] 
 **liquidation_threshold** | **dict(str, str)** |  | [optional] 

@@ -35,8 +35,6 @@ class Position(object):
         'available': 'str',
         'locked': 'str',
         'supplied': 'str',
-        'collateral': 'str',
-        'supplied_collateral': 'str',
         'borrowed': 'str',
         'impending_borrows': 'str',
         'avg_entry_price': 'str',
@@ -54,8 +52,6 @@ class Position(object):
         'available': 'available',
         'locked': 'locked',
         'supplied': 'supplied',
-        'collateral': 'collateral',
-        'supplied_collateral': 'supplied_collateral',
         'borrowed': 'borrowed',
         'impending_borrows': 'impending_borrows',
         'avg_entry_price': 'avg_entry_price',
@@ -65,7 +61,7 @@ class Position(object):
         'position_name': 'position_name'
     }
 
-    def __init__(self, id=None, asset_id=None, seq=None, is_global=None, available=None, locked=None, supplied=None, collateral=None, supplied_collateral=None, borrowed=None, impending_borrows=None, avg_entry_price=None, borrow_limit=None, liquidation_threshold=None, created_at=None, position_name=None):  # noqa: E501
+    def __init__(self, id=None, asset_id=None, seq=None, is_global=None, available=None, locked=None, supplied=None, borrowed=None, impending_borrows=None, avg_entry_price=None, borrow_limit=None, liquidation_threshold=None, created_at=None, position_name=None):  # noqa: E501
         """Position - a model defined in Swagger"""  # noqa: E501
         self._id = None
         self._asset_id = None
@@ -74,8 +70,6 @@ class Position(object):
         self._available = None
         self._locked = None
         self._supplied = None
-        self._collateral = None
-        self._supplied_collateral = None
         self._borrowed = None
         self._impending_borrows = None
         self._avg_entry_price = None
@@ -98,10 +92,6 @@ class Position(object):
             self.locked = locked
         if supplied is not None:
             self.supplied = supplied
-        if collateral is not None:
-            self.collateral = collateral
-        if supplied_collateral is not None:
-            self.supplied_collateral = supplied_collateral
         if borrowed is not None:
             self.borrowed = borrowed
         if impending_borrows is not None:
@@ -273,56 +263,10 @@ class Position(object):
         self._supplied = supplied
 
     @property
-    def collateral(self):
-        """Gets the collateral of this Position.  # noqa: E501
-
-        The balance that has been locked or supplied, but are marked as collateral to support borrow limits and can be consumed in case of liquidation. When unmarked as collateral, the balance returns to the available balance.  # noqa: E501
-
-        :return: The collateral of this Position.  # noqa: E501
-        :rtype: str
-        """
-        return self._collateral
-
-    @collateral.setter
-    def collateral(self, collateral):
-        """Sets the collateral of this Position.
-
-        The balance that has been locked or supplied, but are marked as collateral to support borrow limits and can be consumed in case of liquidation. When unmarked as collateral, the balance returns to the available balance.  # noqa: E501
-
-        :param collateral: The collateral of this Position.  # noqa: E501
-        :type: str
-        """
-
-        self._collateral = collateral
-
-    @property
-    def supplied_collateral(self):
-        """Gets the supplied_collateral of this Position.  # noqa: E501
-
-        The balance that have been supplied to the leverage module and marked as collateral. The user remains entitled to this balance and can withdraw it into the collateral balance, or unmark them as collateral and move them to the supplied balance.  # noqa: E501
-
-        :return: The supplied_collateral of this Position.  # noqa: E501
-        :rtype: str
-        """
-        return self._supplied_collateral
-
-    @supplied_collateral.setter
-    def supplied_collateral(self, supplied_collateral):
-        """Sets the supplied_collateral of this Position.
-
-        The balance that have been supplied to the leverage module and marked as collateral. The user remains entitled to this balance and can withdraw it into the collateral balance, or unmark them as collateral and move them to the supplied balance.  # noqa: E501
-
-        :param supplied_collateral: The supplied_collateral of this Position.  # noqa: E501
-        :type: str
-        """
-
-        self._supplied_collateral = supplied_collateral
-
-    @property
     def borrowed(self):
         """Gets the borrowed of this Position.  # noqa: E501
 
-        The total amount of debt outstanding for this position. The position's collateral + supplied_collateral must support a borrow limit sufficient to cover all borrowed assets. This position cannot be closed until all debt is fully repaid, i.e. borrowed = 0.  # noqa: E501
+        The total amount of debt outstanding for this position. This position cannot be closed until all debt is fully repaid, i.e. borrowed = 0.  # noqa: E501
 
         :return: The borrowed of this Position.  # noqa: E501
         :rtype: str
@@ -333,7 +277,7 @@ class Position(object):
     def borrowed(self, borrowed):
         """Sets the borrowed of this Position.
 
-        The total amount of debt outstanding for this position. The position's collateral + supplied_collateral must support a borrow limit sufficient to cover all borrowed assets. This position cannot be closed until all debt is fully repaid, i.e. borrowed = 0.  # noqa: E501
+        The total amount of debt outstanding for this position. This position cannot be closed until all debt is fully repaid, i.e. borrowed = 0.  # noqa: E501
 
         :param borrowed: The borrowed of this Position.  # noqa: E501
         :type: str

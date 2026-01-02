@@ -48,7 +48,8 @@ class Order(object):
         'position_id': 'str',
         'order_info': 'str',
         'good_till_date': 'datetime',
-        'trigger_price': 'str'
+        'trigger_price': 'str',
+        'trigger_type': 'TriggerType'
     }
 
     attribute_map = {
@@ -72,10 +73,11 @@ class Order(object):
         'position_id': 'position_id',
         'order_info': 'order_info',
         'good_till_date': 'good_till_date',
-        'trigger_price': 'trigger_price'
+        'trigger_price': 'trigger_price',
+        'trigger_type': 'trigger_type'
     }
 
-    def __init__(self, order_id=None, order_book_id=None, kind=None, original_price=None, avg_fill_price=None, cancelled_quantity=None, open_quantity=None, original_quantity=None, filled_quantity=None, filled_notional=None, last_update_at=None, opened_at=None, inverse_leverage=None, side=None, status=None, user_id=None, order_modifiers=None, position_id=None, order_info=None, good_till_date=None, trigger_price=None):  # noqa: E501
+    def __init__(self, order_id=None, order_book_id=None, kind=None, original_price=None, avg_fill_price=None, cancelled_quantity=None, open_quantity=None, original_quantity=None, filled_quantity=None, filled_notional=None, last_update_at=None, opened_at=None, inverse_leverage=None, side=None, status=None, user_id=None, order_modifiers=None, position_id=None, order_info=None, good_till_date=None, trigger_price=None, trigger_type=None):  # noqa: E501
         """Order - a model defined in Swagger"""  # noqa: E501
         self._order_id = None
         self._order_book_id = None
@@ -98,6 +100,7 @@ class Order(object):
         self._order_info = None
         self._good_till_date = None
         self._trigger_price = None
+        self._trigger_type = None
         self.discriminator = None
         if order_id is not None:
             self.order_id = order_id
@@ -141,6 +144,8 @@ class Order(object):
             self.good_till_date = good_till_date
         if trigger_price is not None:
             self.trigger_price = trigger_price
+        if trigger_type is not None:
+            self.trigger_type = trigger_type
 
     @property
     def order_id(self):
@@ -594,6 +599,27 @@ class Order(object):
         """
 
         self._trigger_price = trigger_price
+
+    @property
+    def trigger_type(self):
+        """Gets the trigger_type of this Order.  # noqa: E501
+
+
+        :return: The trigger_type of this Order.  # noqa: E501
+        :rtype: TriggerType
+        """
+        return self._trigger_type
+
+    @trigger_type.setter
+    def trigger_type(self, trigger_type):
+        """Sets the trigger_type of this Order.
+
+
+        :param trigger_type: The trigger_type of this Order.  # noqa: E501
+        :type: TriggerType
+        """
+
+        self._trigger_type = trigger_type
 
     def to_dict(self):
         """Returns the model properties as a dict"""

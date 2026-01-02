@@ -24,6 +24,7 @@ Name | Type | Description | Notes
 **order_info** | **str** |  | [optional] 
 **good_till_date** | **datetime** |  | [optional] 
 **trigger_price** | **str** |  | [optional] 
+**trigger_type** | [**TriggerType**](TriggerType.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

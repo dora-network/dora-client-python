@@ -33,11 +33,12 @@ class CreateOrderRequest(object):
         'price': 'str',
         'kind': 'OrderKind',
         'side': 'Side',
-        'position_id': 'str',
+        'from_global_position': 'bool',
         'order_book_id': 'str',
         'order_modifiers': 'list[OrderModifierKind]',
         'good_till_date': 'datetime',
-        'trigger_price': 'str'
+        'trigger_price': 'str',
+        'trigger_type': 'TriggerType'
     }
 
     attribute_map = {
@@ -46,25 +47,27 @@ class CreateOrderRequest(object):
         'price': 'price',
         'kind': 'kind',
         'side': 'side',
-        'position_id': 'position_id',
+        'from_global_position': 'from_global_position',
         'order_book_id': 'order_book_id',
         'order_modifiers': 'order_modifiers',
         'good_till_date': 'good_till_date',
-        'trigger_price': 'trigger_price'
+        'trigger_price': 'trigger_price',
+        'trigger_type': 'trigger_type'
     }
 
-    def __init__(self, quantity=None, inverse_leverage=None, price=None, kind=None, side=None, position_id=None, order_book_id=None, order_modifiers=None, good_till_date=None, trigger_price=None):  # noqa: E501
+    def __init__(self, quantity=None, inverse_leverage=None, price=None, kind=None, side=None, from_global_position=None, order_book_id=None, order_modifiers=None, good_till_date=None, trigger_price=None, trigger_type=None):  # noqa: E501
         """CreateOrderRequest - a model defined in Swagger"""  # noqa: E501
         self._quantity = None
         self._inverse_leverage = None
         self._price = None
         self._kind = None
         self._side = None
-        self._position_id = None
+        self._from_global_position = None
         self._order_book_id = None
         self._order_modifiers = None
         self._good_till_date = None
         self._trigger_price = None
+        self._trigger_type = None
         self.discriminator = None
         self.quantity = quantity
         self.inverse_leverage = inverse_leverage
@@ -72,7 +75,7 @@ class CreateOrderRequest(object):
             self.price = price
         self.kind = kind
         self.side = side
-        self.position_id = position_id
+        self.from_global_position = from_global_position
         self.order_book_id = order_book_id
         if order_modifiers is not None:
             self.order_modifiers = order_modifiers
@@ -80,6 +83,8 @@ class CreateOrderRequest(object):
             self.good_till_date = good_till_date
         if trigger_price is not None:
             self.trigger_price = trigger_price
+        if trigger_type is not None:
+            self.trigger_type = trigger_type
 
     @property
     def quantity(self):
@@ -195,29 +200,29 @@ class CreateOrderRequest(object):
         self._side = side
 
     @property
-    def position_id(self):
-        """Gets the position_id of this CreateOrderRequest.  # noqa: E501
+    def from_global_position(self):
+        """Gets the from_global_position of this CreateOrderRequest.  # noqa: E501
 
-        position ID to use for the order. required.  # noqa: E501
+        use global position for the order or isolated. required.  # noqa: E501
 
-        :return: The position_id of this CreateOrderRequest.  # noqa: E501
-        :rtype: str
+        :return: The from_global_position of this CreateOrderRequest.  # noqa: E501
+        :rtype: bool
         """
-        return self._position_id
+        return self._from_global_position
 
-    @position_id.setter
-    def position_id(self, position_id):
-        """Sets the position_id of this CreateOrderRequest.
+    @from_global_position.setter
+    def from_global_position(self, from_global_position):
+        """Sets the from_global_position of this CreateOrderRequest.
 
-        position ID to use for the order. required.  # noqa: E501
+        use global position for the order or isolated. required.  # noqa: E501
 
-        :param position_id: The position_id of this CreateOrderRequest.  # noqa: E501
-        :type: str
+        :param from_global_position: The from_global_position of this CreateOrderRequest.  # noqa: E501
+        :type: bool
         """
-        if position_id is None:
-            raise ValueError("Invalid value for `position_id`, must not be `None`")  # noqa: E501
+        if from_global_position is None:
+            raise ValueError("Invalid value for `from_global_position`, must not be `None`")  # noqa: E501
 
-        self._position_id = position_id
+        self._from_global_position = from_global_position
 
     @property
     def order_book_id(self):
@@ -306,6 +311,27 @@ class CreateOrderRequest(object):
         """
 
         self._trigger_price = trigger_price
+
+    @property
+    def trigger_type(self):
+        """Gets the trigger_type of this CreateOrderRequest.  # noqa: E501
+
+
+        :return: The trigger_type of this CreateOrderRequest.  # noqa: E501
+        :rtype: TriggerType
+        """
+        return self._trigger_type
+
+    @trigger_type.setter
+    def trigger_type(self, trigger_type):
+        """Sets the trigger_type of this CreateOrderRequest.
+
+
+        :param trigger_type: The trigger_type of this CreateOrderRequest.  # noqa: E501
+        :type: TriggerType
+        """
+
+        self._trigger_type = trigger_type
 
     def to_dict(self):
         """Returns the model properties as a dict"""

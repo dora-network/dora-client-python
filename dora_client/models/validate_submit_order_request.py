@@ -35,7 +35,11 @@ class ValidateSubmitOrderRequest(object):
         'price': 'str',
         'good_till_date': 'datetime',
         'inverse_leverage': 'str',
-        'user_balance': 'str'
+        'user_balance': 'str',
+        'base_asset_id': 'str',
+        'quote_asset_id': 'str',
+        'position_assets': 'list[ValidateSubmitOrderRequestPositionAssets]',
+        'assets_config': 'list[ValidateSubmitOrderRequestAssetsConfig]'
     }
 
     attribute_map = {
@@ -46,10 +50,14 @@ class ValidateSubmitOrderRequest(object):
         'price': 'price',
         'good_till_date': 'good_till_date',
         'inverse_leverage': 'inverse_leverage',
-        'user_balance': 'user_balance'
+        'user_balance': 'user_balance',
+        'base_asset_id': 'base_asset_id',
+        'quote_asset_id': 'quote_asset_id',
+        'position_assets': 'position_assets',
+        'assets_config': 'assets_config'
     }
 
-    def __init__(self, quantity=None, tick=None, kind=None, side=None, price=None, good_till_date=None, inverse_leverage=None, user_balance=None):  # noqa: E501
+    def __init__(self, quantity=None, tick=None, kind=None, side=None, price=None, good_till_date=None, inverse_leverage=None, user_balance=None, base_asset_id=None, quote_asset_id=None, position_assets=None, assets_config=None):  # noqa: E501
         """ValidateSubmitOrderRequest - a model defined in Swagger"""  # noqa: E501
         self._quantity = None
         self._tick = None
@@ -59,6 +67,10 @@ class ValidateSubmitOrderRequest(object):
         self._good_till_date = None
         self._inverse_leverage = None
         self._user_balance = None
+        self._base_asset_id = None
+        self._quote_asset_id = None
+        self._position_assets = None
+        self._assets_config = None
         self.discriminator = None
         self.quantity = quantity
         self.tick = tick
@@ -70,6 +82,14 @@ class ValidateSubmitOrderRequest(object):
             self.good_till_date = good_till_date
         self.inverse_leverage = inverse_leverage
         self.user_balance = user_balance
+        if base_asset_id is not None:
+            self.base_asset_id = base_asset_id
+        if quote_asset_id is not None:
+            self.quote_asset_id = quote_asset_id
+        if position_assets is not None:
+            self.position_assets = position_assets
+        if assets_config is not None:
+            self.assets_config = assets_config
 
     @property
     def quantity(self):
@@ -256,6 +276,98 @@ class ValidateSubmitOrderRequest(object):
             raise ValueError("Invalid value for `user_balance`, must not be `None`")  # noqa: E501
 
         self._user_balance = user_balance
+
+    @property
+    def base_asset_id(self):
+        """Gets the base_asset_id of this ValidateSubmitOrderRequest.  # noqa: E501
+
+        base asset of orderbook  # noqa: E501
+
+        :return: The base_asset_id of this ValidateSubmitOrderRequest.  # noqa: E501
+        :rtype: str
+        """
+        return self._base_asset_id
+
+    @base_asset_id.setter
+    def base_asset_id(self, base_asset_id):
+        """Sets the base_asset_id of this ValidateSubmitOrderRequest.
+
+        base asset of orderbook  # noqa: E501
+
+        :param base_asset_id: The base_asset_id of this ValidateSubmitOrderRequest.  # noqa: E501
+        :type: str
+        """
+
+        self._base_asset_id = base_asset_id
+
+    @property
+    def quote_asset_id(self):
+        """Gets the quote_asset_id of this ValidateSubmitOrderRequest.  # noqa: E501
+
+        quote asset of orderbook  # noqa: E501
+
+        :return: The quote_asset_id of this ValidateSubmitOrderRequest.  # noqa: E501
+        :rtype: str
+        """
+        return self._quote_asset_id
+
+    @quote_asset_id.setter
+    def quote_asset_id(self, quote_asset_id):
+        """Sets the quote_asset_id of this ValidateSubmitOrderRequest.
+
+        quote asset of orderbook  # noqa: E501
+
+        :param quote_asset_id: The quote_asset_id of this ValidateSubmitOrderRequest.  # noqa: E501
+        :type: str
+        """
+
+        self._quote_asset_id = quote_asset_id
+
+    @property
+    def position_assets(self):
+        """Gets the position_assets of this ValidateSubmitOrderRequest.  # noqa: E501
+
+        Full list of assets in the position with their price and collateral weight, required when inverse_leverage < 1 for leverage health checks  # noqa: E501
+
+        :return: The position_assets of this ValidateSubmitOrderRequest.  # noqa: E501
+        :rtype: list[ValidateSubmitOrderRequestPositionAssets]
+        """
+        return self._position_assets
+
+    @position_assets.setter
+    def position_assets(self, position_assets):
+        """Sets the position_assets of this ValidateSubmitOrderRequest.
+
+        Full list of assets in the position with their price and collateral weight, required when inverse_leverage < 1 for leverage health checks  # noqa: E501
+
+        :param position_assets: The position_assets of this ValidateSubmitOrderRequest.  # noqa: E501
+        :type: list[ValidateSubmitOrderRequestPositionAssets]
+        """
+
+        self._position_assets = position_assets
+
+    @property
+    def assets_config(self):
+        """Gets the assets_config of this ValidateSubmitOrderRequest.  # noqa: E501
+
+        Configuration for the assets in the order  # noqa: E501
+
+        :return: The assets_config of this ValidateSubmitOrderRequest.  # noqa: E501
+        :rtype: list[ValidateSubmitOrderRequestAssetsConfig]
+        """
+        return self._assets_config
+
+    @assets_config.setter
+    def assets_config(self, assets_config):
+        """Sets the assets_config of this ValidateSubmitOrderRequest.
+
+        Configuration for the assets in the order  # noqa: E501
+
+        :param assets_config: The assets_config of this ValidateSubmitOrderRequest.  # noqa: E501
+        :type: list[ValidateSubmitOrderRequestAssetsConfig]
+        """
+
+        self._assets_config = assets_config
 
     def to_dict(self):
         """Returns the model properties as a dict"""
