@@ -28,26 +28,26 @@ class Asset(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'id': 'str',
-        'collateral_weight': 'float',
-        'created_at': 'datetime',
-        'decimals': 'int',
-        'fractionalized_units': 'int',
-        'description': 'str',
-        'liquidation_threshold': 'float',
-        'maturity_id': 'str',
-        'max_supply': 'int',
-        'max_utilization': 'int',
-        'name': 'str',
-        'symbol': 'str',
+        'id': 'dict',
+        'collateral_weight': 'dict',
+        'created_at': 'dict',
+        'decimals': 'dict',
+        'fractionalized_units': 'dict',
+        'description': 'dict',
+        'liquidation_threshold': 'dict',
+        'maturity_id': 'dict',
+        'max_supply': 'dict',
+        'max_utilization': 'dict',
+        'name': 'dict',
+        'symbol': 'dict',
         'kind': 'AssetKind',
-        '_yield': 'float',
-        'can_add_liquidity': 'bool',
-        'can_direct_borrow': 'bool',
-        'can_onboard': 'bool',
-        'can_trade': 'bool',
-        'can_virtual_borrow': 'bool',
-        'max_leverage': 'float',
+        '_yield': 'dict',
+        'can_add_liquidity': 'dict',
+        'can_direct_borrow': 'dict',
+        'can_onboard': 'dict',
+        'can_trade': 'dict',
+        'can_virtual_borrow': 'dict',
+        'max_leverage': 'dict',
         'bond': 'Bond'
     }
 
@@ -148,7 +148,7 @@ class Asset(object):
 
 
         :return: The id of this Asset.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._id
 
@@ -158,7 +158,7 @@ class Asset(object):
 
 
         :param id: The id of this Asset.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._id = id
@@ -169,7 +169,7 @@ class Asset(object):
 
 
         :return: The collateral_weight of this Asset.  # noqa: E501
-        :rtype: float
+        :rtype: dict
         """
         return self._collateral_weight
 
@@ -179,7 +179,7 @@ class Asset(object):
 
 
         :param collateral_weight: The collateral_weight of this Asset.  # noqa: E501
-        :type: float
+        :type: dict
         """
 
         self._collateral_weight = collateral_weight
@@ -190,7 +190,7 @@ class Asset(object):
 
 
         :return: The created_at of this Asset.  # noqa: E501
-        :rtype: datetime
+        :rtype: dict
         """
         return self._created_at
 
@@ -200,7 +200,7 @@ class Asset(object):
 
 
         :param created_at: The created_at of this Asset.  # noqa: E501
-        :type: datetime
+        :type: dict
         """
 
         self._created_at = created_at
@@ -211,7 +211,7 @@ class Asset(object):
 
 
         :return: The decimals of this Asset.  # noqa: E501
-        :rtype: int
+        :rtype: dict
         """
         return self._decimals
 
@@ -221,7 +221,7 @@ class Asset(object):
 
 
         :param decimals: The decimals of this Asset.  # noqa: E501
-        :type: int
+        :type: dict
         """
 
         self._decimals = decimals
@@ -232,7 +232,7 @@ class Asset(object):
 
 
         :return: The fractionalized_units of this Asset.  # noqa: E501
-        :rtype: int
+        :rtype: dict
         """
         return self._fractionalized_units
 
@@ -242,7 +242,7 @@ class Asset(object):
 
 
         :param fractionalized_units: The fractionalized_units of this Asset.  # noqa: E501
-        :type: int
+        :type: dict
         """
 
         self._fractionalized_units = fractionalized_units
@@ -253,7 +253,7 @@ class Asset(object):
 
 
         :return: The description of this Asset.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._description
 
@@ -263,7 +263,7 @@ class Asset(object):
 
 
         :param description: The description of this Asset.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._description = description
@@ -274,7 +274,7 @@ class Asset(object):
 
 
         :return: The liquidation_threshold of this Asset.  # noqa: E501
-        :rtype: float
+        :rtype: dict
         """
         return self._liquidation_threshold
 
@@ -284,7 +284,7 @@ class Asset(object):
 
 
         :param liquidation_threshold: The liquidation_threshold of this Asset.  # noqa: E501
-        :type: float
+        :type: dict
         """
 
         self._liquidation_threshold = liquidation_threshold
@@ -295,7 +295,7 @@ class Asset(object):
 
 
         :return: The maturity_id of this Asset.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._maturity_id
 
@@ -305,7 +305,7 @@ class Asset(object):
 
 
         :param maturity_id: The maturity_id of this Asset.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._maturity_id = maturity_id
@@ -316,7 +316,7 @@ class Asset(object):
 
 
         :return: The max_supply of this Asset.  # noqa: E501
-        :rtype: int
+        :rtype: dict
         """
         return self._max_supply
 
@@ -326,7 +326,7 @@ class Asset(object):
 
 
         :param max_supply: The max_supply of this Asset.  # noqa: E501
-        :type: int
+        :type: dict
         """
 
         self._max_supply = max_supply
@@ -337,7 +337,7 @@ class Asset(object):
 
 
         :return: The max_utilization of this Asset.  # noqa: E501
-        :rtype: int
+        :rtype: dict
         """
         return self._max_utilization
 
@@ -347,7 +347,7 @@ class Asset(object):
 
 
         :param max_utilization: The max_utilization of this Asset.  # noqa: E501
-        :type: int
+        :type: dict
         """
 
         self._max_utilization = max_utilization
@@ -358,7 +358,7 @@ class Asset(object):
 
 
         :return: The name of this Asset.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._name
 
@@ -368,7 +368,7 @@ class Asset(object):
 
 
         :param name: The name of this Asset.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._name = name
@@ -379,7 +379,7 @@ class Asset(object):
 
 
         :return: The symbol of this Asset.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._symbol
 
@@ -389,7 +389,7 @@ class Asset(object):
 
 
         :param symbol: The symbol of this Asset.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._symbol = symbol
@@ -421,7 +421,7 @@ class Asset(object):
 
 
         :return: The _yield of this Asset.  # noqa: E501
-        :rtype: float
+        :rtype: dict
         """
         return self.__yield
 
@@ -431,7 +431,7 @@ class Asset(object):
 
 
         :param _yield: The _yield of this Asset.  # noqa: E501
-        :type: float
+        :type: dict
         """
 
         self.__yield = _yield
@@ -442,7 +442,7 @@ class Asset(object):
 
 
         :return: The can_add_liquidity of this Asset.  # noqa: E501
-        :rtype: bool
+        :rtype: dict
         """
         return self._can_add_liquidity
 
@@ -452,7 +452,7 @@ class Asset(object):
 
 
         :param can_add_liquidity: The can_add_liquidity of this Asset.  # noqa: E501
-        :type: bool
+        :type: dict
         """
 
         self._can_add_liquidity = can_add_liquidity
@@ -463,7 +463,7 @@ class Asset(object):
 
 
         :return: The can_direct_borrow of this Asset.  # noqa: E501
-        :rtype: bool
+        :rtype: dict
         """
         return self._can_direct_borrow
 
@@ -473,7 +473,7 @@ class Asset(object):
 
 
         :param can_direct_borrow: The can_direct_borrow of this Asset.  # noqa: E501
-        :type: bool
+        :type: dict
         """
 
         self._can_direct_borrow = can_direct_borrow
@@ -484,7 +484,7 @@ class Asset(object):
 
 
         :return: The can_onboard of this Asset.  # noqa: E501
-        :rtype: bool
+        :rtype: dict
         """
         return self._can_onboard
 
@@ -494,7 +494,7 @@ class Asset(object):
 
 
         :param can_onboard: The can_onboard of this Asset.  # noqa: E501
-        :type: bool
+        :type: dict
         """
 
         self._can_onboard = can_onboard
@@ -505,7 +505,7 @@ class Asset(object):
 
 
         :return: The can_trade of this Asset.  # noqa: E501
-        :rtype: bool
+        :rtype: dict
         """
         return self._can_trade
 
@@ -515,7 +515,7 @@ class Asset(object):
 
 
         :param can_trade: The can_trade of this Asset.  # noqa: E501
-        :type: bool
+        :type: dict
         """
 
         self._can_trade = can_trade
@@ -526,7 +526,7 @@ class Asset(object):
 
 
         :return: The can_virtual_borrow of this Asset.  # noqa: E501
-        :rtype: bool
+        :rtype: dict
         """
         return self._can_virtual_borrow
 
@@ -536,7 +536,7 @@ class Asset(object):
 
 
         :param can_virtual_borrow: The can_virtual_borrow of this Asset.  # noqa: E501
-        :type: bool
+        :type: dict
         """
 
         self._can_virtual_borrow = can_virtual_borrow
@@ -547,7 +547,7 @@ class Asset(object):
 
 
         :return: The max_leverage of this Asset.  # noqa: E501
-        :rtype: float
+        :rtype: dict
         """
         return self._max_leverage
 
@@ -557,7 +557,7 @@ class Asset(object):
 
 
         :param max_leverage: The max_leverage of this Asset.  # noqa: E501
-        :type: float
+        :type: dict
         """
 
         self._max_leverage = max_leverage

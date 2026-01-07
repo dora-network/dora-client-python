@@ -28,9 +28,9 @@ class IsolatedPosition(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'global_position_id': 'str',
-        'isolated_position_id': 'str',
-        'transaction_id': 'str'
+        'global_position_id': 'dict',
+        'isolated_position_id': 'dict',
+        'transaction_id': 'dict'
     }
 
     attribute_map = {
@@ -58,7 +58,7 @@ class IsolatedPosition(object):
 
 
         :return: The global_position_id of this IsolatedPosition.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._global_position_id
 
@@ -68,7 +68,7 @@ class IsolatedPosition(object):
 
 
         :param global_position_id: The global_position_id of this IsolatedPosition.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._global_position_id = global_position_id
@@ -79,7 +79,7 @@ class IsolatedPosition(object):
 
 
         :return: The isolated_position_id of this IsolatedPosition.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._isolated_position_id
 
@@ -89,7 +89,7 @@ class IsolatedPosition(object):
 
 
         :param isolated_position_id: The isolated_position_id of this IsolatedPosition.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._isolated_position_id = isolated_position_id
@@ -100,7 +100,7 @@ class IsolatedPosition(object):
 
 
         :return: The transaction_id of this IsolatedPosition.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._transaction_id
 
@@ -110,7 +110,7 @@ class IsolatedPosition(object):
 
 
         :param transaction_id: The transaction_id of this IsolatedPosition.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._transaction_id = transaction_id

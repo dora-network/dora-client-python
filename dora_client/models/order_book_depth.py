@@ -28,10 +28,10 @@ class OrderBookDepth(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'order_book_id': 'str',
-        'bids': 'list[PriceLevel]',
-        'asks': 'list[PriceLevel]',
-        'timestamp': 'datetime'
+        'order_book_id': 'dict',
+        'bids': 'dict',
+        'asks': 'dict',
+        'timestamp': 'dict'
     }
 
     attribute_map = {
@@ -63,7 +63,7 @@ class OrderBookDepth(object):
 
 
         :return: The order_book_id of this OrderBookDepth.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._order_book_id
 
@@ -73,7 +73,7 @@ class OrderBookDepth(object):
 
 
         :param order_book_id: The order_book_id of this OrderBookDepth.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._order_book_id = order_book_id
@@ -84,7 +84,7 @@ class OrderBookDepth(object):
 
 
         :return: The bids of this OrderBookDepth.  # noqa: E501
-        :rtype: list[PriceLevel]
+        :rtype: dict
         """
         return self._bids
 
@@ -94,7 +94,7 @@ class OrderBookDepth(object):
 
 
         :param bids: The bids of this OrderBookDepth.  # noqa: E501
-        :type: list[PriceLevel]
+        :type: dict
         """
 
         self._bids = bids
@@ -105,7 +105,7 @@ class OrderBookDepth(object):
 
 
         :return: The asks of this OrderBookDepth.  # noqa: E501
-        :rtype: list[PriceLevel]
+        :rtype: dict
         """
         return self._asks
 
@@ -115,7 +115,7 @@ class OrderBookDepth(object):
 
 
         :param asks: The asks of this OrderBookDepth.  # noqa: E501
-        :type: list[PriceLevel]
+        :type: dict
         """
 
         self._asks = asks
@@ -126,7 +126,7 @@ class OrderBookDepth(object):
 
 
         :return: The timestamp of this OrderBookDepth.  # noqa: E501
-        :rtype: datetime
+        :rtype: dict
         """
         return self._timestamp
 
@@ -136,7 +136,7 @@ class OrderBookDepth(object):
 
 
         :param timestamp: The timestamp of this OrderBookDepth.  # noqa: E501
-        :type: datetime
+        :type: dict
         """
 
         self._timestamp = timestamp

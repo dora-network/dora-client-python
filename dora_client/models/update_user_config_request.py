@@ -42,13 +42,15 @@ class UpdateUserConfigRequest(object):
         self._photo_url = None
         self._timezone = None
         self.discriminator = None
-        self.photo_url = photo_url
+        if photo_url is not None:
+            self.photo_url = photo_url
         self.timezone = timezone
 
     @property
     def photo_url(self):
         """Gets the photo_url of this UpdateUserConfigRequest.  # noqa: E501
 
+        Optional: URL of the user's profile photo, optional.  # noqa: E501
 
         :return: The photo_url of this UpdateUserConfigRequest.  # noqa: E501
         :rtype: UpdateFieldString
@@ -59,12 +61,11 @@ class UpdateUserConfigRequest(object):
     def photo_url(self, photo_url):
         """Sets the photo_url of this UpdateUserConfigRequest.
 
+        Optional: URL of the user's profile photo, optional.  # noqa: E501
 
         :param photo_url: The photo_url of this UpdateUserConfigRequest.  # noqa: E501
         :type: UpdateFieldString
         """
-        if photo_url is None:
-            raise ValueError("Invalid value for `photo_url`, must not be `None`")  # noqa: E501
 
         self._photo_url = photo_url
 
@@ -72,6 +73,7 @@ class UpdateUserConfigRequest(object):
     def timezone(self):
         """Gets the timezone of this UpdateUserConfigRequest.  # noqa: E501
 
+        User's timezone, e.g., 'America/New_York', or an offset.  # noqa: E501
 
         :return: The timezone of this UpdateUserConfigRequest.  # noqa: E501
         :rtype: UpdateFieldString
@@ -82,6 +84,7 @@ class UpdateUserConfigRequest(object):
     def timezone(self, timezone):
         """Sets the timezone of this UpdateUserConfigRequest.
 
+        User's timezone, e.g., 'America/New_York', or an offset.  # noqa: E501
 
         :param timezone: The timezone of this UpdateUserConfigRequest.  # noqa: E501
         :type: UpdateFieldString

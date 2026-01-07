@@ -28,21 +28,19 @@ class UserValue(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'available': 'dict(str, str)',
-        'locked': 'dict(str, str)',
-        'borrowed': 'dict(str, str)',
-        'supplied': 'dict(str, str)',
-        'collateral': 'dict(str, str)',
-        'supplied_collateral': 'dict(str, str)',
-        'impending_borrows': 'dict(str, str)',
-        'borrow_limit': 'dict(str, str)',
-        'liquidation_threshold': 'dict(str, str)',
-        'notional_long': 'dict(str, str)',
-        'notional_short': 'dict(str, str)',
-        'portfolio_value': 'dict(str, str)',
-        'net_liquidation_value': 'dict(str, str)',
-        'unrealized_pnl': 'dict(str, str)',
-        'realized_pnl': 'dict(str, str)'
+        'available': 'dict',
+        'locked': 'dict',
+        'borrowed': 'dict',
+        'supplied': 'dict',
+        'impending_borrows': 'dict',
+        'borrow_limit': 'dict',
+        'liquidation_threshold': 'dict',
+        'notional_long': 'dict',
+        'notional_short': 'dict',
+        'portfolio_value': 'dict',
+        'net_liquidation_value': 'dict',
+        'unrealized_pnl': 'dict',
+        'realized_pnl': 'dict'
     }
 
     attribute_map = {
@@ -50,8 +48,6 @@ class UserValue(object):
         'locked': 'locked',
         'borrowed': 'borrowed',
         'supplied': 'supplied',
-        'collateral': 'collateral',
-        'supplied_collateral': 'supplied_collateral',
         'impending_borrows': 'impending_borrows',
         'borrow_limit': 'borrow_limit',
         'liquidation_threshold': 'liquidation_threshold',
@@ -63,14 +59,12 @@ class UserValue(object):
         'realized_pnl': 'realized_pnl'
     }
 
-    def __init__(self, available=None, locked=None, borrowed=None, supplied=None, collateral=None, supplied_collateral=None, impending_borrows=None, borrow_limit=None, liquidation_threshold=None, notional_long=None, notional_short=None, portfolio_value=None, net_liquidation_value=None, unrealized_pnl=None, realized_pnl=None):  # noqa: E501
+    def __init__(self, available=None, locked=None, borrowed=None, supplied=None, impending_borrows=None, borrow_limit=None, liquidation_threshold=None, notional_long=None, notional_short=None, portfolio_value=None, net_liquidation_value=None, unrealized_pnl=None, realized_pnl=None):  # noqa: E501
         """UserValue - a model defined in Swagger"""  # noqa: E501
         self._available = None
         self._locked = None
         self._borrowed = None
         self._supplied = None
-        self._collateral = None
-        self._supplied_collateral = None
         self._impending_borrows = None
         self._borrow_limit = None
         self._liquidation_threshold = None
@@ -89,10 +83,6 @@ class UserValue(object):
             self.borrowed = borrowed
         if supplied is not None:
             self.supplied = supplied
-        if collateral is not None:
-            self.collateral = collateral
-        if supplied_collateral is not None:
-            self.supplied_collateral = supplied_collateral
         if impending_borrows is not None:
             self.impending_borrows = impending_borrows
         if borrow_limit is not None:
@@ -118,7 +108,7 @@ class UserValue(object):
 
 
         :return: The available of this UserValue.  # noqa: E501
-        :rtype: dict(str, str)
+        :rtype: dict
         """
         return self._available
 
@@ -128,7 +118,7 @@ class UserValue(object):
 
 
         :param available: The available of this UserValue.  # noqa: E501
-        :type: dict(str, str)
+        :type: dict
         """
 
         self._available = available
@@ -139,7 +129,7 @@ class UserValue(object):
 
 
         :return: The locked of this UserValue.  # noqa: E501
-        :rtype: dict(str, str)
+        :rtype: dict
         """
         return self._locked
 
@@ -149,7 +139,7 @@ class UserValue(object):
 
 
         :param locked: The locked of this UserValue.  # noqa: E501
-        :type: dict(str, str)
+        :type: dict
         """
 
         self._locked = locked
@@ -160,7 +150,7 @@ class UserValue(object):
 
 
         :return: The borrowed of this UserValue.  # noqa: E501
-        :rtype: dict(str, str)
+        :rtype: dict
         """
         return self._borrowed
 
@@ -170,7 +160,7 @@ class UserValue(object):
 
 
         :param borrowed: The borrowed of this UserValue.  # noqa: E501
-        :type: dict(str, str)
+        :type: dict
         """
 
         self._borrowed = borrowed
@@ -181,7 +171,7 @@ class UserValue(object):
 
 
         :return: The supplied of this UserValue.  # noqa: E501
-        :rtype: dict(str, str)
+        :rtype: dict
         """
         return self._supplied
 
@@ -191,52 +181,10 @@ class UserValue(object):
 
 
         :param supplied: The supplied of this UserValue.  # noqa: E501
-        :type: dict(str, str)
+        :type: dict
         """
 
         self._supplied = supplied
-
-    @property
-    def collateral(self):
-        """Gets the collateral of this UserValue.  # noqa: E501
-
-
-        :return: The collateral of this UserValue.  # noqa: E501
-        :rtype: dict(str, str)
-        """
-        return self._collateral
-
-    @collateral.setter
-    def collateral(self, collateral):
-        """Sets the collateral of this UserValue.
-
-
-        :param collateral: The collateral of this UserValue.  # noqa: E501
-        :type: dict(str, str)
-        """
-
-        self._collateral = collateral
-
-    @property
-    def supplied_collateral(self):
-        """Gets the supplied_collateral of this UserValue.  # noqa: E501
-
-
-        :return: The supplied_collateral of this UserValue.  # noqa: E501
-        :rtype: dict(str, str)
-        """
-        return self._supplied_collateral
-
-    @supplied_collateral.setter
-    def supplied_collateral(self, supplied_collateral):
-        """Sets the supplied_collateral of this UserValue.
-
-
-        :param supplied_collateral: The supplied_collateral of this UserValue.  # noqa: E501
-        :type: dict(str, str)
-        """
-
-        self._supplied_collateral = supplied_collateral
 
     @property
     def impending_borrows(self):
@@ -244,7 +192,7 @@ class UserValue(object):
 
 
         :return: The impending_borrows of this UserValue.  # noqa: E501
-        :rtype: dict(str, str)
+        :rtype: dict
         """
         return self._impending_borrows
 
@@ -254,7 +202,7 @@ class UserValue(object):
 
 
         :param impending_borrows: The impending_borrows of this UserValue.  # noqa: E501
-        :type: dict(str, str)
+        :type: dict
         """
 
         self._impending_borrows = impending_borrows
@@ -265,7 +213,7 @@ class UserValue(object):
 
 
         :return: The borrow_limit of this UserValue.  # noqa: E501
-        :rtype: dict(str, str)
+        :rtype: dict
         """
         return self._borrow_limit
 
@@ -275,7 +223,7 @@ class UserValue(object):
 
 
         :param borrow_limit: The borrow_limit of this UserValue.  # noqa: E501
-        :type: dict(str, str)
+        :type: dict
         """
 
         self._borrow_limit = borrow_limit
@@ -286,7 +234,7 @@ class UserValue(object):
 
 
         :return: The liquidation_threshold of this UserValue.  # noqa: E501
-        :rtype: dict(str, str)
+        :rtype: dict
         """
         return self._liquidation_threshold
 
@@ -296,7 +244,7 @@ class UserValue(object):
 
 
         :param liquidation_threshold: The liquidation_threshold of this UserValue.  # noqa: E501
-        :type: dict(str, str)
+        :type: dict
         """
 
         self._liquidation_threshold = liquidation_threshold
@@ -307,7 +255,7 @@ class UserValue(object):
 
 
         :return: The notional_long of this UserValue.  # noqa: E501
-        :rtype: dict(str, str)
+        :rtype: dict
         """
         return self._notional_long
 
@@ -317,7 +265,7 @@ class UserValue(object):
 
 
         :param notional_long: The notional_long of this UserValue.  # noqa: E501
-        :type: dict(str, str)
+        :type: dict
         """
 
         self._notional_long = notional_long
@@ -328,7 +276,7 @@ class UserValue(object):
 
 
         :return: The notional_short of this UserValue.  # noqa: E501
-        :rtype: dict(str, str)
+        :rtype: dict
         """
         return self._notional_short
 
@@ -338,7 +286,7 @@ class UserValue(object):
 
 
         :param notional_short: The notional_short of this UserValue.  # noqa: E501
-        :type: dict(str, str)
+        :type: dict
         """
 
         self._notional_short = notional_short
@@ -349,7 +297,7 @@ class UserValue(object):
 
 
         :return: The portfolio_value of this UserValue.  # noqa: E501
-        :rtype: dict(str, str)
+        :rtype: dict
         """
         return self._portfolio_value
 
@@ -359,7 +307,7 @@ class UserValue(object):
 
 
         :param portfolio_value: The portfolio_value of this UserValue.  # noqa: E501
-        :type: dict(str, str)
+        :type: dict
         """
 
         self._portfolio_value = portfolio_value
@@ -370,7 +318,7 @@ class UserValue(object):
 
 
         :return: The net_liquidation_value of this UserValue.  # noqa: E501
-        :rtype: dict(str, str)
+        :rtype: dict
         """
         return self._net_liquidation_value
 
@@ -380,7 +328,7 @@ class UserValue(object):
 
 
         :param net_liquidation_value: The net_liquidation_value of this UserValue.  # noqa: E501
-        :type: dict(str, str)
+        :type: dict
         """
 
         self._net_liquidation_value = net_liquidation_value
@@ -391,7 +339,7 @@ class UserValue(object):
 
 
         :return: The unrealized_pnl of this UserValue.  # noqa: E501
-        :rtype: dict(str, str)
+        :rtype: dict
         """
         return self._unrealized_pnl
 
@@ -401,7 +349,7 @@ class UserValue(object):
 
 
         :param unrealized_pnl: The unrealized_pnl of this UserValue.  # noqa: E501
-        :type: dict(str, str)
+        :type: dict
         """
 
         self._unrealized_pnl = unrealized_pnl
@@ -412,7 +360,7 @@ class UserValue(object):
 
 
         :return: The realized_pnl of this UserValue.  # noqa: E501
-        :rtype: dict(str, str)
+        :rtype: dict
         """
         return self._realized_pnl
 
@@ -422,7 +370,7 @@ class UserValue(object):
 
 
         :param realized_pnl: The realized_pnl of this UserValue.  # noqa: E501
-        :type: dict(str, str)
+        :type: dict
         """
 
         self._realized_pnl = realized_pnl

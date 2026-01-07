@@ -28,7 +28,7 @@ class CreateOrUpdateUserResponse(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'id': 'str'
+        'id': 'dict'
     }
 
     attribute_map = {
@@ -49,7 +49,7 @@ class CreateOrUpdateUserResponse(object):
         The ID of the created or updated user.  # noqa: E501
 
         :return: The id of this CreateOrUpdateUserResponse.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._id
 
@@ -60,7 +60,7 @@ class CreateOrUpdateUserResponse(object):
         The ID of the created or updated user.  # noqa: E501
 
         :param id: The id of this CreateOrUpdateUserResponse.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._id = id

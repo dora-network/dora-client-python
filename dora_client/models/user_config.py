@@ -28,11 +28,11 @@ class UserConfig(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'id': 'str',
-        'photo_url': 'str',
-        'timezone': 'str',
-        'created_at': 'datetime',
-        'updated_at': 'datetime'
+        'id': 'dict',
+        'photo_url': 'dict',
+        'timezone': 'dict',
+        'created_at': 'dict',
+        'updated_at': 'dict'
     }
 
     attribute_map = {
@@ -68,7 +68,7 @@ class UserConfig(object):
 
 
         :return: The id of this UserConfig.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._id
 
@@ -78,7 +78,7 @@ class UserConfig(object):
 
 
         :param id: The id of this UserConfig.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._id = id
@@ -89,7 +89,7 @@ class UserConfig(object):
 
 
         :return: The photo_url of this UserConfig.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._photo_url
 
@@ -99,7 +99,7 @@ class UserConfig(object):
 
 
         :param photo_url: The photo_url of this UserConfig.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._photo_url = photo_url
@@ -111,7 +111,7 @@ class UserConfig(object):
         User's timezone, e.g., 'America/New_York', or an offset.  # noqa: E501
 
         :return: The timezone of this UserConfig.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._timezone
 
@@ -122,7 +122,7 @@ class UserConfig(object):
         User's timezone, e.g., 'America/New_York', or an offset.  # noqa: E501
 
         :param timezone: The timezone of this UserConfig.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._timezone = timezone
@@ -133,7 +133,7 @@ class UserConfig(object):
 
 
         :return: The created_at of this UserConfig.  # noqa: E501
-        :rtype: datetime
+        :rtype: dict
         """
         return self._created_at
 
@@ -143,7 +143,7 @@ class UserConfig(object):
 
 
         :param created_at: The created_at of this UserConfig.  # noqa: E501
-        :type: datetime
+        :type: dict
         """
 
         self._created_at = created_at
@@ -154,7 +154,7 @@ class UserConfig(object):
 
 
         :return: The updated_at of this UserConfig.  # noqa: E501
-        :rtype: datetime
+        :rtype: dict
         """
         return self._updated_at
 
@@ -164,7 +164,7 @@ class UserConfig(object):
 
 
         :param updated_at: The updated_at of this UserConfig.  # noqa: E501
-        :type: datetime
+        :type: dict
         """
 
         self._updated_at = updated_at

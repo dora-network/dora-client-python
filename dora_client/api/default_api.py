@@ -41,8 +41,8 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str order_book_id:
-        :param str user_id:
+        :param dict order_book_id:
+        :param dict user_id:
         :param OrderKind order_kind:
         :return: ListOrdersResponse
                  If the method is called asynchronously,
@@ -64,8 +64,8 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str order_book_id:
-        :param str user_id:
+        :param dict order_book_id:
+        :param dict user_id:
         :param OrderKind order_kind:
         :return: ListOrdersResponse
                  If the method is called asynchronously,
@@ -111,7 +111,7 @@ class DefaultApi(object):
             ['application/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = []  # noqa: E501
+        auth_settings = ['apiKeyAuthHeader', 'bearerAuth']  # noqa: E501
 
         return self.api_client.call_api(
             '/v1/orders', 'DELETE',
@@ -138,7 +138,7 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str order_id: (required)
+        :param dict order_id: (required)
         :return: CancelOrderResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -159,7 +159,7 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str order_id: (required)
+        :param dict order_id: (required)
         :return: CancelOrderResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -204,7 +204,7 @@ class DefaultApi(object):
             ['application/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = []  # noqa: E501
+        auth_settings = ['apiKeyAuthHeader', 'bearerAuth']  # noqa: E501
 
         return self.api_client.call_api(
             '/v1/orders/{order_id}', 'DELETE',
@@ -231,7 +231,7 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str email: (required)
+        :param dict email: (required)
         :return: EmailExistsResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -252,7 +252,7 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str email: (required)
+        :param dict email: (required)
         :return: EmailExistsResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -297,7 +297,7 @@ class DefaultApi(object):
             ['application/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = []  # noqa: E501
+        auth_settings = ['apiKeyAuthHeader', 'bearerAuth']  # noqa: E501
 
         return self.api_client.call_api(
             '/v1/user/exists', 'GET',
@@ -308,6 +308,200 @@ class DefaultApi(object):
             post_params=form_params,
             files=local_var_files,
             response_type='EmailExistsResponse',  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
+    def claim_leverage_get_accrued_interest(self, body, **kwargs):  # noqa: E501
+        """Claim current accrued leverage interest for a specific user  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.claim_leverage_get_accrued_interest(body, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param ClaimLeverageAccruedInterestRequest body: (required)
+        :return: ClaimLeverageAccruedInterestResponse
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.claim_leverage_get_accrued_interest_with_http_info(body, **kwargs)  # noqa: E501
+        else:
+            (data) = self.claim_leverage_get_accrued_interest_with_http_info(body, **kwargs)  # noqa: E501
+            return data
+
+    def claim_leverage_get_accrued_interest_with_http_info(self, body, **kwargs):  # noqa: E501
+        """Claim current accrued leverage interest for a specific user  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.claim_leverage_get_accrued_interest_with_http_info(body, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param ClaimLeverageAccruedInterestRequest body: (required)
+        :return: ClaimLeverageAccruedInterestResponse
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['body']  # noqa: E501
+        all_params.append('async_req')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method claim_leverage_get_accrued_interest" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'body' is set
+        if ('body' not in params or
+                params['body'] is None):
+            raise ValueError("Missing the required parameter `body` when calling `claim_leverage_get_accrued_interest`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        if 'body' in params:
+            body_params = params['body']
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
+            ['application/json'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['apiKeyAuthHeader', 'bearerAuth']  # noqa: E501
+
+        return self.api_client.call_api(
+            '/v1/leverage/accrued_interest/claim', 'POST',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='ClaimLeverageAccruedInterestResponse',  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
+    def close_isolated_position(self, body, **kwargs):  # noqa: E501
+        """Close isolated positions, repaying the borrowed  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.close_isolated_position(body, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param ClosePositionRequest body: (required)
+        :return: ClosePositionResponse
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.close_isolated_position_with_http_info(body, **kwargs)  # noqa: E501
+        else:
+            (data) = self.close_isolated_position_with_http_info(body, **kwargs)  # noqa: E501
+            return data
+
+    def close_isolated_position_with_http_info(self, body, **kwargs):  # noqa: E501
+        """Close isolated positions, repaying the borrowed  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.close_isolated_position_with_http_info(body, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param ClosePositionRequest body: (required)
+        :return: ClosePositionResponse
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['body']  # noqa: E501
+        all_params.append('async_req')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method close_isolated_position" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'body' is set
+        if ('body' not in params or
+                params['body'] is None):
+            raise ValueError("Missing the required parameter `body` when calling `close_isolated_position`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        if 'body' in params:
+            body_params = params['body']
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
+            ['application/json'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['apiKeyAuthHeader', 'bearerAuth']  # noqa: E501
+
+        return self.api_client.call_api(
+            '/v1/positions/close', 'POST',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='ClosePositionResponse',  # noqa: E501
             auth_settings=auth_settings,
             async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
@@ -394,7 +588,7 @@ class DefaultApi(object):
             ['application/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = []  # noqa: E501
+        auth_settings = ['apiKeyAuthHeader', 'bearerAuth']  # noqa: E501
 
         return self.api_client.call_api(
             '/v1/user/apikey', 'POST',
@@ -491,7 +685,7 @@ class DefaultApi(object):
             ['application/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = []  # noqa: E501
+        auth_settings = ['apiKeyAuthHeader', 'bearerAuth']  # noqa: E501
 
         return self.api_client.call_api(
             '/v1/positions/new_isolated', 'POST',
@@ -588,7 +782,7 @@ class DefaultApi(object):
             ['application/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = []  # noqa: E501
+        auth_settings = ['apiKeyAuthHeader', 'bearerAuth']  # noqa: E501
 
         return self.api_client.call_api(
             '/v1/orders', 'POST',
@@ -615,7 +809,7 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str user_id: (required)
+        :param dict user_id: (required)
         :return: UserDeletedResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -636,7 +830,7 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str user_id: (required)
+        :param dict user_id: (required)
         :return: UserDeletedResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -681,7 +875,7 @@ class DefaultApi(object):
             ['application/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = []  # noqa: E501
+        auth_settings = ['apiKeyAuthHeader', 'bearerAuth']  # noqa: E501
 
         return self.api_client.call_api(
             '/v1/user/{user_id}', 'DELETE',
@@ -766,7 +960,7 @@ class DefaultApi(object):
             ['application/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = []  # noqa: E501
+        auth_settings = ['apiKeyAuthHeader', 'bearerAuth']  # noqa: E501
 
         return self.api_client.call_api(
             '/v1/price', 'GET',
@@ -793,7 +987,7 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str asset_id: (required)
+        :param dict asset_id: (required)
         :return: GetAssetByIDResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -814,7 +1008,7 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str asset_id: (required)
+        :param dict asset_id: (required)
         :return: GetAssetByIDResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -886,7 +1080,7 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str asset_id: (required)
+        :param dict asset_id: (required)
         :return: GetAssetPriceResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -907,7 +1101,7 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str asset_id: (required)
+        :param dict asset_id: (required)
         :return: GetAssetPriceResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -952,7 +1146,7 @@ class DefaultApi(object):
             ['application/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = []  # noqa: E501
+        auth_settings = ['apiKeyAuthHeader', 'bearerAuth']  # noqa: E501
 
         return self.api_client.call_api(
             '/v1/price/asset/{asset_id}', 'GET',
@@ -979,8 +1173,8 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param datetime since:
-        :param datetime until:
+        :param dict since:
+        :param dict until:
         :return: StreamAssetsResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -1001,8 +1195,8 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param datetime since:
-        :param datetime until:
+        :param dict since:
+        :param dict until:
         :return: StreamAssetsResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -1072,9 +1266,9 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str order_book_id: (required)
-        :param datetime start:
-        :param datetime end:
+        :param dict order_book_id: (required)
+        :param dict start:
+        :param dict end:
         :param CandleResolution resolution:
         :return: ListCandlesResponse
                  If the method is called asynchronously,
@@ -1096,9 +1290,9 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str order_book_id: (required)
-        :param datetime start:
-        :param datetime end:
+        :param dict order_book_id: (required)
+        :param dict start:
+        :param dict end:
         :param CandleResolution resolution:
         :return: ListCandlesResponse
                  If the method is called asynchronously,
@@ -1177,7 +1371,7 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str asset_id: (required)
+        :param dict asset_id: (required)
         :return: ListCouponPaymentsResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -1198,7 +1392,7 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str asset_id: (required)
+        :param dict asset_id: (required)
         :return: ListCouponPaymentsResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -1270,7 +1464,7 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str order_book_id: (required)
+        :param dict order_book_id: (required)
         :return: GetTopOfBookResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -1291,7 +1485,7 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str order_book_id: (required)
+        :param dict order_book_id: (required)
         :return: GetTopOfBookResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -1363,7 +1557,7 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str order_book_id: (required)
+        :param dict order_book_id: (required)
         :return: ListOrderBookDepthResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -1384,7 +1578,7 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str order_book_id: (required)
+        :param dict order_book_id: (required)
         :return: ListOrderBookDepthResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -1456,7 +1650,7 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str order_book_id: (required)
+        :param dict order_book_id: (required)
         :return: ListOrdersResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -1477,7 +1671,7 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str order_book_id: (required)
+        :param dict order_book_id: (required)
         :return: ListOrdersResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -1607,7 +1801,7 @@ class DefaultApi(object):
             ['application/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = []  # noqa: E501
+        auth_settings = ['apiKeyAuthHeader', 'bearerAuth']  # noqa: E501
 
         return self.api_client.call_api(
             '/v1/ledger/balances/self', 'GET',
@@ -1692,7 +1886,7 @@ class DefaultApi(object):
             ['application/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = []  # noqa: E501
+        auth_settings = ['apiKeyAuthHeader', 'bearerAuth']  # noqa: E501
 
         return self.api_client.call_api(
             '/v1/ledger/interest/self', 'GET',
@@ -1777,7 +1971,7 @@ class DefaultApi(object):
             ['application/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = []  # noqa: E501
+        auth_settings = ['apiKeyAuthHeader', 'bearerAuth']  # noqa: E501
 
         return self.api_client.call_api(
             '/v1/ledger/module', 'GET',
@@ -1804,7 +1998,7 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str asset_id: (required)
+        :param dict asset_id: (required)
         :return: LedgerModuleByAssetResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -1825,7 +2019,7 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str asset_id: (required)
+        :param dict asset_id: (required)
         :return: LedgerModuleByAssetResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -1870,7 +2064,7 @@ class DefaultApi(object):
             ['application/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = []  # noqa: E501
+        auth_settings = ['apiKeyAuthHeader', 'bearerAuth']  # noqa: E501
 
         return self.api_client.call_api(
             '/v1/ledger/module/{asset_id}', 'GET',
@@ -1955,7 +2149,7 @@ class DefaultApi(object):
             ['application/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = []  # noqa: E501
+        auth_settings = ['apiKeyAuthHeader', 'bearerAuth']  # noqa: E501
 
         return self.api_client.call_api(
             '/v1/ledger/positions/self', 'GET',
@@ -2040,7 +2234,7 @@ class DefaultApi(object):
             ['application/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = []  # noqa: E501
+        auth_settings = ['apiKeyAuthHeader', 'bearerAuth']  # noqa: E501
 
         return self.api_client.call_api(
             '/v1/ledger/value/self', 'GET',
@@ -2067,7 +2261,7 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str order_id: (required)
+        :param dict order_id: (required)
         :return: GetOrderResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -2088,7 +2282,7 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str order_id: (required)
+        :param dict order_id: (required)
         :return: GetOrderResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -2133,7 +2327,7 @@ class DefaultApi(object):
             ['application/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = []  # noqa: E501
+        auth_settings = ['apiKeyAuthHeader', 'bearerAuth']  # noqa: E501
 
         return self.api_client.call_api(
             '/v1/orders/{order_id}', 'GET',
@@ -2160,7 +2354,7 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str order_book_id: (required)
+        :param dict order_book_id: (required)
         :return: GetOrderBookResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -2181,7 +2375,7 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str order_book_id: (required)
+        :param dict order_book_id: (required)
         :return: GetOrderBookResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -2226,7 +2420,7 @@ class DefaultApi(object):
             ['application/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = []  # noqa: E501
+        auth_settings = ['apiKeyAuthHeader', 'bearerAuth']  # noqa: E501
 
         return self.api_client.call_api(
             '/v1/orderbooks/{order_book_id}', 'GET',
@@ -2253,7 +2447,7 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str order_book_id: (required)
+        :param dict order_book_id: (required)
         :return: ListOrderBookDepthResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -2274,7 +2468,7 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str order_book_id: (required)
+        :param dict order_book_id: (required)
         :return: ListOrderBookDepthResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -2346,7 +2540,7 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str order_book_id: (required)
+        :param dict order_book_id: (required)
         :return: ListOrdersResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -2367,7 +2561,7 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str order_book_id: (required)
+        :param dict order_book_id: (required)
         :return: ListOrdersResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -2430,6 +2624,192 @@ class DefaultApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
+    def get_orderbook_stats(self, order_book_id, **kwargs):  # noqa: E501
+        """Get orderbook stats  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.get_orderbook_stats(order_book_id, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param dict order_book_id: (required)
+        :return: GetOrderbookStatsResponse
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.get_orderbook_stats_with_http_info(order_book_id, **kwargs)  # noqa: E501
+        else:
+            (data) = self.get_orderbook_stats_with_http_info(order_book_id, **kwargs)  # noqa: E501
+            return data
+
+    def get_orderbook_stats_with_http_info(self, order_book_id, **kwargs):  # noqa: E501
+        """Get orderbook stats  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.get_orderbook_stats_with_http_info(order_book_id, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param dict order_book_id: (required)
+        :return: GetOrderbookStatsResponse
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['order_book_id']  # noqa: E501
+        all_params.append('async_req')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_orderbook_stats" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'order_book_id' is set
+        if ('order_book_id' not in params or
+                params['order_book_id'] is None):
+            raise ValueError("Missing the required parameter `order_book_id` when calling `get_orderbook_stats`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'order_book_id' in params:
+            path_params['order_book_id'] = params['order_book_id']  # noqa: E501
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = []  # noqa: E501
+
+        return self.api_client.call_api(
+            '/v1/orderbooks/{order_book_id}/stats', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='GetOrderbookStatsResponse',  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
+    def get_orderbook_stats_stream(self, order_book_id, **kwargs):  # noqa: E501
+        """Orderbook stats stream  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.get_orderbook_stats_stream(order_book_id, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param dict order_book_id: (required)
+        :return: OrderbookStats
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.get_orderbook_stats_stream_with_http_info(order_book_id, **kwargs)  # noqa: E501
+        else:
+            (data) = self.get_orderbook_stats_stream_with_http_info(order_book_id, **kwargs)  # noqa: E501
+            return data
+
+    def get_orderbook_stats_stream_with_http_info(self, order_book_id, **kwargs):  # noqa: E501
+        """Orderbook stats stream  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.get_orderbook_stats_stream_with_http_info(order_book_id, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param dict order_book_id: (required)
+        :return: OrderbookStats
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['order_book_id']  # noqa: E501
+        all_params.append('async_req')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_orderbook_stats_stream" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'order_book_id' is set
+        if ('order_book_id' not in params or
+                params['order_book_id'] is None):
+            raise ValueError("Missing the required parameter `order_book_id` when calling `get_orderbook_stats_stream`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'order_book_id' in params:
+            path_params['order_book_id'] = params['order_book_id']  # noqa: E501
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['apiKeyAuthHeader', 'bearerAuth']  # noqa: E501
+
+        return self.api_client.call_api(
+            '/v1/orderbooks/{order_book_id}/stats/stream', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='OrderbookStats',  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
     def get_orderbook_summary(self, order_book_id, **kwargs):  # noqa: E501
         """Get summary of an orderbook  # noqa: E501
 
@@ -2439,7 +2819,7 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str order_book_id: (required)
+        :param dict order_book_id: (required)
         :return: GetOrderBookSummaryResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -2460,7 +2840,7 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str order_book_id: (required)
+        :param dict order_book_id: (required)
         :return: GetOrderBookSummaryResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -2505,7 +2885,7 @@ class DefaultApi(object):
             ['application/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = []  # noqa: E501
+        auth_settings = ['apiKeyAuthHeader', 'bearerAuth']  # noqa: E501
 
         return self.api_client.call_api(
             '/v1/orderbooks/{order_book_id}/summary', 'GET',
@@ -2532,7 +2912,7 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str order_book_id: (required)
+        :param dict order_book_id: (required)
         :return: GetTopOfBookResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -2553,7 +2933,7 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str order_book_id: (required)
+        :param dict order_book_id: (required)
         :return: GetTopOfBookResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -2625,7 +3005,7 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str pool_id: (required)
+        :param dict pool_id: (required)
         :return: GetPoolPriceResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -2646,7 +3026,7 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str pool_id: (required)
+        :param dict pool_id: (required)
         :return: GetPoolPriceResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -2691,7 +3071,7 @@ class DefaultApi(object):
             ['application/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = []  # noqa: E501
+        auth_settings = ['apiKeyAuthHeader', 'bearerAuth']  # noqa: E501
 
         return self.api_client.call_api(
             '/v1/price/pool/{pool_id}', 'GET',
@@ -2718,7 +3098,7 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str trade_id: (required)
+        :param dict trade_id: (required)
         :return: TradeResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -2739,7 +3119,7 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str trade_id: (required)
+        :param dict trade_id: (required)
         :return: TradeResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -2811,12 +3191,12 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param list[str] order_book_ids:
-        :param list[str] user_ids:
-        :param datetime start:
-        :param datetime end:
-        :param int page:
-        :param int limit:
+        :param dict order_book_ids:
+        :param dict user_ids:
+        :param dict start:
+        :param dict end:
+        :param dict page:
+        :param dict limit:
         :return: ListTradeResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -2837,12 +3217,12 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param list[str] order_book_ids:
-        :param list[str] user_ids:
-        :param datetime start:
-        :param datetime end:
-        :param int page:
-        :param int limit:
+        :param dict order_book_ids:
+        :param dict user_ids:
+        :param dict start:
+        :param dict end:
+        :param dict page:
+        :param dict limit:
         :return: ListTradeResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -2871,10 +3251,8 @@ class DefaultApi(object):
         query_params = []
         if 'order_book_ids' in params:
             query_params.append(('order_book_ids', params['order_book_ids']))  # noqa: E501
-            collection_formats['order_book_ids'] = 'multi'  # noqa: E501
         if 'user_ids' in params:
             query_params.append(('user_ids', params['user_ids']))  # noqa: E501
-            collection_formats['user_ids'] = 'multi'  # noqa: E501
         if 'start' in params:
             query_params.append(('start', params['start']))  # noqa: E501
         if 'end' in params:
@@ -2895,7 +3273,7 @@ class DefaultApi(object):
             ['application/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = []  # noqa: E501
+        auth_settings = ['apiKeyAuthHeader', 'bearerAuth']  # noqa: E501
 
         return self.api_client.call_api(
             '/v1/trades', 'GET',
@@ -2922,7 +3300,7 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str transaction_id: (required)
+        :param dict transaction_id: (required)
         :return: GetTransactionResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -2943,7 +3321,7 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str transaction_id: (required)
+        :param dict transaction_id: (required)
         :return: GetTransactionResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -3015,13 +3393,13 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param list[str] pools:
-        :param list[str] user_ids:
-        :param list[TransactionKind] tx_kinds:
-        :param datetime start:
-        :param datetime end:
-        :param int page:
-        :param int limit:
+        :param dict pools:
+        :param dict user_ids:
+        :param dict tx_kinds:
+        :param dict start:
+        :param dict end:
+        :param dict page:
+        :param dict limit:
         :return: ListTransactionsResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -3042,13 +3420,13 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param list[str] pools:
-        :param list[str] user_ids:
-        :param list[TransactionKind] tx_kinds:
-        :param datetime start:
-        :param datetime end:
-        :param int page:
-        :param int limit:
+        :param dict pools:
+        :param dict user_ids:
+        :param dict tx_kinds:
+        :param dict start:
+        :param dict end:
+        :param dict page:
+        :param dict limit:
         :return: ListTransactionsResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -3077,13 +3455,10 @@ class DefaultApi(object):
         query_params = []
         if 'pools' in params:
             query_params.append(('pools', params['pools']))  # noqa: E501
-            collection_formats['pools'] = 'multi'  # noqa: E501
         if 'user_ids' in params:
             query_params.append(('user_ids', params['user_ids']))  # noqa: E501
-            collection_formats['user_ids'] = 'multi'  # noqa: E501
         if 'tx_kinds' in params:
             query_params.append(('tx_kinds', params['tx_kinds']))  # noqa: E501
-            collection_formats['tx_kinds'] = 'multi'  # noqa: E501
         if 'start' in params:
             query_params.append(('start', params['start']))  # noqa: E501
         if 'end' in params:
@@ -3131,7 +3506,7 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str user_id: (required)
+        :param dict user_id: (required)
         :return: GetUserResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -3152,7 +3527,7 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str user_id: (required)
+        :param dict user_id: (required)
         :return: GetUserResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -3197,7 +3572,7 @@ class DefaultApi(object):
             ['application/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = []  # noqa: E501
+        auth_settings = ['apiKeyAuthHeader', 'bearerAuth']  # noqa: E501
 
         return self.api_client.call_api(
             '/v1/user/{user_id}', 'GET',
@@ -3224,7 +3599,7 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str user_id: (required)
+        :param dict user_id: (required)
         :return: StreamPositionsResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -3245,7 +3620,7 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str user_id: (required)
+        :param dict user_id: (required)
         :return: StreamPositionsResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -3290,7 +3665,7 @@ class DefaultApi(object):
             ['application/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = []  # noqa: E501
+        auth_settings = ['apiKeyAuthQuery']  # noqa: E501
 
         return self.api_client.call_api(
             '/v1/user/{user_id}/ledger/stream', 'GET',
@@ -3317,9 +3692,9 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str user_id: (required)
-        :param str order_book_id: (required)
-        :param datetime since:
+        :param dict user_id: (required)
+        :param dict order_book_id: (required)
+        :param dict since:
         :return: StreamOrderUpdatesResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -3340,9 +3715,9 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str user_id: (required)
-        :param str order_book_id: (required)
-        :param datetime since:
+        :param dict user_id: (required)
+        :param dict order_book_id: (required)
+        :param dict since:
         :return: StreamOrderUpdatesResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -3395,7 +3770,7 @@ class DefaultApi(object):
             ['application/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = []  # noqa: E501
+        auth_settings = ['apiKeyAuthQuery']  # noqa: E501
 
         return self.api_client.call_api(
             '/v1/user/{user_id}/orders/{order_book_id}/updates/stream', 'GET',
@@ -3422,8 +3797,8 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str user_id: (required)
-        :param datetime since:
+        :param dict user_id: (required)
+        :param dict since:
         :return: StreamOrderUpdatesResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -3444,8 +3819,8 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str user_id: (required)
-        :param datetime since:
+        :param dict user_id: (required)
+        :param dict since:
         :return: StreamOrderUpdatesResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -3492,7 +3867,7 @@ class DefaultApi(object):
             ['application/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = []  # noqa: E501
+        auth_settings = ['apiKeyAuthQuery']  # noqa: E501
 
         return self.api_client.call_api(
             '/v1/user/{user_id}/orders/all/updates/stream', 'GET',
@@ -3577,7 +3952,7 @@ class DefaultApi(object):
             ['application/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = []  # noqa: E501
+        auth_settings = ['apiKeyAuthHeader', 'bearerAuth']  # noqa: E501
 
         return self.api_client.call_api(
             '/v1/user/self', 'GET',
@@ -3604,8 +3979,8 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str user_id: (required)
-        :param datetime since:
+        :param dict user_id: (required)
+        :param dict since:
         :return: StreamTransactionsResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -3626,8 +4001,8 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str user_id: (required)
-        :param datetime since:
+        :param dict user_id: (required)
+        :param dict since:
         :return: StreamTransactionsResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -3674,7 +4049,7 @@ class DefaultApi(object):
             ['application/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = []  # noqa: E501
+        auth_settings = ['apiKeyAuthQuery']  # noqa: E501
 
         return self.api_client.call_api(
             '/v1/user/{user_id}/transactions/stream', 'GET',
@@ -3759,7 +4134,7 @@ class DefaultApi(object):
             ['application/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = []  # noqa: E501
+        auth_settings = ['apiKeyAuthHeader', 'bearerAuth']  # noqa: E501
 
         return self.api_client.call_api(
             '/v1/user/apikey', 'GET',
@@ -3770,6 +4145,99 @@ class DefaultApi(object):
             post_params=form_params,
             files=local_var_files,
             response_type='GetAPIKeyResponse',  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
+    def leverage_get_accrued_interest_by_user(self, **kwargs):  # noqa: E501
+        """Get current accrued leverage interest for the user  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.leverage_get_accrued_interest_by_user(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param dict position_id:
+        :param dict asset_id:
+        :return: CurrentLeverageAccruedInterestResponse
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.leverage_get_accrued_interest_by_user_with_http_info(**kwargs)  # noqa: E501
+        else:
+            (data) = self.leverage_get_accrued_interest_by_user_with_http_info(**kwargs)  # noqa: E501
+            return data
+
+    def leverage_get_accrued_interest_by_user_with_http_info(self, **kwargs):  # noqa: E501
+        """Get current accrued leverage interest for the user  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.leverage_get_accrued_interest_by_user_with_http_info(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param dict position_id:
+        :param dict asset_id:
+        :return: CurrentLeverageAccruedInterestResponse
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['position_id', 'asset_id']  # noqa: E501
+        all_params.append('async_req')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method leverage_get_accrued_interest_by_user" % key
+                )
+            params[key] = val
+        del params['kwargs']
+
+        collection_formats = {}
+
+        path_params = {}
+
+        query_params = []
+        if 'position_id' in params:
+            query_params.append(('position_id', params['position_id']))  # noqa: E501
+        if 'asset_id' in params:
+            query_params.append(('asset_id', params['asset_id']))  # noqa: E501
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['apiKeyAuthHeader', 'bearerAuth']  # noqa: E501
+
+        return self.api_client.call_api(
+            '/v1/leverage/accrued_interest/self', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='CurrentLeverageAccruedInterestResponse',  # noqa: E501
             auth_settings=auth_settings,
             async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
@@ -3856,7 +4324,7 @@ class DefaultApi(object):
             ['application/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = []  # noqa: E501
+        auth_settings = ['apiKeyAuthHeader', 'bearerAuth']  # noqa: E501
 
         return self.api_client.call_api(
             '/v1/leverage/isolate_collateral', 'POST',
@@ -3953,7 +4421,7 @@ class DefaultApi(object):
             ['application/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = []  # noqa: E501
+        auth_settings = ['apiKeyAuthHeader', 'bearerAuth']  # noqa: E501
 
         return self.api_client.call_api(
             '/v1/leverage/supply', 'POST',
@@ -4052,7 +4520,7 @@ class DefaultApi(object):
             ['application/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = []  # noqa: E501
+        auth_settings = ['apiKeyAuthHeader', 'bearerAuth']  # noqa: E501
 
         return self.api_client.call_api(
             '/v1/leverage/unite', 'POST',
@@ -4149,7 +4617,7 @@ class DefaultApi(object):
             ['application/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = []  # noqa: E501
+        auth_settings = ['apiKeyAuthHeader', 'bearerAuth']  # noqa: E501
 
         return self.api_client.call_api(
             '/v1/leverage/withdraw', 'POST',
@@ -4177,7 +4645,7 @@ class DefaultApi(object):
 
         :param async_req bool
         :param LiquidityRequest body: (required)
-        :param str pool_id: (required)
+        :param dict pool_id: (required)
         :return: LiquidityResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -4199,7 +4667,7 @@ class DefaultApi(object):
 
         :param async_req bool
         :param LiquidityRequest body: (required)
-        :param str pool_id: (required)
+        :param dict pool_id: (required)
         :return: LiquidityResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -4254,7 +4722,7 @@ class DefaultApi(object):
             ['application/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = []  # noqa: E501
+        auth_settings = ['apiKeyAuthHeader', 'bearerAuth']  # noqa: E501
 
         return self.api_client.call_api(
             '/v1/liquidity/pool/{pool_id}/add', 'POST',
@@ -4282,7 +4750,7 @@ class DefaultApi(object):
 
         :param async_req bool
         :param LiquidityRequest body: (required)
-        :param str pool_id: (required)
+        :param dict pool_id: (required)
         :return: LiquidityResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -4304,7 +4772,7 @@ class DefaultApi(object):
 
         :param async_req bool
         :param LiquidityRequest body: (required)
-        :param str pool_id: (required)
+        :param dict pool_id: (required)
         :return: LiquidityResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -4359,7 +4827,7 @@ class DefaultApi(object):
             ['application/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = []  # noqa: E501
+        auth_settings = ['apiKeyAuthHeader', 'bearerAuth']  # noqa: E501
 
         return self.api_client.call_api(
             '/v1/liquidity/pool/{pool_id}/remove', 'POST',
@@ -4386,16 +4854,16 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param datetime created_after:
-        :param datetime created_before:
+        :param dict created_after:
+        :param dict created_before:
         :param AssetKind asset_kind: Asset kind (BOND, CURRENCY, INTEREST, POOL_SHARE)
-        :param bool can_add_liquidity:
-        :param bool can_direct_borrow:
-        :param bool can_onboard:
-        :param bool can_trade:
-        :param bool can_virtual_borrow:
-        :param int page:
-        :param int limit:
+        :param dict can_add_liquidity:
+        :param dict can_direct_borrow:
+        :param dict can_onboard:
+        :param dict can_trade:
+        :param dict can_virtual_borrow:
+        :param dict page:
+        :param dict limit:
         :return: ListAssetsResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -4416,16 +4884,16 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param datetime created_after:
-        :param datetime created_before:
+        :param dict created_after:
+        :param dict created_before:
         :param AssetKind asset_kind: Asset kind (BOND, CURRENCY, INTEREST, POOL_SHARE)
-        :param bool can_add_liquidity:
-        :param bool can_direct_borrow:
-        :param bool can_onboard:
-        :param bool can_trade:
-        :param bool can_virtual_borrow:
-        :param int page:
-        :param int limit:
+        :param dict can_add_liquidity:
+        :param dict can_direct_borrow:
+        :param dict can_onboard:
+        :param dict can_trade:
+        :param dict can_virtual_borrow:
+        :param dict page:
+        :param dict limit:
         :return: ListAssetsResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -4512,10 +4980,10 @@ class DefaultApi(object):
 
         :param async_req bool
         :param OrderBookStatus status:
-        :param str base_asset_id:
-        :param str quote_asset_id:
-        :param int page:
-        :param int limit:
+        :param dict base_asset_id:
+        :param dict quote_asset_id:
+        :param dict page:
+        :param dict limit:
         :return: ListOrderBooksResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -4537,10 +5005,10 @@ class DefaultApi(object):
 
         :param async_req bool
         :param OrderBookStatus status:
-        :param str base_asset_id:
-        :param str quote_asset_id:
-        :param int page:
-        :param int limit:
+        :param dict base_asset_id:
+        :param dict quote_asset_id:
+        :param dict page:
+        :param dict limit:
         :return: ListOrderBooksResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -4589,7 +5057,7 @@ class DefaultApi(object):
             ['application/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = []  # noqa: E501
+        auth_settings = ['apiKeyAuthHeader', 'bearerAuth']  # noqa: E501
 
         return self.api_client.call_api(
             '/v1/orderbooks', 'GET',
@@ -4616,14 +5084,14 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param list[str] order_book_id:
-        :param list[OrderKind] kind:
-        :param list[OrderStatus] status:
+        :param dict order_book_id:
+        :param dict kind:
+        :param dict status:
         :param Side side:
-        :param datetime _from:
-        :param datetime to:
-        :param int page:
-        :param int limit:
+        :param dict _from:
+        :param dict to:
+        :param dict page:
+        :param dict limit:
         :return: ListOrdersResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -4644,14 +5112,14 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param list[str] order_book_id:
-        :param list[OrderKind] kind:
-        :param list[OrderStatus] status:
+        :param dict order_book_id:
+        :param dict kind:
+        :param dict status:
         :param Side side:
-        :param datetime _from:
-        :param datetime to:
-        :param int page:
-        :param int limit:
+        :param dict _from:
+        :param dict to:
+        :param dict page:
+        :param dict limit:
         :return: ListOrdersResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -4680,13 +5148,10 @@ class DefaultApi(object):
         query_params = []
         if 'order_book_id' in params:
             query_params.append(('order_book_id', params['order_book_id']))  # noqa: E501
-            collection_formats['order_book_id'] = 'multi'  # noqa: E501
         if 'kind' in params:
             query_params.append(('kind', params['kind']))  # noqa: E501
-            collection_formats['kind'] = 'multi'  # noqa: E501
         if 'status' in params:
             query_params.append(('status', params['status']))  # noqa: E501
-            collection_formats['status'] = 'multi'  # noqa: E501
         if 'side' in params:
             query_params.append(('side', params['side']))  # noqa: E501
         if '_from' in params:
@@ -4709,7 +5174,7 @@ class DefaultApi(object):
             ['application/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = []  # noqa: E501
+        auth_settings = ['apiKeyAuthHeader', 'bearerAuth']  # noqa: E501
 
         return self.api_client.call_api(
             '/v1/orders', 'GET',
@@ -4794,7 +5259,7 @@ class DefaultApi(object):
             ['application/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = []  # noqa: E501
+        auth_settings = ['apiKeyAuthHeader', 'bearerAuth']  # noqa: E501
 
         return self.api_client.call_api(
             '/v1/user/self/position_accounts', 'GET',
@@ -4812,6 +5277,103 @@ class DefaultApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
+    def pay_leverage_get_accrued_interest(self, body, **kwargs):  # noqa: E501
+        """Pay current accrued leverage interest for a specific user  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.pay_leverage_get_accrued_interest(body, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param PayLeverageAccruedInterestRequest body: (required)
+        :return: PayLeverageAccruedInterestResponse
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.pay_leverage_get_accrued_interest_with_http_info(body, **kwargs)  # noqa: E501
+        else:
+            (data) = self.pay_leverage_get_accrued_interest_with_http_info(body, **kwargs)  # noqa: E501
+            return data
+
+    def pay_leverage_get_accrued_interest_with_http_info(self, body, **kwargs):  # noqa: E501
+        """Pay current accrued leverage interest for a specific user  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.pay_leverage_get_accrued_interest_with_http_info(body, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param PayLeverageAccruedInterestRequest body: (required)
+        :return: PayLeverageAccruedInterestResponse
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['body']  # noqa: E501
+        all_params.append('async_req')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method pay_leverage_get_accrued_interest" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'body' is set
+        if ('body' not in params or
+                params['body'] is None):
+            raise ValueError("Missing the required parameter `body` when calling `pay_leverage_get_accrued_interest`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        if 'body' in params:
+            body_params = params['body']
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
+            ['application/json'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['apiKeyAuthHeader', 'bearerAuth']  # noqa: E501
+
+        return self.api_client.call_api(
+            '/v1/leverage/accrued_interest/pay', 'POST',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='PayLeverageAccruedInterestResponse',  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
     def revoke_api_key_for_user(self, key_id, **kwargs):  # noqa: E501
         """Revoke apikey for a user  # noqa: E501
 
@@ -4821,7 +5383,7 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str key_id: (required)
+        :param dict key_id: (required)
         :return: RevokeAPIKeyResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -4842,7 +5404,7 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str key_id: (required)
+        :param dict key_id: (required)
         :return: RevokeAPIKeyResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -4887,7 +5449,7 @@ class DefaultApi(object):
             ['application/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = []  # noqa: E501
+        auth_settings = ['apiKeyAuthHeader', 'bearerAuth']  # noqa: E501
 
         return self.api_client.call_api(
             '/v1/user/apikey/{key_id}/revoke', 'PUT',
@@ -4915,7 +5477,8 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param datetime since:
+        :param dict since:
+        :param dict asset_id:
         :return: StreamAssetPricesResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -4937,13 +5500,14 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param datetime since:
+        :param dict since:
+        :param dict asset_id:
         :return: StreamAssetPricesResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['since']  # noqa: E501
+        all_params = ['since', 'asset_id']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -4966,6 +5530,8 @@ class DefaultApi(object):
         query_params = []
         if 'since' in params:
             query_params.append(('since', params['since']))  # noqa: E501
+        if 'asset_id' in params:
+            query_params.append(('asset_id', params['asset_id']))  # noqa: E501
 
         header_params = {}
 
@@ -5005,8 +5571,8 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str order_book_id: (required)
-        :param datetime since:
+        :param dict order_book_id: (required)
+        :param dict since:
         :param CandleResolution resolution:
         :return: StreamCandlesResponse
                  If the method is called asynchronously,
@@ -5028,8 +5594,8 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str order_book_id: (required)
-        :param datetime since:
+        :param dict order_book_id: (required)
+        :param dict since:
         :param CandleResolution resolution:
         :return: StreamCandlesResponse
                  If the method is called asynchronously,
@@ -5106,8 +5672,8 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str order_book_id: (required)
-        :param datetime since:
+        :param dict order_book_id: (required)
+        :param dict since:
         :return: StreamOrderBookBalancesResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -5128,8 +5694,8 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str order_book_id: (required)
-        :param datetime since:
+        :param dict order_book_id: (required)
+        :param dict since:
         :return: StreamOrderBookBalancesResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -5203,8 +5769,8 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str order_book_id: (required)
-        :param datetime since:
+        :param dict order_book_id: (required)
+        :param dict since:
         :return: LiveOrderbook
                  If the method is called asynchronously,
                  returns the request thread.
@@ -5225,8 +5791,8 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str order_book_id: (required)
-        :param datetime since:
+        :param dict order_book_id: (required)
+        :param dict since:
         :return: LiveOrderbook
                  If the method is called asynchronously,
                  returns the request thread.
@@ -5300,8 +5866,8 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str order_book_id: (required)
-        :param datetime since:
+        :param dict order_book_id: (required)
+        :param dict since:
         :return: StreamTradesResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -5322,8 +5888,8 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str order_book_id: (required)
-        :param datetime since:
+        :param dict order_book_id: (required)
+        :param dict since:
         :return: StreamTradesResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -5467,7 +6033,7 @@ class DefaultApi(object):
             ['application/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = []  # noqa: E501
+        auth_settings = ['apiKeyAuthHeader', 'bearerAuth']  # noqa: E501
 
         return self.api_client.call_api(
             '/v1/positions/transfer_balances', 'POST',
@@ -5495,7 +6061,7 @@ class DefaultApi(object):
 
         :param async_req bool
         :param UpdateUserConfigRequest body: (required)
-        :param str user_id: (required)
+        :param dict user_id: (required)
         :return: UserUpdatedResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -5517,7 +6083,7 @@ class DefaultApi(object):
 
         :param async_req bool
         :param UpdateUserConfigRequest body: (required)
-        :param str user_id: (required)
+        :param dict user_id: (required)
         :return: UserUpdatedResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -5572,7 +6138,7 @@ class DefaultApi(object):
             ['application/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = []  # noqa: E501
+        auth_settings = ['apiKeyAuthHeader', 'bearerAuth']  # noqa: E501
 
         return self.api_client.call_api(
             '/v1/user/{user_id}/config', 'PUT',
@@ -5669,7 +6235,7 @@ class DefaultApi(object):
             ['application/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = []  # noqa: E501
+        auth_settings = ['apiKeyAuthHeader', 'bearerAuth']  # noqa: E501
 
         return self.api_client.call_api(
             '/v1/user/config/self', 'PUT',
@@ -5766,7 +6332,7 @@ class DefaultApi(object):
             ['application/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = []  # noqa: E501
+        auth_settings = ['apiKeyAuthHeader', 'bearerAuth']  # noqa: E501
 
         return self.api_client.call_api(
             '/v1/orders/validate', 'POST',
@@ -5793,7 +6359,7 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str user_id: (required)
+        :param dict user_id: (required)
         :return: UserUpdatedResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -5814,7 +6380,7 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param str user_id: (required)
+        :param dict user_id: (required)
         :return: UserUpdatedResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -5859,7 +6425,7 @@ class DefaultApi(object):
             ['application/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = []  # noqa: E501
+        auth_settings = ['apiKeyAuthHeader', 'bearerAuth']  # noqa: E501
 
         return self.api_client.call_api(
             '/v1/user/{user_id}/verify', 'PUT',

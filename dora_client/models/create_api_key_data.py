@@ -28,9 +28,9 @@ class CreateAPIKeyData(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'key_id': 'str',
-        'api_key': 'str',
-        'label': 'str'
+        'key_id': 'dict',
+        'api_key': 'dict',
+        'label': 'dict'
     }
 
     attribute_map = {
@@ -58,7 +58,7 @@ class CreateAPIKeyData(object):
 
 
         :return: The key_id of this CreateAPIKeyData.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._key_id
 
@@ -68,7 +68,7 @@ class CreateAPIKeyData(object):
 
 
         :param key_id: The key_id of this CreateAPIKeyData.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._key_id = key_id
@@ -79,7 +79,7 @@ class CreateAPIKeyData(object):
 
 
         :return: The api_key of this CreateAPIKeyData.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._api_key
 
@@ -89,7 +89,7 @@ class CreateAPIKeyData(object):
 
 
         :param api_key: The api_key of this CreateAPIKeyData.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._api_key = api_key
@@ -100,7 +100,7 @@ class CreateAPIKeyData(object):
 
 
         :return: The label of this CreateAPIKeyData.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._label
 
@@ -110,7 +110,7 @@ class CreateAPIKeyData(object):
 
 
         :param label: The label of this CreateAPIKeyData.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._label = label

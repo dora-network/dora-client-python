@@ -28,10 +28,10 @@ class OrderBookBalance(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'order_book_id': 'str',
-        'base_quantity': 'float',
-        'quote_quantity': 'float',
-        'shares_quantity': 'float'
+        'order_book_id': 'dict',
+        'base_quantity': 'dict',
+        'quote_quantity': 'dict',
+        'shares_quantity': 'dict'
     }
 
     attribute_map = {
@@ -64,7 +64,7 @@ class OrderBookBalance(object):
         The ID of the order book.  # noqa: E501
 
         :return: The order_book_id of this OrderBookBalance.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._order_book_id
 
@@ -75,7 +75,7 @@ class OrderBookBalance(object):
         The ID of the order book.  # noqa: E501
 
         :param order_book_id: The order_book_id of this OrderBookBalance.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._order_book_id = order_book_id
@@ -87,7 +87,7 @@ class OrderBookBalance(object):
         The quantity of the base asset.  # noqa: E501
 
         :return: The base_quantity of this OrderBookBalance.  # noqa: E501
-        :rtype: float
+        :rtype: dict
         """
         return self._base_quantity
 
@@ -98,7 +98,7 @@ class OrderBookBalance(object):
         The quantity of the base asset.  # noqa: E501
 
         :param base_quantity: The base_quantity of this OrderBookBalance.  # noqa: E501
-        :type: float
+        :type: dict
         """
 
         self._base_quantity = base_quantity
@@ -110,7 +110,7 @@ class OrderBookBalance(object):
         The quantity of the quote asset.  # noqa: E501
 
         :return: The quote_quantity of this OrderBookBalance.  # noqa: E501
-        :rtype: float
+        :rtype: dict
         """
         return self._quote_quantity
 
@@ -121,7 +121,7 @@ class OrderBookBalance(object):
         The quantity of the quote asset.  # noqa: E501
 
         :param quote_quantity: The quote_quantity of this OrderBookBalance.  # noqa: E501
-        :type: float
+        :type: dict
         """
 
         self._quote_quantity = quote_quantity
@@ -133,7 +133,7 @@ class OrderBookBalance(object):
         The quantity of pool shares.  # noqa: E501
 
         :return: The shares_quantity of this OrderBookBalance.  # noqa: E501
-        :rtype: float
+        :rtype: dict
         """
         return self._shares_quantity
 
@@ -144,7 +144,7 @@ class OrderBookBalance(object):
         The quantity of pool shares.  # noqa: E501
 
         :param shares_quantity: The shares_quantity of this OrderBookBalance.  # noqa: E501
-        :type: float
+        :type: dict
         """
 
         self._shares_quantity = shares_quantity

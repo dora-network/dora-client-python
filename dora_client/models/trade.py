@@ -28,19 +28,19 @@ class Trade(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'transaction_id': 'str',
-        'asset_0': 'str',
-        'created_at': 'datetime',
-        'fee_asset_id': 'str',
-        'fee_quantity': 'str',
-        'order_book_id': 'str',
-        'order_id': 'str',
-        'order_seq': 'int',
-        'price': 'str',
-        'quantity_0': 'str',
-        'user_id': 'str',
+        'transaction_id': 'dict',
+        'asset_0': 'dict',
+        'created_at': 'dict',
+        'fee_asset_id': 'dict',
+        'fee_quantity': 'dict',
+        'order_book_id': 'dict',
+        'order_id': 'dict',
+        'order_seq': 'dict',
+        'price': 'dict',
+        'quantity_0': 'dict',
+        'user_id': 'dict',
         'side': 'Side',
-        'aggressor_indicator': 'bool'
+        'aggressor_indicator': 'dict'
     }
 
     attribute_map = {
@@ -108,7 +108,7 @@ class Trade(object):
 
 
         :return: The transaction_id of this Trade.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._transaction_id
 
@@ -118,7 +118,7 @@ class Trade(object):
 
 
         :param transaction_id: The transaction_id of this Trade.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._transaction_id = transaction_id
@@ -129,7 +129,7 @@ class Trade(object):
 
 
         :return: The asset_0 of this Trade.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._asset_0
 
@@ -139,7 +139,7 @@ class Trade(object):
 
 
         :param asset_0: The asset_0 of this Trade.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._asset_0 = asset_0
@@ -150,7 +150,7 @@ class Trade(object):
 
 
         :return: The created_at of this Trade.  # noqa: E501
-        :rtype: datetime
+        :rtype: dict
         """
         return self._created_at
 
@@ -160,7 +160,7 @@ class Trade(object):
 
 
         :param created_at: The created_at of this Trade.  # noqa: E501
-        :type: datetime
+        :type: dict
         """
 
         self._created_at = created_at
@@ -171,7 +171,7 @@ class Trade(object):
 
 
         :return: The fee_asset_id of this Trade.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._fee_asset_id
 
@@ -181,7 +181,7 @@ class Trade(object):
 
 
         :param fee_asset_id: The fee_asset_id of this Trade.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._fee_asset_id = fee_asset_id
@@ -192,7 +192,7 @@ class Trade(object):
 
 
         :return: The fee_quantity of this Trade.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._fee_quantity
 
@@ -202,7 +202,7 @@ class Trade(object):
 
 
         :param fee_quantity: The fee_quantity of this Trade.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._fee_quantity = fee_quantity
@@ -213,7 +213,7 @@ class Trade(object):
 
 
         :return: The order_book_id of this Trade.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._order_book_id
 
@@ -223,7 +223,7 @@ class Trade(object):
 
 
         :param order_book_id: The order_book_id of this Trade.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._order_book_id = order_book_id
@@ -234,7 +234,7 @@ class Trade(object):
 
 
         :return: The order_id of this Trade.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._order_id
 
@@ -244,7 +244,7 @@ class Trade(object):
 
 
         :param order_id: The order_id of this Trade.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._order_id = order_id
@@ -255,7 +255,7 @@ class Trade(object):
 
 
         :return: The order_seq of this Trade.  # noqa: E501
-        :rtype: int
+        :rtype: dict
         """
         return self._order_seq
 
@@ -265,7 +265,7 @@ class Trade(object):
 
 
         :param order_seq: The order_seq of this Trade.  # noqa: E501
-        :type: int
+        :type: dict
         """
 
         self._order_seq = order_seq
@@ -276,7 +276,7 @@ class Trade(object):
 
 
         :return: The price of this Trade.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._price
 
@@ -286,7 +286,7 @@ class Trade(object):
 
 
         :param price: The price of this Trade.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._price = price
@@ -297,7 +297,7 @@ class Trade(object):
 
 
         :return: The quantity_0 of this Trade.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._quantity_0
 
@@ -307,7 +307,7 @@ class Trade(object):
 
 
         :param quantity_0: The quantity_0 of this Trade.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._quantity_0 = quantity_0
@@ -318,7 +318,7 @@ class Trade(object):
 
 
         :return: The user_id of this Trade.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._user_id
 
@@ -328,7 +328,7 @@ class Trade(object):
 
 
         :param user_id: The user_id of this Trade.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._user_id = user_id
@@ -361,7 +361,7 @@ class Trade(object):
         If true, then this order is the aggressor (taker); otherwise it is the maker.  # noqa: E501
 
         :return: The aggressor_indicator of this Trade.  # noqa: E501
-        :rtype: bool
+        :rtype: dict
         """
         return self._aggressor_indicator
 
@@ -372,7 +372,7 @@ class Trade(object):
         If true, then this order is the aggressor (taker); otherwise it is the maker.  # noqa: E501
 
         :param aggressor_indicator: The aggressor_indicator of this Trade.  # noqa: E501
-        :type: bool
+        :type: dict
         """
 
         self._aggressor_indicator = aggressor_indicator

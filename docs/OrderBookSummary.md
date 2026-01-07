@@ -3,11 +3,11 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**order_book_id** | **str** |  | [optional] 
-**mid_price** | **str** |  | [optional] 
-**spread** | **str** |  | [optional] 
-**best_bid** | **str** |  | [optional] 
-**best_ask** | **str** |  | [optional] 
+**order_book_id** | **dict** |  | [optional] 
+**mid_price** | **dict** |  | [optional] 
+**spread** | **dict** |  | [optional] 
+**best_bid** | **dict** |  | [optional] 
+**best_ask** | **dict** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

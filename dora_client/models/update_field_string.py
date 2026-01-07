@@ -28,8 +28,8 @@ class UpdateFieldString(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'update': 'bool',
-        'value': 'str'
+        'update': 'dict',
+        'value': 'dict'
     }
 
     attribute_map = {
@@ -53,7 +53,7 @@ class UpdateFieldString(object):
         Whether to update the field.  # noqa: E501
 
         :return: The update of this UpdateFieldString.  # noqa: E501
-        :rtype: bool
+        :rtype: dict
         """
         return self._update
 
@@ -64,7 +64,7 @@ class UpdateFieldString(object):
         Whether to update the field.  # noqa: E501
 
         :param update: The update of this UpdateFieldString.  # noqa: E501
-        :type: bool
+        :type: dict
         """
         if update is None:
             raise ValueError("Invalid value for `update`, must not be `None`")  # noqa: E501
@@ -78,7 +78,7 @@ class UpdateFieldString(object):
         The new value to set for the field.  # noqa: E501
 
         :return: The value of this UpdateFieldString.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._value
 
@@ -89,7 +89,7 @@ class UpdateFieldString(object):
         The new value to set for the field.  # noqa: E501
 
         :param value: The value of this UpdateFieldString.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._value = value

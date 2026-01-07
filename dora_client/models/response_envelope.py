@@ -29,7 +29,7 @@ class ResponseEnvelope(object):
     """
     swagger_types = {
         'data': 'dict',
-        'error': 'str',
+        'error': 'dict',
         'metadata': 'Metadata'
     }
 
@@ -82,7 +82,7 @@ class ResponseEnvelope(object):
         The error message. Present for error (non-2xx) responses.  # noqa: E501
 
         :return: The error of this ResponseEnvelope.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._error
 
@@ -93,7 +93,7 @@ class ResponseEnvelope(object):
         The error message. Present for error (non-2xx) responses.  # noqa: E501
 
         :param error: The error of this ResponseEnvelope.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._error = error
@@ -102,6 +102,7 @@ class ResponseEnvelope(object):
     def metadata(self):
         """Gets the metadata of this ResponseEnvelope.  # noqa: E501
 
+        Metadata about the response, including status code and trace information.  # noqa: E501
 
         :return: The metadata of this ResponseEnvelope.  # noqa: E501
         :rtype: Metadata
@@ -112,6 +113,7 @@ class ResponseEnvelope(object):
     def metadata(self, metadata):
         """Sets the metadata of this ResponseEnvelope.
 
+        Metadata about the response, including status code and trace information.  # noqa: E501
 
         :param metadata: The metadata of this ResponseEnvelope.  # noqa: E501
         :type: Metadata

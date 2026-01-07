@@ -28,24 +28,24 @@ class OrderBook(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'order_book_id': 'str',
-        'base_quantity': 'float',
-        'base_asset_id': 'str',
-        'created_at': 'datetime',
-        'display_name': 'str',
-        'fee_factor': 'float',
-        'initial_assets_ratio': 'float',
-        'maturity_at': 'datetime',
-        'quote_quantity': 'float',
-        'quote_asset_id': 'str',
-        'shares_quantity': 'float',
+        'order_book_id': 'dict',
+        'base_quantity': 'dict',
+        'base_asset_id': 'dict',
+        'created_at': 'dict',
+        'display_name': 'dict',
+        'fee_factor': 'dict',
+        'initial_assets_ratio': 'dict',
+        'maturity_at': 'dict',
+        'quote_quantity': 'dict',
+        'quote_asset_id': 'dict',
+        'shares_quantity': 'dict',
         'status': 'OrderBookStatus',
-        'tick_size': 'float',
-        'updated_at': 'datetime',
-        'halted_at': 'datetime',
-        'terminated_at': 'datetime',
-        'pool_updated_at': 'datetime',
-        'shares_asset_id': 'str'
+        'tick_size': 'dict',
+        'updated_at': 'dict',
+        'halted_at': 'dict',
+        'terminated_at': 'dict',
+        'pool_updated_at': 'dict',
+        'shares_asset_id': 'dict'
     }
 
     attribute_map = {
@@ -133,7 +133,7 @@ class OrderBook(object):
 
 
         :return: The order_book_id of this OrderBook.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._order_book_id
 
@@ -143,7 +143,7 @@ class OrderBook(object):
 
 
         :param order_book_id: The order_book_id of this OrderBook.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._order_book_id = order_book_id
@@ -154,7 +154,7 @@ class OrderBook(object):
 
 
         :return: The base_quantity of this OrderBook.  # noqa: E501
-        :rtype: float
+        :rtype: dict
         """
         return self._base_quantity
 
@@ -164,7 +164,7 @@ class OrderBook(object):
 
 
         :param base_quantity: The base_quantity of this OrderBook.  # noqa: E501
-        :type: float
+        :type: dict
         """
 
         self._base_quantity = base_quantity
@@ -175,7 +175,7 @@ class OrderBook(object):
 
 
         :return: The base_asset_id of this OrderBook.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._base_asset_id
 
@@ -185,7 +185,7 @@ class OrderBook(object):
 
 
         :param base_asset_id: The base_asset_id of this OrderBook.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._base_asset_id = base_asset_id
@@ -196,7 +196,7 @@ class OrderBook(object):
 
 
         :return: The created_at of this OrderBook.  # noqa: E501
-        :rtype: datetime
+        :rtype: dict
         """
         return self._created_at
 
@@ -206,7 +206,7 @@ class OrderBook(object):
 
 
         :param created_at: The created_at of this OrderBook.  # noqa: E501
-        :type: datetime
+        :type: dict
         """
 
         self._created_at = created_at
@@ -217,7 +217,7 @@ class OrderBook(object):
 
 
         :return: The display_name of this OrderBook.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._display_name
 
@@ -227,7 +227,7 @@ class OrderBook(object):
 
 
         :param display_name: The display_name of this OrderBook.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._display_name = display_name
@@ -238,7 +238,7 @@ class OrderBook(object):
 
 
         :return: The fee_factor of this OrderBook.  # noqa: E501
-        :rtype: float
+        :rtype: dict
         """
         return self._fee_factor
 
@@ -248,7 +248,7 @@ class OrderBook(object):
 
 
         :param fee_factor: The fee_factor of this OrderBook.  # noqa: E501
-        :type: float
+        :type: dict
         """
 
         self._fee_factor = fee_factor
@@ -259,7 +259,7 @@ class OrderBook(object):
 
 
         :return: The initial_assets_ratio of this OrderBook.  # noqa: E501
-        :rtype: float
+        :rtype: dict
         """
         return self._initial_assets_ratio
 
@@ -269,7 +269,7 @@ class OrderBook(object):
 
 
         :param initial_assets_ratio: The initial_assets_ratio of this OrderBook.  # noqa: E501
-        :type: float
+        :type: dict
         """
 
         self._initial_assets_ratio = initial_assets_ratio
@@ -280,7 +280,7 @@ class OrderBook(object):
 
 
         :return: The maturity_at of this OrderBook.  # noqa: E501
-        :rtype: datetime
+        :rtype: dict
         """
         return self._maturity_at
 
@@ -290,7 +290,7 @@ class OrderBook(object):
 
 
         :param maturity_at: The maturity_at of this OrderBook.  # noqa: E501
-        :type: datetime
+        :type: dict
         """
 
         self._maturity_at = maturity_at
@@ -301,7 +301,7 @@ class OrderBook(object):
 
 
         :return: The quote_quantity of this OrderBook.  # noqa: E501
-        :rtype: float
+        :rtype: dict
         """
         return self._quote_quantity
 
@@ -311,7 +311,7 @@ class OrderBook(object):
 
 
         :param quote_quantity: The quote_quantity of this OrderBook.  # noqa: E501
-        :type: float
+        :type: dict
         """
 
         self._quote_quantity = quote_quantity
@@ -322,7 +322,7 @@ class OrderBook(object):
 
 
         :return: The quote_asset_id of this OrderBook.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._quote_asset_id
 
@@ -332,7 +332,7 @@ class OrderBook(object):
 
 
         :param quote_asset_id: The quote_asset_id of this OrderBook.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._quote_asset_id = quote_asset_id
@@ -343,7 +343,7 @@ class OrderBook(object):
 
 
         :return: The shares_quantity of this OrderBook.  # noqa: E501
-        :rtype: float
+        :rtype: dict
         """
         return self._shares_quantity
 
@@ -353,7 +353,7 @@ class OrderBook(object):
 
 
         :param shares_quantity: The shares_quantity of this OrderBook.  # noqa: E501
-        :type: float
+        :type: dict
         """
 
         self._shares_quantity = shares_quantity
@@ -385,7 +385,7 @@ class OrderBook(object):
 
 
         :return: The tick_size of this OrderBook.  # noqa: E501
-        :rtype: float
+        :rtype: dict
         """
         return self._tick_size
 
@@ -395,7 +395,7 @@ class OrderBook(object):
 
 
         :param tick_size: The tick_size of this OrderBook.  # noqa: E501
-        :type: float
+        :type: dict
         """
 
         self._tick_size = tick_size
@@ -406,7 +406,7 @@ class OrderBook(object):
 
 
         :return: The updated_at of this OrderBook.  # noqa: E501
-        :rtype: datetime
+        :rtype: dict
         """
         return self._updated_at
 
@@ -416,7 +416,7 @@ class OrderBook(object):
 
 
         :param updated_at: The updated_at of this OrderBook.  # noqa: E501
-        :type: datetime
+        :type: dict
         """
 
         self._updated_at = updated_at
@@ -427,7 +427,7 @@ class OrderBook(object):
 
 
         :return: The halted_at of this OrderBook.  # noqa: E501
-        :rtype: datetime
+        :rtype: dict
         """
         return self._halted_at
 
@@ -437,7 +437,7 @@ class OrderBook(object):
 
 
         :param halted_at: The halted_at of this OrderBook.  # noqa: E501
-        :type: datetime
+        :type: dict
         """
 
         self._halted_at = halted_at
@@ -448,7 +448,7 @@ class OrderBook(object):
 
 
         :return: The terminated_at of this OrderBook.  # noqa: E501
-        :rtype: datetime
+        :rtype: dict
         """
         return self._terminated_at
 
@@ -458,7 +458,7 @@ class OrderBook(object):
 
 
         :param terminated_at: The terminated_at of this OrderBook.  # noqa: E501
-        :type: datetime
+        :type: dict
         """
 
         self._terminated_at = terminated_at
@@ -469,7 +469,7 @@ class OrderBook(object):
 
 
         :return: The pool_updated_at of this OrderBook.  # noqa: E501
-        :rtype: datetime
+        :rtype: dict
         """
         return self._pool_updated_at
 
@@ -479,7 +479,7 @@ class OrderBook(object):
 
 
         :param pool_updated_at: The pool_updated_at of this OrderBook.  # noqa: E501
-        :type: datetime
+        :type: dict
         """
 
         self._pool_updated_at = pool_updated_at
@@ -490,7 +490,7 @@ class OrderBook(object):
 
 
         :return: The shares_asset_id of this OrderBook.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._shares_asset_id
 
@@ -500,7 +500,7 @@ class OrderBook(object):
 
 
         :param shares_asset_id: The shares_asset_id of this OrderBook.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._shares_asset_id = shares_asset_id

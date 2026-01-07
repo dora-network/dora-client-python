@@ -28,9 +28,9 @@ class AssetPrice(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'asset_id': 'str',
-        'price': 'str',
-        'time': 'datetime'
+        'asset_id': 'dict',
+        'price': 'dict',
+        'time': 'dict'
     }
 
     attribute_map = {
@@ -58,7 +58,7 @@ class AssetPrice(object):
 
 
         :return: The asset_id of this AssetPrice.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._asset_id
 
@@ -68,7 +68,7 @@ class AssetPrice(object):
 
 
         :param asset_id: The asset_id of this AssetPrice.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._asset_id = asset_id
@@ -79,7 +79,7 @@ class AssetPrice(object):
 
 
         :return: The price of this AssetPrice.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._price
 
@@ -89,7 +89,7 @@ class AssetPrice(object):
 
 
         :param price: The price of this AssetPrice.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._price = price
@@ -100,7 +100,7 @@ class AssetPrice(object):
 
 
         :return: The time of this AssetPrice.  # noqa: E501
-        :rtype: datetime
+        :rtype: dict
         """
         return self._time
 
@@ -110,7 +110,7 @@ class AssetPrice(object):
 
 
         :param time: The time of this AssetPrice.  # noqa: E501
-        :type: datetime
+        :type: dict
         """
 
         self._time = time

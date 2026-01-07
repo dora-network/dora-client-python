@@ -28,8 +28,8 @@ class LiquidityRequest(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'position_id': 'str',
-        'quantity': 'str'
+        'position_id': 'dict',
+        'quantity': 'dict'
     }
 
     attribute_map = {
@@ -51,7 +51,7 @@ class LiquidityRequest(object):
 
 
         :return: The position_id of this LiquidityRequest.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._position_id
 
@@ -61,7 +61,7 @@ class LiquidityRequest(object):
 
 
         :param position_id: The position_id of this LiquidityRequest.  # noqa: E501
-        :type: str
+        :type: dict
         """
         if position_id is None:
             raise ValueError("Invalid value for `position_id`, must not be `None`")  # noqa: E501
@@ -74,7 +74,7 @@ class LiquidityRequest(object):
 
 
         :return: The quantity of this LiquidityRequest.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._quantity
 
@@ -84,7 +84,7 @@ class LiquidityRequest(object):
 
 
         :param quantity: The quantity of this LiquidityRequest.  # noqa: E501
-        :type: str
+        :type: dict
         """
         if quantity is None:
             raise ValueError("Invalid value for `quantity`, must not be `None`")  # noqa: E501

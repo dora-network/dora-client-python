@@ -28,8 +28,8 @@ class UserInterest(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'available': 'dict(str, int)',
-        'value': 'dict(str, str)'
+        'available': 'dict',
+        'value': 'dict'
     }
 
     attribute_map = {
@@ -53,7 +53,7 @@ class UserInterest(object):
 
 
         :return: The available of this UserInterest.  # noqa: E501
-        :rtype: dict(str, int)
+        :rtype: dict
         """
         return self._available
 
@@ -63,7 +63,7 @@ class UserInterest(object):
 
 
         :param available: The available of this UserInterest.  # noqa: E501
-        :type: dict(str, int)
+        :type: dict
         """
 
         self._available = available
@@ -74,7 +74,7 @@ class UserInterest(object):
 
 
         :return: The value of this UserInterest.  # noqa: E501
-        :rtype: dict(str, str)
+        :rtype: dict
         """
         return self._value
 
@@ -84,7 +84,7 @@ class UserInterest(object):
 
 
         :param value: The value of this UserInterest.  # noqa: E501
-        :type: dict(str, str)
+        :type: dict
         """
 
         self._value = value

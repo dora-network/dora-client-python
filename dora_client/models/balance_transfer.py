@@ -28,9 +28,9 @@ class BalanceTransfer(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'from_position_id': 'str',
-        'to_position_id': 'str',
-        'transaction_id': 'str'
+        'from_position_id': 'dict',
+        'to_position_id': 'dict',
+        'transaction_id': 'dict'
     }
 
     attribute_map = {
@@ -58,7 +58,7 @@ class BalanceTransfer(object):
 
 
         :return: The from_position_id of this BalanceTransfer.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._from_position_id
 
@@ -68,7 +68,7 @@ class BalanceTransfer(object):
 
 
         :param from_position_id: The from_position_id of this BalanceTransfer.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._from_position_id = from_position_id
@@ -79,7 +79,7 @@ class BalanceTransfer(object):
 
 
         :return: The to_position_id of this BalanceTransfer.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._to_position_id
 
@@ -89,7 +89,7 @@ class BalanceTransfer(object):
 
 
         :param to_position_id: The to_position_id of this BalanceTransfer.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._to_position_id = to_position_id
@@ -100,7 +100,7 @@ class BalanceTransfer(object):
 
 
         :return: The transaction_id of this BalanceTransfer.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._transaction_id
 
@@ -110,7 +110,7 @@ class BalanceTransfer(object):
 
 
         :param transaction_id: The transaction_id of this BalanceTransfer.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._transaction_id = transaction_id

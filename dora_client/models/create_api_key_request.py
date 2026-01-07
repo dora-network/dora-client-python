@@ -28,8 +28,8 @@ class CreateAPIKeyRequest(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'label': 'str',
-        'expires': 'datetime'
+        'label': 'dict',
+        'expires': 'dict'
     }
 
     attribute_map = {
@@ -53,7 +53,7 @@ class CreateAPIKeyRequest(object):
 
 
         :return: The label of this CreateAPIKeyRequest.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._label
 
@@ -63,7 +63,7 @@ class CreateAPIKeyRequest(object):
 
 
         :param label: The label of this CreateAPIKeyRequest.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._label = label
@@ -75,7 +75,7 @@ class CreateAPIKeyRequest(object):
         Date at which the api-key will expire  # noqa: E501
 
         :return: The expires of this CreateAPIKeyRequest.  # noqa: E501
-        :rtype: datetime
+        :rtype: dict
         """
         return self._expires
 
@@ -86,7 +86,7 @@ class CreateAPIKeyRequest(object):
         Date at which the api-key will expire  # noqa: E501
 
         :param expires: The expires of this CreateAPIKeyRequest.  # noqa: E501
-        :type: datetime
+        :type: dict
         """
 
         self._expires = expires

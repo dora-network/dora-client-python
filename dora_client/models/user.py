@@ -28,19 +28,19 @@ class User(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'id': 'str',
-        'closed_at': 'datetime',
-        'disabled_at': 'datetime',
-        'email': 'str',
-        'name': 'str',
-        'native_asset_id': 'str',
-        'photo_url': 'str',
-        'provider': 'str',
-        'provider_id': 'str',
-        'roles': 'list[UserRole]',
-        'timezone': 'str',
-        'timezone_offset': 'int',
-        'verified_at': 'datetime'
+        'id': 'dict',
+        'closed_at': 'dict',
+        'disabled_at': 'dict',
+        'email': 'dict',
+        'name': 'dict',
+        'native_asset_id': 'dict',
+        'photo_url': 'dict',
+        'provider': 'dict',
+        'provider_id': 'dict',
+        'roles': 'dict',
+        'timezone': 'dict',
+        'timezone_offset': 'dict',
+        'verified_at': 'dict'
     }
 
     attribute_map = {
@@ -108,7 +108,7 @@ class User(object):
 
 
         :return: The id of this User.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._id
 
@@ -118,7 +118,7 @@ class User(object):
 
 
         :param id: The id of this User.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._id = id
@@ -129,7 +129,7 @@ class User(object):
 
 
         :return: The closed_at of this User.  # noqa: E501
-        :rtype: datetime
+        :rtype: dict
         """
         return self._closed_at
 
@@ -139,7 +139,7 @@ class User(object):
 
 
         :param closed_at: The closed_at of this User.  # noqa: E501
-        :type: datetime
+        :type: dict
         """
 
         self._closed_at = closed_at
@@ -150,7 +150,7 @@ class User(object):
 
 
         :return: The disabled_at of this User.  # noqa: E501
-        :rtype: datetime
+        :rtype: dict
         """
         return self._disabled_at
 
@@ -160,7 +160,7 @@ class User(object):
 
 
         :param disabled_at: The disabled_at of this User.  # noqa: E501
-        :type: datetime
+        :type: dict
         """
 
         self._disabled_at = disabled_at
@@ -171,7 +171,7 @@ class User(object):
 
 
         :return: The email of this User.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._email
 
@@ -181,7 +181,7 @@ class User(object):
 
 
         :param email: The email of this User.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._email = email
@@ -192,7 +192,7 @@ class User(object):
 
 
         :return: The name of this User.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._name
 
@@ -202,7 +202,7 @@ class User(object):
 
 
         :param name: The name of this User.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._name = name
@@ -213,7 +213,7 @@ class User(object):
 
 
         :return: The native_asset_id of this User.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._native_asset_id
 
@@ -223,7 +223,7 @@ class User(object):
 
 
         :param native_asset_id: The native_asset_id of this User.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._native_asset_id = native_asset_id
@@ -234,7 +234,7 @@ class User(object):
 
 
         :return: The photo_url of this User.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._photo_url
 
@@ -244,7 +244,7 @@ class User(object):
 
 
         :param photo_url: The photo_url of this User.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._photo_url = photo_url
@@ -255,7 +255,7 @@ class User(object):
 
 
         :return: The provider of this User.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._provider
 
@@ -265,7 +265,7 @@ class User(object):
 
 
         :param provider: The provider of this User.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._provider = provider
@@ -276,7 +276,7 @@ class User(object):
 
 
         :return: The provider_id of this User.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._provider_id
 
@@ -286,7 +286,7 @@ class User(object):
 
 
         :param provider_id: The provider_id of this User.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._provider_id = provider_id
@@ -297,7 +297,7 @@ class User(object):
 
 
         :return: The roles of this User.  # noqa: E501
-        :rtype: list[UserRole]
+        :rtype: dict
         """
         return self._roles
 
@@ -307,7 +307,7 @@ class User(object):
 
 
         :param roles: The roles of this User.  # noqa: E501
-        :type: list[UserRole]
+        :type: dict
         """
 
         self._roles = roles
@@ -319,7 +319,7 @@ class User(object):
         User's timezone, e.g., 'America/New_York', or an offset.  # noqa: E501
 
         :return: The timezone of this User.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._timezone
 
@@ -330,7 +330,7 @@ class User(object):
         User's timezone, e.g., 'America/New_York', or an offset.  # noqa: E501
 
         :param timezone: The timezone of this User.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._timezone = timezone
@@ -342,7 +342,7 @@ class User(object):
         timezone offset in seconds  # noqa: E501
 
         :return: The timezone_offset of this User.  # noqa: E501
-        :rtype: int
+        :rtype: dict
         """
         return self._timezone_offset
 
@@ -353,7 +353,7 @@ class User(object):
         timezone offset in seconds  # noqa: E501
 
         :param timezone_offset: The timezone_offset of this User.  # noqa: E501
-        :type: int
+        :type: dict
         """
 
         self._timezone_offset = timezone_offset
@@ -364,7 +364,7 @@ class User(object):
 
 
         :return: The verified_at of this User.  # noqa: E501
-        :rtype: datetime
+        :rtype: dict
         """
         return self._verified_at
 
@@ -374,7 +374,7 @@ class User(object):
 
 
         :param verified_at: The verified_at of this User.  # noqa: E501
-        :type: datetime
+        :type: dict
         """
 
         self._verified_at = verified_at

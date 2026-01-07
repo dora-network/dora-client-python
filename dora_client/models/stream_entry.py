@@ -29,7 +29,7 @@ class StreamEntry(object):
     """
     swagger_types = {
         'val': 'dict',
-        'time': 'datetime'
+        'time': 'dict'
     }
 
     attribute_map = {
@@ -77,7 +77,7 @@ class StreamEntry(object):
         The timestamp when the data was created  # noqa: E501
 
         :return: The time of this StreamEntry.  # noqa: E501
-        :rtype: datetime
+        :rtype: dict
         """
         return self._time
 
@@ -88,7 +88,7 @@ class StreamEntry(object):
         The timestamp when the data was created  # noqa: E501
 
         :param time: The time of this StreamEntry.  # noqa: E501
-        :type: datetime
+        :type: dict
         """
 
         self._time = time

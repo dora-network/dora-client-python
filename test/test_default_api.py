@@ -49,6 +49,20 @@ class TestDefaultApi(unittest.TestCase):
         """
         pass
 
+    def test_claim_leverage_get_accrued_interest(self):
+        """Test case for claim_leverage_get_accrued_interest
+
+        Claim current accrued leverage interest for a specific user  # noqa: E501
+        """
+        pass
+
+    def test_close_isolated_position(self):
+        """Test case for close_isolated_position
+
+        Close isolated positions, repaying the borrowed  # noqa: E501
+        """
+        pass
+
     def test_create_api_key_for_user(self):
         """Test case for create_api_key_for_user
 
@@ -210,6 +224,20 @@ class TestDefaultApi(unittest.TestCase):
         """
         pass
 
+    def test_get_orderbook_stats(self):
+        """Test case for get_orderbook_stats
+
+        Get orderbook stats  # noqa: E501
+        """
+        pass
+
+    def test_get_orderbook_stats_stream(self):
+        """Test case for get_orderbook_stats_stream
+
+        Orderbook stats stream  # noqa: E501
+        """
+        pass
+
     def test_get_orderbook_summary(self):
         """Test case for get_orderbook_summary
 
@@ -308,6 +336,13 @@ class TestDefaultApi(unittest.TestCase):
         """
         pass
 
+    def test_leverage_get_accrued_interest_by_user(self):
+        """Test case for leverage_get_accrued_interest_by_user
+
+        Get current accrued leverage interest for the user  # noqa: E501
+        """
+        pass
+
     def test_leverage_isolate_collateral(self):
         """Test case for leverage_isolate_collateral
 
@@ -375,6 +410,13 @@ class TestDefaultApi(unittest.TestCase):
         """Test case for list_position_accounts_self
 
         List all position accounts for the authenticated user  # noqa: E501
+        """
+        pass
+
+    def test_pay_leverage_get_accrued_interest(self):
+        """Test case for pay_leverage_get_accrued_interest
+
+        Pay current accrued leverage interest for a specific user  # noqa: E501
         """
         pass
 

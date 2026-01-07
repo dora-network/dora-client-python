@@ -28,8 +28,8 @@ class LiveOrderbook(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'bids': 'list[PriceLevel]',
-        'asks': 'list[PriceLevel]'
+        'bids': 'dict',
+        'asks': 'dict'
     }
 
     attribute_map = {
@@ -54,7 +54,7 @@ class LiveOrderbook(object):
         sorted in desc order by price  # noqa: E501
 
         :return: The bids of this LiveOrderbook.  # noqa: E501
-        :rtype: list[PriceLevel]
+        :rtype: dict
         """
         return self._bids
 
@@ -65,7 +65,7 @@ class LiveOrderbook(object):
         sorted in desc order by price  # noqa: E501
 
         :param bids: The bids of this LiveOrderbook.  # noqa: E501
-        :type: list[PriceLevel]
+        :type: dict
         """
 
         self._bids = bids
@@ -77,7 +77,7 @@ class LiveOrderbook(object):
         sorted in asc order by price  # noqa: E501
 
         :return: The asks of this LiveOrderbook.  # noqa: E501
-        :rtype: list[PriceLevel]
+        :rtype: dict
         """
         return self._asks
 
@@ -88,7 +88,7 @@ class LiveOrderbook(object):
         sorted in asc order by price  # noqa: E501
 
         :param asks: The asks of this LiveOrderbook.  # noqa: E501
-        :type: list[PriceLevel]
+        :type: dict
         """
 
         self._asks = asks

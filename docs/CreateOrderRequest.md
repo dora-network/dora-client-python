@@ -3,16 +3,17 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**quantity** | **str** |  | 
-**inverse_leverage** | **str** |  | 
-**price** | **str** |  | [optional] 
+**quantity** | **dict** |  | 
+**inverse_leverage** | **dict** |  | 
+**price** | **dict** |  | [optional] 
 **kind** | [**OrderKind**](OrderKind.md) |  | 
-**side** | [**Side**](Side.md) |  | 
-**position_id** | **str** | position ID to use for the order. required. | 
-**order_book_id** | **str** | Required: the order book to submit the order to | 
-**order_modifiers** | [**list[OrderModifierKind]**](OrderModifierKind.md) |  | [optional] 
-**good_till_date** | **datetime** |  | [optional] 
-**trigger_price** | **str** |  | [optional] 
+**side** | [**Side**](Side.md) | Required: Must be either &#x27;BUY&#x27; or &#x27;SELL&#x27; | 
+**from_global_position** | **dict** | use global position for the order or isolated. required. | 
+**order_book_id** | **dict** | Required: the order book to submit the order to | 
+**order_modifiers** | **dict** |  | [optional] 
+**good_till_date** | **dict** |  | [optional] 
+**trigger_price** | **dict** |  | [optional] 
+**trigger_type** | [**TriggerType**](TriggerType.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

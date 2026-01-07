@@ -28,17 +28,17 @@ class CouponPayment(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'id': 'str',
-        'asset_id': 'str',
-        '_yield': 'float',
-        'start_at': 'datetime',
-        'end_at': 'datetime',
-        'pay_at': 'datetime',
-        'available_to_pay': 'str',
-        'completed_at': 'datetime',
-        'created_at': 'datetime',
-        'process_every': 'int',
-        'last_processed_at': 'datetime'
+        'id': 'dict',
+        'asset_id': 'dict',
+        '_yield': 'dict',
+        'start_at': 'dict',
+        'end_at': 'dict',
+        'pay_at': 'dict',
+        'available_to_pay': 'dict',
+        'completed_at': 'dict',
+        'created_at': 'dict',
+        'process_every': 'dict',
+        'last_processed_at': 'dict'
     }
 
     attribute_map = {
@@ -98,7 +98,7 @@ class CouponPayment(object):
 
 
         :return: The id of this CouponPayment.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._id
 
@@ -108,7 +108,7 @@ class CouponPayment(object):
 
 
         :param id: The id of this CouponPayment.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._id = id
@@ -119,7 +119,7 @@ class CouponPayment(object):
 
 
         :return: The asset_id of this CouponPayment.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._asset_id
 
@@ -129,7 +129,7 @@ class CouponPayment(object):
 
 
         :param asset_id: The asset_id of this CouponPayment.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._asset_id = asset_id
@@ -140,7 +140,7 @@ class CouponPayment(object):
 
 
         :return: The _yield of this CouponPayment.  # noqa: E501
-        :rtype: float
+        :rtype: dict
         """
         return self.__yield
 
@@ -150,7 +150,7 @@ class CouponPayment(object):
 
 
         :param _yield: The _yield of this CouponPayment.  # noqa: E501
-        :type: float
+        :type: dict
         """
 
         self.__yield = _yield
@@ -161,7 +161,7 @@ class CouponPayment(object):
 
 
         :return: The start_at of this CouponPayment.  # noqa: E501
-        :rtype: datetime
+        :rtype: dict
         """
         return self._start_at
 
@@ -171,7 +171,7 @@ class CouponPayment(object):
 
 
         :param start_at: The start_at of this CouponPayment.  # noqa: E501
-        :type: datetime
+        :type: dict
         """
 
         self._start_at = start_at
@@ -182,7 +182,7 @@ class CouponPayment(object):
 
 
         :return: The end_at of this CouponPayment.  # noqa: E501
-        :rtype: datetime
+        :rtype: dict
         """
         return self._end_at
 
@@ -192,7 +192,7 @@ class CouponPayment(object):
 
 
         :param end_at: The end_at of this CouponPayment.  # noqa: E501
-        :type: datetime
+        :type: dict
         """
 
         self._end_at = end_at
@@ -203,7 +203,7 @@ class CouponPayment(object):
 
 
         :return: The pay_at of this CouponPayment.  # noqa: E501
-        :rtype: datetime
+        :rtype: dict
         """
         return self._pay_at
 
@@ -213,7 +213,7 @@ class CouponPayment(object):
 
 
         :param pay_at: The pay_at of this CouponPayment.  # noqa: E501
-        :type: datetime
+        :type: dict
         """
 
         self._pay_at = pay_at
@@ -224,7 +224,7 @@ class CouponPayment(object):
 
 
         :return: The available_to_pay of this CouponPayment.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._available_to_pay
 
@@ -234,7 +234,7 @@ class CouponPayment(object):
 
 
         :param available_to_pay: The available_to_pay of this CouponPayment.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._available_to_pay = available_to_pay
@@ -245,7 +245,7 @@ class CouponPayment(object):
 
 
         :return: The completed_at of this CouponPayment.  # noqa: E501
-        :rtype: datetime
+        :rtype: dict
         """
         return self._completed_at
 
@@ -255,7 +255,7 @@ class CouponPayment(object):
 
 
         :param completed_at: The completed_at of this CouponPayment.  # noqa: E501
-        :type: datetime
+        :type: dict
         """
 
         self._completed_at = completed_at
@@ -266,7 +266,7 @@ class CouponPayment(object):
 
 
         :return: The created_at of this CouponPayment.  # noqa: E501
-        :rtype: datetime
+        :rtype: dict
         """
         return self._created_at
 
@@ -276,7 +276,7 @@ class CouponPayment(object):
 
 
         :param created_at: The created_at of this CouponPayment.  # noqa: E501
-        :type: datetime
+        :type: dict
         """
 
         self._created_at = created_at
@@ -288,7 +288,7 @@ class CouponPayment(object):
         Number of nanoseconds to wait between coupon payment processing, must be at least 1000 (1 microsecond)  # noqa: E501
 
         :return: The process_every of this CouponPayment.  # noqa: E501
-        :rtype: int
+        :rtype: dict
         """
         return self._process_every
 
@@ -299,7 +299,7 @@ class CouponPayment(object):
         Number of nanoseconds to wait between coupon payment processing, must be at least 1000 (1 microsecond)  # noqa: E501
 
         :param process_every: The process_every of this CouponPayment.  # noqa: E501
-        :type: int
+        :type: dict
         """
 
         self._process_every = process_every
@@ -310,7 +310,7 @@ class CouponPayment(object):
 
 
         :return: The last_processed_at of this CouponPayment.  # noqa: E501
-        :rtype: datetime
+        :rtype: dict
         """
         return self._last_processed_at
 
@@ -320,7 +320,7 @@ class CouponPayment(object):
 
 
         :param last_processed_at: The last_processed_at of this CouponPayment.  # noqa: E501
-        :type: datetime
+        :type: dict
         """
 
         self._last_processed_at = last_processed_at

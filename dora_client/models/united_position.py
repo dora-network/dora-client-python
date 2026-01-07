@@ -28,8 +28,8 @@ class UnitedPosition(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'global_position_id': 'str',
-        'transaction_ids': 'list[str]'
+        'global_position_id': 'dict',
+        'transaction_ids': 'dict'
     }
 
     attribute_map = {
@@ -53,7 +53,7 @@ class UnitedPosition(object):
 
 
         :return: The global_position_id of this UnitedPosition.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._global_position_id
 
@@ -63,7 +63,7 @@ class UnitedPosition(object):
 
 
         :param global_position_id: The global_position_id of this UnitedPosition.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._global_position_id = global_position_id
@@ -74,7 +74,7 @@ class UnitedPosition(object):
 
 
         :return: The transaction_ids of this UnitedPosition.  # noqa: E501
-        :rtype: list[str]
+        :rtype: dict
         """
         return self._transaction_ids
 
@@ -84,7 +84,7 @@ class UnitedPosition(object):
 
 
         :param transaction_ids: The transaction_ids of this UnitedPosition.  # noqa: E501
-        :type: list[str]
+        :type: dict
         """
 
         self._transaction_ids = transaction_ids

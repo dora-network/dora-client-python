@@ -28,11 +28,11 @@ class IsolatedCollateral(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'global_position_id': 'str',
-        'isolated_position_id': 'str',
-        'transaction_id': 'str',
-        'asset_id': 'str',
-        'quantity': 'str'
+        'global_position_id': 'dict',
+        'isolated_position_id': 'dict',
+        'transaction_id': 'dict',
+        'asset_id': 'dict',
+        'quantity': 'dict'
     }
 
     attribute_map = {
@@ -68,7 +68,7 @@ class IsolatedCollateral(object):
 
 
         :return: The global_position_id of this IsolatedCollateral.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._global_position_id
 
@@ -78,7 +78,7 @@ class IsolatedCollateral(object):
 
 
         :param global_position_id: The global_position_id of this IsolatedCollateral.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._global_position_id = global_position_id
@@ -89,7 +89,7 @@ class IsolatedCollateral(object):
 
 
         :return: The isolated_position_id of this IsolatedCollateral.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._isolated_position_id
 
@@ -99,7 +99,7 @@ class IsolatedCollateral(object):
 
 
         :param isolated_position_id: The isolated_position_id of this IsolatedCollateral.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._isolated_position_id = isolated_position_id
@@ -110,7 +110,7 @@ class IsolatedCollateral(object):
 
 
         :return: The transaction_id of this IsolatedCollateral.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._transaction_id
 
@@ -120,7 +120,7 @@ class IsolatedCollateral(object):
 
 
         :param transaction_id: The transaction_id of this IsolatedCollateral.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._transaction_id = transaction_id
@@ -131,7 +131,7 @@ class IsolatedCollateral(object):
 
 
         :return: The asset_id of this IsolatedCollateral.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._asset_id
 
@@ -141,7 +141,7 @@ class IsolatedCollateral(object):
 
 
         :param asset_id: The asset_id of this IsolatedCollateral.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._asset_id = asset_id
@@ -152,7 +152,7 @@ class IsolatedCollateral(object):
 
 
         :return: The quantity of this IsolatedCollateral.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._quantity
 
@@ -162,7 +162,7 @@ class IsolatedCollateral(object):
 
 
         :param quantity: The quantity of this IsolatedCollateral.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._quantity = quantity

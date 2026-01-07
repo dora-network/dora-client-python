@@ -51,10 +51,16 @@ import dora_client
 from dora_client.rest import ApiException
 from pprint import pprint
 
+# Configure API key authorization: apiKeyAuthHeader
+configuration = dora_client.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
+
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
-order_book_id = 'order_book_id_example' # str |  (optional)
-user_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str |  (optional)
+order_book_id = NULL # dict |  (optional)
+user_id = NULL # dict |  (optional)
 order_kind = dora_client.OrderKind() # OrderKind |  (optional)
 
 try:
@@ -64,9 +70,15 @@ try:
 except ApiException as e:
     print("Exception when calling DefaultApi->cancel_all_open_orders: %s\n" % e)
 
+# Configure API key authorization: apiKeyAuthHeader
+configuration = dora_client.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
+
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
-order_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
+order_id = NULL # dict | 
 
 try:
     # Cancel an order by ID
@@ -75,9 +87,15 @@ try:
 except ApiException as e:
     print("Exception when calling DefaultApi->cancel_order_by_id: %s\n" % e)
 
+# Configure API key authorization: apiKeyAuthHeader
+configuration = dora_client.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
+
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
-email = 'email_example' # str | 
+email = NULL # dict | 
 
 try:
     # Check whether a user email exists
@@ -85,6 +103,46 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->check_user_email_exists: %s\n" % e)
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration = dora_client.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+body = dora_client.ClaimLeverageAccruedInterestRequest() # ClaimLeverageAccruedInterestRequest | 
+
+try:
+    # Claim current accrued leverage interest for a specific user
+    api_response = api_instance.claim_leverage_get_accrued_interest(body)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->claim_leverage_get_accrued_interest: %s\n" % e)
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration = dora_client.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+body = dora_client.ClosePositionRequest() # ClosePositionRequest | 
+
+try:
+    # Close isolated positions, repaying the borrowed
+    api_response = api_instance.close_isolated_position(body)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->close_isolated_position: %s\n" % e)
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration = dora_client.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
@@ -97,6 +155,12 @@ try:
 except ApiException as e:
     print("Exception when calling DefaultApi->create_api_key_for_user: %s\n" % e)
 
+# Configure API key authorization: apiKeyAuthHeader
+configuration = dora_client.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
+
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
 body = dora_client.NewIsolatedPositionRequest() # NewIsolatedPositionRequest | 
@@ -107,6 +171,12 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->create_new_isolated_position: %s\n" % e)
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration = dora_client.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
@@ -119,9 +189,15 @@ try:
 except ApiException as e:
     print("Exception when calling DefaultApi->create_order: %s\n" % e)
 
+# Configure API key authorization: apiKeyAuthHeader
+configuration = dora_client.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
+
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
-user_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
+user_id = NULL # dict | 
 
 try:
     # Delete user by ID
@@ -129,6 +205,12 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->delete_user: %s\n" % e)
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration = dora_client.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
@@ -142,7 +224,7 @@ except ApiException as e:
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
-asset_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
+asset_id = NULL # dict | 
 
 try:
     # Get asset by ID
@@ -151,9 +233,15 @@ try:
 except ApiException as e:
     print("Exception when calling DefaultApi->get_asset_by_id: %s\n" % e)
 
+# Configure API key authorization: apiKeyAuthHeader
+configuration = dora_client.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
+
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
-asset_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
+asset_id = NULL # dict | 
 
 try:
     # Get the current price of an asset
@@ -164,8 +252,8 @@ except ApiException as e:
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
-since = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
-until = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
+since = NULL # dict |  (optional)
+until = NULL # dict |  (optional)
 
 try:
     # Get all inserts or updates for assets
@@ -176,9 +264,9 @@ except ApiException as e:
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
-order_book_id = 'order_book_id_example' # str | 
-start = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
-end = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
+order_book_id = NULL # dict | 
+start = NULL # dict |  (optional)
+end = NULL # dict |  (optional)
 resolution = dora_client.CandleResolution() # CandleResolution |  (optional)
 
 try:
@@ -190,7 +278,7 @@ except ApiException as e:
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
-asset_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
+asset_id = NULL # dict | 
 
 try:
     # Get coupon payments for a bond asset
@@ -201,7 +289,7 @@ except ApiException as e:
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
-order_book_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
+order_book_id = NULL # dict | 
 
 try:
     # Get the top price levels for a specific orderbook (L1 market depth)
@@ -212,7 +300,7 @@ except ApiException as e:
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
-order_book_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
+order_book_id = NULL # dict | 
 
 try:
     # Get the aggregated price levels for a specific orderbook (L2 market depth)
@@ -223,7 +311,7 @@ except ApiException as e:
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
-order_book_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
+order_book_id = NULL # dict | 
 
 try:
     # Get all open orders for a specific orderbook (L3 market depth)
@@ -231,6 +319,12 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->get_l3_depth: %s\n" % e)
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration = dora_client.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
@@ -242,6 +336,12 @@ try:
 except ApiException as e:
     print("Exception when calling DefaultApi->get_ledger_balances_self: %s\n" % e)
 
+# Configure API key authorization: apiKeyAuthHeader
+configuration = dora_client.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
+
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
 
@@ -251,6 +351,12 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->get_ledger_interest_self: %s\n" % e)
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration = dora_client.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
@@ -262,9 +368,15 @@ try:
 except ApiException as e:
     print("Exception when calling DefaultApi->get_ledger_module: %s\n" % e)
 
+# Configure API key authorization: apiKeyAuthHeader
+configuration = dora_client.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
+
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
-asset_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
+asset_id = NULL # dict | 
 
 try:
     # Get the module object for a single asset ID
@@ -272,6 +384,12 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->get_ledger_module_by_asset: %s\n" % e)
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration = dora_client.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
@@ -283,6 +401,12 @@ try:
 except ApiException as e:
     print("Exception when calling DefaultApi->get_ledger_positions_self: %s\n" % e)
 
+# Configure API key authorization: apiKeyAuthHeader
+configuration = dora_client.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
+
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
 
@@ -293,9 +417,15 @@ try:
 except ApiException as e:
     print("Exception when calling DefaultApi->get_ledger_value_self: %s\n" % e)
 
+# Configure API key authorization: apiKeyAuthHeader
+configuration = dora_client.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
+
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
-order_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
+order_id = NULL # dict | 
 
 try:
     # Get order by ID
@@ -304,9 +434,15 @@ try:
 except ApiException as e:
     print("Exception when calling DefaultApi->get_order_by_id: %s\n" % e)
 
+# Configure API key authorization: apiKeyAuthHeader
+configuration = dora_client.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
+
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
-order_book_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
+order_book_id = NULL # dict | 
 
 try:
     # Get orderbook by ID
@@ -317,7 +453,7 @@ except ApiException as e:
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
-order_book_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
+order_book_id = NULL # dict | 
 
 try:
     # Get the aggregated price levels for a specific orderbook (L2 market depth)
@@ -328,7 +464,7 @@ except ApiException as e:
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
-order_book_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
+order_book_id = NULL # dict | 
 
 try:
     # Get all open orders for a specific orderbook (L3 market depth)
@@ -339,7 +475,41 @@ except ApiException as e:
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
-order_book_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
+order_book_id = NULL # dict | 
+
+try:
+    # Get orderbook stats
+    api_response = api_instance.get_orderbook_stats(order_book_id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->get_orderbook_stats: %s\n" % e)
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration = dora_client.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+order_book_id = NULL # dict | 
+
+try:
+    # Orderbook stats stream
+    api_response = api_instance.get_orderbook_stats_stream(order_book_id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->get_orderbook_stats_stream: %s\n" % e)
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration = dora_client.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+order_book_id = NULL # dict | 
 
 try:
     # Get summary of an orderbook
@@ -350,7 +520,7 @@ except ApiException as e:
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
-order_book_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
+order_book_id = NULL # dict | 
 
 try:
     # Get the top price levels for a specific orderbook (L1 market depth)
@@ -359,9 +529,15 @@ try:
 except ApiException as e:
     print("Exception when calling DefaultApi->get_orderbook_top: %s\n" % e)
 
+# Configure API key authorization: apiKeyAuthHeader
+configuration = dora_client.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
+
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
-pool_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
+pool_id = NULL # dict | 
 
 try:
     # Get the current price of a pool
@@ -372,7 +548,7 @@ except ApiException as e:
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
-trade_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
+trade_id = NULL # dict | 
 
 try:
     # Get a trade by ID
@@ -381,14 +557,20 @@ try:
 except ApiException as e:
     print("Exception when calling DefaultApi->get_trade_by_id: %s\n" % e)
 
+# Configure API key authorization: apiKeyAuthHeader
+configuration = dora_client.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
+
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
-order_book_ids = ['order_book_ids_example'] # list[str] |  (optional)
-user_ids = ['user_ids_example'] # list[str] |  (optional)
-start = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
-end = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
-page = 1 # int |  (optional) (default to 1)
-limit = 100 # int |  (optional) (default to 100)
+order_book_ids = NULL # dict |  (optional)
+user_ids = NULL # dict |  (optional)
+start = NULL # dict |  (optional)
+end = NULL # dict |  (optional)
+page = 1 # dict |  (optional) (default to 1)
+limit = 100 # dict |  (optional) (default to 100)
 
 try:
     # Get a filtered, paginated list of trades
@@ -399,7 +581,7 @@ except ApiException as e:
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
-transaction_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
+transaction_id = NULL # dict | 
 
 try:
     # Get a transaction by ID
@@ -410,13 +592,13 @@ except ApiException as e:
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
-pools = ['pools_example'] # list[str] |  (optional)
-user_ids = ['user_ids_example'] # list[str] |  (optional)
-tx_kinds = [dora_client.TransactionKind()] # list[TransactionKind] |  (optional)
-start = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
-end = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
-page = 1 # int |  (optional) (default to 1)
-limit = 100 # int |  (optional) (default to 100)
+pools = NULL # dict |  (optional)
+user_ids = NULL # dict |  (optional)
+tx_kinds = NULL # dict |  (optional)
+start = NULL # dict |  (optional)
+end = NULL # dict |  (optional)
+page = 1 # dict |  (optional) (default to 1)
+limit = 100 # dict |  (optional) (default to 100)
 
 try:
     # Get a filtered, paginated list of transactions
@@ -425,9 +607,15 @@ try:
 except ApiException as e:
     print("Exception when calling DefaultApi->get_transactions: %s\n" % e)
 
+# Configure API key authorization: apiKeyAuthHeader
+configuration = dora_client.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
+
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
-user_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
+user_id = NULL # dict | 
 
 try:
     # Get user by ID (admin only)
@@ -436,9 +624,15 @@ try:
 except ApiException as e:
     print("Exception when calling DefaultApi->get_user_by_id: %s\n" % e)
 
+# Configure API key authorization: apiKeyAuthQuery
+configuration = dora_client.Configuration()
+configuration.api_key['x-api-key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['x-api-key'] = 'Bearer'
+
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
-user_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
+user_id = NULL # dict | 
 
 try:
     # Get a snapshot of user's ledger updates since a specific time, and opens a stream for further updates
@@ -447,11 +641,17 @@ try:
 except ApiException as e:
     print("Exception when calling DefaultApi->get_user_ledger_stream: %s\n" % e)
 
+# Configure API key authorization: apiKeyAuthQuery
+configuration = dora_client.Configuration()
+configuration.api_key['x-api-key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['x-api-key'] = 'Bearer'
+
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
-user_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
-order_book_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
-since = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
+user_id = NULL # dict | 
+order_book_id = NULL # dict | 
+since = NULL # dict |  (optional)
 
 try:
     # Get a snapshot of user's order updates for the given order book since a specific time, and opens a stream for further updates
@@ -460,10 +660,16 @@ try:
 except ApiException as e:
     print("Exception when calling DefaultApi->get_user_order_updates_stream: %s\n" % e)
 
+# Configure API key authorization: apiKeyAuthQuery
+configuration = dora_client.Configuration()
+configuration.api_key['x-api-key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['x-api-key'] = 'Bearer'
+
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
-user_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
-since = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
+user_id = NULL # dict | 
+since = NULL # dict |  (optional)
 
 try:
     # Get a snapshot of user's order updates across all order books since a specific time, and opens a stream for further updates
@@ -471,6 +677,12 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->get_user_orders_updates_stream_all: %s\n" % e)
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration = dora_client.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
@@ -482,10 +694,16 @@ try:
 except ApiException as e:
     print("Exception when calling DefaultApi->get_user_self: %s\n" % e)
 
+# Configure API key authorization: apiKeyAuthQuery
+configuration = dora_client.Configuration()
+configuration.api_key['x-api-key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['x-api-key'] = 'Bearer'
+
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
-user_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
-since = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
+user_id = NULL # dict | 
+since = NULL # dict |  (optional)
 
 try:
     # Get a snapshot of user's executed transactions since a specific time, and opens a stream for further updates
@@ -493,6 +711,12 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->get_user_transactions_stream: %s\n" % e)
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration = dora_client.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
@@ -503,6 +727,30 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->get_users_api_keys: %s\n" % e)
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration = dora_client.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+position_id = NULL # dict |  (optional)
+asset_id = NULL # dict |  (optional)
+
+try:
+    # Get current accrued leverage interest for the user
+    api_response = api_instance.leverage_get_accrued_interest_by_user(position_id=position_id, asset_id=asset_id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->leverage_get_accrued_interest_by_user: %s\n" % e)
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration = dora_client.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
@@ -515,6 +763,12 @@ try:
 except ApiException as e:
     print("Exception when calling DefaultApi->leverage_isolate_collateral: %s\n" % e)
 
+# Configure API key authorization: apiKeyAuthHeader
+configuration = dora_client.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
+
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
 body = dora_client.SupplyRequest() # SupplyRequest | 
@@ -525,6 +779,12 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->leverage_supply: %s\n" % e)
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration = dora_client.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
@@ -537,6 +797,12 @@ try:
 except ApiException as e:
     print("Exception when calling DefaultApi->leverage_unite: %s\n" % e)
 
+# Configure API key authorization: apiKeyAuthHeader
+configuration = dora_client.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
+
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
 body = dora_client.WithdrawRequest() # WithdrawRequest | 
@@ -548,10 +814,16 @@ try:
 except ApiException as e:
     print("Exception when calling DefaultApi->leverage_withdraw: %s\n" % e)
 
+# Configure API key authorization: apiKeyAuthHeader
+configuration = dora_client.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
+
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
 body = dora_client.LiquidityRequest() # LiquidityRequest | 
-pool_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
+pool_id = NULL # dict | 
 
 try:
     # Add liquidity to a pool
@@ -560,10 +832,16 @@ try:
 except ApiException as e:
     print("Exception when calling DefaultApi->liquidity_add: %s\n" % e)
 
+# Configure API key authorization: apiKeyAuthHeader
+configuration = dora_client.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
+
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
 body = dora_client.LiquidityRequest() # LiquidityRequest | 
-pool_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
+pool_id = NULL # dict | 
 
 try:
     # Subtract liquidity from a pool
@@ -574,16 +852,16 @@ except ApiException as e:
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
-created_after = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
-created_before = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
+created_after = NULL # dict |  (optional)
+created_before = NULL # dict |  (optional)
 asset_kind = dora_client.AssetKind() # AssetKind | Asset kind (BOND, CURRENCY, INTEREST, POOL_SHARE) (optional)
-can_add_liquidity = true # bool |  (optional)
-can_direct_borrow = true # bool |  (optional)
-can_onboard = true # bool |  (optional)
-can_trade = true # bool |  (optional)
-can_virtual_borrow = true # bool |  (optional)
-page = 1 # int |  (optional) (default to 1)
-limit = 100 # int |  (optional) (default to 100)
+can_add_liquidity = NULL # dict |  (optional)
+can_direct_borrow = NULL # dict |  (optional)
+can_onboard = NULL # dict |  (optional)
+can_trade = NULL # dict |  (optional)
+can_virtual_borrow = NULL # dict |  (optional)
+page = 1 # dict |  (optional) (default to 1)
+limit = 100 # dict |  (optional) (default to 100)
 
 try:
     # List assets
@@ -592,13 +870,19 @@ try:
 except ApiException as e:
     print("Exception when calling DefaultApi->list_assets: %s\n" % e)
 
+# Configure API key authorization: apiKeyAuthHeader
+configuration = dora_client.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
+
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
 status = dora_client.OrderBookStatus() # OrderBookStatus |  (optional)
-base_asset_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str |  (optional)
-quote_asset_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str |  (optional)
-page = 1 # int |  (optional) (default to 1)
-limit = 100 # int |  (optional) (default to 100)
+base_asset_id = NULL # dict |  (optional)
+quote_asset_id = NULL # dict |  (optional)
+page = 1 # dict |  (optional) (default to 1)
+limit = 100 # dict |  (optional) (default to 100)
 
 try:
     # List order books
@@ -607,16 +891,22 @@ try:
 except ApiException as e:
     print("Exception when calling DefaultApi->list_order_books: %s\n" % e)
 
+# Configure API key authorization: apiKeyAuthHeader
+configuration = dora_client.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
+
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
-order_book_id = ['order_book_id_example'] # list[str] |  (optional)
-kind = [dora_client.OrderKind()] # list[OrderKind] |  (optional)
-status = [dora_client.OrderStatus()] # list[OrderStatus] |  (optional)
+order_book_id = NULL # dict |  (optional)
+kind = NULL # dict |  (optional)
+status = NULL # dict |  (optional)
 side = dora_client.Side() # Side |  (optional)
-_from = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
-to = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
-page = 1 # int |  (optional) (default to 1)
-limit = 100 # int |  (optional) (default to 100)
+_from = NULL # dict |  (optional)
+to = NULL # dict |  (optional)
+page = 1 # dict |  (optional) (default to 1)
+limit = 100 # dict |  (optional) (default to 100)
 
 try:
     # List all orders
@@ -624,6 +914,12 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->list_orders: %s\n" % e)
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration = dora_client.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
@@ -635,9 +931,32 @@ try:
 except ApiException as e:
     print("Exception when calling DefaultApi->list_position_accounts_self: %s\n" % e)
 
+# Configure API key authorization: apiKeyAuthHeader
+configuration = dora_client.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
+
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
-key_id = 'key_id_example' # str | 
+body = dora_client.PayLeverageAccruedInterestRequest() # PayLeverageAccruedInterestRequest | 
+
+try:
+    # Pay current accrued leverage interest for a specific user
+    api_response = api_instance.pay_leverage_get_accrued_interest(body)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->pay_leverage_get_accrued_interest: %s\n" % e)
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration = dora_client.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+key_id = NULL # dict | 
 
 try:
     # Revoke apikey for a user
@@ -648,19 +967,20 @@ except ApiException as e:
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
-since = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
+since = NULL # dict |  (optional)
+asset_id = NULL # dict |  (optional)
 
 try:
     # Stream real-time asset prices as map objects
-    api_response = api_instance.stream_asset_prices(since=since)
+    api_response = api_instance.stream_asset_prices(since=since, asset_id=asset_id)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->stream_asset_prices: %s\n" % e)
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
-order_book_id = 'order_book_id_example' # str | 
-since = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
+order_book_id = NULL # dict | 
+since = NULL # dict |  (optional)
 resolution = dora_client.CandleResolution() # CandleResolution |  (optional)
 
 try:
@@ -672,8 +992,8 @@ except ApiException as e:
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
-order_book_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
-since = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
+order_book_id = NULL # dict | 
+since = NULL # dict |  (optional)
 
 try:
     # Get a snapshot of base and quote balances for an order book and open a stream for real-time updates
@@ -684,8 +1004,8 @@ except ApiException as e:
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
-order_book_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
-since = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
+order_book_id = NULL # dict | 
+since = NULL # dict |  (optional)
 
 try:
     # Get a snapshot of open orders in an order book and open a stream for real-time updates
@@ -696,8 +1016,8 @@ except ApiException as e:
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
-order_book_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
-since = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
+order_book_id = NULL # dict | 
+since = NULL # dict |  (optional)
 
 try:
     # Get a snapshot of trades executed on the given order book from a specific date and open a stream for real-time updates
@@ -705,6 +1025,12 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->stream_trades: %s\n" % e)
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration = dora_client.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
@@ -717,10 +1043,16 @@ try:
 except ApiException as e:
     print("Exception when calling DefaultApi->transfer_available_balances: %s\n" % e)
 
+# Configure API key authorization: apiKeyAuthHeader
+configuration = dora_client.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
+
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
 body = dora_client.UpdateUserConfigRequest() # UpdateUserConfigRequest | 
-user_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
+user_id = NULL # dict | 
 
 try:
     # Update user configuration by ID
@@ -728,6 +1060,12 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->update_user_config: %s\n" % e)
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration = dora_client.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
@@ -740,6 +1078,12 @@ try:
 except ApiException as e:
     print("Exception when calling DefaultApi->update_user_config_self: %s\n" % e)
 
+# Configure API key authorization: apiKeyAuthHeader
+configuration = dora_client.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
+
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
 body = dora_client.ValidateSubmitOrderRequest() # ValidateSubmitOrderRequest | 
@@ -751,9 +1095,15 @@ try:
 except ApiException as e:
     print("Exception when calling DefaultApi->validate_submit_order: %s\n" % e)
 
+# Configure API key authorization: apiKeyAuthHeader
+configuration = dora_client.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
+
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
-user_id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # str | 
+user_id = NULL # dict | 
 
 try:
     # Verify a user by ID
@@ -772,6 +1122,8 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**cancel_all_open_orders**](docs/DefaultApi.md#cancel_all_open_orders) | **DELETE** /v1/orders | Cancel all open orders, if user passes orderbook on query param it will cancel all orders on specific orderbook, admin can cancel user&#x27;s orders on specific orderbook
 *DefaultApi* | [**cancel_order_by_id**](docs/DefaultApi.md#cancel_order_by_id) | **DELETE** /v1/orders/{order_id} | Cancel an order by ID
 *DefaultApi* | [**check_user_email_exists**](docs/DefaultApi.md#check_user_email_exists) | **GET** /v1/user/exists | Check whether a user email exists
+*DefaultApi* | [**claim_leverage_get_accrued_interest**](docs/DefaultApi.md#claim_leverage_get_accrued_interest) | **POST** /v1/leverage/accrued_interest/claim | Claim current accrued leverage interest for a specific user
+*DefaultApi* | [**close_isolated_position**](docs/DefaultApi.md#close_isolated_position) | **POST** /v1/positions/close | Close isolated positions, repaying the borrowed
 *DefaultApi* | [**create_api_key_for_user**](docs/DefaultApi.md#create_api_key_for_user) | **POST** /v1/user/apikey | Create apikey for a user
 *DefaultApi* | [**create_new_isolated_position**](docs/DefaultApi.md#create_new_isolated_position) | **POST** /v1/positions/new_isolated | Create a new isolated position for a user transferring available assets into the position
 *DefaultApi* | [**create_order**](docs/DefaultApi.md#create_order) | **POST** /v1/orders | Create a new order
@@ -795,6 +1147,8 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**get_orderbook_by_id**](docs/DefaultApi.md#get_orderbook_by_id) | **GET** /v1/orderbooks/{order_book_id} | Get orderbook by ID
 *DefaultApi* | [**get_orderbook_depth**](docs/DefaultApi.md#get_orderbook_depth) | **GET** /v1/orderbooks/{order_book_id}/depth | Get the aggregated price levels for a specific orderbook (L2 market depth)
 *DefaultApi* | [**get_orderbook_orders**](docs/DefaultApi.md#get_orderbook_orders) | **GET** /v1/orderbooks/{order_book_id}/orders | Get all open orders for a specific orderbook (L3 market depth)
+*DefaultApi* | [**get_orderbook_stats**](docs/DefaultApi.md#get_orderbook_stats) | **GET** /v1/orderbooks/{order_book_id}/stats | Get orderbook stats
+*DefaultApi* | [**get_orderbook_stats_stream**](docs/DefaultApi.md#get_orderbook_stats_stream) | **GET** /v1/orderbooks/{order_book_id}/stats/stream | Orderbook stats stream
 *DefaultApi* | [**get_orderbook_summary**](docs/DefaultApi.md#get_orderbook_summary) | **GET** /v1/orderbooks/{order_book_id}/summary | Get summary of an orderbook
 *DefaultApi* | [**get_orderbook_top**](docs/DefaultApi.md#get_orderbook_top) | **GET** /v1/orderbooks/{order_book_id}/top | Get the top price levels for a specific orderbook (L1 market depth)
 *DefaultApi* | [**get_pool_price**](docs/DefaultApi.md#get_pool_price) | **GET** /v1/price/pool/{pool_id} | Get the current price of a pool
@@ -809,6 +1163,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**get_user_self**](docs/DefaultApi.md#get_user_self) | **GET** /v1/user/self | Get user details for the authenticated user
 *DefaultApi* | [**get_user_transactions_stream**](docs/DefaultApi.md#get_user_transactions_stream) | **GET** /v1/user/{user_id}/transactions/stream | Get a snapshot of user&#x27;s executed transactions since a specific time, and opens a stream for further updates
 *DefaultApi* | [**get_users_api_keys**](docs/DefaultApi.md#get_users_api_keys) | **GET** /v1/user/apikey | Get user&#x27;s api keys
+*DefaultApi* | [**leverage_get_accrued_interest_by_user**](docs/DefaultApi.md#leverage_get_accrued_interest_by_user) | **GET** /v1/leverage/accrued_interest/self | Get current accrued leverage interest for the user
 *DefaultApi* | [**leverage_isolate_collateral**](docs/DefaultApi.md#leverage_isolate_collateral) | **POST** /v1/leverage/isolate_collateral | Create an isolated position by transferring collateral to the position from the user&#x27;s global collateral
 *DefaultApi* | [**leverage_supply**](docs/DefaultApi.md#leverage_supply) | **POST** /v1/leverage/supply | Supply leverage for a specific asset
 *DefaultApi* | [**leverage_unite**](docs/DefaultApi.md#leverage_unite) | **POST** /v1/leverage/unite | Combines all isolated positions into a single global position
@@ -819,6 +1174,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**list_order_books**](docs/DefaultApi.md#list_order_books) | **GET** /v1/orderbooks | List order books
 *DefaultApi* | [**list_orders**](docs/DefaultApi.md#list_orders) | **GET** /v1/orders | List all orders
 *DefaultApi* | [**list_position_accounts_self**](docs/DefaultApi.md#list_position_accounts_self) | **GET** /v1/user/self/position_accounts | List all position accounts for the authenticated user
+*DefaultApi* | [**pay_leverage_get_accrued_interest**](docs/DefaultApi.md#pay_leverage_get_accrued_interest) | **POST** /v1/leverage/accrued_interest/pay | Pay current accrued leverage interest for a specific user
 *DefaultApi* | [**revoke_api_key_for_user**](docs/DefaultApi.md#revoke_api_key_for_user) | **PUT** /v1/user/apikey/{key_id}/revoke | Revoke apikey for a user
 *DefaultApi* | [**stream_asset_prices**](docs/DefaultApi.md#stream_asset_prices) | **GET** /v1/prices/stream | Stream real-time asset prices as map objects
 *DefaultApi* | [**stream_candle_data**](docs/DefaultApi.md#stream_candle_data) | **GET** /v1/charts/{order_book_id}/candle/stream | Get a snapshot of candlestick data from date provided, and open a stream for real-time updates
@@ -835,6 +1191,7 @@ Class | Method | HTTP request | Description
 
  - [APIKeyResponse](docs/APIKeyResponse.md)
  - [APIKeyResponseEnvelope](docs/APIKeyResponseEnvelope.md)
+ - [APIKeys](docs/APIKeys.md)
  - [Asset](docs/Asset.md)
  - [AssetKind](docs/AssetKind.md)
  - [AssetPrice](docs/AssetPrice.md)
@@ -850,6 +1207,15 @@ Class | Method | HTTP request | Description
  - [CancelOrderResponseEnvelope](docs/CancelOrderResponseEnvelope.md)
  - [Candle](docs/Candle.md)
  - [CandleResolution](docs/CandleResolution.md)
+ - [ClaimLeverageAccruedInterest](docs/ClaimLeverageAccruedInterest.md)
+ - [ClaimLeverageAccruedInterestReq](docs/ClaimLeverageAccruedInterestReq.md)
+ - [ClaimLeverageAccruedInterestRequest](docs/ClaimLeverageAccruedInterestRequest.md)
+ - [ClaimLeverageAccruedInterestResponse](docs/ClaimLeverageAccruedInterestResponse.md)
+ - [ClaimLeverageAccruedInterestResponseEnvelope](docs/ClaimLeverageAccruedInterestResponseEnvelope.md)
+ - [ClosePositionRequest](docs/ClosePositionRequest.md)
+ - [ClosePositionResp](docs/ClosePositionResp.md)
+ - [ClosePositionResponse](docs/ClosePositionResponse.md)
+ - [ClosePositionResponseEnvelope](docs/ClosePositionResponseEnvelope.md)
  - [Collateral](docs/Collateral.md)
  - [CouponPayment](docs/CouponPayment.md)
  - [CreateAPIKeyData](docs/CreateAPIKeyData.md)
@@ -860,6 +1226,9 @@ Class | Method | HTTP request | Description
  - [CreateOrderRequest](docs/CreateOrderRequest.md)
  - [CreateOrderResponse](docs/CreateOrderResponse.md)
  - [CreateOrderResponseEnvelope](docs/CreateOrderResponseEnvelope.md)
+ - [CurrentLeverageAccruedInterest](docs/CurrentLeverageAccruedInterest.md)
+ - [CurrentLeverageAccruedInterestResponse](docs/CurrentLeverageAccruedInterestResponse.md)
+ - [CurrentLeverageAccruedInterestResponseEnvelope](docs/CurrentLeverageAccruedInterestResponseEnvelope.md)
  - [EmailExistsResponse](docs/EmailExistsResponse.md)
  - [EmailExistsResponseEnvelope](docs/EmailExistsResponseEnvelope.md)
  - [GetAPIKeyResponse](docs/GetAPIKeyResponse.md)
@@ -869,6 +1238,7 @@ Class | Method | HTTP request | Description
  - [GetOrderBookResponse](docs/GetOrderBookResponse.md)
  - [GetOrderBookSummaryResponse](docs/GetOrderBookSummaryResponse.md)
  - [GetOrderResponse](docs/GetOrderResponse.md)
+ - [GetOrderbookStatsResponse](docs/GetOrderbookStatsResponse.md)
  - [GetPoolPriceResponse](docs/GetPoolPriceResponse.md)
  - [GetTopOfBookResponse](docs/GetTopOfBookResponse.md)
  - [GetTopOfBookResponseEnvelope](docs/GetTopOfBookResponseEnvelope.md)
@@ -939,6 +1309,13 @@ Class | Method | HTTP request | Description
  - [OrderModifierKind](docs/OrderModifierKind.md)
  - [OrderResponseEnvelope](docs/OrderResponseEnvelope.md)
  - [OrderStatus](docs/OrderStatus.md)
+ - [OrderbookStats](docs/OrderbookStats.md)
+ - [OrderbookStatsResponseEnvelope](docs/OrderbookStatsResponseEnvelope.md)
+ - [PayLeverageAccruedInterest](docs/PayLeverageAccruedInterest.md)
+ - [PayLeverageAccruedInterestReq](docs/PayLeverageAccruedInterestReq.md)
+ - [PayLeverageAccruedInterestRequest](docs/PayLeverageAccruedInterestRequest.md)
+ - [PayLeverageAccruedInterestResponse](docs/PayLeverageAccruedInterestResponse.md)
+ - [PayLeverageAccruedInterestResponseEnvelope](docs/PayLeverageAccruedInterestResponseEnvelope.md)
  - [PoolPrice](docs/PoolPrice.md)
  - [PoolPriceResponseEnvelope](docs/PoolPriceResponseEnvelope.md)
  - [PoolRequestError](docs/PoolRequestError.md)
@@ -991,6 +1368,7 @@ Class | Method | HTTP request | Description
  - [TransferBalancesResponse](docs/TransferBalancesResponse.md)
  - [TransferBalancesResponseEnvelope](docs/TransferBalancesResponseEnvelope.md)
  - [TransformedAssets](docs/TransformedAssets.md)
+ - [TriggerType](docs/TriggerType.md)
  - [UnitePositionRequest](docs/UnitePositionRequest.md)
  - [UnitePositionResponse](docs/UnitePositionResponse.md)
  - [UnitePositionResponseEnvelope](docs/UnitePositionResponseEnvelope.md)
@@ -1027,7 +1405,19 @@ Class | Method | HTTP request | Description
 ## Documentation For Authorization
 
 
-## BearerAuth
+## apiKeyAuthHeader
+
+- **Type**: API key
+- **API key parameter name**: Authorization
+- **Location**: HTTP header
+
+## apiKeyAuthQuery
+
+- **Type**: API key
+- **API key parameter name**: x-api-key
+- **Location**: URL query string
+
+## bearerAuth
 
 
 

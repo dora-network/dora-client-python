@@ -28,13 +28,12 @@ class ModuleBalance(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'asset_id': 'str',
-        'seq': 'int',
-        'available': 'str',
-        'supplied': 'str',
-        'supplied_collateral': 'str',
-        'virtual': 'str',
-        'borrowed': 'str'
+        'asset_id': 'dict',
+        'seq': 'dict',
+        'available': 'dict',
+        'supplied': 'dict',
+        'virtual': 'dict',
+        'borrowed': 'dict'
     }
 
     attribute_map = {
@@ -42,18 +41,16 @@ class ModuleBalance(object):
         'seq': 'seq',
         'available': 'available',
         'supplied': 'supplied',
-        'supplied_collateral': 'supplied_collateral',
         'virtual': 'virtual',
         'borrowed': 'borrowed'
     }
 
-    def __init__(self, asset_id=None, seq=None, available=None, supplied=None, supplied_collateral=None, virtual=None, borrowed=None):  # noqa: E501
+    def __init__(self, asset_id=None, seq=None, available=None, supplied=None, virtual=None, borrowed=None):  # noqa: E501
         """ModuleBalance - a model defined in Swagger"""  # noqa: E501
         self._asset_id = None
         self._seq = None
         self._available = None
         self._supplied = None
-        self._supplied_collateral = None
         self._virtual = None
         self._borrowed = None
         self.discriminator = None
@@ -65,8 +62,6 @@ class ModuleBalance(object):
             self.available = available
         if supplied is not None:
             self.supplied = supplied
-        if supplied_collateral is not None:
-            self.supplied_collateral = supplied_collateral
         if virtual is not None:
             self.virtual = virtual
         if borrowed is not None:
@@ -78,7 +73,7 @@ class ModuleBalance(object):
 
 
         :return: The asset_id of this ModuleBalance.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._asset_id
 
@@ -88,7 +83,7 @@ class ModuleBalance(object):
 
 
         :param asset_id: The asset_id of this ModuleBalance.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._asset_id = asset_id
@@ -99,7 +94,7 @@ class ModuleBalance(object):
 
 
         :return: The seq of this ModuleBalance.  # noqa: E501
-        :rtype: int
+        :rtype: dict
         """
         return self._seq
 
@@ -109,7 +104,7 @@ class ModuleBalance(object):
 
 
         :param seq: The seq of this ModuleBalance.  # noqa: E501
-        :type: int
+        :type: dict
         """
 
         self._seq = seq
@@ -121,7 +116,7 @@ class ModuleBalance(object):
         The available balance in the module for this asset  # noqa: E501
 
         :return: The available of this ModuleBalance.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._available
 
@@ -132,7 +127,7 @@ class ModuleBalance(object):
         The available balance in the module for this asset  # noqa: E501
 
         :param available: The available of this ModuleBalance.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._available = available
@@ -144,7 +139,7 @@ class ModuleBalance(object):
         The total amount supplied to the module for this asset  # noqa: E501
 
         :return: The supplied of this ModuleBalance.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._supplied
 
@@ -155,33 +150,10 @@ class ModuleBalance(object):
         The total amount supplied to the module for this asset  # noqa: E501
 
         :param supplied: The supplied of this ModuleBalance.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._supplied = supplied
-
-    @property
-    def supplied_collateral(self):
-        """Gets the supplied_collateral of this ModuleBalance.  # noqa: E501
-
-        The amount supplied as collateral from user balances in the module for this asset  # noqa: E501
-
-        :return: The supplied_collateral of this ModuleBalance.  # noqa: E501
-        :rtype: str
-        """
-        return self._supplied_collateral
-
-    @supplied_collateral.setter
-    def supplied_collateral(self, supplied_collateral):
-        """Sets the supplied_collateral of this ModuleBalance.
-
-        The amount supplied as collateral from user balances in the module for this asset  # noqa: E501
-
-        :param supplied_collateral: The supplied_collateral of this ModuleBalance.  # noqa: E501
-        :type: str
-        """
-
-        self._supplied_collateral = supplied_collateral
 
     @property
     def virtual(self):
@@ -190,7 +162,7 @@ class ModuleBalance(object):
         Assets minted by virtual-borrowing, but not yet repaid  # noqa: E501
 
         :return: The virtual of this ModuleBalance.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._virtual
 
@@ -201,7 +173,7 @@ class ModuleBalance(object):
         Assets minted by virtual-borrowing, but not yet repaid  # noqa: E501
 
         :param virtual: The virtual of this ModuleBalance.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._virtual = virtual
@@ -213,7 +185,7 @@ class ModuleBalance(object):
         The total amount borrowed from the supplied but not yet repaid  # noqa: E501
 
         :return: The borrowed of this ModuleBalance.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._borrowed
 
@@ -224,7 +196,7 @@ class ModuleBalance(object):
         The total amount borrowed from the supplied but not yet repaid  # noqa: E501
 
         :param borrowed: The borrowed of this ModuleBalance.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._borrowed = borrowed
