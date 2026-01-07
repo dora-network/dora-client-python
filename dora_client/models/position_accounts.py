@@ -28,40 +28,14 @@ class PositionAccounts(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'position_accounts': 'dict'
     }
 
     attribute_map = {
-        'position_accounts': 'position_accounts'
     }
 
-    def __init__(self, position_accounts=None):  # noqa: E501
+    def __init__(self):  # noqa: E501
         """PositionAccounts - a model defined in Swagger"""  # noqa: E501
-        self._position_accounts = None
         self.discriminator = None
-        if position_accounts is not None:
-            self.position_accounts = position_accounts
-
-    @property
-    def position_accounts(self):
-        """Gets the position_accounts of this PositionAccounts.  # noqa: E501
-
-
-        :return: The position_accounts of this PositionAccounts.  # noqa: E501
-        :rtype: dict
-        """
-        return self._position_accounts
-
-    @position_accounts.setter
-    def position_accounts(self, position_accounts):
-        """Sets the position_accounts of this PositionAccounts.
-
-
-        :param position_accounts: The position_accounts of this PositionAccounts.  # noqa: E501
-        :type: dict
-        """
-
-        self._position_accounts = position_accounts
 
     def to_dict(self):
         """Returns the model properties as a dict"""
