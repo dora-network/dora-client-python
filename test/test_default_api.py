@@ -231,6 +231,13 @@ class TestDefaultApi(unittest.TestCase):
         """
         pass
 
+    def test_get_orderbook_stats_stream(self):
+        """Test case for get_orderbook_stats_stream
+
+        Orderbook stats stream  # noqa: E501
+        """
+        pass
+
     def test_get_orderbook_summary(self):
         """Test case for get_orderbook_summary
 

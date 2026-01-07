@@ -28,27 +28,27 @@ class Order(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'order_id': 'str',
-        'order_book_id': 'str',
+        'order_id': 'dict',
+        'order_book_id': 'dict',
         'kind': 'OrderKind',
-        'original_price': 'str',
-        'avg_fill_price': 'str',
-        'cancelled_quantity': 'str',
-        'open_quantity': 'str',
-        'original_quantity': 'str',
-        'filled_quantity': 'str',
-        'filled_notional': 'str',
-        'last_update_at': 'datetime',
-        'opened_at': 'datetime',
-        'inverse_leverage': 'str',
+        'original_price': 'dict',
+        'avg_fill_price': 'dict',
+        'cancelled_quantity': 'dict',
+        'open_quantity': 'dict',
+        'original_quantity': 'dict',
+        'filled_quantity': 'dict',
+        'filled_notional': 'dict',
+        'last_update_at': 'dict',
+        'opened_at': 'dict',
+        'inverse_leverage': 'dict',
         'side': 'Side',
         'status': 'OrderStatus',
-        'user_id': 'str',
-        'order_modifiers': 'list[OrderModifierKind]',
-        'position_id': 'str',
-        'order_info': 'str',
-        'good_till_date': 'datetime',
-        'trigger_price': 'str',
+        'user_id': 'dict',
+        'order_modifiers': 'dict',
+        'position_id': 'dict',
+        'order_info': 'dict',
+        'good_till_date': 'dict',
+        'trigger_price': 'dict',
         'trigger_type': 'TriggerType'
     }
 
@@ -153,7 +153,7 @@ class Order(object):
 
 
         :return: The order_id of this Order.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._order_id
 
@@ -163,7 +163,7 @@ class Order(object):
 
 
         :param order_id: The order_id of this Order.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._order_id = order_id
@@ -174,7 +174,7 @@ class Order(object):
 
 
         :return: The order_book_id of this Order.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._order_book_id
 
@@ -184,7 +184,7 @@ class Order(object):
 
 
         :param order_book_id: The order_book_id of this Order.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._order_book_id = order_book_id
@@ -217,7 +217,7 @@ class Order(object):
         If Kind is LIMIT, this is the original limit price. If Kind is MARKET, this may be 0 or omitted.  # noqa: E501
 
         :return: The original_price of this Order.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._original_price
 
@@ -228,7 +228,7 @@ class Order(object):
         If Kind is LIMIT, this is the original limit price. If Kind is MARKET, this may be 0 or omitted.  # noqa: E501
 
         :param original_price: The original_price of this Order.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._original_price = original_price
@@ -239,7 +239,7 @@ class Order(object):
 
 
         :return: The avg_fill_price of this Order.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._avg_fill_price
 
@@ -249,7 +249,7 @@ class Order(object):
 
 
         :param avg_fill_price: The avg_fill_price of this Order.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._avg_fill_price = avg_fill_price
@@ -261,7 +261,7 @@ class Order(object):
         Quantity that was cancelled, if any.  # noqa: E501
 
         :return: The cancelled_quantity of this Order.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._cancelled_quantity
 
@@ -272,7 +272,7 @@ class Order(object):
         Quantity that was cancelled, if any.  # noqa: E501
 
         :param cancelled_quantity: The cancelled_quantity of this Order.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._cancelled_quantity = cancelled_quantity
@@ -284,7 +284,7 @@ class Order(object):
         Quantity that is still open, i.e., not filled or cancelled.  # noqa: E501
 
         :return: The open_quantity of this Order.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._open_quantity
 
@@ -295,7 +295,7 @@ class Order(object):
         Quantity that is still open, i.e., not filled or cancelled.  # noqa: E501
 
         :param open_quantity: The open_quantity of this Order.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._open_quantity = open_quantity
@@ -307,7 +307,7 @@ class Order(object):
         The original quantity of the order when it was created.  # noqa: E501
 
         :return: The original_quantity of this Order.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._original_quantity
 
@@ -318,7 +318,7 @@ class Order(object):
         The original quantity of the order when it was created.  # noqa: E501
 
         :param original_quantity: The original_quantity of this Order.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._original_quantity = original_quantity
@@ -330,7 +330,7 @@ class Order(object):
         Quantity that has been filled so far.  # noqa: E501
 
         :return: The filled_quantity of this Order.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._filled_quantity
 
@@ -341,7 +341,7 @@ class Order(object):
         Quantity that has been filled so far.  # noqa: E501
 
         :param filled_quantity: The filled_quantity of this Order.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._filled_quantity = filled_quantity
@@ -353,7 +353,7 @@ class Order(object):
         Quote quantity that has been filled so far.  # noqa: E501
 
         :return: The filled_notional of this Order.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._filled_notional
 
@@ -364,7 +364,7 @@ class Order(object):
         Quote quantity that has been filled so far.  # noqa: E501
 
         :param filled_notional: The filled_notional of this Order.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._filled_notional = filled_notional
@@ -375,7 +375,7 @@ class Order(object):
 
 
         :return: The last_update_at of this Order.  # noqa: E501
-        :rtype: datetime
+        :rtype: dict
         """
         return self._last_update_at
 
@@ -385,7 +385,7 @@ class Order(object):
 
 
         :param last_update_at: The last_update_at of this Order.  # noqa: E501
-        :type: datetime
+        :type: dict
         """
 
         self._last_update_at = last_update_at
@@ -396,7 +396,7 @@ class Order(object):
 
 
         :return: The opened_at of this Order.  # noqa: E501
-        :rtype: datetime
+        :rtype: dict
         """
         return self._opened_at
 
@@ -406,7 +406,7 @@ class Order(object):
 
 
         :param opened_at: The opened_at of this Order.  # noqa: E501
-        :type: datetime
+        :type: dict
         """
 
         self._opened_at = opened_at
@@ -417,7 +417,7 @@ class Order(object):
 
 
         :return: The inverse_leverage of this Order.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._inverse_leverage
 
@@ -427,7 +427,7 @@ class Order(object):
 
 
         :param inverse_leverage: The inverse_leverage of this Order.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._inverse_leverage = inverse_leverage
@@ -480,7 +480,7 @@ class Order(object):
 
 
         :return: The user_id of this Order.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._user_id
 
@@ -490,7 +490,7 @@ class Order(object):
 
 
         :param user_id: The user_id of this Order.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._user_id = user_id
@@ -501,7 +501,7 @@ class Order(object):
 
 
         :return: The order_modifiers of this Order.  # noqa: E501
-        :rtype: list[OrderModifierKind]
+        :rtype: dict
         """
         return self._order_modifiers
 
@@ -511,7 +511,7 @@ class Order(object):
 
 
         :param order_modifiers: The order_modifiers of this Order.  # noqa: E501
-        :type: list[OrderModifierKind]
+        :type: dict
         """
 
         self._order_modifiers = order_modifiers
@@ -522,7 +522,7 @@ class Order(object):
 
 
         :return: The position_id of this Order.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._position_id
 
@@ -532,7 +532,7 @@ class Order(object):
 
 
         :param position_id: The position_id of this Order.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._position_id = position_id
@@ -543,7 +543,7 @@ class Order(object):
 
 
         :return: The order_info of this Order.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._order_info
 
@@ -553,7 +553,7 @@ class Order(object):
 
 
         :param order_info: The order_info of this Order.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._order_info = order_info
@@ -564,7 +564,7 @@ class Order(object):
 
 
         :return: The good_till_date of this Order.  # noqa: E501
-        :rtype: datetime
+        :rtype: dict
         """
         return self._good_till_date
 
@@ -574,7 +574,7 @@ class Order(object):
 
 
         :param good_till_date: The good_till_date of this Order.  # noqa: E501
-        :type: datetime
+        :type: dict
         """
 
         self._good_till_date = good_till_date
@@ -585,7 +585,7 @@ class Order(object):
 
 
         :return: The trigger_price of this Order.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._trigger_price
 
@@ -595,7 +595,7 @@ class Order(object):
 
 
         :param trigger_price: The trigger_price of this Order.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._trigger_price = trigger_price

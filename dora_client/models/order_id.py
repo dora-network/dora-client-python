@@ -28,7 +28,7 @@ class OrderId(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'order_id': 'str'
+        'order_id': 'dict'
     }
 
     attribute_map = {
@@ -48,7 +48,7 @@ class OrderId(object):
 
 
         :return: The order_id of this OrderId.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._order_id
 
@@ -58,7 +58,7 @@ class OrderId(object):
 
 
         :param order_id: The order_id of this OrderId.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._order_id = order_id

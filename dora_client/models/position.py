@@ -28,20 +28,20 @@ class Position(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'id': 'str',
-        'asset_id': 'str',
-        'seq': 'int',
-        'is_global': 'bool',
-        'available': 'str',
-        'locked': 'str',
-        'supplied': 'str',
-        'borrowed': 'str',
-        'impending_borrows': 'str',
-        'avg_entry_price': 'str',
-        'borrow_limit': 'str',
-        'liquidation_threshold': 'str',
-        'created_at': 'datetime',
-        'position_name': 'str'
+        'id': 'dict',
+        'asset_id': 'dict',
+        'seq': 'dict',
+        'is_global': 'dict',
+        'available': 'dict',
+        'locked': 'dict',
+        'supplied': 'dict',
+        'borrowed': 'dict',
+        'impending_borrows': 'dict',
+        'avg_entry_price': 'dict',
+        'borrow_limit': 'dict',
+        'liquidation_threshold': 'dict',
+        'created_at': 'dict',
+        'position_name': 'dict'
     }
 
     attribute_map = {
@@ -114,7 +114,7 @@ class Position(object):
         The unique identifier for the position. Used, for example, when creating an order from a position, or deciding collateral should be transferred from position A to position B.  # noqa: E501
 
         :return: The id of this Position.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._id
 
@@ -125,7 +125,7 @@ class Position(object):
         The unique identifier for the position. Used, for example, when creating an order from a position, or deciding collateral should be transferred from position A to position B.  # noqa: E501
 
         :param id: The id of this Position.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._id = id
@@ -136,7 +136,7 @@ class Position(object):
 
 
         :return: The asset_id of this Position.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._asset_id
 
@@ -146,7 +146,7 @@ class Position(object):
 
 
         :param asset_id: The asset_id of this Position.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._asset_id = asset_id
@@ -157,7 +157,7 @@ class Position(object):
 
 
         :return: The seq of this Position.  # noqa: E501
-        :rtype: int
+        :rtype: dict
         """
         return self._seq
 
@@ -167,7 +167,7 @@ class Position(object):
 
 
         :param seq: The seq of this Position.  # noqa: E501
-        :type: int
+        :type: dict
         """
 
         self._seq = seq
@@ -178,7 +178,7 @@ class Position(object):
 
 
         :return: The is_global of this Position.  # noqa: E501
-        :rtype: bool
+        :rtype: dict
         """
         return self._is_global
 
@@ -188,7 +188,7 @@ class Position(object):
 
 
         :param is_global: The is_global of this Position.  # noqa: E501
-        :type: bool
+        :type: dict
         """
 
         self._is_global = is_global
@@ -200,7 +200,7 @@ class Position(object):
         The available balance in the position for this asset that are not locked, supplied, or used as collateral  # noqa: E501
 
         :return: The available of this Position.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._available
 
@@ -211,7 +211,7 @@ class Position(object):
         The available balance in the position for this asset that are not locked, supplied, or used as collateral  # noqa: E501
 
         :param available: The available of this Position.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._available = available
@@ -223,7 +223,7 @@ class Position(object):
         The balance that has been reserved for a current order. If spent by the order, they are removed. If the order is cancelled, they are returned to the position's available balance.  # noqa: E501
 
         :return: The locked of this Position.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._locked
 
@@ -234,7 +234,7 @@ class Position(object):
         The balance that has been reserved for a current order. If spent by the order, they are removed. If the order is cancelled, they are returned to the position's available balance.  # noqa: E501
 
         :param locked: The locked of this Position.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._locked = locked
@@ -246,7 +246,7 @@ class Position(object):
         The balance that user has supplied to the leverage module. The user remains entitled to these assets and can withdraw them into their available balance.  # noqa: E501
 
         :return: The supplied of this Position.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._supplied
 
@@ -257,7 +257,7 @@ class Position(object):
         The balance that user has supplied to the leverage module. The user remains entitled to these assets and can withdraw them into their available balance.  # noqa: E501
 
         :param supplied: The supplied of this Position.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._supplied = supplied
@@ -269,7 +269,7 @@ class Position(object):
         The total amount of debt outstanding for this position. This position cannot be closed until all debt is fully repaid, i.e. borrowed = 0.  # noqa: E501
 
         :return: The borrowed of this Position.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._borrowed
 
@@ -280,7 +280,7 @@ class Position(object):
         The total amount of debt outstanding for this position. This position cannot be closed until all debt is fully repaid, i.e. borrowed = 0.  # noqa: E501
 
         :param borrowed: The borrowed of this Position.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._borrowed = borrowed
@@ -292,7 +292,7 @@ class Position(object):
         The equivalent of locked balances, but for leveraged orders. If a user has an active order that would borrow assets as part of its input, then their borrow limit must be reduced until the order is executed or cancelled.  # noqa: E501
 
         :return: The impending_borrows of this Position.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._impending_borrows
 
@@ -303,7 +303,7 @@ class Position(object):
         The equivalent of locked balances, but for leveraged orders. If a user has an active order that would borrow assets as part of its input, then their borrow limit must be reduced until the order is executed or cancelled.  # noqa: E501
 
         :param impending_borrows: The impending_borrows of this Position.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._impending_borrows = impending_borrows
@@ -315,7 +315,7 @@ class Position(object):
         average cost per unit quantity that was paid (long positions) or received (short positions) for this asset.  # noqa: E501
 
         :return: The avg_entry_price of this Position.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._avg_entry_price
 
@@ -326,7 +326,7 @@ class Position(object):
         average cost per unit quantity that was paid (long positions) or received (short positions) for this asset.  # noqa: E501
 
         :param avg_entry_price: The avg_entry_price of this Position.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._avg_entry_price = avg_entry_price
@@ -338,7 +338,7 @@ class Position(object):
         The borrow limit  # noqa: E501
 
         :return: The borrow_limit of this Position.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._borrow_limit
 
@@ -349,7 +349,7 @@ class Position(object):
         The borrow limit  # noqa: E501
 
         :param borrow_limit: The borrow_limit of this Position.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._borrow_limit = borrow_limit
@@ -361,7 +361,7 @@ class Position(object):
         The borrow limit  # noqa: E501
 
         :return: The liquidation_threshold of this Position.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._liquidation_threshold
 
@@ -372,7 +372,7 @@ class Position(object):
         The borrow limit  # noqa: E501
 
         :param liquidation_threshold: The liquidation_threshold of this Position.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._liquidation_threshold = liquidation_threshold
@@ -383,7 +383,7 @@ class Position(object):
 
 
         :return: The created_at of this Position.  # noqa: E501
-        :rtype: datetime
+        :rtype: dict
         """
         return self._created_at
 
@@ -393,7 +393,7 @@ class Position(object):
 
 
         :param created_at: The created_at of this Position.  # noqa: E501
-        :type: datetime
+        :type: dict
         """
 
         self._created_at = created_at
@@ -404,7 +404,7 @@ class Position(object):
 
 
         :return: The position_name of this Position.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._position_name
 
@@ -414,7 +414,7 @@ class Position(object):
 
 
         :param position_name: The position_name of this Position.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._position_name = position_name

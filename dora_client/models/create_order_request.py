@@ -28,16 +28,16 @@ class CreateOrderRequest(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'quantity': 'str',
-        'inverse_leverage': 'str',
-        'price': 'str',
+        'quantity': 'dict',
+        'inverse_leverage': 'dict',
+        'price': 'dict',
         'kind': 'OrderKind',
         'side': 'Side',
-        'from_global_position': 'bool',
-        'order_book_id': 'str',
-        'order_modifiers': 'list[OrderModifierKind]',
-        'good_till_date': 'datetime',
-        'trigger_price': 'str',
+        'from_global_position': 'dict',
+        'order_book_id': 'dict',
+        'order_modifiers': 'dict',
+        'good_till_date': 'dict',
+        'trigger_price': 'dict',
         'trigger_type': 'TriggerType'
     }
 
@@ -92,7 +92,7 @@ class CreateOrderRequest(object):
 
 
         :return: The quantity of this CreateOrderRequest.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._quantity
 
@@ -102,7 +102,7 @@ class CreateOrderRequest(object):
 
 
         :param quantity: The quantity of this CreateOrderRequest.  # noqa: E501
-        :type: str
+        :type: dict
         """
         if quantity is None:
             raise ValueError("Invalid value for `quantity`, must not be `None`")  # noqa: E501
@@ -115,7 +115,7 @@ class CreateOrderRequest(object):
 
 
         :return: The inverse_leverage of this CreateOrderRequest.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._inverse_leverage
 
@@ -125,7 +125,7 @@ class CreateOrderRequest(object):
 
 
         :param inverse_leverage: The inverse_leverage of this CreateOrderRequest.  # noqa: E501
-        :type: str
+        :type: dict
         """
         if inverse_leverage is None:
             raise ValueError("Invalid value for `inverse_leverage`, must not be `None`")  # noqa: E501
@@ -138,7 +138,7 @@ class CreateOrderRequest(object):
 
 
         :return: The price of this CreateOrderRequest.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._price
 
@@ -148,7 +148,7 @@ class CreateOrderRequest(object):
 
 
         :param price: The price of this CreateOrderRequest.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._price = price
@@ -180,6 +180,7 @@ class CreateOrderRequest(object):
     def side(self):
         """Gets the side of this CreateOrderRequest.  # noqa: E501
 
+        Required: Must be either 'BUY' or 'SELL'  # noqa: E501
 
         :return: The side of this CreateOrderRequest.  # noqa: E501
         :rtype: Side
@@ -190,6 +191,7 @@ class CreateOrderRequest(object):
     def side(self, side):
         """Sets the side of this CreateOrderRequest.
 
+        Required: Must be either 'BUY' or 'SELL'  # noqa: E501
 
         :param side: The side of this CreateOrderRequest.  # noqa: E501
         :type: Side
@@ -206,7 +208,7 @@ class CreateOrderRequest(object):
         use global position for the order or isolated. required.  # noqa: E501
 
         :return: The from_global_position of this CreateOrderRequest.  # noqa: E501
-        :rtype: bool
+        :rtype: dict
         """
         return self._from_global_position
 
@@ -217,7 +219,7 @@ class CreateOrderRequest(object):
         use global position for the order or isolated. required.  # noqa: E501
 
         :param from_global_position: The from_global_position of this CreateOrderRequest.  # noqa: E501
-        :type: bool
+        :type: dict
         """
         if from_global_position is None:
             raise ValueError("Invalid value for `from_global_position`, must not be `None`")  # noqa: E501
@@ -231,7 +233,7 @@ class CreateOrderRequest(object):
         Required: the order book to submit the order to  # noqa: E501
 
         :return: The order_book_id of this CreateOrderRequest.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._order_book_id
 
@@ -242,7 +244,7 @@ class CreateOrderRequest(object):
         Required: the order book to submit the order to  # noqa: E501
 
         :param order_book_id: The order_book_id of this CreateOrderRequest.  # noqa: E501
-        :type: str
+        :type: dict
         """
         if order_book_id is None:
             raise ValueError("Invalid value for `order_book_id`, must not be `None`")  # noqa: E501
@@ -255,7 +257,7 @@ class CreateOrderRequest(object):
 
 
         :return: The order_modifiers of this CreateOrderRequest.  # noqa: E501
-        :rtype: list[OrderModifierKind]
+        :rtype: dict
         """
         return self._order_modifiers
 
@@ -265,7 +267,7 @@ class CreateOrderRequest(object):
 
 
         :param order_modifiers: The order_modifiers of this CreateOrderRequest.  # noqa: E501
-        :type: list[OrderModifierKind]
+        :type: dict
         """
 
         self._order_modifiers = order_modifiers
@@ -276,7 +278,7 @@ class CreateOrderRequest(object):
 
 
         :return: The good_till_date of this CreateOrderRequest.  # noqa: E501
-        :rtype: datetime
+        :rtype: dict
         """
         return self._good_till_date
 
@@ -286,7 +288,7 @@ class CreateOrderRequest(object):
 
 
         :param good_till_date: The good_till_date of this CreateOrderRequest.  # noqa: E501
-        :type: datetime
+        :type: dict
         """
 
         self._good_till_date = good_till_date
@@ -297,7 +299,7 @@ class CreateOrderRequest(object):
 
 
         :return: The trigger_price of this CreateOrderRequest.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._trigger_price
 
@@ -307,7 +309,7 @@ class CreateOrderRequest(object):
 
 
         :param trigger_price: The trigger_price of this CreateOrderRequest.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._trigger_price = trigger_price

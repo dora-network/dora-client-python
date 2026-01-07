@@ -28,9 +28,9 @@ class PositionAccount(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'position_id': 'str',
-        'position_name': 'str',
-        'is_global': 'bool'
+        'position_id': 'dict',
+        'position_name': 'dict',
+        'is_global': 'dict'
     }
 
     attribute_map = {
@@ -59,7 +59,7 @@ class PositionAccount(object):
         The ID of the position account  # noqa: E501
 
         :return: The position_id of this PositionAccount.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._position_id
 
@@ -70,7 +70,7 @@ class PositionAccount(object):
         The ID of the position account  # noqa: E501
 
         :param position_id: The position_id of this PositionAccount.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._position_id = position_id
@@ -82,7 +82,7 @@ class PositionAccount(object):
         The name of the position account  # noqa: E501
 
         :return: The position_name of this PositionAccount.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._position_name
 
@@ -93,7 +93,7 @@ class PositionAccount(object):
         The name of the position account  # noqa: E501
 
         :param position_name: The position_name of this PositionAccount.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._position_name = position_name
@@ -105,7 +105,7 @@ class PositionAccount(object):
         Whether the position account is the global or an isolated account  # noqa: E501
 
         :return: The is_global of this PositionAccount.  # noqa: E501
-        :rtype: bool
+        :rtype: dict
         """
         return self._is_global
 
@@ -116,7 +116,7 @@ class PositionAccount(object):
         Whether the position account is the global or an isolated account  # noqa: E501
 
         :param is_global: The is_global of this PositionAccount.  # noqa: E501
-        :type: bool
+        :type: dict
         """
 
         self._is_global = is_global

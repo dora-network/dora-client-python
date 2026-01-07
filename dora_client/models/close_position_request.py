@@ -28,8 +28,8 @@ class ClosePositionRequest(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'position_id': 'str',
-        'order_book_id': 'str'
+        'position_id': 'dict',
+        'order_book_id': 'dict'
     }
 
     attribute_map = {
@@ -51,7 +51,7 @@ class ClosePositionRequest(object):
 
 
         :return: The position_id of this ClosePositionRequest.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._position_id
 
@@ -61,7 +61,7 @@ class ClosePositionRequest(object):
 
 
         :param position_id: The position_id of this ClosePositionRequest.  # noqa: E501
-        :type: str
+        :type: dict
         """
         if position_id is None:
             raise ValueError("Invalid value for `position_id`, must not be `None`")  # noqa: E501
@@ -74,7 +74,7 @@ class ClosePositionRequest(object):
 
 
         :return: The order_book_id of this ClosePositionRequest.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._order_book_id
 
@@ -84,7 +84,7 @@ class ClosePositionRequest(object):
 
 
         :param order_book_id: The order_book_id of this ClosePositionRequest.  # noqa: E501
-        :type: str
+        :type: dict
         """
         if order_book_id is None:
             raise ValueError("Invalid value for `order_book_id`, must not be `None`")  # noqa: E501

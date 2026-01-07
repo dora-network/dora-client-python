@@ -28,10 +28,10 @@ class RevokeAPIKeyData(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'user_id': 'str',
-        'key_id': 'str',
-        'label': 'str',
-        'is_active': 'bool'
+        'user_id': 'dict',
+        'key_id': 'dict',
+        'label': 'dict',
+        'is_active': 'dict'
     }
 
     attribute_map = {
@@ -63,7 +63,7 @@ class RevokeAPIKeyData(object):
 
 
         :return: The user_id of this RevokeAPIKeyData.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._user_id
 
@@ -73,7 +73,7 @@ class RevokeAPIKeyData(object):
 
 
         :param user_id: The user_id of this RevokeAPIKeyData.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._user_id = user_id
@@ -84,7 +84,7 @@ class RevokeAPIKeyData(object):
 
 
         :return: The key_id of this RevokeAPIKeyData.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._key_id
 
@@ -94,7 +94,7 @@ class RevokeAPIKeyData(object):
 
 
         :param key_id: The key_id of this RevokeAPIKeyData.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._key_id = key_id
@@ -105,7 +105,7 @@ class RevokeAPIKeyData(object):
 
 
         :return: The label of this RevokeAPIKeyData.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._label
 
@@ -115,7 +115,7 @@ class RevokeAPIKeyData(object):
 
 
         :param label: The label of this RevokeAPIKeyData.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._label = label
@@ -126,7 +126,7 @@ class RevokeAPIKeyData(object):
 
 
         :return: The is_active of this RevokeAPIKeyData.  # noqa: E501
-        :rtype: bool
+        :rtype: dict
         """
         return self._is_active
 
@@ -136,7 +136,7 @@ class RevokeAPIKeyData(object):
 
 
         :param is_active: The is_active of this RevokeAPIKeyData.  # noqa: E501
-        :type: bool
+        :type: dict
         """
 
         self._is_active = is_active

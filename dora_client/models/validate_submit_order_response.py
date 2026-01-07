@@ -28,7 +28,7 @@ class ValidateSubmitOrderResponse(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'data': 'bool'
+        'data': 'dict'
     }
 
     attribute_map = {
@@ -48,7 +48,7 @@ class ValidateSubmitOrderResponse(object):
 
 
         :return: The data of this ValidateSubmitOrderResponse.  # noqa: E501
-        :rtype: bool
+        :rtype: dict
         """
         return self._data
 
@@ -58,7 +58,7 @@ class ValidateSubmitOrderResponse(object):
 
 
         :param data: The data of this ValidateSubmitOrderResponse.  # noqa: E501
-        :type: bool
+        :type: dict
         """
 
         self._data = data

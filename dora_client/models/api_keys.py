@@ -28,7 +28,7 @@ class APIKeys(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'api_keys': 'list[APIKeyResponse]'
+        'api_keys': 'dict'
     }
 
     attribute_map = {
@@ -48,7 +48,7 @@ class APIKeys(object):
 
 
         :return: The api_keys of this APIKeys.  # noqa: E501
-        :rtype: list[APIKeyResponse]
+        :rtype: dict
         """
         return self._api_keys
 
@@ -58,7 +58,7 @@ class APIKeys(object):
 
 
         :param api_keys: The api_keys of this APIKeys.  # noqa: E501
-        :type: list[APIKeyResponse]
+        :type: dict
         """
 
         self._api_keys = api_keys

@@ -28,19 +28,19 @@ class Bond(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'id': 'str',
+        'id': 'dict',
         'kind': 'BondKind',
-        'coupon_start_at': 'datetime',
-        'created_at': 'datetime',
-        'final_coupon_at': 'datetime',
-        'isin': 'str',
-        'issued_at': 'datetime',
-        'issuer': 'str',
-        'maturity_at': 'datetime',
-        'principal_value': 'str',
-        'payments_per_year': 'int',
-        'payments_every': 'int',
-        'next_coupon_payment': 'datetime'
+        'coupon_start_at': 'dict',
+        'created_at': 'dict',
+        'final_coupon_at': 'dict',
+        'isin': 'dict',
+        'issued_at': 'dict',
+        'issuer': 'dict',
+        'maturity_at': 'dict',
+        'principal_value': 'dict',
+        'payments_per_year': 'dict',
+        'payments_every': 'dict',
+        'next_coupon_payment': 'dict'
     }
 
     attribute_map = {
@@ -108,7 +108,7 @@ class Bond(object):
 
 
         :return: The id of this Bond.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._id
 
@@ -118,7 +118,7 @@ class Bond(object):
 
 
         :param id: The id of this Bond.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._id = id
@@ -150,7 +150,7 @@ class Bond(object):
 
 
         :return: The coupon_start_at of this Bond.  # noqa: E501
-        :rtype: datetime
+        :rtype: dict
         """
         return self._coupon_start_at
 
@@ -160,7 +160,7 @@ class Bond(object):
 
 
         :param coupon_start_at: The coupon_start_at of this Bond.  # noqa: E501
-        :type: datetime
+        :type: dict
         """
 
         self._coupon_start_at = coupon_start_at
@@ -171,7 +171,7 @@ class Bond(object):
 
 
         :return: The created_at of this Bond.  # noqa: E501
-        :rtype: datetime
+        :rtype: dict
         """
         return self._created_at
 
@@ -181,7 +181,7 @@ class Bond(object):
 
 
         :param created_at: The created_at of this Bond.  # noqa: E501
-        :type: datetime
+        :type: dict
         """
 
         self._created_at = created_at
@@ -192,7 +192,7 @@ class Bond(object):
 
 
         :return: The final_coupon_at of this Bond.  # noqa: E501
-        :rtype: datetime
+        :rtype: dict
         """
         return self._final_coupon_at
 
@@ -202,7 +202,7 @@ class Bond(object):
 
 
         :param final_coupon_at: The final_coupon_at of this Bond.  # noqa: E501
-        :type: datetime
+        :type: dict
         """
 
         self._final_coupon_at = final_coupon_at
@@ -213,7 +213,7 @@ class Bond(object):
 
 
         :return: The isin of this Bond.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._isin
 
@@ -223,7 +223,7 @@ class Bond(object):
 
 
         :param isin: The isin of this Bond.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._isin = isin
@@ -234,7 +234,7 @@ class Bond(object):
 
 
         :return: The issued_at of this Bond.  # noqa: E501
-        :rtype: datetime
+        :rtype: dict
         """
         return self._issued_at
 
@@ -244,7 +244,7 @@ class Bond(object):
 
 
         :param issued_at: The issued_at of this Bond.  # noqa: E501
-        :type: datetime
+        :type: dict
         """
 
         self._issued_at = issued_at
@@ -255,7 +255,7 @@ class Bond(object):
 
 
         :return: The issuer of this Bond.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._issuer
 
@@ -265,7 +265,7 @@ class Bond(object):
 
 
         :param issuer: The issuer of this Bond.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._issuer = issuer
@@ -276,7 +276,7 @@ class Bond(object):
 
 
         :return: The maturity_at of this Bond.  # noqa: E501
-        :rtype: datetime
+        :rtype: dict
         """
         return self._maturity_at
 
@@ -286,7 +286,7 @@ class Bond(object):
 
 
         :param maturity_at: The maturity_at of this Bond.  # noqa: E501
-        :type: datetime
+        :type: dict
         """
 
         self._maturity_at = maturity_at
@@ -297,7 +297,7 @@ class Bond(object):
 
 
         :return: The principal_value of this Bond.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._principal_value
 
@@ -307,7 +307,7 @@ class Bond(object):
 
 
         :param principal_value: The principal_value of this Bond.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._principal_value = principal_value
@@ -318,7 +318,7 @@ class Bond(object):
 
 
         :return: The payments_per_year of this Bond.  # noqa: E501
-        :rtype: int
+        :rtype: dict
         """
         return self._payments_per_year
 
@@ -328,7 +328,7 @@ class Bond(object):
 
 
         :param payments_per_year: The payments_per_year of this Bond.  # noqa: E501
-        :type: int
+        :type: dict
         """
 
         self._payments_per_year = payments_per_year
@@ -340,7 +340,7 @@ class Bond(object):
         Coupon payment frequency in nanoseconds (minimum 1000 i.e. 1 microsecond)  # noqa: E501
 
         :return: The payments_every of this Bond.  # noqa: E501
-        :rtype: int
+        :rtype: dict
         """
         return self._payments_every
 
@@ -351,7 +351,7 @@ class Bond(object):
         Coupon payment frequency in nanoseconds (minimum 1000 i.e. 1 microsecond)  # noqa: E501
 
         :param payments_every: The payments_every of this Bond.  # noqa: E501
-        :type: int
+        :type: dict
         """
 
         self._payments_every = payments_every
@@ -362,7 +362,7 @@ class Bond(object):
 
 
         :return: The next_coupon_payment of this Bond.  # noqa: E501
-        :rtype: datetime
+        :rtype: dict
         """
         return self._next_coupon_payment
 
@@ -372,7 +372,7 @@ class Bond(object):
 
 
         :param next_coupon_payment: The next_coupon_payment of this Bond.  # noqa: E501
-        :type: datetime
+        :type: dict
         """
 
         self._next_coupon_payment = next_coupon_payment

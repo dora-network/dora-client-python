@@ -28,12 +28,12 @@ class Liquidity(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'order_book_id': 'str',
-        'position_id': 'str',
-        'transaction_id': 'str',
-        'base_quantity': 'str',
-        'quote_quantity': 'str',
-        'shares_quantity': 'str'
+        'order_book_id': 'dict',
+        'position_id': 'dict',
+        'transaction_id': 'dict',
+        'base_quantity': 'dict',
+        'quote_quantity': 'dict',
+        'shares_quantity': 'dict'
     }
 
     attribute_map = {
@@ -73,7 +73,7 @@ class Liquidity(object):
 
 
         :return: The order_book_id of this Liquidity.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._order_book_id
 
@@ -83,7 +83,7 @@ class Liquidity(object):
 
 
         :param order_book_id: The order_book_id of this Liquidity.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._order_book_id = order_book_id
@@ -94,7 +94,7 @@ class Liquidity(object):
 
 
         :return: The position_id of this Liquidity.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._position_id
 
@@ -104,7 +104,7 @@ class Liquidity(object):
 
 
         :param position_id: The position_id of this Liquidity.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._position_id = position_id
@@ -115,7 +115,7 @@ class Liquidity(object):
 
 
         :return: The transaction_id of this Liquidity.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._transaction_id
 
@@ -125,7 +125,7 @@ class Liquidity(object):
 
 
         :param transaction_id: The transaction_id of this Liquidity.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._transaction_id = transaction_id
@@ -136,7 +136,7 @@ class Liquidity(object):
 
 
         :return: The base_quantity of this Liquidity.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._base_quantity
 
@@ -146,7 +146,7 @@ class Liquidity(object):
 
 
         :param base_quantity: The base_quantity of this Liquidity.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._base_quantity = base_quantity
@@ -157,7 +157,7 @@ class Liquidity(object):
 
 
         :return: The quote_quantity of this Liquidity.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._quote_quantity
 
@@ -167,7 +167,7 @@ class Liquidity(object):
 
 
         :param quote_quantity: The quote_quantity of this Liquidity.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._quote_quantity = quote_quantity
@@ -178,7 +178,7 @@ class Liquidity(object):
 
 
         :return: The shares_quantity of this Liquidity.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._shares_quantity
 
@@ -188,7 +188,7 @@ class Liquidity(object):
 
 
         :param shares_quantity: The shares_quantity of this Liquidity.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._shares_quantity = shares_quantity

@@ -28,11 +28,11 @@ class APIKeyResponse(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'user_id': 'str',
-        'key_id': 'str',
-        'label': 'str',
-        'expires_at': 'datetime',
-        'is_active': 'bool'
+        'user_id': 'dict',
+        'key_id': 'dict',
+        'label': 'dict',
+        'expires_at': 'dict',
+        'is_active': 'dict'
     }
 
     attribute_map = {
@@ -68,7 +68,7 @@ class APIKeyResponse(object):
 
 
         :return: The user_id of this APIKeyResponse.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._user_id
 
@@ -78,7 +78,7 @@ class APIKeyResponse(object):
 
 
         :param user_id: The user_id of this APIKeyResponse.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._user_id = user_id
@@ -89,7 +89,7 @@ class APIKeyResponse(object):
 
 
         :return: The key_id of this APIKeyResponse.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._key_id
 
@@ -99,7 +99,7 @@ class APIKeyResponse(object):
 
 
         :param key_id: The key_id of this APIKeyResponse.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._key_id = key_id
@@ -110,7 +110,7 @@ class APIKeyResponse(object):
 
 
         :return: The label of this APIKeyResponse.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._label
 
@@ -120,7 +120,7 @@ class APIKeyResponse(object):
 
 
         :param label: The label of this APIKeyResponse.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._label = label
@@ -131,7 +131,7 @@ class APIKeyResponse(object):
 
 
         :return: The expires_at of this APIKeyResponse.  # noqa: E501
-        :rtype: datetime
+        :rtype: dict
         """
         return self._expires_at
 
@@ -141,7 +141,7 @@ class APIKeyResponse(object):
 
 
         :param expires_at: The expires_at of this APIKeyResponse.  # noqa: E501
-        :type: datetime
+        :type: dict
         """
 
         self._expires_at = expires_at
@@ -152,7 +152,7 @@ class APIKeyResponse(object):
 
 
         :return: The is_active of this APIKeyResponse.  # noqa: E501
-        :rtype: bool
+        :rtype: dict
         """
         return self._is_active
 
@@ -162,7 +162,7 @@ class APIKeyResponse(object):
 
 
         :param is_active: The is_active of this APIKeyResponse.  # noqa: E501
-        :type: bool
+        :type: dict
         """
 
         self._is_active = is_active

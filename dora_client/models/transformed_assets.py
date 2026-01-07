@@ -28,8 +28,8 @@ class TransformedAssets(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'gained': 'dict(str, str)',
-        'lost': 'dict(str, str)'
+        'gained': 'dict',
+        'lost': 'dict'
     }
 
     attribute_map = {
@@ -54,7 +54,7 @@ class TransformedAssets(object):
         Assets that have been gained by stablecoin equivalence transformations. They cannot be withdrawn from the platform until converted back to the original asset.  # noqa: E501
 
         :return: The gained of this TransformedAssets.  # noqa: E501
-        :rtype: dict(str, str)
+        :rtype: dict
         """
         return self._gained
 
@@ -65,7 +65,7 @@ class TransformedAssets(object):
         Assets that have been gained by stablecoin equivalence transformations. They cannot be withdrawn from the platform until converted back to the original asset.  # noqa: E501
 
         :param gained: The gained of this TransformedAssets.  # noqa: E501
-        :type: dict(str, str)
+        :type: dict
         """
 
         self._gained = gained
@@ -77,7 +77,7 @@ class TransformedAssets(object):
         Assets that have been lost by stablecoin equivalence transformations. They can be recovered by converting back any assets gained by stablecoin equivalence transformations.  # noqa: E501
 
         :return: The lost of this TransformedAssets.  # noqa: E501
-        :rtype: dict(str, str)
+        :rtype: dict
         """
         return self._lost
 
@@ -88,7 +88,7 @@ class TransformedAssets(object):
         Assets that have been lost by stablecoin equivalence transformations. They can be recovered by converting back any assets gained by stablecoin equivalence transformations.  # noqa: E501
 
         :param lost: The lost of this TransformedAssets.  # noqa: E501
-        :type: dict(str, str)
+        :type: dict
         """
 
         self._lost = lost

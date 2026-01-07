@@ -28,13 +28,13 @@ class Candle(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'order_book_id': 'str',
-        'start_timestamp': 'datetime',
-        'open': 'str',
-        'high': 'str',
-        'low': 'str',
-        'close': 'str',
-        'volume': 'str'
+        'order_book_id': 'dict',
+        'start_timestamp': 'dict',
+        'open': 'dict',
+        'high': 'dict',
+        'low': 'dict',
+        'close': 'dict',
+        'volume': 'dict'
     }
 
     attribute_map = {
@@ -78,7 +78,7 @@ class Candle(object):
 
 
         :return: The order_book_id of this Candle.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._order_book_id
 
@@ -88,7 +88,7 @@ class Candle(object):
 
 
         :param order_book_id: The order_book_id of this Candle.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._order_book_id = order_book_id
@@ -99,7 +99,7 @@ class Candle(object):
 
 
         :return: The start_timestamp of this Candle.  # noqa: E501
-        :rtype: datetime
+        :rtype: dict
         """
         return self._start_timestamp
 
@@ -109,7 +109,7 @@ class Candle(object):
 
 
         :param start_timestamp: The start_timestamp of this Candle.  # noqa: E501
-        :type: datetime
+        :type: dict
         """
 
         self._start_timestamp = start_timestamp
@@ -120,7 +120,7 @@ class Candle(object):
 
 
         :return: The open of this Candle.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._open
 
@@ -130,7 +130,7 @@ class Candle(object):
 
 
         :param open: The open of this Candle.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._open = open
@@ -141,7 +141,7 @@ class Candle(object):
 
 
         :return: The high of this Candle.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._high
 
@@ -151,7 +151,7 @@ class Candle(object):
 
 
         :param high: The high of this Candle.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._high = high
@@ -162,7 +162,7 @@ class Candle(object):
 
 
         :return: The low of this Candle.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._low
 
@@ -172,7 +172,7 @@ class Candle(object):
 
 
         :param low: The low of this Candle.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._low = low
@@ -183,7 +183,7 @@ class Candle(object):
 
 
         :return: The close of this Candle.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._close
 
@@ -193,7 +193,7 @@ class Candle(object):
 
 
         :param close: The close of this Candle.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._close = close
@@ -204,7 +204,7 @@ class Candle(object):
 
 
         :return: The volume of this Candle.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._volume
 
@@ -214,7 +214,7 @@ class Candle(object):
 
 
         :param volume: The volume of this Candle.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._volume = volume

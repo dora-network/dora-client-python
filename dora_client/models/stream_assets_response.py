@@ -28,14 +28,40 @@ class StreamAssetsResponse(object):
                             and the value is json key in definition.
     """
     swagger_types = {
+        'stream_assets_entries': 'dict'
     }
 
     attribute_map = {
+        'stream_assets_entries': 'stream_assets_entries'
     }
 
-    def __init__(self):  # noqa: E501
+    def __init__(self, stream_assets_entries=None):  # noqa: E501
         """StreamAssetsResponse - a model defined in Swagger"""  # noqa: E501
+        self._stream_assets_entries = None
         self.discriminator = None
+        if stream_assets_entries is not None:
+            self.stream_assets_entries = stream_assets_entries
+
+    @property
+    def stream_assets_entries(self):
+        """Gets the stream_assets_entries of this StreamAssetsResponse.  # noqa: E501
+
+
+        :return: The stream_assets_entries of this StreamAssetsResponse.  # noqa: E501
+        :rtype: dict
+        """
+        return self._stream_assets_entries
+
+    @stream_assets_entries.setter
+    def stream_assets_entries(self, stream_assets_entries):
+        """Sets the stream_assets_entries of this StreamAssetsResponse.
+
+
+        :param stream_assets_entries: The stream_assets_entries of this StreamAssetsResponse.  # noqa: E501
+        :type: dict
+        """
+
+        self._stream_assets_entries = stream_assets_entries
 
     def to_dict(self):
         """Returns the model properties as a dict"""

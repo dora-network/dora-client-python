@@ -28,14 +28,40 @@ class StreamOrdersResponse(object):
                             and the value is json key in definition.
     """
     swagger_types = {
+        'stream_orders_entry': 'dict'
     }
 
     attribute_map = {
+        'stream_orders_entry': 'stream_orders_entry'
     }
 
-    def __init__(self):  # noqa: E501
+    def __init__(self, stream_orders_entry=None):  # noqa: E501
         """StreamOrdersResponse - a model defined in Swagger"""  # noqa: E501
+        self._stream_orders_entry = None
         self.discriminator = None
+        if stream_orders_entry is not None:
+            self.stream_orders_entry = stream_orders_entry
+
+    @property
+    def stream_orders_entry(self):
+        """Gets the stream_orders_entry of this StreamOrdersResponse.  # noqa: E501
+
+
+        :return: The stream_orders_entry of this StreamOrdersResponse.  # noqa: E501
+        :rtype: dict
+        """
+        return self._stream_orders_entry
+
+    @stream_orders_entry.setter
+    def stream_orders_entry(self, stream_orders_entry):
+        """Sets the stream_orders_entry of this StreamOrdersResponse.
+
+
+        :param stream_orders_entry: The stream_orders_entry of this StreamOrdersResponse.  # noqa: E501
+        :type: dict
+        """
+
+        self._stream_orders_entry = stream_orders_entry
 
     def to_dict(self):
         """Returns the model properties as a dict"""

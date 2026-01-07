@@ -28,7 +28,7 @@ class UpdateRolesString(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'update': 'bool',
+        'update': 'dict',
         'value': 'UserRole'
     }
 
@@ -53,7 +53,7 @@ class UpdateRolesString(object):
         Whether to update the field.  # noqa: E501
 
         :return: The update of this UpdateRolesString.  # noqa: E501
-        :rtype: bool
+        :rtype: dict
         """
         return self._update
 
@@ -64,7 +64,7 @@ class UpdateRolesString(object):
         Whether to update the field.  # noqa: E501
 
         :param update: The update of this UpdateRolesString.  # noqa: E501
-        :type: bool
+        :type: dict
         """
         if update is None:
             raise ValueError("Invalid value for `update`, must not be `None`")  # noqa: E501
@@ -75,6 +75,7 @@ class UpdateRolesString(object):
     def value(self):
         """Gets the value of this UpdateRolesString.  # noqa: E501
 
+        The new value to set for the field.  # noqa: E501
 
         :return: The value of this UpdateRolesString.  # noqa: E501
         :rtype: UserRole
@@ -85,6 +86,7 @@ class UpdateRolesString(object):
     def value(self, value):
         """Sets the value of this UpdateRolesString.
 
+        The new value to set for the field.  # noqa: E501
 
         :param value: The value of this UpdateRolesString.  # noqa: E501
         :type: UserRole

@@ -28,19 +28,19 @@ class UserValue(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'available': 'dict(str, str)',
-        'locked': 'dict(str, str)',
-        'borrowed': 'dict(str, str)',
-        'supplied': 'dict(str, str)',
-        'impending_borrows': 'dict(str, str)',
-        'borrow_limit': 'dict(str, str)',
-        'liquidation_threshold': 'dict(str, str)',
-        'notional_long': 'dict(str, str)',
-        'notional_short': 'dict(str, str)',
-        'portfolio_value': 'dict(str, str)',
-        'net_liquidation_value': 'dict(str, str)',
-        'unrealized_pnl': 'dict(str, str)',
-        'realized_pnl': 'dict(str, str)'
+        'available': 'dict',
+        'locked': 'dict',
+        'borrowed': 'dict',
+        'supplied': 'dict',
+        'impending_borrows': 'dict',
+        'borrow_limit': 'dict',
+        'liquidation_threshold': 'dict',
+        'notional_long': 'dict',
+        'notional_short': 'dict',
+        'portfolio_value': 'dict',
+        'net_liquidation_value': 'dict',
+        'unrealized_pnl': 'dict',
+        'realized_pnl': 'dict'
     }
 
     attribute_map = {
@@ -108,7 +108,7 @@ class UserValue(object):
 
 
         :return: The available of this UserValue.  # noqa: E501
-        :rtype: dict(str, str)
+        :rtype: dict
         """
         return self._available
 
@@ -118,7 +118,7 @@ class UserValue(object):
 
 
         :param available: The available of this UserValue.  # noqa: E501
-        :type: dict(str, str)
+        :type: dict
         """
 
         self._available = available
@@ -129,7 +129,7 @@ class UserValue(object):
 
 
         :return: The locked of this UserValue.  # noqa: E501
-        :rtype: dict(str, str)
+        :rtype: dict
         """
         return self._locked
 
@@ -139,7 +139,7 @@ class UserValue(object):
 
 
         :param locked: The locked of this UserValue.  # noqa: E501
-        :type: dict(str, str)
+        :type: dict
         """
 
         self._locked = locked
@@ -150,7 +150,7 @@ class UserValue(object):
 
 
         :return: The borrowed of this UserValue.  # noqa: E501
-        :rtype: dict(str, str)
+        :rtype: dict
         """
         return self._borrowed
 
@@ -160,7 +160,7 @@ class UserValue(object):
 
 
         :param borrowed: The borrowed of this UserValue.  # noqa: E501
-        :type: dict(str, str)
+        :type: dict
         """
 
         self._borrowed = borrowed
@@ -171,7 +171,7 @@ class UserValue(object):
 
 
         :return: The supplied of this UserValue.  # noqa: E501
-        :rtype: dict(str, str)
+        :rtype: dict
         """
         return self._supplied
 
@@ -181,7 +181,7 @@ class UserValue(object):
 
 
         :param supplied: The supplied of this UserValue.  # noqa: E501
-        :type: dict(str, str)
+        :type: dict
         """
 
         self._supplied = supplied
@@ -192,7 +192,7 @@ class UserValue(object):
 
 
         :return: The impending_borrows of this UserValue.  # noqa: E501
-        :rtype: dict(str, str)
+        :rtype: dict
         """
         return self._impending_borrows
 
@@ -202,7 +202,7 @@ class UserValue(object):
 
 
         :param impending_borrows: The impending_borrows of this UserValue.  # noqa: E501
-        :type: dict(str, str)
+        :type: dict
         """
 
         self._impending_borrows = impending_borrows
@@ -213,7 +213,7 @@ class UserValue(object):
 
 
         :return: The borrow_limit of this UserValue.  # noqa: E501
-        :rtype: dict(str, str)
+        :rtype: dict
         """
         return self._borrow_limit
 
@@ -223,7 +223,7 @@ class UserValue(object):
 
 
         :param borrow_limit: The borrow_limit of this UserValue.  # noqa: E501
-        :type: dict(str, str)
+        :type: dict
         """
 
         self._borrow_limit = borrow_limit
@@ -234,7 +234,7 @@ class UserValue(object):
 
 
         :return: The liquidation_threshold of this UserValue.  # noqa: E501
-        :rtype: dict(str, str)
+        :rtype: dict
         """
         return self._liquidation_threshold
 
@@ -244,7 +244,7 @@ class UserValue(object):
 
 
         :param liquidation_threshold: The liquidation_threshold of this UserValue.  # noqa: E501
-        :type: dict(str, str)
+        :type: dict
         """
 
         self._liquidation_threshold = liquidation_threshold
@@ -255,7 +255,7 @@ class UserValue(object):
 
 
         :return: The notional_long of this UserValue.  # noqa: E501
-        :rtype: dict(str, str)
+        :rtype: dict
         """
         return self._notional_long
 
@@ -265,7 +265,7 @@ class UserValue(object):
 
 
         :param notional_long: The notional_long of this UserValue.  # noqa: E501
-        :type: dict(str, str)
+        :type: dict
         """
 
         self._notional_long = notional_long
@@ -276,7 +276,7 @@ class UserValue(object):
 
 
         :return: The notional_short of this UserValue.  # noqa: E501
-        :rtype: dict(str, str)
+        :rtype: dict
         """
         return self._notional_short
 
@@ -286,7 +286,7 @@ class UserValue(object):
 
 
         :param notional_short: The notional_short of this UserValue.  # noqa: E501
-        :type: dict(str, str)
+        :type: dict
         """
 
         self._notional_short = notional_short
@@ -297,7 +297,7 @@ class UserValue(object):
 
 
         :return: The portfolio_value of this UserValue.  # noqa: E501
-        :rtype: dict(str, str)
+        :rtype: dict
         """
         return self._portfolio_value
 
@@ -307,7 +307,7 @@ class UserValue(object):
 
 
         :param portfolio_value: The portfolio_value of this UserValue.  # noqa: E501
-        :type: dict(str, str)
+        :type: dict
         """
 
         self._portfolio_value = portfolio_value
@@ -318,7 +318,7 @@ class UserValue(object):
 
 
         :return: The net_liquidation_value of this UserValue.  # noqa: E501
-        :rtype: dict(str, str)
+        :rtype: dict
         """
         return self._net_liquidation_value
 
@@ -328,7 +328,7 @@ class UserValue(object):
 
 
         :param net_liquidation_value: The net_liquidation_value of this UserValue.  # noqa: E501
-        :type: dict(str, str)
+        :type: dict
         """
 
         self._net_liquidation_value = net_liquidation_value
@@ -339,7 +339,7 @@ class UserValue(object):
 
 
         :return: The unrealized_pnl of this UserValue.  # noqa: E501
-        :rtype: dict(str, str)
+        :rtype: dict
         """
         return self._unrealized_pnl
 
@@ -349,7 +349,7 @@ class UserValue(object):
 
 
         :param unrealized_pnl: The unrealized_pnl of this UserValue.  # noqa: E501
-        :type: dict(str, str)
+        :type: dict
         """
 
         self._unrealized_pnl = unrealized_pnl
@@ -360,7 +360,7 @@ class UserValue(object):
 
 
         :return: The realized_pnl of this UserValue.  # noqa: E501
-        :rtype: dict(str, str)
+        :rtype: dict
         """
         return self._realized_pnl
 
@@ -370,7 +370,7 @@ class UserValue(object):
 
 
         :param realized_pnl: The realized_pnl of this UserValue.  # noqa: E501
-        :type: dict(str, str)
+        :type: dict
         """
 
         self._realized_pnl = realized_pnl

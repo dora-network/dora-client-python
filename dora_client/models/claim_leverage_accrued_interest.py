@@ -28,10 +28,10 @@ class ClaimLeverageAccruedInterest(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'transaction_id': 'str',
-        'asset_id': 'str',
-        'position_id': 'str',
-        'current_accrued_interest': 'str'
+        'transaction_id': 'dict',
+        'asset_id': 'dict',
+        'position_id': 'dict',
+        'current_accrued_interest': 'dict'
     }
 
     attribute_map = {
@@ -63,7 +63,7 @@ class ClaimLeverageAccruedInterest(object):
 
 
         :return: The transaction_id of this ClaimLeverageAccruedInterest.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._transaction_id
 
@@ -73,7 +73,7 @@ class ClaimLeverageAccruedInterest(object):
 
 
         :param transaction_id: The transaction_id of this ClaimLeverageAccruedInterest.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._transaction_id = transaction_id
@@ -84,7 +84,7 @@ class ClaimLeverageAccruedInterest(object):
 
 
         :return: The asset_id of this ClaimLeverageAccruedInterest.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._asset_id
 
@@ -94,7 +94,7 @@ class ClaimLeverageAccruedInterest(object):
 
 
         :param asset_id: The asset_id of this ClaimLeverageAccruedInterest.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._asset_id = asset_id
@@ -105,7 +105,7 @@ class ClaimLeverageAccruedInterest(object):
 
 
         :return: The position_id of this ClaimLeverageAccruedInterest.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._position_id
 
@@ -115,7 +115,7 @@ class ClaimLeverageAccruedInterest(object):
 
 
         :param position_id: The position_id of this ClaimLeverageAccruedInterest.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._position_id = position_id
@@ -126,7 +126,7 @@ class ClaimLeverageAccruedInterest(object):
 
 
         :return: The current_accrued_interest of this ClaimLeverageAccruedInterest.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._current_accrued_interest
 
@@ -136,7 +136,7 @@ class ClaimLeverageAccruedInterest(object):
 
 
         :param current_accrued_interest: The current_accrued_interest of this ClaimLeverageAccruedInterest.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._current_accrued_interest = current_accrued_interest

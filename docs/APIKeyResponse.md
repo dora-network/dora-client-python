@@ -3,11 +3,11 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**user_id** | **str** |  | [optional] 
-**key_id** | **str** |  | [optional] 
-**label** | **str** |  | [optional] 
-**expires_at** | **datetime** |  | [optional] 
-**is_active** | **bool** |  | [optional] 
+**user_id** | **dict** |  | [optional] 
+**key_id** | **dict** |  | [optional] 
+**label** | **dict** |  | [optional] 
+**expires_at** | **dict** |  | [optional] 
+**is_active** | **dict** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -28,9 +28,9 @@ class ClaimLeverageAccruedInterestRequest(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'asset_id': 'str',
-        'position_id': 'str',
-        'quantity': 'str'
+        'asset_id': 'dict',
+        'position_id': 'dict',
+        'quantity': 'dict'
     }
 
     attribute_map = {
@@ -58,7 +58,7 @@ class ClaimLeverageAccruedInterestRequest(object):
 
 
         :return: The asset_id of this ClaimLeverageAccruedInterestRequest.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._asset_id
 
@@ -68,7 +68,7 @@ class ClaimLeverageAccruedInterestRequest(object):
 
 
         :param asset_id: The asset_id of this ClaimLeverageAccruedInterestRequest.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._asset_id = asset_id
@@ -79,7 +79,7 @@ class ClaimLeverageAccruedInterestRequest(object):
 
 
         :return: The position_id of this ClaimLeverageAccruedInterestRequest.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._position_id
 
@@ -89,7 +89,7 @@ class ClaimLeverageAccruedInterestRequest(object):
 
 
         :param position_id: The position_id of this ClaimLeverageAccruedInterestRequest.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._position_id = position_id
@@ -100,7 +100,7 @@ class ClaimLeverageAccruedInterestRequest(object):
 
 
         :return: The quantity of this ClaimLeverageAccruedInterestRequest.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._quantity
 
@@ -110,7 +110,7 @@ class ClaimLeverageAccruedInterestRequest(object):
 
 
         :param quantity: The quantity of this ClaimLeverageAccruedInterestRequest.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._quantity = quantity

@@ -28,9 +28,9 @@ class PoolPrice(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'pool_id': 'str',
-        'price': 'str',
-        'timestamp': 'datetime'
+        'pool_id': 'dict',
+        'price': 'dict',
+        'timestamp': 'dict'
     }
 
     attribute_map = {
@@ -58,7 +58,7 @@ class PoolPrice(object):
 
 
         :return: The pool_id of this PoolPrice.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._pool_id
 
@@ -68,7 +68,7 @@ class PoolPrice(object):
 
 
         :param pool_id: The pool_id of this PoolPrice.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._pool_id = pool_id
@@ -79,7 +79,7 @@ class PoolPrice(object):
 
 
         :return: The price of this PoolPrice.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._price
 
@@ -89,7 +89,7 @@ class PoolPrice(object):
 
 
         :param price: The price of this PoolPrice.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._price = price
@@ -100,7 +100,7 @@ class PoolPrice(object):
 
 
         :return: The timestamp of this PoolPrice.  # noqa: E501
-        :rtype: datetime
+        :rtype: dict
         """
         return self._timestamp
 
@@ -110,7 +110,7 @@ class PoolPrice(object):
 
 
         :param timestamp: The timestamp of this PoolPrice.  # noqa: E501
-        :type: datetime
+        :type: dict
         """
 
         self._timestamp = timestamp

@@ -28,10 +28,10 @@ class TransferBalancesRequest(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'from_position_id': 'str',
-        'to_position_id': 'str',
-        'asset_id': 'str',
-        'quantity': 'str'
+        'from_position_id': 'dict',
+        'to_position_id': 'dict',
+        'asset_id': 'dict',
+        'quantity': 'dict'
     }
 
     attribute_map = {
@@ -59,7 +59,7 @@ class TransferBalancesRequest(object):
 
 
         :return: The from_position_id of this TransferBalancesRequest.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._from_position_id
 
@@ -69,7 +69,7 @@ class TransferBalancesRequest(object):
 
 
         :param from_position_id: The from_position_id of this TransferBalancesRequest.  # noqa: E501
-        :type: str
+        :type: dict
         """
         if from_position_id is None:
             raise ValueError("Invalid value for `from_position_id`, must not be `None`")  # noqa: E501
@@ -82,7 +82,7 @@ class TransferBalancesRequest(object):
 
 
         :return: The to_position_id of this TransferBalancesRequest.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._to_position_id
 
@@ -92,7 +92,7 @@ class TransferBalancesRequest(object):
 
 
         :param to_position_id: The to_position_id of this TransferBalancesRequest.  # noqa: E501
-        :type: str
+        :type: dict
         """
         if to_position_id is None:
             raise ValueError("Invalid value for `to_position_id`, must not be `None`")  # noqa: E501
@@ -105,7 +105,7 @@ class TransferBalancesRequest(object):
 
 
         :return: The asset_id of this TransferBalancesRequest.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._asset_id
 
@@ -115,7 +115,7 @@ class TransferBalancesRequest(object):
 
 
         :param asset_id: The asset_id of this TransferBalancesRequest.  # noqa: E501
-        :type: str
+        :type: dict
         """
         if asset_id is None:
             raise ValueError("Invalid value for `asset_id`, must not be `None`")  # noqa: E501
@@ -128,7 +128,7 @@ class TransferBalancesRequest(object):
 
 
         :return: The quantity of this TransferBalancesRequest.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._quantity
 
@@ -138,7 +138,7 @@ class TransferBalancesRequest(object):
 
 
         :param quantity: The quantity of this TransferBalancesRequest.  # noqa: E501
-        :type: str
+        :type: dict
         """
         if quantity is None:
             raise ValueError("Invalid value for `quantity`, must not be `None`")  # noqa: E501

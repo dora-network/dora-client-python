@@ -28,7 +28,7 @@ class UnitePositionRequest(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'global_position_id': 'str'
+        'global_position_id': 'dict'
     }
 
     attribute_map = {
@@ -47,7 +47,7 @@ class UnitePositionRequest(object):
 
 
         :return: The global_position_id of this UnitePositionRequest.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._global_position_id
 
@@ -57,7 +57,7 @@ class UnitePositionRequest(object):
 
 
         :param global_position_id: The global_position_id of this UnitePositionRequest.  # noqa: E501
-        :type: str
+        :type: dict
         """
         if global_position_id is None:
             raise ValueError("Invalid value for `global_position_id`, must not be `None`")  # noqa: E501

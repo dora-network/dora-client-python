@@ -28,11 +28,11 @@ class OrderBookSummary(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'order_book_id': 'str',
-        'mid_price': 'str',
-        'spread': 'str',
-        'best_bid': 'str',
-        'best_ask': 'str'
+        'order_book_id': 'dict',
+        'mid_price': 'dict',
+        'spread': 'dict',
+        'best_bid': 'dict',
+        'best_ask': 'dict'
     }
 
     attribute_map = {
@@ -68,7 +68,7 @@ class OrderBookSummary(object):
 
 
         :return: The order_book_id of this OrderBookSummary.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._order_book_id
 
@@ -78,7 +78,7 @@ class OrderBookSummary(object):
 
 
         :param order_book_id: The order_book_id of this OrderBookSummary.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._order_book_id = order_book_id
@@ -89,7 +89,7 @@ class OrderBookSummary(object):
 
 
         :return: The mid_price of this OrderBookSummary.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._mid_price
 
@@ -99,7 +99,7 @@ class OrderBookSummary(object):
 
 
         :param mid_price: The mid_price of this OrderBookSummary.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._mid_price = mid_price
@@ -110,7 +110,7 @@ class OrderBookSummary(object):
 
 
         :return: The spread of this OrderBookSummary.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._spread
 
@@ -120,7 +120,7 @@ class OrderBookSummary(object):
 
 
         :param spread: The spread of this OrderBookSummary.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._spread = spread
@@ -131,7 +131,7 @@ class OrderBookSummary(object):
 
 
         :return: The best_bid of this OrderBookSummary.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._best_bid
 
@@ -141,7 +141,7 @@ class OrderBookSummary(object):
 
 
         :param best_bid: The best_bid of this OrderBookSummary.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._best_bid = best_bid
@@ -152,7 +152,7 @@ class OrderBookSummary(object):
 
 
         :return: The best_ask of this OrderBookSummary.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._best_ask
 
@@ -162,7 +162,7 @@ class OrderBookSummary(object):
 
 
         :param best_ask: The best_ask of this OrderBookSummary.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._best_ask = best_ask

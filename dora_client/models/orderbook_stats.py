@@ -28,15 +28,15 @@ class OrderbookStats(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'order_book_id': 'str',
-        'open_price': 'str',
-        'last_price': 'str',
-        'high_24h': 'str',
-        'low_24h': 'str',
-        'change_24h': 'str',
-        'change_pct_24h': 'str',
-        'volume_24h_base': 'str',
-        'volume_24h_usd': 'str'
+        'order_book_id': 'dict',
+        'open_price': 'dict',
+        'last_price': 'dict',
+        'high_24h': 'dict',
+        'low_24h': 'dict',
+        'change_24h': 'dict',
+        'change_pct_24h': 'dict',
+        'volume_24h_base': 'dict',
+        'volume_24h_usd': 'dict'
     }
 
     attribute_map = {
@@ -88,7 +88,7 @@ class OrderbookStats(object):
 
 
         :return: The order_book_id of this OrderbookStats.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._order_book_id
 
@@ -98,7 +98,7 @@ class OrderbookStats(object):
 
 
         :param order_book_id: The order_book_id of this OrderbookStats.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._order_book_id = order_book_id
@@ -110,7 +110,7 @@ class OrderbookStats(object):
         Open price of the orderbook  # noqa: E501
 
         :return: The open_price of this OrderbookStats.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._open_price
 
@@ -121,7 +121,7 @@ class OrderbookStats(object):
         Open price of the orderbook  # noqa: E501
 
         :param open_price: The open_price of this OrderbookStats.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._open_price = open_price
@@ -133,7 +133,7 @@ class OrderbookStats(object):
         Price of the most recent executed trade.  # noqa: E501
 
         :return: The last_price of this OrderbookStats.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._last_price
 
@@ -144,7 +144,7 @@ class OrderbookStats(object):
         Price of the most recent executed trade.  # noqa: E501
 
         :param last_price: The last_price of this OrderbookStats.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._last_price = last_price
@@ -156,7 +156,7 @@ class OrderbookStats(object):
         Highest price of the orderbook in the last 24 hours.  # noqa: E501
 
         :return: The high_24h of this OrderbookStats.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._high_24h
 
@@ -167,7 +167,7 @@ class OrderbookStats(object):
         Highest price of the orderbook in the last 24 hours.  # noqa: E501
 
         :param high_24h: The high_24h of this OrderbookStats.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._high_24h = high_24h
@@ -179,7 +179,7 @@ class OrderbookStats(object):
         Lowest price of the orderbook in the last 24 hours.  # noqa: E501
 
         :return: The low_24h of this OrderbookStats.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._low_24h
 
@@ -190,7 +190,7 @@ class OrderbookStats(object):
         Lowest price of the orderbook in the last 24 hours.  # noqa: E501
 
         :param low_24h: The low_24h of this OrderbookStats.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._low_24h = low_24h
@@ -202,7 +202,7 @@ class OrderbookStats(object):
         Change in price of the orderbook in the last 24 hours.  # noqa: E501
 
         :return: The change_24h of this OrderbookStats.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._change_24h
 
@@ -213,7 +213,7 @@ class OrderbookStats(object):
         Change in price of the orderbook in the last 24 hours.  # noqa: E501
 
         :param change_24h: The change_24h of this OrderbookStats.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._change_24h = change_24h
@@ -225,7 +225,7 @@ class OrderbookStats(object):
         Change percentage in price of the orderbook in the last 24 hours.  # noqa: E501
 
         :return: The change_pct_24h of this OrderbookStats.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._change_pct_24h
 
@@ -236,7 +236,7 @@ class OrderbookStats(object):
         Change percentage in price of the orderbook in the last 24 hours.  # noqa: E501
 
         :param change_pct_24h: The change_pct_24h of this OrderbookStats.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._change_pct_24h = change_pct_24h
@@ -248,7 +248,7 @@ class OrderbookStats(object):
         Total volume of the orderbook in the last 24 hours.  # noqa: E501
 
         :return: The volume_24h_base of this OrderbookStats.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._volume_24h_base
 
@@ -259,7 +259,7 @@ class OrderbookStats(object):
         Total volume of the orderbook in the last 24 hours.  # noqa: E501
 
         :param volume_24h_base: The volume_24h_base of this OrderbookStats.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._volume_24h_base = volume_24h_base
@@ -271,7 +271,7 @@ class OrderbookStats(object):
         Total volume of the orderbook in the last 24 hours in USD.  # noqa: E501
 
         :return: The volume_24h_usd of this OrderbookStats.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._volume_24h_usd
 
@@ -282,7 +282,7 @@ class OrderbookStats(object):
         Total volume of the orderbook in the last 24 hours in USD.  # noqa: E501
 
         :param volume_24h_usd: The volume_24h_usd of this OrderbookStats.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._volume_24h_usd = volume_24h_usd

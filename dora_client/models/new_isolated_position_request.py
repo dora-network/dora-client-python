@@ -28,10 +28,10 @@ class NewIsolatedPositionRequest(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'global_position_id': 'str',
-        'asset_id': 'str',
-        'quantity': 'str',
-        'position_name': 'str'
+        'global_position_id': 'dict',
+        'asset_id': 'dict',
+        'quantity': 'dict',
+        'position_name': 'dict'
     }
 
     attribute_map = {
@@ -60,7 +60,7 @@ class NewIsolatedPositionRequest(object):
 
 
         :return: The global_position_id of this NewIsolatedPositionRequest.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._global_position_id
 
@@ -70,7 +70,7 @@ class NewIsolatedPositionRequest(object):
 
 
         :param global_position_id: The global_position_id of this NewIsolatedPositionRequest.  # noqa: E501
-        :type: str
+        :type: dict
         """
         if global_position_id is None:
             raise ValueError("Invalid value for `global_position_id`, must not be `None`")  # noqa: E501
@@ -83,7 +83,7 @@ class NewIsolatedPositionRequest(object):
 
 
         :return: The asset_id of this NewIsolatedPositionRequest.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._asset_id
 
@@ -93,7 +93,7 @@ class NewIsolatedPositionRequest(object):
 
 
         :param asset_id: The asset_id of this NewIsolatedPositionRequest.  # noqa: E501
-        :type: str
+        :type: dict
         """
         if asset_id is None:
             raise ValueError("Invalid value for `asset_id`, must not be `None`")  # noqa: E501
@@ -106,7 +106,7 @@ class NewIsolatedPositionRequest(object):
 
 
         :return: The quantity of this NewIsolatedPositionRequest.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._quantity
 
@@ -116,7 +116,7 @@ class NewIsolatedPositionRequest(object):
 
 
         :param quantity: The quantity of this NewIsolatedPositionRequest.  # noqa: E501
-        :type: str
+        :type: dict
         """
         if quantity is None:
             raise ValueError("Invalid value for `quantity`, must not be `None`")  # noqa: E501
@@ -129,7 +129,7 @@ class NewIsolatedPositionRequest(object):
 
 
         :return: The position_name of this NewIsolatedPositionRequest.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._position_name
 
@@ -139,7 +139,7 @@ class NewIsolatedPositionRequest(object):
 
 
         :param position_name: The position_name of this NewIsolatedPositionRequest.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._position_name = position_name

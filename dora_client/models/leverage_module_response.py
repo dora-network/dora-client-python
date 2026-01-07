@@ -28,7 +28,7 @@ class LeverageModuleResponse(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'balances': 'dict(str, ModuleBalance)'
+        'balances': 'dict'
     }
 
     attribute_map = {
@@ -49,7 +49,7 @@ class LeverageModuleResponse(object):
         A map of asset IDs to their module balances  # noqa: E501
 
         :return: The balances of this LeverageModuleResponse.  # noqa: E501
-        :rtype: dict(str, ModuleBalance)
+        :rtype: dict
         """
         return self._balances
 
@@ -60,7 +60,7 @@ class LeverageModuleResponse(object):
         A map of asset IDs to their module balances  # noqa: E501
 
         :param balances: The balances of this LeverageModuleResponse.  # noqa: E501
-        :type: dict(str, ModuleBalance)
+        :type: dict
         """
 
         self._balances = balances

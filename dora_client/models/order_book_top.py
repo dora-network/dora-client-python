@@ -28,10 +28,10 @@ class OrderBookTop(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'order_book_id': 'str',
-        'best_bid': 'str',
-        'best_ask': 'str',
-        'timestamp': 'datetime'
+        'order_book_id': 'dict',
+        'best_bid': 'dict',
+        'best_ask': 'dict',
+        'timestamp': 'dict'
     }
 
     attribute_map = {
@@ -63,7 +63,7 @@ class OrderBookTop(object):
 
 
         :return: The order_book_id of this OrderBookTop.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._order_book_id
 
@@ -73,7 +73,7 @@ class OrderBookTop(object):
 
 
         :param order_book_id: The order_book_id of this OrderBookTop.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._order_book_id = order_book_id
@@ -84,7 +84,7 @@ class OrderBookTop(object):
 
 
         :return: The best_bid of this OrderBookTop.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._best_bid
 
@@ -94,7 +94,7 @@ class OrderBookTop(object):
 
 
         :param best_bid: The best_bid of this OrderBookTop.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._best_bid = best_bid
@@ -105,7 +105,7 @@ class OrderBookTop(object):
 
 
         :return: The best_ask of this OrderBookTop.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._best_ask
 
@@ -115,7 +115,7 @@ class OrderBookTop(object):
 
 
         :param best_ask: The best_ask of this OrderBookTop.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._best_ask = best_ask
@@ -126,7 +126,7 @@ class OrderBookTop(object):
 
 
         :return: The timestamp of this OrderBookTop.  # noqa: E501
-        :rtype: datetime
+        :rtype: dict
         """
         return self._timestamp
 
@@ -136,7 +136,7 @@ class OrderBookTop(object):
 
 
         :param timestamp: The timestamp of this OrderBookTop.  # noqa: E501
-        :type: datetime
+        :type: dict
         """
 
         self._timestamp = timestamp

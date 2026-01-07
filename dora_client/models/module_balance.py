@@ -28,12 +28,12 @@ class ModuleBalance(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'asset_id': 'str',
-        'seq': 'int',
-        'available': 'str',
-        'supplied': 'str',
-        'virtual': 'str',
-        'borrowed': 'str'
+        'asset_id': 'dict',
+        'seq': 'dict',
+        'available': 'dict',
+        'supplied': 'dict',
+        'virtual': 'dict',
+        'borrowed': 'dict'
     }
 
     attribute_map = {
@@ -73,7 +73,7 @@ class ModuleBalance(object):
 
 
         :return: The asset_id of this ModuleBalance.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._asset_id
 
@@ -83,7 +83,7 @@ class ModuleBalance(object):
 
 
         :param asset_id: The asset_id of this ModuleBalance.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._asset_id = asset_id
@@ -94,7 +94,7 @@ class ModuleBalance(object):
 
 
         :return: The seq of this ModuleBalance.  # noqa: E501
-        :rtype: int
+        :rtype: dict
         """
         return self._seq
 
@@ -104,7 +104,7 @@ class ModuleBalance(object):
 
 
         :param seq: The seq of this ModuleBalance.  # noqa: E501
-        :type: int
+        :type: dict
         """
 
         self._seq = seq
@@ -116,7 +116,7 @@ class ModuleBalance(object):
         The available balance in the module for this asset  # noqa: E501
 
         :return: The available of this ModuleBalance.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._available
 
@@ -127,7 +127,7 @@ class ModuleBalance(object):
         The available balance in the module for this asset  # noqa: E501
 
         :param available: The available of this ModuleBalance.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._available = available
@@ -139,7 +139,7 @@ class ModuleBalance(object):
         The total amount supplied to the module for this asset  # noqa: E501
 
         :return: The supplied of this ModuleBalance.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._supplied
 
@@ -150,7 +150,7 @@ class ModuleBalance(object):
         The total amount supplied to the module for this asset  # noqa: E501
 
         :param supplied: The supplied of this ModuleBalance.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._supplied = supplied
@@ -162,7 +162,7 @@ class ModuleBalance(object):
         Assets minted by virtual-borrowing, but not yet repaid  # noqa: E501
 
         :return: The virtual of this ModuleBalance.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._virtual
 
@@ -173,7 +173,7 @@ class ModuleBalance(object):
         Assets minted by virtual-borrowing, but not yet repaid  # noqa: E501
 
         :param virtual: The virtual of this ModuleBalance.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._virtual = virtual
@@ -185,7 +185,7 @@ class ModuleBalance(object):
         The total amount borrowed from the supplied but not yet repaid  # noqa: E501
 
         :return: The borrowed of this ModuleBalance.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._borrowed
 
@@ -196,7 +196,7 @@ class ModuleBalance(object):
         The total amount borrowed from the supplied but not yet repaid  # noqa: E501
 
         :param borrowed: The borrowed of this ModuleBalance.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._borrowed = borrowed

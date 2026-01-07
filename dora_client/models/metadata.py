@@ -28,9 +28,9 @@ class Metadata(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'status_code': 'int',
-        'trace_id': 'str',
-        'request_id': 'str'
+        'status_code': 'dict',
+        'trace_id': 'dict',
+        'request_id': 'dict'
     }
 
     attribute_map = {
@@ -59,7 +59,7 @@ class Metadata(object):
         HTTP status code for the response.  # noqa: E501
 
         :return: The status_code of this Metadata.  # noqa: E501
-        :rtype: int
+        :rtype: dict
         """
         return self._status_code
 
@@ -70,7 +70,7 @@ class Metadata(object):
         HTTP status code for the response.  # noqa: E501
 
         :param status_code: The status_code of this Metadata.  # noqa: E501
-        :type: int
+        :type: dict
         """
 
         self._status_code = status_code
@@ -82,7 +82,7 @@ class Metadata(object):
         Trace ID for distributed tracing.  # noqa: E501
 
         :return: The trace_id of this Metadata.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._trace_id
 
@@ -93,7 +93,7 @@ class Metadata(object):
         Trace ID for distributed tracing.  # noqa: E501
 
         :param trace_id: The trace_id of this Metadata.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._trace_id = trace_id
@@ -105,7 +105,7 @@ class Metadata(object):
         Request ID for correlating logs and debugging.  # noqa: E501
 
         :return: The request_id of this Metadata.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._request_id
 
@@ -116,7 +116,7 @@ class Metadata(object):
         Request ID for correlating logs and debugging.  # noqa: E501
 
         :param request_id: The request_id of this Metadata.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._request_id = request_id

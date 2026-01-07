@@ -28,8 +28,8 @@ class PriceLevel(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'price': 'str',
-        'quantity': 'str'
+        'price': 'dict',
+        'quantity': 'dict'
     }
 
     attribute_map = {
@@ -53,7 +53,7 @@ class PriceLevel(object):
 
 
         :return: The price of this PriceLevel.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._price
 
@@ -63,7 +63,7 @@ class PriceLevel(object):
 
 
         :param price: The price of this PriceLevel.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._price = price
@@ -74,7 +74,7 @@ class PriceLevel(object):
 
 
         :return: The quantity of this PriceLevel.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._quantity
 
@@ -84,7 +84,7 @@ class PriceLevel(object):
 
 
         :param quantity: The quantity of this PriceLevel.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._quantity = quantity

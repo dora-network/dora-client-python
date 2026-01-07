@@ -28,14 +28,14 @@ class Transaction(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'id': 'str',
-        'created_at': 'datetime',
+        'id': 'dict',
+        'created_at': 'dict',
         'kind': 'TransactionKind',
-        'asset0': 'str',
-        'quantity0': 'str',
-        'quantity1': 'str',
-        'asset1': 'str',
-        'user_id': 'str'
+        'asset0': 'dict',
+        'quantity0': 'dict',
+        'quantity1': 'dict',
+        'asset1': 'dict',
+        'user_id': 'dict'
     }
 
     attribute_map = {
@@ -83,7 +83,7 @@ class Transaction(object):
 
 
         :return: The id of this Transaction.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._id
 
@@ -93,7 +93,7 @@ class Transaction(object):
 
 
         :param id: The id of this Transaction.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._id = id
@@ -104,7 +104,7 @@ class Transaction(object):
 
 
         :return: The created_at of this Transaction.  # noqa: E501
-        :rtype: datetime
+        :rtype: dict
         """
         return self._created_at
 
@@ -114,7 +114,7 @@ class Transaction(object):
 
 
         :param created_at: The created_at of this Transaction.  # noqa: E501
-        :type: datetime
+        :type: dict
         """
 
         self._created_at = created_at
@@ -146,7 +146,7 @@ class Transaction(object):
 
 
         :return: The asset0 of this Transaction.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._asset0
 
@@ -156,7 +156,7 @@ class Transaction(object):
 
 
         :param asset0: The asset0 of this Transaction.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._asset0 = asset0
@@ -167,7 +167,7 @@ class Transaction(object):
 
 
         :return: The quantity0 of this Transaction.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._quantity0
 
@@ -177,7 +177,7 @@ class Transaction(object):
 
 
         :param quantity0: The quantity0 of this Transaction.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._quantity0 = quantity0
@@ -188,7 +188,7 @@ class Transaction(object):
 
 
         :return: The quantity1 of this Transaction.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._quantity1
 
@@ -198,7 +198,7 @@ class Transaction(object):
 
 
         :param quantity1: The quantity1 of this Transaction.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._quantity1 = quantity1
@@ -209,7 +209,7 @@ class Transaction(object):
 
 
         :return: The asset1 of this Transaction.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._asset1
 
@@ -219,7 +219,7 @@ class Transaction(object):
 
 
         :param asset1: The asset1 of this Transaction.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._asset1 = asset1
@@ -230,7 +230,7 @@ class Transaction(object):
 
 
         :return: The user_id of this Transaction.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._user_id
 
@@ -240,7 +240,7 @@ class Transaction(object):
 
 
         :param user_id: The user_id of this Transaction.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._user_id = user_id

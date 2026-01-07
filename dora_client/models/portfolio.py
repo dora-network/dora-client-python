@@ -28,8 +28,8 @@ class Portfolio(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'user_id': 'str',
-        'position': 'dict(str, dict(str, Position))',
+        'user_id': 'dict',
+        'position': 'dict',
         'net_stablecoin_equivalence': 'TransformedAssets'
     }
 
@@ -58,7 +58,7 @@ class Portfolio(object):
 
 
         :return: The user_id of this Portfolio.  # noqa: E501
-        :rtype: str
+        :rtype: dict
         """
         return self._user_id
 
@@ -68,7 +68,7 @@ class Portfolio(object):
 
 
         :param user_id: The user_id of this Portfolio.  # noqa: E501
-        :type: str
+        :type: dict
         """
 
         self._user_id = user_id
@@ -79,7 +79,7 @@ class Portfolio(object):
 
 
         :return: The position of this Portfolio.  # noqa: E501
-        :rtype: dict(str, dict(str, Position))
+        :rtype: dict
         """
         return self._position
 
@@ -89,7 +89,7 @@ class Portfolio(object):
 
 
         :param position: The position of this Portfolio.  # noqa: E501
-        :type: dict(str, dict(str, Position))
+        :type: dict
         """
 
         self._position = position

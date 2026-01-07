@@ -28,7 +28,7 @@ class BalancesResponse(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'balances': 'list[Position]'
+        'balances': 'dict'
     }
 
     attribute_map = {
@@ -48,7 +48,7 @@ class BalancesResponse(object):
 
 
         :return: The balances of this BalancesResponse.  # noqa: E501
-        :rtype: list[Position]
+        :rtype: dict
         """
         return self._balances
 
@@ -58,7 +58,7 @@ class BalancesResponse(object):
 
 
         :param balances: The balances of this BalancesResponse.  # noqa: E501
-        :type: list[Position]
+        :type: dict
         """
 
         self._balances = balances
