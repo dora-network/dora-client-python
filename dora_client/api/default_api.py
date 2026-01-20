@@ -606,43 +606,45 @@ class DefaultApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def create_new_isolated_position(self, body, **kwargs):  # noqa: E501
-        """Create a new isolated position for a user transferring available assets into the position  # noqa: E501
+    def create_api_key_for_user_id(self, body, user_id, **kwargs):  # noqa: E501
+        """Create apikey for a user  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.create_new_isolated_position(body, async_req=True)
+        >>> thread = api.create_api_key_for_user_id(body, user_id, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
-        :param NewIsolatedPositionRequest body: (required)
-        :return: NewIsolatedPositionResponse
+        :param CreateAPIKeyRequest body: (required)
+        :param dict user_id: (required)
+        :return: CreateAPIKeyResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.create_new_isolated_position_with_http_info(body, **kwargs)  # noqa: E501
+            return self.create_api_key_for_user_id_with_http_info(body, user_id, **kwargs)  # noqa: E501
         else:
-            (data) = self.create_new_isolated_position_with_http_info(body, **kwargs)  # noqa: E501
+            (data) = self.create_api_key_for_user_id_with_http_info(body, user_id, **kwargs)  # noqa: E501
             return data
 
-    def create_new_isolated_position_with_http_info(self, body, **kwargs):  # noqa: E501
-        """Create a new isolated position for a user transferring available assets into the position  # noqa: E501
+    def create_api_key_for_user_id_with_http_info(self, body, user_id, **kwargs):  # noqa: E501
+        """Create apikey for a user  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.create_new_isolated_position_with_http_info(body, async_req=True)
+        >>> thread = api.create_api_key_for_user_id_with_http_info(body, user_id, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
-        :param NewIsolatedPositionRequest body: (required)
-        :return: NewIsolatedPositionResponse
+        :param CreateAPIKeyRequest body: (required)
+        :param dict user_id: (required)
+        :return: CreateAPIKeyResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['body']  # noqa: E501
+        all_params = ['body', 'user_id']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -653,18 +655,24 @@ class DefaultApi(object):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method create_new_isolated_position" % key
+                    " to method create_api_key_for_user_id" % key
                 )
             params[key] = val
         del params['kwargs']
         # verify the required parameter 'body' is set
         if ('body' not in params or
                 params['body'] is None):
-            raise ValueError("Missing the required parameter `body` when calling `create_new_isolated_position`")  # noqa: E501
+            raise ValueError("Missing the required parameter `body` when calling `create_api_key_for_user_id`")  # noqa: E501
+        # verify the required parameter 'user_id' is set
+        if ('user_id' not in params or
+                params['user_id'] is None):
+            raise ValueError("Missing the required parameter `user_id` when calling `create_api_key_for_user_id`")  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
+        if 'user_id' in params:
+            path_params['user_id'] = params['user_id']  # noqa: E501
 
         query_params = []
 
@@ -688,14 +696,14 @@ class DefaultApi(object):
         auth_settings = ['apiKeyAuthHeader', 'bearerAuth']  # noqa: E501
 
         return self.api_client.call_api(
-            '/v1/positions/new_isolated', 'POST',
+            '/v1/user/{user_id}/apikey', 'POST',
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='NewIsolatedPositionResponse',  # noqa: E501
+            response_type='CreateAPIKeyResponse',  # noqa: E501
             auth_settings=auth_settings,
             async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
@@ -793,6 +801,103 @@ class DefaultApi(object):
             post_params=form_params,
             files=local_var_files,
             response_type='CreateOrderResponse',  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
+    def create_user(self, body, **kwargs):  # noqa: E501
+        """Create a new user  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.create_user(body, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param CreateIntegratorUserRequest body: (required)
+        :return: UserCreatedResponse
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.create_user_with_http_info(body, **kwargs)  # noqa: E501
+        else:
+            (data) = self.create_user_with_http_info(body, **kwargs)  # noqa: E501
+            return data
+
+    def create_user_with_http_info(self, body, **kwargs):  # noqa: E501
+        """Create a new user  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.create_user_with_http_info(body, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param CreateIntegratorUserRequest body: (required)
+        :return: UserCreatedResponse
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['body']  # noqa: E501
+        all_params.append('async_req')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method create_user" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'body' is set
+        if ('body' not in params or
+                params['body'] is None):
+            raise ValueError("Missing the required parameter `body` when calling `create_user`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        if 'body' in params:
+            body_params = params['body']
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
+            ['application/json'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['apiKeyAuthHeader', 'bearerAuth']  # noqa: E501
+
+        return self.api_client.call_api(
+            '/v1/integrators/user', 'POST',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='UserCreatedResponse',  # noqa: E501
             auth_settings=auth_settings,
             async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
@@ -971,6 +1076,99 @@ class DefaultApi(object):
             post_params=form_params,
             files=local_var_files,
             response_type='ListAssetPriceResponse',  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
+    def get_api_keys_for_user_id(self, user_id, **kwargs):  # noqa: E501
+        """Get user's api keys: admin or integrator only  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.get_api_keys_for_user_id(user_id, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param dict user_id: (required)
+        :return: GetAPIKeyResponse
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.get_api_keys_for_user_id_with_http_info(user_id, **kwargs)  # noqa: E501
+        else:
+            (data) = self.get_api_keys_for_user_id_with_http_info(user_id, **kwargs)  # noqa: E501
+            return data
+
+    def get_api_keys_for_user_id_with_http_info(self, user_id, **kwargs):  # noqa: E501
+        """Get user's api keys: admin or integrator only  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.get_api_keys_for_user_id_with_http_info(user_id, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param dict user_id: (required)
+        :return: GetAPIKeyResponse
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['user_id']  # noqa: E501
+        all_params.append('async_req')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_api_keys_for_user_id" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'user_id' is set
+        if ('user_id' not in params or
+                params['user_id'] is None):
+            raise ValueError("Missing the required parameter `user_id` when calling `get_api_keys_for_user_id`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'user_id' in params:
+            path_params['user_id'] = params['user_id']  # noqa: E501
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['apiKeyAuthHeader', 'bearerAuth']  # noqa: E501
+
+        return self.api_client.call_api(
+            '/v1/user/{user_id}/apikey', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='GetAPIKeyResponse',  # noqa: E501
             auth_settings=auth_settings,
             async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
@@ -2996,6 +3194,91 @@ class DefaultApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
+    def get_pl_for_self_by_account(self, **kwargs):  # noqa: E501
+        """Get account-by-account PL breakdown for the logged in user  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.get_pl_for_self_by_account(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :return: PLResponse
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.get_pl_for_self_by_account_with_http_info(**kwargs)  # noqa: E501
+        else:
+            (data) = self.get_pl_for_self_by_account_with_http_info(**kwargs)  # noqa: E501
+            return data
+
+    def get_pl_for_self_by_account_with_http_info(self, **kwargs):  # noqa: E501
+        """Get account-by-account PL breakdown for the logged in user  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.get_pl_for_self_by_account_with_http_info(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :return: PLResponse
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = []  # noqa: E501
+        all_params.append('async_req')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_pl_for_self_by_account" % key
+                )
+            params[key] = val
+        del params['kwargs']
+
+        collection_formats = {}
+
+        path_params = {}
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['apiKeyAuthHeader', 'bearerAuth']  # noqa: E501
+
+        return self.api_client.call_api(
+            '/v1/pl/self', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='PLResponse',  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
     def get_pool_price(self, pool_id, **kwargs):  # noqa: E501
         """Get the current price of a pool  # noqa: E501
 
@@ -3590,6 +3873,99 @@ class DefaultApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
+    def get_user_coupon_payments_stream(self, user_id, **kwargs):  # noqa: E501
+        """Stream user's coupon payment accruals in real time  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.get_user_coupon_payments_stream(user_id, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param dict user_id: (required)
+        :return: StreamUserCouponPaymentsResponse
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.get_user_coupon_payments_stream_with_http_info(user_id, **kwargs)  # noqa: E501
+        else:
+            (data) = self.get_user_coupon_payments_stream_with_http_info(user_id, **kwargs)  # noqa: E501
+            return data
+
+    def get_user_coupon_payments_stream_with_http_info(self, user_id, **kwargs):  # noqa: E501
+        """Stream user's coupon payment accruals in real time  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.get_user_coupon_payments_stream_with_http_info(user_id, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param dict user_id: (required)
+        :return: StreamUserCouponPaymentsResponse
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['user_id']  # noqa: E501
+        all_params.append('async_req')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_user_coupon_payments_stream" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'user_id' is set
+        if ('user_id' not in params or
+                params['user_id'] is None):
+            raise ValueError("Missing the required parameter `user_id` when calling `get_user_coupon_payments_stream`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'user_id' in params:
+            path_params['user_id'] = params['user_id']  # noqa: E501
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['apiKeyAuthQuery']  # noqa: E501
+
+        return self.api_client.call_api(
+            '/v1/user/{user_id}/coupon_payments/stream', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='StreamUserCouponPaymentsResponse',  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
     def get_user_ledger_stream(self, user_id, **kwargs):  # noqa: E501
         """Get a snapshot of user's ledger updates since a specific time, and opens a stream for further updates  # noqa: E501
 
@@ -4145,6 +4521,220 @@ class DefaultApi(object):
             post_params=form_params,
             files=local_var_files,
             response_type='GetAPIKeyResponse',  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
+    def ledger_deposit(self, body, user_id, **kwargs):  # noqa: E501
+        """Deposit assets into this user's account from the outside world  # noqa: E501
+
+        Deposit assets into this user's account from the outside world. Note that this does not interact with any external systems; it simply adds the amount to the user's available balance in the ledger. Actual transfer of assets must be handled separately.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.ledger_deposit(body, user_id, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param FundUserRequest body: (required)
+        :param dict user_id: (required)
+        :return: FundUserResponse
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.ledger_deposit_with_http_info(body, user_id, **kwargs)  # noqa: E501
+        else:
+            (data) = self.ledger_deposit_with_http_info(body, user_id, **kwargs)  # noqa: E501
+            return data
+
+    def ledger_deposit_with_http_info(self, body, user_id, **kwargs):  # noqa: E501
+        """Deposit assets into this user's account from the outside world  # noqa: E501
+
+        Deposit assets into this user's account from the outside world. Note that this does not interact with any external systems; it simply adds the amount to the user's available balance in the ledger. Actual transfer of assets must be handled separately.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.ledger_deposit_with_http_info(body, user_id, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param FundUserRequest body: (required)
+        :param dict user_id: (required)
+        :return: FundUserResponse
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['body', 'user_id']  # noqa: E501
+        all_params.append('async_req')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method ledger_deposit" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'body' is set
+        if ('body' not in params or
+                params['body'] is None):
+            raise ValueError("Missing the required parameter `body` when calling `ledger_deposit`")  # noqa: E501
+        # verify the required parameter 'user_id' is set
+        if ('user_id' not in params or
+                params['user_id'] is None):
+            raise ValueError("Missing the required parameter `user_id` when calling `ledger_deposit`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'user_id' in params:
+            path_params['user_id'] = params['user_id']  # noqa: E501
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        if 'body' in params:
+            body_params = params['body']
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
+            ['application/json'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['apiKeyAuthHeader', 'bearerAuth']  # noqa: E501
+
+        return self.api_client.call_api(
+            '/v1/ledger/deposit/{user_id}', 'POST',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='FundUserResponse',  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
+    def ledger_withdraw(self, body, user_id, **kwargs):  # noqa: E501
+        """Withdraw assets from this user to the outside world  # noqa: E501
+
+        Withdraw assets from this user's account to the outside world. Note that this does not interact with any external systems; it simply deducts the amount from the user's available balance in the ledger. Actual transfer of assets must be handled separately.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.ledger_withdraw(body, user_id, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param DefundUserRequest body: (required)
+        :param dict user_id: (required)
+        :return: FundUserResponse
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.ledger_withdraw_with_http_info(body, user_id, **kwargs)  # noqa: E501
+        else:
+            (data) = self.ledger_withdraw_with_http_info(body, user_id, **kwargs)  # noqa: E501
+            return data
+
+    def ledger_withdraw_with_http_info(self, body, user_id, **kwargs):  # noqa: E501
+        """Withdraw assets from this user to the outside world  # noqa: E501
+
+        Withdraw assets from this user's account to the outside world. Note that this does not interact with any external systems; it simply deducts the amount from the user's available balance in the ledger. Actual transfer of assets must be handled separately.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.ledger_withdraw_with_http_info(body, user_id, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param DefundUserRequest body: (required)
+        :param dict user_id: (required)
+        :return: FundUserResponse
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['body', 'user_id']  # noqa: E501
+        all_params.append('async_req')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method ledger_withdraw" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'body' is set
+        if ('body' not in params or
+                params['body'] is None):
+            raise ValueError("Missing the required parameter `body` when calling `ledger_withdraw`")  # noqa: E501
+        # verify the required parameter 'user_id' is set
+        if ('user_id' not in params or
+                params['user_id'] is None):
+            raise ValueError("Missing the required parameter `user_id` when calling `ledger_withdraw`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'user_id' in params:
+            path_params['user_id'] = params['user_id']  # noqa: E501
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        if 'body' in params:
+            body_params = params['body']
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
+            ['application/json'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['apiKeyAuthHeader', 'bearerAuth']  # noqa: E501
+
+        return self.api_client.call_api(
+            '/v1/ledger/withdraw/{user_id}', 'POST',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='FundUserResponse',  # noqa: E501
             auth_settings=auth_settings,
             async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
@@ -5460,6 +6050,204 @@ class DefaultApi(object):
             post_params=form_params,
             files=local_var_files,
             response_type='RevokeAPIKeyResponse',  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
+    def revoke_api_key_for_user_id(self, user_id, key_id, **kwargs):  # noqa: E501
+        """Revoke apikey for a user: admin or integrator only  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.revoke_api_key_for_user_id(user_id, key_id, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param dict user_id: (required)
+        :param dict key_id: (required)
+        :return: RevokeAPIKeyResponse
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.revoke_api_key_for_user_id_with_http_info(user_id, key_id, **kwargs)  # noqa: E501
+        else:
+            (data) = self.revoke_api_key_for_user_id_with_http_info(user_id, key_id, **kwargs)  # noqa: E501
+            return data
+
+    def revoke_api_key_for_user_id_with_http_info(self, user_id, key_id, **kwargs):  # noqa: E501
+        """Revoke apikey for a user: admin or integrator only  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.revoke_api_key_for_user_id_with_http_info(user_id, key_id, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param dict user_id: (required)
+        :param dict key_id: (required)
+        :return: RevokeAPIKeyResponse
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['user_id', 'key_id']  # noqa: E501
+        all_params.append('async_req')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method revoke_api_key_for_user_id" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'user_id' is set
+        if ('user_id' not in params or
+                params['user_id'] is None):
+            raise ValueError("Missing the required parameter `user_id` when calling `revoke_api_key_for_user_id`")  # noqa: E501
+        # verify the required parameter 'key_id' is set
+        if ('key_id' not in params or
+                params['key_id'] is None):
+            raise ValueError("Missing the required parameter `key_id` when calling `revoke_api_key_for_user_id`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'user_id' in params:
+            path_params['user_id'] = params['user_id']  # noqa: E501
+        if 'key_id' in params:
+            path_params['key_id'] = params['key_id']  # noqa: E501
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['apiKeyAuthHeader', 'bearerAuth']  # noqa: E501
+
+        return self.api_client.call_api(
+            '/v1/user/{user_id}/apikey/{key_id}/revoke', 'PUT',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='RevokeAPIKeyResponse',  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
+    def settle_leverage_accrued_interest(self, body, **kwargs):  # noqa: E501
+        """Settle current accrued leverage interest for a specific user  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.settle_leverage_accrued_interest(body, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param SettleLeverageAccruedInterestRequest body: (required)
+        :return: SettleLeverageAccruedInterestResponse
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.settle_leverage_accrued_interest_with_http_info(body, **kwargs)  # noqa: E501
+        else:
+            (data) = self.settle_leverage_accrued_interest_with_http_info(body, **kwargs)  # noqa: E501
+            return data
+
+    def settle_leverage_accrued_interest_with_http_info(self, body, **kwargs):  # noqa: E501
+        """Settle current accrued leverage interest for a specific user  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.settle_leverage_accrued_interest_with_http_info(body, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param SettleLeverageAccruedInterestRequest body: (required)
+        :return: SettleLeverageAccruedInterestResponse
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['body']  # noqa: E501
+        all_params.append('async_req')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method settle_leverage_accrued_interest" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'body' is set
+        if ('body' not in params or
+                params['body'] is None):
+            raise ValueError("Missing the required parameter `body` when calling `settle_leverage_accrued_interest`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        if 'body' in params:
+            body_params = params['body']
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
+            ['application/json'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['apiKeyAuthHeader', 'bearerAuth']  # noqa: E501
+
+        return self.api_client.call_api(
+            '/v1/leverage/accrued_interest/settle', 'POST',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='SettleLeverageAccruedInterestResponse',  # noqa: E501
             auth_settings=auth_settings,
             async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),

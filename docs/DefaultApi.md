@@ -10,10 +10,12 @@ Method | HTTP request | Description
 [**claim_leverage_get_accrued_interest**](DefaultApi.md#claim_leverage_get_accrued_interest) | **POST** /v1/leverage/accrued_interest/claim | Claim current accrued leverage interest for a specific user
 [**close_isolated_position**](DefaultApi.md#close_isolated_position) | **POST** /v1/positions/close | Close isolated positions, repaying the borrowed
 [**create_api_key_for_user**](DefaultApi.md#create_api_key_for_user) | **POST** /v1/user/apikey | Create apikey for a user
-[**create_new_isolated_position**](DefaultApi.md#create_new_isolated_position) | **POST** /v1/positions/new_isolated | Create a new isolated position for a user transferring available assets into the position
+[**create_api_key_for_user_id**](DefaultApi.md#create_api_key_for_user_id) | **POST** /v1/user/{user_id}/apikey | Create apikey for a user
 [**create_order**](DefaultApi.md#create_order) | **POST** /v1/orders | Create a new order
+[**create_user**](DefaultApi.md#create_user) | **POST** /v1/integrators/user | Create a new user
 [**delete_user**](DefaultApi.md#delete_user) | **DELETE** /v1/user/{user_id} | Delete user by ID
 [**get_all_asset_prices**](DefaultApi.md#get_all_asset_prices) | **GET** /v1/price | Get the current price of all assets
+[**get_api_keys_for_user_id**](DefaultApi.md#get_api_keys_for_user_id) | **GET** /v1/user/{user_id}/apikey | Get user&#x27;s api keys: admin or integrator only
 [**get_asset_by_id**](DefaultApi.md#get_asset_by_id) | **GET** /v1/assets/{asset_id} | Get asset by ID
 [**get_asset_price**](DefaultApi.md#get_asset_price) | **GET** /v1/price/asset/{asset_id} | Get the current price of an asset
 [**get_assets_stream**](DefaultApi.md#get_assets_stream) | **GET** /v1/assets/stream | Get all inserts or updates for assets
@@ -36,18 +38,22 @@ Method | HTTP request | Description
 [**get_orderbook_stats_stream**](DefaultApi.md#get_orderbook_stats_stream) | **GET** /v1/orderbooks/{order_book_id}/stats/stream | Orderbook stats stream
 [**get_orderbook_summary**](DefaultApi.md#get_orderbook_summary) | **GET** /v1/orderbooks/{order_book_id}/summary | Get summary of an orderbook
 [**get_orderbook_top**](DefaultApi.md#get_orderbook_top) | **GET** /v1/orderbooks/{order_book_id}/top | Get the top price levels for a specific orderbook (L1 market depth)
+[**get_pl_for_self_by_account**](DefaultApi.md#get_pl_for_self_by_account) | **GET** /v1/pl/self | Get account-by-account PL breakdown for the logged in user
 [**get_pool_price**](DefaultApi.md#get_pool_price) | **GET** /v1/price/pool/{pool_id} | Get the current price of a pool
 [**get_trade_by_id**](DefaultApi.md#get_trade_by_id) | **GET** /v1/trades/{trade_id} | Get a trade by ID
 [**get_trades**](DefaultApi.md#get_trades) | **GET** /v1/trades | Get a filtered, paginated list of trades
 [**get_transaction_by_id**](DefaultApi.md#get_transaction_by_id) | **GET** /v1/transactions/{transaction_id} | Get a transaction by ID
 [**get_transactions**](DefaultApi.md#get_transactions) | **GET** /v1/transactions | Get a filtered, paginated list of transactions
 [**get_user_by_id**](DefaultApi.md#get_user_by_id) | **GET** /v1/user/{user_id} | Get user by ID (admin only)
+[**get_user_coupon_payments_stream**](DefaultApi.md#get_user_coupon_payments_stream) | **GET** /v1/user/{user_id}/coupon_payments/stream | Stream user&#x27;s coupon payment accruals in real time
 [**get_user_ledger_stream**](DefaultApi.md#get_user_ledger_stream) | **GET** /v1/user/{user_id}/ledger/stream | Get a snapshot of user&#x27;s ledger updates since a specific time, and opens a stream for further updates
 [**get_user_order_updates_stream**](DefaultApi.md#get_user_order_updates_stream) | **GET** /v1/user/{user_id}/orders/{order_book_id}/updates/stream | Get a snapshot of user&#x27;s order updates for the given order book since a specific time, and opens a stream for further updates
 [**get_user_orders_updates_stream_all**](DefaultApi.md#get_user_orders_updates_stream_all) | **GET** /v1/user/{user_id}/orders/all/updates/stream | Get a snapshot of user&#x27;s order updates across all order books since a specific time, and opens a stream for further updates
 [**get_user_self**](DefaultApi.md#get_user_self) | **GET** /v1/user/self | Get user details for the authenticated user
 [**get_user_transactions_stream**](DefaultApi.md#get_user_transactions_stream) | **GET** /v1/user/{user_id}/transactions/stream | Get a snapshot of user&#x27;s executed transactions since a specific time, and opens a stream for further updates
 [**get_users_api_keys**](DefaultApi.md#get_users_api_keys) | **GET** /v1/user/apikey | Get user&#x27;s api keys
+[**ledger_deposit**](DefaultApi.md#ledger_deposit) | **POST** /v1/ledger/deposit/{user_id} | Deposit assets into this user&#x27;s account from the outside world
+[**ledger_withdraw**](DefaultApi.md#ledger_withdraw) | **POST** /v1/ledger/withdraw/{user_id} | Withdraw assets from this user to the outside world
 [**leverage_get_accrued_interest_by_user**](DefaultApi.md#leverage_get_accrued_interest_by_user) | **GET** /v1/leverage/accrued_interest/self | Get current accrued leverage interest for the user
 [**leverage_isolate_collateral**](DefaultApi.md#leverage_isolate_collateral) | **POST** /v1/leverage/isolate_collateral | Create an isolated position by transferring collateral to the position from the user&#x27;s global collateral
 [**leverage_supply**](DefaultApi.md#leverage_supply) | **POST** /v1/leverage/supply | Supply leverage for a specific asset
@@ -61,6 +67,8 @@ Method | HTTP request | Description
 [**list_position_accounts_self**](DefaultApi.md#list_position_accounts_self) | **GET** /v1/user/self/position_accounts | List all position accounts for the authenticated user
 [**pay_leverage_get_accrued_interest**](DefaultApi.md#pay_leverage_get_accrued_interest) | **POST** /v1/leverage/accrued_interest/pay | Pay current accrued leverage interest for a specific user
 [**revoke_api_key_for_user**](DefaultApi.md#revoke_api_key_for_user) | **PUT** /v1/user/apikey/{key_id}/revoke | Revoke apikey for a user
+[**revoke_api_key_for_user_id**](DefaultApi.md#revoke_api_key_for_user_id) | **PUT** /v1/user/{user_id}/apikey/{key_id}/revoke | Revoke apikey for a user: admin or integrator only
+[**settle_leverage_accrued_interest**](DefaultApi.md#settle_leverage_accrued_interest) | **POST** /v1/leverage/accrued_interest/settle | Settle current accrued leverage interest for a specific user
 [**stream_asset_prices**](DefaultApi.md#stream_asset_prices) | **GET** /v1/prices/stream | Stream real-time asset prices as map objects
 [**stream_candle_data**](DefaultApi.md#stream_candle_data) | **GET** /v1/charts/{order_book_id}/candle/stream | Get a snapshot of candlestick data from date provided, and open a stream for real-time updates
 [**stream_order_book_balances**](DefaultApi.md#stream_order_book_balances) | **GET** /v1/orderbooks/{order_book_id}/balances/stream | Get a snapshot of base and quote balances for an order book and open a stream for real-time updates
@@ -388,10 +396,10 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **create_new_isolated_position**
-> NewIsolatedPositionResponse create_new_isolated_position(body)
+# **create_api_key_for_user_id**
+> CreateAPIKeyResponse create_api_key_for_user_id(body, user_id)
 
-Create a new isolated position for a user transferring available assets into the position
+Create apikey for a user
 
 ### Example
 ```python
@@ -409,25 +417,27 @@ configuration.api_key['Authorization'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
-body = dora_client.NewIsolatedPositionRequest() # NewIsolatedPositionRequest | 
+body = dora_client.CreateAPIKeyRequest() # CreateAPIKeyRequest | 
+user_id = NULL # dict | 
 
 try:
-    # Create a new isolated position for a user transferring available assets into the position
-    api_response = api_instance.create_new_isolated_position(body)
+    # Create apikey for a user
+    api_response = api_instance.create_api_key_for_user_id(body, user_id)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling DefaultApi->create_new_isolated_position: %s\n" % e)
+    print("Exception when calling DefaultApi->create_api_key_for_user_id: %s\n" % e)
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**NewIsolatedPositionRequest**](NewIsolatedPositionRequest.md)|  | 
+ **body** | [**CreateAPIKeyRequest**](CreateAPIKeyRequest.md)|  | 
+ **user_id** | [**dict**](.md)|  | 
 
 ### Return type
 
-[**NewIsolatedPositionResponse**](NewIsolatedPositionResponse.md)
+[**CreateAPIKeyResponse**](CreateAPIKeyResponse.md)
 
 ### Authorization
 
@@ -480,6 +490,58 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**CreateOrderResponse**](CreateOrderResponse.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **create_user**
+> UserCreatedResponse create_user(body)
+
+Create a new user
+
+### Example
+```python
+from __future__ import print_function
+import time
+import dora_client
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration = dora_client.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+body = dora_client.CreateIntegratorUserRequest() # CreateIntegratorUserRequest | 
+
+try:
+    # Create a new user
+    api_response = api_instance.create_user(body)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->create_user: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**CreateIntegratorUserRequest**](CreateIntegratorUserRequest.md)|  | 
+
+### Return type
+
+[**UserCreatedResponse**](UserCreatedResponse.md)
 
 ### Authorization
 
@@ -580,6 +642,58 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**ListAssetPriceResponse**](ListAssetPriceResponse.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_api_keys_for_user_id**
+> GetAPIKeyResponse get_api_keys_for_user_id(user_id)
+
+Get user's api keys: admin or integrator only
+
+### Example
+```python
+from __future__ import print_function
+import time
+import dora_client
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration = dora_client.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+user_id = NULL # dict | 
+
+try:
+    # Get user's api keys: admin or integrator only
+    api_response = api_instance.get_api_keys_for_user_id(user_id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->get_api_keys_for_user_id: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **user_id** | [**dict**](.md)|  | 
+
+### Return type
+
+[**GetAPIKeyResponse**](GetAPIKeyResponse.md)
 
 ### Authorization
 
@@ -1658,6 +1772,54 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_pl_for_self_by_account**
+> PLResponse get_pl_for_self_by_account()
+
+Get account-by-account PL breakdown for the logged in user
+
+### Example
+```python
+from __future__ import print_function
+import time
+import dora_client
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration = dora_client.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+
+try:
+    # Get account-by-account PL breakdown for the logged in user
+    api_response = api_instance.get_pl_for_self_by_account()
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->get_pl_for_self_by_account: %s\n" % e)
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**PLResponse**](PLResponse.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_pool_price**
 > GetPoolPriceResponse get_pool_price(pool_id)
 
@@ -1974,6 +2136,58 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_user_coupon_payments_stream**
+> StreamUserCouponPaymentsResponse get_user_coupon_payments_stream(user_id)
+
+Stream user's coupon payment accruals in real time
+
+### Example
+```python
+from __future__ import print_function
+import time
+import dora_client
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# Configure API key authorization: apiKeyAuthQuery
+configuration = dora_client.Configuration()
+configuration.api_key['x-api-key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['x-api-key'] = 'Bearer'
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+user_id = NULL # dict | 
+
+try:
+    # Stream user's coupon payment accruals in real time
+    api_response = api_instance.get_user_coupon_payments_stream(user_id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->get_user_coupon_payments_stream: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **user_id** | [**dict**](.md)|  | 
+
+### Return type
+
+[**StreamUserCouponPaymentsResponse**](StreamUserCouponPaymentsResponse.md)
+
+### Authorization
+
+[apiKeyAuthQuery](../README.md#apiKeyAuthQuery)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_user_ledger_stream**
 > StreamPositionsResponse get_user_ledger_stream(user_id)
 
@@ -2282,6 +2496,118 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ledger_deposit**
+> FundUserResponse ledger_deposit(body, user_id)
+
+Deposit assets into this user's account from the outside world
+
+Deposit assets into this user's account from the outside world. Note that this does not interact with any external systems; it simply adds the amount to the user's available balance in the ledger. Actual transfer of assets must be handled separately.
+
+### Example
+```python
+from __future__ import print_function
+import time
+import dora_client
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration = dora_client.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+body = dora_client.FundUserRequest() # FundUserRequest | 
+user_id = NULL # dict | 
+
+try:
+    # Deposit assets into this user's account from the outside world
+    api_response = api_instance.ledger_deposit(body, user_id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->ledger_deposit: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**FundUserRequest**](FundUserRequest.md)|  | 
+ **user_id** | [**dict**](.md)|  | 
+
+### Return type
+
+[**FundUserResponse**](FundUserResponse.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ledger_withdraw**
+> FundUserResponse ledger_withdraw(body, user_id)
+
+Withdraw assets from this user to the outside world
+
+Withdraw assets from this user's account to the outside world. Note that this does not interact with any external systems; it simply deducts the amount from the user's available balance in the ledger. Actual transfer of assets must be handled separately.
+
+### Example
+```python
+from __future__ import print_function
+import time
+import dora_client
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration = dora_client.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+body = dora_client.DefundUserRequest() # DefundUserRequest | 
+user_id = NULL # dict | 
+
+try:
+    # Withdraw assets from this user to the outside world
+    api_response = api_instance.ledger_withdraw(body, user_id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->ledger_withdraw: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**DefundUserRequest**](DefundUserRequest.md)|  | 
+ **user_id** | [**dict**](.md)|  | 
+
+### Return type
+
+[**FundUserResponse**](FundUserResponse.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -2996,6 +3322,112 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **revoke_api_key_for_user_id**
+> RevokeAPIKeyResponse revoke_api_key_for_user_id(user_id, key_id)
+
+Revoke apikey for a user: admin or integrator only
+
+### Example
+```python
+from __future__ import print_function
+import time
+import dora_client
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration = dora_client.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+user_id = NULL # dict | 
+key_id = NULL # dict | 
+
+try:
+    # Revoke apikey for a user: admin or integrator only
+    api_response = api_instance.revoke_api_key_for_user_id(user_id, key_id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->revoke_api_key_for_user_id: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **user_id** | [**dict**](.md)|  | 
+ **key_id** | [**dict**](.md)|  | 
+
+### Return type
+
+[**RevokeAPIKeyResponse**](RevokeAPIKeyResponse.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **settle_leverage_accrued_interest**
+> SettleLeverageAccruedInterestResponse settle_leverage_accrued_interest(body)
+
+Settle current accrued leverage interest for a specific user
+
+### Example
+```python
+from __future__ import print_function
+import time
+import dora_client
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration = dora_client.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+body = dora_client.SettleLeverageAccruedInterestRequest() # SettleLeverageAccruedInterestRequest | 
+
+try:
+    # Settle current accrued leverage interest for a specific user
+    api_response = api_instance.settle_leverage_accrued_interest(body)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->settle_leverage_accrued_interest: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**SettleLeverageAccruedInterestRequest**](SettleLeverageAccruedInterestRequest.md)|  | 
+
+### Return type
+
+[**SettleLeverageAccruedInterestResponse**](SettleLeverageAccruedInterestResponse.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

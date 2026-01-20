@@ -31,22 +31,22 @@ class CurrentLeverageAccruedInterest(object):
         'user_id': 'dict',
         'asset_id': 'dict',
         'position_id': 'dict',
-        'current_accrued_interest': 'dict'
+        'current_accrued_interest_usd': 'dict'
     }
 
     attribute_map = {
         'user_id': 'user_id',
         'asset_id': 'asset_id',
         'position_id': 'position_id',
-        'current_accrued_interest': 'current_accrued_interest'
+        'current_accrued_interest_usd': 'current_accrued_interest_usd'
     }
 
-    def __init__(self, user_id=None, asset_id=None, position_id=None, current_accrued_interest=None):  # noqa: E501
+    def __init__(self, user_id=None, asset_id=None, position_id=None, current_accrued_interest_usd=None):  # noqa: E501
         """CurrentLeverageAccruedInterest - a model defined in Swagger"""  # noqa: E501
         self._user_id = None
         self._asset_id = None
         self._position_id = None
-        self._current_accrued_interest = None
+        self._current_accrued_interest_usd = None
         self.discriminator = None
         if user_id is not None:
             self.user_id = user_id
@@ -54,8 +54,8 @@ class CurrentLeverageAccruedInterest(object):
             self.asset_id = asset_id
         if position_id is not None:
             self.position_id = position_id
-        if current_accrued_interest is not None:
-            self.current_accrued_interest = current_accrued_interest
+        if current_accrued_interest_usd is not None:
+            self.current_accrued_interest_usd = current_accrued_interest_usd
 
     @property
     def user_id(self):
@@ -121,25 +121,25 @@ class CurrentLeverageAccruedInterest(object):
         self._position_id = position_id
 
     @property
-    def current_accrued_interest(self):
-        """Gets the current_accrued_interest of this CurrentLeverageAccruedInterest.  # noqa: E501
+    def current_accrued_interest_usd(self):
+        """Gets the current_accrued_interest_usd of this CurrentLeverageAccruedInterest.  # noqa: E501
 
 
-        :return: The current_accrued_interest of this CurrentLeverageAccruedInterest.  # noqa: E501
+        :return: The current_accrued_interest_usd of this CurrentLeverageAccruedInterest.  # noqa: E501
         :rtype: dict
         """
-        return self._current_accrued_interest
+        return self._current_accrued_interest_usd
 
-    @current_accrued_interest.setter
-    def current_accrued_interest(self, current_accrued_interest):
-        """Sets the current_accrued_interest of this CurrentLeverageAccruedInterest.
+    @current_accrued_interest_usd.setter
+    def current_accrued_interest_usd(self, current_accrued_interest_usd):
+        """Sets the current_accrued_interest_usd of this CurrentLeverageAccruedInterest.
 
 
-        :param current_accrued_interest: The current_accrued_interest of this CurrentLeverageAccruedInterest.  # noqa: E501
+        :param current_accrued_interest_usd: The current_accrued_interest_usd of this CurrentLeverageAccruedInterest.  # noqa: E501
         :type: dict
         """
 
-        self._current_accrued_interest = current_accrued_interest
+        self._current_accrued_interest_usd = current_accrued_interest_usd
 
     def to_dict(self):
         """Returns the model properties as a dict"""

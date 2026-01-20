@@ -163,14 +163,15 @@ configuration.api_key['Authorization'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
-body = dora_client.NewIsolatedPositionRequest() # NewIsolatedPositionRequest | 
+body = dora_client.CreateAPIKeyRequest() # CreateAPIKeyRequest | 
+user_id = NULL # dict | 
 
 try:
-    # Create a new isolated position for a user transferring available assets into the position
-    api_response = api_instance.create_new_isolated_position(body)
+    # Create apikey for a user
+    api_response = api_instance.create_api_key_for_user_id(body, user_id)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling DefaultApi->create_new_isolated_position: %s\n" % e)
+    print("Exception when calling DefaultApi->create_api_key_for_user_id: %s\n" % e)
 
 # Configure API key authorization: apiKeyAuthHeader
 configuration = dora_client.Configuration()
@@ -188,6 +189,23 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->create_order: %s\n" % e)
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration = dora_client.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+body = dora_client.CreateIntegratorUserRequest() # CreateIntegratorUserRequest | 
+
+try:
+    # Create a new user
+    api_response = api_instance.create_user(body)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->create_user: %s\n" % e)
 
 # Configure API key authorization: apiKeyAuthHeader
 configuration = dora_client.Configuration()
@@ -221,6 +239,23 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->get_all_asset_prices: %s\n" % e)
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration = dora_client.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+user_id = NULL # dict | 
+
+try:
+    # Get user's api keys: admin or integrator only
+    api_response = api_instance.get_api_keys_for_user_id(user_id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->get_api_keys_for_user_id: %s\n" % e)
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
@@ -537,6 +572,22 @@ configuration.api_key['Authorization'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+
+try:
+    # Get account-by-account PL breakdown for the logged in user
+    api_response = api_instance.get_pl_for_self_by_account()
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->get_pl_for_self_by_account: %s\n" % e)
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration = dora_client.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
 pool_id = NULL # dict | 
 
 try:
@@ -623,6 +674,23 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->get_user_by_id: %s\n" % e)
+
+# Configure API key authorization: apiKeyAuthQuery
+configuration = dora_client.Configuration()
+configuration.api_key['x-api-key'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['x-api-key'] = 'Bearer'
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+user_id = NULL # dict | 
+
+try:
+    # Stream user's coupon payment accruals in real time
+    api_response = api_instance.get_user_coupon_payments_stream(user_id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->get_user_coupon_payments_stream: %s\n" % e)
 
 # Configure API key authorization: apiKeyAuthQuery
 configuration = dora_client.Configuration()
@@ -727,6 +795,42 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->get_users_api_keys: %s\n" % e)
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration = dora_client.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+body = dora_client.FundUserRequest() # FundUserRequest | 
+user_id = NULL # dict | 
+
+try:
+    # Deposit assets into this user's account from the outside world
+    api_response = api_instance.ledger_deposit(body, user_id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->ledger_deposit: %s\n" % e)
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration = dora_client.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+body = dora_client.DefundUserRequest() # DefundUserRequest | 
+user_id = NULL # dict | 
+
+try:
+    # Withdraw assets from this user to the outside world
+    api_response = api_instance.ledger_withdraw(body, user_id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->ledger_withdraw: %s\n" % e)
 
 # Configure API key authorization: apiKeyAuthHeader
 configuration = dora_client.Configuration()
@@ -965,6 +1069,41 @@ try:
 except ApiException as e:
     print("Exception when calling DefaultApi->revoke_api_key_for_user: %s\n" % e)
 
+# Configure API key authorization: apiKeyAuthHeader
+configuration = dora_client.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+user_id = NULL # dict | 
+key_id = NULL # dict | 
+
+try:
+    # Revoke apikey for a user: admin or integrator only
+    api_response = api_instance.revoke_api_key_for_user_id(user_id, key_id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->revoke_api_key_for_user_id: %s\n" % e)
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration = dora_client.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+body = dora_client.SettleLeverageAccruedInterestRequest() # SettleLeverageAccruedInterestRequest | 
+
+try:
+    # Settle current accrued leverage interest for a specific user
+    api_response = api_instance.settle_leverage_accrued_interest(body)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->settle_leverage_accrued_interest: %s\n" % e)
+
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
 since = NULL # dict |  (optional)
@@ -1125,10 +1264,12 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**claim_leverage_get_accrued_interest**](docs/DefaultApi.md#claim_leverage_get_accrued_interest) | **POST** /v1/leverage/accrued_interest/claim | Claim current accrued leverage interest for a specific user
 *DefaultApi* | [**close_isolated_position**](docs/DefaultApi.md#close_isolated_position) | **POST** /v1/positions/close | Close isolated positions, repaying the borrowed
 *DefaultApi* | [**create_api_key_for_user**](docs/DefaultApi.md#create_api_key_for_user) | **POST** /v1/user/apikey | Create apikey for a user
-*DefaultApi* | [**create_new_isolated_position**](docs/DefaultApi.md#create_new_isolated_position) | **POST** /v1/positions/new_isolated | Create a new isolated position for a user transferring available assets into the position
+*DefaultApi* | [**create_api_key_for_user_id**](docs/DefaultApi.md#create_api_key_for_user_id) | **POST** /v1/user/{user_id}/apikey | Create apikey for a user
 *DefaultApi* | [**create_order**](docs/DefaultApi.md#create_order) | **POST** /v1/orders | Create a new order
+*DefaultApi* | [**create_user**](docs/DefaultApi.md#create_user) | **POST** /v1/integrators/user | Create a new user
 *DefaultApi* | [**delete_user**](docs/DefaultApi.md#delete_user) | **DELETE** /v1/user/{user_id} | Delete user by ID
 *DefaultApi* | [**get_all_asset_prices**](docs/DefaultApi.md#get_all_asset_prices) | **GET** /v1/price | Get the current price of all assets
+*DefaultApi* | [**get_api_keys_for_user_id**](docs/DefaultApi.md#get_api_keys_for_user_id) | **GET** /v1/user/{user_id}/apikey | Get user&#x27;s api keys: admin or integrator only
 *DefaultApi* | [**get_asset_by_id**](docs/DefaultApi.md#get_asset_by_id) | **GET** /v1/assets/{asset_id} | Get asset by ID
 *DefaultApi* | [**get_asset_price**](docs/DefaultApi.md#get_asset_price) | **GET** /v1/price/asset/{asset_id} | Get the current price of an asset
 *DefaultApi* | [**get_assets_stream**](docs/DefaultApi.md#get_assets_stream) | **GET** /v1/assets/stream | Get all inserts or updates for assets
@@ -1151,18 +1292,22 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**get_orderbook_stats_stream**](docs/DefaultApi.md#get_orderbook_stats_stream) | **GET** /v1/orderbooks/{order_book_id}/stats/stream | Orderbook stats stream
 *DefaultApi* | [**get_orderbook_summary**](docs/DefaultApi.md#get_orderbook_summary) | **GET** /v1/orderbooks/{order_book_id}/summary | Get summary of an orderbook
 *DefaultApi* | [**get_orderbook_top**](docs/DefaultApi.md#get_orderbook_top) | **GET** /v1/orderbooks/{order_book_id}/top | Get the top price levels for a specific orderbook (L1 market depth)
+*DefaultApi* | [**get_pl_for_self_by_account**](docs/DefaultApi.md#get_pl_for_self_by_account) | **GET** /v1/pl/self | Get account-by-account PL breakdown for the logged in user
 *DefaultApi* | [**get_pool_price**](docs/DefaultApi.md#get_pool_price) | **GET** /v1/price/pool/{pool_id} | Get the current price of a pool
 *DefaultApi* | [**get_trade_by_id**](docs/DefaultApi.md#get_trade_by_id) | **GET** /v1/trades/{trade_id} | Get a trade by ID
 *DefaultApi* | [**get_trades**](docs/DefaultApi.md#get_trades) | **GET** /v1/trades | Get a filtered, paginated list of trades
 *DefaultApi* | [**get_transaction_by_id**](docs/DefaultApi.md#get_transaction_by_id) | **GET** /v1/transactions/{transaction_id} | Get a transaction by ID
 *DefaultApi* | [**get_transactions**](docs/DefaultApi.md#get_transactions) | **GET** /v1/transactions | Get a filtered, paginated list of transactions
 *DefaultApi* | [**get_user_by_id**](docs/DefaultApi.md#get_user_by_id) | **GET** /v1/user/{user_id} | Get user by ID (admin only)
+*DefaultApi* | [**get_user_coupon_payments_stream**](docs/DefaultApi.md#get_user_coupon_payments_stream) | **GET** /v1/user/{user_id}/coupon_payments/stream | Stream user&#x27;s coupon payment accruals in real time
 *DefaultApi* | [**get_user_ledger_stream**](docs/DefaultApi.md#get_user_ledger_stream) | **GET** /v1/user/{user_id}/ledger/stream | Get a snapshot of user&#x27;s ledger updates since a specific time, and opens a stream for further updates
 *DefaultApi* | [**get_user_order_updates_stream**](docs/DefaultApi.md#get_user_order_updates_stream) | **GET** /v1/user/{user_id}/orders/{order_book_id}/updates/stream | Get a snapshot of user&#x27;s order updates for the given order book since a specific time, and opens a stream for further updates
 *DefaultApi* | [**get_user_orders_updates_stream_all**](docs/DefaultApi.md#get_user_orders_updates_stream_all) | **GET** /v1/user/{user_id}/orders/all/updates/stream | Get a snapshot of user&#x27;s order updates across all order books since a specific time, and opens a stream for further updates
 *DefaultApi* | [**get_user_self**](docs/DefaultApi.md#get_user_self) | **GET** /v1/user/self | Get user details for the authenticated user
 *DefaultApi* | [**get_user_transactions_stream**](docs/DefaultApi.md#get_user_transactions_stream) | **GET** /v1/user/{user_id}/transactions/stream | Get a snapshot of user&#x27;s executed transactions since a specific time, and opens a stream for further updates
 *DefaultApi* | [**get_users_api_keys**](docs/DefaultApi.md#get_users_api_keys) | **GET** /v1/user/apikey | Get user&#x27;s api keys
+*DefaultApi* | [**ledger_deposit**](docs/DefaultApi.md#ledger_deposit) | **POST** /v1/ledger/deposit/{user_id} | Deposit assets into this user&#x27;s account from the outside world
+*DefaultApi* | [**ledger_withdraw**](docs/DefaultApi.md#ledger_withdraw) | **POST** /v1/ledger/withdraw/{user_id} | Withdraw assets from this user to the outside world
 *DefaultApi* | [**leverage_get_accrued_interest_by_user**](docs/DefaultApi.md#leverage_get_accrued_interest_by_user) | **GET** /v1/leverage/accrued_interest/self | Get current accrued leverage interest for the user
 *DefaultApi* | [**leverage_isolate_collateral**](docs/DefaultApi.md#leverage_isolate_collateral) | **POST** /v1/leverage/isolate_collateral | Create an isolated position by transferring collateral to the position from the user&#x27;s global collateral
 *DefaultApi* | [**leverage_supply**](docs/DefaultApi.md#leverage_supply) | **POST** /v1/leverage/supply | Supply leverage for a specific asset
@@ -1176,6 +1321,8 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**list_position_accounts_self**](docs/DefaultApi.md#list_position_accounts_self) | **GET** /v1/user/self/position_accounts | List all position accounts for the authenticated user
 *DefaultApi* | [**pay_leverage_get_accrued_interest**](docs/DefaultApi.md#pay_leverage_get_accrued_interest) | **POST** /v1/leverage/accrued_interest/pay | Pay current accrued leverage interest for a specific user
 *DefaultApi* | [**revoke_api_key_for_user**](docs/DefaultApi.md#revoke_api_key_for_user) | **PUT** /v1/user/apikey/{key_id}/revoke | Revoke apikey for a user
+*DefaultApi* | [**revoke_api_key_for_user_id**](docs/DefaultApi.md#revoke_api_key_for_user_id) | **PUT** /v1/user/{user_id}/apikey/{key_id}/revoke | Revoke apikey for a user: admin or integrator only
+*DefaultApi* | [**settle_leverage_accrued_interest**](docs/DefaultApi.md#settle_leverage_accrued_interest) | **POST** /v1/leverage/accrued_interest/settle | Settle current accrued leverage interest for a specific user
 *DefaultApi* | [**stream_asset_prices**](docs/DefaultApi.md#stream_asset_prices) | **GET** /v1/prices/stream | Stream real-time asset prices as map objects
 *DefaultApi* | [**stream_candle_data**](docs/DefaultApi.md#stream_candle_data) | **GET** /v1/charts/{order_book_id}/candle/stream | Get a snapshot of candlestick data from date provided, and open a stream for real-time updates
 *DefaultApi* | [**stream_order_book_balances**](docs/DefaultApi.md#stream_order_book_balances) | **GET** /v1/orderbooks/{order_book_id}/balances/stream | Get a snapshot of base and quote balances for an order book and open a stream for real-time updates
@@ -1208,7 +1355,6 @@ Class | Method | HTTP request | Description
  - [Candle](docs/Candle.md)
  - [CandleResolution](docs/CandleResolution.md)
  - [ClaimLeverageAccruedInterest](docs/ClaimLeverageAccruedInterest.md)
- - [ClaimLeverageAccruedInterestReq](docs/ClaimLeverageAccruedInterestReq.md)
  - [ClaimLeverageAccruedInterestRequest](docs/ClaimLeverageAccruedInterestRequest.md)
  - [ClaimLeverageAccruedInterestResponse](docs/ClaimLeverageAccruedInterestResponse.md)
  - [ClaimLeverageAccruedInterestResponseEnvelope](docs/ClaimLeverageAccruedInterestResponseEnvelope.md)
@@ -1222,6 +1368,7 @@ Class | Method | HTTP request | Description
  - [CreateAPIKeyRequest](docs/CreateAPIKeyRequest.md)
  - [CreateAPIKeyResponse](docs/CreateAPIKeyResponse.md)
  - [CreateAPIKeyResponseEnvelope](docs/CreateAPIKeyResponseEnvelope.md)
+ - [CreateIntegratorUserRequest](docs/CreateIntegratorUserRequest.md)
  - [CreateOrUpdateUserResponse](docs/CreateOrUpdateUserResponse.md)
  - [CreateOrderRequest](docs/CreateOrderRequest.md)
  - [CreateOrderResponse](docs/CreateOrderResponse.md)
@@ -1229,8 +1376,13 @@ Class | Method | HTTP request | Description
  - [CurrentLeverageAccruedInterest](docs/CurrentLeverageAccruedInterest.md)
  - [CurrentLeverageAccruedInterestResponse](docs/CurrentLeverageAccruedInterestResponse.md)
  - [CurrentLeverageAccruedInterestResponseEnvelope](docs/CurrentLeverageAccruedInterestResponseEnvelope.md)
+ - [DefundUserRequest](docs/DefundUserRequest.md)
  - [EmailExistsResponse](docs/EmailExistsResponse.md)
  - [EmailExistsResponseEnvelope](docs/EmailExistsResponseEnvelope.md)
+ - [FundUser](docs/FundUser.md)
+ - [FundUserRequest](docs/FundUserRequest.md)
+ - [FundUserResponse](docs/FundUserResponse.md)
+ - [FundUserResponseEnvelope](docs/FundUserResponseEnvelope.md)
  - [GetAPIKeyResponse](docs/GetAPIKeyResponse.md)
  - [GetAssetByIDResponse](docs/GetAssetByIDResponse.md)
  - [GetAssetByIDResponseEnvelope](docs/GetAssetByIDResponseEnvelope.md)
@@ -1284,11 +1436,9 @@ Class | Method | HTTP request | Description
  - [ListTransactionsResponse](docs/ListTransactionsResponse.md)
  - [ListTransactionsResponseEnvelope](docs/ListTransactionsResponseEnvelope.md)
  - [LiveOrderbook](docs/LiveOrderbook.md)
+ - [Margin](docs/Margin.md)
  - [Metadata](docs/Metadata.md)
  - [ModuleBalance](docs/ModuleBalance.md)
- - [NewIsolatedPositionRequest](docs/NewIsolatedPositionRequest.md)
- - [NewIsolatedPositionResponse](docs/NewIsolatedPositionResponse.md)
- - [NewIsolatedPositionResponseEnvelope](docs/NewIsolatedPositionResponseEnvelope.md)
  - [Order](docs/Order.md)
  - [OrderBook](docs/OrderBook.md)
  - [OrderBookBalance](docs/OrderBookBalance.md)
@@ -1311,8 +1461,13 @@ Class | Method | HTTP request | Description
  - [OrderStatus](docs/OrderStatus.md)
  - [OrderbookStats](docs/OrderbookStats.md)
  - [OrderbookStatsResponseEnvelope](docs/OrderbookStatsResponseEnvelope.md)
+ - [PLAccount](docs/PLAccount.md)
+ - [PLAccounts](docs/PLAccounts.md)
+ - [PLAsset](docs/PLAsset.md)
+ - [PLResponse](docs/PLResponse.md)
+ - [PLResponseEnvelope](docs/PLResponseEnvelope.md)
+ - [PLSummary](docs/PLSummary.md)
  - [PayLeverageAccruedInterest](docs/PayLeverageAccruedInterest.md)
- - [PayLeverageAccruedInterestReq](docs/PayLeverageAccruedInterestReq.md)
  - [PayLeverageAccruedInterestRequest](docs/PayLeverageAccruedInterestRequest.md)
  - [PayLeverageAccruedInterestResponse](docs/PayLeverageAccruedInterestResponse.md)
  - [PayLeverageAccruedInterestResponseEnvelope](docs/PayLeverageAccruedInterestResponseEnvelope.md)
@@ -1333,6 +1488,10 @@ Class | Method | HTTP request | Description
  - [RevokeAPIKeyData](docs/RevokeAPIKeyData.md)
  - [RevokeAPIKeyResponse](docs/RevokeAPIKeyResponse.md)
  - [RevokeAPIKeyResponseEnvelope](docs/RevokeAPIKeyResponseEnvelope.md)
+ - [SettleLeverageAccruedInterest](docs/SettleLeverageAccruedInterest.md)
+ - [SettleLeverageAccruedInterestRequest](docs/SettleLeverageAccruedInterestRequest.md)
+ - [SettleLeverageAccruedInterestResponse](docs/SettleLeverageAccruedInterestResponse.md)
+ - [SettleLeverageAccruedInterestResponseEnvelope](docs/SettleLeverageAccruedInterestResponseEnvelope.md)
  - [Side](docs/Side.md)
  - [StreamAssetPricesResponse](docs/StreamAssetPricesResponse.md)
  - [StreamAssetsEntry](docs/StreamAssetsEntry.md)
@@ -1352,6 +1511,8 @@ Class | Method | HTTP request | Description
  - [StreamTradesResponse](docs/StreamTradesResponse.md)
  - [StreamTransactionsEntry](docs/StreamTransactionsEntry.md)
  - [StreamTransactionsResponse](docs/StreamTransactionsResponse.md)
+ - [StreamUserCouponPaymentsEntry](docs/StreamUserCouponPaymentsEntry.md)
+ - [StreamUserCouponPaymentsResponse](docs/StreamUserCouponPaymentsResponse.md)
  - [Supply](docs/Supply.md)
  - [SupplyRequest](docs/SupplyRequest.md)
  - [SupplyResponse](docs/SupplyResponse.md)
@@ -1373,6 +1534,7 @@ Class | Method | HTTP request | Description
  - [UnitePositionResponse](docs/UnitePositionResponse.md)
  - [UnitePositionResponseEnvelope](docs/UnitePositionResponseEnvelope.md)
  - [UnitedPosition](docs/UnitedPosition.md)
+ - [UpdateFieldBoolean](docs/UpdateFieldBoolean.md)
  - [UpdateFieldString](docs/UpdateFieldString.md)
  - [UpdateRolesString](docs/UpdateRolesString.md)
  - [UpdateUserConfigRequest](docs/UpdateUserConfigRequest.md)
@@ -1381,9 +1543,13 @@ Class | Method | HTTP request | Description
  - [UserBalanceResponseEnvelope](docs/UserBalanceResponseEnvelope.md)
  - [UserConfig](docs/UserConfig.md)
  - [UserConfigResponseEnvelope](docs/UserConfigResponseEnvelope.md)
+ - [UserCouponPayment](docs/UserCouponPayment.md)
+ - [UserCreatedResponse](docs/UserCreatedResponse.md)
+ - [UserCreatedResponseEnvelope](docs/UserCreatedResponseEnvelope.md)
  - [UserDeletedResponse](docs/UserDeletedResponse.md)
  - [UserDeletedResponseEnvelope](docs/UserDeletedResponseEnvelope.md)
  - [UserEnvelope](docs/UserEnvelope.md)
+ - [UserExistsResponse](docs/UserExistsResponse.md)
  - [UserInterest](docs/UserInterest.md)
  - [UserInterestResponse](docs/UserInterestResponse.md)
  - [UserInterestResponseEnvelope](docs/UserInterestResponseEnvelope.md)

@@ -70,10 +70,10 @@ class TestDefaultApi(unittest.TestCase):
         """
         pass
 
-    def test_create_new_isolated_position(self):
-        """Test case for create_new_isolated_position
+    def test_create_api_key_for_user_id(self):
+        """Test case for create_api_key_for_user_id
 
-        Create a new isolated position for a user transferring available assets into the position  # noqa: E501
+        Create apikey for a user  # noqa: E501
         """
         pass
 
@@ -81,6 +81,13 @@ class TestDefaultApi(unittest.TestCase):
         """Test case for create_order
 
         Create a new order  # noqa: E501
+        """
+        pass
+
+    def test_create_user(self):
+        """Test case for create_user
+
+        Create a new user  # noqa: E501
         """
         pass
 
@@ -95,6 +102,13 @@ class TestDefaultApi(unittest.TestCase):
         """Test case for get_all_asset_prices
 
         Get the current price of all assets  # noqa: E501
+        """
+        pass
+
+    def test_get_api_keys_for_user_id(self):
+        """Test case for get_api_keys_for_user_id
+
+        Get user's api keys: admin or integrator only  # noqa: E501
         """
         pass
 
@@ -252,6 +266,13 @@ class TestDefaultApi(unittest.TestCase):
         """
         pass
 
+    def test_get_pl_for_self_by_account(self):
+        """Test case for get_pl_for_self_by_account
+
+        Get account-by-account PL breakdown for the logged in user  # noqa: E501
+        """
+        pass
+
     def test_get_pool_price(self):
         """Test case for get_pool_price
 
@@ -294,6 +315,13 @@ class TestDefaultApi(unittest.TestCase):
         """
         pass
 
+    def test_get_user_coupon_payments_stream(self):
+        """Test case for get_user_coupon_payments_stream
+
+        Stream user's coupon payment accruals in real time  # noqa: E501
+        """
+        pass
+
     def test_get_user_ledger_stream(self):
         """Test case for get_user_ledger_stream
 
@@ -333,6 +361,20 @@ class TestDefaultApi(unittest.TestCase):
         """Test case for get_users_api_keys
 
         Get user's api keys  # noqa: E501
+        """
+        pass
+
+    def test_ledger_deposit(self):
+        """Test case for ledger_deposit
+
+        Deposit assets into this user's account from the outside world  # noqa: E501
+        """
+        pass
+
+    def test_ledger_withdraw(self):
+        """Test case for ledger_withdraw
+
+        Withdraw assets from this user to the outside world  # noqa: E501
         """
         pass
 
@@ -424,6 +466,20 @@ class TestDefaultApi(unittest.TestCase):
         """Test case for revoke_api_key_for_user
 
         Revoke apikey for a user  # noqa: E501
+        """
+        pass
+
+    def test_revoke_api_key_for_user_id(self):
+        """Test case for revoke_api_key_for_user_id
+
+        Revoke apikey for a user: admin or integrator only  # noqa: E501
+        """
+        pass
+
+    def test_settle_leverage_accrued_interest(self):
+        """Test case for settle_leverage_accrued_interest
+
+        Settle current accrued leverage interest for a specific user  # noqa: E501
         """
         pass
 

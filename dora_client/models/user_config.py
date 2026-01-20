@@ -32,7 +32,9 @@ class UserConfig(object):
         'photo_url': 'dict',
         'timezone': 'dict',
         'created_at': 'dict',
-        'updated_at': 'dict'
+        'updated_at': 'dict',
+        'show_tutorial_cards': 'dict',
+        'notifications_enabled': 'dict'
     }
 
     attribute_map = {
@@ -40,16 +42,20 @@ class UserConfig(object):
         'photo_url': 'photo_url',
         'timezone': 'timezone',
         'created_at': 'created_at',
-        'updated_at': 'updated_at'
+        'updated_at': 'updated_at',
+        'show_tutorial_cards': 'show_tutorial_cards',
+        'notifications_enabled': 'notifications_enabled'
     }
 
-    def __init__(self, id=None, photo_url=None, timezone=None, created_at=None, updated_at=None):  # noqa: E501
+    def __init__(self, id=None, photo_url=None, timezone=None, created_at=None, updated_at=None, show_tutorial_cards=None, notifications_enabled=None):  # noqa: E501
         """UserConfig - a model defined in Swagger"""  # noqa: E501
         self._id = None
         self._photo_url = None
         self._timezone = None
         self._created_at = None
         self._updated_at = None
+        self._show_tutorial_cards = None
+        self._notifications_enabled = None
         self.discriminator = None
         if id is not None:
             self.id = id
@@ -61,6 +67,10 @@ class UserConfig(object):
             self.created_at = created_at
         if updated_at is not None:
             self.updated_at = updated_at
+        if show_tutorial_cards is not None:
+            self.show_tutorial_cards = show_tutorial_cards
+        if notifications_enabled is not None:
+            self.notifications_enabled = notifications_enabled
 
     @property
     def id(self):
@@ -168,6 +178,48 @@ class UserConfig(object):
         """
 
         self._updated_at = updated_at
+
+    @property
+    def show_tutorial_cards(self):
+        """Gets the show_tutorial_cards of this UserConfig.  # noqa: E501
+
+
+        :return: The show_tutorial_cards of this UserConfig.  # noqa: E501
+        :rtype: dict
+        """
+        return self._show_tutorial_cards
+
+    @show_tutorial_cards.setter
+    def show_tutorial_cards(self, show_tutorial_cards):
+        """Sets the show_tutorial_cards of this UserConfig.
+
+
+        :param show_tutorial_cards: The show_tutorial_cards of this UserConfig.  # noqa: E501
+        :type: dict
+        """
+
+        self._show_tutorial_cards = show_tutorial_cards
+
+    @property
+    def notifications_enabled(self):
+        """Gets the notifications_enabled of this UserConfig.  # noqa: E501
+
+
+        :return: The notifications_enabled of this UserConfig.  # noqa: E501
+        :rtype: dict
+        """
+        return self._notifications_enabled
+
+    @notifications_enabled.setter
+    def notifications_enabled(self, notifications_enabled):
+        """Sets the notifications_enabled of this UserConfig.
+
+
+        :param notifications_enabled: The notifications_enabled of this UserConfig.  # noqa: E501
+        :type: dict
+        """
+
+        self._notifications_enabled = notifications_enabled
 
     def to_dict(self):
         """Returns the model properties as a dict"""

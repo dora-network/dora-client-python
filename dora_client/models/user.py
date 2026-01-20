@@ -40,7 +40,9 @@ class User(object):
         'roles': 'dict',
         'timezone': 'dict',
         'timezone_offset': 'dict',
-        'verified_at': 'dict'
+        'verified_at': 'dict',
+        'show_tutorial_cards': 'dict',
+        'notifications_enabled': 'dict'
     }
 
     attribute_map = {
@@ -56,10 +58,12 @@ class User(object):
         'roles': 'roles',
         'timezone': 'timezone',
         'timezone_offset': 'timezone_offset',
-        'verified_at': 'verified_at'
+        'verified_at': 'verified_at',
+        'show_tutorial_cards': 'show_tutorial_cards',
+        'notifications_enabled': 'notifications_enabled'
     }
 
-    def __init__(self, id=None, closed_at=None, disabled_at=None, email=None, name=None, native_asset_id=None, photo_url=None, provider=None, provider_id=None, roles=None, timezone=None, timezone_offset=None, verified_at=None):  # noqa: E501
+    def __init__(self, id=None, closed_at=None, disabled_at=None, email=None, name=None, native_asset_id=None, photo_url=None, provider=None, provider_id=None, roles=None, timezone=None, timezone_offset=None, verified_at=None, show_tutorial_cards=None, notifications_enabled=None):  # noqa: E501
         """User - a model defined in Swagger"""  # noqa: E501
         self._id = None
         self._closed_at = None
@@ -74,6 +78,8 @@ class User(object):
         self._timezone = None
         self._timezone_offset = None
         self._verified_at = None
+        self._show_tutorial_cards = None
+        self._notifications_enabled = None
         self.discriminator = None
         if id is not None:
             self.id = id
@@ -101,6 +107,10 @@ class User(object):
             self.timezone_offset = timezone_offset
         if verified_at is not None:
             self.verified_at = verified_at
+        if show_tutorial_cards is not None:
+            self.show_tutorial_cards = show_tutorial_cards
+        if notifications_enabled is not None:
+            self.notifications_enabled = notifications_enabled
 
     @property
     def id(self):
@@ -378,6 +388,48 @@ class User(object):
         """
 
         self._verified_at = verified_at
+
+    @property
+    def show_tutorial_cards(self):
+        """Gets the show_tutorial_cards of this User.  # noqa: E501
+
+
+        :return: The show_tutorial_cards of this User.  # noqa: E501
+        :rtype: dict
+        """
+        return self._show_tutorial_cards
+
+    @show_tutorial_cards.setter
+    def show_tutorial_cards(self, show_tutorial_cards):
+        """Sets the show_tutorial_cards of this User.
+
+
+        :param show_tutorial_cards: The show_tutorial_cards of this User.  # noqa: E501
+        :type: dict
+        """
+
+        self._show_tutorial_cards = show_tutorial_cards
+
+    @property
+    def notifications_enabled(self):
+        """Gets the notifications_enabled of this User.  # noqa: E501
+
+
+        :return: The notifications_enabled of this User.  # noqa: E501
+        :rtype: dict
+        """
+        return self._notifications_enabled
+
+    @notifications_enabled.setter
+    def notifications_enabled(self, notifications_enabled):
+        """Sets the notifications_enabled of this User.
+
+
+        :param notifications_enabled: The notifications_enabled of this User.  # noqa: E501
+        :type: dict
+        """
+
+        self._notifications_enabled = notifications_enabled
 
     def to_dict(self):
         """Returns the model properties as a dict"""

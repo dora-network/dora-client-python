@@ -29,22 +29,32 @@ class UpdateUserConfigRequest(object):
     """
     swagger_types = {
         'photo_url': 'UpdateFieldString',
-        'timezone': 'UpdateFieldString'
+        'timezone': 'UpdateFieldString',
+        'show_tutorial_cards': 'UpdateFieldBoolean',
+        'notifications_enabled': 'UpdateFieldBoolean'
     }
 
     attribute_map = {
         'photo_url': 'photo_url',
-        'timezone': 'timezone'
+        'timezone': 'timezone',
+        'show_tutorial_cards': 'show_tutorial_cards',
+        'notifications_enabled': 'notifications_enabled'
     }
 
-    def __init__(self, photo_url=None, timezone=None):  # noqa: E501
+    def __init__(self, photo_url=None, timezone=None, show_tutorial_cards=None, notifications_enabled=None):  # noqa: E501
         """UpdateUserConfigRequest - a model defined in Swagger"""  # noqa: E501
         self._photo_url = None
         self._timezone = None
+        self._show_tutorial_cards = None
+        self._notifications_enabled = None
         self.discriminator = None
         if photo_url is not None:
             self.photo_url = photo_url
         self.timezone = timezone
+        if show_tutorial_cards is not None:
+            self.show_tutorial_cards = show_tutorial_cards
+        if notifications_enabled is not None:
+            self.notifications_enabled = notifications_enabled
 
     @property
     def photo_url(self):
@@ -93,6 +103,52 @@ class UpdateUserConfigRequest(object):
             raise ValueError("Invalid value for `timezone`, must not be `None`")  # noqa: E501
 
         self._timezone = timezone
+
+    @property
+    def show_tutorial_cards(self):
+        """Gets the show_tutorial_cards of this UpdateUserConfigRequest.  # noqa: E501
+
+        Optional: Whether to show the tutorial.  # noqa: E501
+
+        :return: The show_tutorial_cards of this UpdateUserConfigRequest.  # noqa: E501
+        :rtype: UpdateFieldBoolean
+        """
+        return self._show_tutorial_cards
+
+    @show_tutorial_cards.setter
+    def show_tutorial_cards(self, show_tutorial_cards):
+        """Sets the show_tutorial_cards of this UpdateUserConfigRequest.
+
+        Optional: Whether to show the tutorial.  # noqa: E501
+
+        :param show_tutorial_cards: The show_tutorial_cards of this UpdateUserConfigRequest.  # noqa: E501
+        :type: UpdateFieldBoolean
+        """
+
+        self._show_tutorial_cards = show_tutorial_cards
+
+    @property
+    def notifications_enabled(self):
+        """Gets the notifications_enabled of this UpdateUserConfigRequest.  # noqa: E501
+
+        Optional: Whether to show the notifications.  # noqa: E501
+
+        :return: The notifications_enabled of this UpdateUserConfigRequest.  # noqa: E501
+        :rtype: UpdateFieldBoolean
+        """
+        return self._notifications_enabled
+
+    @notifications_enabled.setter
+    def notifications_enabled(self, notifications_enabled):
+        """Sets the notifications_enabled of this UpdateUserConfigRequest.
+
+        Optional: Whether to show the notifications.  # noqa: E501
+
+        :param notifications_enabled: The notifications_enabled of this UpdateUserConfigRequest.  # noqa: E501
+        :type: UpdateFieldBoolean
+        """
+
+        self._notifications_enabled = notifications_enabled
 
     def to_dict(self):
         """Returns the model properties as a dict"""

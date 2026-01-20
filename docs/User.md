@@ -16,6 +16,8 @@ Name | Type | Description | Notes
 **timezone** | **dict** | User&#x27;s timezone, e.g., &#x27;America/New_York&#x27;, or an offset. | [optional] 
 **timezone_offset** | **dict** | timezone offset in seconds | [optional] 
 **verified_at** | **dict** |  | [optional] 
+**show_tutorial_cards** | **dict** |  | [optional] 
+**notifications_enabled** | **dict** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
