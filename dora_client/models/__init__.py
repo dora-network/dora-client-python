@@ -22,6 +22,7 @@ from dora_client.models.asset_kind import AssetKind
 from dora_client.models.asset_price import AssetPrice
 from dora_client.models.asset_price_response_envelope import AssetPriceResponseEnvelope
 from dora_client.models.asset_request_error import AssetRequestError
+from dora_client.models.asset_ytm import AssetYTM
 from dora_client.models.balance_transfer import BalanceTransfer
 from dora_client.models.balances_response import BalancesResponse
 from dora_client.models.bond import Bond
@@ -65,6 +66,8 @@ from dora_client.models.get_api_key_response import GetAPIKeyResponse
 from dora_client.models.get_asset_by_id_response import GetAssetByIDResponse
 from dora_client.models.get_asset_by_id_response_envelope import GetAssetByIDResponseEnvelope
 from dora_client.models.get_asset_price_response import GetAssetPriceResponse
+from dora_client.models.get_asset_ytmby_id_response import GetAssetYTMByIDResponse
+from dora_client.models.get_asset_ytmby_id_response_envelope import GetAssetYTMByIDResponseEnvelope
 from dora_client.models.get_order_book_response import GetOrderBookResponse
 from dora_client.models.get_order_book_summary_response import GetOrderBookSummaryResponse
 from dora_client.models.get_order_response import GetOrderResponse

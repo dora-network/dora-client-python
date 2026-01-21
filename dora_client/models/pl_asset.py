@@ -39,7 +39,11 @@ class PLAsset(object):
         'unrealized_pl': 'dict',
         'leverage_limit': 'dict',
         'tp': 'dict',
-        'sl': 'dict'
+        'sl': 'dict',
+        'initial_capital': 'dict',
+        'impending_borrows': 'dict',
+        'locked': 'dict',
+        'unused_collateral': 'dict'
     }
 
     attribute_map = {
@@ -54,10 +58,14 @@ class PLAsset(object):
         'unrealized_pl': 'unrealized_pl',
         'leverage_limit': 'leverage_limit',
         'tp': 'tp',
-        'sl': 'sl'
+        'sl': 'sl',
+        'initial_capital': 'initial_capital',
+        'impending_borrows': 'impending_borrows',
+        'locked': 'locked',
+        'unused_collateral': 'unused_collateral'
     }
 
-    def __init__(self, symbol=None, side=None, avg_entry_price=None, mark_price=None, liquidation_price=None, available=None, borrowed=None, margin=None, unrealized_pl=None, leverage_limit=None, tp=None, sl=None):  # noqa: E501
+    def __init__(self, symbol=None, side=None, avg_entry_price=None, mark_price=None, liquidation_price=None, available=None, borrowed=None, margin=None, unrealized_pl=None, leverage_limit=None, tp=None, sl=None, initial_capital=None, impending_borrows=None, locked=None, unused_collateral=None):  # noqa: E501
         """PLAsset - a model defined in Swagger"""  # noqa: E501
         self._symbol = None
         self._side = None
@@ -71,6 +79,10 @@ class PLAsset(object):
         self._leverage_limit = None
         self._tp = None
         self._sl = None
+        self._initial_capital = None
+        self._impending_borrows = None
+        self._locked = None
+        self._unused_collateral = None
         self.discriminator = None
         if symbol is not None:
             self.symbol = symbol
@@ -96,6 +108,14 @@ class PLAsset(object):
             self.tp = tp
         if sl is not None:
             self.sl = sl
+        if initial_capital is not None:
+            self.initial_capital = initial_capital
+        if impending_borrows is not None:
+            self.impending_borrows = impending_borrows
+        if locked is not None:
+            self.locked = locked
+        if unused_collateral is not None:
+            self.unused_collateral = unused_collateral
 
     @property
     def symbol(self):
@@ -370,6 +390,98 @@ class PLAsset(object):
         """
 
         self._sl = sl
+
+    @property
+    def initial_capital(self):
+        """Gets the initial_capital of this PLAsset.  # noqa: E501
+
+        The initial capital of the position  # noqa: E501
+
+        :return: The initial_capital of this PLAsset.  # noqa: E501
+        :rtype: dict
+        """
+        return self._initial_capital
+
+    @initial_capital.setter
+    def initial_capital(self, initial_capital):
+        """Sets the initial_capital of this PLAsset.
+
+        The initial capital of the position  # noqa: E501
+
+        :param initial_capital: The initial_capital of this PLAsset.  # noqa: E501
+        :type: dict
+        """
+
+        self._initial_capital = initial_capital
+
+    @property
+    def impending_borrows(self):
+        """Gets the impending_borrows of this PLAsset.  # noqa: E501
+
+        The impending borrows of the position  # noqa: E501
+
+        :return: The impending_borrows of this PLAsset.  # noqa: E501
+        :rtype: dict
+        """
+        return self._impending_borrows
+
+    @impending_borrows.setter
+    def impending_borrows(self, impending_borrows):
+        """Sets the impending_borrows of this PLAsset.
+
+        The impending borrows of the position  # noqa: E501
+
+        :param impending_borrows: The impending_borrows of this PLAsset.  # noqa: E501
+        :type: dict
+        """
+
+        self._impending_borrows = impending_borrows
+
+    @property
+    def locked(self):
+        """Gets the locked of this PLAsset.  # noqa: E501
+
+        The locked amount of the position  # noqa: E501
+
+        :return: The locked of this PLAsset.  # noqa: E501
+        :rtype: dict
+        """
+        return self._locked
+
+    @locked.setter
+    def locked(self, locked):
+        """Sets the locked of this PLAsset.
+
+        The locked amount of the position  # noqa: E501
+
+        :param locked: The locked of this PLAsset.  # noqa: E501
+        :type: dict
+        """
+
+        self._locked = locked
+
+    @property
+    def unused_collateral(self):
+        """Gets the unused_collateral of this PLAsset.  # noqa: E501
+
+        The unused collateral of the position  # noqa: E501
+
+        :return: The unused_collateral of this PLAsset.  # noqa: E501
+        :rtype: dict
+        """
+        return self._unused_collateral
+
+    @unused_collateral.setter
+    def unused_collateral(self, unused_collateral):
+        """Sets the unused_collateral of this PLAsset.
+
+        The unused collateral of the position  # noqa: E501
+
+        :param unused_collateral: The unused_collateral of this PLAsset.  # noqa: E501
+        :type: dict
+        """
+
+        self._unused_collateral = unused_collateral
 
     def to_dict(self):
         """Returns the model properties as a dict"""

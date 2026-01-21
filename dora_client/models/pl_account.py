@@ -31,7 +31,7 @@ class PLAccount(object):
         'account_id': 'dict',
         'account_name': 'dict',
         'is_global': 'dict',
-        'rows': 'dict',
+        'assets': 'dict',
         'summary': 'PLSummary'
     }
 
@@ -39,16 +39,16 @@ class PLAccount(object):
         'account_id': 'account_id',
         'account_name': 'account_name',
         'is_global': 'is_global',
-        'rows': 'rows',
+        'assets': 'assets',
         'summary': 'summary'
     }
 
-    def __init__(self, account_id=None, account_name=None, is_global=None, rows=None, summary=None):  # noqa: E501
+    def __init__(self, account_id=None, account_name=None, is_global=None, assets=None, summary=None):  # noqa: E501
         """PLAccount - a model defined in Swagger"""  # noqa: E501
         self._account_id = None
         self._account_name = None
         self._is_global = None
-        self._rows = None
+        self._assets = None
         self._summary = None
         self.discriminator = None
         if account_id is not None:
@@ -57,8 +57,8 @@ class PLAccount(object):
             self.account_name = account_name
         if is_global is not None:
             self.is_global = is_global
-        if rows is not None:
-            self.rows = rows
+        if assets is not None:
+            self.assets = assets
         if summary is not None:
             self.summary = summary
 
@@ -132,25 +132,25 @@ class PLAccount(object):
         self._is_global = is_global
 
     @property
-    def rows(self):
-        """Gets the rows of this PLAccount.  # noqa: E501
+    def assets(self):
+        """Gets the assets of this PLAccount.  # noqa: E501
 
 
-        :return: The rows of this PLAccount.  # noqa: E501
+        :return: The assets of this PLAccount.  # noqa: E501
         :rtype: dict
         """
-        return self._rows
+        return self._assets
 
-    @rows.setter
-    def rows(self, rows):
-        """Sets the rows of this PLAccount.
+    @assets.setter
+    def assets(self, assets):
+        """Sets the assets of this PLAccount.
 
 
-        :param rows: The rows of this PLAccount.  # noqa: E501
+        :param assets: The assets of this PLAccount.  # noqa: E501
         :type: dict
         """
 
-        self._rows = rows
+        self._assets = assets
 
     @property
     def summary(self):

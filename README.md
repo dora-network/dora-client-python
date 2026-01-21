@@ -287,6 +287,17 @@ except ApiException as e:
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+asset_id = NULL # dict | 
+
+try:
+    # Get annualized yield to maturity for a bond asset
+    api_response = api_instance.get_asset_ytmby_id(asset_id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->get_asset_ytmby_id: %s\n" % e)
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
 since = NULL # dict |  (optional)
 until = NULL # dict |  (optional)
 
@@ -1272,6 +1283,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**get_api_keys_for_user_id**](docs/DefaultApi.md#get_api_keys_for_user_id) | **GET** /v1/user/{user_id}/apikey | Get user&#x27;s api keys: admin or integrator only
 *DefaultApi* | [**get_asset_by_id**](docs/DefaultApi.md#get_asset_by_id) | **GET** /v1/assets/{asset_id} | Get asset by ID
 *DefaultApi* | [**get_asset_price**](docs/DefaultApi.md#get_asset_price) | **GET** /v1/price/asset/{asset_id} | Get the current price of an asset
+*DefaultApi* | [**get_asset_ytmby_id**](docs/DefaultApi.md#get_asset_ytmby_id) | **GET** /v1/assets/{asset_id}/ytm | Get annualized yield to maturity for a bond asset
 *DefaultApi* | [**get_assets_stream**](docs/DefaultApi.md#get_assets_stream) | **GET** /v1/assets/stream | Get all inserts or updates for assets
 *DefaultApi* | [**get_candle_data**](docs/DefaultApi.md#get_candle_data) | **GET** /v1/charts/{order_book_id}/candle | Get candlestick data for an orderbook
 *DefaultApi* | [**get_coupon_payments_by_asset_id**](docs/DefaultApi.md#get_coupon_payments_by_asset_id) | **GET** /v1/assets/{asset_id}/coupon_payments | Get coupon payments for a bond asset
@@ -1344,6 +1356,7 @@ Class | Method | HTTP request | Description
  - [AssetPrice](docs/AssetPrice.md)
  - [AssetPriceResponseEnvelope](docs/AssetPriceResponseEnvelope.md)
  - [AssetRequestError](docs/AssetRequestError.md)
+ - [AssetYTM](docs/AssetYTM.md)
  - [BalanceTransfer](docs/BalanceTransfer.md)
  - [BalancesResponse](docs/BalancesResponse.md)
  - [Bond](docs/Bond.md)
@@ -1387,6 +1400,8 @@ Class | Method | HTTP request | Description
  - [GetAssetByIDResponse](docs/GetAssetByIDResponse.md)
  - [GetAssetByIDResponseEnvelope](docs/GetAssetByIDResponseEnvelope.md)
  - [GetAssetPriceResponse](docs/GetAssetPriceResponse.md)
+ - [GetAssetYTMByIDResponse](docs/GetAssetYTMByIDResponse.md)
+ - [GetAssetYTMByIDResponseEnvelope](docs/GetAssetYTMByIDResponseEnvelope.md)
  - [GetOrderBookResponse](docs/GetOrderBookResponse.md)
  - [GetOrderBookSummaryResponse](docs/GetOrderBookSummaryResponse.md)
  - [GetOrderResponse](docs/GetOrderResponse.md)

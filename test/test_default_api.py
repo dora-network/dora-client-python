@@ -126,6 +126,13 @@ class TestDefaultApi(unittest.TestCase):
         """
         pass
 
+    def test_get_asset_ytmby_id(self):
+        """Test case for get_asset_ytmby_id
+
+        Get annualized yield to maturity for a bond asset  # noqa: E501
+        """
+        pass
+
     def test_get_assets_stream(self):
         """Test case for get_assets_stream
 

@@ -15,6 +15,10 @@ Name | Type | Description | Notes
 **leverage_limit** | **dict** | The leverage limit for the position | [optional] 
 **tp** | **dict** | The take profit price set for the position, if any | [optional] 
 **sl** | **dict** | The stop loss price set for the position, if any | [optional] 
+**initial_capital** | **dict** | The initial capital of the position | [optional] 
+**impending_borrows** | **dict** | The impending borrows of the position | [optional] 
+**locked** | **dict** | The locked amount of the position | [optional] 
+**unused_collateral** | **dict** | The unused collateral of the position | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -18,6 +18,7 @@ Method | HTTP request | Description
 [**get_api_keys_for_user_id**](DefaultApi.md#get_api_keys_for_user_id) | **GET** /v1/user/{user_id}/apikey | Get user&#x27;s api keys: admin or integrator only
 [**get_asset_by_id**](DefaultApi.md#get_asset_by_id) | **GET** /v1/assets/{asset_id} | Get asset by ID
 [**get_asset_price**](DefaultApi.md#get_asset_price) | **GET** /v1/price/asset/{asset_id} | Get the current price of an asset
+[**get_asset_ytmby_id**](DefaultApi.md#get_asset_ytmby_id) | **GET** /v1/assets/{asset_id}/ytm | Get annualized yield to maturity for a bond asset
 [**get_assets_stream**](DefaultApi.md#get_assets_stream) | **GET** /v1/assets/stream | Get all inserts or updates for assets
 [**get_candle_data**](DefaultApi.md#get_candle_data) | **GET** /v1/charts/{order_book_id}/candle | Get candlestick data for an orderbook
 [**get_coupon_payments_by_asset_id**](DefaultApi.md#get_coupon_payments_by_asset_id) | **GET** /v1/assets/{asset_id}/coupon_payments | Get coupon payments for a bond asset
@@ -796,6 +797,52 @@ Name | Type | Description  | Notes
 ### Authorization
 
 [apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_asset_ytmby_id**
+> GetAssetYTMByIDResponse get_asset_ytmby_id(asset_id)
+
+Get annualized yield to maturity for a bond asset
+
+### Example
+```python
+from __future__ import print_function
+import time
+import dora_client
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi()
+asset_id = NULL # dict | 
+
+try:
+    # Get annualized yield to maturity for a bond asset
+    api_response = api_instance.get_asset_ytmby_id(asset_id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->get_asset_ytmby_id: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **asset_id** | [**dict**](.md)|  | 
+
+### Return type
+
+[**GetAssetYTMByIDResponse**](GetAssetYTMByIDResponse.md)
+
+### Authorization
+
+No authorization required
 
 ### HTTP request headers
 
