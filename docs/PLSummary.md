@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **account_equity** | **dict** |  | [optional] 
 **available** | **dict** |  | [optional] 
 **health** | **dict** |  | [optional] 
+**ltv** | **dict** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

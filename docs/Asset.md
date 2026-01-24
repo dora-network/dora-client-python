@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **decimals** | **dict** |  | [optional] 
 **fractionalized_units** | **dict** |  | [optional] 
 **description** | **dict** |  | [optional] 
-**liquidation_threshold** | **dict** |  | [optional] 
+**liquidation_weight** | **dict** |  | [optional] 
 **maturity_id** | **dict** |  | [optional] 
 **max_supply** | **dict** |  | [optional] 
 **max_utilization** | **dict** |  | [optional] 

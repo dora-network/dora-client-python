@@ -34,7 +34,7 @@ class Asset(object):
         'decimals': 'dict',
         'fractionalized_units': 'dict',
         'description': 'dict',
-        'liquidation_threshold': 'dict',
+        'liquidation_weight': 'dict',
         'maturity_id': 'dict',
         'max_supply': 'dict',
         'max_utilization': 'dict',
@@ -58,7 +58,7 @@ class Asset(object):
         'decimals': 'decimals',
         'fractionalized_units': 'fractionalized_units',
         'description': 'description',
-        'liquidation_threshold': 'liquidation_threshold',
+        'liquidation_weight': 'liquidation_weight',
         'maturity_id': 'maturity_id',
         'max_supply': 'max_supply',
         'max_utilization': 'max_utilization',
@@ -75,7 +75,7 @@ class Asset(object):
         'bond': 'bond'
     }
 
-    def __init__(self, id=None, collateral_weight=None, created_at=None, decimals=None, fractionalized_units=None, description=None, liquidation_threshold=None, maturity_id=None, max_supply=None, max_utilization=None, name=None, symbol=None, kind=None, _yield=None, can_add_liquidity=None, can_direct_borrow=None, can_onboard=None, can_trade=None, can_virtual_borrow=None, max_leverage=None, bond=None):  # noqa: E501
+    def __init__(self, id=None, collateral_weight=None, created_at=None, decimals=None, fractionalized_units=None, description=None, liquidation_weight=None, maturity_id=None, max_supply=None, max_utilization=None, name=None, symbol=None, kind=None, _yield=None, can_add_liquidity=None, can_direct_borrow=None, can_onboard=None, can_trade=None, can_virtual_borrow=None, max_leverage=None, bond=None):  # noqa: E501
         """Asset - a model defined in Swagger"""  # noqa: E501
         self._id = None
         self._collateral_weight = None
@@ -83,7 +83,7 @@ class Asset(object):
         self._decimals = None
         self._fractionalized_units = None
         self._description = None
-        self._liquidation_threshold = None
+        self._liquidation_weight = None
         self._maturity_id = None
         self._max_supply = None
         self._max_utilization = None
@@ -111,8 +111,8 @@ class Asset(object):
             self.fractionalized_units = fractionalized_units
         if description is not None:
             self.description = description
-        if liquidation_threshold is not None:
-            self.liquidation_threshold = liquidation_threshold
+        if liquidation_weight is not None:
+            self.liquidation_weight = liquidation_weight
         if maturity_id is not None:
             self.maturity_id = maturity_id
         if max_supply is not None:
@@ -269,25 +269,25 @@ class Asset(object):
         self._description = description
 
     @property
-    def liquidation_threshold(self):
-        """Gets the liquidation_threshold of this Asset.  # noqa: E501
+    def liquidation_weight(self):
+        """Gets the liquidation_weight of this Asset.  # noqa: E501
 
 
-        :return: The liquidation_threshold of this Asset.  # noqa: E501
+        :return: The liquidation_weight of this Asset.  # noqa: E501
         :rtype: dict
         """
-        return self._liquidation_threshold
+        return self._liquidation_weight
 
-    @liquidation_threshold.setter
-    def liquidation_threshold(self, liquidation_threshold):
-        """Sets the liquidation_threshold of this Asset.
+    @liquidation_weight.setter
+    def liquidation_weight(self, liquidation_weight):
+        """Sets the liquidation_weight of this Asset.
 
 
-        :param liquidation_threshold: The liquidation_threshold of this Asset.  # noqa: E501
+        :param liquidation_weight: The liquidation_weight of this Asset.  # noqa: E501
         :type: dict
         """
 
-        self._liquidation_threshold = liquidation_threshold
+        self._liquidation_weight = liquidation_weight
 
     @property
     def maturity_id(self):

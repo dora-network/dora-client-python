@@ -31,22 +31,25 @@ class PLSummary(object):
         'leverage': 'dict',
         'account_equity': 'dict',
         'available': 'dict',
-        'health': 'dict'
+        'health': 'dict',
+        'ltv': 'dict'
     }
 
     attribute_map = {
         'leverage': 'leverage',
         'account_equity': 'account_equity',
         'available': 'available',
-        'health': 'health'
+        'health': 'health',
+        'ltv': 'ltv'
     }
 
-    def __init__(self, leverage=None, account_equity=None, available=None, health=None):  # noqa: E501
+    def __init__(self, leverage=None, account_equity=None, available=None, health=None, ltv=None):  # noqa: E501
         """PLSummary - a model defined in Swagger"""  # noqa: E501
         self._leverage = None
         self._account_equity = None
         self._available = None
         self._health = None
+        self._ltv = None
         self.discriminator = None
         if leverage is not None:
             self.leverage = leverage
@@ -56,6 +59,8 @@ class PLSummary(object):
             self.available = available
         if health is not None:
             self.health = health
+        if ltv is not None:
+            self.ltv = ltv
 
     @property
     def leverage(self):
@@ -142,6 +147,27 @@ class PLSummary(object):
         """
 
         self._health = health
+
+    @property
+    def ltv(self):
+        """Gets the ltv of this PLSummary.  # noqa: E501
+
+
+        :return: The ltv of this PLSummary.  # noqa: E501
+        :rtype: dict
+        """
+        return self._ltv
+
+    @ltv.setter
+    def ltv(self, ltv):
+        """Sets the ltv of this PLSummary.
+
+
+        :param ltv: The ltv of this PLSummary.  # noqa: E501
+        :type: dict
+        """
+
+        self._ltv = ltv
 
     def to_dict(self):
         """Returns the model properties as a dict"""
