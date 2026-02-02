@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **quantity1** | **dict** |  | [optional] 
 **asset1** | **dict** |  | [optional] 
 **user_id** | **dict** |  | [optional] 
+**order_side** | [**Side**](Side.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

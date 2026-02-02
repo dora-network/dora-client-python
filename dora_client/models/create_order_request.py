@@ -38,7 +38,8 @@ class CreateOrderRequest(object):
         'order_modifiers': 'dict',
         'good_till_date': 'dict',
         'trigger_price': 'dict',
-        'trigger_type': 'TriggerType'
+        'trigger_type': 'TriggerType',
+        'client_order_id': 'dict'
     }
 
     attribute_map = {
@@ -52,10 +53,11 @@ class CreateOrderRequest(object):
         'order_modifiers': 'order_modifiers',
         'good_till_date': 'good_till_date',
         'trigger_price': 'trigger_price',
-        'trigger_type': 'trigger_type'
+        'trigger_type': 'trigger_type',
+        'client_order_id': 'client_order_id'
     }
 
-    def __init__(self, quantity=None, inverse_leverage=None, price=None, kind=None, side=None, from_global_position=None, order_book_id=None, order_modifiers=None, good_till_date=None, trigger_price=None, trigger_type=None):  # noqa: E501
+    def __init__(self, quantity=None, inverse_leverage=None, price=None, kind=None, side=None, from_global_position=None, order_book_id=None, order_modifiers=None, good_till_date=None, trigger_price=None, trigger_type=None, client_order_id=None):  # noqa: E501
         """CreateOrderRequest - a model defined in Swagger"""  # noqa: E501
         self._quantity = None
         self._inverse_leverage = None
@@ -68,6 +70,7 @@ class CreateOrderRequest(object):
         self._good_till_date = None
         self._trigger_price = None
         self._trigger_type = None
+        self._client_order_id = None
         self.discriminator = None
         self.quantity = quantity
         self.inverse_leverage = inverse_leverage
@@ -85,6 +88,8 @@ class CreateOrderRequest(object):
             self.trigger_price = trigger_price
         if trigger_type is not None:
             self.trigger_type = trigger_type
+        if client_order_id is not None:
+            self.client_order_id = client_order_id
 
     @property
     def quantity(self):
@@ -334,6 +339,29 @@ class CreateOrderRequest(object):
         """
 
         self._trigger_type = trigger_type
+
+    @property
+    def client_order_id(self):
+        """Gets the client_order_id of this CreateOrderRequest.  # noqa: E501
+
+        An optional client-provided identifier for the order.  # noqa: E501
+
+        :return: The client_order_id of this CreateOrderRequest.  # noqa: E501
+        :rtype: dict
+        """
+        return self._client_order_id
+
+    @client_order_id.setter
+    def client_order_id(self, client_order_id):
+        """Sets the client_order_id of this CreateOrderRequest.
+
+        An optional client-provided identifier for the order.  # noqa: E501
+
+        :param client_order_id: The client_order_id of this CreateOrderRequest.  # noqa: E501
+        :type: dict
+        """
+
+        self._client_order_id = client_order_id
 
     def to_dict(self):
         """Returns the model properties as a dict"""

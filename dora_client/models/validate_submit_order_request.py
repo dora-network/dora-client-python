@@ -38,6 +38,7 @@ class ValidateSubmitOrderRequest(object):
         'user_balance': 'dict',
         'base_asset_id': 'dict',
         'quote_asset_id': 'dict',
+        'client_order_id': 'dict',
         'position_assets': 'dict',
         'assets_config': 'dict'
     }
@@ -53,11 +54,12 @@ class ValidateSubmitOrderRequest(object):
         'user_balance': 'user_balance',
         'base_asset_id': 'base_asset_id',
         'quote_asset_id': 'quote_asset_id',
+        'client_order_id': 'client_order_id',
         'position_assets': 'position_assets',
         'assets_config': 'assets_config'
     }
 
-    def __init__(self, quantity=None, tick=None, kind=None, side=None, price=None, good_till_date=None, inverse_leverage=None, user_balance=None, base_asset_id=None, quote_asset_id=None, position_assets=None, assets_config=None):  # noqa: E501
+    def __init__(self, quantity=None, tick=None, kind=None, side=None, price=None, good_till_date=None, inverse_leverage=None, user_balance=None, base_asset_id=None, quote_asset_id=None, client_order_id=None, position_assets=None, assets_config=None):  # noqa: E501
         """ValidateSubmitOrderRequest - a model defined in Swagger"""  # noqa: E501
         self._quantity = None
         self._tick = None
@@ -69,6 +71,7 @@ class ValidateSubmitOrderRequest(object):
         self._user_balance = None
         self._base_asset_id = None
         self._quote_asset_id = None
+        self._client_order_id = None
         self._position_assets = None
         self._assets_config = None
         self.discriminator = None
@@ -86,6 +89,8 @@ class ValidateSubmitOrderRequest(object):
             self.base_asset_id = base_asset_id
         if quote_asset_id is not None:
             self.quote_asset_id = quote_asset_id
+        if client_order_id is not None:
+            self.client_order_id = client_order_id
         if position_assets is not None:
             self.position_assets = position_assets
         if assets_config is not None:
@@ -326,6 +331,29 @@ class ValidateSubmitOrderRequest(object):
         """
 
         self._quote_asset_id = quote_asset_id
+
+    @property
+    def client_order_id(self):
+        """Gets the client_order_id of this ValidateSubmitOrderRequest.  # noqa: E501
+
+        An optional client-provided identifier for the order.  # noqa: E501
+
+        :return: The client_order_id of this ValidateSubmitOrderRequest.  # noqa: E501
+        :rtype: dict
+        """
+        return self._client_order_id
+
+    @client_order_id.setter
+    def client_order_id(self, client_order_id):
+        """Sets the client_order_id of this ValidateSubmitOrderRequest.
+
+        An optional client-provided identifier for the order.  # noqa: E501
+
+        :param client_order_id: The client_order_id of this ValidateSubmitOrderRequest.  # noqa: E501
+        :type: dict
+        """
+
+        self._client_order_id = client_order_id
 
     @property
     def position_assets(self):

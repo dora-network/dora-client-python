@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **good_till_date** | **dict** |  | [optional] 
 **trigger_price** | **dict** |  | [optional] 
 **trigger_type** | [**TriggerType**](TriggerType.md) |  | [optional] 
+**client_order_id** | **dict** | An optional client-provided identifier for the order. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

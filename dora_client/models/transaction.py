@@ -35,7 +35,8 @@ class Transaction(object):
         'quantity0': 'dict',
         'quantity1': 'dict',
         'asset1': 'dict',
-        'user_id': 'dict'
+        'user_id': 'dict',
+        'order_side': 'Side'
     }
 
     attribute_map = {
@@ -46,10 +47,11 @@ class Transaction(object):
         'quantity0': 'quantity0',
         'quantity1': 'quantity1',
         'asset1': 'asset1',
-        'user_id': 'user_id'
+        'user_id': 'user_id',
+        'order_side': 'order_side'
     }
 
-    def __init__(self, id=None, created_at=None, kind=None, asset0=None, quantity0=None, quantity1=None, asset1=None, user_id=None):  # noqa: E501
+    def __init__(self, id=None, created_at=None, kind=None, asset0=None, quantity0=None, quantity1=None, asset1=None, user_id=None, order_side=None):  # noqa: E501
         """Transaction - a model defined in Swagger"""  # noqa: E501
         self._id = None
         self._created_at = None
@@ -59,6 +61,7 @@ class Transaction(object):
         self._quantity1 = None
         self._asset1 = None
         self._user_id = None
+        self._order_side = None
         self.discriminator = None
         if id is not None:
             self.id = id
@@ -76,6 +79,8 @@ class Transaction(object):
             self.asset1 = asset1
         if user_id is not None:
             self.user_id = user_id
+        if order_side is not None:
+            self.order_side = order_side
 
     @property
     def id(self):
@@ -244,6 +249,27 @@ class Transaction(object):
         """
 
         self._user_id = user_id
+
+    @property
+    def order_side(self):
+        """Gets the order_side of this Transaction.  # noqa: E501
+
+
+        :return: The order_side of this Transaction.  # noqa: E501
+        :rtype: Side
+        """
+        return self._order_side
+
+    @order_side.setter
+    def order_side(self, order_side):
+        """Sets the order_side of this Transaction.
+
+
+        :param order_side: The order_side of this Transaction.  # noqa: E501
+        :type: Side
+        """
+
+        self._order_side = order_side
 
     def to_dict(self):
         """Returns the model properties as a dict"""

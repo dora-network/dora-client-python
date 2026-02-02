@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **user_balance** | **dict** | User balance used to ensure they can afford the requested quantity | 
 **base_asset_id** | **dict** | base asset of orderbook | [optional] 
 **quote_asset_id** | **dict** | quote asset of orderbook | [optional] 
+**client_order_id** | **dict** | An optional client-provided identifier for the order. | [optional] 
 **position_assets** | **dict** | Full list of assets in the position with their price and collateral weight, required when inverse_leverage &lt; 1 for leverage health checks | [optional] 
 **assets_config** | **dict** | Configuration for the assets in the order | [optional] 
 
