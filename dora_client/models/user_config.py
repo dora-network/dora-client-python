@@ -57,20 +57,15 @@ class UserConfig(object):
         self._show_tutorial_cards = None
         self._notifications_enabled = None
         self.discriminator = None
-        if id is not None:
-            self.id = id
+        self.id = id
         if photo_url is not None:
             self.photo_url = photo_url
         if timezone is not None:
             self.timezone = timezone
-        if created_at is not None:
-            self.created_at = created_at
-        if updated_at is not None:
-            self.updated_at = updated_at
-        if show_tutorial_cards is not None:
-            self.show_tutorial_cards = show_tutorial_cards
-        if notifications_enabled is not None:
-            self.notifications_enabled = notifications_enabled
+        self.created_at = created_at
+        self.updated_at = updated_at
+        self.show_tutorial_cards = show_tutorial_cards
+        self.notifications_enabled = notifications_enabled
 
     @property
     def id(self):
@@ -90,6 +85,8 @@ class UserConfig(object):
         :param id: The id of this UserConfig.  # noqa: E501
         :type: dict
         """
+        if id is None:
+            raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
 
         self._id = id
 
@@ -155,6 +152,8 @@ class UserConfig(object):
         :param created_at: The created_at of this UserConfig.  # noqa: E501
         :type: dict
         """
+        if created_at is None:
+            raise ValueError("Invalid value for `created_at`, must not be `None`")  # noqa: E501
 
         self._created_at = created_at
 
@@ -176,6 +175,8 @@ class UserConfig(object):
         :param updated_at: The updated_at of this UserConfig.  # noqa: E501
         :type: dict
         """
+        if updated_at is None:
+            raise ValueError("Invalid value for `updated_at`, must not be `None`")  # noqa: E501
 
         self._updated_at = updated_at
 
@@ -197,6 +198,8 @@ class UserConfig(object):
         :param show_tutorial_cards: The show_tutorial_cards of this UserConfig.  # noqa: E501
         :type: dict
         """
+        if show_tutorial_cards is None:
+            raise ValueError("Invalid value for `show_tutorial_cards`, must not be `None`")  # noqa: E501
 
         self._show_tutorial_cards = show_tutorial_cards
 
@@ -218,6 +221,8 @@ class UserConfig(object):
         :param notifications_enabled: The notifications_enabled of this UserConfig.  # noqa: E501
         :type: dict
         """
+        if notifications_enabled is None:
+            raise ValueError("Invalid value for `notifications_enabled`, must not be `None`")  # noqa: E501
 
         self._notifications_enabled = notifications_enabled
 

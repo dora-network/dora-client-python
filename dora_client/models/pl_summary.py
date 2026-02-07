@@ -51,16 +51,11 @@ class PLSummary(object):
         self._health = None
         self._ltv = None
         self.discriminator = None
-        if leverage is not None:
-            self.leverage = leverage
-        if account_equity is not None:
-            self.account_equity = account_equity
-        if available is not None:
-            self.available = available
-        if health is not None:
-            self.health = health
-        if ltv is not None:
-            self.ltv = ltv
+        self.leverage = leverage
+        self.account_equity = account_equity
+        self.available = available
+        self.health = health
+        self.ltv = ltv
 
     @property
     def leverage(self):
@@ -82,6 +77,8 @@ class PLSummary(object):
         :param leverage: The leverage of this PLSummary.  # noqa: E501
         :type: dict
         """
+        if leverage is None:
+            raise ValueError("Invalid value for `leverage`, must not be `None`")  # noqa: E501
 
         self._leverage = leverage
 
@@ -103,6 +100,8 @@ class PLSummary(object):
         :param account_equity: The account_equity of this PLSummary.  # noqa: E501
         :type: dict
         """
+        if account_equity is None:
+            raise ValueError("Invalid value for `account_equity`, must not be `None`")  # noqa: E501
 
         self._account_equity = account_equity
 
@@ -124,6 +123,8 @@ class PLSummary(object):
         :param available: The available of this PLSummary.  # noqa: E501
         :type: dict
         """
+        if available is None:
+            raise ValueError("Invalid value for `available`, must not be `None`")  # noqa: E501
 
         self._available = available
 
@@ -145,6 +146,8 @@ class PLSummary(object):
         :param health: The health of this PLSummary.  # noqa: E501
         :type: dict
         """
+        if health is None:
+            raise ValueError("Invalid value for `health`, must not be `None`")  # noqa: E501
 
         self._health = health
 
@@ -166,6 +169,8 @@ class PLSummary(object):
         :param ltv: The ltv of this PLSummary.  # noqa: E501
         :type: dict
         """
+        if ltv is None:
+            raise ValueError("Invalid value for `ltv`, must not be `None`")  # noqa: E501
 
         self._ltv = ltv
 

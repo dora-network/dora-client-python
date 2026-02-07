@@ -45,12 +45,9 @@ class BalanceTransfer(object):
         self._to_position_id = None
         self._transaction_id = None
         self.discriminator = None
-        if from_position_id is not None:
-            self.from_position_id = from_position_id
-        if to_position_id is not None:
-            self.to_position_id = to_position_id
-        if transaction_id is not None:
-            self.transaction_id = transaction_id
+        self.from_position_id = from_position_id
+        self.to_position_id = to_position_id
+        self.transaction_id = transaction_id
 
     @property
     def from_position_id(self):
@@ -70,6 +67,8 @@ class BalanceTransfer(object):
         :param from_position_id: The from_position_id of this BalanceTransfer.  # noqa: E501
         :type: dict
         """
+        if from_position_id is None:
+            raise ValueError("Invalid value for `from_position_id`, must not be `None`")  # noqa: E501
 
         self._from_position_id = from_position_id
 
@@ -91,6 +90,8 @@ class BalanceTransfer(object):
         :param to_position_id: The to_position_id of this BalanceTransfer.  # noqa: E501
         :type: dict
         """
+        if to_position_id is None:
+            raise ValueError("Invalid value for `to_position_id`, must not be `None`")  # noqa: E501
 
         self._to_position_id = to_position_id
 
@@ -112,6 +113,8 @@ class BalanceTransfer(object):
         :param transaction_id: The transaction_id of this BalanceTransfer.  # noqa: E501
         :type: dict
         """
+        if transaction_id is None:
+            raise ValueError("Invalid value for `transaction_id`, must not be `None`")  # noqa: E501
 
         self._transaction_id = transaction_id
 

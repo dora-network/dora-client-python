@@ -51,16 +51,11 @@ class PLAccount(object):
         self._assets = None
         self._summary = None
         self.discriminator = None
-        if account_id is not None:
-            self.account_id = account_id
-        if account_name is not None:
-            self.account_name = account_name
-        if is_global is not None:
-            self.is_global = is_global
-        if assets is not None:
-            self.assets = assets
-        if summary is not None:
-            self.summary = summary
+        self.account_id = account_id
+        self.account_name = account_name
+        self.is_global = is_global
+        self.assets = assets
+        self.summary = summary
 
     @property
     def account_id(self):
@@ -82,6 +77,8 @@ class PLAccount(object):
         :param account_id: The account_id of this PLAccount.  # noqa: E501
         :type: dict
         """
+        if account_id is None:
+            raise ValueError("Invalid value for `account_id`, must not be `None`")  # noqa: E501
 
         self._account_id = account_id
 
@@ -105,6 +102,8 @@ class PLAccount(object):
         :param account_name: The account_name of this PLAccount.  # noqa: E501
         :type: dict
         """
+        if account_name is None:
+            raise ValueError("Invalid value for `account_name`, must not be `None`")  # noqa: E501
 
         self._account_name = account_name
 
@@ -128,6 +127,8 @@ class PLAccount(object):
         :param is_global: The is_global of this PLAccount.  # noqa: E501
         :type: dict
         """
+        if is_global is None:
+            raise ValueError("Invalid value for `is_global`, must not be `None`")  # noqa: E501
 
         self._is_global = is_global
 
@@ -149,6 +150,8 @@ class PLAccount(object):
         :param assets: The assets of this PLAccount.  # noqa: E501
         :type: dict
         """
+        if assets is None:
+            raise ValueError("Invalid value for `assets`, must not be `None`")  # noqa: E501
 
         self._assets = assets
 
@@ -170,6 +173,8 @@ class PLAccount(object):
         :param summary: The summary of this PLAccount.  # noqa: E501
         :type: PLSummary
         """
+        if summary is None:
+            raise ValueError("Invalid value for `summary`, must not be `None`")  # noqa: E501
 
         self._summary = summary
 

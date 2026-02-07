@@ -63,24 +63,15 @@ class OrderbookStats(object):
         self._volume_24h_base = None
         self._volume_24h_usd = None
         self.discriminator = None
-        if order_book_id is not None:
-            self.order_book_id = order_book_id
-        if open_price is not None:
-            self.open_price = open_price
-        if last_price is not None:
-            self.last_price = last_price
-        if high_24h is not None:
-            self.high_24h = high_24h
-        if low_24h is not None:
-            self.low_24h = low_24h
-        if change_24h is not None:
-            self.change_24h = change_24h
-        if change_pct_24h is not None:
-            self.change_pct_24h = change_pct_24h
-        if volume_24h_base is not None:
-            self.volume_24h_base = volume_24h_base
-        if volume_24h_usd is not None:
-            self.volume_24h_usd = volume_24h_usd
+        self.order_book_id = order_book_id
+        self.open_price = open_price
+        self.last_price = last_price
+        self.high_24h = high_24h
+        self.low_24h = low_24h
+        self.change_24h = change_24h
+        self.change_pct_24h = change_pct_24h
+        self.volume_24h_base = volume_24h_base
+        self.volume_24h_usd = volume_24h_usd
 
     @property
     def order_book_id(self):
@@ -100,6 +91,8 @@ class OrderbookStats(object):
         :param order_book_id: The order_book_id of this OrderbookStats.  # noqa: E501
         :type: dict
         """
+        if order_book_id is None:
+            raise ValueError("Invalid value for `order_book_id`, must not be `None`")  # noqa: E501
 
         self._order_book_id = order_book_id
 
@@ -123,6 +116,8 @@ class OrderbookStats(object):
         :param open_price: The open_price of this OrderbookStats.  # noqa: E501
         :type: dict
         """
+        if open_price is None:
+            raise ValueError("Invalid value for `open_price`, must not be `None`")  # noqa: E501
 
         self._open_price = open_price
 
@@ -146,6 +141,8 @@ class OrderbookStats(object):
         :param last_price: The last_price of this OrderbookStats.  # noqa: E501
         :type: dict
         """
+        if last_price is None:
+            raise ValueError("Invalid value for `last_price`, must not be `None`")  # noqa: E501
 
         self._last_price = last_price
 
@@ -169,6 +166,8 @@ class OrderbookStats(object):
         :param high_24h: The high_24h of this OrderbookStats.  # noqa: E501
         :type: dict
         """
+        if high_24h is None:
+            raise ValueError("Invalid value for `high_24h`, must not be `None`")  # noqa: E501
 
         self._high_24h = high_24h
 
@@ -192,6 +191,8 @@ class OrderbookStats(object):
         :param low_24h: The low_24h of this OrderbookStats.  # noqa: E501
         :type: dict
         """
+        if low_24h is None:
+            raise ValueError("Invalid value for `low_24h`, must not be `None`")  # noqa: E501
 
         self._low_24h = low_24h
 
@@ -215,6 +216,8 @@ class OrderbookStats(object):
         :param change_24h: The change_24h of this OrderbookStats.  # noqa: E501
         :type: dict
         """
+        if change_24h is None:
+            raise ValueError("Invalid value for `change_24h`, must not be `None`")  # noqa: E501
 
         self._change_24h = change_24h
 
@@ -238,6 +241,8 @@ class OrderbookStats(object):
         :param change_pct_24h: The change_pct_24h of this OrderbookStats.  # noqa: E501
         :type: dict
         """
+        if change_pct_24h is None:
+            raise ValueError("Invalid value for `change_pct_24h`, must not be `None`")  # noqa: E501
 
         self._change_pct_24h = change_pct_24h
 
@@ -261,6 +266,8 @@ class OrderbookStats(object):
         :param volume_24h_base: The volume_24h_base of this OrderbookStats.  # noqa: E501
         :type: dict
         """
+        if volume_24h_base is None:
+            raise ValueError("Invalid value for `volume_24h_base`, must not be `None`")  # noqa: E501
 
         self._volume_24h_base = volume_24h_base
 
@@ -284,6 +291,8 @@ class OrderbookStats(object):
         :param volume_24h_usd: The volume_24h_usd of this OrderbookStats.  # noqa: E501
         :type: dict
         """
+        if volume_24h_usd is None:
+            raise ValueError("Invalid value for `volume_24h_usd`, must not be `None`")  # noqa: E501
 
         self._volume_24h_usd = volume_24h_usd
 

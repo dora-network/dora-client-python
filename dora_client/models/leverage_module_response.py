@@ -39,8 +39,7 @@ class LeverageModuleResponse(object):
         """LeverageModuleResponse - a model defined in Swagger"""  # noqa: E501
         self._balances = None
         self.discriminator = None
-        if balances is not None:
-            self.balances = balances
+        self.balances = balances
 
     @property
     def balances(self):
@@ -62,6 +61,8 @@ class LeverageModuleResponse(object):
         :param balances: The balances of this LeverageModuleResponse.  # noqa: E501
         :type: dict
         """
+        if balances is None:
+            raise ValueError("Invalid value for `balances`, must not be `None`")  # noqa: E501
 
         self._balances = balances
 

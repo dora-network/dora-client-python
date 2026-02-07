@@ -45,12 +45,9 @@ class CreateAPIKeyData(object):
         self._api_key = None
         self._label = None
         self.discriminator = None
-        if key_id is not None:
-            self.key_id = key_id
-        if api_key is not None:
-            self.api_key = api_key
-        if label is not None:
-            self.label = label
+        self.key_id = key_id
+        self.api_key = api_key
+        self.label = label
 
     @property
     def key_id(self):
@@ -70,6 +67,8 @@ class CreateAPIKeyData(object):
         :param key_id: The key_id of this CreateAPIKeyData.  # noqa: E501
         :type: dict
         """
+        if key_id is None:
+            raise ValueError("Invalid value for `key_id`, must not be `None`")  # noqa: E501
 
         self._key_id = key_id
 
@@ -91,6 +90,8 @@ class CreateAPIKeyData(object):
         :param api_key: The api_key of this CreateAPIKeyData.  # noqa: E501
         :type: dict
         """
+        if api_key is None:
+            raise ValueError("Invalid value for `api_key`, must not be `None`")  # noqa: E501
 
         self._api_key = api_key
 
@@ -112,6 +113,8 @@ class CreateAPIKeyData(object):
         :param label: The label of this CreateAPIKeyData.  # noqa: E501
         :type: dict
         """
+        if label is None:
+            raise ValueError("Invalid value for `label`, must not be `None`")  # noqa: E501
 
         self._label = label
 

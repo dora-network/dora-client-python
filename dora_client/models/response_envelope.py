@@ -49,8 +49,7 @@ class ResponseEnvelope(object):
             self.data = data
         if error is not None:
             self.error = error
-        if metadata is not None:
-            self.metadata = metadata
+        self.metadata = metadata
 
     @property
     def data(self):
@@ -118,6 +117,8 @@ class ResponseEnvelope(object):
         :param metadata: The metadata of this ResponseEnvelope.  # noqa: E501
         :type: Metadata
         """
+        if metadata is None:
+            raise ValueError("Invalid value for `metadata`, must not be `None`")  # noqa: E501
 
         self._metadata = metadata
 

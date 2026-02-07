@@ -105,42 +105,26 @@ class Order(object):
         self._trigger_type = None
         self._client_order_id = None
         self.discriminator = None
-        if order_id is not None:
-            self.order_id = order_id
-        if order_book_id is not None:
-            self.order_book_id = order_book_id
-        if kind is not None:
-            self.kind = kind
-        if original_price is not None:
-            self.original_price = original_price
-        if avg_fill_price is not None:
-            self.avg_fill_price = avg_fill_price
-        if cancelled_quantity is not None:
-            self.cancelled_quantity = cancelled_quantity
-        if open_quantity is not None:
-            self.open_quantity = open_quantity
-        if original_quantity is not None:
-            self.original_quantity = original_quantity
-        if filled_quantity is not None:
-            self.filled_quantity = filled_quantity
-        if filled_notional is not None:
-            self.filled_notional = filled_notional
+        self.order_id = order_id
+        self.order_book_id = order_book_id
+        self.kind = kind
+        self.original_price = original_price
+        self.avg_fill_price = avg_fill_price
+        self.cancelled_quantity = cancelled_quantity
+        self.open_quantity = open_quantity
+        self.original_quantity = original_quantity
+        self.filled_quantity = filled_quantity
+        self.filled_notional = filled_notional
         if last_update_at is not None:
             self.last_update_at = last_update_at
-        if opened_at is not None:
-            self.opened_at = opened_at
-        if inverse_leverage is not None:
-            self.inverse_leverage = inverse_leverage
-        if side is not None:
-            self.side = side
-        if status is not None:
-            self.status = status
-        if user_id is not None:
-            self.user_id = user_id
+        self.opened_at = opened_at
+        self.inverse_leverage = inverse_leverage
+        self.side = side
+        self.status = status
+        self.user_id = user_id
         if order_modifiers is not None:
             self.order_modifiers = order_modifiers
-        if position_id is not None:
-            self.position_id = position_id
+        self.position_id = position_id
         if order_info is not None:
             self.order_info = order_info
         if good_till_date is not None:
@@ -170,6 +154,8 @@ class Order(object):
         :param order_id: The order_id of this Order.  # noqa: E501
         :type: dict
         """
+        if order_id is None:
+            raise ValueError("Invalid value for `order_id`, must not be `None`")  # noqa: E501
 
         self._order_id = order_id
 
@@ -191,6 +177,8 @@ class Order(object):
         :param order_book_id: The order_book_id of this Order.  # noqa: E501
         :type: dict
         """
+        if order_book_id is None:
+            raise ValueError("Invalid value for `order_book_id`, must not be `None`")  # noqa: E501
 
         self._order_book_id = order_book_id
 
@@ -212,6 +200,8 @@ class Order(object):
         :param kind: The kind of this Order.  # noqa: E501
         :type: OrderKind
         """
+        if kind is None:
+            raise ValueError("Invalid value for `kind`, must not be `None`")  # noqa: E501
 
         self._kind = kind
 
@@ -235,6 +225,8 @@ class Order(object):
         :param original_price: The original_price of this Order.  # noqa: E501
         :type: dict
         """
+        if original_price is None:
+            raise ValueError("Invalid value for `original_price`, must not be `None`")  # noqa: E501
 
         self._original_price = original_price
 
@@ -256,6 +248,8 @@ class Order(object):
         :param avg_fill_price: The avg_fill_price of this Order.  # noqa: E501
         :type: dict
         """
+        if avg_fill_price is None:
+            raise ValueError("Invalid value for `avg_fill_price`, must not be `None`")  # noqa: E501
 
         self._avg_fill_price = avg_fill_price
 
@@ -279,6 +273,8 @@ class Order(object):
         :param cancelled_quantity: The cancelled_quantity of this Order.  # noqa: E501
         :type: dict
         """
+        if cancelled_quantity is None:
+            raise ValueError("Invalid value for `cancelled_quantity`, must not be `None`")  # noqa: E501
 
         self._cancelled_quantity = cancelled_quantity
 
@@ -302,6 +298,8 @@ class Order(object):
         :param open_quantity: The open_quantity of this Order.  # noqa: E501
         :type: dict
         """
+        if open_quantity is None:
+            raise ValueError("Invalid value for `open_quantity`, must not be `None`")  # noqa: E501
 
         self._open_quantity = open_quantity
 
@@ -325,6 +323,8 @@ class Order(object):
         :param original_quantity: The original_quantity of this Order.  # noqa: E501
         :type: dict
         """
+        if original_quantity is None:
+            raise ValueError("Invalid value for `original_quantity`, must not be `None`")  # noqa: E501
 
         self._original_quantity = original_quantity
 
@@ -348,6 +348,8 @@ class Order(object):
         :param filled_quantity: The filled_quantity of this Order.  # noqa: E501
         :type: dict
         """
+        if filled_quantity is None:
+            raise ValueError("Invalid value for `filled_quantity`, must not be `None`")  # noqa: E501
 
         self._filled_quantity = filled_quantity
 
@@ -371,6 +373,8 @@ class Order(object):
         :param filled_notional: The filled_notional of this Order.  # noqa: E501
         :type: dict
         """
+        if filled_notional is None:
+            raise ValueError("Invalid value for `filled_notional`, must not be `None`")  # noqa: E501
 
         self._filled_notional = filled_notional
 
@@ -413,6 +417,8 @@ class Order(object):
         :param opened_at: The opened_at of this Order.  # noqa: E501
         :type: dict
         """
+        if opened_at is None:
+            raise ValueError("Invalid value for `opened_at`, must not be `None`")  # noqa: E501
 
         self._opened_at = opened_at
 
@@ -434,6 +440,8 @@ class Order(object):
         :param inverse_leverage: The inverse_leverage of this Order.  # noqa: E501
         :type: dict
         """
+        if inverse_leverage is None:
+            raise ValueError("Invalid value for `inverse_leverage`, must not be `None`")  # noqa: E501
 
         self._inverse_leverage = inverse_leverage
 
@@ -455,6 +463,8 @@ class Order(object):
         :param side: The side of this Order.  # noqa: E501
         :type: Side
         """
+        if side is None:
+            raise ValueError("Invalid value for `side`, must not be `None`")  # noqa: E501
 
         self._side = side
 
@@ -476,6 +486,8 @@ class Order(object):
         :param status: The status of this Order.  # noqa: E501
         :type: OrderStatus
         """
+        if status is None:
+            raise ValueError("Invalid value for `status`, must not be `None`")  # noqa: E501
 
         self._status = status
 
@@ -497,6 +509,8 @@ class Order(object):
         :param user_id: The user_id of this Order.  # noqa: E501
         :type: dict
         """
+        if user_id is None:
+            raise ValueError("Invalid value for `user_id`, must not be `None`")  # noqa: E501
 
         self._user_id = user_id
 
@@ -539,6 +553,8 @@ class Order(object):
         :param position_id: The position_id of this Order.  # noqa: E501
         :type: dict
         """
+        if position_id is None:
+            raise ValueError("Invalid value for `position_id`, must not be `None`")  # noqa: E501
 
         self._position_id = position_id
 

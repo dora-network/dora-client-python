@@ -3,11 +3,11 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**global_position_id** | **dict** |  | [optional] 
-**isolated_position_id** | **dict** |  | [optional] 
-**transaction_id** | **dict** |  | [optional] 
-**asset_id** | **dict** |  | [optional] 
-**quantity** | **dict** |  | [optional] 
+**global_position_id** | **dict** |  | 
+**isolated_position_id** | **dict** |  | 
+**transaction_id** | **dict** |  | 
+**asset_id** | **dict** |  | 
+**quantity** | **dict** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

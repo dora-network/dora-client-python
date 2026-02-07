@@ -42,8 +42,7 @@ class CreateAPIKeyRequest(object):
         self._label = None
         self._expires = None
         self.discriminator = None
-        if label is not None:
-            self.label = label
+        self.label = label
         if expires is not None:
             self.expires = expires
 
@@ -65,6 +64,8 @@ class CreateAPIKeyRequest(object):
         :param label: The label of this CreateAPIKeyRequest.  # noqa: E501
         :type: dict
         """
+        if label is None:
+            raise ValueError("Invalid value for `label`, must not be `None`")  # noqa: E501
 
         self._label = label
 

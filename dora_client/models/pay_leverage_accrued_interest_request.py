@@ -28,50 +28,26 @@ class PayLeverageAccruedInterestRequest(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'asset_id': 'dict',
         'position_id': 'dict',
+        'asset_id': 'dict',
         'quantity': 'dict'
     }
 
     attribute_map = {
-        'asset_id': 'asset_id',
         'position_id': 'position_id',
+        'asset_id': 'asset_id',
         'quantity': 'quantity'
     }
 
-    def __init__(self, asset_id=None, position_id=None, quantity=None):  # noqa: E501
+    def __init__(self, position_id=None, asset_id=None, quantity=None):  # noqa: E501
         """PayLeverageAccruedInterestRequest - a model defined in Swagger"""  # noqa: E501
-        self._asset_id = None
         self._position_id = None
+        self._asset_id = None
         self._quantity = None
         self.discriminator = None
-        if asset_id is not None:
-            self.asset_id = asset_id
-        if position_id is not None:
-            self.position_id = position_id
-        if quantity is not None:
-            self.quantity = quantity
-
-    @property
-    def asset_id(self):
-        """Gets the asset_id of this PayLeverageAccruedInterestRequest.  # noqa: E501
-
-
-        :return: The asset_id of this PayLeverageAccruedInterestRequest.  # noqa: E501
-        :rtype: dict
-        """
-        return self._asset_id
-
-    @asset_id.setter
-    def asset_id(self, asset_id):
-        """Sets the asset_id of this PayLeverageAccruedInterestRequest.
-
-
-        :param asset_id: The asset_id of this PayLeverageAccruedInterestRequest.  # noqa: E501
-        :type: dict
-        """
-
-        self._asset_id = asset_id
+        self.position_id = position_id
+        self.asset_id = asset_id
+        self.quantity = quantity
 
     @property
     def position_id(self):
@@ -91,8 +67,33 @@ class PayLeverageAccruedInterestRequest(object):
         :param position_id: The position_id of this PayLeverageAccruedInterestRequest.  # noqa: E501
         :type: dict
         """
+        if position_id is None:
+            raise ValueError("Invalid value for `position_id`, must not be `None`")  # noqa: E501
 
         self._position_id = position_id
+
+    @property
+    def asset_id(self):
+        """Gets the asset_id of this PayLeverageAccruedInterestRequest.  # noqa: E501
+
+
+        :return: The asset_id of this PayLeverageAccruedInterestRequest.  # noqa: E501
+        :rtype: dict
+        """
+        return self._asset_id
+
+    @asset_id.setter
+    def asset_id(self, asset_id):
+        """Sets the asset_id of this PayLeverageAccruedInterestRequest.
+
+
+        :param asset_id: The asset_id of this PayLeverageAccruedInterestRequest.  # noqa: E501
+        :type: dict
+        """
+        if asset_id is None:
+            raise ValueError("Invalid value for `asset_id`, must not be `None`")  # noqa: E501
+
+        self._asset_id = asset_id
 
     @property
     def quantity(self):
@@ -112,6 +113,8 @@ class PayLeverageAccruedInterestRequest(object):
         :param quantity: The quantity of this PayLeverageAccruedInterestRequest.  # noqa: E501
         :type: dict
         """
+        if quantity is None:
+            raise ValueError("Invalid value for `quantity`, must not be `None`")  # noqa: E501
 
         self._quantity = quantity
 

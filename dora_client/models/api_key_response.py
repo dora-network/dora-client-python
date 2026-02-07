@@ -51,16 +51,12 @@ class APIKeyResponse(object):
         self._expires_at = None
         self._is_active = None
         self.discriminator = None
-        if user_id is not None:
-            self.user_id = user_id
-        if key_id is not None:
-            self.key_id = key_id
-        if label is not None:
-            self.label = label
+        self.user_id = user_id
+        self.key_id = key_id
+        self.label = label
         if expires_at is not None:
             self.expires_at = expires_at
-        if is_active is not None:
-            self.is_active = is_active
+        self.is_active = is_active
 
     @property
     def user_id(self):
@@ -80,6 +76,8 @@ class APIKeyResponse(object):
         :param user_id: The user_id of this APIKeyResponse.  # noqa: E501
         :type: dict
         """
+        if user_id is None:
+            raise ValueError("Invalid value for `user_id`, must not be `None`")  # noqa: E501
 
         self._user_id = user_id
 
@@ -101,6 +99,8 @@ class APIKeyResponse(object):
         :param key_id: The key_id of this APIKeyResponse.  # noqa: E501
         :type: dict
         """
+        if key_id is None:
+            raise ValueError("Invalid value for `key_id`, must not be `None`")  # noqa: E501
 
         self._key_id = key_id
 
@@ -122,6 +122,8 @@ class APIKeyResponse(object):
         :param label: The label of this APIKeyResponse.  # noqa: E501
         :type: dict
         """
+        if label is None:
+            raise ValueError("Invalid value for `label`, must not be `None`")  # noqa: E501
 
         self._label = label
 
@@ -164,6 +166,8 @@ class APIKeyResponse(object):
         :param is_active: The is_active of this APIKeyResponse.  # noqa: E501
         :type: dict
         """
+        if is_active is None:
+            raise ValueError("Invalid value for `is_active`, must not be `None`")  # noqa: E501
 
         self._is_active = is_active
 

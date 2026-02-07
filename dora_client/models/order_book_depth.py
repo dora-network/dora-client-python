@@ -48,14 +48,10 @@ class OrderBookDepth(object):
         self._asks = None
         self._timestamp = None
         self.discriminator = None
-        if order_book_id is not None:
-            self.order_book_id = order_book_id
-        if bids is not None:
-            self.bids = bids
-        if asks is not None:
-            self.asks = asks
-        if timestamp is not None:
-            self.timestamp = timestamp
+        self.order_book_id = order_book_id
+        self.bids = bids
+        self.asks = asks
+        self.timestamp = timestamp
 
     @property
     def order_book_id(self):
@@ -75,6 +71,8 @@ class OrderBookDepth(object):
         :param order_book_id: The order_book_id of this OrderBookDepth.  # noqa: E501
         :type: dict
         """
+        if order_book_id is None:
+            raise ValueError("Invalid value for `order_book_id`, must not be `None`")  # noqa: E501
 
         self._order_book_id = order_book_id
 
@@ -96,6 +94,8 @@ class OrderBookDepth(object):
         :param bids: The bids of this OrderBookDepth.  # noqa: E501
         :type: dict
         """
+        if bids is None:
+            raise ValueError("Invalid value for `bids`, must not be `None`")  # noqa: E501
 
         self._bids = bids
 
@@ -117,6 +117,8 @@ class OrderBookDepth(object):
         :param asks: The asks of this OrderBookDepth.  # noqa: E501
         :type: dict
         """
+        if asks is None:
+            raise ValueError("Invalid value for `asks`, must not be `None`")  # noqa: E501
 
         self._asks = asks
 
@@ -138,6 +140,8 @@ class OrderBookDepth(object):
         :param timestamp: The timestamp of this OrderBookDepth.  # noqa: E501
         :type: dict
         """
+        if timestamp is None:
+            raise ValueError("Invalid value for `timestamp`, must not be `None`")  # noqa: E501
 
         self._timestamp = timestamp
 

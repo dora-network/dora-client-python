@@ -81,36 +81,29 @@ class User(object):
         self._show_tutorial_cards = None
         self._notifications_enabled = None
         self.discriminator = None
-        if id is not None:
-            self.id = id
+        self.id = id
         if closed_at is not None:
             self.closed_at = closed_at
         if disabled_at is not None:
             self.disabled_at = disabled_at
-        if email is not None:
-            self.email = email
-        if name is not None:
-            self.name = name
-        if native_asset_id is not None:
-            self.native_asset_id = native_asset_id
+        self.email = email
+        self.name = name
+        self.native_asset_id = native_asset_id
         if photo_url is not None:
             self.photo_url = photo_url
         if provider is not None:
             self.provider = provider
         if provider_id is not None:
             self.provider_id = provider_id
-        if roles is not None:
-            self.roles = roles
+        self.roles = roles
         if timezone is not None:
             self.timezone = timezone
         if timezone_offset is not None:
             self.timezone_offset = timezone_offset
         if verified_at is not None:
             self.verified_at = verified_at
-        if show_tutorial_cards is not None:
-            self.show_tutorial_cards = show_tutorial_cards
-        if notifications_enabled is not None:
-            self.notifications_enabled = notifications_enabled
+        self.show_tutorial_cards = show_tutorial_cards
+        self.notifications_enabled = notifications_enabled
 
     @property
     def id(self):
@@ -130,6 +123,8 @@ class User(object):
         :param id: The id of this User.  # noqa: E501
         :type: dict
         """
+        if id is None:
+            raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
 
         self._id = id
 
@@ -193,6 +188,8 @@ class User(object):
         :param email: The email of this User.  # noqa: E501
         :type: dict
         """
+        if email is None:
+            raise ValueError("Invalid value for `email`, must not be `None`")  # noqa: E501
 
         self._email = email
 
@@ -214,6 +211,8 @@ class User(object):
         :param name: The name of this User.  # noqa: E501
         :type: dict
         """
+        if name is None:
+            raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
 
         self._name = name
 
@@ -235,6 +234,8 @@ class User(object):
         :param native_asset_id: The native_asset_id of this User.  # noqa: E501
         :type: dict
         """
+        if native_asset_id is None:
+            raise ValueError("Invalid value for `native_asset_id`, must not be `None`")  # noqa: E501
 
         self._native_asset_id = native_asset_id
 
@@ -319,6 +320,8 @@ class User(object):
         :param roles: The roles of this User.  # noqa: E501
         :type: dict
         """
+        if roles is None:
+            raise ValueError("Invalid value for `roles`, must not be `None`")  # noqa: E501
 
         self._roles = roles
 
@@ -407,6 +410,8 @@ class User(object):
         :param show_tutorial_cards: The show_tutorial_cards of this User.  # noqa: E501
         :type: dict
         """
+        if show_tutorial_cards is None:
+            raise ValueError("Invalid value for `show_tutorial_cards`, must not be `None`")  # noqa: E501
 
         self._show_tutorial_cards = show_tutorial_cards
 
@@ -428,6 +433,8 @@ class User(object):
         :param notifications_enabled: The notifications_enabled of this User.  # noqa: E501
         :type: dict
         """
+        if notifications_enabled is None:
+            raise ValueError("Invalid value for `notifications_enabled`, must not be `None`")  # noqa: E501
 
         self._notifications_enabled = notifications_enabled
 

@@ -48,14 +48,10 @@ class CurrentLeverageAccruedInterest(object):
         self._position_id = None
         self._current_accrued_interest_usd = None
         self.discriminator = None
-        if user_id is not None:
-            self.user_id = user_id
-        if asset_id is not None:
-            self.asset_id = asset_id
-        if position_id is not None:
-            self.position_id = position_id
-        if current_accrued_interest_usd is not None:
-            self.current_accrued_interest_usd = current_accrued_interest_usd
+        self.user_id = user_id
+        self.asset_id = asset_id
+        self.position_id = position_id
+        self.current_accrued_interest_usd = current_accrued_interest_usd
 
     @property
     def user_id(self):
@@ -75,6 +71,8 @@ class CurrentLeverageAccruedInterest(object):
         :param user_id: The user_id of this CurrentLeverageAccruedInterest.  # noqa: E501
         :type: dict
         """
+        if user_id is None:
+            raise ValueError("Invalid value for `user_id`, must not be `None`")  # noqa: E501
 
         self._user_id = user_id
 
@@ -96,6 +94,8 @@ class CurrentLeverageAccruedInterest(object):
         :param asset_id: The asset_id of this CurrentLeverageAccruedInterest.  # noqa: E501
         :type: dict
         """
+        if asset_id is None:
+            raise ValueError("Invalid value for `asset_id`, must not be `None`")  # noqa: E501
 
         self._asset_id = asset_id
 
@@ -117,6 +117,8 @@ class CurrentLeverageAccruedInterest(object):
         :param position_id: The position_id of this CurrentLeverageAccruedInterest.  # noqa: E501
         :type: dict
         """
+        if position_id is None:
+            raise ValueError("Invalid value for `position_id`, must not be `None`")  # noqa: E501
 
         self._position_id = position_id
 
@@ -138,6 +140,8 @@ class CurrentLeverageAccruedInterest(object):
         :param current_accrued_interest_usd: The current_accrued_interest_usd of this CurrentLeverageAccruedInterest.  # noqa: E501
         :type: dict
         """
+        if current_accrued_interest_usd is None:
+            raise ValueError("Invalid value for `current_accrued_interest_usd`, must not be `None`")  # noqa: E501
 
         self._current_accrued_interest_usd = current_accrued_interest_usd
 

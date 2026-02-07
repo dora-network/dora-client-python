@@ -42,10 +42,8 @@ class UserInterest(object):
         self._available = None
         self._value = None
         self.discriminator = None
-        if available is not None:
-            self.available = available
-        if value is not None:
-            self.value = value
+        self.available = available
+        self.value = value
 
     @property
     def available(self):
@@ -65,6 +63,8 @@ class UserInterest(object):
         :param available: The available of this UserInterest.  # noqa: E501
         :type: dict
         """
+        if available is None:
+            raise ValueError("Invalid value for `available`, must not be `None`")  # noqa: E501
 
         self._available = available
 
@@ -86,6 +86,8 @@ class UserInterest(object):
         :param value: The value of this UserInterest.  # noqa: E501
         :type: dict
         """
+        if value is None:
+            raise ValueError("Invalid value for `value`, must not be `None`")  # noqa: E501
 
         self._value = value
 

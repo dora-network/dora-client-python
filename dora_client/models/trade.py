@@ -31,8 +31,6 @@ class Trade(object):
         'transaction_id': 'dict',
         'asset_0': 'dict',
         'created_at': 'dict',
-        'fee_asset_id': 'dict',
-        'fee_quantity': 'dict',
         'order_book_id': 'dict',
         'order_id': 'dict',
         'order_seq': 'dict',
@@ -47,8 +45,6 @@ class Trade(object):
         'transaction_id': 'transaction_id',
         'asset_0': 'asset_0',
         'created_at': 'created_at',
-        'fee_asset_id': 'fee_asset_id',
-        'fee_quantity': 'fee_quantity',
         'order_book_id': 'order_book_id',
         'order_id': 'order_id',
         'order_seq': 'order_seq',
@@ -59,13 +55,11 @@ class Trade(object):
         'aggressor_indicator': 'aggressor_indicator'
     }
 
-    def __init__(self, transaction_id=None, asset_0=None, created_at=None, fee_asset_id=None, fee_quantity=None, order_book_id=None, order_id=None, order_seq=None, price=None, quantity_0=None, user_id=None, side=None, aggressor_indicator=None):  # noqa: E501
+    def __init__(self, transaction_id=None, asset_0=None, created_at=None, order_book_id=None, order_id=None, order_seq=None, price=None, quantity_0=None, user_id=None, side=None, aggressor_indicator=None):  # noqa: E501
         """Trade - a model defined in Swagger"""  # noqa: E501
         self._transaction_id = None
         self._asset_0 = None
         self._created_at = None
-        self._fee_asset_id = None
-        self._fee_quantity = None
         self._order_book_id = None
         self._order_id = None
         self._order_seq = None
@@ -75,32 +69,17 @@ class Trade(object):
         self._side = None
         self._aggressor_indicator = None
         self.discriminator = None
-        if transaction_id is not None:
-            self.transaction_id = transaction_id
-        if asset_0 is not None:
-            self.asset_0 = asset_0
-        if created_at is not None:
-            self.created_at = created_at
-        if fee_asset_id is not None:
-            self.fee_asset_id = fee_asset_id
-        if fee_quantity is not None:
-            self.fee_quantity = fee_quantity
-        if order_book_id is not None:
-            self.order_book_id = order_book_id
-        if order_id is not None:
-            self.order_id = order_id
-        if order_seq is not None:
-            self.order_seq = order_seq
-        if price is not None:
-            self.price = price
-        if quantity_0 is not None:
-            self.quantity_0 = quantity_0
-        if user_id is not None:
-            self.user_id = user_id
-        if side is not None:
-            self.side = side
-        if aggressor_indicator is not None:
-            self.aggressor_indicator = aggressor_indicator
+        self.transaction_id = transaction_id
+        self.asset_0 = asset_0
+        self.created_at = created_at
+        self.order_book_id = order_book_id
+        self.order_id = order_id
+        self.order_seq = order_seq
+        self.price = price
+        self.quantity_0 = quantity_0
+        self.user_id = user_id
+        self.side = side
+        self.aggressor_indicator = aggressor_indicator
 
     @property
     def transaction_id(self):
@@ -120,6 +99,8 @@ class Trade(object):
         :param transaction_id: The transaction_id of this Trade.  # noqa: E501
         :type: dict
         """
+        if transaction_id is None:
+            raise ValueError("Invalid value for `transaction_id`, must not be `None`")  # noqa: E501
 
         self._transaction_id = transaction_id
 
@@ -141,6 +122,8 @@ class Trade(object):
         :param asset_0: The asset_0 of this Trade.  # noqa: E501
         :type: dict
         """
+        if asset_0 is None:
+            raise ValueError("Invalid value for `asset_0`, must not be `None`")  # noqa: E501
 
         self._asset_0 = asset_0
 
@@ -162,50 +145,10 @@ class Trade(object):
         :param created_at: The created_at of this Trade.  # noqa: E501
         :type: dict
         """
+        if created_at is None:
+            raise ValueError("Invalid value for `created_at`, must not be `None`")  # noqa: E501
 
         self._created_at = created_at
-
-    @property
-    def fee_asset_id(self):
-        """Gets the fee_asset_id of this Trade.  # noqa: E501
-
-
-        :return: The fee_asset_id of this Trade.  # noqa: E501
-        :rtype: dict
-        """
-        return self._fee_asset_id
-
-    @fee_asset_id.setter
-    def fee_asset_id(self, fee_asset_id):
-        """Sets the fee_asset_id of this Trade.
-
-
-        :param fee_asset_id: The fee_asset_id of this Trade.  # noqa: E501
-        :type: dict
-        """
-
-        self._fee_asset_id = fee_asset_id
-
-    @property
-    def fee_quantity(self):
-        """Gets the fee_quantity of this Trade.  # noqa: E501
-
-
-        :return: The fee_quantity of this Trade.  # noqa: E501
-        :rtype: dict
-        """
-        return self._fee_quantity
-
-    @fee_quantity.setter
-    def fee_quantity(self, fee_quantity):
-        """Sets the fee_quantity of this Trade.
-
-
-        :param fee_quantity: The fee_quantity of this Trade.  # noqa: E501
-        :type: dict
-        """
-
-        self._fee_quantity = fee_quantity
 
     @property
     def order_book_id(self):
@@ -225,6 +168,8 @@ class Trade(object):
         :param order_book_id: The order_book_id of this Trade.  # noqa: E501
         :type: dict
         """
+        if order_book_id is None:
+            raise ValueError("Invalid value for `order_book_id`, must not be `None`")  # noqa: E501
 
         self._order_book_id = order_book_id
 
@@ -246,6 +191,8 @@ class Trade(object):
         :param order_id: The order_id of this Trade.  # noqa: E501
         :type: dict
         """
+        if order_id is None:
+            raise ValueError("Invalid value for `order_id`, must not be `None`")  # noqa: E501
 
         self._order_id = order_id
 
@@ -267,6 +214,8 @@ class Trade(object):
         :param order_seq: The order_seq of this Trade.  # noqa: E501
         :type: dict
         """
+        if order_seq is None:
+            raise ValueError("Invalid value for `order_seq`, must not be `None`")  # noqa: E501
 
         self._order_seq = order_seq
 
@@ -288,6 +237,8 @@ class Trade(object):
         :param price: The price of this Trade.  # noqa: E501
         :type: dict
         """
+        if price is None:
+            raise ValueError("Invalid value for `price`, must not be `None`")  # noqa: E501
 
         self._price = price
 
@@ -309,6 +260,8 @@ class Trade(object):
         :param quantity_0: The quantity_0 of this Trade.  # noqa: E501
         :type: dict
         """
+        if quantity_0 is None:
+            raise ValueError("Invalid value for `quantity_0`, must not be `None`")  # noqa: E501
 
         self._quantity_0 = quantity_0
 
@@ -330,6 +283,8 @@ class Trade(object):
         :param user_id: The user_id of this Trade.  # noqa: E501
         :type: dict
         """
+        if user_id is None:
+            raise ValueError("Invalid value for `user_id`, must not be `None`")  # noqa: E501
 
         self._user_id = user_id
 
@@ -351,6 +306,8 @@ class Trade(object):
         :param side: The side of this Trade.  # noqa: E501
         :type: Side
         """
+        if side is None:
+            raise ValueError("Invalid value for `side`, must not be `None`")  # noqa: E501
 
         self._side = side
 
@@ -374,6 +331,8 @@ class Trade(object):
         :param aggressor_indicator: The aggressor_indicator of this Trade.  # noqa: E501
         :type: dict
         """
+        if aggressor_indicator is None:
+            raise ValueError("Invalid value for `aggressor_indicator`, must not be `None`")  # noqa: E501
 
         self._aggressor_indicator = aggressor_indicator
 

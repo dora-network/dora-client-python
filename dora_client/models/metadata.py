@@ -45,12 +45,9 @@ class Metadata(object):
         self._trace_id = None
         self._request_id = None
         self.discriminator = None
-        if status_code is not None:
-            self.status_code = status_code
-        if trace_id is not None:
-            self.trace_id = trace_id
-        if request_id is not None:
-            self.request_id = request_id
+        self.status_code = status_code
+        self.trace_id = trace_id
+        self.request_id = request_id
 
     @property
     def status_code(self):
@@ -72,6 +69,8 @@ class Metadata(object):
         :param status_code: The status_code of this Metadata.  # noqa: E501
         :type: dict
         """
+        if status_code is None:
+            raise ValueError("Invalid value for `status_code`, must not be `None`")  # noqa: E501
 
         self._status_code = status_code
 
@@ -95,6 +94,8 @@ class Metadata(object):
         :param trace_id: The trace_id of this Metadata.  # noqa: E501
         :type: dict
         """
+        if trace_id is None:
+            raise ValueError("Invalid value for `trace_id`, must not be `None`")  # noqa: E501
 
         self._trace_id = trace_id
 
@@ -118,6 +119,8 @@ class Metadata(object):
         :param request_id: The request_id of this Metadata.  # noqa: E501
         :type: dict
         """
+        if request_id is None:
+            raise ValueError("Invalid value for `request_id`, must not be `None`")  # noqa: E501
 
         self._request_id = request_id
 

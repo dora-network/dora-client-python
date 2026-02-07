@@ -34,13 +34,7 @@ class UserValue(object):
         'supplied': 'dict',
         'impending_borrows': 'dict',
         'borrow_limit': 'dict',
-        'liquidation_threshold': 'dict',
-        'notional_long': 'dict',
-        'notional_short': 'dict',
-        'portfolio_value': 'dict',
-        'net_liquidation_value': 'dict',
-        'unrealized_pnl': 'dict',
-        'realized_pnl': 'dict'
+        'liquidation_threshold': 'dict'
     }
 
     attribute_map = {
@@ -50,16 +44,10 @@ class UserValue(object):
         'supplied': 'supplied',
         'impending_borrows': 'impending_borrows',
         'borrow_limit': 'borrow_limit',
-        'liquidation_threshold': 'liquidation_threshold',
-        'notional_long': 'notional_long',
-        'notional_short': 'notional_short',
-        'portfolio_value': 'portfolio_value',
-        'net_liquidation_value': 'net_liquidation_value',
-        'unrealized_pnl': 'unrealized_pnl',
-        'realized_pnl': 'realized_pnl'
+        'liquidation_threshold': 'liquidation_threshold'
     }
 
-    def __init__(self, available=None, locked=None, borrowed=None, supplied=None, impending_borrows=None, borrow_limit=None, liquidation_threshold=None, notional_long=None, notional_short=None, portfolio_value=None, net_liquidation_value=None, unrealized_pnl=None, realized_pnl=None):  # noqa: E501
+    def __init__(self, available=None, locked=None, borrowed=None, supplied=None, impending_borrows=None, borrow_limit=None, liquidation_threshold=None):  # noqa: E501
         """UserValue - a model defined in Swagger"""  # noqa: E501
         self._available = None
         self._locked = None
@@ -68,39 +56,14 @@ class UserValue(object):
         self._impending_borrows = None
         self._borrow_limit = None
         self._liquidation_threshold = None
-        self._notional_long = None
-        self._notional_short = None
-        self._portfolio_value = None
-        self._net_liquidation_value = None
-        self._unrealized_pnl = None
-        self._realized_pnl = None
         self.discriminator = None
-        if available is not None:
-            self.available = available
-        if locked is not None:
-            self.locked = locked
-        if borrowed is not None:
-            self.borrowed = borrowed
-        if supplied is not None:
-            self.supplied = supplied
-        if impending_borrows is not None:
-            self.impending_borrows = impending_borrows
-        if borrow_limit is not None:
-            self.borrow_limit = borrow_limit
-        if liquidation_threshold is not None:
-            self.liquidation_threshold = liquidation_threshold
-        if notional_long is not None:
-            self.notional_long = notional_long
-        if notional_short is not None:
-            self.notional_short = notional_short
-        if portfolio_value is not None:
-            self.portfolio_value = portfolio_value
-        if net_liquidation_value is not None:
-            self.net_liquidation_value = net_liquidation_value
-        if unrealized_pnl is not None:
-            self.unrealized_pnl = unrealized_pnl
-        if realized_pnl is not None:
-            self.realized_pnl = realized_pnl
+        self.available = available
+        self.locked = locked
+        self.borrowed = borrowed
+        self.supplied = supplied
+        self.impending_borrows = impending_borrows
+        self.borrow_limit = borrow_limit
+        self.liquidation_threshold = liquidation_threshold
 
     @property
     def available(self):
@@ -120,6 +83,8 @@ class UserValue(object):
         :param available: The available of this UserValue.  # noqa: E501
         :type: dict
         """
+        if available is None:
+            raise ValueError("Invalid value for `available`, must not be `None`")  # noqa: E501
 
         self._available = available
 
@@ -141,6 +106,8 @@ class UserValue(object):
         :param locked: The locked of this UserValue.  # noqa: E501
         :type: dict
         """
+        if locked is None:
+            raise ValueError("Invalid value for `locked`, must not be `None`")  # noqa: E501
 
         self._locked = locked
 
@@ -162,6 +129,8 @@ class UserValue(object):
         :param borrowed: The borrowed of this UserValue.  # noqa: E501
         :type: dict
         """
+        if borrowed is None:
+            raise ValueError("Invalid value for `borrowed`, must not be `None`")  # noqa: E501
 
         self._borrowed = borrowed
 
@@ -183,6 +152,8 @@ class UserValue(object):
         :param supplied: The supplied of this UserValue.  # noqa: E501
         :type: dict
         """
+        if supplied is None:
+            raise ValueError("Invalid value for `supplied`, must not be `None`")  # noqa: E501
 
         self._supplied = supplied
 
@@ -204,6 +175,8 @@ class UserValue(object):
         :param impending_borrows: The impending_borrows of this UserValue.  # noqa: E501
         :type: dict
         """
+        if impending_borrows is None:
+            raise ValueError("Invalid value for `impending_borrows`, must not be `None`")  # noqa: E501
 
         self._impending_borrows = impending_borrows
 
@@ -225,6 +198,8 @@ class UserValue(object):
         :param borrow_limit: The borrow_limit of this UserValue.  # noqa: E501
         :type: dict
         """
+        if borrow_limit is None:
+            raise ValueError("Invalid value for `borrow_limit`, must not be `None`")  # noqa: E501
 
         self._borrow_limit = borrow_limit
 
@@ -246,134 +221,10 @@ class UserValue(object):
         :param liquidation_threshold: The liquidation_threshold of this UserValue.  # noqa: E501
         :type: dict
         """
+        if liquidation_threshold is None:
+            raise ValueError("Invalid value for `liquidation_threshold`, must not be `None`")  # noqa: E501
 
         self._liquidation_threshold = liquidation_threshold
-
-    @property
-    def notional_long(self):
-        """Gets the notional_long of this UserValue.  # noqa: E501
-
-
-        :return: The notional_long of this UserValue.  # noqa: E501
-        :rtype: dict
-        """
-        return self._notional_long
-
-    @notional_long.setter
-    def notional_long(self, notional_long):
-        """Sets the notional_long of this UserValue.
-
-
-        :param notional_long: The notional_long of this UserValue.  # noqa: E501
-        :type: dict
-        """
-
-        self._notional_long = notional_long
-
-    @property
-    def notional_short(self):
-        """Gets the notional_short of this UserValue.  # noqa: E501
-
-
-        :return: The notional_short of this UserValue.  # noqa: E501
-        :rtype: dict
-        """
-        return self._notional_short
-
-    @notional_short.setter
-    def notional_short(self, notional_short):
-        """Sets the notional_short of this UserValue.
-
-
-        :param notional_short: The notional_short of this UserValue.  # noqa: E501
-        :type: dict
-        """
-
-        self._notional_short = notional_short
-
-    @property
-    def portfolio_value(self):
-        """Gets the portfolio_value of this UserValue.  # noqa: E501
-
-
-        :return: The portfolio_value of this UserValue.  # noqa: E501
-        :rtype: dict
-        """
-        return self._portfolio_value
-
-    @portfolio_value.setter
-    def portfolio_value(self, portfolio_value):
-        """Sets the portfolio_value of this UserValue.
-
-
-        :param portfolio_value: The portfolio_value of this UserValue.  # noqa: E501
-        :type: dict
-        """
-
-        self._portfolio_value = portfolio_value
-
-    @property
-    def net_liquidation_value(self):
-        """Gets the net_liquidation_value of this UserValue.  # noqa: E501
-
-
-        :return: The net_liquidation_value of this UserValue.  # noqa: E501
-        :rtype: dict
-        """
-        return self._net_liquidation_value
-
-    @net_liquidation_value.setter
-    def net_liquidation_value(self, net_liquidation_value):
-        """Sets the net_liquidation_value of this UserValue.
-
-
-        :param net_liquidation_value: The net_liquidation_value of this UserValue.  # noqa: E501
-        :type: dict
-        """
-
-        self._net_liquidation_value = net_liquidation_value
-
-    @property
-    def unrealized_pnl(self):
-        """Gets the unrealized_pnl of this UserValue.  # noqa: E501
-
-
-        :return: The unrealized_pnl of this UserValue.  # noqa: E501
-        :rtype: dict
-        """
-        return self._unrealized_pnl
-
-    @unrealized_pnl.setter
-    def unrealized_pnl(self, unrealized_pnl):
-        """Sets the unrealized_pnl of this UserValue.
-
-
-        :param unrealized_pnl: The unrealized_pnl of this UserValue.  # noqa: E501
-        :type: dict
-        """
-
-        self._unrealized_pnl = unrealized_pnl
-
-    @property
-    def realized_pnl(self):
-        """Gets the realized_pnl of this UserValue.  # noqa: E501
-
-
-        :return: The realized_pnl of this UserValue.  # noqa: E501
-        :rtype: dict
-        """
-        return self._realized_pnl
-
-    @realized_pnl.setter
-    def realized_pnl(self, realized_pnl):
-        """Sets the realized_pnl of this UserValue.
-
-
-        :param realized_pnl: The realized_pnl of this UserValue.  # noqa: E501
-        :type: dict
-        """
-
-        self._realized_pnl = realized_pnl
 
     def to_dict(self):
         """Returns the model properties as a dict"""

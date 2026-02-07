@@ -69,28 +69,17 @@ class CouponPayment(object):
         self._process_every = None
         self._last_processed_at = None
         self.discriminator = None
-        if id is not None:
-            self.id = id
-        if asset_id is not None:
-            self.asset_id = asset_id
-        if _yield is not None:
-            self._yield = _yield
-        if start_at is not None:
-            self.start_at = start_at
-        if end_at is not None:
-            self.end_at = end_at
-        if pay_at is not None:
-            self.pay_at = pay_at
-        if available_to_pay is not None:
-            self.available_to_pay = available_to_pay
-        if completed_at is not None:
-            self.completed_at = completed_at
-        if created_at is not None:
-            self.created_at = created_at
-        if process_every is not None:
-            self.process_every = process_every
-        if last_processed_at is not None:
-            self.last_processed_at = last_processed_at
+        self.id = id
+        self.asset_id = asset_id
+        self._yield = _yield
+        self.start_at = start_at
+        self.end_at = end_at
+        self.pay_at = pay_at
+        self.available_to_pay = available_to_pay
+        self.completed_at = completed_at
+        self.created_at = created_at
+        self.process_every = process_every
+        self.last_processed_at = last_processed_at
 
     @property
     def id(self):
@@ -110,6 +99,8 @@ class CouponPayment(object):
         :param id: The id of this CouponPayment.  # noqa: E501
         :type: dict
         """
+        if id is None:
+            raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
 
         self._id = id
 
@@ -131,6 +122,8 @@ class CouponPayment(object):
         :param asset_id: The asset_id of this CouponPayment.  # noqa: E501
         :type: dict
         """
+        if asset_id is None:
+            raise ValueError("Invalid value for `asset_id`, must not be `None`")  # noqa: E501
 
         self._asset_id = asset_id
 
@@ -152,6 +145,8 @@ class CouponPayment(object):
         :param _yield: The _yield of this CouponPayment.  # noqa: E501
         :type: dict
         """
+        if _yield is None:
+            raise ValueError("Invalid value for `_yield`, must not be `None`")  # noqa: E501
 
         self.__yield = _yield
 
@@ -173,6 +168,8 @@ class CouponPayment(object):
         :param start_at: The start_at of this CouponPayment.  # noqa: E501
         :type: dict
         """
+        if start_at is None:
+            raise ValueError("Invalid value for `start_at`, must not be `None`")  # noqa: E501
 
         self._start_at = start_at
 
@@ -194,6 +191,8 @@ class CouponPayment(object):
         :param end_at: The end_at of this CouponPayment.  # noqa: E501
         :type: dict
         """
+        if end_at is None:
+            raise ValueError("Invalid value for `end_at`, must not be `None`")  # noqa: E501
 
         self._end_at = end_at
 
@@ -215,6 +214,8 @@ class CouponPayment(object):
         :param pay_at: The pay_at of this CouponPayment.  # noqa: E501
         :type: dict
         """
+        if pay_at is None:
+            raise ValueError("Invalid value for `pay_at`, must not be `None`")  # noqa: E501
 
         self._pay_at = pay_at
 
@@ -236,6 +237,8 @@ class CouponPayment(object):
         :param available_to_pay: The available_to_pay of this CouponPayment.  # noqa: E501
         :type: dict
         """
+        if available_to_pay is None:
+            raise ValueError("Invalid value for `available_to_pay`, must not be `None`")  # noqa: E501
 
         self._available_to_pay = available_to_pay
 
@@ -257,6 +260,8 @@ class CouponPayment(object):
         :param completed_at: The completed_at of this CouponPayment.  # noqa: E501
         :type: dict
         """
+        if completed_at is None:
+            raise ValueError("Invalid value for `completed_at`, must not be `None`")  # noqa: E501
 
         self._completed_at = completed_at
 
@@ -278,6 +283,8 @@ class CouponPayment(object):
         :param created_at: The created_at of this CouponPayment.  # noqa: E501
         :type: dict
         """
+        if created_at is None:
+            raise ValueError("Invalid value for `created_at`, must not be `None`")  # noqa: E501
 
         self._created_at = created_at
 
@@ -301,6 +308,8 @@ class CouponPayment(object):
         :param process_every: The process_every of this CouponPayment.  # noqa: E501
         :type: dict
         """
+        if process_every is None:
+            raise ValueError("Invalid value for `process_every`, must not be `None`")  # noqa: E501
 
         self._process_every = process_every
 
@@ -322,6 +331,8 @@ class CouponPayment(object):
         :param last_processed_at: The last_processed_at of this CouponPayment.  # noqa: E501
         :type: dict
         """
+        if last_processed_at is None:
+            raise ValueError("Invalid value for `last_processed_at`, must not be `None`")  # noqa: E501
 
         self._last_processed_at = last_processed_at
 

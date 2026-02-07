@@ -51,16 +51,11 @@ class FundUser(object):
         self._final_quantity = None
         self._amount = None
         self.discriminator = None
-        if user_id is not None:
-            self.user_id = user_id
-        if position_id is not None:
-            self.position_id = position_id
-        if asset_id is not None:
-            self.asset_id = asset_id
-        if final_quantity is not None:
-            self.final_quantity = final_quantity
-        if amount is not None:
-            self.amount = amount
+        self.user_id = user_id
+        self.position_id = position_id
+        self.asset_id = asset_id
+        self.final_quantity = final_quantity
+        self.amount = amount
 
     @property
     def user_id(self):
@@ -80,6 +75,8 @@ class FundUser(object):
         :param user_id: The user_id of this FundUser.  # noqa: E501
         :type: dict
         """
+        if user_id is None:
+            raise ValueError("Invalid value for `user_id`, must not be `None`")  # noqa: E501
 
         self._user_id = user_id
 
@@ -101,6 +98,8 @@ class FundUser(object):
         :param position_id: The position_id of this FundUser.  # noqa: E501
         :type: dict
         """
+        if position_id is None:
+            raise ValueError("Invalid value for `position_id`, must not be `None`")  # noqa: E501
 
         self._position_id = position_id
 
@@ -122,6 +121,8 @@ class FundUser(object):
         :param asset_id: The asset_id of this FundUser.  # noqa: E501
         :type: dict
         """
+        if asset_id is None:
+            raise ValueError("Invalid value for `asset_id`, must not be `None`")  # noqa: E501
 
         self._asset_id = asset_id
 
@@ -143,6 +144,8 @@ class FundUser(object):
         :param final_quantity: The final_quantity of this FundUser.  # noqa: E501
         :type: dict
         """
+        if final_quantity is None:
+            raise ValueError("Invalid value for `final_quantity`, must not be `None`")  # noqa: E501
 
         self._final_quantity = final_quantity
 
@@ -164,6 +167,8 @@ class FundUser(object):
         :param amount: The amount of this FundUser.  # noqa: E501
         :type: dict
         """
+        if amount is None:
+            raise ValueError("Invalid value for `amount`, must not be `None`")  # noqa: E501
 
         self._amount = amount
 

@@ -45,12 +45,9 @@ class PoolPrice(object):
         self._price = None
         self._timestamp = None
         self.discriminator = None
-        if pool_id is not None:
-            self.pool_id = pool_id
-        if price is not None:
-            self.price = price
-        if timestamp is not None:
-            self.timestamp = timestamp
+        self.pool_id = pool_id
+        self.price = price
+        self.timestamp = timestamp
 
     @property
     def pool_id(self):
@@ -70,6 +67,8 @@ class PoolPrice(object):
         :param pool_id: The pool_id of this PoolPrice.  # noqa: E501
         :type: dict
         """
+        if pool_id is None:
+            raise ValueError("Invalid value for `pool_id`, must not be `None`")  # noqa: E501
 
         self._pool_id = pool_id
 
@@ -91,6 +90,8 @@ class PoolPrice(object):
         :param price: The price of this PoolPrice.  # noqa: E501
         :type: dict
         """
+        if price is None:
+            raise ValueError("Invalid value for `price`, must not be `None`")  # noqa: E501
 
         self._price = price
 
@@ -112,6 +113,8 @@ class PoolPrice(object):
         :param timestamp: The timestamp of this PoolPrice.  # noqa: E501
         :type: dict
         """
+        if timestamp is None:
+            raise ValueError("Invalid value for `timestamp`, must not be `None`")  # noqa: E501
 
         self._timestamp = timestamp
 

@@ -33,8 +33,6 @@ from dora_client.models.balance_transfer import BalanceTransfer
 from dora_client.models.balances_response import BalancesResponse
 from dora_client.models.bond import Bond
 from dora_client.models.bond_kind import BondKind
-from dora_client.models.borrow_request import BorrowRequest
-from dora_client.models.borrow_response import BorrowResponse
 from dora_client.models.cancel_order_response import CancelOrderResponse
 from dora_client.models.cancel_order_response_envelope import CancelOrderResponseEnvelope
 from dora_client.models.candle import Candle
@@ -170,8 +168,6 @@ from dora_client.models.position_accounts import PositionAccounts
 from dora_client.models.position_response import PositionResponse
 from dora_client.models.position_type import PositionType
 from dora_client.models.price_level import PriceLevel
-from dora_client.models.repay_request import RepayRequest
-from dora_client.models.repay_response import RepayResponse
 from dora_client.models.response_envelope import ResponseEnvelope
 from dora_client.models.response_envelope_of_list_assets import ResponseEnvelopeOfListAssets
 from dora_client.models.revoke_api_key_data import RevokeAPIKeyData

@@ -42,10 +42,8 @@ class PriceLevel(object):
         self._price = None
         self._quantity = None
         self.discriminator = None
-        if price is not None:
-            self.price = price
-        if quantity is not None:
-            self.quantity = quantity
+        self.price = price
+        self.quantity = quantity
 
     @property
     def price(self):
@@ -65,6 +63,8 @@ class PriceLevel(object):
         :param price: The price of this PriceLevel.  # noqa: E501
         :type: dict
         """
+        if price is None:
+            raise ValueError("Invalid value for `price`, must not be `None`")  # noqa: E501
 
         self._price = price
 
@@ -86,6 +86,8 @@ class PriceLevel(object):
         :param quantity: The quantity of this PriceLevel.  # noqa: E501
         :type: dict
         """
+        if quantity is None:
+            raise ValueError("Invalid value for `quantity`, must not be `None`")  # noqa: E501
 
         self._quantity = quantity
 

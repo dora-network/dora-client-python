@@ -45,12 +45,9 @@ class PositionAccount(object):
         self._position_name = None
         self._is_global = None
         self.discriminator = None
-        if position_id is not None:
-            self.position_id = position_id
-        if position_name is not None:
-            self.position_name = position_name
-        if is_global is not None:
-            self.is_global = is_global
+        self.position_id = position_id
+        self.position_name = position_name
+        self.is_global = is_global
 
     @property
     def position_id(self):
@@ -72,6 +69,8 @@ class PositionAccount(object):
         :param position_id: The position_id of this PositionAccount.  # noqa: E501
         :type: dict
         """
+        if position_id is None:
+            raise ValueError("Invalid value for `position_id`, must not be `None`")  # noqa: E501
 
         self._position_id = position_id
 
@@ -95,6 +94,8 @@ class PositionAccount(object):
         :param position_name: The position_name of this PositionAccount.  # noqa: E501
         :type: dict
         """
+        if position_name is None:
+            raise ValueError("Invalid value for `position_name`, must not be `None`")  # noqa: E501
 
         self._position_name = position_name
 
@@ -118,6 +119,8 @@ class PositionAccount(object):
         :param is_global: The is_global of this PositionAccount.  # noqa: E501
         :type: dict
         """
+        if is_global is None:
+            raise ValueError("Invalid value for `is_global`, must not be `None`")  # noqa: E501
 
         self._is_global = is_global
 

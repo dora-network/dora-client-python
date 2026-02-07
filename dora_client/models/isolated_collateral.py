@@ -51,16 +51,11 @@ class IsolatedCollateral(object):
         self._asset_id = None
         self._quantity = None
         self.discriminator = None
-        if global_position_id is not None:
-            self.global_position_id = global_position_id
-        if isolated_position_id is not None:
-            self.isolated_position_id = isolated_position_id
-        if transaction_id is not None:
-            self.transaction_id = transaction_id
-        if asset_id is not None:
-            self.asset_id = asset_id
-        if quantity is not None:
-            self.quantity = quantity
+        self.global_position_id = global_position_id
+        self.isolated_position_id = isolated_position_id
+        self.transaction_id = transaction_id
+        self.asset_id = asset_id
+        self.quantity = quantity
 
     @property
     def global_position_id(self):
@@ -80,6 +75,8 @@ class IsolatedCollateral(object):
         :param global_position_id: The global_position_id of this IsolatedCollateral.  # noqa: E501
         :type: dict
         """
+        if global_position_id is None:
+            raise ValueError("Invalid value for `global_position_id`, must not be `None`")  # noqa: E501
 
         self._global_position_id = global_position_id
 
@@ -101,6 +98,8 @@ class IsolatedCollateral(object):
         :param isolated_position_id: The isolated_position_id of this IsolatedCollateral.  # noqa: E501
         :type: dict
         """
+        if isolated_position_id is None:
+            raise ValueError("Invalid value for `isolated_position_id`, must not be `None`")  # noqa: E501
 
         self._isolated_position_id = isolated_position_id
 
@@ -122,6 +121,8 @@ class IsolatedCollateral(object):
         :param transaction_id: The transaction_id of this IsolatedCollateral.  # noqa: E501
         :type: dict
         """
+        if transaction_id is None:
+            raise ValueError("Invalid value for `transaction_id`, must not be `None`")  # noqa: E501
 
         self._transaction_id = transaction_id
 
@@ -143,6 +144,8 @@ class IsolatedCollateral(object):
         :param asset_id: The asset_id of this IsolatedCollateral.  # noqa: E501
         :type: dict
         """
+        if asset_id is None:
+            raise ValueError("Invalid value for `asset_id`, must not be `None`")  # noqa: E501
 
         self._asset_id = asset_id
 
@@ -164,6 +167,8 @@ class IsolatedCollateral(object):
         :param quantity: The quantity of this IsolatedCollateral.  # noqa: E501
         :type: dict
         """
+        if quantity is None:
+            raise ValueError("Invalid value for `quantity`, must not be `None`")  # noqa: E501
 
         self._quantity = quantity
 

@@ -57,20 +57,13 @@ class Candle(object):
         self._close = None
         self._volume = None
         self.discriminator = None
-        if order_book_id is not None:
-            self.order_book_id = order_book_id
-        if start_timestamp is not None:
-            self.start_timestamp = start_timestamp
-        if open is not None:
-            self.open = open
-        if high is not None:
-            self.high = high
-        if low is not None:
-            self.low = low
-        if close is not None:
-            self.close = close
-        if volume is not None:
-            self.volume = volume
+        self.order_book_id = order_book_id
+        self.start_timestamp = start_timestamp
+        self.open = open
+        self.high = high
+        self.low = low
+        self.close = close
+        self.volume = volume
 
     @property
     def order_book_id(self):
@@ -90,6 +83,8 @@ class Candle(object):
         :param order_book_id: The order_book_id of this Candle.  # noqa: E501
         :type: dict
         """
+        if order_book_id is None:
+            raise ValueError("Invalid value for `order_book_id`, must not be `None`")  # noqa: E501
 
         self._order_book_id = order_book_id
 
@@ -111,6 +106,8 @@ class Candle(object):
         :param start_timestamp: The start_timestamp of this Candle.  # noqa: E501
         :type: dict
         """
+        if start_timestamp is None:
+            raise ValueError("Invalid value for `start_timestamp`, must not be `None`")  # noqa: E501
 
         self._start_timestamp = start_timestamp
 
@@ -132,6 +129,8 @@ class Candle(object):
         :param open: The open of this Candle.  # noqa: E501
         :type: dict
         """
+        if open is None:
+            raise ValueError("Invalid value for `open`, must not be `None`")  # noqa: E501
 
         self._open = open
 
@@ -153,6 +152,8 @@ class Candle(object):
         :param high: The high of this Candle.  # noqa: E501
         :type: dict
         """
+        if high is None:
+            raise ValueError("Invalid value for `high`, must not be `None`")  # noqa: E501
 
         self._high = high
 
@@ -174,6 +175,8 @@ class Candle(object):
         :param low: The low of this Candle.  # noqa: E501
         :type: dict
         """
+        if low is None:
+            raise ValueError("Invalid value for `low`, must not be `None`")  # noqa: E501
 
         self._low = low
 
@@ -195,6 +198,8 @@ class Candle(object):
         :param close: The close of this Candle.  # noqa: E501
         :type: dict
         """
+        if close is None:
+            raise ValueError("Invalid value for `close`, must not be `None`")  # noqa: E501
 
         self._close = close
 
@@ -216,6 +221,8 @@ class Candle(object):
         :param volume: The volume of this Candle.  # noqa: E501
         :type: dict
         """
+        if volume is None:
+            raise ValueError("Invalid value for `volume`, must not be `None`")  # noqa: E501
 
         self._volume = volume
 

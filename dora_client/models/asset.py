@@ -35,7 +35,6 @@ class Asset(object):
         'fractionalized_units': 'dict',
         'description': 'dict',
         'liquidation_weight': 'dict',
-        'maturity_id': 'dict',
         'max_supply': 'dict',
         'max_utilization': 'dict',
         'name': 'dict',
@@ -48,6 +47,7 @@ class Asset(object):
         'can_trade': 'dict',
         'can_virtual_borrow': 'dict',
         'max_leverage': 'dict',
+        'leverage_interest_rate': 'dict',
         'bond': 'Bond'
     }
 
@@ -59,7 +59,6 @@ class Asset(object):
         'fractionalized_units': 'fractionalized_units',
         'description': 'description',
         'liquidation_weight': 'liquidation_weight',
-        'maturity_id': 'maturity_id',
         'max_supply': 'max_supply',
         'max_utilization': 'max_utilization',
         'name': 'name',
@@ -72,10 +71,11 @@ class Asset(object):
         'can_trade': 'can_trade',
         'can_virtual_borrow': 'can_virtual_borrow',
         'max_leverage': 'max_leverage',
+        'leverage_interest_rate': 'leverage_interest_rate',
         'bond': 'bond'
     }
 
-    def __init__(self, id=None, collateral_weight=None, created_at=None, decimals=None, fractionalized_units=None, description=None, liquidation_weight=None, maturity_id=None, max_supply=None, max_utilization=None, name=None, symbol=None, kind=None, _yield=None, can_add_liquidity=None, can_direct_borrow=None, can_onboard=None, can_trade=None, can_virtual_borrow=None, max_leverage=None, bond=None):  # noqa: E501
+    def __init__(self, id=None, collateral_weight=None, created_at=None, decimals=None, fractionalized_units=None, description=None, liquidation_weight=None, max_supply=None, max_utilization=None, name=None, symbol=None, kind=None, _yield=None, can_add_liquidity=None, can_direct_borrow=None, can_onboard=None, can_trade=None, can_virtual_borrow=None, max_leverage=None, leverage_interest_rate=None, bond=None):  # noqa: E501
         """Asset - a model defined in Swagger"""  # noqa: E501
         self._id = None
         self._collateral_weight = None
@@ -84,7 +84,6 @@ class Asset(object):
         self._fractionalized_units = None
         self._description = None
         self._liquidation_weight = None
-        self._maturity_id = None
         self._max_supply = None
         self._max_utilization = None
         self._name = None
@@ -97,48 +96,29 @@ class Asset(object):
         self._can_trade = None
         self._can_virtual_borrow = None
         self._max_leverage = None
+        self._leverage_interest_rate = None
         self._bond = None
         self.discriminator = None
-        if id is not None:
-            self.id = id
-        if collateral_weight is not None:
-            self.collateral_weight = collateral_weight
-        if created_at is not None:
-            self.created_at = created_at
-        if decimals is not None:
-            self.decimals = decimals
-        if fractionalized_units is not None:
-            self.fractionalized_units = fractionalized_units
-        if description is not None:
-            self.description = description
-        if liquidation_weight is not None:
-            self.liquidation_weight = liquidation_weight
-        if maturity_id is not None:
-            self.maturity_id = maturity_id
-        if max_supply is not None:
-            self.max_supply = max_supply
-        if max_utilization is not None:
-            self.max_utilization = max_utilization
-        if name is not None:
-            self.name = name
-        if symbol is not None:
-            self.symbol = symbol
-        if kind is not None:
-            self.kind = kind
-        if _yield is not None:
-            self._yield = _yield
-        if can_add_liquidity is not None:
-            self.can_add_liquidity = can_add_liquidity
-        if can_direct_borrow is not None:
-            self.can_direct_borrow = can_direct_borrow
-        if can_onboard is not None:
-            self.can_onboard = can_onboard
-        if can_trade is not None:
-            self.can_trade = can_trade
-        if can_virtual_borrow is not None:
-            self.can_virtual_borrow = can_virtual_borrow
-        if max_leverage is not None:
-            self.max_leverage = max_leverage
+        self.id = id
+        self.collateral_weight = collateral_weight
+        self.created_at = created_at
+        self.decimals = decimals
+        self.fractionalized_units = fractionalized_units
+        self.description = description
+        self.liquidation_weight = liquidation_weight
+        self.max_supply = max_supply
+        self.max_utilization = max_utilization
+        self.name = name
+        self.symbol = symbol
+        self.kind = kind
+        self._yield = _yield
+        self.can_add_liquidity = can_add_liquidity
+        self.can_direct_borrow = can_direct_borrow
+        self.can_onboard = can_onboard
+        self.can_trade = can_trade
+        self.can_virtual_borrow = can_virtual_borrow
+        self.max_leverage = max_leverage
+        self.leverage_interest_rate = leverage_interest_rate
         if bond is not None:
             self.bond = bond
 
@@ -160,6 +140,8 @@ class Asset(object):
         :param id: The id of this Asset.  # noqa: E501
         :type: dict
         """
+        if id is None:
+            raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
 
         self._id = id
 
@@ -181,6 +163,8 @@ class Asset(object):
         :param collateral_weight: The collateral_weight of this Asset.  # noqa: E501
         :type: dict
         """
+        if collateral_weight is None:
+            raise ValueError("Invalid value for `collateral_weight`, must not be `None`")  # noqa: E501
 
         self._collateral_weight = collateral_weight
 
@@ -202,6 +186,8 @@ class Asset(object):
         :param created_at: The created_at of this Asset.  # noqa: E501
         :type: dict
         """
+        if created_at is None:
+            raise ValueError("Invalid value for `created_at`, must not be `None`")  # noqa: E501
 
         self._created_at = created_at
 
@@ -223,6 +209,8 @@ class Asset(object):
         :param decimals: The decimals of this Asset.  # noqa: E501
         :type: dict
         """
+        if decimals is None:
+            raise ValueError("Invalid value for `decimals`, must not be `None`")  # noqa: E501
 
         self._decimals = decimals
 
@@ -244,6 +232,8 @@ class Asset(object):
         :param fractionalized_units: The fractionalized_units of this Asset.  # noqa: E501
         :type: dict
         """
+        if fractionalized_units is None:
+            raise ValueError("Invalid value for `fractionalized_units`, must not be `None`")  # noqa: E501
 
         self._fractionalized_units = fractionalized_units
 
@@ -265,6 +255,8 @@ class Asset(object):
         :param description: The description of this Asset.  # noqa: E501
         :type: dict
         """
+        if description is None:
+            raise ValueError("Invalid value for `description`, must not be `None`")  # noqa: E501
 
         self._description = description
 
@@ -286,29 +278,10 @@ class Asset(object):
         :param liquidation_weight: The liquidation_weight of this Asset.  # noqa: E501
         :type: dict
         """
+        if liquidation_weight is None:
+            raise ValueError("Invalid value for `liquidation_weight`, must not be `None`")  # noqa: E501
 
         self._liquidation_weight = liquidation_weight
-
-    @property
-    def maturity_id(self):
-        """Gets the maturity_id of this Asset.  # noqa: E501
-
-
-        :return: The maturity_id of this Asset.  # noqa: E501
-        :rtype: dict
-        """
-        return self._maturity_id
-
-    @maturity_id.setter
-    def maturity_id(self, maturity_id):
-        """Sets the maturity_id of this Asset.
-
-
-        :param maturity_id: The maturity_id of this Asset.  # noqa: E501
-        :type: dict
-        """
-
-        self._maturity_id = maturity_id
 
     @property
     def max_supply(self):
@@ -328,6 +301,8 @@ class Asset(object):
         :param max_supply: The max_supply of this Asset.  # noqa: E501
         :type: dict
         """
+        if max_supply is None:
+            raise ValueError("Invalid value for `max_supply`, must not be `None`")  # noqa: E501
 
         self._max_supply = max_supply
 
@@ -349,6 +324,8 @@ class Asset(object):
         :param max_utilization: The max_utilization of this Asset.  # noqa: E501
         :type: dict
         """
+        if max_utilization is None:
+            raise ValueError("Invalid value for `max_utilization`, must not be `None`")  # noqa: E501
 
         self._max_utilization = max_utilization
 
@@ -370,6 +347,8 @@ class Asset(object):
         :param name: The name of this Asset.  # noqa: E501
         :type: dict
         """
+        if name is None:
+            raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
 
         self._name = name
 
@@ -391,6 +370,8 @@ class Asset(object):
         :param symbol: The symbol of this Asset.  # noqa: E501
         :type: dict
         """
+        if symbol is None:
+            raise ValueError("Invalid value for `symbol`, must not be `None`")  # noqa: E501
 
         self._symbol = symbol
 
@@ -412,6 +393,8 @@ class Asset(object):
         :param kind: The kind of this Asset.  # noqa: E501
         :type: AssetKind
         """
+        if kind is None:
+            raise ValueError("Invalid value for `kind`, must not be `None`")  # noqa: E501
 
         self._kind = kind
 
@@ -433,6 +416,8 @@ class Asset(object):
         :param _yield: The _yield of this Asset.  # noqa: E501
         :type: dict
         """
+        if _yield is None:
+            raise ValueError("Invalid value for `_yield`, must not be `None`")  # noqa: E501
 
         self.__yield = _yield
 
@@ -454,6 +439,8 @@ class Asset(object):
         :param can_add_liquidity: The can_add_liquidity of this Asset.  # noqa: E501
         :type: dict
         """
+        if can_add_liquidity is None:
+            raise ValueError("Invalid value for `can_add_liquidity`, must not be `None`")  # noqa: E501
 
         self._can_add_liquidity = can_add_liquidity
 
@@ -475,6 +462,8 @@ class Asset(object):
         :param can_direct_borrow: The can_direct_borrow of this Asset.  # noqa: E501
         :type: dict
         """
+        if can_direct_borrow is None:
+            raise ValueError("Invalid value for `can_direct_borrow`, must not be `None`")  # noqa: E501
 
         self._can_direct_borrow = can_direct_borrow
 
@@ -496,6 +485,8 @@ class Asset(object):
         :param can_onboard: The can_onboard of this Asset.  # noqa: E501
         :type: dict
         """
+        if can_onboard is None:
+            raise ValueError("Invalid value for `can_onboard`, must not be `None`")  # noqa: E501
 
         self._can_onboard = can_onboard
 
@@ -517,6 +508,8 @@ class Asset(object):
         :param can_trade: The can_trade of this Asset.  # noqa: E501
         :type: dict
         """
+        if can_trade is None:
+            raise ValueError("Invalid value for `can_trade`, must not be `None`")  # noqa: E501
 
         self._can_trade = can_trade
 
@@ -538,6 +531,8 @@ class Asset(object):
         :param can_virtual_borrow: The can_virtual_borrow of this Asset.  # noqa: E501
         :type: dict
         """
+        if can_virtual_borrow is None:
+            raise ValueError("Invalid value for `can_virtual_borrow`, must not be `None`")  # noqa: E501
 
         self._can_virtual_borrow = can_virtual_borrow
 
@@ -559,8 +554,33 @@ class Asset(object):
         :param max_leverage: The max_leverage of this Asset.  # noqa: E501
         :type: dict
         """
+        if max_leverage is None:
+            raise ValueError("Invalid value for `max_leverage`, must not be `None`")  # noqa: E501
 
         self._max_leverage = max_leverage
+
+    @property
+    def leverage_interest_rate(self):
+        """Gets the leverage_interest_rate of this Asset.  # noqa: E501
+
+
+        :return: The leverage_interest_rate of this Asset.  # noqa: E501
+        :rtype: dict
+        """
+        return self._leverage_interest_rate
+
+    @leverage_interest_rate.setter
+    def leverage_interest_rate(self, leverage_interest_rate):
+        """Sets the leverage_interest_rate of this Asset.
+
+
+        :param leverage_interest_rate: The leverage_interest_rate of this Asset.  # noqa: E501
+        :type: dict
+        """
+        if leverage_interest_rate is None:
+            raise ValueError("Invalid value for `leverage_interest_rate`, must not be `None`")  # noqa: E501
+
+        self._leverage_interest_rate = leverage_interest_rate
 
     @property
     def bond(self):

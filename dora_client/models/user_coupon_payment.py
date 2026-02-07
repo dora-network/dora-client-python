@@ -63,24 +63,15 @@ class UserCouponPayment(object):
         self._started_at = None
         self._ended_at = None
         self.discriminator = None
-        if user_id is not None:
-            self.user_id = user_id
-        if position_id is not None:
-            self.position_id = position_id
-        if asset_id is not None:
-            self.asset_id = asset_id
-        if coupon_payment_id is not None:
-            self.coupon_payment_id = coupon_payment_id
-        if seq is not None:
-            self.seq = seq
-        if pending is not None:
-            self.pending = pending
-        if completed is not None:
-            self.completed = completed
-        if started_at is not None:
-            self.started_at = started_at
-        if ended_at is not None:
-            self.ended_at = ended_at
+        self.user_id = user_id
+        self.position_id = position_id
+        self.asset_id = asset_id
+        self.coupon_payment_id = coupon_payment_id
+        self.seq = seq
+        self.pending = pending
+        self.completed = completed
+        self.started_at = started_at
+        self.ended_at = ended_at
 
     @property
     def user_id(self):
@@ -100,6 +91,8 @@ class UserCouponPayment(object):
         :param user_id: The user_id of this UserCouponPayment.  # noqa: E501
         :type: dict
         """
+        if user_id is None:
+            raise ValueError("Invalid value for `user_id`, must not be `None`")  # noqa: E501
 
         self._user_id = user_id
 
@@ -121,6 +114,8 @@ class UserCouponPayment(object):
         :param position_id: The position_id of this UserCouponPayment.  # noqa: E501
         :type: dict
         """
+        if position_id is None:
+            raise ValueError("Invalid value for `position_id`, must not be `None`")  # noqa: E501
 
         self._position_id = position_id
 
@@ -142,6 +137,8 @@ class UserCouponPayment(object):
         :param asset_id: The asset_id of this UserCouponPayment.  # noqa: E501
         :type: dict
         """
+        if asset_id is None:
+            raise ValueError("Invalid value for `asset_id`, must not be `None`")  # noqa: E501
 
         self._asset_id = asset_id
 
@@ -163,6 +160,8 @@ class UserCouponPayment(object):
         :param coupon_payment_id: The coupon_payment_id of this UserCouponPayment.  # noqa: E501
         :type: dict
         """
+        if coupon_payment_id is None:
+            raise ValueError("Invalid value for `coupon_payment_id`, must not be `None`")  # noqa: E501
 
         self._coupon_payment_id = coupon_payment_id
 
@@ -184,6 +183,8 @@ class UserCouponPayment(object):
         :param seq: The seq of this UserCouponPayment.  # noqa: E501
         :type: dict
         """
+        if seq is None:
+            raise ValueError("Invalid value for `seq`, must not be `None`")  # noqa: E501
 
         self._seq = seq
 
@@ -205,6 +206,8 @@ class UserCouponPayment(object):
         :param pending: The pending of this UserCouponPayment.  # noqa: E501
         :type: dict
         """
+        if pending is None:
+            raise ValueError("Invalid value for `pending`, must not be `None`")  # noqa: E501
 
         self._pending = pending
 
@@ -226,6 +229,8 @@ class UserCouponPayment(object):
         :param completed: The completed of this UserCouponPayment.  # noqa: E501
         :type: dict
         """
+        if completed is None:
+            raise ValueError("Invalid value for `completed`, must not be `None`")  # noqa: E501
 
         self._completed = completed
 
@@ -247,6 +252,8 @@ class UserCouponPayment(object):
         :param started_at: The started_at of this UserCouponPayment.  # noqa: E501
         :type: dict
         """
+        if started_at is None:
+            raise ValueError("Invalid value for `started_at`, must not be `None`")  # noqa: E501
 
         self._started_at = started_at
 
@@ -268,6 +275,8 @@ class UserCouponPayment(object):
         :param ended_at: The ended_at of this UserCouponPayment.  # noqa: E501
         :type: dict
         """
+        if ended_at is None:
+            raise ValueError("Invalid value for `ended_at`, must not be `None`")  # noqa: E501
 
         self._ended_at = ended_at
 

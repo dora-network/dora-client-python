@@ -48,14 +48,10 @@ class OrderBookBalance(object):
         self._quote_quantity = None
         self._shares_quantity = None
         self.discriminator = None
-        if order_book_id is not None:
-            self.order_book_id = order_book_id
-        if base_quantity is not None:
-            self.base_quantity = base_quantity
-        if quote_quantity is not None:
-            self.quote_quantity = quote_quantity
-        if shares_quantity is not None:
-            self.shares_quantity = shares_quantity
+        self.order_book_id = order_book_id
+        self.base_quantity = base_quantity
+        self.quote_quantity = quote_quantity
+        self.shares_quantity = shares_quantity
 
     @property
     def order_book_id(self):
@@ -77,6 +73,8 @@ class OrderBookBalance(object):
         :param order_book_id: The order_book_id of this OrderBookBalance.  # noqa: E501
         :type: dict
         """
+        if order_book_id is None:
+            raise ValueError("Invalid value for `order_book_id`, must not be `None`")  # noqa: E501
 
         self._order_book_id = order_book_id
 
@@ -100,6 +98,8 @@ class OrderBookBalance(object):
         :param base_quantity: The base_quantity of this OrderBookBalance.  # noqa: E501
         :type: dict
         """
+        if base_quantity is None:
+            raise ValueError("Invalid value for `base_quantity`, must not be `None`")  # noqa: E501
 
         self._base_quantity = base_quantity
 
@@ -123,6 +123,8 @@ class OrderBookBalance(object):
         :param quote_quantity: The quote_quantity of this OrderBookBalance.  # noqa: E501
         :type: dict
         """
+        if quote_quantity is None:
+            raise ValueError("Invalid value for `quote_quantity`, must not be `None`")  # noqa: E501
 
         self._quote_quantity = quote_quantity
 
@@ -146,6 +148,8 @@ class OrderBookBalance(object):
         :param shares_quantity: The shares_quantity of this OrderBookBalance.  # noqa: E501
         :type: dict
         """
+        if shares_quantity is None:
+            raise ValueError("Invalid value for `shares_quantity`, must not be `None`")  # noqa: E501
 
         self._shares_quantity = shares_quantity
 

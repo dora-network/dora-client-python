@@ -45,12 +45,9 @@ class UserCouponPaymentAssetSummary(object):
         self._pending = None
         self._completed = None
         self.discriminator = None
-        if asset_id is not None:
-            self.asset_id = asset_id
-        if pending is not None:
-            self.pending = pending
-        if completed is not None:
-            self.completed = completed
+        self.asset_id = asset_id
+        self.pending = pending
+        self.completed = completed
 
     @property
     def asset_id(self):
@@ -70,6 +67,8 @@ class UserCouponPaymentAssetSummary(object):
         :param asset_id: The asset_id of this UserCouponPaymentAssetSummary.  # noqa: E501
         :type: dict
         """
+        if asset_id is None:
+            raise ValueError("Invalid value for `asset_id`, must not be `None`")  # noqa: E501
 
         self._asset_id = asset_id
 
@@ -91,6 +90,8 @@ class UserCouponPaymentAssetSummary(object):
         :param pending: The pending of this UserCouponPaymentAssetSummary.  # noqa: E501
         :type: dict
         """
+        if pending is None:
+            raise ValueError("Invalid value for `pending`, must not be `None`")  # noqa: E501
 
         self._pending = pending
 
@@ -112,6 +113,8 @@ class UserCouponPaymentAssetSummary(object):
         :param completed: The completed of this UserCouponPaymentAssetSummary.  # noqa: E501
         :type: dict
         """
+        if completed is None:
+            raise ValueError("Invalid value for `completed`, must not be `None`")  # noqa: E501
 
         self._completed = completed
 

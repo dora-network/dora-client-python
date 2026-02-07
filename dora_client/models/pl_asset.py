@@ -84,38 +84,25 @@ class PLAsset(object):
         self._locked = None
         self._unused_collateral = None
         self.discriminator = None
-        if symbol is not None:
-            self.symbol = symbol
-        if side is not None:
-            self.side = side
-        if avg_entry_price is not None:
-            self.avg_entry_price = avg_entry_price
-        if mark_price is not None:
-            self.mark_price = mark_price
-        if liquidation_price is not None:
-            self.liquidation_price = liquidation_price
-        if available is not None:
-            self.available = available
-        if borrowed is not None:
-            self.borrowed = borrowed
-        if margin is not None:
-            self.margin = margin
-        if unrealized_pl is not None:
-            self.unrealized_pl = unrealized_pl
-        if leverage_limit is not None:
-            self.leverage_limit = leverage_limit
+        self.symbol = symbol
+        self.side = side
+        self.avg_entry_price = avg_entry_price
+        self.mark_price = mark_price
+        self.liquidation_price = liquidation_price
+        self.available = available
+        self.borrowed = borrowed
+        self.margin = margin
+        self.unrealized_pl = unrealized_pl
+        self.leverage_limit = leverage_limit
         if tp is not None:
             self.tp = tp
         if sl is not None:
             self.sl = sl
-        if initial_capital is not None:
-            self.initial_capital = initial_capital
+        self.initial_capital = initial_capital
         if impending_borrows is not None:
             self.impending_borrows = impending_borrows
-        if locked is not None:
-            self.locked = locked
-        if unused_collateral is not None:
-            self.unused_collateral = unused_collateral
+        self.locked = locked
+        self.unused_collateral = unused_collateral
 
     @property
     def symbol(self):
@@ -137,6 +124,8 @@ class PLAsset(object):
         :param symbol: The symbol of this PLAsset.  # noqa: E501
         :type: dict
         """
+        if symbol is None:
+            raise ValueError("Invalid value for `symbol`, must not be `None`")  # noqa: E501
 
         self._symbol = symbol
 
@@ -160,6 +149,8 @@ class PLAsset(object):
         :param side: The side of this PLAsset.  # noqa: E501
         :type: dict
         """
+        if side is None:
+            raise ValueError("Invalid value for `side`, must not be `None`")  # noqa: E501
 
         self._side = side
 
@@ -183,6 +174,8 @@ class PLAsset(object):
         :param avg_entry_price: The avg_entry_price of this PLAsset.  # noqa: E501
         :type: dict
         """
+        if avg_entry_price is None:
+            raise ValueError("Invalid value for `avg_entry_price`, must not be `None`")  # noqa: E501
 
         self._avg_entry_price = avg_entry_price
 
@@ -206,6 +199,8 @@ class PLAsset(object):
         :param mark_price: The mark_price of this PLAsset.  # noqa: E501
         :type: dict
         """
+        if mark_price is None:
+            raise ValueError("Invalid value for `mark_price`, must not be `None`")  # noqa: E501
 
         self._mark_price = mark_price
 
@@ -229,6 +224,8 @@ class PLAsset(object):
         :param liquidation_price: The liquidation_price of this PLAsset.  # noqa: E501
         :type: dict
         """
+        if liquidation_price is None:
+            raise ValueError("Invalid value for `liquidation_price`, must not be `None`")  # noqa: E501
 
         self._liquidation_price = liquidation_price
 
@@ -252,6 +249,8 @@ class PLAsset(object):
         :param available: The available of this PLAsset.  # noqa: E501
         :type: dict
         """
+        if available is None:
+            raise ValueError("Invalid value for `available`, must not be `None`")  # noqa: E501
 
         self._available = available
 
@@ -275,6 +274,8 @@ class PLAsset(object):
         :param borrowed: The borrowed of this PLAsset.  # noqa: E501
         :type: dict
         """
+        if borrowed is None:
+            raise ValueError("Invalid value for `borrowed`, must not be `None`")  # noqa: E501
 
         self._borrowed = borrowed
 
@@ -296,6 +297,8 @@ class PLAsset(object):
         :param margin: The margin of this PLAsset.  # noqa: E501
         :type: Margin
         """
+        if margin is None:
+            raise ValueError("Invalid value for `margin`, must not be `None`")  # noqa: E501
 
         self._margin = margin
 
@@ -319,6 +322,8 @@ class PLAsset(object):
         :param unrealized_pl: The unrealized_pl of this PLAsset.  # noqa: E501
         :type: dict
         """
+        if unrealized_pl is None:
+            raise ValueError("Invalid value for `unrealized_pl`, must not be `None`")  # noqa: E501
 
         self._unrealized_pl = unrealized_pl
 
@@ -342,6 +347,8 @@ class PLAsset(object):
         :param leverage_limit: The leverage_limit of this PLAsset.  # noqa: E501
         :type: dict
         """
+        if leverage_limit is None:
+            raise ValueError("Invalid value for `leverage_limit`, must not be `None`")  # noqa: E501
 
         self._leverage_limit = leverage_limit
 
@@ -411,6 +418,8 @@ class PLAsset(object):
         :param initial_capital: The initial_capital of this PLAsset.  # noqa: E501
         :type: dict
         """
+        if initial_capital is None:
+            raise ValueError("Invalid value for `initial_capital`, must not be `None`")  # noqa: E501
 
         self._initial_capital = initial_capital
 
@@ -457,6 +466,8 @@ class PLAsset(object):
         :param locked: The locked of this PLAsset.  # noqa: E501
         :type: dict
         """
+        if locked is None:
+            raise ValueError("Invalid value for `locked`, must not be `None`")  # noqa: E501
 
         self._locked = locked
 
@@ -480,6 +491,8 @@ class PLAsset(object):
         :param unused_collateral: The unused_collateral of this PLAsset.  # noqa: E501
         :type: dict
         """
+        if unused_collateral is None:
+            raise ValueError("Invalid value for `unused_collateral`, must not be `None`")  # noqa: E501
 
         self._unused_collateral = unused_collateral
 

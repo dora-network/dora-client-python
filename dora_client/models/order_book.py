@@ -90,42 +90,27 @@ class OrderBook(object):
         self._pool_updated_at = None
         self._shares_asset_id = None
         self.discriminator = None
-        if order_book_id is not None:
-            self.order_book_id = order_book_id
-        if base_quantity is not None:
-            self.base_quantity = base_quantity
-        if base_asset_id is not None:
-            self.base_asset_id = base_asset_id
-        if created_at is not None:
-            self.created_at = created_at
-        if display_name is not None:
-            self.display_name = display_name
-        if fee_factor is not None:
-            self.fee_factor = fee_factor
-        if initial_assets_ratio is not None:
-            self.initial_assets_ratio = initial_assets_ratio
-        if maturity_at is not None:
-            self.maturity_at = maturity_at
-        if quote_quantity is not None:
-            self.quote_quantity = quote_quantity
-        if quote_asset_id is not None:
-            self.quote_asset_id = quote_asset_id
-        if shares_quantity is not None:
-            self.shares_quantity = shares_quantity
-        if status is not None:
-            self.status = status
-        if tick_size is not None:
-            self.tick_size = tick_size
-        if updated_at is not None:
-            self.updated_at = updated_at
+        self.order_book_id = order_book_id
+        self.base_quantity = base_quantity
+        self.base_asset_id = base_asset_id
+        self.created_at = created_at
+        self.display_name = display_name
+        self.fee_factor = fee_factor
+        self.initial_assets_ratio = initial_assets_ratio
+        self.maturity_at = maturity_at
+        self.quote_quantity = quote_quantity
+        self.quote_asset_id = quote_asset_id
+        self.shares_quantity = shares_quantity
+        self.status = status
+        self.tick_size = tick_size
+        self.updated_at = updated_at
         if halted_at is not None:
             self.halted_at = halted_at
         if terminated_at is not None:
             self.terminated_at = terminated_at
         if pool_updated_at is not None:
             self.pool_updated_at = pool_updated_at
-        if shares_asset_id is not None:
-            self.shares_asset_id = shares_asset_id
+        self.shares_asset_id = shares_asset_id
 
     @property
     def order_book_id(self):
@@ -145,6 +130,8 @@ class OrderBook(object):
         :param order_book_id: The order_book_id of this OrderBook.  # noqa: E501
         :type: dict
         """
+        if order_book_id is None:
+            raise ValueError("Invalid value for `order_book_id`, must not be `None`")  # noqa: E501
 
         self._order_book_id = order_book_id
 
@@ -166,6 +153,8 @@ class OrderBook(object):
         :param base_quantity: The base_quantity of this OrderBook.  # noqa: E501
         :type: dict
         """
+        if base_quantity is None:
+            raise ValueError("Invalid value for `base_quantity`, must not be `None`")  # noqa: E501
 
         self._base_quantity = base_quantity
 
@@ -187,6 +176,8 @@ class OrderBook(object):
         :param base_asset_id: The base_asset_id of this OrderBook.  # noqa: E501
         :type: dict
         """
+        if base_asset_id is None:
+            raise ValueError("Invalid value for `base_asset_id`, must not be `None`")  # noqa: E501
 
         self._base_asset_id = base_asset_id
 
@@ -208,6 +199,8 @@ class OrderBook(object):
         :param created_at: The created_at of this OrderBook.  # noqa: E501
         :type: dict
         """
+        if created_at is None:
+            raise ValueError("Invalid value for `created_at`, must not be `None`")  # noqa: E501
 
         self._created_at = created_at
 
@@ -229,6 +222,8 @@ class OrderBook(object):
         :param display_name: The display_name of this OrderBook.  # noqa: E501
         :type: dict
         """
+        if display_name is None:
+            raise ValueError("Invalid value for `display_name`, must not be `None`")  # noqa: E501
 
         self._display_name = display_name
 
@@ -250,6 +245,8 @@ class OrderBook(object):
         :param fee_factor: The fee_factor of this OrderBook.  # noqa: E501
         :type: dict
         """
+        if fee_factor is None:
+            raise ValueError("Invalid value for `fee_factor`, must not be `None`")  # noqa: E501
 
         self._fee_factor = fee_factor
 
@@ -271,6 +268,8 @@ class OrderBook(object):
         :param initial_assets_ratio: The initial_assets_ratio of this OrderBook.  # noqa: E501
         :type: dict
         """
+        if initial_assets_ratio is None:
+            raise ValueError("Invalid value for `initial_assets_ratio`, must not be `None`")  # noqa: E501
 
         self._initial_assets_ratio = initial_assets_ratio
 
@@ -292,6 +291,8 @@ class OrderBook(object):
         :param maturity_at: The maturity_at of this OrderBook.  # noqa: E501
         :type: dict
         """
+        if maturity_at is None:
+            raise ValueError("Invalid value for `maturity_at`, must not be `None`")  # noqa: E501
 
         self._maturity_at = maturity_at
 
@@ -313,6 +314,8 @@ class OrderBook(object):
         :param quote_quantity: The quote_quantity of this OrderBook.  # noqa: E501
         :type: dict
         """
+        if quote_quantity is None:
+            raise ValueError("Invalid value for `quote_quantity`, must not be `None`")  # noqa: E501
 
         self._quote_quantity = quote_quantity
 
@@ -334,6 +337,8 @@ class OrderBook(object):
         :param quote_asset_id: The quote_asset_id of this OrderBook.  # noqa: E501
         :type: dict
         """
+        if quote_asset_id is None:
+            raise ValueError("Invalid value for `quote_asset_id`, must not be `None`")  # noqa: E501
 
         self._quote_asset_id = quote_asset_id
 
@@ -355,6 +360,8 @@ class OrderBook(object):
         :param shares_quantity: The shares_quantity of this OrderBook.  # noqa: E501
         :type: dict
         """
+        if shares_quantity is None:
+            raise ValueError("Invalid value for `shares_quantity`, must not be `None`")  # noqa: E501
 
         self._shares_quantity = shares_quantity
 
@@ -376,6 +383,8 @@ class OrderBook(object):
         :param status: The status of this OrderBook.  # noqa: E501
         :type: OrderBookStatus
         """
+        if status is None:
+            raise ValueError("Invalid value for `status`, must not be `None`")  # noqa: E501
 
         self._status = status
 
@@ -397,6 +406,8 @@ class OrderBook(object):
         :param tick_size: The tick_size of this OrderBook.  # noqa: E501
         :type: dict
         """
+        if tick_size is None:
+            raise ValueError("Invalid value for `tick_size`, must not be `None`")  # noqa: E501
 
         self._tick_size = tick_size
 
@@ -418,6 +429,8 @@ class OrderBook(object):
         :param updated_at: The updated_at of this OrderBook.  # noqa: E501
         :type: dict
         """
+        if updated_at is None:
+            raise ValueError("Invalid value for `updated_at`, must not be `None`")  # noqa: E501
 
         self._updated_at = updated_at
 
@@ -502,6 +515,8 @@ class OrderBook(object):
         :param shares_asset_id: The shares_asset_id of this OrderBook.  # noqa: E501
         :type: dict
         """
+        if shares_asset_id is None:
+            raise ValueError("Invalid value for `shares_asset_id`, must not be `None`")  # noqa: E501
 
         self._shares_asset_id = shares_asset_id
 

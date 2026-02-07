@@ -48,14 +48,10 @@ class Collateral(object):
         self._asset_id = None
         self._quantity = None
         self.discriminator = None
-        if position_id is not None:
-            self.position_id = position_id
-        if transaction_id is not None:
-            self.transaction_id = transaction_id
-        if asset_id is not None:
-            self.asset_id = asset_id
-        if quantity is not None:
-            self.quantity = quantity
+        self.position_id = position_id
+        self.transaction_id = transaction_id
+        self.asset_id = asset_id
+        self.quantity = quantity
 
     @property
     def position_id(self):
@@ -75,6 +71,8 @@ class Collateral(object):
         :param position_id: The position_id of this Collateral.  # noqa: E501
         :type: dict
         """
+        if position_id is None:
+            raise ValueError("Invalid value for `position_id`, must not be `None`")  # noqa: E501
 
         self._position_id = position_id
 
@@ -96,6 +94,8 @@ class Collateral(object):
         :param transaction_id: The transaction_id of this Collateral.  # noqa: E501
         :type: dict
         """
+        if transaction_id is None:
+            raise ValueError("Invalid value for `transaction_id`, must not be `None`")  # noqa: E501
 
         self._transaction_id = transaction_id
 
@@ -117,6 +117,8 @@ class Collateral(object):
         :param asset_id: The asset_id of this Collateral.  # noqa: E501
         :type: dict
         """
+        if asset_id is None:
+            raise ValueError("Invalid value for `asset_id`, must not be `None`")  # noqa: E501
 
         self._asset_id = asset_id
 
@@ -138,6 +140,8 @@ class Collateral(object):
         :param quantity: The quantity of this Collateral.  # noqa: E501
         :type: dict
         """
+        if quantity is None:
+            raise ValueError("Invalid value for `quantity`, must not be `None`")  # noqa: E501
 
         self._quantity = quantity
 

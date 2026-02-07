@@ -36,6 +36,7 @@ class Transaction(object):
         'quantity1': 'dict',
         'asset1': 'dict',
         'user_id': 'dict',
+        'admin_user_id': 'dict',
         'order_side': 'Side'
     }
 
@@ -48,10 +49,11 @@ class Transaction(object):
         'quantity1': 'quantity1',
         'asset1': 'asset1',
         'user_id': 'user_id',
+        'admin_user_id': 'admin_user_id',
         'order_side': 'order_side'
     }
 
-    def __init__(self, id=None, created_at=None, kind=None, asset0=None, quantity0=None, quantity1=None, asset1=None, user_id=None, order_side=None):  # noqa: E501
+    def __init__(self, id=None, created_at=None, kind=None, asset0=None, quantity0=None, quantity1=None, asset1=None, user_id=None, admin_user_id=None, order_side=None):  # noqa: E501
         """Transaction - a model defined in Swagger"""  # noqa: E501
         self._id = None
         self._created_at = None
@@ -61,26 +63,19 @@ class Transaction(object):
         self._quantity1 = None
         self._asset1 = None
         self._user_id = None
+        self._admin_user_id = None
         self._order_side = None
         self.discriminator = None
-        if id is not None:
-            self.id = id
-        if created_at is not None:
-            self.created_at = created_at
-        if kind is not None:
-            self.kind = kind
-        if asset0 is not None:
-            self.asset0 = asset0
-        if quantity0 is not None:
-            self.quantity0 = quantity0
-        if quantity1 is not None:
-            self.quantity1 = quantity1
-        if asset1 is not None:
-            self.asset1 = asset1
-        if user_id is not None:
-            self.user_id = user_id
-        if order_side is not None:
-            self.order_side = order_side
+        self.id = id
+        self.created_at = created_at
+        self.kind = kind
+        self.asset0 = asset0
+        self.quantity0 = quantity0
+        self.quantity1 = quantity1
+        self.asset1 = asset1
+        self.user_id = user_id
+        self.admin_user_id = admin_user_id
+        self.order_side = order_side
 
     @property
     def id(self):
@@ -100,6 +95,8 @@ class Transaction(object):
         :param id: The id of this Transaction.  # noqa: E501
         :type: dict
         """
+        if id is None:
+            raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
 
         self._id = id
 
@@ -121,6 +118,8 @@ class Transaction(object):
         :param created_at: The created_at of this Transaction.  # noqa: E501
         :type: dict
         """
+        if created_at is None:
+            raise ValueError("Invalid value for `created_at`, must not be `None`")  # noqa: E501
 
         self._created_at = created_at
 
@@ -142,6 +141,8 @@ class Transaction(object):
         :param kind: The kind of this Transaction.  # noqa: E501
         :type: TransactionKind
         """
+        if kind is None:
+            raise ValueError("Invalid value for `kind`, must not be `None`")  # noqa: E501
 
         self._kind = kind
 
@@ -163,6 +164,8 @@ class Transaction(object):
         :param asset0: The asset0 of this Transaction.  # noqa: E501
         :type: dict
         """
+        if asset0 is None:
+            raise ValueError("Invalid value for `asset0`, must not be `None`")  # noqa: E501
 
         self._asset0 = asset0
 
@@ -184,6 +187,8 @@ class Transaction(object):
         :param quantity0: The quantity0 of this Transaction.  # noqa: E501
         :type: dict
         """
+        if quantity0 is None:
+            raise ValueError("Invalid value for `quantity0`, must not be `None`")  # noqa: E501
 
         self._quantity0 = quantity0
 
@@ -205,6 +210,8 @@ class Transaction(object):
         :param quantity1: The quantity1 of this Transaction.  # noqa: E501
         :type: dict
         """
+        if quantity1 is None:
+            raise ValueError("Invalid value for `quantity1`, must not be `None`")  # noqa: E501
 
         self._quantity1 = quantity1
 
@@ -226,6 +233,8 @@ class Transaction(object):
         :param asset1: The asset1 of this Transaction.  # noqa: E501
         :type: dict
         """
+        if asset1 is None:
+            raise ValueError("Invalid value for `asset1`, must not be `None`")  # noqa: E501
 
         self._asset1 = asset1
 
@@ -247,8 +256,33 @@ class Transaction(object):
         :param user_id: The user_id of this Transaction.  # noqa: E501
         :type: dict
         """
+        if user_id is None:
+            raise ValueError("Invalid value for `user_id`, must not be `None`")  # noqa: E501
 
         self._user_id = user_id
+
+    @property
+    def admin_user_id(self):
+        """Gets the admin_user_id of this Transaction.  # noqa: E501
+
+
+        :return: The admin_user_id of this Transaction.  # noqa: E501
+        :rtype: dict
+        """
+        return self._admin_user_id
+
+    @admin_user_id.setter
+    def admin_user_id(self, admin_user_id):
+        """Sets the admin_user_id of this Transaction.
+
+
+        :param admin_user_id: The admin_user_id of this Transaction.  # noqa: E501
+        :type: dict
+        """
+        if admin_user_id is None:
+            raise ValueError("Invalid value for `admin_user_id`, must not be `None`")  # noqa: E501
+
+        self._admin_user_id = admin_user_id
 
     @property
     def order_side(self):
@@ -268,6 +302,8 @@ class Transaction(object):
         :param order_side: The order_side of this Transaction.  # noqa: E501
         :type: Side
         """
+        if order_side is None:
+            raise ValueError("Invalid value for `order_side`, must not be `None`")  # noqa: E501
 
         self._order_side = order_side
 

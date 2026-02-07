@@ -51,16 +51,11 @@ class OrderBookSummary(object):
         self._best_bid = None
         self._best_ask = None
         self.discriminator = None
-        if order_book_id is not None:
-            self.order_book_id = order_book_id
-        if mid_price is not None:
-            self.mid_price = mid_price
-        if spread is not None:
-            self.spread = spread
-        if best_bid is not None:
-            self.best_bid = best_bid
-        if best_ask is not None:
-            self.best_ask = best_ask
+        self.order_book_id = order_book_id
+        self.mid_price = mid_price
+        self.spread = spread
+        self.best_bid = best_bid
+        self.best_ask = best_ask
 
     @property
     def order_book_id(self):
@@ -80,6 +75,8 @@ class OrderBookSummary(object):
         :param order_book_id: The order_book_id of this OrderBookSummary.  # noqa: E501
         :type: dict
         """
+        if order_book_id is None:
+            raise ValueError("Invalid value for `order_book_id`, must not be `None`")  # noqa: E501
 
         self._order_book_id = order_book_id
 
@@ -101,6 +98,8 @@ class OrderBookSummary(object):
         :param mid_price: The mid_price of this OrderBookSummary.  # noqa: E501
         :type: dict
         """
+        if mid_price is None:
+            raise ValueError("Invalid value for `mid_price`, must not be `None`")  # noqa: E501
 
         self._mid_price = mid_price
 
@@ -122,6 +121,8 @@ class OrderBookSummary(object):
         :param spread: The spread of this OrderBookSummary.  # noqa: E501
         :type: dict
         """
+        if spread is None:
+            raise ValueError("Invalid value for `spread`, must not be `None`")  # noqa: E501
 
         self._spread = spread
 
@@ -143,6 +144,8 @@ class OrderBookSummary(object):
         :param best_bid: The best_bid of this OrderBookSummary.  # noqa: E501
         :type: dict
         """
+        if best_bid is None:
+            raise ValueError("Invalid value for `best_bid`, must not be `None`")  # noqa: E501
 
         self._best_bid = best_bid
 
@@ -164,6 +167,8 @@ class OrderBookSummary(object):
         :param best_ask: The best_ask of this OrderBookSummary.  # noqa: E501
         :type: dict
         """
+        if best_ask is None:
+            raise ValueError("Invalid value for `best_ask`, must not be `None`")  # noqa: E501
 
         self._best_ask = best_ask
 

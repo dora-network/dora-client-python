@@ -54,18 +54,12 @@ class ModuleBalance(object):
         self._virtual = None
         self._borrowed = None
         self.discriminator = None
-        if asset_id is not None:
-            self.asset_id = asset_id
-        if seq is not None:
-            self.seq = seq
-        if available is not None:
-            self.available = available
-        if supplied is not None:
-            self.supplied = supplied
-        if virtual is not None:
-            self.virtual = virtual
-        if borrowed is not None:
-            self.borrowed = borrowed
+        self.asset_id = asset_id
+        self.seq = seq
+        self.available = available
+        self.supplied = supplied
+        self.virtual = virtual
+        self.borrowed = borrowed
 
     @property
     def asset_id(self):
@@ -85,6 +79,8 @@ class ModuleBalance(object):
         :param asset_id: The asset_id of this ModuleBalance.  # noqa: E501
         :type: dict
         """
+        if asset_id is None:
+            raise ValueError("Invalid value for `asset_id`, must not be `None`")  # noqa: E501
 
         self._asset_id = asset_id
 
@@ -106,6 +102,8 @@ class ModuleBalance(object):
         :param seq: The seq of this ModuleBalance.  # noqa: E501
         :type: dict
         """
+        if seq is None:
+            raise ValueError("Invalid value for `seq`, must not be `None`")  # noqa: E501
 
         self._seq = seq
 
@@ -129,6 +127,8 @@ class ModuleBalance(object):
         :param available: The available of this ModuleBalance.  # noqa: E501
         :type: dict
         """
+        if available is None:
+            raise ValueError("Invalid value for `available`, must not be `None`")  # noqa: E501
 
         self._available = available
 
@@ -152,6 +152,8 @@ class ModuleBalance(object):
         :param supplied: The supplied of this ModuleBalance.  # noqa: E501
         :type: dict
         """
+        if supplied is None:
+            raise ValueError("Invalid value for `supplied`, must not be `None`")  # noqa: E501
 
         self._supplied = supplied
 
@@ -175,6 +177,8 @@ class ModuleBalance(object):
         :param virtual: The virtual of this ModuleBalance.  # noqa: E501
         :type: dict
         """
+        if virtual is None:
+            raise ValueError("Invalid value for `virtual`, must not be `None`")  # noqa: E501
 
         self._virtual = virtual
 
@@ -198,6 +202,8 @@ class ModuleBalance(object):
         :param borrowed: The borrowed of this ModuleBalance.  # noqa: E501
         :type: dict
         """
+        if borrowed is None:
+            raise ValueError("Invalid value for `borrowed`, must not be `None`")  # noqa: E501
 
         self._borrowed = borrowed
 

@@ -42,8 +42,7 @@ class UnitedPosition(object):
         self._global_position_id = None
         self._transaction_ids = None
         self.discriminator = None
-        if global_position_id is not None:
-            self.global_position_id = global_position_id
+        self.global_position_id = global_position_id
         if transaction_ids is not None:
             self.transaction_ids = transaction_ids
 
@@ -65,6 +64,8 @@ class UnitedPosition(object):
         :param global_position_id: The global_position_id of this UnitedPosition.  # noqa: E501
         :type: dict
         """
+        if global_position_id is None:
+            raise ValueError("Invalid value for `global_position_id`, must not be `None`")  # noqa: E501
 
         self._global_position_id = global_position_id
 

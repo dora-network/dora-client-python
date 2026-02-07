@@ -78,34 +78,21 @@ class Position(object):
         self._created_at = None
         self._position_name = None
         self.discriminator = None
-        if id is not None:
-            self.id = id
-        if asset_id is not None:
-            self.asset_id = asset_id
-        if seq is not None:
-            self.seq = seq
+        self.id = id
+        self.asset_id = asset_id
+        self.seq = seq
         if is_global is not None:
             self.is_global = is_global
-        if available is not None:
-            self.available = available
-        if locked is not None:
-            self.locked = locked
-        if supplied is not None:
-            self.supplied = supplied
-        if borrowed is not None:
-            self.borrowed = borrowed
-        if impending_borrows is not None:
-            self.impending_borrows = impending_borrows
-        if avg_entry_price is not None:
-            self.avg_entry_price = avg_entry_price
-        if borrow_limit is not None:
-            self.borrow_limit = borrow_limit
-        if liquidation_threshold is not None:
-            self.liquidation_threshold = liquidation_threshold
-        if created_at is not None:
-            self.created_at = created_at
-        if position_name is not None:
-            self.position_name = position_name
+        self.available = available
+        self.locked = locked
+        self.supplied = supplied
+        self.borrowed = borrowed
+        self.impending_borrows = impending_borrows
+        self.avg_entry_price = avg_entry_price
+        self.borrow_limit = borrow_limit
+        self.liquidation_threshold = liquidation_threshold
+        self.created_at = created_at
+        self.position_name = position_name
 
     @property
     def id(self):
@@ -127,6 +114,8 @@ class Position(object):
         :param id: The id of this Position.  # noqa: E501
         :type: dict
         """
+        if id is None:
+            raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
 
         self._id = id
 
@@ -148,6 +137,8 @@ class Position(object):
         :param asset_id: The asset_id of this Position.  # noqa: E501
         :type: dict
         """
+        if asset_id is None:
+            raise ValueError("Invalid value for `asset_id`, must not be `None`")  # noqa: E501
 
         self._asset_id = asset_id
 
@@ -169,6 +160,8 @@ class Position(object):
         :param seq: The seq of this Position.  # noqa: E501
         :type: dict
         """
+        if seq is None:
+            raise ValueError("Invalid value for `seq`, must not be `None`")  # noqa: E501
 
         self._seq = seq
 
@@ -213,6 +206,8 @@ class Position(object):
         :param available: The available of this Position.  # noqa: E501
         :type: dict
         """
+        if available is None:
+            raise ValueError("Invalid value for `available`, must not be `None`")  # noqa: E501
 
         self._available = available
 
@@ -236,6 +231,8 @@ class Position(object):
         :param locked: The locked of this Position.  # noqa: E501
         :type: dict
         """
+        if locked is None:
+            raise ValueError("Invalid value for `locked`, must not be `None`")  # noqa: E501
 
         self._locked = locked
 
@@ -259,6 +256,8 @@ class Position(object):
         :param supplied: The supplied of this Position.  # noqa: E501
         :type: dict
         """
+        if supplied is None:
+            raise ValueError("Invalid value for `supplied`, must not be `None`")  # noqa: E501
 
         self._supplied = supplied
 
@@ -282,6 +281,8 @@ class Position(object):
         :param borrowed: The borrowed of this Position.  # noqa: E501
         :type: dict
         """
+        if borrowed is None:
+            raise ValueError("Invalid value for `borrowed`, must not be `None`")  # noqa: E501
 
         self._borrowed = borrowed
 
@@ -305,6 +306,8 @@ class Position(object):
         :param impending_borrows: The impending_borrows of this Position.  # noqa: E501
         :type: dict
         """
+        if impending_borrows is None:
+            raise ValueError("Invalid value for `impending_borrows`, must not be `None`")  # noqa: E501
 
         self._impending_borrows = impending_borrows
 
@@ -328,6 +331,8 @@ class Position(object):
         :param avg_entry_price: The avg_entry_price of this Position.  # noqa: E501
         :type: dict
         """
+        if avg_entry_price is None:
+            raise ValueError("Invalid value for `avg_entry_price`, must not be `None`")  # noqa: E501
 
         self._avg_entry_price = avg_entry_price
 
@@ -351,6 +356,8 @@ class Position(object):
         :param borrow_limit: The borrow_limit of this Position.  # noqa: E501
         :type: dict
         """
+        if borrow_limit is None:
+            raise ValueError("Invalid value for `borrow_limit`, must not be `None`")  # noqa: E501
 
         self._borrow_limit = borrow_limit
 
@@ -374,6 +381,8 @@ class Position(object):
         :param liquidation_threshold: The liquidation_threshold of this Position.  # noqa: E501
         :type: dict
         """
+        if liquidation_threshold is None:
+            raise ValueError("Invalid value for `liquidation_threshold`, must not be `None`")  # noqa: E501
 
         self._liquidation_threshold = liquidation_threshold
 
@@ -395,6 +404,8 @@ class Position(object):
         :param created_at: The created_at of this Position.  # noqa: E501
         :type: dict
         """
+        if created_at is None:
+            raise ValueError("Invalid value for `created_at`, must not be `None`")  # noqa: E501
 
         self._created_at = created_at
 
@@ -416,6 +427,8 @@ class Position(object):
         :param position_name: The position_name of this Position.  # noqa: E501
         :type: dict
         """
+        if position_name is None:
+            raise ValueError("Invalid value for `position_name`, must not be `None`")  # noqa: E501
 
         self._position_name = position_name
 

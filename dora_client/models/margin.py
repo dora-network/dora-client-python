@@ -45,12 +45,9 @@ class Margin(object):
         self._used = None
         self._remaining = None
         self.discriminator = None
-        if available is not None:
-            self.available = available
-        if used is not None:
-            self.used = used
-        if remaining is not None:
-            self.remaining = remaining
+        self.available = available
+        self.used = used
+        self.remaining = remaining
 
     @property
     def available(self):
@@ -72,6 +69,8 @@ class Margin(object):
         :param available: The available of this Margin.  # noqa: E501
         :type: dict
         """
+        if available is None:
+            raise ValueError("Invalid value for `available`, must not be `None`")  # noqa: E501
 
         self._available = available
 
@@ -95,6 +94,8 @@ class Margin(object):
         :param used: The used of this Margin.  # noqa: E501
         :type: dict
         """
+        if used is None:
+            raise ValueError("Invalid value for `used`, must not be `None`")  # noqa: E501
 
         self._used = used
 
@@ -118,6 +119,8 @@ class Margin(object):
         :param remaining: The remaining of this Margin.  # noqa: E501
         :type: dict
         """
+        if remaining is None:
+            raise ValueError("Invalid value for `remaining`, must not be `None`")  # noqa: E501
 
         self._remaining = remaining
 

@@ -48,14 +48,10 @@ class OrderBookTop(object):
         self._best_ask = None
         self._timestamp = None
         self.discriminator = None
-        if order_book_id is not None:
-            self.order_book_id = order_book_id
-        if best_bid is not None:
-            self.best_bid = best_bid
-        if best_ask is not None:
-            self.best_ask = best_ask
-        if timestamp is not None:
-            self.timestamp = timestamp
+        self.order_book_id = order_book_id
+        self.best_bid = best_bid
+        self.best_ask = best_ask
+        self.timestamp = timestamp
 
     @property
     def order_book_id(self):
@@ -75,6 +71,8 @@ class OrderBookTop(object):
         :param order_book_id: The order_book_id of this OrderBookTop.  # noqa: E501
         :type: dict
         """
+        if order_book_id is None:
+            raise ValueError("Invalid value for `order_book_id`, must not be `None`")  # noqa: E501
 
         self._order_book_id = order_book_id
 
@@ -96,6 +94,8 @@ class OrderBookTop(object):
         :param best_bid: The best_bid of this OrderBookTop.  # noqa: E501
         :type: dict
         """
+        if best_bid is None:
+            raise ValueError("Invalid value for `best_bid`, must not be `None`")  # noqa: E501
 
         self._best_bid = best_bid
 
@@ -117,6 +117,8 @@ class OrderBookTop(object):
         :param best_ask: The best_ask of this OrderBookTop.  # noqa: E501
         :type: dict
         """
+        if best_ask is None:
+            raise ValueError("Invalid value for `best_ask`, must not be `None`")  # noqa: E501
 
         self._best_ask = best_ask
 
@@ -138,6 +140,8 @@ class OrderBookTop(object):
         :param timestamp: The timestamp of this OrderBookTop.  # noqa: E501
         :type: dict
         """
+        if timestamp is None:
+            raise ValueError("Invalid value for `timestamp`, must not be `None`")  # noqa: E501
 
         self._timestamp = timestamp
 

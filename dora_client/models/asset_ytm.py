@@ -48,14 +48,10 @@ class AssetYTM(object):
         self._current_price = None
         self._yield_to_maturity = None
         self.discriminator = None
-        if asset_id is not None:
-            self.asset_id = asset_id
-        if current_time is not None:
-            self.current_time = current_time
-        if current_price is not None:
-            self.current_price = current_price
-        if yield_to_maturity is not None:
-            self.yield_to_maturity = yield_to_maturity
+        self.asset_id = asset_id
+        self.current_time = current_time
+        self.current_price = current_price
+        self.yield_to_maturity = yield_to_maturity
 
     @property
     def asset_id(self):
@@ -75,6 +71,8 @@ class AssetYTM(object):
         :param asset_id: The asset_id of this AssetYTM.  # noqa: E501
         :type: dict
         """
+        if asset_id is None:
+            raise ValueError("Invalid value for `asset_id`, must not be `None`")  # noqa: E501
 
         self._asset_id = asset_id
 
@@ -96,6 +94,8 @@ class AssetYTM(object):
         :param current_time: The current_time of this AssetYTM.  # noqa: E501
         :type: dict
         """
+        if current_time is None:
+            raise ValueError("Invalid value for `current_time`, must not be `None`")  # noqa: E501
 
         self._current_time = current_time
 
@@ -117,6 +117,8 @@ class AssetYTM(object):
         :param current_price: The current_price of this AssetYTM.  # noqa: E501
         :type: dict
         """
+        if current_price is None:
+            raise ValueError("Invalid value for `current_price`, must not be `None`")  # noqa: E501
 
         self._current_price = current_price
 
@@ -138,6 +140,8 @@ class AssetYTM(object):
         :param yield_to_maturity: The yield_to_maturity of this AssetYTM.  # noqa: E501
         :type: dict
         """
+        if yield_to_maturity is None:
+            raise ValueError("Invalid value for `yield_to_maturity`, must not be `None`")  # noqa: E501
 
         self._yield_to_maturity = yield_to_maturity
 

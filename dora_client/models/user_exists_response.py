@@ -45,12 +45,9 @@ class UserExistsResponse(object):
         self._firebase_set = None
         self._should_create_user = None
         self.discriminator = None
-        if email_exists is not None:
-            self.email_exists = email_exists
-        if firebase_set is not None:
-            self.firebase_set = firebase_set
-        if should_create_user is not None:
-            self.should_create_user = should_create_user
+        self.email_exists = email_exists
+        self.firebase_set = firebase_set
+        self.should_create_user = should_create_user
 
     @property
     def email_exists(self):
@@ -70,6 +67,8 @@ class UserExistsResponse(object):
         :param email_exists: The email_exists of this UserExistsResponse.  # noqa: E501
         :type: dict
         """
+        if email_exists is None:
+            raise ValueError("Invalid value for `email_exists`, must not be `None`")  # noqa: E501
 
         self._email_exists = email_exists
 
@@ -91,6 +90,8 @@ class UserExistsResponse(object):
         :param firebase_set: The firebase_set of this UserExistsResponse.  # noqa: E501
         :type: dict
         """
+        if firebase_set is None:
+            raise ValueError("Invalid value for `firebase_set`, must not be `None`")  # noqa: E501
 
         self._firebase_set = firebase_set
 
@@ -112,6 +113,8 @@ class UserExistsResponse(object):
         :param should_create_user: The should_create_user of this UserExistsResponse.  # noqa: E501
         :type: dict
         """
+        if should_create_user is None:
+            raise ValueError("Invalid value for `should_create_user`, must not be `None`")  # noqa: E501
 
         self._should_create_user = should_create_user
 

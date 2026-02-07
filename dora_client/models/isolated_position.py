@@ -45,12 +45,9 @@ class IsolatedPosition(object):
         self._isolated_position_id = None
         self._transaction_id = None
         self.discriminator = None
-        if global_position_id is not None:
-            self.global_position_id = global_position_id
-        if isolated_position_id is not None:
-            self.isolated_position_id = isolated_position_id
-        if transaction_id is not None:
-            self.transaction_id = transaction_id
+        self.global_position_id = global_position_id
+        self.isolated_position_id = isolated_position_id
+        self.transaction_id = transaction_id
 
     @property
     def global_position_id(self):
@@ -70,6 +67,8 @@ class IsolatedPosition(object):
         :param global_position_id: The global_position_id of this IsolatedPosition.  # noqa: E501
         :type: dict
         """
+        if global_position_id is None:
+            raise ValueError("Invalid value for `global_position_id`, must not be `None`")  # noqa: E501
 
         self._global_position_id = global_position_id
 
@@ -91,6 +90,8 @@ class IsolatedPosition(object):
         :param isolated_position_id: The isolated_position_id of this IsolatedPosition.  # noqa: E501
         :type: dict
         """
+        if isolated_position_id is None:
+            raise ValueError("Invalid value for `isolated_position_id`, must not be `None`")  # noqa: E501
 
         self._isolated_position_id = isolated_position_id
 
@@ -112,6 +113,8 @@ class IsolatedPosition(object):
         :param transaction_id: The transaction_id of this IsolatedPosition.  # noqa: E501
         :type: dict
         """
+        if transaction_id is None:
+            raise ValueError("Invalid value for `transaction_id`, must not be `None`")  # noqa: E501
 
         self._transaction_id = transaction_id
 

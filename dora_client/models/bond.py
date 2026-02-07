@@ -75,30 +75,20 @@ class Bond(object):
         self._payments_every = None
         self._next_coupon_payment = None
         self.discriminator = None
-        if id is not None:
-            self.id = id
-        if kind is not None:
-            self.kind = kind
+        self.id = id
+        self.kind = kind
         if coupon_start_at is not None:
             self.coupon_start_at = coupon_start_at
-        if created_at is not None:
-            self.created_at = created_at
+        self.created_at = created_at
         if final_coupon_at is not None:
             self.final_coupon_at = final_coupon_at
-        if isin is not None:
-            self.isin = isin
-        if issued_at is not None:
-            self.issued_at = issued_at
-        if issuer is not None:
-            self.issuer = issuer
-        if maturity_at is not None:
-            self.maturity_at = maturity_at
-        if principal_value is not None:
-            self.principal_value = principal_value
-        if payments_per_year is not None:
-            self.payments_per_year = payments_per_year
-        if payments_every is not None:
-            self.payments_every = payments_every
+        self.isin = isin
+        self.issued_at = issued_at
+        self.issuer = issuer
+        self.maturity_at = maturity_at
+        self.principal_value = principal_value
+        self.payments_per_year = payments_per_year
+        self.payments_every = payments_every
         if next_coupon_payment is not None:
             self.next_coupon_payment = next_coupon_payment
 
@@ -120,6 +110,8 @@ class Bond(object):
         :param id: The id of this Bond.  # noqa: E501
         :type: dict
         """
+        if id is None:
+            raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
 
         self._id = id
 
@@ -141,6 +133,8 @@ class Bond(object):
         :param kind: The kind of this Bond.  # noqa: E501
         :type: BondKind
         """
+        if kind is None:
+            raise ValueError("Invalid value for `kind`, must not be `None`")  # noqa: E501
 
         self._kind = kind
 
@@ -183,6 +177,8 @@ class Bond(object):
         :param created_at: The created_at of this Bond.  # noqa: E501
         :type: dict
         """
+        if created_at is None:
+            raise ValueError("Invalid value for `created_at`, must not be `None`")  # noqa: E501
 
         self._created_at = created_at
 
@@ -225,6 +221,8 @@ class Bond(object):
         :param isin: The isin of this Bond.  # noqa: E501
         :type: dict
         """
+        if isin is None:
+            raise ValueError("Invalid value for `isin`, must not be `None`")  # noqa: E501
 
         self._isin = isin
 
@@ -246,6 +244,8 @@ class Bond(object):
         :param issued_at: The issued_at of this Bond.  # noqa: E501
         :type: dict
         """
+        if issued_at is None:
+            raise ValueError("Invalid value for `issued_at`, must not be `None`")  # noqa: E501
 
         self._issued_at = issued_at
 
@@ -267,6 +267,8 @@ class Bond(object):
         :param issuer: The issuer of this Bond.  # noqa: E501
         :type: dict
         """
+        if issuer is None:
+            raise ValueError("Invalid value for `issuer`, must not be `None`")  # noqa: E501
 
         self._issuer = issuer
 
@@ -288,6 +290,8 @@ class Bond(object):
         :param maturity_at: The maturity_at of this Bond.  # noqa: E501
         :type: dict
         """
+        if maturity_at is None:
+            raise ValueError("Invalid value for `maturity_at`, must not be `None`")  # noqa: E501
 
         self._maturity_at = maturity_at
 
@@ -309,6 +313,8 @@ class Bond(object):
         :param principal_value: The principal_value of this Bond.  # noqa: E501
         :type: dict
         """
+        if principal_value is None:
+            raise ValueError("Invalid value for `principal_value`, must not be `None`")  # noqa: E501
 
         self._principal_value = principal_value
 
@@ -330,6 +336,8 @@ class Bond(object):
         :param payments_per_year: The payments_per_year of this Bond.  # noqa: E501
         :type: dict
         """
+        if payments_per_year is None:
+            raise ValueError("Invalid value for `payments_per_year`, must not be `None`")  # noqa: E501
 
         self._payments_per_year = payments_per_year
 
@@ -353,6 +361,8 @@ class Bond(object):
         :param payments_every: The payments_every of this Bond.  # noqa: E501
         :type: dict
         """
+        if payments_every is None:
+            raise ValueError("Invalid value for `payments_every`, must not be `None`")  # noqa: E501
 
         self._payments_every = payments_every
 

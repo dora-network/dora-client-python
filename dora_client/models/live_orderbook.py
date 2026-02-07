@@ -42,10 +42,8 @@ class LiveOrderbook(object):
         self._bids = None
         self._asks = None
         self.discriminator = None
-        if bids is not None:
-            self.bids = bids
-        if asks is not None:
-            self.asks = asks
+        self.bids = bids
+        self.asks = asks
 
     @property
     def bids(self):
@@ -67,6 +65,8 @@ class LiveOrderbook(object):
         :param bids: The bids of this LiveOrderbook.  # noqa: E501
         :type: dict
         """
+        if bids is None:
+            raise ValueError("Invalid value for `bids`, must not be `None`")  # noqa: E501
 
         self._bids = bids
 
@@ -90,6 +90,8 @@ class LiveOrderbook(object):
         :param asks: The asks of this LiveOrderbook.  # noqa: E501
         :type: dict
         """
+        if asks is None:
+            raise ValueError("Invalid value for `asks`, must not be `None`")  # noqa: E501
 
         self._asks = asks
 

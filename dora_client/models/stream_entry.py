@@ -42,10 +42,8 @@ class StreamEntry(object):
         self._val = None
         self._time = None
         self.discriminator = None
-        if val is not None:
-            self.val = val
-        if time is not None:
-            self.time = time
+        self.val = val
+        self.time = time
 
     @property
     def val(self):
@@ -67,6 +65,8 @@ class StreamEntry(object):
         :param val: The val of this StreamEntry.  # noqa: E501
         :type: dict
         """
+        if val is None:
+            raise ValueError("Invalid value for `val`, must not be `None`")  # noqa: E501
 
         self._val = val
 
@@ -90,6 +90,8 @@ class StreamEntry(object):
         :param time: The time of this StreamEntry.  # noqa: E501
         :type: dict
         """
+        if time is None:
+            raise ValueError("Invalid value for `time`, must not be `None`")  # noqa: E501
 
         self._time = time
 
