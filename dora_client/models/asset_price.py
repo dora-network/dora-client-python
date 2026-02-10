@@ -30,23 +30,28 @@ class AssetPrice(object):
     swagger_types = {
         'asset_id': 'dict',
         'price': 'dict',
+        'ytm': 'dict',
         'time': 'dict'
     }
 
     attribute_map = {
         'asset_id': 'asset_id',
         'price': 'price',
+        'ytm': 'ytm',
         'time': 'time'
     }
 
-    def __init__(self, asset_id=None, price=None, time=None):  # noqa: E501
+    def __init__(self, asset_id=None, price=None, ytm=None, time=None):  # noqa: E501
         """AssetPrice - a model defined in Swagger"""  # noqa: E501
         self._asset_id = None
         self._price = None
+        self._ytm = None
         self._time = None
         self.discriminator = None
         self.asset_id = asset_id
         self.price = price
+        if ytm is not None:
+            self.ytm = ytm
         self.time = time
 
     @property
@@ -94,6 +99,27 @@ class AssetPrice(object):
             raise ValueError("Invalid value for `price`, must not be `None`")  # noqa: E501
 
         self._price = price
+
+    @property
+    def ytm(self):
+        """Gets the ytm of this AssetPrice.  # noqa: E501
+
+
+        :return: The ytm of this AssetPrice.  # noqa: E501
+        :rtype: dict
+        """
+        return self._ytm
+
+    @ytm.setter
+    def ytm(self, ytm):
+        """Sets the ytm of this AssetPrice.
+
+
+        :param ytm: The ytm of this AssetPrice.  # noqa: E501
+        :type: dict
+        """
+
+        self._ytm = ytm
 
     @property
     def time(self):

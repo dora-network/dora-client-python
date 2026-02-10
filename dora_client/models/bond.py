@@ -88,7 +88,8 @@ class Bond(object):
         self.maturity_at = maturity_at
         self.principal_value = principal_value
         self.payments_per_year = payments_per_year
-        self.payments_every = payments_every
+        if payments_every is not None:
+            self.payments_every = payments_every
         if next_coupon_payment is not None:
             self.next_coupon_payment = next_coupon_payment
 
@@ -361,8 +362,6 @@ class Bond(object):
         :param payments_every: The payments_every of this Bond.  # noqa: E501
         :type: dict
         """
-        if payments_every is None:
-            raise ValueError("Invalid value for `payments_every`, must not be `None`")  # noqa: E501
 
         self._payments_every = payments_every
 

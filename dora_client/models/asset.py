@@ -111,14 +111,16 @@ class Asset(object):
         self.name = name
         self.symbol = symbol
         self.kind = kind
-        self._yield = _yield
+        if _yield is not None:
+            self._yield = _yield
         self.can_add_liquidity = can_add_liquidity
         self.can_direct_borrow = can_direct_borrow
         self.can_onboard = can_onboard
         self.can_trade = can_trade
         self.can_virtual_borrow = can_virtual_borrow
         self.max_leverage = max_leverage
-        self.leverage_interest_rate = leverage_interest_rate
+        if leverage_interest_rate is not None:
+            self.leverage_interest_rate = leverage_interest_rate
         if bond is not None:
             self.bond = bond
 
@@ -416,8 +418,6 @@ class Asset(object):
         :param _yield: The _yield of this Asset.  # noqa: E501
         :type: dict
         """
-        if _yield is None:
-            raise ValueError("Invalid value for `_yield`, must not be `None`")  # noqa: E501
 
         self.__yield = _yield
 
@@ -577,8 +577,6 @@ class Asset(object):
         :param leverage_interest_rate: The leverage_interest_rate of this Asset.  # noqa: E501
         :type: dict
         """
-        if leverage_interest_rate is None:
-            raise ValueError("Invalid value for `leverage_interest_rate`, must not be `None`")  # noqa: E501
 
         self._leverage_interest_rate = leverage_interest_rate
 

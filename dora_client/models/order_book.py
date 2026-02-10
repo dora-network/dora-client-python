@@ -33,6 +33,8 @@ class OrderBook(object):
         'base_asset_id': 'dict',
         'created_at': 'dict',
         'display_name': 'dict',
+        'base_asset_fractionalized_units': 'dict',
+        'quote_asset_fractionalized_units': 'dict',
         'fee_factor': 'dict',
         'initial_assets_ratio': 'dict',
         'maturity_at': 'dict',
@@ -54,6 +56,8 @@ class OrderBook(object):
         'base_asset_id': 'base_asset_id',
         'created_at': 'created_at',
         'display_name': 'display_name',
+        'base_asset_fractionalized_units': 'base_asset_fractionalized_units',
+        'quote_asset_fractionalized_units': 'quote_asset_fractionalized_units',
         'fee_factor': 'fee_factor',
         'initial_assets_ratio': 'initial_assets_ratio',
         'maturity_at': 'maturity_at',
@@ -69,13 +73,15 @@ class OrderBook(object):
         'shares_asset_id': 'shares_asset_id'
     }
 
-    def __init__(self, order_book_id=None, base_quantity=None, base_asset_id=None, created_at=None, display_name=None, fee_factor=None, initial_assets_ratio=None, maturity_at=None, quote_quantity=None, quote_asset_id=None, shares_quantity=None, status=None, tick_size=None, updated_at=None, halted_at=None, terminated_at=None, pool_updated_at=None, shares_asset_id=None):  # noqa: E501
+    def __init__(self, order_book_id=None, base_quantity=None, base_asset_id=None, created_at=None, display_name=None, base_asset_fractionalized_units=None, quote_asset_fractionalized_units=None, fee_factor=None, initial_assets_ratio=None, maturity_at=None, quote_quantity=None, quote_asset_id=None, shares_quantity=None, status=None, tick_size=None, updated_at=None, halted_at=None, terminated_at=None, pool_updated_at=None, shares_asset_id=None):  # noqa: E501
         """OrderBook - a model defined in Swagger"""  # noqa: E501
         self._order_book_id = None
         self._base_quantity = None
         self._base_asset_id = None
         self._created_at = None
         self._display_name = None
+        self._base_asset_fractionalized_units = None
+        self._quote_asset_fractionalized_units = None
         self._fee_factor = None
         self._initial_assets_ratio = None
         self._maturity_at = None
@@ -95,6 +101,8 @@ class OrderBook(object):
         self.base_asset_id = base_asset_id
         self.created_at = created_at
         self.display_name = display_name
+        self.base_asset_fractionalized_units = base_asset_fractionalized_units
+        self.quote_asset_fractionalized_units = quote_asset_fractionalized_units
         self.fee_factor = fee_factor
         self.initial_assets_ratio = initial_assets_ratio
         self.maturity_at = maturity_at
@@ -226,6 +234,52 @@ class OrderBook(object):
             raise ValueError("Invalid value for `display_name`, must not be `None`")  # noqa: E501
 
         self._display_name = display_name
+
+    @property
+    def base_asset_fractionalized_units(self):
+        """Gets the base_asset_fractionalized_units of this OrderBook.  # noqa: E501
+
+
+        :return: The base_asset_fractionalized_units of this OrderBook.  # noqa: E501
+        :rtype: dict
+        """
+        return self._base_asset_fractionalized_units
+
+    @base_asset_fractionalized_units.setter
+    def base_asset_fractionalized_units(self, base_asset_fractionalized_units):
+        """Sets the base_asset_fractionalized_units of this OrderBook.
+
+
+        :param base_asset_fractionalized_units: The base_asset_fractionalized_units of this OrderBook.  # noqa: E501
+        :type: dict
+        """
+        if base_asset_fractionalized_units is None:
+            raise ValueError("Invalid value for `base_asset_fractionalized_units`, must not be `None`")  # noqa: E501
+
+        self._base_asset_fractionalized_units = base_asset_fractionalized_units
+
+    @property
+    def quote_asset_fractionalized_units(self):
+        """Gets the quote_asset_fractionalized_units of this OrderBook.  # noqa: E501
+
+
+        :return: The quote_asset_fractionalized_units of this OrderBook.  # noqa: E501
+        :rtype: dict
+        """
+        return self._quote_asset_fractionalized_units
+
+    @quote_asset_fractionalized_units.setter
+    def quote_asset_fractionalized_units(self, quote_asset_fractionalized_units):
+        """Sets the quote_asset_fractionalized_units of this OrderBook.
+
+
+        :param quote_asset_fractionalized_units: The quote_asset_fractionalized_units of this OrderBook.  # noqa: E501
+        :type: dict
+        """
+        if quote_asset_fractionalized_units is None:
+            raise ValueError("Invalid value for `quote_asset_fractionalized_units`, must not be `None`")  # noqa: E501
+
+        self._quote_asset_fractionalized_units = quote_asset_fractionalized_units
 
     @property
     def fee_factor(self):

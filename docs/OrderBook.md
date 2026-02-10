@@ -8,6 +8,8 @@ Name | Type | Description | Notes
 **base_asset_id** | **dict** |  | 
 **created_at** | **dict** |  | 
 **display_name** | **dict** |  | 
+**base_asset_fractionalized_units** | **dict** |  | 
+**quote_asset_fractionalized_units** | **dict** |  | 
 **fee_factor** | **dict** |  | 
 **initial_assets_ratio** | **dict** |  | 
 **maturity_at** | **dict** |  | 

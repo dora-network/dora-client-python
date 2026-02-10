@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **maturity_at** | **dict** |  | 
 **principal_value** | **dict** |  | 
 **payments_per_year** | **dict** |  | 
-**payments_every** | **dict** | Coupon payment frequency in nanoseconds (minimum 1000 i.e. 1 microsecond) | 
+**payments_every** | **dict** | Coupon payment frequency in nanoseconds (minimum 1000 i.e. 1 microsecond) | [optional] 
 **next_coupon_payment** | **dict** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
