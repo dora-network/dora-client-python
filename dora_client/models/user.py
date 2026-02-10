@@ -42,7 +42,8 @@ class User(object):
         'timezone_offset': 'dict',
         'verified_at': 'dict',
         'show_tutorial_cards': 'dict',
-        'notifications_enabled': 'dict'
+        'notifications_enabled': 'dict',
+        'tenant_id': 'dict'
     }
 
     attribute_map = {
@@ -60,10 +61,11 @@ class User(object):
         'timezone_offset': 'timezone_offset',
         'verified_at': 'verified_at',
         'show_tutorial_cards': 'show_tutorial_cards',
-        'notifications_enabled': 'notifications_enabled'
+        'notifications_enabled': 'notifications_enabled',
+        'tenant_id': 'tenant_id'
     }
 
-    def __init__(self, id=None, closed_at=None, disabled_at=None, email=None, name=None, native_asset_id=None, photo_url=None, provider=None, provider_id=None, roles=None, timezone=None, timezone_offset=None, verified_at=None, show_tutorial_cards=None, notifications_enabled=None):  # noqa: E501
+    def __init__(self, id=None, closed_at=None, disabled_at=None, email=None, name=None, native_asset_id=None, photo_url=None, provider=None, provider_id=None, roles=None, timezone=None, timezone_offset=None, verified_at=None, show_tutorial_cards=None, notifications_enabled=None, tenant_id=None):  # noqa: E501
         """User - a model defined in Swagger"""  # noqa: E501
         self._id = None
         self._closed_at = None
@@ -80,6 +82,7 @@ class User(object):
         self._verified_at = None
         self._show_tutorial_cards = None
         self._notifications_enabled = None
+        self._tenant_id = None
         self.discriminator = None
         self.id = id
         if closed_at is not None:
@@ -104,6 +107,7 @@ class User(object):
             self.verified_at = verified_at
         self.show_tutorial_cards = show_tutorial_cards
         self.notifications_enabled = notifications_enabled
+        self.tenant_id = tenant_id
 
     @property
     def id(self):
@@ -437,6 +441,29 @@ class User(object):
             raise ValueError("Invalid value for `notifications_enabled`, must not be `None`")  # noqa: E501
 
         self._notifications_enabled = notifications_enabled
+
+    @property
+    def tenant_id(self):
+        """Gets the tenant_id of this User.  # noqa: E501
+
+
+        :return: The tenant_id of this User.  # noqa: E501
+        :rtype: dict
+        """
+        return self._tenant_id
+
+    @tenant_id.setter
+    def tenant_id(self, tenant_id):
+        """Sets the tenant_id of this User.
+
+
+        :param tenant_id: The tenant_id of this User.  # noqa: E501
+        :type: dict
+        """
+        if tenant_id is None:
+            raise ValueError("Invalid value for `tenant_id`, must not be `None`")  # noqa: E501
+
+        self._tenant_id = tenant_id
 
     def to_dict(self):
         """Returns the model properties as a dict"""

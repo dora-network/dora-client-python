@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **verified_at** | **dict** |  | [optional] 
 **show_tutorial_cards** | **dict** |  | 
 **notifications_enabled** | **dict** |  | 
+**tenant_id** | **dict** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
