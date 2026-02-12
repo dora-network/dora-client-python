@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **liquidation_threshold** | **dict** | The borrow limit | 
 **created_at** | **dict** |  | 
 **position_name** | **dict** |  | 
+**pending_withdrawal** | **dict** | The amount of asset that is pending withdrawal from the position. | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

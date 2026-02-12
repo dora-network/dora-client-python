@@ -41,7 +41,8 @@ class Position(object):
         'borrow_limit': 'dict',
         'liquidation_threshold': 'dict',
         'created_at': 'dict',
-        'position_name': 'dict'
+        'position_name': 'dict',
+        'pending_withdrawal': 'dict'
     }
 
     attribute_map = {
@@ -58,10 +59,11 @@ class Position(object):
         'borrow_limit': 'borrow_limit',
         'liquidation_threshold': 'liquidation_threshold',
         'created_at': 'created_at',
-        'position_name': 'position_name'
+        'position_name': 'position_name',
+        'pending_withdrawal': 'pending_withdrawal'
     }
 
-    def __init__(self, id=None, asset_id=None, seq=None, is_global=None, available=None, locked=None, supplied=None, borrowed=None, impending_borrows=None, avg_entry_price=None, borrow_limit=None, liquidation_threshold=None, created_at=None, position_name=None):  # noqa: E501
+    def __init__(self, id=None, asset_id=None, seq=None, is_global=None, available=None, locked=None, supplied=None, borrowed=None, impending_borrows=None, avg_entry_price=None, borrow_limit=None, liquidation_threshold=None, created_at=None, position_name=None, pending_withdrawal=None):  # noqa: E501
         """Position - a model defined in Swagger"""  # noqa: E501
         self._id = None
         self._asset_id = None
@@ -77,6 +79,7 @@ class Position(object):
         self._liquidation_threshold = None
         self._created_at = None
         self._position_name = None
+        self._pending_withdrawal = None
         self.discriminator = None
         self.id = id
         self.asset_id = asset_id
@@ -93,6 +96,7 @@ class Position(object):
         self.liquidation_threshold = liquidation_threshold
         self.created_at = created_at
         self.position_name = position_name
+        self.pending_withdrawal = pending_withdrawal
 
     @property
     def id(self):
@@ -431,6 +435,31 @@ class Position(object):
             raise ValueError("Invalid value for `position_name`, must not be `None`")  # noqa: E501
 
         self._position_name = position_name
+
+    @property
+    def pending_withdrawal(self):
+        """Gets the pending_withdrawal of this Position.  # noqa: E501
+
+        The amount of asset that is pending withdrawal from the position.  # noqa: E501
+
+        :return: The pending_withdrawal of this Position.  # noqa: E501
+        :rtype: dict
+        """
+        return self._pending_withdrawal
+
+    @pending_withdrawal.setter
+    def pending_withdrawal(self, pending_withdrawal):
+        """Sets the pending_withdrawal of this Position.
+
+        The amount of asset that is pending withdrawal from the position.  # noqa: E501
+
+        :param pending_withdrawal: The pending_withdrawal of this Position.  # noqa: E501
+        :type: dict
+        """
+        if pending_withdrawal is None:
+            raise ValueError("Invalid value for `pending_withdrawal`, must not be `None`")  # noqa: E501
+
+        self._pending_withdrawal = pending_withdrawal
 
     def to_dict(self):
         """Returns the model properties as a dict"""
