@@ -29,6 +29,7 @@ class OrderBook(object):
     """
     swagger_types = {
         'order_book_id': 'dict',
+        'order_book_seq': 'dict',
         'base_quantity': 'dict',
         'base_asset_id': 'dict',
         'created_at': 'dict',
@@ -52,6 +53,7 @@ class OrderBook(object):
 
     attribute_map = {
         'order_book_id': 'order_book_id',
+        'order_book_seq': 'order_book_seq',
         'base_quantity': 'base_quantity',
         'base_asset_id': 'base_asset_id',
         'created_at': 'created_at',
@@ -73,9 +75,10 @@ class OrderBook(object):
         'shares_asset_id': 'shares_asset_id'
     }
 
-    def __init__(self, order_book_id=None, base_quantity=None, base_asset_id=None, created_at=None, display_name=None, base_asset_fractionalized_units=None, quote_asset_fractionalized_units=None, fee_factor=None, initial_assets_ratio=None, maturity_at=None, quote_quantity=None, quote_asset_id=None, shares_quantity=None, status=None, tick_size=None, updated_at=None, halted_at=None, terminated_at=None, pool_updated_at=None, shares_asset_id=None):  # noqa: E501
+    def __init__(self, order_book_id=None, order_book_seq=None, base_quantity=None, base_asset_id=None, created_at=None, display_name=None, base_asset_fractionalized_units=None, quote_asset_fractionalized_units=None, fee_factor=None, initial_assets_ratio=None, maturity_at=None, quote_quantity=None, quote_asset_id=None, shares_quantity=None, status=None, tick_size=None, updated_at=None, halted_at=None, terminated_at=None, pool_updated_at=None, shares_asset_id=None):  # noqa: E501
         """OrderBook - a model defined in Swagger"""  # noqa: E501
         self._order_book_id = None
+        self._order_book_seq = None
         self._base_quantity = None
         self._base_asset_id = None
         self._created_at = None
@@ -97,6 +100,8 @@ class OrderBook(object):
         self._shares_asset_id = None
         self.discriminator = None
         self.order_book_id = order_book_id
+        if order_book_seq is not None:
+            self.order_book_seq = order_book_seq
         self.base_quantity = base_quantity
         self.base_asset_id = base_asset_id
         self.created_at = created_at
@@ -142,6 +147,27 @@ class OrderBook(object):
             raise ValueError("Invalid value for `order_book_id`, must not be `None`")  # noqa: E501
 
         self._order_book_id = order_book_id
+
+    @property
+    def order_book_seq(self):
+        """Gets the order_book_seq of this OrderBook.  # noqa: E501
+
+
+        :return: The order_book_seq of this OrderBook.  # noqa: E501
+        :rtype: dict
+        """
+        return self._order_book_seq
+
+    @order_book_seq.setter
+    def order_book_seq(self, order_book_seq):
+        """Sets the order_book_seq of this OrderBook.
+
+
+        :param order_book_seq: The order_book_seq of this OrderBook.  # noqa: E501
+        :type: dict
+        """
+
+        self._order_book_seq = order_book_seq
 
     @property
     def base_quantity(self):

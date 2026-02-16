@@ -217,6 +217,13 @@ class TestDefaultApi(unittest.TestCase):
         """
         pass
 
+    def test_get_ledger_withdraw_requests_by_self(self):
+        """Test case for get_ledger_withdraw_requests_by_self
+
+        Get all pending withdrawal requests for the logged in user  # noqa: E501
+        """
+        pass
+
     def test_get_order_by_id(self):
         """Test case for get_order_by_id
 
@@ -382,6 +389,13 @@ class TestDefaultApi(unittest.TestCase):
         """Test case for ledger_withdraw
 
         Withdraw assets from this user to the outside world  # noqa: E501
+        """
+        pass
+
+    def test_ledger_withdraw_request(self):
+        """Test case for ledger_withdraw_request
+
+        Initiate a withdrawal request for the logged in user to the outside world  # noqa: E501
         """
         pass
 

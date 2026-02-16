@@ -17,6 +17,8 @@ from __future__ import absolute_import
 from dora_client.models.api_key_response import APIKeyResponse
 from dora_client.models.api_key_response_envelope import APIKeyResponseEnvelope
 from dora_client.models.api_keys import APIKeys
+from dora_client.models.all_withdrawal_initiations_response import AllWithdrawalInitiationsResponse
+from dora_client.models.all_withdrawal_initiations_response_envelope import AllWithdrawalInitiationsResponseEnvelope
 from dora_client.models.asset import Asset
 from dora_client.models.asset_kind import AssetKind
 from dora_client.models.asset_price import AssetPrice
@@ -248,3 +250,6 @@ from dora_client.models.withdraw import Withdraw
 from dora_client.models.withdraw_request import WithdrawRequest
 from dora_client.models.withdraw_response import WithdrawResponse
 from dora_client.models.withdraw_response_envelope import WithdrawResponseEnvelope
+from dora_client.models.withdrawal_initiation import WithdrawalInitiation
+from dora_client.models.withdrawal_initiation_response import WithdrawalInitiationResponse
+from dora_client.models.withdrawal_initiation_response_envelope import WithdrawalInitiationResponseEnvelope

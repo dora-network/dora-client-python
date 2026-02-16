@@ -4,6 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **order_book_id** | **dict** |  | 
+**order_book_seq** | **dict** |  | [optional] 
 **base_quantity** | **dict** |  | 
 **base_asset_id** | **dict** |  | 
 **created_at** | **dict** |  | 
