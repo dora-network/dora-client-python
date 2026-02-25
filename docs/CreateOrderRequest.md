@@ -12,9 +12,9 @@ Name | Type | Description | Notes
 **order_book_id** | **dict** | Required: the order book to submit the order to | 
 **order_modifiers** | **dict** |  | [optional] 
 **good_till_date** | **dict** |  | [optional] 
-**trigger_price** | **dict** |  | [optional] 
-**trigger_type** | [**TriggerType**](TriggerType.md) |  | [optional] 
 **client_order_id** | **dict** | An optional client-provided identifier for the order. | [optional] 
+**stop_loss_price** | **dict** | Stop loss price | [optional] 
+**take_profit_price** | **dict** | Take profit price | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

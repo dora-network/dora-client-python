@@ -28,10 +28,24 @@ class TestDefaultApi(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def test_approve_ledger_withdraw_request(self):
+        """Test case for approve_ledger_withdraw_request
+
+        Approve a pending withdrawal request  # noqa: E501
+        """
+        pass
+
     def test_cancel_all_open_orders(self):
         """Test case for cancel_all_open_orders
 
         Cancel all open orders, if user passes orderbook on query param it will cancel all orders on specific orderbook, admin can cancel user's orders on specific orderbook  # noqa: E501
+        """
+        pass
+
+    def test_cancel_ledger_withdraw_request(self):
+        """Test case for cancel_ledger_withdraw_request
+
+        Cancel a pending withdrawal request  # noqa: E501
         """
         pass
 
@@ -102,6 +116,13 @@ class TestDefaultApi(unittest.TestCase):
         """Test case for get_all_asset_prices
 
         Get the current price of all assets  # noqa: E501
+        """
+        pass
+
+    def test_get_all_withdrawal_requests(self):
+        """Test case for get_all_withdrawal_requests
+
+        Get all withdrawal requests  # noqa: E501
         """
         pass
 
@@ -221,6 +242,13 @@ class TestDefaultApi(unittest.TestCase):
         """Test case for get_ledger_withdraw_requests_by_self
 
         Get all pending withdrawal requests for the logged in user  # noqa: E501
+        """
+        pass
+
+    def test_get_ledger_withdraw_requests_by_user_id(self):
+        """Test case for get_ledger_withdraw_requests_by_user_id
+
+        Get all pending withdrawal requests for this user  # noqa: E501
         """
         pass
 
@@ -395,6 +423,13 @@ class TestDefaultApi(unittest.TestCase):
     def test_ledger_withdraw_request(self):
         """Test case for ledger_withdraw_request
 
+        Initiate a withdrawal request for this user to the outside world  # noqa: E501
+        """
+        pass
+
+    def test_ledger_withdraw_request_self(self):
+        """Test case for ledger_withdraw_request_self
+
         Initiate a withdrawal request for the logged in user to the outside world  # noqa: E501
         """
         pass
@@ -480,6 +515,13 @@ class TestDefaultApi(unittest.TestCase):
         """Test case for pay_leverage_get_accrued_interest
 
         Pay current accrued leverage interest for a specific user  # noqa: E501
+        """
+        pass
+
+    def test_reject_ledger_withdraw_request(self):
+        """Test case for reject_ledger_withdraw_request
+
+        Reject a pending withdrawal request  # noqa: E501
         """
         pass
 

@@ -253,3 +253,5 @@ from dora_client.models.withdraw_response_envelope import WithdrawResponseEnvelo
 from dora_client.models.withdrawal_initiation import WithdrawalInitiation
 from dora_client.models.withdrawal_initiation_response import WithdrawalInitiationResponse
 from dora_client.models.withdrawal_initiation_response_envelope import WithdrawalInitiationResponseEnvelope
+from dora_client.models.withdrawal_request_reason import WithdrawalRequestReason
+from dora_client.models.withdrawal_status import WithdrawalStatus

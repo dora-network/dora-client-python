@@ -33,9 +33,12 @@ class WithdrawalInitiation(object):
         'position_id': 'dict',
         'asset_id': 'dict',
         'quantity': 'dict',
-        'status': 'dict',
+        'status': 'WithdrawalStatus',
         'created_at': 'dict',
-        'updated_at': 'dict'
+        'created_by': 'dict',
+        'updated_at': 'dict',
+        'updated_by': 'dict',
+        'reason': 'dict'
     }
 
     attribute_map = {
@@ -46,10 +49,13 @@ class WithdrawalInitiation(object):
         'quantity': 'quantity',
         'status': 'status',
         'created_at': 'created_at',
-        'updated_at': 'updated_at'
+        'created_by': 'created_by',
+        'updated_at': 'updated_at',
+        'updated_by': 'updated_by',
+        'reason': 'reason'
     }
 
-    def __init__(self, withdrawal_id=None, user_id=None, position_id=None, asset_id=None, quantity=None, status=None, created_at=None, updated_at=None):  # noqa: E501
+    def __init__(self, withdrawal_id=None, user_id=None, position_id=None, asset_id=None, quantity=None, status=None, created_at=None, created_by=None, updated_at=None, updated_by=None, reason=None):  # noqa: E501
         """WithdrawalInitiation - a model defined in Swagger"""  # noqa: E501
         self._withdrawal_id = None
         self._user_id = None
@@ -58,7 +64,10 @@ class WithdrawalInitiation(object):
         self._quantity = None
         self._status = None
         self._created_at = None
+        self._created_by = None
         self._updated_at = None
+        self._updated_by = None
+        self._reason = None
         self.discriminator = None
         self.withdrawal_id = withdrawal_id
         self.user_id = user_id
@@ -67,7 +76,10 @@ class WithdrawalInitiation(object):
         self.quantity = quantity
         self.status = status
         self.created_at = created_at
+        self.created_by = created_by
         self.updated_at = updated_at
+        self.updated_by = updated_by
+        self.reason = reason
 
     @property
     def withdrawal_id(self):
@@ -190,7 +202,7 @@ class WithdrawalInitiation(object):
 
 
         :return: The status of this WithdrawalInitiation.  # noqa: E501
-        :rtype: dict
+        :rtype: WithdrawalStatus
         """
         return self._status
 
@@ -200,7 +212,7 @@ class WithdrawalInitiation(object):
 
 
         :param status: The status of this WithdrawalInitiation.  # noqa: E501
-        :type: dict
+        :type: WithdrawalStatus
         """
         if status is None:
             raise ValueError("Invalid value for `status`, must not be `None`")  # noqa: E501
@@ -231,6 +243,29 @@ class WithdrawalInitiation(object):
         self._created_at = created_at
 
     @property
+    def created_by(self):
+        """Gets the created_by of this WithdrawalInitiation.  # noqa: E501
+
+
+        :return: The created_by of this WithdrawalInitiation.  # noqa: E501
+        :rtype: dict
+        """
+        return self._created_by
+
+    @created_by.setter
+    def created_by(self, created_by):
+        """Sets the created_by of this WithdrawalInitiation.
+
+
+        :param created_by: The created_by of this WithdrawalInitiation.  # noqa: E501
+        :type: dict
+        """
+        if created_by is None:
+            raise ValueError("Invalid value for `created_by`, must not be `None`")  # noqa: E501
+
+        self._created_by = created_by
+
+    @property
     def updated_at(self):
         """Gets the updated_at of this WithdrawalInitiation.  # noqa: E501
 
@@ -252,6 +287,52 @@ class WithdrawalInitiation(object):
             raise ValueError("Invalid value for `updated_at`, must not be `None`")  # noqa: E501
 
         self._updated_at = updated_at
+
+    @property
+    def updated_by(self):
+        """Gets the updated_by of this WithdrawalInitiation.  # noqa: E501
+
+
+        :return: The updated_by of this WithdrawalInitiation.  # noqa: E501
+        :rtype: dict
+        """
+        return self._updated_by
+
+    @updated_by.setter
+    def updated_by(self, updated_by):
+        """Sets the updated_by of this WithdrawalInitiation.
+
+
+        :param updated_by: The updated_by of this WithdrawalInitiation.  # noqa: E501
+        :type: dict
+        """
+        if updated_by is None:
+            raise ValueError("Invalid value for `updated_by`, must not be `None`")  # noqa: E501
+
+        self._updated_by = updated_by
+
+    @property
+    def reason(self):
+        """Gets the reason of this WithdrawalInitiation.  # noqa: E501
+
+
+        :return: The reason of this WithdrawalInitiation.  # noqa: E501
+        :rtype: dict
+        """
+        return self._reason
+
+    @reason.setter
+    def reason(self, reason):
+        """Sets the reason of this WithdrawalInitiation.
+
+
+        :param reason: The reason of this WithdrawalInitiation.  # noqa: E501
+        :type: dict
+        """
+        if reason is None:
+            raise ValueError("Invalid value for `reason`, must not be `None`")  # noqa: E501
+
+        self._reason = reason
 
     def to_dict(self):
         """Returns the model properties as a dict"""

@@ -26,6 +26,7 @@ Name | Type | Description | Notes
 **trigger_price** | **dict** |  | [optional] 
 **trigger_type** | [**TriggerType**](TriggerType.md) |  | [optional] 
 **client_order_id** | **dict** | An optional client-provided identifier for the order. | [optional] 
+**parent_order_id** | **dict** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

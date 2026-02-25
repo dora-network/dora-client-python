@@ -37,9 +37,9 @@ class CreateOrderRequest(object):
         'order_book_id': 'dict',
         'order_modifiers': 'dict',
         'good_till_date': 'dict',
-        'trigger_price': 'dict',
-        'trigger_type': 'TriggerType',
-        'client_order_id': 'dict'
+        'client_order_id': 'dict',
+        'stop_loss_price': 'dict',
+        'take_profit_price': 'dict'
     }
 
     attribute_map = {
@@ -52,12 +52,12 @@ class CreateOrderRequest(object):
         'order_book_id': 'order_book_id',
         'order_modifiers': 'order_modifiers',
         'good_till_date': 'good_till_date',
-        'trigger_price': 'trigger_price',
-        'trigger_type': 'trigger_type',
-        'client_order_id': 'client_order_id'
+        'client_order_id': 'client_order_id',
+        'stop_loss_price': 'stop_loss_price',
+        'take_profit_price': 'take_profit_price'
     }
 
-    def __init__(self, quantity=None, inverse_leverage=None, price=None, kind=None, side=None, from_global_position=None, order_book_id=None, order_modifiers=None, good_till_date=None, trigger_price=None, trigger_type=None, client_order_id=None):  # noqa: E501
+    def __init__(self, quantity=None, inverse_leverage=None, price=None, kind=None, side=None, from_global_position=None, order_book_id=None, order_modifiers=None, good_till_date=None, client_order_id=None, stop_loss_price=None, take_profit_price=None):  # noqa: E501
         """CreateOrderRequest - a model defined in Swagger"""  # noqa: E501
         self._quantity = None
         self._inverse_leverage = None
@@ -68,9 +68,9 @@ class CreateOrderRequest(object):
         self._order_book_id = None
         self._order_modifiers = None
         self._good_till_date = None
-        self._trigger_price = None
-        self._trigger_type = None
         self._client_order_id = None
+        self._stop_loss_price = None
+        self._take_profit_price = None
         self.discriminator = None
         self.quantity = quantity
         self.inverse_leverage = inverse_leverage
@@ -84,12 +84,12 @@ class CreateOrderRequest(object):
             self.order_modifiers = order_modifiers
         if good_till_date is not None:
             self.good_till_date = good_till_date
-        if trigger_price is not None:
-            self.trigger_price = trigger_price
-        if trigger_type is not None:
-            self.trigger_type = trigger_type
         if client_order_id is not None:
             self.client_order_id = client_order_id
+        if stop_loss_price is not None:
+            self.stop_loss_price = stop_loss_price
+        if take_profit_price is not None:
+            self.take_profit_price = take_profit_price
 
     @property
     def quantity(self):
@@ -299,48 +299,6 @@ class CreateOrderRequest(object):
         self._good_till_date = good_till_date
 
     @property
-    def trigger_price(self):
-        """Gets the trigger_price of this CreateOrderRequest.  # noqa: E501
-
-
-        :return: The trigger_price of this CreateOrderRequest.  # noqa: E501
-        :rtype: dict
-        """
-        return self._trigger_price
-
-    @trigger_price.setter
-    def trigger_price(self, trigger_price):
-        """Sets the trigger_price of this CreateOrderRequest.
-
-
-        :param trigger_price: The trigger_price of this CreateOrderRequest.  # noqa: E501
-        :type: dict
-        """
-
-        self._trigger_price = trigger_price
-
-    @property
-    def trigger_type(self):
-        """Gets the trigger_type of this CreateOrderRequest.  # noqa: E501
-
-
-        :return: The trigger_type of this CreateOrderRequest.  # noqa: E501
-        :rtype: TriggerType
-        """
-        return self._trigger_type
-
-    @trigger_type.setter
-    def trigger_type(self, trigger_type):
-        """Sets the trigger_type of this CreateOrderRequest.
-
-
-        :param trigger_type: The trigger_type of this CreateOrderRequest.  # noqa: E501
-        :type: TriggerType
-        """
-
-        self._trigger_type = trigger_type
-
-    @property
     def client_order_id(self):
         """Gets the client_order_id of this CreateOrderRequest.  # noqa: E501
 
@@ -362,6 +320,52 @@ class CreateOrderRequest(object):
         """
 
         self._client_order_id = client_order_id
+
+    @property
+    def stop_loss_price(self):
+        """Gets the stop_loss_price of this CreateOrderRequest.  # noqa: E501
+
+        Stop loss price  # noqa: E501
+
+        :return: The stop_loss_price of this CreateOrderRequest.  # noqa: E501
+        :rtype: dict
+        """
+        return self._stop_loss_price
+
+    @stop_loss_price.setter
+    def stop_loss_price(self, stop_loss_price):
+        """Sets the stop_loss_price of this CreateOrderRequest.
+
+        Stop loss price  # noqa: E501
+
+        :param stop_loss_price: The stop_loss_price of this CreateOrderRequest.  # noqa: E501
+        :type: dict
+        """
+
+        self._stop_loss_price = stop_loss_price
+
+    @property
+    def take_profit_price(self):
+        """Gets the take_profit_price of this CreateOrderRequest.  # noqa: E501
+
+        Take profit price  # noqa: E501
+
+        :return: The take_profit_price of this CreateOrderRequest.  # noqa: E501
+        :rtype: dict
+        """
+        return self._take_profit_price
+
+    @take_profit_price.setter
+    def take_profit_price(self, take_profit_price):
+        """Sets the take_profit_price of this CreateOrderRequest.
+
+        Take profit price  # noqa: E501
+
+        :param take_profit_price: The take_profit_price of this CreateOrderRequest.  # noqa: E501
+        :type: dict
+        """
+
+        self._take_profit_price = take_profit_price
 
     def to_dict(self):
         """Returns the model properties as a dict"""

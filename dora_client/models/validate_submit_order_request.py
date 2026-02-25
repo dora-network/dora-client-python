@@ -40,7 +40,9 @@ class ValidateSubmitOrderRequest(object):
         'quote_asset_id': 'dict',
         'client_order_id': 'dict',
         'position_assets': 'dict',
-        'assets_config': 'dict'
+        'assets_config': 'dict',
+        'stop_loss_price': 'dict',
+        'take_profit_price': 'dict'
     }
 
     attribute_map = {
@@ -56,10 +58,12 @@ class ValidateSubmitOrderRequest(object):
         'quote_asset_id': 'quote_asset_id',
         'client_order_id': 'client_order_id',
         'position_assets': 'position_assets',
-        'assets_config': 'assets_config'
+        'assets_config': 'assets_config',
+        'stop_loss_price': 'stop_loss_price',
+        'take_profit_price': 'take_profit_price'
     }
 
-    def __init__(self, quantity=None, tick=None, kind=None, side=None, price=None, good_till_date=None, inverse_leverage=None, user_balance=None, base_asset_id=None, quote_asset_id=None, client_order_id=None, position_assets=None, assets_config=None):  # noqa: E501
+    def __init__(self, quantity=None, tick=None, kind=None, side=None, price=None, good_till_date=None, inverse_leverage=None, user_balance=None, base_asset_id=None, quote_asset_id=None, client_order_id=None, position_assets=None, assets_config=None, stop_loss_price=None, take_profit_price=None):  # noqa: E501
         """ValidateSubmitOrderRequest - a model defined in Swagger"""  # noqa: E501
         self._quantity = None
         self._tick = None
@@ -74,6 +78,8 @@ class ValidateSubmitOrderRequest(object):
         self._client_order_id = None
         self._position_assets = None
         self._assets_config = None
+        self._stop_loss_price = None
+        self._take_profit_price = None
         self.discriminator = None
         self.quantity = quantity
         self.tick = tick
@@ -95,6 +101,10 @@ class ValidateSubmitOrderRequest(object):
             self.position_assets = position_assets
         if assets_config is not None:
             self.assets_config = assets_config
+        if stop_loss_price is not None:
+            self.stop_loss_price = stop_loss_price
+        if take_profit_price is not None:
+            self.take_profit_price = take_profit_price
 
     @property
     def quantity(self):
@@ -400,6 +410,52 @@ class ValidateSubmitOrderRequest(object):
         """
 
         self._assets_config = assets_config
+
+    @property
+    def stop_loss_price(self):
+        """Gets the stop_loss_price of this ValidateSubmitOrderRequest.  # noqa: E501
+
+        Stop loss price  # noqa: E501
+
+        :return: The stop_loss_price of this ValidateSubmitOrderRequest.  # noqa: E501
+        :rtype: dict
+        """
+        return self._stop_loss_price
+
+    @stop_loss_price.setter
+    def stop_loss_price(self, stop_loss_price):
+        """Sets the stop_loss_price of this ValidateSubmitOrderRequest.
+
+        Stop loss price  # noqa: E501
+
+        :param stop_loss_price: The stop_loss_price of this ValidateSubmitOrderRequest.  # noqa: E501
+        :type: dict
+        """
+
+        self._stop_loss_price = stop_loss_price
+
+    @property
+    def take_profit_price(self):
+        """Gets the take_profit_price of this ValidateSubmitOrderRequest.  # noqa: E501
+
+        Take profit price  # noqa: E501
+
+        :return: The take_profit_price of this ValidateSubmitOrderRequest.  # noqa: E501
+        :rtype: dict
+        """
+        return self._take_profit_price
+
+    @take_profit_price.setter
+    def take_profit_price(self, take_profit_price):
+        """Sets the take_profit_price of this ValidateSubmitOrderRequest.
+
+        Take profit price  # noqa: E501
+
+        :param take_profit_price: The take_profit_price of this ValidateSubmitOrderRequest.  # noqa: E501
+        :type: dict
+        """
+
+        self._take_profit_price = take_profit_price
 
     def to_dict(self):
         """Returns the model properties as a dict"""

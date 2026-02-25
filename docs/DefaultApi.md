@@ -1,10 +1,12 @@
 # dora_client.DefaultApi
 
-All URIs are relative to *https://localhost:8084*
+All URIs are relative to *https://staging.dora.co/*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**approve_ledger_withdraw_request**](DefaultApi.md#approve_ledger_withdraw_request) | **POST** /v1/ledger/withdraw/requests/{withdrawal_id}/approve | Approve a pending withdrawal request
 [**cancel_all_open_orders**](DefaultApi.md#cancel_all_open_orders) | **DELETE** /v1/orders | Cancel all open orders, if user passes orderbook on query param it will cancel all orders on specific orderbook, admin can cancel user&#x27;s orders on specific orderbook
+[**cancel_ledger_withdraw_request**](DefaultApi.md#cancel_ledger_withdraw_request) | **POST** /v1/ledger/withdraw/requests/{withdrawal_id}/cancel | Cancel a pending withdrawal request
 [**cancel_order_by_id**](DefaultApi.md#cancel_order_by_id) | **DELETE** /v1/orders/{order_id} | Cancel an order by ID
 [**check_user_email_exists**](DefaultApi.md#check_user_email_exists) | **GET** /v1/user/exists | Check whether a user email exists
 [**claim_leverage_get_accrued_interest**](DefaultApi.md#claim_leverage_get_accrued_interest) | **POST** /v1/leverage/accrued_interest/claim | Claim current accrued leverage interest for a specific user
@@ -15,6 +17,7 @@ Method | HTTP request | Description
 [**create_user**](DefaultApi.md#create_user) | **POST** /v1/integrators/user | Create a new user
 [**delete_user**](DefaultApi.md#delete_user) | **DELETE** /v1/user/{user_id} | Delete user by ID
 [**get_all_asset_prices**](DefaultApi.md#get_all_asset_prices) | **GET** /v1/price | Get the current price of all assets
+[**get_all_withdrawal_requests**](DefaultApi.md#get_all_withdrawal_requests) | **GET** /v1/ledger/withdraw/requests | Get all withdrawal requests
 [**get_api_keys_for_user_id**](DefaultApi.md#get_api_keys_for_user_id) | **GET** /v1/user/{user_id}/apikey | Get user&#x27;s api keys: admin or integrator only
 [**get_asset_by_id**](DefaultApi.md#get_asset_by_id) | **GET** /v1/assets/{asset_id} | Get asset by ID
 [**get_asset_price**](DefaultApi.md#get_asset_price) | **GET** /v1/price/asset/{asset_id} | Get the current price of an asset
@@ -32,6 +35,7 @@ Method | HTTP request | Description
 [**get_ledger_positions_self**](DefaultApi.md#get_ledger_positions_self) | **GET** /v1/ledger/positions/self | Get your own positions
 [**get_ledger_value_self**](DefaultApi.md#get_ledger_value_self) | **GET** /v1/ledger/value/self | Get your own available, locked, and borrowed USD value; and realized and unrealized PnL
 [**get_ledger_withdraw_requests_by_self**](DefaultApi.md#get_ledger_withdraw_requests_by_self) | **GET** /v1/ledger/withdraw/requests/self | Get all pending withdrawal requests for the logged in user
+[**get_ledger_withdraw_requests_by_user_id**](DefaultApi.md#get_ledger_withdraw_requests_by_user_id) | **GET** /v1/ledger/withdraw/requests/{user_id} | Get all pending withdrawal requests for this user
 [**get_order_by_id**](DefaultApi.md#get_order_by_id) | **GET** /v1/orders/{order_id} | Get order by ID
 [**get_orderbook_by_id**](DefaultApi.md#get_orderbook_by_id) | **GET** /v1/orderbooks/{order_book_id} | Get orderbook by ID
 [**get_orderbook_depth**](DefaultApi.md#get_orderbook_depth) | **GET** /v1/orderbooks/{order_book_id}/depth | Get the aggregated price levels for a specific orderbook (L2 market depth)
@@ -56,7 +60,8 @@ Method | HTTP request | Description
 [**get_users_api_keys**](DefaultApi.md#get_users_api_keys) | **GET** /v1/user/apikey | Get user&#x27;s api keys
 [**ledger_deposit**](DefaultApi.md#ledger_deposit) | **POST** /v1/ledger/deposit/{user_id} | Deposit assets into this user&#x27;s account from the outside world
 [**ledger_withdraw**](DefaultApi.md#ledger_withdraw) | **POST** /v1/ledger/withdraw/{user_id} | Withdraw assets from this user to the outside world
-[**ledger_withdraw_request**](DefaultApi.md#ledger_withdraw_request) | **POST** /v1/ledger/withdraw/requests/self | Initiate a withdrawal request for the logged in user to the outside world
+[**ledger_withdraw_request**](DefaultApi.md#ledger_withdraw_request) | **POST** /v1/ledger/withdraw/requests/{user_id} | Initiate a withdrawal request for this user to the outside world
+[**ledger_withdraw_request_self**](DefaultApi.md#ledger_withdraw_request_self) | **POST** /v1/ledger/withdraw/requests/self | Initiate a withdrawal request for the logged in user to the outside world
 [**leverage_get_accrued_interest_by_user**](DefaultApi.md#leverage_get_accrued_interest_by_user) | **GET** /v1/leverage/accrued_interest/self | Get current accrued leverage interest for the user
 [**leverage_isolate_collateral**](DefaultApi.md#leverage_isolate_collateral) | **POST** /v1/leverage/isolate_collateral | Create an isolated position by transferring collateral to the position from the user&#x27;s global collateral
 [**leverage_supply**](DefaultApi.md#leverage_supply) | **POST** /v1/leverage/supply | Supply leverage for a specific asset
@@ -69,6 +74,7 @@ Method | HTTP request | Description
 [**list_orders**](DefaultApi.md#list_orders) | **GET** /v1/orders | List all orders
 [**list_position_accounts_self**](DefaultApi.md#list_position_accounts_self) | **GET** /v1/user/self/position_accounts | List all position accounts for the authenticated user
 [**pay_leverage_get_accrued_interest**](DefaultApi.md#pay_leverage_get_accrued_interest) | **POST** /v1/leverage/accrued_interest/pay | Pay current accrued leverage interest for a specific user
+[**reject_ledger_withdraw_request**](DefaultApi.md#reject_ledger_withdraw_request) | **POST** /v1/ledger/withdraw/requests/{withdrawal_id}/reject | Reject a pending withdrawal request
 [**revoke_api_key_for_user**](DefaultApi.md#revoke_api_key_for_user) | **PUT** /v1/user/apikey/{key_id}/revoke | Revoke apikey for a user
 [**revoke_api_key_for_user_id**](DefaultApi.md#revoke_api_key_for_user_id) | **PUT** /v1/user/{user_id}/apikey/{key_id}/revoke | Revoke apikey for a user: admin or integrator only
 [**settle_leverage_accrued_interest**](DefaultApi.md#settle_leverage_accrued_interest) | **POST** /v1/leverage/accrued_interest/settle | Settle current accrued leverage interest for a specific user
@@ -82,6 +88,62 @@ Method | HTTP request | Description
 [**update_user_config_self**](DefaultApi.md#update_user_config_self) | **PUT** /v1/user/config/self | Update user configuration for the authenticated user
 [**validate_submit_order**](DefaultApi.md#validate_submit_order) | **POST** /v1/orders/validate | Validate submit order request data
 [**verify_user**](DefaultApi.md#verify_user) | **PUT** /v1/user/{user_id}/verify | Verify a user by ID
+
+# **approve_ledger_withdraw_request**
+> WithdrawalInitiationResponse approve_ledger_withdraw_request(withdrawal_id, body=body)
+
+Approve a pending withdrawal request
+
+Approve a pending withdrawal request, allowing the transfer of assets to the outside world to proceed. Note that this does not interact with any external systems; it simply updates the status of the withdrawal request in the ledger. Actual transfer of assets must be handled separately.
+
+### Example
+```python
+from __future__ import print_function
+import time
+import dora_client
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration = dora_client.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+withdrawal_id = NULL # dict | 
+body = dora_client.WithdrawalRequestReason() # WithdrawalRequestReason |  (optional)
+
+try:
+    # Approve a pending withdrawal request
+    api_response = api_instance.approve_ledger_withdraw_request(withdrawal_id, body=body)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->approve_ledger_withdraw_request: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **withdrawal_id** | [**dict**](.md)|  | 
+ **body** | [**WithdrawalRequestReason**](WithdrawalRequestReason.md)|  | [optional] 
+
+### Return type
+
+[**WithdrawalInitiationResponse**](WithdrawalInitiationResponse.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **cancel_all_open_orders**
 > ListOrdersResponse cancel_all_open_orders(order_book_id=order_book_id, user_id=user_id, order_kind=order_kind)
@@ -135,6 +197,62 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **cancel_ledger_withdraw_request**
+> WithdrawalInitiationResponse cancel_ledger_withdraw_request(withdrawal_id, body=body)
+
+Cancel a pending withdrawal request
+
+Cancel a pending withdrawal request, providing an optional reason for the cancellation.
+
+### Example
+```python
+from __future__ import print_function
+import time
+import dora_client
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration = dora_client.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+withdrawal_id = NULL # dict | 
+body = dora_client.WithdrawalRequestReason() # WithdrawalRequestReason |  (optional)
+
+try:
+    # Cancel a pending withdrawal request
+    api_response = api_instance.cancel_ledger_withdraw_request(withdrawal_id, body=body)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->cancel_ledger_withdraw_request: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **withdrawal_id** | [**dict**](.md)|  | 
+ **body** | [**WithdrawalRequestReason**](WithdrawalRequestReason.md)|  | [optional] 
+
+### Return type
+
+[**WithdrawalInitiationResponse**](WithdrawalInitiationResponse.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -645,6 +763,58 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**ListAssetPriceResponse**](ListAssetPriceResponse.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_all_withdrawal_requests**
+> AllWithdrawalInitiationsResponse get_all_withdrawal_requests(status=status)
+
+Get all withdrawal requests
+
+### Example
+```python
+from __future__ import print_function
+import time
+import dora_client
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration = dora_client.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+status = NULL # dict |  (optional)
+
+try:
+    # Get all withdrawal requests
+    api_response = api_instance.get_all_withdrawal_requests(status=status)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->get_all_withdrawal_requests: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **status** | [**dict**](.md)|  | [optional] 
+
+### Return type
+
+[**AllWithdrawalInitiationsResponse**](AllWithdrawalInitiationsResponse.md)
 
 ### Authorization
 
@@ -1430,7 +1600,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_ledger_withdraw_requests_by_self**
-> AllWithdrawalInitiationsResponse get_ledger_withdraw_requests_by_self()
+> AllWithdrawalInitiationsResponse get_ledger_withdraw_requests_by_self(status=status)
 
 Get all pending withdrawal requests for the logged in user
 
@@ -1450,17 +1620,75 @@ configuration.api_key['Authorization'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+status = NULL # dict |  (optional)
 
 try:
     # Get all pending withdrawal requests for the logged in user
-    api_response = api_instance.get_ledger_withdraw_requests_by_self()
+    api_response = api_instance.get_ledger_withdraw_requests_by_self(status=status)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->get_ledger_withdraw_requests_by_self: %s\n" % e)
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **status** | [**dict**](.md)|  | [optional] 
+
+### Return type
+
+[**AllWithdrawalInitiationsResponse**](AllWithdrawalInitiationsResponse.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_ledger_withdraw_requests_by_user_id**
+> AllWithdrawalInitiationsResponse get_ledger_withdraw_requests_by_user_id(user_id, status=status)
+
+Get all pending withdrawal requests for this user
+
+### Example
+```python
+from __future__ import print_function
+import time
+import dora_client
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration = dora_client.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+user_id = NULL # dict | 
+status = NULL # dict |  (optional)
+
+try:
+    # Get all pending withdrawal requests for this user
+    api_response = api_instance.get_ledger_withdraw_requests_by_user_id(user_id, status=status)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->get_ledger_withdraw_requests_by_user_id: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **user_id** | [**dict**](.md)|  | 
+ **status** | [**dict**](.md)|  | [optional] 
 
 ### Return type
 
@@ -2654,7 +2882,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **ledger_withdraw**
-> FundUserResponse ledger_withdraw(body, user_id)
+> FundUserResponse ledger_withdraw(body, user_id, status=status)
 
 Withdraw assets from this user to the outside world
 
@@ -2678,10 +2906,11 @@ configuration.api_key['Authorization'] = 'YOUR_API_KEY'
 api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
 body = dora_client.DefundUserRequest() # DefundUserRequest | 
 user_id = NULL # dict | 
+status = NULL # dict |  (optional)
 
 try:
     # Withdraw assets from this user to the outside world
-    api_response = api_instance.ledger_withdraw(body, user_id)
+    api_response = api_instance.ledger_withdraw(body, user_id, status=status)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->ledger_withdraw: %s\n" % e)
@@ -2693,6 +2922,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**DefundUserRequest**](DefundUserRequest.md)|  | 
  **user_id** | [**dict**](.md)|  | 
+ **status** | [**dict**](.md)|  | [optional] 
 
 ### Return type
 
@@ -2711,6 +2941,62 @@ Name | Type | Description  | Notes
 
 # **ledger_withdraw_request**
 > WithdrawalInitiationResponse ledger_withdraw_request(body, user_id)
+
+Initiate a withdrawal request for this user to the outside world
+
+Withdraw assets from this user's account to the outside world. Note that this does not interact with any external systems; it simply deducts the amount from the user's available balance in the ledger. Actual transfer of assets must be handled separately.
+
+### Example
+```python
+from __future__ import print_function
+import time
+import dora_client
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration = dora_client.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+body = dora_client.DefundUserRequest() # DefundUserRequest | 
+user_id = NULL # dict | 
+
+try:
+    # Initiate a withdrawal request for this user to the outside world
+    api_response = api_instance.ledger_withdraw_request(body, user_id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->ledger_withdraw_request: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**DefundUserRequest**](DefundUserRequest.md)|  | 
+ **user_id** | [**dict**](.md)|  | 
+
+### Return type
+
+[**WithdrawalInitiationResponse**](WithdrawalInitiationResponse.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ledger_withdraw_request_self**
+> WithdrawalInitiationResponse ledger_withdraw_request_self(body, user_id)
 
 Initiate a withdrawal request for the logged in user to the outside world
 
@@ -2737,10 +3023,10 @@ user_id = NULL # dict |
 
 try:
     # Initiate a withdrawal request for the logged in user to the outside world
-    api_response = api_instance.ledger_withdraw_request(body, user_id)
+    api_response = api_instance.ledger_withdraw_request_self(body, user_id)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling DefaultApi->ledger_withdraw_request: %s\n" % e)
+    print("Exception when calling DefaultApi->ledger_withdraw_request_self: %s\n" % e)
 ```
 
 ### Parameters
@@ -3415,6 +3701,62 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**PayLeverageAccruedInterestResponse**](PayLeverageAccruedInterestResponse.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **reject_ledger_withdraw_request**
+> WithdrawalInitiationResponse reject_ledger_withdraw_request(body, withdrawal_id)
+
+Reject a pending withdrawal request
+
+Reject a pending withdrawal request, providing a reason for the rejection. Note that this does not interact with any external systems; it simply updates the status of the withdrawal request in the ledger. Actual transfer of assets must be handled separately.
+
+### Example
+```python
+from __future__ import print_function
+import time
+import dora_client
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration = dora_client.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
+
+# create an instance of the API class
+api_instance = dora_client.DefaultApi(dora_client.ApiClient(configuration))
+body = dora_client.WithdrawalRequestReason() # WithdrawalRequestReason | 
+withdrawal_id = NULL # dict | 
+
+try:
+    # Reject a pending withdrawal request
+    api_response = api_instance.reject_ledger_withdraw_request(body, withdrawal_id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->reject_ledger_withdraw_request: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**WithdrawalRequestReason**](WithdrawalRequestReason.md)|  | 
+ **withdrawal_id** | [**dict**](.md)|  | 
+
+### Return type
+
+[**WithdrawalInitiationResponse**](WithdrawalInitiationResponse.md)
 
 ### Authorization
 
