@@ -1,15 +1,35 @@
 # UserConfig
 
+
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **dict** |  | 
-**photo_url** | **dict** |  | [optional] 
-**timezone** | **dict** | User&#x27;s timezone, e.g., &#x27;America/New_York&#x27;, or an offset. | [optional] 
-**created_at** | **dict** |  | 
-**updated_at** | **dict** |  | 
-**show_tutorial_cards** | **dict** |  | 
-**notifications_enabled** | **dict** |  | 
+**id** | **str** |  | 
+**photo_url** | **str** |  | [optional] 
+**timezone** | **str** | User&#39;s timezone, e.g., &#39;America/New_York&#39;, or an offset. | [optional] 
+**created_at** | **datetime** |  | 
+**updated_at** | **datetime** |  | 
+**show_tutorial_cards** | **bool** |  | 
+**notifications_enabled** | **bool** |  | 
 
+## Example
+
+```python
+from dora_client.models.user_config import UserConfig
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of UserConfig from a JSON string
+user_config_instance = UserConfig.from_json(json)
+# print the JSON string representation of the object
+print(UserConfig.to_json())
+
+# convert the object into a dict
+user_config_dict = user_config_instance.to_dict()
+# create an instance of UserConfig from a dict
+user_config_from_dict = UserConfig.from_dict(user_config_dict)
+```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
 

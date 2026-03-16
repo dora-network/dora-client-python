@@ -1,19 +1,39 @@
 # WithdrawalInitiation
 
+
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**withdrawal_id** | **dict** |  | 
-**user_id** | **dict** |  | 
-**position_id** | **dict** |  | 
-**asset_id** | **dict** |  | 
-**quantity** | **dict** |  | 
+**withdrawal_id** | **str** |  | 
+**user_id** | **str** |  | 
+**position_id** | **str** |  | 
+**asset_id** | **str** |  | 
+**quantity** | **str** |  | 
 **status** | [**WithdrawalStatus**](WithdrawalStatus.md) |  | 
-**created_at** | **dict** |  | 
-**created_by** | **dict** |  | 
-**updated_at** | **dict** |  | 
-**updated_by** | **dict** |  | 
-**reason** | **dict** |  | 
+**created_at** | **datetime** |  | 
+**created_by** | **str** |  | 
+**updated_at** | **datetime** |  | 
+**updated_by** | **str** |  | 
+**reason** | **str** |  | 
 
+## Example
+
+```python
+from dora_client.models.withdrawal_initiation import WithdrawalInitiation
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of WithdrawalInitiation from a JSON string
+withdrawal_initiation_instance = WithdrawalInitiation.from_json(json)
+# print the JSON string representation of the object
+print(WithdrawalInitiation.to_json())
+
+# convert the object into a dict
+withdrawal_initiation_dict = withdrawal_initiation_instance.to_dict()
+# create an instance of WithdrawalInitiation from a dict
+withdrawal_initiation_from_dict = WithdrawalInitiation.from_dict(withdrawal_initiation_dict)
+```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
 

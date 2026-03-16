@@ -1,21 +1,41 @@
 # Bond
 
+
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **dict** |  | 
+**id** | **str** |  | 
 **kind** | [**BondKind**](BondKind.md) |  | 
-**coupon_start_at** | **dict** |  | [optional] 
-**created_at** | **dict** |  | 
-**final_coupon_at** | **dict** |  | [optional] 
-**isin** | **dict** |  | 
-**issued_at** | **dict** |  | 
-**issuer** | **dict** |  | 
-**maturity_at** | **dict** |  | 
-**principal_value** | **dict** |  | 
-**payments_per_year** | **dict** |  | 
-**payments_every** | **dict** | Coupon payment frequency in nanoseconds (minimum 1000 i.e. 1 microsecond) | [optional] 
-**next_coupon_payment** | **dict** |  | [optional] 
+**coupon_start_at** | **datetime** |  | [optional] 
+**created_at** | **datetime** |  | 
+**final_coupon_at** | **datetime** |  | [optional] 
+**isin** | **str** |  | 
+**issued_at** | **datetime** |  | 
+**issuer** | **str** |  | 
+**maturity_at** | **datetime** |  | 
+**principal_value** | **str** |  | 
+**payments_per_year** | **int** |  | 
+**payments_every** | **int** | Coupon payment frequency in nanoseconds (minimum 1000 i.e. 1 microsecond) | [optional] 
+**next_coupon_payment** | **datetime** |  | [optional] 
 
+## Example
+
+```python
+from dora_client.models.bond import Bond
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of Bond from a JSON string
+bond_instance = Bond.from_json(json)
+# print the JSON string representation of the object
+print(Bond.to_json())
+
+# convert the object into a dict
+bond_dict = bond_instance.to_dict()
+# create an instance of Bond from a dict
+bond_from_dict = Bond.from_dict(bond_dict)
+```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
 

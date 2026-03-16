@@ -1,15 +1,35 @@
 # CreateIntegratorUserRequest
 
+
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**email** | **dict** |  | [optional] 
-**name** | **dict** |  | [optional] 
-**native_asset_id** | **dict** |  | [optional] 
-**photo_url** | **dict** |  | [optional] 
-**provider** | **dict** |  | [optional] 
-**provider_id** | **dict** |  | [optional] 
-**timezone** | **dict** |  | [optional] 
+**email** | **str** |  | [optional] 
+**name** | **str** |  | [optional] 
+**native_asset_id** | **str** |  | [optional] 
+**photo_url** | **str** |  | [optional] 
+**provider** | **str** |  | [optional] 
+**provider_id** | **str** |  | [optional] 
+**timezone** | **str** |  | [optional] 
 
+## Example
+
+```python
+from dora_client.models.create_integrator_user_request import CreateIntegratorUserRequest
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of CreateIntegratorUserRequest from a JSON string
+create_integrator_user_request_instance = CreateIntegratorUserRequest.from_json(json)
+# print the JSON string representation of the object
+print(CreateIntegratorUserRequest.to_json())
+
+# convert the object into a dict
+create_integrator_user_request_dict = create_integrator_user_request_instance.to_dict()
+# create an instance of CreateIntegratorUserRequest from a dict
+create_integrator_user_request_from_dict = CreateIntegratorUserRequest.from_dict(create_integrator_user_request_dict)
+```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
 
