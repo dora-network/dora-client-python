@@ -49,7 +49,7 @@ class Asset(BaseModel):
     can_onboard: StrictBool
     can_trade: StrictBool
     can_virtual_borrow: StrictBool
-    max_leverage: Union[Annotated[float, Field(le=1, strict=True, ge=0)], Annotated[int, Field(le=1, strict=True, ge=0)]]
+    max_leverage: Union[Annotated[float, Field(strict=True, ge=1)], Annotated[int, Field(strict=True, ge=1)]]
     leverage_interest_rate: Optional[Union[StrictFloat, StrictInt]] = 0
     bond: Optional[Bond] = None
     __properties: ClassVar[List[str]] = ["id", "collateral_weight", "created_at", "decimals", "fractionalized_units", "description", "liquidation_weight", "max_supply", "max_utilization", "name", "symbol", "kind", "yield", "can_add_liquidity", "can_direct_borrow", "can_onboard", "can_trade", "can_virtual_borrow", "max_leverage", "leverage_interest_rate", "bond"]

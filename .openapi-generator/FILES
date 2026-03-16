@@ -6,6 +6,8 @@ README.md
 docs/APIKeyResponse.md
 docs/APIKeyResponseEnvelope.md
 docs/APIKeys.md
+docs/AllPositions.md
+docs/AllPositionsResponseEnvelope.md
 docs/AllWithdrawalInitiationsResponseEnvelope.md
 docs/Asset.md
 docs/AssetConfig.md
@@ -32,6 +34,9 @@ docs/CouponPayment.md
 docs/CreateAPIKeyData.md
 docs/CreateAPIKeyRequest.md
 docs/CreateAPIKeyResponseEnvelope.md
+docs/CreateConditionalOrderRequest.md
+docs/CreateConditionalOrderResponseEnvelope.md
+docs/CreateConditionalOrderResponseEnvelopeAllOfData.md
 docs/CreateIntegratorUserRequest.md
 docs/CreateOrUpdateUserResponse.md
 docs/CreateOrderRequest.md
@@ -46,6 +51,7 @@ docs/FundUserRequest.md
 docs/FundUserResponseEnvelope.md
 docs/GetAssetByIDResponseEnvelope.md
 docs/GetAssetYTMByIDResponseEnvelope.md
+docs/GetRealizedPnlSettlementsResponseEnvelope.md
 docs/GetTopOfBookResponseEnvelope.md
 docs/IsolateCollateralRequest.md
 docs/IsolateCollateralResponse.md
@@ -110,8 +116,11 @@ docs/Position.md
 docs/PositionAccount.md
 docs/PositionAsset.md
 docs/PositionResponse.md
+docs/PositionSide.md
 docs/PositionType.md
 docs/PriceLevel.md
+docs/RealizedPnlSettlement.md
+docs/RealizedPnlSettlements.md
 docs/ResponseEnvelope.md
 docs/ResponseEnvelopeOfListAssets.md
 docs/RevokeAPIKeyData.md
@@ -119,6 +128,7 @@ docs/RevokeAPIKeyResponseEnvelope.md
 docs/SettleLeverageAccruedInterest.md
 docs/SettleLeverageAccruedInterestRequest.md
 docs/SettleLeverageAccruedInterestResponseEnvelope.md
+docs/SettleRealizedPnlRecordResponseEnvelope.md
 docs/Side.md
 docs/StreamAssetsEntry.md
 docs/StreamCandlesEntry.md
@@ -187,6 +197,8 @@ dora_client/api_response.py
 dora_client/configuration.py
 dora_client/exceptions.py
 dora_client/models/__init__.py
+dora_client/models/all_positions.py
+dora_client/models/all_positions_response_envelope.py
 dora_client/models/all_withdrawal_initiations_response_envelope.py
 dora_client/models/api_key_response.py
 dora_client/models/api_key_response_envelope.py
@@ -216,6 +228,9 @@ dora_client/models/coupon_payment.py
 dora_client/models/create_api_key_data.py
 dora_client/models/create_api_key_request.py
 dora_client/models/create_api_key_response_envelope.py
+dora_client/models/create_conditional_order_request.py
+dora_client/models/create_conditional_order_response_envelope.py
+dora_client/models/create_conditional_order_response_envelope_all_of_data.py
 dora_client/models/create_integrator_user_request.py
 dora_client/models/create_or_update_user_response.py
 dora_client/models/create_order_request.py
@@ -229,6 +244,7 @@ dora_client/models/fund_user_request.py
 dora_client/models/fund_user_response_envelope.py
 dora_client/models/get_asset_by_id_response_envelope.py
 dora_client/models/get_asset_ytmby_id_response_envelope.py
+dora_client/models/get_realized_pnl_settlements_response_envelope.py
 dora_client/models/get_top_of_book_response_envelope.py
 dora_client/models/isolate_collateral_request.py
 dora_client/models/isolate_collateral_response.py
@@ -293,8 +309,11 @@ dora_client/models/position.py
 dora_client/models/position_account.py
 dora_client/models/position_asset.py
 dora_client/models/position_response.py
+dora_client/models/position_side.py
 dora_client/models/position_type.py
 dora_client/models/price_level.py
+dora_client/models/realized_pnl_settlement.py
+dora_client/models/realized_pnl_settlements.py
 dora_client/models/response_envelope.py
 dora_client/models/response_envelope_of_list_assets.py
 dora_client/models/revoke_api_key_data.py
@@ -302,6 +321,7 @@ dora_client/models/revoke_api_key_response_envelope.py
 dora_client/models/settle_leverage_accrued_interest.py
 dora_client/models/settle_leverage_accrued_interest_request.py
 dora_client/models/settle_leverage_accrued_interest_response_envelope.py
+dora_client/models/settle_realized_pnl_record_response_envelope.py
 dora_client/models/side.py
 dora_client/models/stream_assets_entry.py
 dora_client/models/stream_candles_entry.py
@@ -371,6 +391,8 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
+test/test_all_positions.py
+test/test_all_positions_response_envelope.py
 test/test_all_withdrawal_initiations_response_envelope.py
 test/test_api_key_response.py
 test/test_api_key_response_envelope.py
@@ -400,6 +422,9 @@ test/test_coupon_payment.py
 test/test_create_api_key_data.py
 test/test_create_api_key_request.py
 test/test_create_api_key_response_envelope.py
+test/test_create_conditional_order_request.py
+test/test_create_conditional_order_response_envelope.py
+test/test_create_conditional_order_response_envelope_all_of_data.py
 test/test_create_integrator_user_request.py
 test/test_create_or_update_user_response.py
 test/test_create_order_request.py
@@ -414,6 +439,7 @@ test/test_fund_user_request.py
 test/test_fund_user_response_envelope.py
 test/test_get_asset_by_id_response_envelope.py
 test/test_get_asset_ytmby_id_response_envelope.py
+test/test_get_realized_pnl_settlements_response_envelope.py
 test/test_get_top_of_book_response_envelope.py
 test/test_isolate_collateral_request.py
 test/test_isolate_collateral_response.py
@@ -478,8 +504,11 @@ test/test_position.py
 test/test_position_account.py
 test/test_position_asset.py
 test/test_position_response.py
+test/test_position_side.py
 test/test_position_type.py
 test/test_price_level.py
+test/test_realized_pnl_settlement.py
+test/test_realized_pnl_settlements.py
 test/test_response_envelope.py
 test/test_response_envelope_of_list_assets.py
 test/test_revoke_api_key_data.py
@@ -487,6 +516,7 @@ test/test_revoke_api_key_response_envelope.py
 test/test_settle_leverage_accrued_interest.py
 test/test_settle_leverage_accrued_interest_request.py
 test/test_settle_leverage_accrued_interest_response_envelope.py
+test/test_settle_realized_pnl_record_response_envelope.py
 test/test_side.py
 test/test_stream_assets_entry.py
 test/test_stream_candles_entry.py

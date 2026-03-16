@@ -89,6 +89,13 @@ class TestDefaultApi(unittest.IsolatedAsyncioTestCase):
         """
         pass
 
+    async def test_create_conditional_order(self) -> None:
+        """Test case for create_conditional_order
+
+        Create a new conditional orders
+        """
+        pass
+
     async def test_create_order(self) -> None:
         """Test case for create_order
 
@@ -114,6 +121,13 @@ class TestDefaultApi(unittest.IsolatedAsyncioTestCase):
         """Test case for get_all_asset_prices
 
         Get the current price of all assets
+        """
+        pass
+
+    async def test_get_all_positions(self) -> None:
+        """Test case for get_all_positions
+
+        Get all users' positions
         """
         pass
 
@@ -317,6 +331,13 @@ class TestDefaultApi(unittest.IsolatedAsyncioTestCase):
         """Test case for get_pool_price
 
         Get the current price of a pool
+        """
+        pass
+
+    async def test_get_realized_pnl_settlements(self) -> None:
+        """Test case for get_realized_pnl_settlements
+
+        Get realized P&L settlements with filters
         """
         pass
 
@@ -541,6 +562,13 @@ class TestDefaultApi(unittest.IsolatedAsyncioTestCase):
         """Test case for settle_leverage_accrued_interest
 
         Settle current accrued leverage interest for a specific user
+        """
+        pass
+
+    async def test_settle_realized_pnl_record(self) -> None:
+        """Test case for settle_realized_pnl_record
+
+        Mark a realized P&L settlement as settled
         """
         pass
 

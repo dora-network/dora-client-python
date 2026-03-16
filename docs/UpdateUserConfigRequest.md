@@ -10,6 +10,10 @@ Name | Type | Description | Notes
 **timezone** | [**UpdateFieldString**](UpdateFieldString.md) | User&#39;s timezone, e.g., &#39;America/New_York&#39;, or an offset. | 
 **show_tutorial_cards** | [**UpdateFieldBoolean**](UpdateFieldBoolean.md) | Optional: Whether to show the tutorial. | [optional] 
 **notifications_enabled** | [**UpdateFieldBoolean**](UpdateFieldBoolean.md) | Optional: Whether to show the notifications. | [optional] 
+**allow_email_notifications** | [**UpdateFieldBoolean**](UpdateFieldBoolean.md) | Optional: Whether to allow email notifications. | [optional] 
+**allow_liquidations_notifications** | [**UpdateFieldBoolean**](UpdateFieldBoolean.md) | Optional: Whether to allow liquidations notifications. | [optional] 
+**allow_deposit_withdrawal_notifications** | [**UpdateFieldBoolean**](UpdateFieldBoolean.md) | Optional: Whether to allow deposit/withdrawal notifications. | [optional] 
+**allow_orders_notifications** | [**UpdateFieldBoolean**](UpdateFieldBoolean.md) | Optional: Whether to allow orders notifications. | [optional] 
 
 ## Example
 

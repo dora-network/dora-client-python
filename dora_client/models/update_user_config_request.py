@@ -32,7 +32,11 @@ class UpdateUserConfigRequest(BaseModel):
     timezone: UpdateFieldString = Field(description="User's timezone, e.g., 'America/New_York', or an offset.")
     show_tutorial_cards: Optional[UpdateFieldBoolean] = Field(default=None, description="Optional: Whether to show the tutorial.")
     notifications_enabled: Optional[UpdateFieldBoolean] = Field(default=None, description="Optional: Whether to show the notifications.")
-    __properties: ClassVar[List[str]] = ["photo_url", "timezone", "show_tutorial_cards", "notifications_enabled"]
+    allow_email_notifications: Optional[UpdateFieldBoolean] = Field(default=None, description="Optional: Whether to allow email notifications.")
+    allow_liquidations_notifications: Optional[UpdateFieldBoolean] = Field(default=None, description="Optional: Whether to allow liquidations notifications.")
+    allow_deposit_withdrawal_notifications: Optional[UpdateFieldBoolean] = Field(default=None, description="Optional: Whether to allow deposit/withdrawal notifications.")
+    allow_orders_notifications: Optional[UpdateFieldBoolean] = Field(default=None, description="Optional: Whether to allow orders notifications.")
+    __properties: ClassVar[List[str]] = ["photo_url", "timezone", "show_tutorial_cards", "notifications_enabled", "allow_email_notifications", "allow_liquidations_notifications", "allow_deposit_withdrawal_notifications", "allow_orders_notifications"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -85,6 +89,18 @@ class UpdateUserConfigRequest(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of notifications_enabled
         if self.notifications_enabled:
             _dict['notifications_enabled'] = self.notifications_enabled.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of allow_email_notifications
+        if self.allow_email_notifications:
+            _dict['allow_email_notifications'] = self.allow_email_notifications.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of allow_liquidations_notifications
+        if self.allow_liquidations_notifications:
+            _dict['allow_liquidations_notifications'] = self.allow_liquidations_notifications.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of allow_deposit_withdrawal_notifications
+        if self.allow_deposit_withdrawal_notifications:
+            _dict['allow_deposit_withdrawal_notifications'] = self.allow_deposit_withdrawal_notifications.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of allow_orders_notifications
+        if self.allow_orders_notifications:
+            _dict['allow_orders_notifications'] = self.allow_orders_notifications.to_dict()
         return _dict
 
     @classmethod
@@ -100,7 +116,11 @@ class UpdateUserConfigRequest(BaseModel):
             "photo_url": UpdateFieldString.from_dict(obj["photo_url"]) if obj.get("photo_url") is not None else None,
             "timezone": UpdateFieldString.from_dict(obj["timezone"]) if obj.get("timezone") is not None else None,
             "show_tutorial_cards": UpdateFieldBoolean.from_dict(obj["show_tutorial_cards"]) if obj.get("show_tutorial_cards") is not None else None,
-            "notifications_enabled": UpdateFieldBoolean.from_dict(obj["notifications_enabled"]) if obj.get("notifications_enabled") is not None else None
+            "notifications_enabled": UpdateFieldBoolean.from_dict(obj["notifications_enabled"]) if obj.get("notifications_enabled") is not None else None,
+            "allow_email_notifications": UpdateFieldBoolean.from_dict(obj["allow_email_notifications"]) if obj.get("allow_email_notifications") is not None else None,
+            "allow_liquidations_notifications": UpdateFieldBoolean.from_dict(obj["allow_liquidations_notifications"]) if obj.get("allow_liquidations_notifications") is not None else None,
+            "allow_deposit_withdrawal_notifications": UpdateFieldBoolean.from_dict(obj["allow_deposit_withdrawal_notifications"]) if obj.get("allow_deposit_withdrawal_notifications") is not None else None,
+            "allow_orders_notifications": UpdateFieldBoolean.from_dict(obj["allow_orders_notifications"]) if obj.get("allow_orders_notifications") is not None else None
         })
         return _obj
 

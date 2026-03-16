@@ -31,6 +31,8 @@ __all__ = [
     "APIKeyResponse",
     "APIKeyResponseEnvelope",
     "APIKeys",
+    "AllPositions",
+    "AllPositionsResponseEnvelope",
     "AllWithdrawalInitiationsResponseEnvelope",
     "Asset",
     "AssetConfig",
@@ -57,6 +59,9 @@ __all__ = [
     "CreateAPIKeyData",
     "CreateAPIKeyRequest",
     "CreateAPIKeyResponseEnvelope",
+    "CreateConditionalOrderRequest",
+    "CreateConditionalOrderResponseEnvelope",
+    "CreateConditionalOrderResponseEnvelopeAllOfData",
     "CreateIntegratorUserRequest",
     "CreateOrUpdateUserResponse",
     "CreateOrderRequest",
@@ -70,6 +75,7 @@ __all__ = [
     "FundUserResponseEnvelope",
     "GetAssetByIDResponseEnvelope",
     "GetAssetYTMByIDResponseEnvelope",
+    "GetRealizedPnlSettlementsResponseEnvelope",
     "GetTopOfBookResponseEnvelope",
     "IsolateCollateralRequest",
     "IsolateCollateralResponse",
@@ -134,8 +140,11 @@ __all__ = [
     "PositionAccount",
     "PositionAsset",
     "PositionResponse",
+    "PositionSide",
     "PositionType",
     "PriceLevel",
+    "RealizedPnlSettlement",
+    "RealizedPnlSettlements",
     "ResponseEnvelope",
     "ResponseEnvelopeOfListAssets",
     "RevokeAPIKeyData",
@@ -143,6 +152,7 @@ __all__ = [
     "SettleLeverageAccruedInterest",
     "SettleLeverageAccruedInterestRequest",
     "SettleLeverageAccruedInterestResponseEnvelope",
+    "SettleRealizedPnlRecordResponseEnvelope",
     "Side",
     "StreamAssetsEntry",
     "StreamCandlesEntry",
@@ -223,6 +233,8 @@ from dora_client.exceptions import ApiException as ApiException
 from dora_client.models.api_key_response import APIKeyResponse as APIKeyResponse
 from dora_client.models.api_key_response_envelope import APIKeyResponseEnvelope as APIKeyResponseEnvelope
 from dora_client.models.api_keys import APIKeys as APIKeys
+from dora_client.models.all_positions import AllPositions as AllPositions
+from dora_client.models.all_positions_response_envelope import AllPositionsResponseEnvelope as AllPositionsResponseEnvelope
 from dora_client.models.all_withdrawal_initiations_response_envelope import AllWithdrawalInitiationsResponseEnvelope as AllWithdrawalInitiationsResponseEnvelope
 from dora_client.models.asset import Asset as Asset
 from dora_client.models.asset_config import AssetConfig as AssetConfig
@@ -249,6 +261,9 @@ from dora_client.models.coupon_payment import CouponPayment as CouponPayment
 from dora_client.models.create_api_key_data import CreateAPIKeyData as CreateAPIKeyData
 from dora_client.models.create_api_key_request import CreateAPIKeyRequest as CreateAPIKeyRequest
 from dora_client.models.create_api_key_response_envelope import CreateAPIKeyResponseEnvelope as CreateAPIKeyResponseEnvelope
+from dora_client.models.create_conditional_order_request import CreateConditionalOrderRequest as CreateConditionalOrderRequest
+from dora_client.models.create_conditional_order_response_envelope import CreateConditionalOrderResponseEnvelope as CreateConditionalOrderResponseEnvelope
+from dora_client.models.create_conditional_order_response_envelope_all_of_data import CreateConditionalOrderResponseEnvelopeAllOfData as CreateConditionalOrderResponseEnvelopeAllOfData
 from dora_client.models.create_integrator_user_request import CreateIntegratorUserRequest as CreateIntegratorUserRequest
 from dora_client.models.create_or_update_user_response import CreateOrUpdateUserResponse as CreateOrUpdateUserResponse
 from dora_client.models.create_order_request import CreateOrderRequest as CreateOrderRequest
@@ -262,6 +277,7 @@ from dora_client.models.fund_user_request import FundUserRequest as FundUserRequ
 from dora_client.models.fund_user_response_envelope import FundUserResponseEnvelope as FundUserResponseEnvelope
 from dora_client.models.get_asset_by_id_response_envelope import GetAssetByIDResponseEnvelope as GetAssetByIDResponseEnvelope
 from dora_client.models.get_asset_ytmby_id_response_envelope import GetAssetYTMByIDResponseEnvelope as GetAssetYTMByIDResponseEnvelope
+from dora_client.models.get_realized_pnl_settlements_response_envelope import GetRealizedPnlSettlementsResponseEnvelope as GetRealizedPnlSettlementsResponseEnvelope
 from dora_client.models.get_top_of_book_response_envelope import GetTopOfBookResponseEnvelope as GetTopOfBookResponseEnvelope
 from dora_client.models.isolate_collateral_request import IsolateCollateralRequest as IsolateCollateralRequest
 from dora_client.models.isolate_collateral_response import IsolateCollateralResponse as IsolateCollateralResponse
@@ -326,8 +342,11 @@ from dora_client.models.position import Position as Position
 from dora_client.models.position_account import PositionAccount as PositionAccount
 from dora_client.models.position_asset import PositionAsset as PositionAsset
 from dora_client.models.position_response import PositionResponse as PositionResponse
+from dora_client.models.position_side import PositionSide as PositionSide
 from dora_client.models.position_type import PositionType as PositionType
 from dora_client.models.price_level import PriceLevel as PriceLevel
+from dora_client.models.realized_pnl_settlement import RealizedPnlSettlement as RealizedPnlSettlement
+from dora_client.models.realized_pnl_settlements import RealizedPnlSettlements as RealizedPnlSettlements
 from dora_client.models.response_envelope import ResponseEnvelope as ResponseEnvelope
 from dora_client.models.response_envelope_of_list_assets import ResponseEnvelopeOfListAssets as ResponseEnvelopeOfListAssets
 from dora_client.models.revoke_api_key_data import RevokeAPIKeyData as RevokeAPIKeyData
@@ -335,6 +354,7 @@ from dora_client.models.revoke_api_key_response_envelope import RevokeAPIKeyResp
 from dora_client.models.settle_leverage_accrued_interest import SettleLeverageAccruedInterest as SettleLeverageAccruedInterest
 from dora_client.models.settle_leverage_accrued_interest_request import SettleLeverageAccruedInterestRequest as SettleLeverageAccruedInterestRequest
 from dora_client.models.settle_leverage_accrued_interest_response_envelope import SettleLeverageAccruedInterestResponseEnvelope as SettleLeverageAccruedInterestResponseEnvelope
+from dora_client.models.settle_realized_pnl_record_response_envelope import SettleRealizedPnlRecordResponseEnvelope as SettleRealizedPnlRecordResponseEnvelope
 from dora_client.models.side import Side as Side
 from dora_client.models.stream_assets_entry import StreamAssetsEntry as StreamAssetsEntry
 from dora_client.models.stream_candles_entry import StreamCandlesEntry as StreamCandlesEntry

@@ -45,7 +45,11 @@ class User(BaseModel):
     show_tutorial_cards: StrictBool
     notifications_enabled: StrictBool
     tenant_id: StrictStr
-    __properties: ClassVar[List[str]] = ["id", "closed_at", "disabled_at", "email", "name", "native_asset_id", "photo_url", "provider", "provider_id", "roles", "timezone", "timezone_offset", "verified_at", "show_tutorial_cards", "notifications_enabled", "tenant_id"]
+    allow_email_notifications: StrictBool
+    allow_liquidations_notifications: StrictBool
+    allow_deposit_withdrawal_notifications: StrictBool
+    allow_orders_notifications: StrictBool
+    __properties: ClassVar[List[str]] = ["id", "closed_at", "disabled_at", "email", "name", "native_asset_id", "photo_url", "provider", "provider_id", "roles", "timezone", "timezone_offset", "verified_at", "show_tutorial_cards", "notifications_enabled", "tenant_id", "allow_email_notifications", "allow_liquidations_notifications", "allow_deposit_withdrawal_notifications", "allow_orders_notifications"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -113,7 +117,11 @@ class User(BaseModel):
             "verified_at": obj.get("verified_at"),
             "show_tutorial_cards": obj.get("show_tutorial_cards"),
             "notifications_enabled": obj.get("notifications_enabled"),
-            "tenant_id": obj.get("tenant_id")
+            "tenant_id": obj.get("tenant_id"),
+            "allow_email_notifications": obj.get("allow_email_notifications"),
+            "allow_liquidations_notifications": obj.get("allow_liquidations_notifications"),
+            "allow_deposit_withdrawal_notifications": obj.get("allow_deposit_withdrawal_notifications"),
+            "allow_orders_notifications": obj.get("allow_orders_notifications")
         })
         return _obj
 

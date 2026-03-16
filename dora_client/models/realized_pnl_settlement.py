@@ -18,28 +18,25 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
-class UserConfig(BaseModel):
+class RealizedPnlSettlement(BaseModel):
     """
-    UserConfig
+    RealizedPnlSettlement
     """ # noqa: E501
-    id: UUID
-    photo_url: Optional[StrictStr] = None
-    timezone: Optional[StrictStr] = Field(default=None, description="User's timezone, e.g., 'America/New_York', or an offset.")
-    created_at: datetime
-    updated_at: datetime
-    show_tutorial_cards: StrictBool
-    notifications_enabled: StrictBool
-    allow_email_notifications: StrictBool
-    allow_liquidations_notifications: StrictBool
-    allow_deposit_withdrawal_notifications: StrictBool
-    allow_orders_notifications: StrictBool
-    __properties: ClassVar[List[str]] = ["id", "photo_url", "timezone", "created_at", "updated_at", "show_tutorial_cards", "notifications_enabled", "allow_email_notifications", "allow_liquidations_notifications", "allow_deposit_withdrawal_notifications", "allow_orders_notifications"]
+    id: UUID = Field(description="The ID of the realized PnL settlement")
+    user_id: UUID = Field(description="The ID of the user associated with the realized PnL settlement")
+    tenant_id: StrictStr = Field(description="The ID of the tenant associated with the realized PnL settlement")
+    position_id: UUID = Field(description="The ID of the position associated with the realized PnL settlement")
+    order_id: UUID = Field(description="The ID of the position-closing order associated with the realized PnL settlement")
+    realized_usd: StrictStr = Field(description="The amount of realized PnL in USD")
+    settled_at: Optional[datetime] = Field(default=None, description="The timestamp when the realized PnL settlement was settled")
+    created_at: datetime = Field(description="The timestamp when the realized PnL settlement was created")
+    __properties: ClassVar[List[str]] = ["id", "user_id", "tenant_id", "position_id", "order_id", "realized_usd", "settled_at", "created_at"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -59,7 +56,7 @@ class UserConfig(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of UserConfig from a JSON string"""
+        """Create an instance of RealizedPnlSettlement from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -84,7 +81,7 @@ class UserConfig(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of UserConfig from a dict"""
+        """Create an instance of RealizedPnlSettlement from a dict"""
         if obj is None:
             return None
 
@@ -93,16 +90,13 @@ class UserConfig(BaseModel):
 
         _obj = cls.model_validate({
             "id": obj.get("id"),
-            "photo_url": obj.get("photo_url"),
-            "timezone": obj.get("timezone"),
-            "created_at": obj.get("created_at"),
-            "updated_at": obj.get("updated_at"),
-            "show_tutorial_cards": obj.get("show_tutorial_cards"),
-            "notifications_enabled": obj.get("notifications_enabled"),
-            "allow_email_notifications": obj.get("allow_email_notifications"),
-            "allow_liquidations_notifications": obj.get("allow_liquidations_notifications"),
-            "allow_deposit_withdrawal_notifications": obj.get("allow_deposit_withdrawal_notifications"),
-            "allow_orders_notifications": obj.get("allow_orders_notifications")
+            "user_id": obj.get("user_id"),
+            "tenant_id": obj.get("tenant_id"),
+            "position_id": obj.get("position_id"),
+            "order_id": obj.get("order_id"),
+            "realized_usd": obj.get("realized_usd"),
+            "settled_at": obj.get("settled_at"),
+            "created_at": obj.get("created_at")
         })
         return _obj
 

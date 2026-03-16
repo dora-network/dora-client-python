@@ -46,6 +46,18 @@ class TestUpdateUserConfigRequest(unittest.TestCase):
                     value = True, ),
                 notifications_enabled = dora_client.models.update_field_boolean.UpdateFieldBoolean(
                     update = True, 
+                    value = True, ),
+                allow_email_notifications = dora_client.models.update_field_boolean.UpdateFieldBoolean(
+                    update = True, 
+                    value = True, ),
+                allow_liquidations_notifications = dora_client.models.update_field_boolean.UpdateFieldBoolean(
+                    update = True, 
+                    value = True, ),
+                allow_deposit_withdrawal_notifications = dora_client.models.update_field_boolean.UpdateFieldBoolean(
+                    update = True, 
+                    value = True, ),
+                allow_orders_notifications = dora_client.models.update_field_boolean.UpdateFieldBoolean(
+                    update = True, 
                     value = True, )
             )
         else:

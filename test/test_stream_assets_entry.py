@@ -54,7 +54,7 @@ class TestStreamAssetsEntry(unittest.TestCase):
                     can_onboard = True, 
                     can_trade = True, 
                     can_virtual_borrow = True, 
-                    max_leverage = 0, 
+                    max_leverage = 1, 
                     leverage_interest_rate = 1.337, 
                     bond = dora_client.models.bond.Bond(
                         id = '', 
@@ -93,7 +93,7 @@ class TestStreamAssetsEntry(unittest.TestCase):
                     can_onboard = True, 
                     can_trade = True, 
                     can_virtual_borrow = True, 
-                    max_leverage = 0, 
+                    max_leverage = 1, 
                     leverage_interest_rate = 1.337, 
                     bond = dora_client.models.bond.Bond(
                         id = '', 

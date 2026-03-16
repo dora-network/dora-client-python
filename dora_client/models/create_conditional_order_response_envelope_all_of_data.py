@@ -17,29 +17,19 @@ import pprint
 import re  # noqa: F401
 import json
 
-from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
+from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List, Optional
 from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
-class UserConfig(BaseModel):
+class CreateConditionalOrderResponseEnvelopeAllOfData(BaseModel):
     """
-    UserConfig
+    CreateConditionalOrderResponseEnvelopeAllOfData
     """ # noqa: E501
-    id: UUID
-    photo_url: Optional[StrictStr] = None
-    timezone: Optional[StrictStr] = Field(default=None, description="User's timezone, e.g., 'America/New_York', or an offset.")
-    created_at: datetime
-    updated_at: datetime
-    show_tutorial_cards: StrictBool
-    notifications_enabled: StrictBool
-    allow_email_notifications: StrictBool
-    allow_liquidations_notifications: StrictBool
-    allow_deposit_withdrawal_notifications: StrictBool
-    allow_orders_notifications: StrictBool
-    __properties: ClassVar[List[str]] = ["id", "photo_url", "timezone", "created_at", "updated_at", "show_tutorial_cards", "notifications_enabled", "allow_email_notifications", "allow_liquidations_notifications", "allow_deposit_withdrawal_notifications", "allow_orders_notifications"]
+    stop_loss_order_id: Optional[UUID] = None
+    take_profit_order_id: Optional[UUID] = None
+    __properties: ClassVar[List[str]] = ["stop_loss_order_id", "take_profit_order_id"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -59,7 +49,7 @@ class UserConfig(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of UserConfig from a JSON string"""
+        """Create an instance of CreateConditionalOrderResponseEnvelopeAllOfData from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -84,7 +74,7 @@ class UserConfig(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of UserConfig from a dict"""
+        """Create an instance of CreateConditionalOrderResponseEnvelopeAllOfData from a dict"""
         if obj is None:
             return None
 
@@ -92,17 +82,8 @@ class UserConfig(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "id": obj.get("id"),
-            "photo_url": obj.get("photo_url"),
-            "timezone": obj.get("timezone"),
-            "created_at": obj.get("created_at"),
-            "updated_at": obj.get("updated_at"),
-            "show_tutorial_cards": obj.get("show_tutorial_cards"),
-            "notifications_enabled": obj.get("notifications_enabled"),
-            "allow_email_notifications": obj.get("allow_email_notifications"),
-            "allow_liquidations_notifications": obj.get("allow_liquidations_notifications"),
-            "allow_deposit_withdrawal_notifications": obj.get("allow_deposit_withdrawal_notifications"),
-            "allow_orders_notifications": obj.get("allow_orders_notifications")
+            "stop_loss_order_id": obj.get("stop_loss_order_id"),
+            "take_profit_order_id": obj.get("take_profit_order_id")
         })
         return _obj
 

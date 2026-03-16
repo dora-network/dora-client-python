@@ -42,7 +42,11 @@ class TestUserConfigResponseEnvelope(unittest.TestCase):
                     created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                     updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                     show_tutorial_cards = True, 
-                    notifications_enabled = True, ),
+                    notifications_enabled = True, 
+                    allow_email_notifications = True, 
+                    allow_liquidations_notifications = True, 
+                    allow_deposit_withdrawal_notifications = True, 
+                    allow_orders_notifications = True, ),
                 error = '',
                 metadata = dora_client.models.metadata.Metadata(
                     status_code = 56, 

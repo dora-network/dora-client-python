@@ -21,6 +21,10 @@ Name | Type | Description | Notes
 **show_tutorial_cards** | **bool** |  | 
 **notifications_enabled** | **bool** |  | 
 **tenant_id** | **str** |  | 
+**allow_email_notifications** | **bool** |  | 
+**allow_liquidations_notifications** | **bool** |  | 
+**allow_deposit_withdrawal_notifications** | **bool** |  | 
+**allow_orders_notifications** | **bool** |  | 
 
 ## Example
 
