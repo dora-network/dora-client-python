@@ -15,7 +15,9 @@ Name | Type | Description | Notes
 **original_quantity** | **str** | The original quantity of the order when it was created. | 
 **filled_quantity** | **str** | Quantity that has been filled so far. | 
 **filled_notional** | **str** | Quote quantity that has been filled so far. | 
-**last_update_at** | **datetime** |  | [optional] 
+**locked_quantity** | **decimal.Decimal** | Balance locked to ensure limit buy orders have sufficient balance to be fulfilled | 
+**impending_borrows_quantity** | **decimal.Decimal** | Borrows locked from the liquidity pool to ensure limit short sell orders have sufficient balance to be fulfilled | 
+**last_update_at** | **datetime** |  | 
 **opened_at** | **datetime** |  | 
 **inverse_leverage** | **str** |  | 
 **side** | [**Side**](Side.md) |  | 

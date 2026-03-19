@@ -46,6 +46,8 @@ class TestOrderResponseEnvelope(unittest.TestCase):
                     original_quantity = '', 
                     filled_quantity = '', 
                     filled_notional = '', 
+                    locked_quantity = '', 
+                    impending_borrows_quantity = '', 
                     last_update_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                     opened_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                     inverse_leverage = '', 

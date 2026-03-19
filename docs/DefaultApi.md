@@ -447,7 +447,7 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** | Order cancelled successfully |  -  |
+**200** | Order cancelled successfully |  -  |
 **400** | Bad request, e.g. invalid order ID format |  -  |
 **401** | Unauthorized, user not logged in or does not have access to this order |  -  |
 **404** | Order not found |  -  |

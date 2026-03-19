@@ -1092,7 +1092,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '204': "CancelOrderResponseEnvelope",
+            '200': "CancelOrderResponseEnvelope",
             '400': "ResponseEnvelope",
             '401': "ResponseEnvelope",
             '404': "ResponseEnvelope",
@@ -1162,7 +1162,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '204': "CancelOrderResponseEnvelope",
+            '200': "CancelOrderResponseEnvelope",
             '400': "ResponseEnvelope",
             '401': "ResponseEnvelope",
             '404': "ResponseEnvelope",
@@ -1232,7 +1232,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '204': "CancelOrderResponseEnvelope",
+            '200': "CancelOrderResponseEnvelope",
             '400': "ResponseEnvelope",
             '401': "ResponseEnvelope",
             '404': "ResponseEnvelope",

@@ -43,7 +43,9 @@ class Order(BaseModel):
     original_quantity: StrictStr = Field(description="The original quantity of the order when it was created.")
     filled_quantity: StrictStr = Field(description="Quantity that has been filled so far.")
     filled_notional: StrictStr = Field(description="Quote quantity that has been filled so far.")
-    last_update_at: Optional[datetime] = None
+    locked_quantity: StrictStr = Field(description="Balance locked to ensure limit buy orders have sufficient balance to be fulfilled")
+    impending_borrows_quantity: StrictStr = Field(description="Borrows locked from the liquidity pool to ensure limit short sell orders have sufficient balance to be fulfilled")
+    last_update_at: datetime
     opened_at: datetime
     inverse_leverage: StrictStr
     side: Side
@@ -57,7 +59,7 @@ class Order(BaseModel):
     trigger_type: Optional[TriggerType] = None
     client_order_id: Optional[StrictStr] = Field(default=None, description="An optional client-provided identifier for the order.")
     parent_order_id: Optional[UUID] = None
-    __properties: ClassVar[List[str]] = ["order_id", "order_book_id", "kind", "original_price", "avg_fill_price", "cancelled_quantity", "open_quantity", "original_quantity", "filled_quantity", "filled_notional", "last_update_at", "opened_at", "inverse_leverage", "side", "status", "user_id", "order_modifiers", "position_id", "order_info", "good_till_date", "trigger_price", "trigger_type", "client_order_id", "parent_order_id"]
+    __properties: ClassVar[List[str]] = ["order_id", "order_book_id", "kind", "original_price", "avg_fill_price", "cancelled_quantity", "open_quantity", "original_quantity", "filled_quantity", "filled_notional", "locked_quantity", "impending_borrows_quantity", "last_update_at", "opened_at", "inverse_leverage", "side", "status", "user_id", "order_modifiers", "position_id", "order_info", "good_till_date", "trigger_price", "trigger_type", "client_order_id", "parent_order_id"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -120,6 +122,8 @@ class Order(BaseModel):
             "original_quantity": obj.get("original_quantity"),
             "filled_quantity": obj.get("filled_quantity"),
             "filled_notional": obj.get("filled_notional"),
+            "locked_quantity": obj.get("locked_quantity"),
+            "impending_borrows_quantity": obj.get("impending_borrows_quantity"),
             "last_update_at": obj.get("last_update_at"),
             "opened_at": obj.get("opened_at"),
             "inverse_leverage": obj.get("inverse_leverage"),
