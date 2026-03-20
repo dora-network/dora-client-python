@@ -35,7 +35,6 @@ class TestCreateConditionalOrderRequest(unittest.TestCase):
         model = CreateConditionalOrderRequest()
         if include_optional:
             return CreateConditionalOrderRequest(
-                quantity = '',
                 price = '',
                 order_book_id = '',
                 position_id = '',
@@ -45,7 +44,6 @@ class TestCreateConditionalOrderRequest(unittest.TestCase):
             )
         else:
             return CreateConditionalOrderRequest(
-                quantity = '',
                 price = '',
                 order_book_id = '',
                 position_id = '',

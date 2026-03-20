@@ -312,6 +312,7 @@ Class | Method | HTTP request | Description
  - [RealizedPnlSettlements](docs/RealizedPnlSettlements.md)
  - [ResponseEnvelope](docs/ResponseEnvelope.md)
  - [ResponseEnvelopeOfListAssets](docs/ResponseEnvelopeOfListAssets.md)
+ - [Restriction](docs/Restriction.md)
  - [RevokeAPIKeyData](docs/RevokeAPIKeyData.md)
  - [RevokeAPIKeyResponseEnvelope](docs/RevokeAPIKeyResponseEnvelope.md)
  - [SettleLeverageAccruedInterest](docs/SettleLeverageAccruedInterest.md)

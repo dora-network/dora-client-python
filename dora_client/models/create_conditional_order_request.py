@@ -27,14 +27,13 @@ class CreateConditionalOrderRequest(BaseModel):
     """
     CreateConditionalOrderRequest
     """ # noqa: E501
-    quantity: StrictStr
     price: StrictStr
     order_book_id: UUID = Field(description="Required: the order book to submit the order to")
     position_id: UUID = Field(description="Required: the position to submit the order to")
     asset_id: UUID = Field(description="Required: the asset to submit the order to")
     stop_loss_price: Optional[StrictStr] = Field(default=None, description="Stop loss price")
     take_profit_price: Optional[StrictStr] = Field(default=None, description="Take profit price")
-    __properties: ClassVar[List[str]] = ["quantity", "price", "order_book_id", "position_id", "asset_id", "stop_loss_price", "take_profit_price"]
+    __properties: ClassVar[List[str]] = ["price", "order_book_id", "position_id", "asset_id", "stop_loss_price", "take_profit_price"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -87,7 +86,6 @@ class CreateConditionalOrderRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "quantity": obj.get("quantity"),
             "price": obj.get("price"),
             "order_book_id": obj.get("order_book_id"),
             "position_id": obj.get("position_id"),

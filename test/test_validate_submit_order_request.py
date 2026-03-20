@@ -61,7 +61,11 @@ class TestValidateSubmitOrderRequest(unittest.TestCase):
                         price = '', )
                     ],
                 stop_loss_price = '',
-                take_profit_price = ''
+                take_profit_price = '',
+                restrictions = {
+                    'key' : dora_client.models.restriction.Restriction(
+                        deposit_limit = '', )
+                    }
             )
         else:
             return ValidateSubmitOrderRequest(

@@ -39,7 +39,9 @@ class TestCurrentLeverageAccruedInterestResponseEnvelope(unittest.TestCase):
                     user_id = '', 
                     asset_id = '', 
                     position_id = '', 
-                    current_accrued_interest_usd = '', ),
+                    current_accrued_interest_usd = '', 
+                    asset_name = '', 
+                    asset_symbol = '', ),
                 error = '',
                 metadata = dora_client.models.metadata.Metadata(
                     status_code = 56, 

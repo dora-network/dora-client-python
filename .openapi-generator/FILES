@@ -123,6 +123,7 @@ docs/RealizedPnlSettlement.md
 docs/RealizedPnlSettlements.md
 docs/ResponseEnvelope.md
 docs/ResponseEnvelopeOfListAssets.md
+docs/Restriction.md
 docs/RevokeAPIKeyData.md
 docs/RevokeAPIKeyResponseEnvelope.md
 docs/SettleLeverageAccruedInterest.md
@@ -316,6 +317,7 @@ dora_client/models/realized_pnl_settlement.py
 dora_client/models/realized_pnl_settlements.py
 dora_client/models/response_envelope.py
 dora_client/models/response_envelope_of_list_assets.py
+dora_client/models/restriction.py
 dora_client/models/revoke_api_key_data.py
 dora_client/models/revoke_api_key_response_envelope.py
 dora_client/models/settle_leverage_accrued_interest.py
@@ -511,6 +513,7 @@ test/test_realized_pnl_settlement.py
 test/test_realized_pnl_settlements.py
 test/test_response_envelope.py
 test/test_response_envelope_of_list_assets.py
+test/test_restriction.py
 test/test_revoke_api_key_data.py
 test/test_revoke_api_key_response_envelope.py
 test/test_settle_leverage_accrued_interest.py

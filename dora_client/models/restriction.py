@@ -17,23 +17,17 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
-class CurrentLeverageAccruedInterest(BaseModel):
+class Restriction(BaseModel):
     """
-    CurrentLeverageAccruedInterest
+    Restriction
     """ # noqa: E501
-    user_id: UUID
-    asset_id: UUID
-    position_id: UUID
-    current_accrued_interest_usd: StrictStr
-    asset_name: Optional[StrictStr] = None
-    asset_symbol: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["user_id", "asset_id", "position_id", "current_accrued_interest_usd", "asset_name", "asset_symbol"]
+    deposit_limit: Optional[StrictStr] = Field(default=None, description="Maximum deposit allowed (decimal as string)")
+    __properties: ClassVar[List[str]] = ["deposit_limit"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -53,7 +47,7 @@ class CurrentLeverageAccruedInterest(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of CurrentLeverageAccruedInterest from a JSON string"""
+        """Create an instance of Restriction from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -78,7 +72,7 @@ class CurrentLeverageAccruedInterest(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of CurrentLeverageAccruedInterest from a dict"""
+        """Create an instance of Restriction from a dict"""
         if obj is None:
             return None
 
@@ -86,12 +80,7 @@ class CurrentLeverageAccruedInterest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "user_id": obj.get("user_id"),
-            "asset_id": obj.get("asset_id"),
-            "position_id": obj.get("position_id"),
-            "current_accrued_interest_usd": obj.get("current_accrued_interest_usd"),
-            "asset_name": obj.get("asset_name"),
-            "asset_symbol": obj.get("asset_symbol")
+            "deposit_limit": obj.get("deposit_limit")
         })
         return _obj
 

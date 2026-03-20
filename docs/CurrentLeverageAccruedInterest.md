@@ -9,6 +9,8 @@ Name | Type | Description | Notes
 **asset_id** | **str** |  | 
 **position_id** | **str** |  | 
 **current_accrued_interest_usd** | **str** |  | 
+**asset_name** | **str** |  | [optional] 
+**asset_symbol** | **str** |  | [optional] 
 
 ## Example
 

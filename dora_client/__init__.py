@@ -147,6 +147,7 @@ __all__ = [
     "RealizedPnlSettlements",
     "ResponseEnvelope",
     "ResponseEnvelopeOfListAssets",
+    "Restriction",
     "RevokeAPIKeyData",
     "RevokeAPIKeyResponseEnvelope",
     "SettleLeverageAccruedInterest",
@@ -349,6 +350,7 @@ from dora_client.models.realized_pnl_settlement import RealizedPnlSettlement as 
 from dora_client.models.realized_pnl_settlements import RealizedPnlSettlements as RealizedPnlSettlements
 from dora_client.models.response_envelope import ResponseEnvelope as ResponseEnvelope
 from dora_client.models.response_envelope_of_list_assets import ResponseEnvelopeOfListAssets as ResponseEnvelopeOfListAssets
+from dora_client.models.restriction import Restriction as Restriction
 from dora_client.models.revoke_api_key_data import RevokeAPIKeyData as RevokeAPIKeyData
 from dora_client.models.revoke_api_key_response_envelope import RevokeAPIKeyResponseEnvelope as RevokeAPIKeyResponseEnvelope
 from dora_client.models.settle_leverage_accrued_interest import SettleLeverageAccruedInterest as SettleLeverageAccruedInterest

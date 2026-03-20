@@ -5,7 +5,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**quantity** | **decimal.Decimal** |  | 
 **price** | **decimal.Decimal** |  | 
 **order_book_id** | **str** | Required: the order book to submit the order to | 
 **position_id** | **str** | Required: the position to submit the order to | 

@@ -132,6 +132,7 @@ from dora_client.models.realized_pnl_settlement import RealizedPnlSettlement
 from dora_client.models.realized_pnl_settlements import RealizedPnlSettlements
 from dora_client.models.response_envelope import ResponseEnvelope
 from dora_client.models.response_envelope_of_list_assets import ResponseEnvelopeOfListAssets
+from dora_client.models.restriction import Restriction
 from dora_client.models.revoke_api_key_data import RevokeAPIKeyData
 from dora_client.models.revoke_api_key_response_envelope import RevokeAPIKeyResponseEnvelope
 from dora_client.models.settle_leverage_accrued_interest import SettleLeverageAccruedInterest

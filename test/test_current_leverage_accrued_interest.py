@@ -38,7 +38,9 @@ class TestCurrentLeverageAccruedInterest(unittest.TestCase):
                 user_id = '',
                 asset_id = '',
                 position_id = '',
-                current_accrued_interest_usd = ''
+                current_accrued_interest_usd = '',
+                asset_name = '',
+                asset_symbol = ''
             )
         else:
             return CurrentLeverageAccruedInterest(

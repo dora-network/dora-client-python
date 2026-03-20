@@ -24,6 +24,7 @@ from uuid import UUID
 from dora_client.models.asset_config import AssetConfig
 from dora_client.models.order_kind import OrderKind
 from dora_client.models.position_asset import PositionAsset
+from dora_client.models.restriction import Restriction
 from dora_client.models.side import Side
 from typing import Optional, Set
 from typing_extensions import Self
@@ -47,7 +48,8 @@ class ValidateSubmitOrderRequest(BaseModel):
     assets_config: Optional[List[AssetConfig]] = Field(default=None, description="Configuration for the assets in the order")
     stop_loss_price: Optional[StrictStr] = Field(default=None, description="Stop loss price")
     take_profit_price: Optional[StrictStr] = Field(default=None, description="Take profit price")
-    __properties: ClassVar[List[str]] = ["quantity", "tick", "kind", "side", "price", "good_till_date", "inverse_leverage", "user_balance", "base_asset_id", "quote_asset_id", "client_order_id", "position_assets", "assets_config", "stop_loss_price", "take_profit_price"]
+    restrictions: Optional[Dict[str, Restriction]] = Field(default=None, description="Map of restriction keys to Restriction objects")
+    __properties: ClassVar[List[str]] = ["quantity", "tick", "kind", "side", "price", "good_till_date", "inverse_leverage", "user_balance", "base_asset_id", "quote_asset_id", "client_order_id", "position_assets", "assets_config", "stop_loss_price", "take_profit_price", "restrictions"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -102,6 +104,13 @@ class ValidateSubmitOrderRequest(BaseModel):
                 if _item_assets_config:
                     _items.append(_item_assets_config.to_dict())
             _dict['assets_config'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each value in restrictions (dict)
+        _field_dict = {}
+        if self.restrictions:
+            for _key_restrictions in self.restrictions:
+                if self.restrictions[_key_restrictions]:
+                    _field_dict[_key_restrictions] = self.restrictions[_key_restrictions].to_dict()
+            _dict['restrictions'] = _field_dict
         return _dict
 
     @classmethod
@@ -128,7 +137,13 @@ class ValidateSubmitOrderRequest(BaseModel):
             "position_assets": [PositionAsset.from_dict(_item) for _item in obj["position_assets"]] if obj.get("position_assets") is not None else None,
             "assets_config": [AssetConfig.from_dict(_item) for _item in obj["assets_config"]] if obj.get("assets_config") is not None else None,
             "stop_loss_price": obj.get("stop_loss_price"),
-            "take_profit_price": obj.get("take_profit_price")
+            "take_profit_price": obj.get("take_profit_price"),
+            "restrictions": dict(
+                (_k, Restriction.from_dict(_v))
+                for _k, _v in obj["restrictions"].items()
+            )
+            if obj.get("restrictions") is not None
+            else None
         })
         return _obj
 
