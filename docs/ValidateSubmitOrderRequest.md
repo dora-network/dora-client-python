@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 **assets_config** | [**List[AssetConfig]**](AssetConfig.md) | Configuration for the assets in the order | [optional] 
 **stop_loss_price** | **str** | Stop loss price | [optional] 
 **take_profit_price** | **str** | Take profit price | [optional] 
-**restrictions** | [**Dict[str, Restriction]**](Restriction.md) | Map of restriction keys to Restriction objects | [optional] 
+**restrictions** | [**TenantRestrictions**](TenantRestrictions.md) |  | [optional] 
 
 ## Example
 

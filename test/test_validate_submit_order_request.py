@@ -62,10 +62,11 @@ class TestValidateSubmitOrderRequest(unittest.TestCase):
                     ],
                 stop_loss_price = '',
                 take_profit_price = '',
-                restrictions = {
-                    'key' : dora_client.models.restriction.Restriction(
-                        deposit_limit = '', )
-                    }
+                restrictions = dora_client.models.tenant_restrictions.TenantRestrictions(
+                    tenant_id = '', 
+                    deposit_limit = '', 
+                    trade_limit = '', 
+                    updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
             )
         else:
             return ValidateSubmitOrderRequest(

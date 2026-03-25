@@ -123,7 +123,6 @@ docs/RealizedPnlSettlement.md
 docs/RealizedPnlSettlements.md
 docs/ResponseEnvelope.md
 docs/ResponseEnvelopeOfListAssets.md
-docs/Restriction.md
 docs/RevokeAPIKeyData.md
 docs/RevokeAPIKeyResponseEnvelope.md
 docs/SettleLeverageAccruedInterest.md
@@ -145,6 +144,7 @@ docs/StreamUserCouponPaymentsResponse.md
 docs/Supply.md
 docs/SupplyRequest.md
 docs/SupplyResponseEnvelope.md
+docs/TenantRestrictions.md
 docs/Trade.md
 docs/TradeRequestError.md
 docs/TradeResponseEnvelope.md
@@ -317,7 +317,6 @@ dora_client/models/realized_pnl_settlement.py
 dora_client/models/realized_pnl_settlements.py
 dora_client/models/response_envelope.py
 dora_client/models/response_envelope_of_list_assets.py
-dora_client/models/restriction.py
 dora_client/models/revoke_api_key_data.py
 dora_client/models/revoke_api_key_response_envelope.py
 dora_client/models/settle_leverage_accrued_interest.py
@@ -339,6 +338,7 @@ dora_client/models/stream_user_coupon_payments_response.py
 dora_client/models/supply.py
 dora_client/models/supply_request.py
 dora_client/models/supply_response_envelope.py
+dora_client/models/tenant_restrictions.py
 dora_client/models/trade.py
 dora_client/models/trade_request_error.py
 dora_client/models/trade_response_envelope.py
@@ -513,7 +513,6 @@ test/test_realized_pnl_settlement.py
 test/test_realized_pnl_settlements.py
 test/test_response_envelope.py
 test/test_response_envelope_of_list_assets.py
-test/test_restriction.py
 test/test_revoke_api_key_data.py
 test/test_revoke_api_key_response_envelope.py
 test/test_settle_leverage_accrued_interest.py
@@ -535,6 +534,7 @@ test/test_stream_user_coupon_payments_response.py
 test/test_supply.py
 test/test_supply_request.py
 test/test_supply_response_envelope.py
+test/test_tenant_restrictions.py
 test/test_trade.py
 test/test_trade_request_error.py
 test/test_trade_response_envelope.py

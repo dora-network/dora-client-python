@@ -36,7 +36,9 @@ class TestCreateIntegratorUserRequest(unittest.TestCase):
         if include_optional:
             return CreateIntegratorUserRequest(
                 email = '',
-                name = '',
+                first_name = '',
+                last_name = '',
+                country_of_domicile = '',
                 native_asset_id = '',
                 photo_url = '',
                 provider = '',

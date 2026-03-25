@@ -17,17 +17,21 @@ import pprint
 import re  # noqa: F401
 import json
 
+from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
 
-class Restriction(BaseModel):
+class TenantRestrictions(BaseModel):
     """
-    Restriction
+    TenantRestrictions
     """ # noqa: E501
-    deposit_limit: Optional[StrictStr] = Field(default=None, description="Maximum deposit allowed (decimal as string)")
-    __properties: ClassVar[List[str]] = ["deposit_limit"]
+    tenant_id: StrictStr = Field(description="Tenant ID")
+    deposit_limit: StrictStr = Field(description="Maximum allowed deposit for the tenant.")
+    trade_limit: StrictStr = Field(description="Maximum allowed trade amount for the tenant.")
+    updated_at: datetime = Field(description="Last update timestamp for the restrictions.")
+    __properties: ClassVar[List[str]] = ["tenant_id", "deposit_limit", "trade_limit", "updated_at"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -47,7 +51,7 @@ class Restriction(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of Restriction from a JSON string"""
+        """Create an instance of TenantRestrictions from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -72,7 +76,7 @@ class Restriction(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of Restriction from a dict"""
+        """Create an instance of TenantRestrictions from a dict"""
         if obj is None:
             return None
 
@@ -80,7 +84,10 @@ class Restriction(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "deposit_limit": obj.get("deposit_limit")
+            "tenant_id": obj.get("tenant_id"),
+            "deposit_limit": obj.get("deposit_limit"),
+            "trade_limit": obj.get("trade_limit"),
+            "updated_at": obj.get("updated_at")
         })
         return _obj
 

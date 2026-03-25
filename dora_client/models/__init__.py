@@ -132,7 +132,6 @@ from dora_client.models.realized_pnl_settlement import RealizedPnlSettlement
 from dora_client.models.realized_pnl_settlements import RealizedPnlSettlements
 from dora_client.models.response_envelope import ResponseEnvelope
 from dora_client.models.response_envelope_of_list_assets import ResponseEnvelopeOfListAssets
-from dora_client.models.restriction import Restriction
 from dora_client.models.revoke_api_key_data import RevokeAPIKeyData
 from dora_client.models.revoke_api_key_response_envelope import RevokeAPIKeyResponseEnvelope
 from dora_client.models.settle_leverage_accrued_interest import SettleLeverageAccruedInterest
@@ -154,6 +153,7 @@ from dora_client.models.stream_user_coupon_payments_response import StreamUserCo
 from dora_client.models.supply import Supply
 from dora_client.models.supply_request import SupplyRequest
 from dora_client.models.supply_response_envelope import SupplyResponseEnvelope
+from dora_client.models.tenant_restrictions import TenantRestrictions
 from dora_client.models.trade import Trade
 from dora_client.models.trade_request_error import TradeRequestError
 from dora_client.models.trade_response_envelope import TradeResponseEnvelope

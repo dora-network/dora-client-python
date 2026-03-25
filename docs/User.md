@@ -9,7 +9,9 @@ Name | Type | Description | Notes
 **closed_at** | **datetime** |  | [optional] 
 **disabled_at** | **datetime** |  | [optional] 
 **email** | **str** |  | 
-**name** | **str** |  | 
+**first_name** | **str** |  | 
+**last_name** | **str** |  | 
+**country_of_domicile** | **str** |  | 
 **native_asset_id** | **str** |  | 
 **photo_url** | **str** |  | [optional] 
 **provider** | **str** |  | [optional] 

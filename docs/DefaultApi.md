@@ -1858,7 +1858,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_candle_data**
-> ListCandlesResponseEnvelope get_candle_data(order_book_id, start=start, end=end, resolution=resolution)
+> ListCandlesResponseEnvelope get_candle_data(order_book_id, start, end, resolution=resolution)
 
 Get candlestick data for an orderbook
 
@@ -1884,13 +1884,13 @@ async with dora_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = dora_client.DefaultApi(api_client)
     order_book_id = 'order_book_id_example' # str | 
-    start = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
-    end = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
+    start = '2013-10-20T19:20:30+01:00' # datetime | 
+    end = '2013-10-20T19:20:30+01:00' # datetime | 
     resolution = dora_client.CandleResolution() # CandleResolution |  (optional)
 
     try:
         # Get candlestick data for an orderbook
-        api_response = await api_instance.get_candle_data(order_book_id, start=start, end=end, resolution=resolution)
+        api_response = await api_instance.get_candle_data(order_book_id, start, end, resolution=resolution)
         print("The response of DefaultApi->get_candle_data:\n")
         pprint(api_response)
     except Exception as e:
@@ -1905,8 +1905,8 @@ async with dora_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **order_book_id** | **str**|  | 
- **start** | **datetime**|  | [optional] 
- **end** | **datetime**|  | [optional] 
+ **start** | **datetime**|  | 
+ **end** | **datetime**|  | 
  **resolution** | [**CandleResolution**](.md)|  | [optional] 
 
 ### Return type

@@ -147,7 +147,6 @@ __all__ = [
     "RealizedPnlSettlements",
     "ResponseEnvelope",
     "ResponseEnvelopeOfListAssets",
-    "Restriction",
     "RevokeAPIKeyData",
     "RevokeAPIKeyResponseEnvelope",
     "SettleLeverageAccruedInterest",
@@ -169,6 +168,7 @@ __all__ = [
     "Supply",
     "SupplyRequest",
     "SupplyResponseEnvelope",
+    "TenantRestrictions",
     "Trade",
     "TradeRequestError",
     "TradeResponseEnvelope",
@@ -350,7 +350,6 @@ from dora_client.models.realized_pnl_settlement import RealizedPnlSettlement as 
 from dora_client.models.realized_pnl_settlements import RealizedPnlSettlements as RealizedPnlSettlements
 from dora_client.models.response_envelope import ResponseEnvelope as ResponseEnvelope
 from dora_client.models.response_envelope_of_list_assets import ResponseEnvelopeOfListAssets as ResponseEnvelopeOfListAssets
-from dora_client.models.restriction import Restriction as Restriction
 from dora_client.models.revoke_api_key_data import RevokeAPIKeyData as RevokeAPIKeyData
 from dora_client.models.revoke_api_key_response_envelope import RevokeAPIKeyResponseEnvelope as RevokeAPIKeyResponseEnvelope
 from dora_client.models.settle_leverage_accrued_interest import SettleLeverageAccruedInterest as SettleLeverageAccruedInterest
@@ -372,6 +371,7 @@ from dora_client.models.stream_user_coupon_payments_response import StreamUserCo
 from dora_client.models.supply import Supply as Supply
 from dora_client.models.supply_request import SupplyRequest as SupplyRequest
 from dora_client.models.supply_response_envelope import SupplyResponseEnvelope as SupplyResponseEnvelope
+from dora_client.models.tenant_restrictions import TenantRestrictions as TenantRestrictions
 from dora_client.models.trade import Trade as Trade
 from dora_client.models.trade_request_error import TradeRequestError as TradeRequestError
 from dora_client.models.trade_response_envelope import TradeResponseEnvelope as TradeResponseEnvelope

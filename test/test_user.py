@@ -39,7 +39,9 @@ class TestUser(unittest.TestCase):
                 closed_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 disabled_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 email = '',
-                name = '',
+                first_name = '',
+                last_name = '',
+                country_of_domicile = '',
                 native_asset_id = '',
                 photo_url = '',
                 provider = '',
@@ -62,7 +64,9 @@ class TestUser(unittest.TestCase):
             return User(
                 id = '',
                 email = '',
-                name = '',
+                first_name = '',
+                last_name = '',
+                country_of_domicile = '',
                 native_asset_id = '',
                 roles = [
                     'PUBLIC'

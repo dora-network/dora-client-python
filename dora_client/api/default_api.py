@@ -5945,8 +5945,8 @@ class DefaultApi:
     async def get_candle_data(
         self,
         order_book_id: StrictStr,
-        start: Optional[datetime] = None,
-        end: Optional[datetime] = None,
+        start: datetime,
+        end: datetime,
         resolution: Optional[CandleResolution] = None,
         _request_timeout: Union[
             None,
@@ -5966,9 +5966,9 @@ class DefaultApi:
 
         :param order_book_id: (required)
         :type order_book_id: str
-        :param start:
+        :param start: (required)
         :type start: datetime
-        :param end:
+        :param end: (required)
         :type end: datetime
         :param resolution:
         :type resolution: CandleResolution
@@ -6026,8 +6026,8 @@ class DefaultApi:
     async def get_candle_data_with_http_info(
         self,
         order_book_id: StrictStr,
-        start: Optional[datetime] = None,
-        end: Optional[datetime] = None,
+        start: datetime,
+        end: datetime,
         resolution: Optional[CandleResolution] = None,
         _request_timeout: Union[
             None,
@@ -6047,9 +6047,9 @@ class DefaultApi:
 
         :param order_book_id: (required)
         :type order_book_id: str
-        :param start:
+        :param start: (required)
         :type start: datetime
-        :param end:
+        :param end: (required)
         :type end: datetime
         :param resolution:
         :type resolution: CandleResolution
@@ -6107,8 +6107,8 @@ class DefaultApi:
     async def get_candle_data_without_preload_content(
         self,
         order_book_id: StrictStr,
-        start: Optional[datetime] = None,
-        end: Optional[datetime] = None,
+        start: datetime,
+        end: datetime,
         resolution: Optional[CandleResolution] = None,
         _request_timeout: Union[
             None,
@@ -6128,9 +6128,9 @@ class DefaultApi:
 
         :param order_book_id: (required)
         :type order_book_id: str
-        :param start:
+        :param start: (required)
         :type start: datetime
-        :param end:
+        :param end: (required)
         :type end: datetime
         :param resolution:
         :type resolution: CandleResolution
