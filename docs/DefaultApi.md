@@ -53,6 +53,7 @@ Method | HTTP request | Description
 [**get_trades**](DefaultApi.md#get_trades) | **GET** /v1/trades | Get a filtered, paginated list of trades
 [**get_transaction_by_id**](DefaultApi.md#get_transaction_by_id) | **GET** /v1/transactions/{transaction_id} | Get a transaction by ID
 [**get_transactions**](DefaultApi.md#get_transactions) | **GET** /v1/transactions | Get a filtered, paginated list of transactions
+[**get_transactions_settlements**](DefaultApi.md#get_transactions_settlements) | **GET** /v1/transactions/settlements | Get transactions settlements with filters
 [**get_user_by_id**](DefaultApi.md#get_user_by_id) | **GET** /v1/user/{user_id} | Get user by ID (admin only)
 [**get_user_coupon_payments_stream**](DefaultApi.md#get_user_coupon_payments_stream) | **GET** /v1/user/{user_id}/coupon_payments/stream | Stream user&#39;s coupon payment accruals in real time
 [**get_user_ledger_stream**](DefaultApi.md#get_user_ledger_stream) | **GET** /v1/user/{user_id}/ledger/stream | Get a snapshot of user&#39;s ledger updates since a specific time, and opens a stream for further updates
@@ -82,6 +83,7 @@ Method | HTTP request | Description
 [**revoke_api_key_for_user_id**](DefaultApi.md#revoke_api_key_for_user_id) | **PUT** /v1/user/{user_id}/apikey/{key_id}/revoke | Revoke apikey for a user: admin or integrator only
 [**settle_leverage_accrued_interest**](DefaultApi.md#settle_leverage_accrued_interest) | **POST** /v1/leverage/accrued_interest/settle | Settle current accrued leverage interest for a specific user
 [**settle_realized_pnl_record**](DefaultApi.md#settle_realized_pnl_record) | **PUT** /v1/realized_pnl_settlements/{settlement_id} | Mark a realized P&amp;L settlement as settled
+[**settle_transactions_settlements**](DefaultApi.md#settle_transactions_settlements) | **PUT** /v1/transactions/settlements | Settle multiple transactions settlements in batch
 [**stream_asset_prices**](DefaultApi.md#stream_asset_prices) | **GET** /v1/prices/stream | Stream real-time asset prices as map objects
 [**stream_candle_data**](DefaultApi.md#stream_candle_data) | **GET** /v1/charts/{order_book_id}/candle/stream | Get a snapshot of candlestick data from date provided, and open a stream for real-time updates
 [**stream_order_book_balances**](DefaultApi.md#stream_order_book_balances) | **GET** /v1/orderbooks/{order_book_id}/balances/stream | Get a snapshot of base and quote balances for an order book and open a stream for real-time updates
@@ -1787,7 +1789,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_assets_stream**
-> List[StreamAssetsEntry] get_assets_stream(since=since, until=until)
+> StreamAssetsResponse get_assets_stream(since=since, until=until)
 
 Get all inserts or updates for assets
 
@@ -1796,7 +1798,7 @@ Get all inserts or updates for assets
 
 ```python
 import dora_client
-from dora_client.models.stream_assets_entry import StreamAssetsEntry
+from dora_client.models.stream_assets_response import StreamAssetsResponse
 from dora_client.rest import ApiException
 from pprint import pprint
 
@@ -1835,7 +1837,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**List[StreamAssetsEntry]**](StreamAssetsEntry.md)
+[**StreamAssetsResponse**](StreamAssetsResponse.md)
 
 ### Authorization
 
@@ -4081,6 +4083,104 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_transactions_settlements**
+> TransactionsSettlementsResponseEnvelope get_transactions_settlements(tenant_id=tenant_id, user_id=user_id, position_id=position_id, tx_kind=tx_kind, created_after=created_after, settled_before=settled_before, is_settled=is_settled)
+
+Get transactions settlements with filters
+
+### Example
+
+* Api Key Authentication (apiKeyAuthHeader):
+* Bearer (JWT) Authentication (bearerAuth):
+
+```python
+import dora_client
+from dora_client.models.transactions_settlements_response_envelope import TransactionsSettlementsResponseEnvelope
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging.dora.co
+# See configuration.py for a list of all supported configuration parameters.
+configuration = dora_client.Configuration(
+    host = "https://staging.dora.co"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration.api_key['apiKeyAuthHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyAuthHeader'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = dora_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+async with dora_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = dora_client.DefaultApi(api_client)
+    tenant_id = 'tenant_id_example' # str | Tenant ID to filter settlements (optional)
+    user_id = 'user_id_example' # str | User ID to filter settlements (optional)
+    position_id = 'position_id_example' # str | Position ID to filter settlements (optional)
+    tx_kind = 'tx_kind_example' # str | Transaction kind to filter settlements (optional)
+    created_after = '2013-10-20T19:20:30+01:00' # datetime | Filter settlements created after this time (optional)
+    settled_before = '2013-10-20T19:20:30+01:00' # datetime | Filter settlements settled before this time (optional)
+    is_settled = True # bool | Filter settlements by settlement status (optional)
+
+    try:
+        # Get transactions settlements with filters
+        api_response = await api_instance.get_transactions_settlements(tenant_id=tenant_id, user_id=user_id, position_id=position_id, tx_kind=tx_kind, created_after=created_after, settled_before=settled_before, is_settled=is_settled)
+        print("The response of DefaultApi->get_transactions_settlements:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->get_transactions_settlements: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **tenant_id** | **str**| Tenant ID to filter settlements | [optional] 
+ **user_id** | **str**| User ID to filter settlements | [optional] 
+ **position_id** | **str**| Position ID to filter settlements | [optional] 
+ **tx_kind** | **str**| Transaction kind to filter settlements | [optional] 
+ **created_after** | **datetime**| Filter settlements created after this time | [optional] 
+ **settled_before** | **datetime**| Filter settlements settled before this time | [optional] 
+ **is_settled** | **bool**| Filter settlements by settlement status | [optional] 
+
+### Return type
+
+[**TransactionsSettlementsResponseEnvelope**](TransactionsSettlementsResponseEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | A list of transaction settlements |  -  |
+**400** | Bad request |  -  |
+**404** | No settlements found |  -  |
+**500** | Internal server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_user_by_id**
 > UserEnvelope get_user_by_id(user_id)
 
@@ -4249,7 +4349,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_user_ledger_stream**
-> List[StreamPositionsEntry] get_user_ledger_stream(user_id)
+> StreamPositionsResponse get_user_ledger_stream(user_id)
 
 Get a snapshot of user's ledger updates since a specific time, and opens a stream for further updates
 
@@ -4259,7 +4359,7 @@ Get a snapshot of user's ledger updates since a specific time, and opens a strea
 
 ```python
 import dora_client
-from dora_client.models.stream_positions_entry import StreamPositionsEntry
+from dora_client.models.stream_positions_response import StreamPositionsResponse
 from dora_client.rest import ApiException
 from pprint import pprint
 
@@ -4306,7 +4406,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**List[StreamPositionsEntry]**](StreamPositionsEntry.md)
+[**StreamPositionsResponse**](StreamPositionsResponse.md)
 
 ### Authorization
 
@@ -4330,7 +4430,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_user_order_updates_stream**
-> List[StreamOrderUpdatesEntry] get_user_order_updates_stream(user_id, order_book_id, since=since)
+> StreamOrderUpdatesResponse get_user_order_updates_stream(user_id, order_book_id, since=since)
 
 Get a snapshot of user's order updates for the given order book since a specific time, and opens a stream for further updates
 
@@ -4340,7 +4440,7 @@ Get a snapshot of user's order updates for the given order book since a specific
 
 ```python
 import dora_client
-from dora_client.models.stream_order_updates_entry import StreamOrderUpdatesEntry
+from dora_client.models.stream_order_updates_response import StreamOrderUpdatesResponse
 from dora_client.rest import ApiException
 from pprint import pprint
 
@@ -4391,7 +4491,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**List[StreamOrderUpdatesEntry]**](StreamOrderUpdatesEntry.md)
+[**StreamOrderUpdatesResponse**](StreamOrderUpdatesResponse.md)
 
 ### Authorization
 
@@ -4415,7 +4515,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_user_orders_updates_stream_all**
-> List[StreamOrderUpdatesEntry] get_user_orders_updates_stream_all(user_id, since=since)
+> StreamOrderUpdatesResponse get_user_orders_updates_stream_all(user_id, since=since)
 
 Get a snapshot of user's order updates across all order books since a specific time, and opens a stream for further updates
 
@@ -4425,7 +4525,7 @@ Get a snapshot of user's order updates across all order books since a specific t
 
 ```python
 import dora_client
-from dora_client.models.stream_order_updates_entry import StreamOrderUpdatesEntry
+from dora_client.models.stream_order_updates_response import StreamOrderUpdatesResponse
 from dora_client.rest import ApiException
 from pprint import pprint
 
@@ -4474,7 +4574,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**List[StreamOrderUpdatesEntry]**](StreamOrderUpdatesEntry.md)
+[**StreamOrderUpdatesResponse**](StreamOrderUpdatesResponse.md)
 
 ### Authorization
 
@@ -4580,7 +4680,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_user_transactions_stream**
-> List[StreamTransactionsEntry] get_user_transactions_stream(user_id, since=since)
+> StreamTransactionsResponse get_user_transactions_stream(user_id, since=since)
 
 Get a snapshot of user's executed transactions since a specific time, and opens a stream for further updates
 
@@ -4590,7 +4690,7 @@ Get a snapshot of user's executed transactions since a specific time, and opens 
 
 ```python
 import dora_client
-from dora_client.models.stream_transactions_entry import StreamTransactionsEntry
+from dora_client.models.stream_transactions_response import StreamTransactionsResponse
 from dora_client.rest import ApiException
 from pprint import pprint
 
@@ -4639,7 +4739,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**List[StreamTransactionsEntry]**](StreamTransactionsEntry.md)
+[**StreamTransactionsResponse**](StreamTransactionsResponse.md)
 
 ### Authorization
 
@@ -6621,8 +6721,95 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **settle_transactions_settlements**
+> TransactionsSettlementsResponse settle_transactions_settlements(transactions_settlement_request)
+
+Settle multiple transactions settlements in batch
+
+### Example
+
+* Api Key Authentication (apiKeyAuthHeader):
+* Bearer (JWT) Authentication (bearerAuth):
+
+```python
+import dora_client
+from dora_client.models.transactions_settlement_request import TransactionsSettlementRequest
+from dora_client.models.transactions_settlements_response import TransactionsSettlementsResponse
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging.dora.co
+# See configuration.py for a list of all supported configuration parameters.
+configuration = dora_client.Configuration(
+    host = "https://staging.dora.co"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration.api_key['apiKeyAuthHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyAuthHeader'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = dora_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+async with dora_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = dora_client.DefaultApi(api_client)
+    transactions_settlement_request = dora_client.TransactionsSettlementRequest() # TransactionsSettlementRequest | 
+
+    try:
+        # Settle multiple transactions settlements in batch
+        api_response = await api_instance.settle_transactions_settlements(transactions_settlement_request)
+        print("The response of DefaultApi->settle_transactions_settlements:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->settle_transactions_settlements: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **transactions_settlement_request** | [**TransactionsSettlementRequest**](TransactionsSettlementRequest.md)|  | 
+
+### Return type
+
+[**TransactionsSettlementsResponse**](TransactionsSettlementsResponse.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Settlements updated |  -  |
+**400** | Bad request |  -  |
+**404** | No transactions for settlement found |  -  |
+**500** | Internal server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **stream_asset_prices**
-> Dict[str, AssetPrice] stream_asset_prices(since=since, asset_id=asset_id)
+> StreamAssetPricesResponse stream_asset_prices(since=since, asset_id=asset_id)
 
 Stream real-time asset prices as map objects
 
@@ -6633,7 +6820,7 @@ Opens a WebSocket stream for real-time asset price updates. First message contai
 
 ```python
 import dora_client
-from dora_client.models.asset_price import AssetPrice
+from dora_client.models.stream_asset_prices_response import StreamAssetPricesResponse
 from dora_client.rest import ApiException
 from pprint import pprint
 
@@ -6672,7 +6859,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Dict[str, AssetPrice]**](AssetPrice.md)
+[**StreamAssetPricesResponse**](StreamAssetPricesResponse.md)
 
 ### Authorization
 
@@ -6694,7 +6881,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **stream_candle_data**
-> List[StreamCandlesEntry] stream_candle_data(order_book_id, since=since, resolution=resolution)
+> StreamCandlesResponse stream_candle_data(order_book_id, since=since, resolution=resolution)
 
 Get a snapshot of candlestick data from date provided, and open a stream for real-time updates
 
@@ -6704,7 +6891,7 @@ Get a snapshot of candlestick data from date provided, and open a stream for rea
 ```python
 import dora_client
 from dora_client.models.candle_resolution import CandleResolution
-from dora_client.models.stream_candles_entry import StreamCandlesEntry
+from dora_client.models.stream_candles_response import StreamCandlesResponse
 from dora_client.rest import ApiException
 from pprint import pprint
 
@@ -6745,7 +6932,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**List[StreamCandlesEntry]**](StreamCandlesEntry.md)
+[**StreamCandlesResponse**](StreamCandlesResponse.md)
 
 ### Authorization
 
@@ -6768,7 +6955,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **stream_order_book_balances**
-> List[StreamOrderBookBalanceEntry] stream_order_book_balances(order_book_id, since=since)
+> StreamOrderBookBalancesResponse stream_order_book_balances(order_book_id, since=since)
 
 Get a snapshot of base and quote balances for an order book and open a stream for real-time updates
 
@@ -6777,7 +6964,7 @@ Get a snapshot of base and quote balances for an order book and open a stream fo
 
 ```python
 import dora_client
-from dora_client.models.stream_order_book_balance_entry import StreamOrderBookBalanceEntry
+from dora_client.models.stream_order_book_balances_response import StreamOrderBookBalancesResponse
 from dora_client.rest import ApiException
 from pprint import pprint
 
@@ -6816,7 +7003,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**List[StreamOrderBookBalanceEntry]**](StreamOrderBookBalanceEntry.md)
+[**StreamOrderBookBalancesResponse**](StreamOrderBookBalancesResponse.md)
 
 ### Authorization
 
@@ -6910,7 +7097,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **stream_trades**
-> List[StreamTradesEntry] stream_trades(order_book_id, since=since)
+> StreamTradesResponse stream_trades(order_book_id, since=since)
 
 Get a snapshot of trades executed on the given order book from a specific date and open a stream for real-time updates
 
@@ -6919,7 +7106,7 @@ Get a snapshot of trades executed on the given order book from a specific date a
 
 ```python
 import dora_client
-from dora_client.models.stream_trades_entry import StreamTradesEntry
+from dora_client.models.stream_trades_response import StreamTradesResponse
 from dora_client.rest import ApiException
 from pprint import pprint
 
@@ -6958,7 +7145,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**List[StreamTradesEntry]**](StreamTradesEntry.md)
+[**StreamTradesResponse**](StreamTradesResponse.md)
 
 ### Authorization
 

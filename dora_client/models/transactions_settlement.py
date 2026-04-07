@@ -17,19 +17,27 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict
+from datetime import datetime
+from pydantic import BaseModel, ConfigDict, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
-class CreateConditionalOrderResponseEnvelopeAllOfData(BaseModel):
+class TransactionsSettlement(BaseModel):
     """
-    CreateConditionalOrderResponseEnvelopeAllOfData
+    TransactionsSettlement
     """ # noqa: E501
-    stop_loss_order_id: Optional[UUID] = None
-    take_profit_order_id: Optional[UUID] = None
-    __properties: ClassVar[List[str]] = ["stop_loss_order_id", "take_profit_order_id"]
+    tx_id: UUID
+    user_id: UUID
+    tenant_id: StrictStr
+    position_id: UUID
+    tx_kind: StrictStr
+    quantity_usd: StrictStr
+    created_at: datetime
+    settled_at: Optional[datetime] = None
+    settled_by: Optional[UUID] = None
+    __properties: ClassVar[List[str]] = ["tx_id", "user_id", "tenant_id", "position_id", "tx_kind", "quantity_usd", "created_at", "settled_at", "settled_by"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -49,7 +57,7 @@ class CreateConditionalOrderResponseEnvelopeAllOfData(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of CreateConditionalOrderResponseEnvelopeAllOfData from a JSON string"""
+        """Create an instance of TransactionsSettlement from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -74,7 +82,7 @@ class CreateConditionalOrderResponseEnvelopeAllOfData(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of CreateConditionalOrderResponseEnvelopeAllOfData from a dict"""
+        """Create an instance of TransactionsSettlement from a dict"""
         if obj is None:
             return None
 
@@ -82,8 +90,15 @@ class CreateConditionalOrderResponseEnvelopeAllOfData(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "stop_loss_order_id": obj.get("stop_loss_order_id"),
-            "take_profit_order_id": obj.get("take_profit_order_id")
+            "tx_id": obj.get("tx_id"),
+            "user_id": obj.get("user_id"),
+            "tenant_id": obj.get("tenant_id"),
+            "position_id": obj.get("position_id"),
+            "tx_kind": obj.get("tx_kind"),
+            "quantity_usd": obj.get("quantity_usd"),
+            "created_at": obj.get("created_at"),
+            "settled_at": obj.get("settled_at"),
+            "settled_by": obj.get("settled_by")
         })
         return _obj
 

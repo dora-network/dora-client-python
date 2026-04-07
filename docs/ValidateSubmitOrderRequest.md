@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **stop_loss_price** | **str** | Stop loss price | [optional] 
 **take_profit_price** | **str** | Take profit price | [optional] 
 **restrictions** | [**TenantRestrictions**](TenantRestrictions.md) |  | [optional] 
+**initial_capital** | **str** | Initial capital value in USD only used to validate sells with leverage | [optional] 
 
 ## Example
 

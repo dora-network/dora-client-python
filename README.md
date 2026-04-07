@@ -150,6 +150,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**get_trades**](docs/DefaultApi.md#get_trades) | **GET** /v1/trades | Get a filtered, paginated list of trades
 *DefaultApi* | [**get_transaction_by_id**](docs/DefaultApi.md#get_transaction_by_id) | **GET** /v1/transactions/{transaction_id} | Get a transaction by ID
 *DefaultApi* | [**get_transactions**](docs/DefaultApi.md#get_transactions) | **GET** /v1/transactions | Get a filtered, paginated list of transactions
+*DefaultApi* | [**get_transactions_settlements**](docs/DefaultApi.md#get_transactions_settlements) | **GET** /v1/transactions/settlements | Get transactions settlements with filters
 *DefaultApi* | [**get_user_by_id**](docs/DefaultApi.md#get_user_by_id) | **GET** /v1/user/{user_id} | Get user by ID (admin only)
 *DefaultApi* | [**get_user_coupon_payments_stream**](docs/DefaultApi.md#get_user_coupon_payments_stream) | **GET** /v1/user/{user_id}/coupon_payments/stream | Stream user&#39;s coupon payment accruals in real time
 *DefaultApi* | [**get_user_ledger_stream**](docs/DefaultApi.md#get_user_ledger_stream) | **GET** /v1/user/{user_id}/ledger/stream | Get a snapshot of user&#39;s ledger updates since a specific time, and opens a stream for further updates
@@ -179,6 +180,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**revoke_api_key_for_user_id**](docs/DefaultApi.md#revoke_api_key_for_user_id) | **PUT** /v1/user/{user_id}/apikey/{key_id}/revoke | Revoke apikey for a user: admin or integrator only
 *DefaultApi* | [**settle_leverage_accrued_interest**](docs/DefaultApi.md#settle_leverage_accrued_interest) | **POST** /v1/leverage/accrued_interest/settle | Settle current accrued leverage interest for a specific user
 *DefaultApi* | [**settle_realized_pnl_record**](docs/DefaultApi.md#settle_realized_pnl_record) | **PUT** /v1/realized_pnl_settlements/{settlement_id} | Mark a realized P&amp;L settlement as settled
+*DefaultApi* | [**settle_transactions_settlements**](docs/DefaultApi.md#settle_transactions_settlements) | **PUT** /v1/transactions/settlements | Settle multiple transactions settlements in batch
 *DefaultApi* | [**stream_asset_prices**](docs/DefaultApi.md#stream_asset_prices) | **GET** /v1/prices/stream | Stream real-time asset prices as map objects
 *DefaultApi* | [**stream_candle_data**](docs/DefaultApi.md#stream_candle_data) | **GET** /v1/charts/{order_book_id}/candle/stream | Get a snapshot of candlestick data from date provided, and open a stream for real-time updates
 *DefaultApi* | [**stream_order_book_balances**](docs/DefaultApi.md#stream_order_book_balances) | **GET** /v1/orderbooks/{order_book_id}/balances/stream | Get a snapshot of base and quote balances for an order book and open a stream for real-time updates
@@ -225,8 +227,8 @@ Class | Method | HTTP request | Description
  - [CreateAPIKeyRequest](docs/CreateAPIKeyRequest.md)
  - [CreateAPIKeyResponseEnvelope](docs/CreateAPIKeyResponseEnvelope.md)
  - [CreateConditionalOrderRequest](docs/CreateConditionalOrderRequest.md)
+ - [CreateConditionalOrderResponseData](docs/CreateConditionalOrderResponseData.md)
  - [CreateConditionalOrderResponseEnvelope](docs/CreateConditionalOrderResponseEnvelope.md)
- - [CreateConditionalOrderResponseEnvelopeAllOfData](docs/CreateConditionalOrderResponseEnvelopeAllOfData.md)
  - [CreateIntegratorUserRequest](docs/CreateIntegratorUserRequest.md)
  - [CreateOrUpdateUserResponse](docs/CreateOrUpdateUserResponse.md)
  - [CreateOrderRequest](docs/CreateOrderRequest.md)
@@ -291,6 +293,7 @@ Class | Method | HTTP request | Description
  - [OrderbookStats](docs/OrderbookStats.md)
  - [OrderbookStatsResponseEnvelope](docs/OrderbookStatsResponseEnvelope.md)
  - [PLAccount](docs/PLAccount.md)
+ - [PLAccounts](docs/PLAccounts.md)
  - [PLAsset](docs/PLAsset.md)
  - [PLResponseEnvelope](docs/PLResponseEnvelope.md)
  - [PLSummary](docs/PLSummary.md)
@@ -303,6 +306,7 @@ Class | Method | HTTP request | Description
  - [Portfolio](docs/Portfolio.md)
  - [Position](docs/Position.md)
  - [PositionAccount](docs/PositionAccount.md)
+ - [PositionAccounts](docs/PositionAccounts.md)
  - [PositionAsset](docs/PositionAsset.md)
  - [PositionResponse](docs/PositionResponse.md)
  - [PositionSide](docs/PositionSide.md)
@@ -319,15 +323,24 @@ Class | Method | HTTP request | Description
  - [SettleLeverageAccruedInterestResponseEnvelope](docs/SettleLeverageAccruedInterestResponseEnvelope.md)
  - [SettleRealizedPnlRecordResponseEnvelope](docs/SettleRealizedPnlRecordResponseEnvelope.md)
  - [Side](docs/Side.md)
+ - [StreamAssetPricesResponse](docs/StreamAssetPricesResponse.md)
  - [StreamAssetsEntry](docs/StreamAssetsEntry.md)
+ - [StreamAssetsResponse](docs/StreamAssetsResponse.md)
  - [StreamCandlesEntry](docs/StreamCandlesEntry.md)
+ - [StreamCandlesResponse](docs/StreamCandlesResponse.md)
  - [StreamEntry](docs/StreamEntry.md)
  - [StreamOrderBookBalanceEntry](docs/StreamOrderBookBalanceEntry.md)
+ - [StreamOrderBookBalancesResponse](docs/StreamOrderBookBalancesResponse.md)
  - [StreamOrderUpdatesEntry](docs/StreamOrderUpdatesEntry.md)
+ - [StreamOrderUpdatesResponse](docs/StreamOrderUpdatesResponse.md)
  - [StreamOrdersEntry](docs/StreamOrdersEntry.md)
+ - [StreamOrdersResponse](docs/StreamOrdersResponse.md)
  - [StreamPositionsEntry](docs/StreamPositionsEntry.md)
+ - [StreamPositionsResponse](docs/StreamPositionsResponse.md)
  - [StreamTradesEntry](docs/StreamTradesEntry.md)
+ - [StreamTradesResponse](docs/StreamTradesResponse.md)
  - [StreamTransactionsEntry](docs/StreamTransactionsEntry.md)
+ - [StreamTransactionsResponse](docs/StreamTransactionsResponse.md)
  - [StreamUserCouponPaymentsEntry](docs/StreamUserCouponPaymentsEntry.md)
  - [StreamUserCouponPaymentsResponse](docs/StreamUserCouponPaymentsResponse.md)
  - [Supply](docs/Supply.md)
@@ -341,6 +354,10 @@ Class | Method | HTTP request | Description
  - [TransactionKind](docs/TransactionKind.md)
  - [TransactionRequestError](docs/TransactionRequestError.md)
  - [TransactionResponseEnvelope](docs/TransactionResponseEnvelope.md)
+ - [TransactionsSettlement](docs/TransactionsSettlement.md)
+ - [TransactionsSettlementRequest](docs/TransactionsSettlementRequest.md)
+ - [TransactionsSettlementsResponse](docs/TransactionsSettlementsResponse.md)
+ - [TransactionsSettlementsResponseEnvelope](docs/TransactionsSettlementsResponseEnvelope.md)
  - [TransferBalancesRequest](docs/TransferBalancesRequest.md)
  - [TransferBalancesResponseEnvelope](docs/TransferBalancesResponseEnvelope.md)
  - [TransformedAssets](docs/TransformedAssets.md)

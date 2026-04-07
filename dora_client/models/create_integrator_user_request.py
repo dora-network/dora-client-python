@@ -28,9 +28,7 @@ class CreateIntegratorUserRequest(BaseModel):
     CreateIntegratorUserRequest
     """ # noqa: E501
     email: Optional[StrictStr] = None
-    first_name: Optional[StrictStr] = None
-    last_name: Optional[StrictStr] = None
-    country_of_domicile: Optional[StrictStr] = None
+    name: Optional[StrictStr] = None
     native_asset_id: Optional[UUID] = None
     photo_url: Optional[StrictStr] = None
     provider: Optional[StrictStr] = None

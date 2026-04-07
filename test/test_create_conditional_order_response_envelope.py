@@ -35,7 +35,7 @@ class TestCreateConditionalOrderResponseEnvelope(unittest.TestCase):
         model = CreateConditionalOrderResponseEnvelope()
         if include_optional:
             return CreateConditionalOrderResponseEnvelope(
-                data = dora_client.models.create_conditional_order_response_envelope_all_of_data.CreateConditionalOrderResponseEnvelope_allOf_data(
+                data = dora_client.models.create_conditional_order_response_data.CreateConditionalOrderResponseData(
                     stop_loss_order_id = '', 
                     take_profit_order_id = '', ),
                 error = '',

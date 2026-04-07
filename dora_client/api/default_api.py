@@ -18,14 +18,13 @@ from typing_extensions import Annotated
 
 from datetime import datetime
 from pydantic import Field, StrictBool, StrictStr
-from typing import Dict, List, Optional
+from typing import List, Optional
 from typing_extensions import Annotated
 from uuid import UUID
 from dora_client.models.api_key_response_envelope import APIKeyResponseEnvelope
 from dora_client.models.all_positions_response_envelope import AllPositionsResponseEnvelope
 from dora_client.models.all_withdrawal_initiations_response_envelope import AllWithdrawalInitiationsResponseEnvelope
 from dora_client.models.asset_kind import AssetKind
-from dora_client.models.asset_price import AssetPrice
 from dora_client.models.asset_price_response_envelope import AssetPriceResponseEnvelope
 from dora_client.models.cancel_order_response_envelope import CancelOrderResponseEnvelope
 from dora_client.models.candle_resolution import CandleResolution
@@ -83,19 +82,23 @@ from dora_client.models.settle_leverage_accrued_interest_request import SettleLe
 from dora_client.models.settle_leverage_accrued_interest_response_envelope import SettleLeverageAccruedInterestResponseEnvelope
 from dora_client.models.settle_realized_pnl_record_response_envelope import SettleRealizedPnlRecordResponseEnvelope
 from dora_client.models.side import Side
-from dora_client.models.stream_assets_entry import StreamAssetsEntry
-from dora_client.models.stream_candles_entry import StreamCandlesEntry
-from dora_client.models.stream_order_book_balance_entry import StreamOrderBookBalanceEntry
-from dora_client.models.stream_order_updates_entry import StreamOrderUpdatesEntry
-from dora_client.models.stream_positions_entry import StreamPositionsEntry
-from dora_client.models.stream_trades_entry import StreamTradesEntry
-from dora_client.models.stream_transactions_entry import StreamTransactionsEntry
+from dora_client.models.stream_asset_prices_response import StreamAssetPricesResponse
+from dora_client.models.stream_assets_response import StreamAssetsResponse
+from dora_client.models.stream_candles_response import StreamCandlesResponse
+from dora_client.models.stream_order_book_balances_response import StreamOrderBookBalancesResponse
+from dora_client.models.stream_order_updates_response import StreamOrderUpdatesResponse
+from dora_client.models.stream_positions_response import StreamPositionsResponse
+from dora_client.models.stream_trades_response import StreamTradesResponse
+from dora_client.models.stream_transactions_response import StreamTransactionsResponse
 from dora_client.models.stream_user_coupon_payments_response import StreamUserCouponPaymentsResponse
 from dora_client.models.supply_request import SupplyRequest
 from dora_client.models.supply_response_envelope import SupplyResponseEnvelope
 from dora_client.models.trade_response_envelope import TradeResponseEnvelope
 from dora_client.models.transaction_kind import TransactionKind
 from dora_client.models.transaction_response_envelope import TransactionResponseEnvelope
+from dora_client.models.transactions_settlement_request import TransactionsSettlementRequest
+from dora_client.models.transactions_settlements_response import TransactionsSettlementsResponse
+from dora_client.models.transactions_settlements_response_envelope import TransactionsSettlementsResponseEnvelope
 from dora_client.models.transfer_balances_request import TransferBalancesRequest
 from dora_client.models.transfer_balances_response_envelope import TransferBalancesResponseEnvelope
 from dora_client.models.unite_position_request import UnitePositionRequest
@@ -5655,7 +5658,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> List[StreamAssetsEntry]:
+    ) -> StreamAssetsResponse:
         """Get all inserts or updates for assets
 
 
@@ -5695,7 +5698,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[StreamAssetsEntry]",
+            '200': "StreamAssetsResponse",
             '400': "ResponseEnvelope",
             '401': "ResponseEnvelope",
             '500': "ResponseEnvelope",
@@ -5728,7 +5731,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[List[StreamAssetsEntry]]:
+    ) -> ApiResponse[StreamAssetsResponse]:
         """Get all inserts or updates for assets
 
 
@@ -5768,7 +5771,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[StreamAssetsEntry]",
+            '200': "StreamAssetsResponse",
             '400': "ResponseEnvelope",
             '401': "ResponseEnvelope",
             '500': "ResponseEnvelope",
@@ -5841,7 +5844,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[StreamAssetsEntry]",
+            '200': "StreamAssetsResponse",
             '400': "ResponseEnvelope",
             '401': "ResponseEnvelope",
             '500': "ResponseEnvelope",
@@ -13774,6 +13777,396 @@ class DefaultApi:
 
 
     @validate_call
+    async def get_transactions_settlements(
+        self,
+        tenant_id: Annotated[Optional[StrictStr], Field(description="Tenant ID to filter settlements")] = None,
+        user_id: Annotated[Optional[UUID], Field(description="User ID to filter settlements")] = None,
+        position_id: Annotated[Optional[UUID], Field(description="Position ID to filter settlements")] = None,
+        tx_kind: Annotated[Optional[StrictStr], Field(description="Transaction kind to filter settlements")] = None,
+        created_after: Annotated[Optional[datetime], Field(description="Filter settlements created after this time")] = None,
+        settled_before: Annotated[Optional[datetime], Field(description="Filter settlements settled before this time")] = None,
+        is_settled: Annotated[Optional[StrictBool], Field(description="Filter settlements by settlement status")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> TransactionsSettlementsResponseEnvelope:
+        """Get transactions settlements with filters
+
+
+        :param tenant_id: Tenant ID to filter settlements
+        :type tenant_id: str
+        :param user_id: User ID to filter settlements
+        :type user_id: str
+        :param position_id: Position ID to filter settlements
+        :type position_id: str
+        :param tx_kind: Transaction kind to filter settlements
+        :type tx_kind: str
+        :param created_after: Filter settlements created after this time
+        :type created_after: datetime
+        :param settled_before: Filter settlements settled before this time
+        :type settled_before: datetime
+        :param is_settled: Filter settlements by settlement status
+        :type is_settled: bool
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_transactions_settlements_serialize(
+            tenant_id=tenant_id,
+            user_id=user_id,
+            position_id=position_id,
+            tx_kind=tx_kind,
+            created_after=created_after,
+            settled_before=settled_before,
+            is_settled=is_settled,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "TransactionsSettlementsResponseEnvelope",
+            '400': "ResponseEnvelope",
+            '404': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    async def get_transactions_settlements_with_http_info(
+        self,
+        tenant_id: Annotated[Optional[StrictStr], Field(description="Tenant ID to filter settlements")] = None,
+        user_id: Annotated[Optional[UUID], Field(description="User ID to filter settlements")] = None,
+        position_id: Annotated[Optional[UUID], Field(description="Position ID to filter settlements")] = None,
+        tx_kind: Annotated[Optional[StrictStr], Field(description="Transaction kind to filter settlements")] = None,
+        created_after: Annotated[Optional[datetime], Field(description="Filter settlements created after this time")] = None,
+        settled_before: Annotated[Optional[datetime], Field(description="Filter settlements settled before this time")] = None,
+        is_settled: Annotated[Optional[StrictBool], Field(description="Filter settlements by settlement status")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[TransactionsSettlementsResponseEnvelope]:
+        """Get transactions settlements with filters
+
+
+        :param tenant_id: Tenant ID to filter settlements
+        :type tenant_id: str
+        :param user_id: User ID to filter settlements
+        :type user_id: str
+        :param position_id: Position ID to filter settlements
+        :type position_id: str
+        :param tx_kind: Transaction kind to filter settlements
+        :type tx_kind: str
+        :param created_after: Filter settlements created after this time
+        :type created_after: datetime
+        :param settled_before: Filter settlements settled before this time
+        :type settled_before: datetime
+        :param is_settled: Filter settlements by settlement status
+        :type is_settled: bool
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_transactions_settlements_serialize(
+            tenant_id=tenant_id,
+            user_id=user_id,
+            position_id=position_id,
+            tx_kind=tx_kind,
+            created_after=created_after,
+            settled_before=settled_before,
+            is_settled=is_settled,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "TransactionsSettlementsResponseEnvelope",
+            '400': "ResponseEnvelope",
+            '404': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    async def get_transactions_settlements_without_preload_content(
+        self,
+        tenant_id: Annotated[Optional[StrictStr], Field(description="Tenant ID to filter settlements")] = None,
+        user_id: Annotated[Optional[UUID], Field(description="User ID to filter settlements")] = None,
+        position_id: Annotated[Optional[UUID], Field(description="Position ID to filter settlements")] = None,
+        tx_kind: Annotated[Optional[StrictStr], Field(description="Transaction kind to filter settlements")] = None,
+        created_after: Annotated[Optional[datetime], Field(description="Filter settlements created after this time")] = None,
+        settled_before: Annotated[Optional[datetime], Field(description="Filter settlements settled before this time")] = None,
+        is_settled: Annotated[Optional[StrictBool], Field(description="Filter settlements by settlement status")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get transactions settlements with filters
+
+
+        :param tenant_id: Tenant ID to filter settlements
+        :type tenant_id: str
+        :param user_id: User ID to filter settlements
+        :type user_id: str
+        :param position_id: Position ID to filter settlements
+        :type position_id: str
+        :param tx_kind: Transaction kind to filter settlements
+        :type tx_kind: str
+        :param created_after: Filter settlements created after this time
+        :type created_after: datetime
+        :param settled_before: Filter settlements settled before this time
+        :type settled_before: datetime
+        :param is_settled: Filter settlements by settlement status
+        :type is_settled: bool
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_transactions_settlements_serialize(
+            tenant_id=tenant_id,
+            user_id=user_id,
+            position_id=position_id,
+            tx_kind=tx_kind,
+            created_after=created_after,
+            settled_before=settled_before,
+            is_settled=is_settled,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "TransactionsSettlementsResponseEnvelope",
+            '400': "ResponseEnvelope",
+            '404': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_transactions_settlements_serialize(
+        self,
+        tenant_id,
+        user_id,
+        position_id,
+        tx_kind,
+        created_after,
+        settled_before,
+        is_settled,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        if tenant_id is not None:
+            
+            _query_params.append(('tenant_id', tenant_id))
+            
+        if user_id is not None:
+            
+            _query_params.append(('user_id', user_id))
+            
+        if position_id is not None:
+            
+            _query_params.append(('position_id', position_id))
+            
+        if tx_kind is not None:
+            
+            _query_params.append(('tx_kind', tx_kind))
+            
+        if created_after is not None:
+            if isinstance(created_after, datetime):
+                _query_params.append(
+                    (
+                        'created_after',
+                        created_after.strftime(
+                            self.api_client.configuration.datetime_format
+                        )
+                    )
+                )
+            else:
+                _query_params.append(('created_after', created_after))
+            
+        if settled_before is not None:
+            if isinstance(settled_before, datetime):
+                _query_params.append(
+                    (
+                        'settled_before',
+                        settled_before.strftime(
+                            self.api_client.configuration.datetime_format
+                        )
+                    )
+                )
+            else:
+                _query_params.append(('settled_before', settled_before))
+            
+        if is_settled is not None:
+            
+            _query_params.append(('is_settled', is_settled))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyAuthHeader', 
+            'bearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/v1/transactions/settlements',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     async def get_user_by_id(
         self,
         user_id: UUID,
@@ -14327,7 +14720,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> List[StreamPositionsEntry]:
+    ) -> StreamPositionsResponse:
         """Get a snapshot of user's ledger updates since a specific time, and opens a stream for further updates
 
 
@@ -14364,7 +14757,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[StreamPositionsEntry]",
+            '200': "StreamPositionsResponse",
             '400': "ResponseEnvelope",
             '401': "ResponseEnvelope",
             '404': "ResponseEnvelope",
@@ -14397,7 +14790,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[List[StreamPositionsEntry]]:
+    ) -> ApiResponse[StreamPositionsResponse]:
         """Get a snapshot of user's ledger updates since a specific time, and opens a stream for further updates
 
 
@@ -14434,7 +14827,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[StreamPositionsEntry]",
+            '200': "StreamPositionsResponse",
             '400': "ResponseEnvelope",
             '401': "ResponseEnvelope",
             '404': "ResponseEnvelope",
@@ -14504,7 +14897,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[StreamPositionsEntry]",
+            '200': "StreamPositionsResponse",
             '400': "ResponseEnvelope",
             '401': "ResponseEnvelope",
             '404': "ResponseEnvelope",
@@ -14599,7 +14992,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> List[StreamOrderUpdatesEntry]:
+    ) -> StreamOrderUpdatesResponse:
         """Get a snapshot of user's order updates for the given order book since a specific time, and opens a stream for further updates
 
 
@@ -14642,7 +15035,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[StreamOrderUpdatesEntry]",
+            '200': "StreamOrderUpdatesResponse",
             '400': "ResponseEnvelope",
             '401': "ResponseEnvelope",
             '404': "ResponseEnvelope",
@@ -14677,7 +15070,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[List[StreamOrderUpdatesEntry]]:
+    ) -> ApiResponse[StreamOrderUpdatesResponse]:
         """Get a snapshot of user's order updates for the given order book since a specific time, and opens a stream for further updates
 
 
@@ -14720,7 +15113,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[StreamOrderUpdatesEntry]",
+            '200': "StreamOrderUpdatesResponse",
             '400': "ResponseEnvelope",
             '401': "ResponseEnvelope",
             '404': "ResponseEnvelope",
@@ -14798,7 +15191,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[StreamOrderUpdatesEntry]",
+            '200': "StreamOrderUpdatesResponse",
             '400': "ResponseEnvelope",
             '401': "ResponseEnvelope",
             '404': "ResponseEnvelope",
@@ -14909,7 +15302,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> List[StreamOrderUpdatesEntry]:
+    ) -> StreamOrderUpdatesResponse:
         """Get a snapshot of user's order updates across all order books since a specific time, and opens a stream for further updates
 
 
@@ -14949,7 +15342,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[StreamOrderUpdatesEntry]",
+            '200': "StreamOrderUpdatesResponse",
             '400': "ResponseEnvelope",
             '401': "ResponseEnvelope",
             '404': "ResponseEnvelope",
@@ -14983,7 +15376,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[List[StreamOrderUpdatesEntry]]:
+    ) -> ApiResponse[StreamOrderUpdatesResponse]:
         """Get a snapshot of user's order updates across all order books since a specific time, and opens a stream for further updates
 
 
@@ -15023,7 +15416,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[StreamOrderUpdatesEntry]",
+            '200': "StreamOrderUpdatesResponse",
             '400': "ResponseEnvelope",
             '401': "ResponseEnvelope",
             '404': "ResponseEnvelope",
@@ -15097,7 +15490,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[StreamOrderUpdatesEntry]",
+            '200': "StreamOrderUpdatesResponse",
             '400': "ResponseEnvelope",
             '401': "ResponseEnvelope",
             '404': "ResponseEnvelope",
@@ -15458,7 +15851,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> List[StreamTransactionsEntry]:
+    ) -> StreamTransactionsResponse:
         """Get a snapshot of user's executed transactions since a specific time, and opens a stream for further updates
 
 
@@ -15498,7 +15891,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[StreamTransactionsEntry]",
+            '200': "StreamTransactionsResponse",
             '400': "ResponseEnvelope",
             '401': "ResponseEnvelope",
             '404': "ResponseEnvelope",
@@ -15532,7 +15925,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[List[StreamTransactionsEntry]]:
+    ) -> ApiResponse[StreamTransactionsResponse]:
         """Get a snapshot of user's executed transactions since a specific time, and opens a stream for further updates
 
 
@@ -15572,7 +15965,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[StreamTransactionsEntry]",
+            '200': "StreamTransactionsResponse",
             '400': "ResponseEnvelope",
             '401': "ResponseEnvelope",
             '404': "ResponseEnvelope",
@@ -15646,7 +16039,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[StreamTransactionsEntry]",
+            '200': "StreamTransactionsResponse",
             '400': "ResponseEnvelope",
             '401': "ResponseEnvelope",
             '404': "ResponseEnvelope",
@@ -22342,6 +22735,287 @@ class DefaultApi:
 
 
     @validate_call
+    async def settle_transactions_settlements(
+        self,
+        transactions_settlement_request: TransactionsSettlementRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> TransactionsSettlementsResponse:
+        """Settle multiple transactions settlements in batch
+
+
+        :param transactions_settlement_request: (required)
+        :type transactions_settlement_request: TransactionsSettlementRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._settle_transactions_settlements_serialize(
+            transactions_settlement_request=transactions_settlement_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "TransactionsSettlementsResponse",
+            '400': "ResponseEnvelope",
+            '404': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    async def settle_transactions_settlements_with_http_info(
+        self,
+        transactions_settlement_request: TransactionsSettlementRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[TransactionsSettlementsResponse]:
+        """Settle multiple transactions settlements in batch
+
+
+        :param transactions_settlement_request: (required)
+        :type transactions_settlement_request: TransactionsSettlementRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._settle_transactions_settlements_serialize(
+            transactions_settlement_request=transactions_settlement_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "TransactionsSettlementsResponse",
+            '400': "ResponseEnvelope",
+            '404': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    async def settle_transactions_settlements_without_preload_content(
+        self,
+        transactions_settlement_request: TransactionsSettlementRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Settle multiple transactions settlements in batch
+
+
+        :param transactions_settlement_request: (required)
+        :type transactions_settlement_request: TransactionsSettlementRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._settle_transactions_settlements_serialize(
+            transactions_settlement_request=transactions_settlement_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "TransactionsSettlementsResponse",
+            '400': "ResponseEnvelope",
+            '404': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _settle_transactions_settlements_serialize(
+        self,
+        transactions_settlement_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if transactions_settlement_request is not None:
+            _body_params = transactions_settlement_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyAuthHeader', 
+            'bearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/v1/transactions/settlements',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     async def stream_asset_prices(
         self,
         since: Optional[datetime] = None,
@@ -22358,7 +23032,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> Dict[str, AssetPrice]:
+    ) -> StreamAssetPricesResponse:
         """Stream real-time asset prices as map objects
 
         Opens a WebSocket stream for real-time asset price updates. First message contains all current prices, subsequent messages contain only changed prices. Data is sent as JSON objects keyed by asset ID.
@@ -22399,7 +23073,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "Dict[str, AssetPrice]",
+            '200': "StreamAssetPricesResponse",
             '400': "ResponseEnvelope",
             '500': "ResponseEnvelope",
         }
@@ -22431,7 +23105,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[Dict[str, AssetPrice]]:
+    ) -> ApiResponse[StreamAssetPricesResponse]:
         """Stream real-time asset prices as map objects
 
         Opens a WebSocket stream for real-time asset price updates. First message contains all current prices, subsequent messages contain only changed prices. Data is sent as JSON objects keyed by asset ID.
@@ -22472,7 +23146,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "Dict[str, AssetPrice]",
+            '200': "StreamAssetPricesResponse",
             '400': "ResponseEnvelope",
             '500': "ResponseEnvelope",
         }
@@ -22545,7 +23219,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "Dict[str, AssetPrice]",
+            '200': "StreamAssetPricesResponse",
             '400': "ResponseEnvelope",
             '500': "ResponseEnvelope",
         }
@@ -22653,7 +23327,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> List[StreamCandlesEntry]:
+    ) -> StreamCandlesResponse:
         """Get a snapshot of candlestick data from date provided, and open a stream for real-time updates
 
 
@@ -22696,7 +23370,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[StreamCandlesEntry]",
+            '200': "StreamCandlesResponse",
             '400': "ResponseEnvelope",
             '404': "ResponseEnvelope",
             '500': "ResponseEnvelope",
@@ -22730,7 +23404,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[List[StreamCandlesEntry]]:
+    ) -> ApiResponse[StreamCandlesResponse]:
         """Get a snapshot of candlestick data from date provided, and open a stream for real-time updates
 
 
@@ -22773,7 +23447,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[StreamCandlesEntry]",
+            '200': "StreamCandlesResponse",
             '400': "ResponseEnvelope",
             '404': "ResponseEnvelope",
             '500': "ResponseEnvelope",
@@ -22850,7 +23524,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[StreamCandlesEntry]",
+            '200': "StreamCandlesResponse",
             '400': "ResponseEnvelope",
             '404': "ResponseEnvelope",
             '500': "ResponseEnvelope",
@@ -22961,7 +23635,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> List[StreamOrderBookBalanceEntry]:
+    ) -> StreamOrderBookBalancesResponse:
         """Get a snapshot of base and quote balances for an order book and open a stream for real-time updates
 
 
@@ -23001,7 +23675,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[StreamOrderBookBalanceEntry]",
+            '200': "StreamOrderBookBalancesResponse",
             '400': "ResponseEnvelope",
             '404': "ResponseEnvelope",
             '500': "ResponseEnvelope",
@@ -23034,7 +23708,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[List[StreamOrderBookBalanceEntry]]:
+    ) -> ApiResponse[StreamOrderBookBalancesResponse]:
         """Get a snapshot of base and quote balances for an order book and open a stream for real-time updates
 
 
@@ -23074,7 +23748,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[StreamOrderBookBalanceEntry]",
+            '200': "StreamOrderBookBalancesResponse",
             '400': "ResponseEnvelope",
             '404': "ResponseEnvelope",
             '500': "ResponseEnvelope",
@@ -23147,7 +23821,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[StreamOrderBookBalanceEntry]",
+            '200': "StreamOrderBookBalancesResponse",
             '400': "ResponseEnvelope",
             '404': "ResponseEnvelope",
             '500': "ResponseEnvelope",
@@ -23545,7 +24219,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> List[StreamTradesEntry]:
+    ) -> StreamTradesResponse:
         """Get a snapshot of trades executed on the given order book from a specific date and open a stream for real-time updates
 
 
@@ -23585,7 +24259,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[StreamTradesEntry]",
+            '200': "StreamTradesResponse",
             '400': "ResponseEnvelope",
             '500': "ResponseEnvelope",
         }
@@ -23617,7 +24291,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[List[StreamTradesEntry]]:
+    ) -> ApiResponse[StreamTradesResponse]:
         """Get a snapshot of trades executed on the given order book from a specific date and open a stream for real-time updates
 
 
@@ -23657,7 +24331,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[StreamTradesEntry]",
+            '200': "StreamTradesResponse",
             '400': "ResponseEnvelope",
             '500': "ResponseEnvelope",
         }
@@ -23729,7 +24403,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[StreamTradesEntry]",
+            '200': "StreamTradesResponse",
             '400': "ResponseEnvelope",
             '500': "ResponseEnvelope",
         }

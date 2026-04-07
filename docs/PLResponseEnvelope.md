@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data** | [**List[PLAccount]**](PLAccount.md) |  | [optional] 
+**data** | [**PLAccounts**](PLAccounts.md) |  | [optional] 
 **error** | **str** | The error message. Present for error (non-2xx) responses. | [optional] 
 **metadata** | [**Metadata**](Metadata.md) | Metadata about the response, including status code and trace information. | 
 

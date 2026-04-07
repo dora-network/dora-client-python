@@ -49,7 +49,8 @@ class ValidateSubmitOrderRequest(BaseModel):
     stop_loss_price: Optional[StrictStr] = Field(default=None, description="Stop loss price")
     take_profit_price: Optional[StrictStr] = Field(default=None, description="Take profit price")
     restrictions: Optional[TenantRestrictions] = None
-    __properties: ClassVar[List[str]] = ["quantity", "tick", "kind", "side", "price", "good_till_date", "inverse_leverage", "user_balance", "base_asset_id", "quote_asset_id", "client_order_id", "position_assets", "assets_config", "stop_loss_price", "take_profit_price", "restrictions"]
+    initial_capital: Optional[StrictStr] = Field(default=None, description="Initial capital value in USD only used to validate sells with leverage")
+    __properties: ClassVar[List[str]] = ["quantity", "tick", "kind", "side", "price", "good_till_date", "inverse_leverage", "user_balance", "base_asset_id", "quote_asset_id", "client_order_id", "position_assets", "assets_config", "stop_loss_price", "take_profit_price", "restrictions", "initial_capital"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -134,7 +135,8 @@ class ValidateSubmitOrderRequest(BaseModel):
             "assets_config": [AssetConfig.from_dict(_item) for _item in obj["assets_config"]] if obj.get("assets_config") is not None else None,
             "stop_loss_price": obj.get("stop_loss_price"),
             "take_profit_price": obj.get("take_profit_price"),
-            "restrictions": TenantRestrictions.from_dict(obj["restrictions"]) if obj.get("restrictions") is not None else None
+            "restrictions": TenantRestrictions.from_dict(obj["restrictions"]) if obj.get("restrictions") is not None else None,
+            "initial_capital": obj.get("initial_capital")
         })
         return _obj
 

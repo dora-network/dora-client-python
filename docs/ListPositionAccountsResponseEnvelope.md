@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data** | [**List[PositionAccount]**](PositionAccount.md) |  | [optional] 
+**data** | [**PositionAccounts**](PositionAccounts.md) |  | [optional] 
 **error** | **str** | The error message. Present for error (non-2xx) responses. | [optional] 
 **metadata** | [**Metadata**](Metadata.md) | Metadata about the response, including status code and trace information. | 
 

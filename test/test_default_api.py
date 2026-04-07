@@ -369,6 +369,13 @@ class TestDefaultApi(unittest.IsolatedAsyncioTestCase):
         """
         pass
 
+    async def test_get_transactions_settlements(self) -> None:
+        """Test case for get_transactions_settlements
+
+        Get transactions settlements with filters
+        """
+        pass
+
     async def test_get_user_by_id(self) -> None:
         """Test case for get_user_by_id
 
@@ -569,6 +576,13 @@ class TestDefaultApi(unittest.IsolatedAsyncioTestCase):
         """Test case for settle_realized_pnl_record
 
         Mark a realized P&L settlement as settled
+        """
+        pass
+
+    async def test_settle_transactions_settlements(self) -> None:
+        """Test case for settle_transactions_settlements
+
+        Settle multiple transactions settlements in batch
         """
         pass
 

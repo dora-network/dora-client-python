@@ -14,10 +14,10 @@
 
 import unittest
 
-from dora_client.models.create_conditional_order_response_envelope_all_of_data import CreateConditionalOrderResponseEnvelopeAllOfData
+from dora_client.models.create_conditional_order_response_data import CreateConditionalOrderResponseData
 
-class TestCreateConditionalOrderResponseEnvelopeAllOfData(unittest.TestCase):
-    """CreateConditionalOrderResponseEnvelopeAllOfData unit test stubs"""
+class TestCreateConditionalOrderResponseData(unittest.TestCase):
+    """CreateConditionalOrderResponseData unit test stubs"""
 
     def setUp(self):
         pass
@@ -25,26 +25,26 @@ class TestCreateConditionalOrderResponseEnvelopeAllOfData(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> CreateConditionalOrderResponseEnvelopeAllOfData:
-        """Test CreateConditionalOrderResponseEnvelopeAllOfData
+    def make_instance(self, include_optional) -> CreateConditionalOrderResponseData:
+        """Test CreateConditionalOrderResponseData
             include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `CreateConditionalOrderResponseEnvelopeAllOfData`
+        # uncomment below to create an instance of `CreateConditionalOrderResponseData`
         """
-        model = CreateConditionalOrderResponseEnvelopeAllOfData()
+        model = CreateConditionalOrderResponseData()
         if include_optional:
-            return CreateConditionalOrderResponseEnvelopeAllOfData(
+            return CreateConditionalOrderResponseData(
                 stop_loss_order_id = '',
                 take_profit_order_id = ''
             )
         else:
-            return CreateConditionalOrderResponseEnvelopeAllOfData(
+            return CreateConditionalOrderResponseData(
         )
         """
 
-    def testCreateConditionalOrderResponseEnvelopeAllOfData(self):
-        """Test CreateConditionalOrderResponseEnvelopeAllOfData"""
+    def testCreateConditionalOrderResponseData(self):
+        """Test CreateConditionalOrderResponseData"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

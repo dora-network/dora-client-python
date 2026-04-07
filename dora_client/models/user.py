@@ -33,9 +33,7 @@ class User(BaseModel):
     closed_at: Optional[datetime] = None
     disabled_at: Optional[datetime] = None
     email: StrictStr
-    first_name: StrictStr
-    last_name: StrictStr
-    country_of_domicile: StrictStr
+    name: StrictStr
     native_asset_id: UUID
     photo_url: Optional[StrictStr] = None
     provider: Optional[StrictStr] = None
@@ -51,7 +49,7 @@ class User(BaseModel):
     allow_liquidations_notifications: StrictBool
     allow_deposit_withdrawal_notifications: StrictBool
     allow_orders_notifications: StrictBool
-    __properties: ClassVar[List[str]] = ["id", "closed_at", "disabled_at", "email", "first_name", "last_name", "country_of_domicile", "native_asset_id", "photo_url", "provider", "provider_id", "roles", "timezone", "timezone_offset", "verified_at", "show_tutorial_cards", "notifications_enabled", "tenant_id", "allow_email_notifications", "allow_liquidations_notifications", "allow_deposit_withdrawal_notifications", "allow_orders_notifications"]
+    __properties: ClassVar[List[str]] = ["id", "closed_at", "disabled_at", "email", "name", "native_asset_id", "photo_url", "provider", "provider_id", "roles", "timezone", "timezone_offset", "verified_at", "show_tutorial_cards", "notifications_enabled", "tenant_id", "allow_email_notifications", "allow_liquidations_notifications", "allow_deposit_withdrawal_notifications", "allow_orders_notifications"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -108,9 +106,7 @@ class User(BaseModel):
             "closed_at": obj.get("closed_at"),
             "disabled_at": obj.get("disabled_at"),
             "email": obj.get("email"),
-            "first_name": obj.get("first_name"),
-            "last_name": obj.get("last_name"),
-            "country_of_domicile": obj.get("country_of_domicile"),
+            "name": obj.get("name"),
             "native_asset_id": obj.get("native_asset_id"),
             "photo_url": obj.get("photo_url"),
             "provider": obj.get("provider"),
