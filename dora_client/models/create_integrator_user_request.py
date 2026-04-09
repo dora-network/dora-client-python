@@ -20,6 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from uuid import UUID
+from dora_client.models.country_code import CountryCode
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -28,7 +29,9 @@ class CreateIntegratorUserRequest(BaseModel):
     CreateIntegratorUserRequest
     """ # noqa: E501
     email: Optional[StrictStr] = None
-    name: Optional[StrictStr] = None
+    first_name: Optional[StrictStr] = None
+    last_name: Optional[StrictStr] = None
+    country_of_domicile: Optional[CountryCode] = None
     native_asset_id: Optional[UUID] = None
     photo_url: Optional[StrictStr] = None
     provider: Optional[StrictStr] = None

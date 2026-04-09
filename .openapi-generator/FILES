@@ -30,6 +30,7 @@ docs/ClosePositionRequest.md
 docs/ClosePositionResp.md
 docs/ClosePositionResponseEnvelope.md
 docs/Collateral.md
+docs/CountryCode.md
 docs/CouponPayment.md
 docs/CreateAPIKeyData.md
 docs/CreateAPIKeyRequest.md
@@ -229,6 +230,7 @@ dora_client/models/close_position_request.py
 dora_client/models/close_position_resp.py
 dora_client/models/close_position_response_envelope.py
 dora_client/models/collateral.py
+dora_client/models/country_code.py
 dora_client/models/coupon_payment.py
 dora_client/models/create_api_key_data.py
 dora_client/models/create_api_key_request.py
@@ -428,6 +430,7 @@ test/test_close_position_request.py
 test/test_close_position_resp.py
 test/test_close_position_response_envelope.py
 test/test_collateral.py
+test/test_country_code.py
 test/test_coupon_payment.py
 test/test_create_api_key_data.py
 test/test_create_api_key_request.py

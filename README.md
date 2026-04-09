@@ -222,6 +222,7 @@ Class | Method | HTTP request | Description
  - [ClosePositionResp](docs/ClosePositionResp.md)
  - [ClosePositionResponseEnvelope](docs/ClosePositionResponseEnvelope.md)
  - [Collateral](docs/Collateral.md)
+ - [CountryCode](docs/CountryCode.md)
  - [CouponPayment](docs/CouponPayment.md)
  - [CreateAPIKeyData](docs/CreateAPIKeyData.md)
  - [CreateAPIKeyRequest](docs/CreateAPIKeyRequest.md)

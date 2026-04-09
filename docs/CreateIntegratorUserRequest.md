@@ -6,7 +6,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **email** | **str** |  | [optional] 
-**name** | **str** |  | [optional] 
+**first_name** | **str** |  | [optional] 
+**last_name** | **str** |  | [optional] 
+**country_of_domicile** | [**CountryCode**](CountryCode.md) |  | [optional] 
 **native_asset_id** | **str** |  | [optional] 
 **photo_url** | **str** |  | [optional] 
 **provider** | **str** |  | [optional] 

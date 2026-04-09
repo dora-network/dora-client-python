@@ -55,6 +55,7 @@ __all__ = [
     "ClosePositionResp",
     "ClosePositionResponseEnvelope",
     "Collateral",
+    "CountryCode",
     "CouponPayment",
     "CreateAPIKeyData",
     "CreateAPIKeyRequest",
@@ -262,6 +263,7 @@ from dora_client.models.close_position_request import ClosePositionRequest as Cl
 from dora_client.models.close_position_resp import ClosePositionResp as ClosePositionResp
 from dora_client.models.close_position_response_envelope import ClosePositionResponseEnvelope as ClosePositionResponseEnvelope
 from dora_client.models.collateral import Collateral as Collateral
+from dora_client.models.country_code import CountryCode as CountryCode
 from dora_client.models.coupon_payment import CouponPayment as CouponPayment
 from dora_client.models.create_api_key_data import CreateAPIKeyData as CreateAPIKeyData
 from dora_client.models.create_api_key_request import CreateAPIKeyRequest as CreateAPIKeyRequest
