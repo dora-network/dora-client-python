@@ -1789,7 +1789,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_assets_stream**
-> StreamAssetsResponse get_assets_stream(since=since, until=until)
+> List[StreamAssetsEntry] get_assets_stream(since=since, until=until)
 
 Get all inserts or updates for assets
 
@@ -1798,7 +1798,7 @@ Get all inserts or updates for assets
 
 ```python
 import dora_client
-from dora_client.models.stream_assets_response import StreamAssetsResponse
+from dora_client.models.stream_assets_entry import StreamAssetsEntry
 from dora_client.rest import ApiException
 from pprint import pprint
 
@@ -1837,7 +1837,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**StreamAssetsResponse**](StreamAssetsResponse.md)
+[**List[StreamAssetsEntry]**](StreamAssetsEntry.md)
 
 ### Authorization
 
@@ -4349,7 +4349,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_user_ledger_stream**
-> StreamPositionsResponse get_user_ledger_stream(user_id)
+> List[StreamPositionsEntry] get_user_ledger_stream(user_id)
 
 Get a snapshot of user's ledger updates since a specific time, and opens a stream for further updates
 
@@ -4359,7 +4359,7 @@ Get a snapshot of user's ledger updates since a specific time, and opens a strea
 
 ```python
 import dora_client
-from dora_client.models.stream_positions_response import StreamPositionsResponse
+from dora_client.models.stream_positions_entry import StreamPositionsEntry
 from dora_client.rest import ApiException
 from pprint import pprint
 
@@ -4406,7 +4406,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**StreamPositionsResponse**](StreamPositionsResponse.md)
+[**List[StreamPositionsEntry]**](StreamPositionsEntry.md)
 
 ### Authorization
 
@@ -4430,7 +4430,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_user_order_updates_stream**
-> StreamOrderUpdatesResponse get_user_order_updates_stream(user_id, order_book_id, since=since)
+> List[StreamOrderUpdatesEntry] get_user_order_updates_stream(user_id, order_book_id, since=since)
 
 Get a snapshot of user's order updates for the given order book since a specific time, and opens a stream for further updates
 
@@ -4440,7 +4440,7 @@ Get a snapshot of user's order updates for the given order book since a specific
 
 ```python
 import dora_client
-from dora_client.models.stream_order_updates_response import StreamOrderUpdatesResponse
+from dora_client.models.stream_order_updates_entry import StreamOrderUpdatesEntry
 from dora_client.rest import ApiException
 from pprint import pprint
 
@@ -4491,7 +4491,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**StreamOrderUpdatesResponse**](StreamOrderUpdatesResponse.md)
+[**List[StreamOrderUpdatesEntry]**](StreamOrderUpdatesEntry.md)
 
 ### Authorization
 
@@ -4515,7 +4515,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_user_orders_updates_stream_all**
-> StreamOrderUpdatesResponse get_user_orders_updates_stream_all(user_id, since=since)
+> List[StreamOrderUpdatesEntry] get_user_orders_updates_stream_all(user_id, since=since)
 
 Get a snapshot of user's order updates across all order books since a specific time, and opens a stream for further updates
 
@@ -4525,7 +4525,7 @@ Get a snapshot of user's order updates across all order books since a specific t
 
 ```python
 import dora_client
-from dora_client.models.stream_order_updates_response import StreamOrderUpdatesResponse
+from dora_client.models.stream_order_updates_entry import StreamOrderUpdatesEntry
 from dora_client.rest import ApiException
 from pprint import pprint
 
@@ -4574,7 +4574,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**StreamOrderUpdatesResponse**](StreamOrderUpdatesResponse.md)
+[**List[StreamOrderUpdatesEntry]**](StreamOrderUpdatesEntry.md)
 
 ### Authorization
 
@@ -4680,7 +4680,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_user_transactions_stream**
-> StreamTransactionsResponse get_user_transactions_stream(user_id, since=since)
+> List[StreamTransactionsEntry] get_user_transactions_stream(user_id, since=since)
 
 Get a snapshot of user's executed transactions since a specific time, and opens a stream for further updates
 
@@ -4690,7 +4690,7 @@ Get a snapshot of user's executed transactions since a specific time, and opens 
 
 ```python
 import dora_client
-from dora_client.models.stream_transactions_response import StreamTransactionsResponse
+from dora_client.models.stream_transactions_entry import StreamTransactionsEntry
 from dora_client.rest import ApiException
 from pprint import pprint
 
@@ -4739,7 +4739,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**StreamTransactionsResponse**](StreamTransactionsResponse.md)
+[**List[StreamTransactionsEntry]**](StreamTransactionsEntry.md)
 
 ### Authorization
 
@@ -6809,7 +6809,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **stream_asset_prices**
-> StreamAssetPricesResponse stream_asset_prices(since=since, asset_id=asset_id)
+> Dict[str, AssetPrice] stream_asset_prices(since=since, asset_id=asset_id)
 
 Stream real-time asset prices as map objects
 
@@ -6820,7 +6820,7 @@ Opens a WebSocket stream for real-time asset price updates. First message contai
 
 ```python
 import dora_client
-from dora_client.models.stream_asset_prices_response import StreamAssetPricesResponse
+from dora_client.models.asset_price import AssetPrice
 from dora_client.rest import ApiException
 from pprint import pprint
 
@@ -6859,7 +6859,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**StreamAssetPricesResponse**](StreamAssetPricesResponse.md)
+[**Dict[str, AssetPrice]**](AssetPrice.md)
 
 ### Authorization
 
@@ -6881,7 +6881,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **stream_candle_data**
-> StreamCandlesResponse stream_candle_data(order_book_id, since=since, resolution=resolution)
+> List[StreamCandlesEntry] stream_candle_data(order_book_id, since=since, resolution=resolution)
 
 Get a snapshot of candlestick data from date provided, and open a stream for real-time updates
 
@@ -6891,7 +6891,7 @@ Get a snapshot of candlestick data from date provided, and open a stream for rea
 ```python
 import dora_client
 from dora_client.models.candle_resolution import CandleResolution
-from dora_client.models.stream_candles_response import StreamCandlesResponse
+from dora_client.models.stream_candles_entry import StreamCandlesEntry
 from dora_client.rest import ApiException
 from pprint import pprint
 
@@ -6932,7 +6932,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**StreamCandlesResponse**](StreamCandlesResponse.md)
+[**List[StreamCandlesEntry]**](StreamCandlesEntry.md)
 
 ### Authorization
 
@@ -6955,7 +6955,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **stream_order_book_balances**
-> StreamOrderBookBalancesResponse stream_order_book_balances(order_book_id, since=since)
+> List[StreamOrderBookBalanceEntry] stream_order_book_balances(order_book_id, since=since)
 
 Get a snapshot of base and quote balances for an order book and open a stream for real-time updates
 
@@ -6964,7 +6964,7 @@ Get a snapshot of base and quote balances for an order book and open a stream fo
 
 ```python
 import dora_client
-from dora_client.models.stream_order_book_balances_response import StreamOrderBookBalancesResponse
+from dora_client.models.stream_order_book_balance_entry import StreamOrderBookBalanceEntry
 from dora_client.rest import ApiException
 from pprint import pprint
 
@@ -7003,7 +7003,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**StreamOrderBookBalancesResponse**](StreamOrderBookBalancesResponse.md)
+[**List[StreamOrderBookBalanceEntry]**](StreamOrderBookBalanceEntry.md)
 
 ### Authorization
 
@@ -7097,7 +7097,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **stream_trades**
-> StreamTradesResponse stream_trades(order_book_id, since=since)
+> List[StreamTradesEntry] stream_trades(order_book_id, since=since)
 
 Get a snapshot of trades executed on the given order book from a specific date and open a stream for real-time updates
 
@@ -7106,7 +7106,7 @@ Get a snapshot of trades executed on the given order book from a specific date a
 
 ```python
 import dora_client
-from dora_client.models.stream_trades_response import StreamTradesResponse
+from dora_client.models.stream_trades_entry import StreamTradesEntry
 from dora_client.rest import ApiException
 from pprint import pprint
 
@@ -7145,7 +7145,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**StreamTradesResponse**](StreamTradesResponse.md)
+[**List[StreamTradesEntry]**](StreamTradesEntry.md)
 
 ### Authorization
 

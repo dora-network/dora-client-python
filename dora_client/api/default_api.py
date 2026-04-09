@@ -18,13 +18,14 @@ from typing_extensions import Annotated
 
 from datetime import datetime
 from pydantic import Field, StrictBool, StrictStr
-from typing import List, Optional
+from typing import Dict, List, Optional
 from typing_extensions import Annotated
 from uuid import UUID
 from dora_client.models.api_key_response_envelope import APIKeyResponseEnvelope
 from dora_client.models.all_positions_response_envelope import AllPositionsResponseEnvelope
 from dora_client.models.all_withdrawal_initiations_response_envelope import AllWithdrawalInitiationsResponseEnvelope
 from dora_client.models.asset_kind import AssetKind
+from dora_client.models.asset_price import AssetPrice
 from dora_client.models.asset_price_response_envelope import AssetPriceResponseEnvelope
 from dora_client.models.cancel_order_response_envelope import CancelOrderResponseEnvelope
 from dora_client.models.candle_resolution import CandleResolution
@@ -82,14 +83,13 @@ from dora_client.models.settle_leverage_accrued_interest_request import SettleLe
 from dora_client.models.settle_leverage_accrued_interest_response_envelope import SettleLeverageAccruedInterestResponseEnvelope
 from dora_client.models.settle_realized_pnl_record_response_envelope import SettleRealizedPnlRecordResponseEnvelope
 from dora_client.models.side import Side
-from dora_client.models.stream_asset_prices_response import StreamAssetPricesResponse
-from dora_client.models.stream_assets_response import StreamAssetsResponse
-from dora_client.models.stream_candles_response import StreamCandlesResponse
-from dora_client.models.stream_order_book_balances_response import StreamOrderBookBalancesResponse
-from dora_client.models.stream_order_updates_response import StreamOrderUpdatesResponse
-from dora_client.models.stream_positions_response import StreamPositionsResponse
-from dora_client.models.stream_trades_response import StreamTradesResponse
-from dora_client.models.stream_transactions_response import StreamTransactionsResponse
+from dora_client.models.stream_assets_entry import StreamAssetsEntry
+from dora_client.models.stream_candles_entry import StreamCandlesEntry
+from dora_client.models.stream_order_book_balance_entry import StreamOrderBookBalanceEntry
+from dora_client.models.stream_order_updates_entry import StreamOrderUpdatesEntry
+from dora_client.models.stream_positions_entry import StreamPositionsEntry
+from dora_client.models.stream_trades_entry import StreamTradesEntry
+from dora_client.models.stream_transactions_entry import StreamTransactionsEntry
 from dora_client.models.stream_user_coupon_payments_response import StreamUserCouponPaymentsResponse
 from dora_client.models.supply_request import SupplyRequest
 from dora_client.models.supply_response_envelope import SupplyResponseEnvelope
@@ -5658,7 +5658,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> StreamAssetsResponse:
+    ) -> List[StreamAssetsEntry]:
         """Get all inserts or updates for assets
 
 
@@ -5698,7 +5698,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "StreamAssetsResponse",
+            '200': "List[StreamAssetsEntry]",
             '400': "ResponseEnvelope",
             '401': "ResponseEnvelope",
             '500': "ResponseEnvelope",
@@ -5731,7 +5731,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[StreamAssetsResponse]:
+    ) -> ApiResponse[List[StreamAssetsEntry]]:
         """Get all inserts or updates for assets
 
 
@@ -5771,7 +5771,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "StreamAssetsResponse",
+            '200': "List[StreamAssetsEntry]",
             '400': "ResponseEnvelope",
             '401': "ResponseEnvelope",
             '500': "ResponseEnvelope",
@@ -5844,7 +5844,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "StreamAssetsResponse",
+            '200': "List[StreamAssetsEntry]",
             '400': "ResponseEnvelope",
             '401': "ResponseEnvelope",
             '500': "ResponseEnvelope",
@@ -14720,7 +14720,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> StreamPositionsResponse:
+    ) -> List[StreamPositionsEntry]:
         """Get a snapshot of user's ledger updates since a specific time, and opens a stream for further updates
 
 
@@ -14757,7 +14757,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "StreamPositionsResponse",
+            '200': "List[StreamPositionsEntry]",
             '400': "ResponseEnvelope",
             '401': "ResponseEnvelope",
             '404': "ResponseEnvelope",
@@ -14790,7 +14790,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[StreamPositionsResponse]:
+    ) -> ApiResponse[List[StreamPositionsEntry]]:
         """Get a snapshot of user's ledger updates since a specific time, and opens a stream for further updates
 
 
@@ -14827,7 +14827,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "StreamPositionsResponse",
+            '200': "List[StreamPositionsEntry]",
             '400': "ResponseEnvelope",
             '401': "ResponseEnvelope",
             '404': "ResponseEnvelope",
@@ -14897,7 +14897,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "StreamPositionsResponse",
+            '200': "List[StreamPositionsEntry]",
             '400': "ResponseEnvelope",
             '401': "ResponseEnvelope",
             '404': "ResponseEnvelope",
@@ -14992,7 +14992,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> StreamOrderUpdatesResponse:
+    ) -> List[StreamOrderUpdatesEntry]:
         """Get a snapshot of user's order updates for the given order book since a specific time, and opens a stream for further updates
 
 
@@ -15035,7 +15035,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "StreamOrderUpdatesResponse",
+            '200': "List[StreamOrderUpdatesEntry]",
             '400': "ResponseEnvelope",
             '401': "ResponseEnvelope",
             '404': "ResponseEnvelope",
@@ -15070,7 +15070,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[StreamOrderUpdatesResponse]:
+    ) -> ApiResponse[List[StreamOrderUpdatesEntry]]:
         """Get a snapshot of user's order updates for the given order book since a specific time, and opens a stream for further updates
 
 
@@ -15113,7 +15113,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "StreamOrderUpdatesResponse",
+            '200': "List[StreamOrderUpdatesEntry]",
             '400': "ResponseEnvelope",
             '401': "ResponseEnvelope",
             '404': "ResponseEnvelope",
@@ -15191,7 +15191,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "StreamOrderUpdatesResponse",
+            '200': "List[StreamOrderUpdatesEntry]",
             '400': "ResponseEnvelope",
             '401': "ResponseEnvelope",
             '404': "ResponseEnvelope",
@@ -15302,7 +15302,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> StreamOrderUpdatesResponse:
+    ) -> List[StreamOrderUpdatesEntry]:
         """Get a snapshot of user's order updates across all order books since a specific time, and opens a stream for further updates
 
 
@@ -15342,7 +15342,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "StreamOrderUpdatesResponse",
+            '200': "List[StreamOrderUpdatesEntry]",
             '400': "ResponseEnvelope",
             '401': "ResponseEnvelope",
             '404': "ResponseEnvelope",
@@ -15376,7 +15376,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[StreamOrderUpdatesResponse]:
+    ) -> ApiResponse[List[StreamOrderUpdatesEntry]]:
         """Get a snapshot of user's order updates across all order books since a specific time, and opens a stream for further updates
 
 
@@ -15416,7 +15416,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "StreamOrderUpdatesResponse",
+            '200': "List[StreamOrderUpdatesEntry]",
             '400': "ResponseEnvelope",
             '401': "ResponseEnvelope",
             '404': "ResponseEnvelope",
@@ -15490,7 +15490,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "StreamOrderUpdatesResponse",
+            '200': "List[StreamOrderUpdatesEntry]",
             '400': "ResponseEnvelope",
             '401': "ResponseEnvelope",
             '404': "ResponseEnvelope",
@@ -15851,7 +15851,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> StreamTransactionsResponse:
+    ) -> List[StreamTransactionsEntry]:
         """Get a snapshot of user's executed transactions since a specific time, and opens a stream for further updates
 
 
@@ -15891,7 +15891,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "StreamTransactionsResponse",
+            '200': "List[StreamTransactionsEntry]",
             '400': "ResponseEnvelope",
             '401': "ResponseEnvelope",
             '404': "ResponseEnvelope",
@@ -15925,7 +15925,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[StreamTransactionsResponse]:
+    ) -> ApiResponse[List[StreamTransactionsEntry]]:
         """Get a snapshot of user's executed transactions since a specific time, and opens a stream for further updates
 
 
@@ -15965,7 +15965,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "StreamTransactionsResponse",
+            '200': "List[StreamTransactionsEntry]",
             '400': "ResponseEnvelope",
             '401': "ResponseEnvelope",
             '404': "ResponseEnvelope",
@@ -16039,7 +16039,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "StreamTransactionsResponse",
+            '200': "List[StreamTransactionsEntry]",
             '400': "ResponseEnvelope",
             '401': "ResponseEnvelope",
             '404': "ResponseEnvelope",
@@ -23032,7 +23032,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> StreamAssetPricesResponse:
+    ) -> Dict[str, AssetPrice]:
         """Stream real-time asset prices as map objects
 
         Opens a WebSocket stream for real-time asset price updates. First message contains all current prices, subsequent messages contain only changed prices. Data is sent as JSON objects keyed by asset ID.
@@ -23073,7 +23073,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "StreamAssetPricesResponse",
+            '200': "Dict[str, AssetPrice]",
             '400': "ResponseEnvelope",
             '500': "ResponseEnvelope",
         }
@@ -23105,7 +23105,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[StreamAssetPricesResponse]:
+    ) -> ApiResponse[Dict[str, AssetPrice]]:
         """Stream real-time asset prices as map objects
 
         Opens a WebSocket stream for real-time asset price updates. First message contains all current prices, subsequent messages contain only changed prices. Data is sent as JSON objects keyed by asset ID.
@@ -23146,7 +23146,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "StreamAssetPricesResponse",
+            '200': "Dict[str, AssetPrice]",
             '400': "ResponseEnvelope",
             '500': "ResponseEnvelope",
         }
@@ -23219,7 +23219,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "StreamAssetPricesResponse",
+            '200': "Dict[str, AssetPrice]",
             '400': "ResponseEnvelope",
             '500': "ResponseEnvelope",
         }
@@ -23327,7 +23327,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> StreamCandlesResponse:
+    ) -> List[StreamCandlesEntry]:
         """Get a snapshot of candlestick data from date provided, and open a stream for real-time updates
 
 
@@ -23370,7 +23370,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "StreamCandlesResponse",
+            '200': "List[StreamCandlesEntry]",
             '400': "ResponseEnvelope",
             '404': "ResponseEnvelope",
             '500': "ResponseEnvelope",
@@ -23404,7 +23404,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[StreamCandlesResponse]:
+    ) -> ApiResponse[List[StreamCandlesEntry]]:
         """Get a snapshot of candlestick data from date provided, and open a stream for real-time updates
 
 
@@ -23447,7 +23447,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "StreamCandlesResponse",
+            '200': "List[StreamCandlesEntry]",
             '400': "ResponseEnvelope",
             '404': "ResponseEnvelope",
             '500': "ResponseEnvelope",
@@ -23524,7 +23524,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "StreamCandlesResponse",
+            '200': "List[StreamCandlesEntry]",
             '400': "ResponseEnvelope",
             '404': "ResponseEnvelope",
             '500': "ResponseEnvelope",
@@ -23635,7 +23635,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> StreamOrderBookBalancesResponse:
+    ) -> List[StreamOrderBookBalanceEntry]:
         """Get a snapshot of base and quote balances for an order book and open a stream for real-time updates
 
 
@@ -23675,7 +23675,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "StreamOrderBookBalancesResponse",
+            '200': "List[StreamOrderBookBalanceEntry]",
             '400': "ResponseEnvelope",
             '404': "ResponseEnvelope",
             '500': "ResponseEnvelope",
@@ -23708,7 +23708,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[StreamOrderBookBalancesResponse]:
+    ) -> ApiResponse[List[StreamOrderBookBalanceEntry]]:
         """Get a snapshot of base and quote balances for an order book and open a stream for real-time updates
 
 
@@ -23748,7 +23748,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "StreamOrderBookBalancesResponse",
+            '200': "List[StreamOrderBookBalanceEntry]",
             '400': "ResponseEnvelope",
             '404': "ResponseEnvelope",
             '500': "ResponseEnvelope",
@@ -23821,7 +23821,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "StreamOrderBookBalancesResponse",
+            '200': "List[StreamOrderBookBalanceEntry]",
             '400': "ResponseEnvelope",
             '404': "ResponseEnvelope",
             '500': "ResponseEnvelope",
@@ -24219,7 +24219,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> StreamTradesResponse:
+    ) -> List[StreamTradesEntry]:
         """Get a snapshot of trades executed on the given order book from a specific date and open a stream for real-time updates
 
 
@@ -24259,7 +24259,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "StreamTradesResponse",
+            '200': "List[StreamTradesEntry]",
             '400': "ResponseEnvelope",
             '500': "ResponseEnvelope",
         }
@@ -24291,7 +24291,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[StreamTradesResponse]:
+    ) -> ApiResponse[List[StreamTradesEntry]]:
         """Get a snapshot of trades executed on the given order book from a specific date and open a stream for real-time updates
 
 
@@ -24331,7 +24331,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "StreamTradesResponse",
+            '200': "List[StreamTradesEntry]",
             '400': "ResponseEnvelope",
             '500': "ResponseEnvelope",
         }
@@ -24403,7 +24403,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "StreamTradesResponse",
+            '200': "List[StreamTradesEntry]",
             '400': "ResponseEnvelope",
             '500': "ResponseEnvelope",
         }
