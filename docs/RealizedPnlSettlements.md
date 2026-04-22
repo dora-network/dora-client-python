@@ -8,6 +8,8 @@ Name | Type | Description | Notes
 **settlements** | [**List[RealizedPnlSettlement]**](RealizedPnlSettlement.md) | A list of realized PnL settlements matching the query parameters of the request | [optional] 
 **user_totals** | **Dict[str, decimal.Decimal]** | A map of user IDs to their total realized PnL in USD across all settlements included in the response | [optional] 
 **tenant_totals** | **Dict[str, decimal.Decimal]** | A map of tenant IDs to their total realized PnL in USD across all settlements included in the response | [optional] 
+**user_totals_unsettled** | **Dict[str, decimal.Decimal]** | A map of user IDs to their total realized PnL in USD across unsettled settlements (where settled_at is null) included in the response | [optional] 
+**tenant_totals_unsettled** | **Dict[str, decimal.Decimal]** | A map of tenant IDs to their total realized PnL in USD across unsettled settlements (where settled_at is null) included in the response | [optional] 
 
 ## Example
 

@@ -30,7 +30,9 @@ class RealizedPnlSettlements(BaseModel):
     settlements: Optional[List[RealizedPnlSettlement]] = Field(default=None, description="A list of realized PnL settlements matching the query parameters of the request")
     user_totals: Optional[Dict[str, StrictStr]] = Field(default=None, description="A map of user IDs to their total realized PnL in USD across all settlements included in the response")
     tenant_totals: Optional[Dict[str, StrictStr]] = Field(default=None, description="A map of tenant IDs to their total realized PnL in USD across all settlements included in the response")
-    __properties: ClassVar[List[str]] = ["settlements", "user_totals", "tenant_totals"]
+    user_totals_unsettled: Optional[Dict[str, StrictStr]] = Field(default=None, description="A map of user IDs to their total realized PnL in USD across unsettled settlements (where settled_at is null) included in the response")
+    tenant_totals_unsettled: Optional[Dict[str, StrictStr]] = Field(default=None, description="A map of tenant IDs to their total realized PnL in USD across unsettled settlements (where settled_at is null) included in the response")
+    __properties: ClassVar[List[str]] = ["settlements", "user_totals", "tenant_totals", "user_totals_unsettled", "tenant_totals_unsettled"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -92,7 +94,9 @@ class RealizedPnlSettlements(BaseModel):
         _obj = cls.model_validate({
             "settlements": [RealizedPnlSettlement.from_dict(_item) for _item in obj["settlements"]] if obj.get("settlements") is not None else None,
             "user_totals": obj.get("user_totals"),
-            "tenant_totals": obj.get("tenant_totals")
+            "tenant_totals": obj.get("tenant_totals"),
+            "user_totals_unsettled": obj.get("user_totals_unsettled"),
+            "tenant_totals_unsettled": obj.get("tenant_totals_unsettled")
         })
         return _obj
 

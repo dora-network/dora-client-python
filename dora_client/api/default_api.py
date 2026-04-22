@@ -12098,6 +12098,8 @@ class DefaultApi:
         tenant_id: Optional[UUID] = None,
         position_id: Optional[UUID] = None,
         created_after: Optional[datetime] = None,
+        created_before: Optional[datetime] = None,
+        settled_after: Optional[datetime] = None,
         settled_before: Optional[datetime] = None,
         is_settled: Optional[StrictBool] = None,
         _request_timeout: Union[
@@ -12124,6 +12126,10 @@ class DefaultApi:
         :type position_id: str
         :param created_after:
         :type created_after: datetime
+        :param created_before:
+        :type created_before: datetime
+        :param settled_after:
+        :type settled_after: datetime
         :param settled_before:
         :type settled_before: datetime
         :param is_settled:
@@ -12155,6 +12161,8 @@ class DefaultApi:
             tenant_id=tenant_id,
             position_id=position_id,
             created_after=created_after,
+            created_before=created_before,
+            settled_after=settled_after,
             settled_before=settled_before,
             is_settled=is_settled,
             _request_auth=_request_auth,
@@ -12187,6 +12195,8 @@ class DefaultApi:
         tenant_id: Optional[UUID] = None,
         position_id: Optional[UUID] = None,
         created_after: Optional[datetime] = None,
+        created_before: Optional[datetime] = None,
+        settled_after: Optional[datetime] = None,
         settled_before: Optional[datetime] = None,
         is_settled: Optional[StrictBool] = None,
         _request_timeout: Union[
@@ -12213,6 +12223,10 @@ class DefaultApi:
         :type position_id: str
         :param created_after:
         :type created_after: datetime
+        :param created_before:
+        :type created_before: datetime
+        :param settled_after:
+        :type settled_after: datetime
         :param settled_before:
         :type settled_before: datetime
         :param is_settled:
@@ -12244,6 +12258,8 @@ class DefaultApi:
             tenant_id=tenant_id,
             position_id=position_id,
             created_after=created_after,
+            created_before=created_before,
+            settled_after=settled_after,
             settled_before=settled_before,
             is_settled=is_settled,
             _request_auth=_request_auth,
@@ -12276,6 +12292,8 @@ class DefaultApi:
         tenant_id: Optional[UUID] = None,
         position_id: Optional[UUID] = None,
         created_after: Optional[datetime] = None,
+        created_before: Optional[datetime] = None,
+        settled_after: Optional[datetime] = None,
         settled_before: Optional[datetime] = None,
         is_settled: Optional[StrictBool] = None,
         _request_timeout: Union[
@@ -12302,6 +12320,10 @@ class DefaultApi:
         :type position_id: str
         :param created_after:
         :type created_after: datetime
+        :param created_before:
+        :type created_before: datetime
+        :param settled_after:
+        :type settled_after: datetime
         :param settled_before:
         :type settled_before: datetime
         :param is_settled:
@@ -12333,6 +12355,8 @@ class DefaultApi:
             tenant_id=tenant_id,
             position_id=position_id,
             created_after=created_after,
+            created_before=created_before,
+            settled_after=settled_after,
             settled_before=settled_before,
             is_settled=is_settled,
             _request_auth=_request_auth,
@@ -12360,6 +12384,8 @@ class DefaultApi:
         tenant_id,
         position_id,
         created_after,
+        created_before,
+        settled_after,
         settled_before,
         is_settled,
         _request_auth,
@@ -12408,6 +12434,32 @@ class DefaultApi:
                 )
             else:
                 _query_params.append(('created_after', created_after))
+            
+        if created_before is not None:
+            if isinstance(created_before, datetime):
+                _query_params.append(
+                    (
+                        'created_before',
+                        created_before.strftime(
+                            self.api_client.configuration.datetime_format
+                        )
+                    )
+                )
+            else:
+                _query_params.append(('created_before', created_before))
+            
+        if settled_after is not None:
+            if isinstance(settled_after, datetime):
+                _query_params.append(
+                    (
+                        'settled_after',
+                        settled_after.strftime(
+                            self.api_client.configuration.datetime_format
+                        )
+                    )
+                )
+            else:
+                _query_params.append(('settled_after', settled_after))
             
         if settled_before is not None:
             if isinstance(settled_before, datetime):

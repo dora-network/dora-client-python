@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **completed** | **str** |  | 
 **started_at** | **datetime** |  | 
 **ended_at** | **datetime** |  | 
+**transaction_id** | **str** |  | [optional] 
 
 ## Example
 

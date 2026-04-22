@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictStr
+from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List
 from uuid import UUID
 from typing import Optional, Set
@@ -27,10 +27,9 @@ class PayLeverageAccruedInterestRequest(BaseModel):
     """
     PayLeverageAccruedInterestRequest
     """ # noqa: E501
-    position_id: UUID
     asset_id: UUID
-    quantity: StrictStr
-    __properties: ClassVar[List[str]] = ["position_id", "asset_id", "quantity"]
+    position_id: UUID
+    __properties: ClassVar[List[str]] = ["asset_id", "position_id"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -83,9 +82,8 @@ class PayLeverageAccruedInterestRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "position_id": obj.get("position_id"),
             "asset_id": obj.get("asset_id"),
-            "quantity": obj.get("quantity")
+            "position_id": obj.get("position_id")
         })
         return _obj
 

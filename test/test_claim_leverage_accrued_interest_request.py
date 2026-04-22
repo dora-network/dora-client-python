@@ -35,15 +35,13 @@ class TestClaimLeverageAccruedInterestRequest(unittest.TestCase):
         model = ClaimLeverageAccruedInterestRequest()
         if include_optional:
             return ClaimLeverageAccruedInterestRequest(
-                position_id = '',
                 asset_id = '',
-                quantity = ''
+                position_id = ''
             )
         else:
             return ClaimLeverageAccruedInterestRequest(
-                position_id = '',
                 asset_id = '',
-                quantity = '',
+                position_id = '',
         )
         """
 

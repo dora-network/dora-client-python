@@ -35,15 +35,13 @@ class TestPayLeverageAccruedInterestRequest(unittest.TestCase):
         model = PayLeverageAccruedInterestRequest()
         if include_optional:
             return PayLeverageAccruedInterestRequest(
-                position_id = '',
                 asset_id = '',
-                quantity = ''
+                position_id = ''
             )
         else:
             return PayLeverageAccruedInterestRequest(
-                position_id = '',
                 asset_id = '',
-                quantity = '',
+                position_id = '',
         )
         """
 

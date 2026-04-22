@@ -43,7 +43,8 @@ class TestUserCouponPayment(unittest.TestCase):
                 pending = '',
                 completed = '',
                 started_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                ended_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f')
+                ended_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                transaction_id = ''
             )
         else:
             return UserCouponPayment(

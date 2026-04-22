@@ -51,6 +51,12 @@ class TestRealizedPnlSettlements(unittest.TestCase):
                     },
                 tenant_totals = {
                     'key' : ''
+                    },
+                user_totals_unsettled = {
+                    'key' : ''
+                    },
+                tenant_totals_unsettled = {
+                    'key' : ''
                     }
             )
         else:

@@ -3671,7 +3671,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_realized_pnl_settlements**
-> GetRealizedPnlSettlementsResponseEnvelope get_realized_pnl_settlements(user_id=user_id, tenant_id=tenant_id, position_id=position_id, created_after=created_after, settled_before=settled_before, is_settled=is_settled)
+> GetRealizedPnlSettlementsResponseEnvelope get_realized_pnl_settlements(user_id=user_id, tenant_id=tenant_id, position_id=position_id, created_after=created_after, created_before=created_before, settled_after=settled_after, settled_before=settled_before, is_settled=is_settled)
 
 Get realized P&L settlements with filters
 
@@ -3716,12 +3716,14 @@ async with dora_client.ApiClient(configuration) as api_client:
     tenant_id = 'tenant_id_example' # str |  (optional)
     position_id = 'position_id_example' # str |  (optional)
     created_after = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
+    created_before = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
+    settled_after = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
     settled_before = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
     is_settled = True # bool |  (optional)
 
     try:
         # Get realized P&L settlements with filters
-        api_response = await api_instance.get_realized_pnl_settlements(user_id=user_id, tenant_id=tenant_id, position_id=position_id, created_after=created_after, settled_before=settled_before, is_settled=is_settled)
+        api_response = await api_instance.get_realized_pnl_settlements(user_id=user_id, tenant_id=tenant_id, position_id=position_id, created_after=created_after, created_before=created_before, settled_after=settled_after, settled_before=settled_before, is_settled=is_settled)
         print("The response of DefaultApi->get_realized_pnl_settlements:\n")
         pprint(api_response)
     except Exception as e:
@@ -3739,6 +3741,8 @@ Name | Type | Description  | Notes
  **tenant_id** | **str**|  | [optional] 
  **position_id** | **str**|  | [optional] 
  **created_after** | **datetime**|  | [optional] 
+ **created_before** | **datetime**|  | [optional] 
+ **settled_after** | **datetime**|  | [optional] 
  **settled_before** | **datetime**|  | [optional] 
  **is_settled** | **bool**|  | [optional] 
 

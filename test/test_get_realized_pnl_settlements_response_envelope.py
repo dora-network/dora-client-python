@@ -52,6 +52,12 @@ class TestGetRealizedPnlSettlementsResponseEnvelope(unittest.TestCase):
                         }, 
                     tenant_totals = {
                         'key' : ''
+                        }, 
+                    user_totals_unsettled = {
+                        'key' : ''
+                        }, 
+                    tenant_totals_unsettled = {
+                        'key' : ''
                         }, ),
                 error = '',
                 metadata = dora_client.models.metadata.Metadata(

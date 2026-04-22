@@ -19,7 +19,7 @@ import json
 
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from uuid import UUID
 from typing import Optional, Set
@@ -38,7 +38,8 @@ class UserCouponPayment(BaseModel):
     completed: StrictStr
     started_at: datetime
     ended_at: datetime
-    __properties: ClassVar[List[str]] = ["user_id", "position_id", "asset_id", "coupon_payment_id", "seq", "pending", "completed", "started_at", "ended_at"]
+    transaction_id: Optional[UUID] = None
+    __properties: ClassVar[List[str]] = ["user_id", "position_id", "asset_id", "coupon_payment_id", "seq", "pending", "completed", "started_at", "ended_at", "transaction_id"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -99,7 +100,8 @@ class UserCouponPayment(BaseModel):
             "pending": obj.get("pending"),
             "completed": obj.get("completed"),
             "started_at": obj.get("started_at"),
-            "ended_at": obj.get("ended_at")
+            "ended_at": obj.get("ended_at"),
+            "transaction_id": obj.get("transaction_id")
         })
         return _obj
 
