@@ -20,15 +20,15 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from dora_client.models.metadata import Metadata
-from dora_client.models.user_exists_response import UserExistsResponse
+from dora_client.models.user import User
 from typing import Optional, Set
 from typing_extensions import Self
 
-class EmailExistsResponseEnvelope(BaseModel):
+class ListUsersResponseEnvelope(BaseModel):
     """
-    EmailExistsResponseEnvelope
+    ListUsersResponseEnvelope
     """ # noqa: E501
-    data: Optional[UserExistsResponse] = None
+    data: Optional[List[User]] = None
     error: Optional[StrictStr] = Field(default=None, description="The error message. Present for error (non-2xx) responses.")
     metadata: Metadata = Field(description="Metadata about the response, including status code and trace information.")
     __properties: ClassVar[List[str]] = ["data", "error", "metadata"]
@@ -51,7 +51,7 @@ class EmailExistsResponseEnvelope(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of EmailExistsResponseEnvelope from a JSON string"""
+        """Create an instance of ListUsersResponseEnvelope from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -72,9 +72,13 @@ class EmailExistsResponseEnvelope(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of data
+        # override the default output from pydantic by calling `to_dict()` of each item in data (list)
+        _items = []
         if self.data:
-            _dict['data'] = self.data.to_dict()
+            for _item_data in self.data:
+                if _item_data:
+                    _items.append(_item_data.to_dict())
+            _dict['data'] = _items
         # override the default output from pydantic by calling `to_dict()` of metadata
         if self.metadata:
             _dict['metadata'] = self.metadata.to_dict()
@@ -82,7 +86,7 @@ class EmailExistsResponseEnvelope(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of EmailExistsResponseEnvelope from a dict"""
+        """Create an instance of ListUsersResponseEnvelope from a dict"""
         if obj is None:
             return None
 
@@ -90,7 +94,7 @@ class EmailExistsResponseEnvelope(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "data": UserExistsResponse.from_dict(obj["data"]) if obj.get("data") is not None else None,
+            "data": [User.from_dict(_item) for _item in obj["data"]] if obj.get("data") is not None else None,
             "error": obj.get("error"),
             "metadata": Metadata.from_dict(obj["metadata"]) if obj.get("metadata") is not None else None
         })

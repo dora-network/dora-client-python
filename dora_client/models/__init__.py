@@ -55,7 +55,6 @@ from dora_client.models.create_order_response_envelope import CreateOrderRespons
 from dora_client.models.current_leverage_accrued_interest import CurrentLeverageAccruedInterest
 from dora_client.models.current_leverage_accrued_interest_response_envelope import CurrentLeverageAccruedInterestResponseEnvelope
 from dora_client.models.defund_user_request import DefundUserRequest
-from dora_client.models.email_exists_response_envelope import EmailExistsResponseEnvelope
 from dora_client.models.fund_user import FundUser
 from dora_client.models.fund_user_request import FundUserRequest
 from dora_client.models.fund_user_response_envelope import FundUserResponseEnvelope
@@ -88,6 +87,7 @@ from dora_client.models.list_positions_response import ListPositionsResponse
 from dora_client.models.list_trade_response_envelope import ListTradeResponseEnvelope
 from dora_client.models.list_transactions_response_envelope import ListTransactionsResponseEnvelope
 from dora_client.models.list_user_coupon_payments_response_envelope import ListUserCouponPaymentsResponseEnvelope
+from dora_client.models.list_users_response_envelope import ListUsersResponseEnvelope
 from dora_client.models.live_orderbook import LiveOrderbook
 from dora_client.models.margin import Margin
 from dora_client.models.metadata import Metadata
@@ -142,6 +142,7 @@ from dora_client.models.settle_realized_pnl_record_response_envelope import Sett
 from dora_client.models.side import Side
 from dora_client.models.stream_assets_entry import StreamAssetsEntry
 from dora_client.models.stream_candles_entry import StreamCandlesEntry
+from dora_client.models.stream_current_leverage_accrued_interest_response import StreamCurrentLeverageAccruedInterestResponse
 from dora_client.models.stream_entry import StreamEntry
 from dora_client.models.stream_order_book_balance_entry import StreamOrderBookBalanceEntry
 from dora_client.models.stream_order_updates_entry import StreamOrderUpdatesEntry

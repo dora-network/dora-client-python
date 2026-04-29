@@ -5,10 +5,9 @@ All URIs are relative to *https://staging.dora.co*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**approve_ledger_withdraw_request**](DefaultApi.md#approve_ledger_withdraw_request) | **POST** /v1/ledger/withdraw/requests/{withdrawal_id}/approve | Approve a pending withdrawal request
-[**cancel_all_open_orders**](DefaultApi.md#cancel_all_open_orders) | **DELETE** /v1/orders | Cancel all open orders, if user passes orderbook on query param it will cancel all orders on specific orderbook, admin can cancel user&#39;s orders on specific orderbook
+[**cancel_all_open_orders**](DefaultApi.md#cancel_all_open_orders) | **DELETE** /v1/orders | Cancel all open orders, if user passes orderbook or account_id on query params it will cancel all orders on specific orderbook or account, admin can cancel user&#39;s orders on specific orderbook
 [**cancel_ledger_withdraw_request**](DefaultApi.md#cancel_ledger_withdraw_request) | **POST** /v1/ledger/withdraw/requests/{withdrawal_id}/cancel | Cancel a pending withdrawal request
 [**cancel_order_by_id**](DefaultApi.md#cancel_order_by_id) | **DELETE** /v1/orders/{order_id} | Cancel an order by ID
-[**check_user_email_exists**](DefaultApi.md#check_user_email_exists) | **GET** /v1/user/exists | Check whether a user email exists
 [**claim_leverage_get_accrued_interest**](DefaultApi.md#claim_leverage_get_accrued_interest) | **POST** /v1/leverage/accrued_interest/claim | Claim current accrued leverage interest for a specific user
 [**close_isolated_position**](DefaultApi.md#close_isolated_position) | **POST** /v1/positions/close | Close isolated positions, repaying the borrowed
 [**create_api_key_for_user**](DefaultApi.md#create_api_key_for_user) | **POST** /v1/user/apikey | Create apikey for a user
@@ -54,13 +53,16 @@ Method | HTTP request | Description
 [**get_transaction_by_id**](DefaultApi.md#get_transaction_by_id) | **GET** /v1/transactions/{transaction_id} | Get a transaction by ID
 [**get_transactions**](DefaultApi.md#get_transactions) | **GET** /v1/transactions | Get a filtered, paginated list of transactions
 [**get_transactions_settlements**](DefaultApi.md#get_transactions_settlements) | **GET** /v1/transactions/settlements | Get transactions settlements with filters
+[**get_transactions_stream**](DefaultApi.md#get_transactions_stream) | **GET** /v1/transactions/stream | Get transactions since a specific time, and open a stream for further updates
 [**get_user_by_id**](DefaultApi.md#get_user_by_id) | **GET** /v1/user/{user_id} | Get user by ID (admin only)
 [**get_user_coupon_payments_stream**](DefaultApi.md#get_user_coupon_payments_stream) | **GET** /v1/user/{user_id}/coupon_payments/stream | Stream user&#39;s coupon payment accruals in real time
 [**get_user_ledger_stream**](DefaultApi.md#get_user_ledger_stream) | **GET** /v1/user/{user_id}/ledger/stream | Get a snapshot of user&#39;s ledger updates since a specific time, and opens a stream for further updates
+[**get_user_leverage_accrued_interest_stream**](DefaultApi.md#get_user_leverage_accrued_interest_stream) | **GET** /v1/user/{user_id}/leverage/accrued_interest/stream | Stream user&#39;s current leverage accrued interest in real time
 [**get_user_order_updates_stream**](DefaultApi.md#get_user_order_updates_stream) | **GET** /v1/user/{user_id}/orders/{order_book_id}/updates/stream | Get a snapshot of user&#39;s order updates for the given order book since a specific time, and opens a stream for further updates
 [**get_user_orders_updates_stream_all**](DefaultApi.md#get_user_orders_updates_stream_all) | **GET** /v1/user/{user_id}/orders/all/updates/stream | Get a snapshot of user&#39;s order updates across all order books since a specific time, and opens a stream for further updates
 [**get_user_self**](DefaultApi.md#get_user_self) | **GET** /v1/user/self | Get user details for the authenticated user
 [**get_user_transactions_stream**](DefaultApi.md#get_user_transactions_stream) | **GET** /v1/user/{user_id}/transactions/stream | Get a snapshot of user&#39;s executed transactions since a specific time, and opens a stream for further updates
+[**get_users**](DefaultApi.md#get_users) | **GET** /v1/user | Get all users (admin only)
 [**get_users_api_keys**](DefaultApi.md#get_users_api_keys) | **GET** /v1/user/apikey | Get user&#39;s api keys
 [**ledger_deposit**](DefaultApi.md#ledger_deposit) | **POST** /v1/ledger/deposit/{user_id} | Deposit assets into this user&#39;s account from the outside world
 [**ledger_withdraw**](DefaultApi.md#ledger_withdraw) | **POST** /v1/ledger/withdraw/{user_id} | Withdraw assets from this user to the outside world
@@ -189,9 +191,9 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **cancel_all_open_orders**
-> ListOrdersResponseEnvelope cancel_all_open_orders(order_book_id=order_book_id, user_id=user_id, order_kind=order_kind)
+> ListOrdersResponseEnvelope cancel_all_open_orders(order_book_id=order_book_id, user_id=user_id, account_id=account_id, order_kind=order_kind)
 
-Cancel all open orders, if user passes orderbook on query param it will cancel all orders on specific orderbook, admin can cancel user's orders on specific orderbook
+Cancel all open orders, if user passes orderbook or account_id on query params it will cancel all orders on specific orderbook or account, admin can cancel user's orders on specific orderbook
 
 ### Example
 
@@ -233,11 +235,12 @@ async with dora_client.ApiClient(configuration) as api_client:
     api_instance = dora_client.DefaultApi(api_client)
     order_book_id = 'order_book_id_example' # str |  (optional)
     user_id = 'user_id_example' # str |  (optional)
+    account_id = 'account_id_example' # str |  (optional)
     order_kind = dora_client.OrderKind() # OrderKind |  (optional)
 
     try:
-        # Cancel all open orders, if user passes orderbook on query param it will cancel all orders on specific orderbook, admin can cancel user's orders on specific orderbook
-        api_response = await api_instance.cancel_all_open_orders(order_book_id=order_book_id, user_id=user_id, order_kind=order_kind)
+        # Cancel all open orders, if user passes orderbook or account_id on query params it will cancel all orders on specific orderbook or account, admin can cancel user's orders on specific orderbook
+        api_response = await api_instance.cancel_all_open_orders(order_book_id=order_book_id, user_id=user_id, account_id=account_id, order_kind=order_kind)
         print("The response of DefaultApi->cancel_all_open_orders:\n")
         pprint(api_response)
     except Exception as e:
@@ -253,6 +256,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **order_book_id** | **str**|  | [optional] 
  **user_id** | **str**|  | [optional] 
+ **account_id** | **str**|  | [optional] 
  **order_kind** | [**OrderKind**](.md)|  | [optional] 
 
 ### Return type
@@ -453,91 +457,6 @@ Name | Type | Description  | Notes
 **400** | Bad request, e.g. invalid order ID format |  -  |
 **401** | Unauthorized, user not logged in or does not have access to this order |  -  |
 **404** | Order not found |  -  |
-**500** | Internal server error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **check_user_email_exists**
-> EmailExistsResponseEnvelope check_user_email_exists(email)
-
-Check whether a user email exists
-
-### Example
-
-* Api Key Authentication (apiKeyAuthHeader):
-* Bearer (JWT) Authentication (bearerAuth):
-
-```python
-import dora_client
-from dora_client.models.email_exists_response_envelope import EmailExistsResponseEnvelope
-from dora_client.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://staging.dora.co
-# See configuration.py for a list of all supported configuration parameters.
-configuration = dora_client.Configuration(
-    host = "https://staging.dora.co"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: apiKeyAuthHeader
-configuration.api_key['apiKeyAuthHeader'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['apiKeyAuthHeader'] = 'Bearer'
-
-# Configure Bearer authorization (JWT): bearerAuth
-configuration = dora_client.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
-
-# Enter a context with an instance of the API client
-async with dora_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = dora_client.DefaultApi(api_client)
-    email = 'email_example' # str | 
-
-    try:
-        # Check whether a user email exists
-        api_response = await api_instance.check_user_email_exists(email)
-        print("The response of DefaultApi->check_user_email_exists:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling DefaultApi->check_user_email_exists: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **email** | **str**|  | 
-
-### Return type
-
-[**EmailExistsResponseEnvelope**](EmailExistsResponseEnvelope.md)
-
-### Authorization
-
-[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | True if the email exists, false otherwise |  -  |
-**400** | Bad request, e.g. invalid path parameters |  -  |
 **500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -4185,6 +4104,86 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_transactions_stream**
+> List[StreamTransactionsEntry] get_transactions_stream(since=since)
+
+Get transactions since a specific time, and open a stream for further updates
+
+### Example
+
+* Api Key Authentication (apiKeyAuthQuery):
+
+```python
+import dora_client
+from dora_client.models.stream_transactions_entry import StreamTransactionsEntry
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging.dora.co
+# See configuration.py for a list of all supported configuration parameters.
+configuration = dora_client.Configuration(
+    host = "https://staging.dora.co"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyAuthQuery
+configuration.api_key['apiKeyAuthQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyAuthQuery'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+async with dora_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = dora_client.DefaultApi(api_client)
+    since = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
+
+    try:
+        # Get transactions since a specific time, and open a stream for further updates
+        api_response = await api_instance.get_transactions_stream(since=since)
+        print("The response of DefaultApi->get_transactions_stream:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->get_transactions_stream: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **since** | **datetime**|  | [optional] 
+
+### Return type
+
+[**List[StreamTransactionsEntry]**](StreamTransactionsEntry.md)
+
+### Authorization
+
+[apiKeyAuthQuery](../README.md#apiKeyAuthQuery)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Transactions stream |  -  |
+**400** | Bad request, e.g. invalid query parameters |  -  |
+**401** | Unauthorized, user not logged in or does not have access to these transactions |  -  |
+**500** | Internal server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_user_by_id**
 > UserEnvelope get_user_by_id(user_id)
 
@@ -4429,6 +4428,87 @@ Name | Type | Description  | Notes
 **400** | Bad request, e.g. invalid query parameters |  -  |
 **401** | Unauthorized, user not logged in or does not have access to this ledger |  -  |
 **404** | User not found or no ledger entries available |  -  |
+**500** | Internal server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_user_leverage_accrued_interest_stream**
+> StreamCurrentLeverageAccruedInterestResponse get_user_leverage_accrued_interest_stream(user_id)
+
+Stream user's current leverage accrued interest in real time
+
+### Example
+
+* Api Key Authentication (apiKeyAuthQuery):
+
+```python
+import dora_client
+from dora_client.models.stream_current_leverage_accrued_interest_response import StreamCurrentLeverageAccruedInterestResponse
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging.dora.co
+# See configuration.py for a list of all supported configuration parameters.
+configuration = dora_client.Configuration(
+    host = "https://staging.dora.co"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyAuthQuery
+configuration.api_key['apiKeyAuthQuery'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyAuthQuery'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+async with dora_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = dora_client.DefaultApi(api_client)
+    user_id = 'user_id_example' # str | 
+
+    try:
+        # Stream user's current leverage accrued interest in real time
+        api_response = await api_instance.get_user_leverage_accrued_interest_stream(user_id)
+        print("The response of DefaultApi->get_user_leverage_accrued_interest_stream:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->get_user_leverage_accrued_interest_stream: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **user_id** | **str**|  | 
+
+### Return type
+
+[**StreamCurrentLeverageAccruedInterestResponse**](StreamCurrentLeverageAccruedInterestResponse.md)
+
+### Authorization
+
+[apiKeyAuthQuery](../README.md#apiKeyAuthQuery)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | User&#39;s leverage accrued interest stream |  -  |
+**400** | Bad request, e.g. invalid query parameters |  -  |
+**401** | Unauthorized, user not logged in or does not have access to this data |  -  |
+**404** | User not found or no leverage accrued interest available |  -  |
 **500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -4762,6 +4842,103 @@ Name | Type | Description  | Notes
 **400** | Bad request, e.g. invalid query parameters |  -  |
 **401** | Unauthorized, user not logged in or does not have access to this transactions |  -  |
 **404** | User not found or no transactions available |  -  |
+**500** | Internal server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_users**
+> ListUsersResponseEnvelope get_users(id=id, limit=limit, offset=offset, email=email, first_name=first_name, last_name=last_name, country_of_domicile=country_of_domicile)
+
+Get all users (admin only)
+
+### Example
+
+* Api Key Authentication (apiKeyAuthHeader):
+* Bearer (JWT) Authentication (bearerAuth):
+
+```python
+import dora_client
+from dora_client.models.country_code import CountryCode
+from dora_client.models.list_users_response_envelope import ListUsersResponseEnvelope
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging.dora.co
+# See configuration.py for a list of all supported configuration parameters.
+configuration = dora_client.Configuration(
+    host = "https://staging.dora.co"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration.api_key['apiKeyAuthHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyAuthHeader'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = dora_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+async with dora_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = dora_client.DefaultApi(api_client)
+    id = 'id_example' # str |  (optional)
+    limit = 100 # int |  (optional) (default to 100)
+    offset = 0 # int |  (optional) (default to 0)
+    email = 'email_example' # str |  (optional)
+    first_name = 'first_name_example' # str |  (optional)
+    last_name = 'last_name_example' # str |  (optional)
+    country_of_domicile = dora_client.CountryCode() # CountryCode |  (optional)
+
+    try:
+        # Get all users (admin only)
+        api_response = await api_instance.get_users(id=id, limit=limit, offset=offset, email=email, first_name=first_name, last_name=last_name, country_of_domicile=country_of_domicile)
+        print("The response of DefaultApi->get_users:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->get_users: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**|  | [optional] 
+ **limit** | **int**|  | [optional] [default to 100]
+ **offset** | **int**|  | [optional] [default to 0]
+ **email** | **str**|  | [optional] 
+ **first_name** | **str**|  | [optional] 
+ **last_name** | **str**|  | [optional] 
+ **country_of_domicile** | [**CountryCode**](.md)|  | [optional] 
+
+### Return type
+
+[**ListUsersResponseEnvelope**](ListUsersResponseEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | A list of users |  -  |
 **500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

@@ -46,7 +46,6 @@ docs/CurrentLeverageAccruedInterest.md
 docs/CurrentLeverageAccruedInterestResponseEnvelope.md
 docs/DefaultApi.md
 docs/DefundUserRequest.md
-docs/EmailExistsResponseEnvelope.md
 docs/FundUser.md
 docs/FundUserRequest.md
 docs/FundUserResponseEnvelope.md
@@ -79,6 +78,7 @@ docs/ListPositionsResponse.md
 docs/ListTradeResponseEnvelope.md
 docs/ListTransactionsResponseEnvelope.md
 docs/ListUserCouponPaymentsResponseEnvelope.md
+docs/ListUsersResponseEnvelope.md
 docs/LiveOrderbook.md
 docs/Margin.md
 docs/Metadata.md
@@ -133,6 +133,7 @@ docs/SettleRealizedPnlRecordResponseEnvelope.md
 docs/Side.md
 docs/StreamAssetsEntry.md
 docs/StreamCandlesEntry.md
+docs/StreamCurrentLeverageAccruedInterestResponse.md
 docs/StreamEntry.md
 docs/StreamOrderBookBalanceEntry.md
 docs/StreamOrderUpdatesEntry.md
@@ -245,7 +246,6 @@ dora_client/models/create_order_response_envelope.py
 dora_client/models/current_leverage_accrued_interest.py
 dora_client/models/current_leverage_accrued_interest_response_envelope.py
 dora_client/models/defund_user_request.py
-dora_client/models/email_exists_response_envelope.py
 dora_client/models/fund_user.py
 dora_client/models/fund_user_request.py
 dora_client/models/fund_user_response_envelope.py
@@ -278,6 +278,7 @@ dora_client/models/list_positions_response.py
 dora_client/models/list_trade_response_envelope.py
 dora_client/models/list_transactions_response_envelope.py
 dora_client/models/list_user_coupon_payments_response_envelope.py
+dora_client/models/list_users_response_envelope.py
 dora_client/models/live_orderbook.py
 dora_client/models/margin.py
 dora_client/models/metadata.py
@@ -332,6 +333,7 @@ dora_client/models/settle_realized_pnl_record_response_envelope.py
 dora_client/models/side.py
 dora_client/models/stream_assets_entry.py
 dora_client/models/stream_candles_entry.py
+dora_client/models/stream_current_leverage_accrued_interest_response.py
 dora_client/models/stream_entry.py
 dora_client/models/stream_order_book_balance_entry.py
 dora_client/models/stream_order_updates_entry.py
@@ -446,7 +448,6 @@ test/test_current_leverage_accrued_interest.py
 test/test_current_leverage_accrued_interest_response_envelope.py
 test/test_default_api.py
 test/test_defund_user_request.py
-test/test_email_exists_response_envelope.py
 test/test_fund_user.py
 test/test_fund_user_request.py
 test/test_fund_user_response_envelope.py
@@ -479,6 +480,7 @@ test/test_list_positions_response.py
 test/test_list_trade_response_envelope.py
 test/test_list_transactions_response_envelope.py
 test/test_list_user_coupon_payments_response_envelope.py
+test/test_list_users_response_envelope.py
 test/test_live_orderbook.py
 test/test_margin.py
 test/test_metadata.py
@@ -533,6 +535,7 @@ test/test_settle_realized_pnl_record_response_envelope.py
 test/test_side.py
 test/test_stream_assets_entry.py
 test/test_stream_candles_entry.py
+test/test_stream_current_leverage_accrued_interest_response.py
 test/test_stream_entry.py
 test/test_stream_order_book_balance_entry.py
 test/test_stream_order_updates_entry.py

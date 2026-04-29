@@ -36,7 +36,7 @@ class TestDefaultApi(unittest.IsolatedAsyncioTestCase):
     async def test_cancel_all_open_orders(self) -> None:
         """Test case for cancel_all_open_orders
 
-        Cancel all open orders, if user passes orderbook on query param it will cancel all orders on specific orderbook, admin can cancel user's orders on specific orderbook
+        Cancel all open orders, if user passes orderbook or account_id on query params it will cancel all orders on specific orderbook or account, admin can cancel user's orders on specific orderbook
         """
         pass
 
@@ -51,13 +51,6 @@ class TestDefaultApi(unittest.IsolatedAsyncioTestCase):
         """Test case for cancel_order_by_id
 
         Cancel an order by ID
-        """
-        pass
-
-    async def test_check_user_email_exists(self) -> None:
-        """Test case for check_user_email_exists
-
-        Check whether a user email exists
         """
         pass
 
@@ -376,6 +369,13 @@ class TestDefaultApi(unittest.IsolatedAsyncioTestCase):
         """
         pass
 
+    async def test_get_transactions_stream(self) -> None:
+        """Test case for get_transactions_stream
+
+        Get transactions since a specific time, and open a stream for further updates
+        """
+        pass
+
     async def test_get_user_by_id(self) -> None:
         """Test case for get_user_by_id
 
@@ -394,6 +394,13 @@ class TestDefaultApi(unittest.IsolatedAsyncioTestCase):
         """Test case for get_user_ledger_stream
 
         Get a snapshot of user's ledger updates since a specific time, and opens a stream for further updates
+        """
+        pass
+
+    async def test_get_user_leverage_accrued_interest_stream(self) -> None:
+        """Test case for get_user_leverage_accrued_interest_stream
+
+        Stream user's current leverage accrued interest in real time
         """
         pass
 
@@ -422,6 +429,13 @@ class TestDefaultApi(unittest.IsolatedAsyncioTestCase):
         """Test case for get_user_transactions_stream
 
         Get a snapshot of user's executed transactions since a specific time, and opens a stream for further updates
+        """
+        pass
+
+    async def test_get_users(self) -> None:
+        """Test case for get_users
+
+        Get all users (admin only)
         """
         pass
 

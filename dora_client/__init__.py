@@ -70,7 +70,6 @@ __all__ = [
     "CurrentLeverageAccruedInterest",
     "CurrentLeverageAccruedInterestResponseEnvelope",
     "DefundUserRequest",
-    "EmailExistsResponseEnvelope",
     "FundUser",
     "FundUserRequest",
     "FundUserResponseEnvelope",
@@ -103,6 +102,7 @@ __all__ = [
     "ListTradeResponseEnvelope",
     "ListTransactionsResponseEnvelope",
     "ListUserCouponPaymentsResponseEnvelope",
+    "ListUsersResponseEnvelope",
     "LiveOrderbook",
     "Margin",
     "Metadata",
@@ -157,6 +157,7 @@ __all__ = [
     "Side",
     "StreamAssetsEntry",
     "StreamCandlesEntry",
+    "StreamCurrentLeverageAccruedInterestResponse",
     "StreamEntry",
     "StreamOrderBookBalanceEntry",
     "StreamOrderUpdatesEntry",
@@ -278,7 +279,6 @@ from dora_client.models.create_order_response_envelope import CreateOrderRespons
 from dora_client.models.current_leverage_accrued_interest import CurrentLeverageAccruedInterest as CurrentLeverageAccruedInterest
 from dora_client.models.current_leverage_accrued_interest_response_envelope import CurrentLeverageAccruedInterestResponseEnvelope as CurrentLeverageAccruedInterestResponseEnvelope
 from dora_client.models.defund_user_request import DefundUserRequest as DefundUserRequest
-from dora_client.models.email_exists_response_envelope import EmailExistsResponseEnvelope as EmailExistsResponseEnvelope
 from dora_client.models.fund_user import FundUser as FundUser
 from dora_client.models.fund_user_request import FundUserRequest as FundUserRequest
 from dora_client.models.fund_user_response_envelope import FundUserResponseEnvelope as FundUserResponseEnvelope
@@ -311,6 +311,7 @@ from dora_client.models.list_positions_response import ListPositionsResponse as 
 from dora_client.models.list_trade_response_envelope import ListTradeResponseEnvelope as ListTradeResponseEnvelope
 from dora_client.models.list_transactions_response_envelope import ListTransactionsResponseEnvelope as ListTransactionsResponseEnvelope
 from dora_client.models.list_user_coupon_payments_response_envelope import ListUserCouponPaymentsResponseEnvelope as ListUserCouponPaymentsResponseEnvelope
+from dora_client.models.list_users_response_envelope import ListUsersResponseEnvelope as ListUsersResponseEnvelope
 from dora_client.models.live_orderbook import LiveOrderbook as LiveOrderbook
 from dora_client.models.margin import Margin as Margin
 from dora_client.models.metadata import Metadata as Metadata
@@ -365,6 +366,7 @@ from dora_client.models.settle_realized_pnl_record_response_envelope import Sett
 from dora_client.models.side import Side as Side
 from dora_client.models.stream_assets_entry import StreamAssetsEntry as StreamAssetsEntry
 from dora_client.models.stream_candles_entry import StreamCandlesEntry as StreamCandlesEntry
+from dora_client.models.stream_current_leverage_accrued_interest_response import StreamCurrentLeverageAccruedInterestResponse as StreamCurrentLeverageAccruedInterestResponse
 from dora_client.models.stream_entry import StreamEntry as StreamEntry
 from dora_client.models.stream_order_book_balance_entry import StreamOrderBookBalanceEntry as StreamOrderBookBalanceEntry
 from dora_client.models.stream_order_updates_entry import StreamOrderUpdatesEntry as StreamOrderUpdatesEntry
