@@ -35,6 +35,8 @@ class TestPLAsset(unittest.TestCase):
         model = PLAsset()
         if include_optional:
             return PLAsset(
+                id = '',
+                kind = 'BOND',
                 symbol = '',
                 side = 'LONG',
                 avg_entry_price = '',
@@ -57,6 +59,8 @@ class TestPLAsset(unittest.TestCase):
             )
         else:
             return PLAsset(
+                id = '',
+                kind = 'BOND',
                 symbol = '',
                 side = 'LONG',
                 avg_entry_price = '',

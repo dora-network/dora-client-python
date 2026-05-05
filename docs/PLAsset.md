@@ -5,6 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**id** | **str** | The ID of the asset | 
+**kind** | [**AssetKind**](AssetKind.md) |  | 
 **symbol** | **str** | The symbol of the asset | 
 **side** | **str** | The side of the position (LONG or SHORT) | 
 **avg_entry_price** | **str** | The average entry price of the position | 

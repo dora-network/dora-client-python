@@ -31,6 +31,7 @@ from dora_client.models.cancel_order_response_envelope import CancelOrderRespons
 from dora_client.models.candle_resolution import CandleResolution
 from dora_client.models.claim_leverage_accrued_interest_request import ClaimLeverageAccruedInterestRequest
 from dora_client.models.claim_leverage_accrued_interest_response_envelope import ClaimLeverageAccruedInterestResponseEnvelope
+from dora_client.models.close_account_request import CloseAccountRequest
 from dora_client.models.close_position_request import ClosePositionRequest
 from dora_client.models.close_position_response_envelope import ClosePositionResponseEnvelope
 from dora_client.models.country_code import CountryCode
@@ -49,12 +50,16 @@ from dora_client.models.get_asset_by_id_response_envelope import GetAssetByIDRes
 from dora_client.models.get_asset_ytmby_id_response_envelope import GetAssetYTMByIDResponseEnvelope
 from dora_client.models.get_realized_pnl_settlements_response_envelope import GetRealizedPnlSettlementsResponseEnvelope
 from dora_client.models.get_top_of_book_response_envelope import GetTopOfBookResponseEnvelope
+from dora_client.models.historical_leverage_interest_rates_response_envelope import HistoricalLeverageInterestRatesResponseEnvelope
 from dora_client.models.isolate_collateral_request import IsolateCollateralRequest
 from dora_client.models.isolate_collateral_response import IsolateCollateralResponse
+from dora_client.models.ledger_accounts_response_v2_envelope import LedgerAccountsResponseV2Envelope
 from dora_client.models.ledger_module_by_asset_response_envelope import LedgerModuleByAssetResponseEnvelope
 from dora_client.models.ledger_module_response_envelope import LedgerModuleResponseEnvelope
+from dora_client.models.leverage_interest_rate_response_envelope import LeverageInterestRateResponseEnvelope
 from dora_client.models.liquidity_request import LiquidityRequest
 from dora_client.models.liquidity_response_envelope import LiquidityResponseEnvelope
+from dora_client.models.list_accounts_response_v2_envelope import ListAccountsResponseV2Envelope
 from dora_client.models.list_asset_price_response_envelope import ListAssetPriceResponseEnvelope
 from dora_client.models.list_candles_response_envelope import ListCandlesResponseEnvelope
 from dora_client.models.list_coupon_payments_response_envelope import ListCouponPaymentsResponseEnvelope
@@ -66,6 +71,8 @@ from dora_client.models.list_trade_response_envelope import ListTradeResponseEnv
 from dora_client.models.list_transactions_response_envelope import ListTransactionsResponseEnvelope
 from dora_client.models.list_users_response_envelope import ListUsersResponseEnvelope
 from dora_client.models.live_orderbook import LiveOrderbook
+from dora_client.models.new_isolated_account_request_v2 import NewIsolatedAccountRequestV2
+from dora_client.models.new_isolated_account_response_v2_envelope import NewIsolatedAccountResponseV2Envelope
 from dora_client.models.order_book_response_envelope import OrderBookResponseEnvelope
 from dora_client.models.order_book_status import OrderBookStatus
 from dora_client.models.order_book_summary_response_envelope import OrderBookSummaryResponseEnvelope
@@ -101,6 +108,8 @@ from dora_client.models.transaction_response_envelope import TransactionResponse
 from dora_client.models.transactions_settlement_request import TransactionsSettlementRequest
 from dora_client.models.transactions_settlements_response import TransactionsSettlementsResponse
 from dora_client.models.transactions_settlements_response_envelope import TransactionsSettlementsResponseEnvelope
+from dora_client.models.transfer_account_balances_request import TransferAccountBalancesRequest
+from dora_client.models.transfer_account_balances_response_envelope import TransferAccountBalancesResponseEnvelope
 from dora_client.models.transfer_balances_request import TransferBalancesRequest
 from dora_client.models.transfer_balances_response_envelope import TransferBalancesResponseEnvelope
 from dora_client.models.unite_position_request import UnitePositionRequest
@@ -1614,6 +1623,290 @@ class DefaultApi:
 
 
     @validate_call
+    async def close_isolated_account_v2(
+        self,
+        close_account_request: CloseAccountRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ClosePositionResponseEnvelope:
+        """Close an isolated account, repaying the borrowed
+
+
+        :param close_account_request: (required)
+        :type close_account_request: CloseAccountRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._close_isolated_account_v2_serialize(
+            close_account_request=close_account_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "ClosePositionResponseEnvelope",
+            '400': "ResponseEnvelope",
+            '401': "ResponseEnvelope",
+            '404': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    async def close_isolated_account_v2_with_http_info(
+        self,
+        close_account_request: CloseAccountRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ClosePositionResponseEnvelope]:
+        """Close an isolated account, repaying the borrowed
+
+
+        :param close_account_request: (required)
+        :type close_account_request: CloseAccountRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._close_isolated_account_v2_serialize(
+            close_account_request=close_account_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "ClosePositionResponseEnvelope",
+            '400': "ResponseEnvelope",
+            '401': "ResponseEnvelope",
+            '404': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    async def close_isolated_account_v2_without_preload_content(
+        self,
+        close_account_request: CloseAccountRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Close an isolated account, repaying the borrowed
+
+
+        :param close_account_request: (required)
+        :type close_account_request: CloseAccountRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._close_isolated_account_v2_serialize(
+            close_account_request=close_account_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "ClosePositionResponseEnvelope",
+            '400': "ResponseEnvelope",
+            '401': "ResponseEnvelope",
+            '404': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _close_isolated_account_v2_serialize(
+        self,
+        close_account_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if close_account_request is not None:
+            _body_params = close_account_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyAuthHeader', 
+            'bearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/v2/accounts/close',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     async def close_isolated_position(
         self,
         close_position_request: ClosePositionRequest,
@@ -2734,6 +3027,290 @@ class DefaultApi:
         return self.api_client.param_serialize(
             method='POST',
             resource_path='/v1/orders/conditional',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    async def create_new_isolated_account_v2(
+        self,
+        new_isolated_account_request_v2: NewIsolatedAccountRequestV2,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> NewIsolatedAccountResponseV2Envelope:
+        """Create a new isolated account for a user transferring available assets into the account
+
+
+        :param new_isolated_account_request_v2: (required)
+        :type new_isolated_account_request_v2: NewIsolatedAccountRequestV2
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._create_new_isolated_account_v2_serialize(
+            new_isolated_account_request_v2=new_isolated_account_request_v2,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "NewIsolatedAccountResponseV2Envelope",
+            '400': "ResponseEnvelope",
+            '401': "ResponseEnvelope",
+            '409': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    async def create_new_isolated_account_v2_with_http_info(
+        self,
+        new_isolated_account_request_v2: NewIsolatedAccountRequestV2,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[NewIsolatedAccountResponseV2Envelope]:
+        """Create a new isolated account for a user transferring available assets into the account
+
+
+        :param new_isolated_account_request_v2: (required)
+        :type new_isolated_account_request_v2: NewIsolatedAccountRequestV2
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._create_new_isolated_account_v2_serialize(
+            new_isolated_account_request_v2=new_isolated_account_request_v2,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "NewIsolatedAccountResponseV2Envelope",
+            '400': "ResponseEnvelope",
+            '401': "ResponseEnvelope",
+            '409': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    async def create_new_isolated_account_v2_without_preload_content(
+        self,
+        new_isolated_account_request_v2: NewIsolatedAccountRequestV2,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Create a new isolated account for a user transferring available assets into the account
+
+
+        :param new_isolated_account_request_v2: (required)
+        :type new_isolated_account_request_v2: NewIsolatedAccountRequestV2
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._create_new_isolated_account_v2_serialize(
+            new_isolated_account_request_v2=new_isolated_account_request_v2,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "NewIsolatedAccountResponseV2Envelope",
+            '400': "ResponseEnvelope",
+            '401': "ResponseEnvelope",
+            '409': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _create_new_isolated_account_v2_serialize(
+        self,
+        new_isolated_account_request_v2,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if new_isolated_account_request_v2 is not None:
+            _body_params = new_isolated_account_request_v2
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyAuthHeader', 
+            'bearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/v2/accounts/new_isolated',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -7080,6 +7657,259 @@ class DefaultApi:
         return self.api_client.param_serialize(
             method='GET',
             resource_path='/v1/orderbooks/{order_book_id}/L3',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    async def get_ledger_accounts_self_v2(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> LedgerAccountsResponseV2Envelope:
+        """Get your own accounts
+
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_ledger_accounts_self_v2_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "LedgerAccountsResponseV2Envelope",
+            '400': "ResponseEnvelope",
+            '404': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    async def get_ledger_accounts_self_v2_with_http_info(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[LedgerAccountsResponseV2Envelope]:
+        """Get your own accounts
+
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_ledger_accounts_self_v2_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "LedgerAccountsResponseV2Envelope",
+            '400': "ResponseEnvelope",
+            '404': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    async def get_ledger_accounts_self_v2_without_preload_content(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get your own accounts
+
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_ledger_accounts_self_v2_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "LedgerAccountsResponseV2Envelope",
+            '400': "ResponseEnvelope",
+            '404': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_ledger_accounts_self_v2_serialize(
+        self,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyAuthHeader', 
+            'bearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/v2/ledger/accounts/self',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -13588,6 +14418,8 @@ class DefaultApi:
         position_id: Annotated[Optional[UUID], Field(description="Position ID to filter settlements")] = None,
         tx_kind: Annotated[Optional[StrictStr], Field(description="Transaction kind to filter settlements")] = None,
         created_after: Annotated[Optional[datetime], Field(description="Filter settlements created after this time")] = None,
+        created_before: Annotated[Optional[datetime], Field(description="Filter settlements created before this time")] = None,
+        settled_after: Annotated[Optional[datetime], Field(description="Filter settlements settled after this time")] = None,
         settled_before: Annotated[Optional[datetime], Field(description="Filter settlements settled before this time")] = None,
         is_settled: Annotated[Optional[StrictBool], Field(description="Filter settlements by settlement status")] = None,
         _request_timeout: Union[
@@ -13616,6 +14448,10 @@ class DefaultApi:
         :type tx_kind: str
         :param created_after: Filter settlements created after this time
         :type created_after: datetime
+        :param created_before: Filter settlements created before this time
+        :type created_before: datetime
+        :param settled_after: Filter settlements settled after this time
+        :type settled_after: datetime
         :param settled_before: Filter settlements settled before this time
         :type settled_before: datetime
         :param is_settled: Filter settlements by settlement status
@@ -13648,6 +14484,8 @@ class DefaultApi:
             position_id=position_id,
             tx_kind=tx_kind,
             created_after=created_after,
+            created_before=created_before,
+            settled_after=settled_after,
             settled_before=settled_before,
             is_settled=is_settled,
             _request_auth=_request_auth,
@@ -13681,6 +14519,8 @@ class DefaultApi:
         position_id: Annotated[Optional[UUID], Field(description="Position ID to filter settlements")] = None,
         tx_kind: Annotated[Optional[StrictStr], Field(description="Transaction kind to filter settlements")] = None,
         created_after: Annotated[Optional[datetime], Field(description="Filter settlements created after this time")] = None,
+        created_before: Annotated[Optional[datetime], Field(description="Filter settlements created before this time")] = None,
+        settled_after: Annotated[Optional[datetime], Field(description="Filter settlements settled after this time")] = None,
         settled_before: Annotated[Optional[datetime], Field(description="Filter settlements settled before this time")] = None,
         is_settled: Annotated[Optional[StrictBool], Field(description="Filter settlements by settlement status")] = None,
         _request_timeout: Union[
@@ -13709,6 +14549,10 @@ class DefaultApi:
         :type tx_kind: str
         :param created_after: Filter settlements created after this time
         :type created_after: datetime
+        :param created_before: Filter settlements created before this time
+        :type created_before: datetime
+        :param settled_after: Filter settlements settled after this time
+        :type settled_after: datetime
         :param settled_before: Filter settlements settled before this time
         :type settled_before: datetime
         :param is_settled: Filter settlements by settlement status
@@ -13741,6 +14585,8 @@ class DefaultApi:
             position_id=position_id,
             tx_kind=tx_kind,
             created_after=created_after,
+            created_before=created_before,
+            settled_after=settled_after,
             settled_before=settled_before,
             is_settled=is_settled,
             _request_auth=_request_auth,
@@ -13774,6 +14620,8 @@ class DefaultApi:
         position_id: Annotated[Optional[UUID], Field(description="Position ID to filter settlements")] = None,
         tx_kind: Annotated[Optional[StrictStr], Field(description="Transaction kind to filter settlements")] = None,
         created_after: Annotated[Optional[datetime], Field(description="Filter settlements created after this time")] = None,
+        created_before: Annotated[Optional[datetime], Field(description="Filter settlements created before this time")] = None,
+        settled_after: Annotated[Optional[datetime], Field(description="Filter settlements settled after this time")] = None,
         settled_before: Annotated[Optional[datetime], Field(description="Filter settlements settled before this time")] = None,
         is_settled: Annotated[Optional[StrictBool], Field(description="Filter settlements by settlement status")] = None,
         _request_timeout: Union[
@@ -13802,6 +14650,10 @@ class DefaultApi:
         :type tx_kind: str
         :param created_after: Filter settlements created after this time
         :type created_after: datetime
+        :param created_before: Filter settlements created before this time
+        :type created_before: datetime
+        :param settled_after: Filter settlements settled after this time
+        :type settled_after: datetime
         :param settled_before: Filter settlements settled before this time
         :type settled_before: datetime
         :param is_settled: Filter settlements by settlement status
@@ -13834,6 +14686,8 @@ class DefaultApi:
             position_id=position_id,
             tx_kind=tx_kind,
             created_after=created_after,
+            created_before=created_before,
+            settled_after=settled_after,
             settled_before=settled_before,
             is_settled=is_settled,
             _request_auth=_request_auth,
@@ -13862,6 +14716,8 @@ class DefaultApi:
         position_id,
         tx_kind,
         created_after,
+        created_before,
+        settled_after,
         settled_before,
         is_settled,
         _request_auth,
@@ -13914,6 +14770,32 @@ class DefaultApi:
                 )
             else:
                 _query_params.append(('created_after', created_after))
+            
+        if created_before is not None:
+            if isinstance(created_before, datetime):
+                _query_params.append(
+                    (
+                        'created_before',
+                        created_before.strftime(
+                            self.api_client.configuration.datetime_format
+                        )
+                    )
+                )
+            else:
+                _query_params.append(('created_before', created_before))
+            
+        if settled_after is not None:
+            if isinstance(settled_after, datetime):
+                _query_params.append(
+                    (
+                        'settled_after',
+                        settled_after.strftime(
+                            self.api_client.configuration.datetime_format
+                        )
+                    )
+                )
+            else:
+                _query_params.append(('settled_after', settled_after))
             
         if settled_before is not None:
             if isinstance(settled_before, datetime):
@@ -18587,6 +19469,649 @@ class DefaultApi:
 
 
     @validate_call
+    async def leverage_get_historical_interest_rates(
+        self,
+        asset_id: UUID,
+        start: Optional[datetime] = None,
+        end: Optional[datetime] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> HistoricalLeverageInterestRatesResponseEnvelope:
+        """Get historical leverage interest rates for a specific asset
+
+
+        :param asset_id: (required)
+        :type asset_id: str
+        :param start:
+        :type start: datetime
+        :param end:
+        :type end: datetime
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._leverage_get_historical_interest_rates_serialize(
+            asset_id=asset_id,
+            start=start,
+            end=end,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "HistoricalLeverageInterestRatesResponseEnvelope",
+            '400': "ResponseEnvelope",
+            '401': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    async def leverage_get_historical_interest_rates_with_http_info(
+        self,
+        asset_id: UUID,
+        start: Optional[datetime] = None,
+        end: Optional[datetime] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[HistoricalLeverageInterestRatesResponseEnvelope]:
+        """Get historical leverage interest rates for a specific asset
+
+
+        :param asset_id: (required)
+        :type asset_id: str
+        :param start:
+        :type start: datetime
+        :param end:
+        :type end: datetime
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._leverage_get_historical_interest_rates_serialize(
+            asset_id=asset_id,
+            start=start,
+            end=end,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "HistoricalLeverageInterestRatesResponseEnvelope",
+            '400': "ResponseEnvelope",
+            '401': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    async def leverage_get_historical_interest_rates_without_preload_content(
+        self,
+        asset_id: UUID,
+        start: Optional[datetime] = None,
+        end: Optional[datetime] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get historical leverage interest rates for a specific asset
+
+
+        :param asset_id: (required)
+        :type asset_id: str
+        :param start:
+        :type start: datetime
+        :param end:
+        :type end: datetime
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._leverage_get_historical_interest_rates_serialize(
+            asset_id=asset_id,
+            start=start,
+            end=end,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "HistoricalLeverageInterestRatesResponseEnvelope",
+            '400': "ResponseEnvelope",
+            '401': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _leverage_get_historical_interest_rates_serialize(
+        self,
+        asset_id,
+        start,
+        end,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if asset_id is not None:
+            _path_params['asset_id'] = asset_id
+        # process the query parameters
+        if start is not None:
+            if isinstance(start, datetime):
+                _query_params.append(
+                    (
+                        'start',
+                        start.strftime(
+                            self.api_client.configuration.datetime_format
+                        )
+                    )
+                )
+            else:
+                _query_params.append(('start', start))
+            
+        if end is not None:
+            if isinstance(end, datetime):
+                _query_params.append(
+                    (
+                        'end',
+                        end.strftime(
+                            self.api_client.configuration.datetime_format
+                        )
+                    )
+                )
+            else:
+                _query_params.append(('end', end))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyAuthHeader', 
+            'bearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/v1/leverage/interest_rate/{asset_id}/historical',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    async def leverage_get_interest_rate(
+        self,
+        asset_id: UUID,
+        start: Optional[datetime] = None,
+        end: Optional[datetime] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> LeverageInterestRateResponseEnvelope:
+        """Get leverage interest rate for a specific asset
+
+
+        :param asset_id: (required)
+        :type asset_id: str
+        :param start:
+        :type start: datetime
+        :param end:
+        :type end: datetime
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._leverage_get_interest_rate_serialize(
+            asset_id=asset_id,
+            start=start,
+            end=end,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "LeverageInterestRateResponseEnvelope",
+            '400': "ResponseEnvelope",
+            '401': "ResponseEnvelope",
+            '404': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    async def leverage_get_interest_rate_with_http_info(
+        self,
+        asset_id: UUID,
+        start: Optional[datetime] = None,
+        end: Optional[datetime] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[LeverageInterestRateResponseEnvelope]:
+        """Get leverage interest rate for a specific asset
+
+
+        :param asset_id: (required)
+        :type asset_id: str
+        :param start:
+        :type start: datetime
+        :param end:
+        :type end: datetime
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._leverage_get_interest_rate_serialize(
+            asset_id=asset_id,
+            start=start,
+            end=end,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "LeverageInterestRateResponseEnvelope",
+            '400': "ResponseEnvelope",
+            '401': "ResponseEnvelope",
+            '404': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    async def leverage_get_interest_rate_without_preload_content(
+        self,
+        asset_id: UUID,
+        start: Optional[datetime] = None,
+        end: Optional[datetime] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get leverage interest rate for a specific asset
+
+
+        :param asset_id: (required)
+        :type asset_id: str
+        :param start:
+        :type start: datetime
+        :param end:
+        :type end: datetime
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._leverage_get_interest_rate_serialize(
+            asset_id=asset_id,
+            start=start,
+            end=end,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "LeverageInterestRateResponseEnvelope",
+            '400': "ResponseEnvelope",
+            '401': "ResponseEnvelope",
+            '404': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _leverage_get_interest_rate_serialize(
+        self,
+        asset_id,
+        start,
+        end,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if asset_id is not None:
+            _path_params['asset_id'] = asset_id
+        # process the query parameters
+        if start is not None:
+            if isinstance(start, datetime):
+                _query_params.append(
+                    (
+                        'start',
+                        start.strftime(
+                            self.api_client.configuration.datetime_format
+                        )
+                    )
+                )
+            else:
+                _query_params.append(('start', start))
+            
+        if end is not None:
+            if isinstance(end, datetime):
+                _query_params.append(
+                    (
+                        'end',
+                        end.strftime(
+                            self.api_client.configuration.datetime_format
+                        )
+                    )
+                )
+            else:
+                _query_params.append(('end', end))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyAuthHeader', 
+            'bearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/v1/leverage/interest_rate/{asset_id}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     async def leverage_isolate_collateral(
         self,
         isolate_collateral_request: IsolateCollateralRequest,
@@ -20320,6 +21845,259 @@ class DefaultApi:
         return self.api_client.param_serialize(
             method='POST',
             resource_path='/v1/liquidity/pool/{pool_id}/remove',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    async def list_accounts_self_v2(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ListAccountsResponseV2Envelope:
+        """List all accounts for the authenticated user
+
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._list_accounts_self_v2_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ListAccountsResponseV2Envelope",
+            '400': "ResponseEnvelope",
+            '404': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    async def list_accounts_self_v2_with_http_info(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ListAccountsResponseV2Envelope]:
+        """List all accounts for the authenticated user
+
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._list_accounts_self_v2_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ListAccountsResponseV2Envelope",
+            '400': "ResponseEnvelope",
+            '404': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    async def list_accounts_self_v2_without_preload_content(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """List all accounts for the authenticated user
+
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._list_accounts_self_v2_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ListAccountsResponseV2Envelope",
+            '400': "ResponseEnvelope",
+            '404': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _list_accounts_self_v2_serialize(
+        self,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyAuthHeader', 
+            'bearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/v2/user/self/accounts',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -25194,6 +26972,290 @@ class DefaultApi:
         return self.api_client.param_serialize(
             method='GET',
             resource_path='/v1/trades/{order_book_id}/stream',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    async def transfer_account_balances_v2(
+        self,
+        transfer_account_balances_request: TransferAccountBalancesRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> TransferAccountBalancesResponseEnvelope:
+        """Transfer available balance between a user's accounts
+
+
+        :param transfer_account_balances_request: (required)
+        :type transfer_account_balances_request: TransferAccountBalancesRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._transfer_account_balances_v2_serialize(
+            transfer_account_balances_request=transfer_account_balances_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "TransferAccountBalancesResponseEnvelope",
+            '400': "ResponseEnvelope",
+            '401': "ResponseEnvelope",
+            '409': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    async def transfer_account_balances_v2_with_http_info(
+        self,
+        transfer_account_balances_request: TransferAccountBalancesRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[TransferAccountBalancesResponseEnvelope]:
+        """Transfer available balance between a user's accounts
+
+
+        :param transfer_account_balances_request: (required)
+        :type transfer_account_balances_request: TransferAccountBalancesRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._transfer_account_balances_v2_serialize(
+            transfer_account_balances_request=transfer_account_balances_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "TransferAccountBalancesResponseEnvelope",
+            '400': "ResponseEnvelope",
+            '401': "ResponseEnvelope",
+            '409': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    async def transfer_account_balances_v2_without_preload_content(
+        self,
+        transfer_account_balances_request: TransferAccountBalancesRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Transfer available balance between a user's accounts
+
+
+        :param transfer_account_balances_request: (required)
+        :type transfer_account_balances_request: TransferAccountBalancesRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._transfer_account_balances_v2_serialize(
+            transfer_account_balances_request=transfer_account_balances_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "TransferAccountBalancesResponseEnvelope",
+            '400': "ResponseEnvelope",
+            '401': "ResponseEnvelope",
+            '409': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _transfer_account_balances_v2_serialize(
+        self,
+        transfer_account_balances_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if transfer_account_balances_request is not None:
+            _body_params = transfer_account_balances_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyAuthHeader', 
+            'bearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/v2/accounts/transfer_balances',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,

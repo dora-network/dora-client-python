@@ -40,6 +40,8 @@ class TestPLAccount(unittest.TestCase):
                 is_global = True,
                 assets = [
                     dora_client.models.pl_asset.PLAsset(
+                        id = '', 
+                        kind = 'BOND', 
                         symbol = '', 
                         side = 'LONG', 
                         avg_entry_price = '', 
@@ -74,6 +76,8 @@ class TestPLAccount(unittest.TestCase):
                 is_global = True,
                 assets = [
                     dora_client.models.pl_asset.PLAsset(
+                        id = '', 
+                        kind = 'BOND', 
                         symbol = '', 
                         side = 'LONG', 
                         avg_entry_price = '', 

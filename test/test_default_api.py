@@ -61,6 +61,13 @@ class TestDefaultApi(unittest.IsolatedAsyncioTestCase):
         """
         pass
 
+    async def test_close_isolated_account_v2(self) -> None:
+        """Test case for close_isolated_account_v2
+
+        Close an isolated account, repaying the borrowed
+        """
+        pass
+
     async def test_close_isolated_position(self) -> None:
         """Test case for close_isolated_position
 
@@ -86,6 +93,13 @@ class TestDefaultApi(unittest.IsolatedAsyncioTestCase):
         """Test case for create_conditional_order
 
         Create a new conditional orders
+        """
+        pass
+
+    async def test_create_new_isolated_account_v2(self) -> None:
+        """Test case for create_new_isolated_account_v2
+
+        Create a new isolated account for a user transferring available assets into the account
         """
         pass
 
@@ -198,6 +212,13 @@ class TestDefaultApi(unittest.IsolatedAsyncioTestCase):
         """Test case for get_l3_depth
 
         Get all open orders for a specific orderbook (L3 market depth)
+        """
+        pass
+
+    async def test_get_ledger_accounts_self_v2(self) -> None:
+        """Test case for get_ledger_accounts_self_v2
+
+        Get your own accounts
         """
         pass
 
@@ -481,6 +502,20 @@ class TestDefaultApi(unittest.IsolatedAsyncioTestCase):
         """
         pass
 
+    async def test_leverage_get_historical_interest_rates(self) -> None:
+        """Test case for leverage_get_historical_interest_rates
+
+        Get historical leverage interest rates for a specific asset
+        """
+        pass
+
+    async def test_leverage_get_interest_rate(self) -> None:
+        """Test case for leverage_get_interest_rate
+
+        Get leverage interest rate for a specific asset
+        """
+        pass
+
     async def test_leverage_isolate_collateral(self) -> None:
         """Test case for leverage_isolate_collateral
 
@@ -520,6 +555,13 @@ class TestDefaultApi(unittest.IsolatedAsyncioTestCase):
         """Test case for liquidity_subtract
 
         Subtract liquidity from a pool
+        """
+        pass
+
+    async def test_list_accounts_self_v2(self) -> None:
+        """Test case for list_accounts_self_v2
+
+        List all accounts for the authenticated user
         """
         pass
 
@@ -632,6 +674,13 @@ class TestDefaultApi(unittest.IsolatedAsyncioTestCase):
         """Test case for stream_trades
 
         Get a snapshot of trades executed on the given order book from a specific date and open a stream for real-time updates
+        """
+        pass
+
+    async def test_transfer_account_balances_v2(self) -> None:
+        """Test case for transfer_account_balances_v2
+
+        Transfer available balance between a user's accounts
         """
         pass
 

@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **global_position_id** | **str** |  | 
-**transaction_ids** | **List[str]** |  | [optional] 
+**transaction_ids** | **List[str]** |  | 
 
 ## Example
 

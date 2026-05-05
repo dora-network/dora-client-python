@@ -19,6 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from dora_client.models.asset_kind import AssetKind
 from dora_client.models.margin import Margin
 from typing import Optional, Set
 from typing_extensions import Self
@@ -27,6 +28,8 @@ class PLAsset(BaseModel):
     """
     PLAsset
     """ # noqa: E501
+    id: StrictStr = Field(description="The ID of the asset")
+    kind: AssetKind
     symbol: StrictStr = Field(description="The symbol of the asset")
     side: StrictStr = Field(description="The side of the position (LONG or SHORT)")
     avg_entry_price: StrictStr = Field(description="The average entry price of the position")
@@ -43,7 +46,7 @@ class PLAsset(BaseModel):
     impending_borrows: Optional[StrictStr] = Field(default=None, description="The impending borrows of the position")
     locked: StrictStr = Field(description="The locked amount of the position")
     unused_collateral: StrictStr = Field(description="The unused collateral of the position")
-    __properties: ClassVar[List[str]] = ["symbol", "side", "avg_entry_price", "mark_price", "liquidation_price", "available", "borrowed", "margin", "unrealized_pl", "leverage_limit", "tp", "sl", "initial_capital", "impending_borrows", "locked", "unused_collateral"]
+    __properties: ClassVar[List[str]] = ["id", "kind", "symbol", "side", "avg_entry_price", "mark_price", "liquidation_price", "available", "borrowed", "margin", "unrealized_pl", "leverage_limit", "tp", "sl", "initial_capital", "impending_borrows", "locked", "unused_collateral"]
 
     @field_validator('side')
     def side_validate_enum(cls, value):
@@ -106,6 +109,8 @@ class PLAsset(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "id": obj.get("id"),
+            "kind": obj.get("kind"),
             "symbol": obj.get("symbol"),
             "side": obj.get("side"),
             "avg_entry_price": obj.get("avg_entry_price"),

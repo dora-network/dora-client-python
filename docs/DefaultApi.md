@@ -9,10 +9,12 @@ Method | HTTP request | Description
 [**cancel_ledger_withdraw_request**](DefaultApi.md#cancel_ledger_withdraw_request) | **POST** /v1/ledger/withdraw/requests/{withdrawal_id}/cancel | Cancel a pending withdrawal request
 [**cancel_order_by_id**](DefaultApi.md#cancel_order_by_id) | **DELETE** /v1/orders/{order_id} | Cancel an order by ID
 [**claim_leverage_get_accrued_interest**](DefaultApi.md#claim_leverage_get_accrued_interest) | **POST** /v1/leverage/accrued_interest/claim | Claim current accrued leverage interest for a specific user
+[**close_isolated_account_v2**](DefaultApi.md#close_isolated_account_v2) | **POST** /v2/accounts/close | Close an isolated account, repaying the borrowed
 [**close_isolated_position**](DefaultApi.md#close_isolated_position) | **POST** /v1/positions/close | Close isolated positions, repaying the borrowed
 [**create_api_key_for_user**](DefaultApi.md#create_api_key_for_user) | **POST** /v1/user/apikey | Create apikey for a user
 [**create_api_key_for_user_id**](DefaultApi.md#create_api_key_for_user_id) | **POST** /v1/user/{user_id}/apikey | Create apikey for a user
 [**create_conditional_order**](DefaultApi.md#create_conditional_order) | **POST** /v1/orders/conditional | Create a new conditional orders
+[**create_new_isolated_account_v2**](DefaultApi.md#create_new_isolated_account_v2) | **POST** /v2/accounts/new_isolated | Create a new isolated account for a user transferring available assets into the account
 [**create_order**](DefaultApi.md#create_order) | **POST** /v1/orders | Create a new order
 [**create_user**](DefaultApi.md#create_user) | **POST** /v1/integrators/user | Create a new user
 [**delete_user**](DefaultApi.md#delete_user) | **DELETE** /v1/user/{user_id} | Delete user by ID
@@ -29,6 +31,7 @@ Method | HTTP request | Description
 [**get_l1_depth**](DefaultApi.md#get_l1_depth) | **GET** /v1/orderbooks/{order_book_id}/L1 | Get the top price levels for a specific orderbook (L1 market depth)
 [**get_l2_depth**](DefaultApi.md#get_l2_depth) | **GET** /v1/orderbooks/{order_book_id}/L2 | Get the aggregated price levels for a specific orderbook (L2 market depth)
 [**get_l3_depth**](DefaultApi.md#get_l3_depth) | **GET** /v1/orderbooks/{order_book_id}/L3 | Get all open orders for a specific orderbook (L3 market depth)
+[**get_ledger_accounts_self_v2**](DefaultApi.md#get_ledger_accounts_self_v2) | **GET** /v2/ledger/accounts/self | Get your own accounts
 [**get_ledger_balances_self**](DefaultApi.md#get_ledger_balances_self) | **GET** /v1/ledger/balances/self | Get your own available, locked, and borrowed assets
 [**get_ledger_interest_self**](DefaultApi.md#get_ledger_interest_self) | **GET** /v1/ledger/interest/self | Get your own interest
 [**get_ledger_module**](DefaultApi.md#get_ledger_module) | **GET** /v1/ledger/module | Get the entire module object, including unborrowed leverage assets and total leverage trackers
@@ -69,12 +72,15 @@ Method | HTTP request | Description
 [**ledger_withdraw_request**](DefaultApi.md#ledger_withdraw_request) | **POST** /v1/ledger/withdraw/requests/{user_id} | Initiate a withdrawal request for this user to the outside world
 [**ledger_withdraw_request_self**](DefaultApi.md#ledger_withdraw_request_self) | **POST** /v1/ledger/withdraw/requests/self | Initiate a withdrawal request for the logged in user to the outside world
 [**leverage_get_accrued_interest_by_user**](DefaultApi.md#leverage_get_accrued_interest_by_user) | **GET** /v1/leverage/accrued_interest/self | Get current accrued leverage interest for the user
+[**leverage_get_historical_interest_rates**](DefaultApi.md#leverage_get_historical_interest_rates) | **GET** /v1/leverage/interest_rate/{asset_id}/historical | Get historical leverage interest rates for a specific asset
+[**leverage_get_interest_rate**](DefaultApi.md#leverage_get_interest_rate) | **GET** /v1/leverage/interest_rate/{asset_id} | Get leverage interest rate for a specific asset
 [**leverage_isolate_collateral**](DefaultApi.md#leverage_isolate_collateral) | **POST** /v1/leverage/isolate_collateral | Create an isolated position by transferring collateral to the position from the user&#39;s global collateral
 [**leverage_supply**](DefaultApi.md#leverage_supply) | **POST** /v1/leverage/supply | Supply leverage for a specific asset
 [**leverage_unite**](DefaultApi.md#leverage_unite) | **POST** /v1/leverage/unite | Combines all isolated positions into a single global position
 [**leverage_withdraw**](DefaultApi.md#leverage_withdraw) | **POST** /v1/leverage/withdraw | Withdraw leverage for a specific asset
 [**liquidity_add**](DefaultApi.md#liquidity_add) | **POST** /v1/liquidity/pool/{pool_id}/add | Add liquidity to a pool
 [**liquidity_subtract**](DefaultApi.md#liquidity_subtract) | **POST** /v1/liquidity/pool/{pool_id}/remove | Subtract liquidity from a pool
+[**list_accounts_self_v2**](DefaultApi.md#list_accounts_self_v2) | **GET** /v2/user/self/accounts | List all accounts for the authenticated user
 [**list_assets**](DefaultApi.md#list_assets) | **GET** /v1/assets | List assets
 [**list_order_books**](DefaultApi.md#list_order_books) | **GET** /v1/orderbooks | List order books
 [**list_orders**](DefaultApi.md#list_orders) | **GET** /v1/orders | List all orders
@@ -91,6 +97,7 @@ Method | HTTP request | Description
 [**stream_order_book_balances**](DefaultApi.md#stream_order_book_balances) | **GET** /v1/orderbooks/{order_book_id}/balances/stream | Get a snapshot of base and quote balances for an order book and open a stream for real-time updates
 [**stream_orderbook_open_orders**](DefaultApi.md#stream_orderbook_open_orders) | **GET** /v1/orderbooks/{order_book_id}/open/stream | Get a snapshot of open orders in an order book and open a stream for real-time updates
 [**stream_trades**](DefaultApi.md#stream_trades) | **GET** /v1/trades/{order_book_id}/stream | Get a snapshot of trades executed on the given order book from a specific date and open a stream for real-time updates
+[**transfer_account_balances_v2**](DefaultApi.md#transfer_account_balances_v2) | **POST** /v2/accounts/transfer_balances | Transfer available balance between a user&#39;s accounts
 [**transfer_available_balances**](DefaultApi.md#transfer_available_balances) | **POST** /v1/positions/transfer_balances | Transfer available balance between a user&#39;s accounts (e.g. global to isolated position)
 [**update_user_config**](DefaultApi.md#update_user_config) | **PUT** /v1/user/{user_id}/config | Update user configuration by ID
 [**update_user_config_self**](DefaultApi.md#update_user_config_self) | **PUT** /v1/user/config/self | Update user configuration for the authenticated user
@@ -548,6 +555,94 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **close_isolated_account_v2**
+> ClosePositionResponseEnvelope close_isolated_account_v2(close_account_request)
+
+Close an isolated account, repaying the borrowed
+
+### Example
+
+* Api Key Authentication (apiKeyAuthHeader):
+* Bearer (JWT) Authentication (bearerAuth):
+
+```python
+import dora_client
+from dora_client.models.close_account_request import CloseAccountRequest
+from dora_client.models.close_position_response_envelope import ClosePositionResponseEnvelope
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging.dora.co
+# See configuration.py for a list of all supported configuration parameters.
+configuration = dora_client.Configuration(
+    host = "https://staging.dora.co"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration.api_key['apiKeyAuthHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyAuthHeader'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = dora_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+async with dora_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = dora_client.DefaultApi(api_client)
+    close_account_request = dora_client.CloseAccountRequest() # CloseAccountRequest | 
+
+    try:
+        # Close an isolated account, repaying the borrowed
+        api_response = await api_instance.close_isolated_account_v2(close_account_request)
+        print("The response of DefaultApi->close_isolated_account_v2:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->close_isolated_account_v2: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **close_account_request** | [**CloseAccountRequest**](CloseAccountRequest.md)|  | 
+
+### Return type
+
+[**ClosePositionResponseEnvelope**](ClosePositionResponseEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Isolated account closed |  -  |
+**400** | Bad request, e.g. missing required fields |  -  |
+**401** | Unauthorized, user not logged in or does not have access to this route |  -  |
+**404** | Not found, e.g. order_book or account not found |  -  |
+**500** | Internal server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **close_isolated_position**
 > ClosePositionResponseEnvelope close_isolated_position(close_position_request)
 
@@ -893,6 +988,94 @@ Name | Type | Description  | Notes
 **201** | Conditional orders are created |  -  |
 **400** | Bad request, e.g. missing required fields |  -  |
 **401** | Unauthorized, user not logged in or does not have access to this orderbook |  -  |
+**500** | Internal server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **create_new_isolated_account_v2**
+> NewIsolatedAccountResponseV2Envelope create_new_isolated_account_v2(new_isolated_account_request_v2)
+
+Create a new isolated account for a user transferring available assets into the account
+
+### Example
+
+* Api Key Authentication (apiKeyAuthHeader):
+* Bearer (JWT) Authentication (bearerAuth):
+
+```python
+import dora_client
+from dora_client.models.new_isolated_account_request_v2 import NewIsolatedAccountRequestV2
+from dora_client.models.new_isolated_account_response_v2_envelope import NewIsolatedAccountResponseV2Envelope
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging.dora.co
+# See configuration.py for a list of all supported configuration parameters.
+configuration = dora_client.Configuration(
+    host = "https://staging.dora.co"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration.api_key['apiKeyAuthHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyAuthHeader'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = dora_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+async with dora_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = dora_client.DefaultApi(api_client)
+    new_isolated_account_request_v2 = dora_client.NewIsolatedAccountRequestV2() # NewIsolatedAccountRequestV2 | 
+
+    try:
+        # Create a new isolated account for a user transferring available assets into the account
+        api_response = await api_instance.create_new_isolated_account_v2(new_isolated_account_request_v2)
+        print("The response of DefaultApi->create_new_isolated_account_v2:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->create_new_isolated_account_v2: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **new_isolated_account_request_v2** | [**NewIsolatedAccountRequestV2**](NewIsolatedAccountRequestV2.md)|  | 
+
+### Return type
+
+[**NewIsolatedAccountResponseV2Envelope**](NewIsolatedAccountResponseV2Envelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Isolated account created |  -  |
+**400** | Bad request, e.g. missing required fields |  -  |
+**401** | Unauthorized, user not logged in or does not have access to this orderbook |  -  |
+**409** | Conflict, e.g. the requested amount is not available to transfer |  -  |
 **500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -2126,6 +2309,88 @@ No authorization required
 **400** | Bad request, e.g. invalid query parameters |  -  |
 **401** | Unauthorized, user not logged in or does not have access to this orderbook |  -  |
 **404** | Orderbook not found |  -  |
+**500** | Internal server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_ledger_accounts_self_v2**
+> LedgerAccountsResponseV2Envelope get_ledger_accounts_self_v2()
+
+Get your own accounts
+
+### Example
+
+* Api Key Authentication (apiKeyAuthHeader):
+* Bearer (JWT) Authentication (bearerAuth):
+
+```python
+import dora_client
+from dora_client.models.ledger_accounts_response_v2_envelope import LedgerAccountsResponseV2Envelope
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging.dora.co
+# See configuration.py for a list of all supported configuration parameters.
+configuration = dora_client.Configuration(
+    host = "https://staging.dora.co"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration.api_key['apiKeyAuthHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyAuthHeader'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = dora_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+async with dora_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = dora_client.DefaultApi(api_client)
+
+    try:
+        # Get your own accounts
+        api_response = await api_instance.get_ledger_accounts_self_v2()
+        print("The response of DefaultApi->get_ledger_accounts_self_v2:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->get_ledger_accounts_self_v2: %s\n" % e)
+```
+
+
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**LedgerAccountsResponseV2Envelope**](LedgerAccountsResponseV2Envelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | User accounts |  -  |
+**400** | Bad request, e.g. invalid user ID format |  -  |
+**404** | User not found |  -  |
 **500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -4007,7 +4272,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_transactions_settlements**
-> TransactionsSettlementsResponseEnvelope get_transactions_settlements(tenant_id=tenant_id, user_id=user_id, position_id=position_id, tx_kind=tx_kind, created_after=created_after, settled_before=settled_before, is_settled=is_settled)
+> TransactionsSettlementsResponseEnvelope get_transactions_settlements(tenant_id=tenant_id, user_id=user_id, position_id=position_id, tx_kind=tx_kind, created_after=created_after, created_before=created_before, settled_after=settled_after, settled_before=settled_before, is_settled=is_settled)
 
 Get transactions settlements with filters
 
@@ -4053,12 +4318,14 @@ async with dora_client.ApiClient(configuration) as api_client:
     position_id = 'position_id_example' # str | Position ID to filter settlements (optional)
     tx_kind = 'tx_kind_example' # str | Transaction kind to filter settlements (optional)
     created_after = '2013-10-20T19:20:30+01:00' # datetime | Filter settlements created after this time (optional)
+    created_before = '2013-10-20T19:20:30+01:00' # datetime | Filter settlements created before this time (optional)
+    settled_after = '2013-10-20T19:20:30+01:00' # datetime | Filter settlements settled after this time (optional)
     settled_before = '2013-10-20T19:20:30+01:00' # datetime | Filter settlements settled before this time (optional)
     is_settled = True # bool | Filter settlements by settlement status (optional)
 
     try:
         # Get transactions settlements with filters
-        api_response = await api_instance.get_transactions_settlements(tenant_id=tenant_id, user_id=user_id, position_id=position_id, tx_kind=tx_kind, created_after=created_after, settled_before=settled_before, is_settled=is_settled)
+        api_response = await api_instance.get_transactions_settlements(tenant_id=tenant_id, user_id=user_id, position_id=position_id, tx_kind=tx_kind, created_after=created_after, created_before=created_before, settled_after=settled_after, settled_before=settled_before, is_settled=is_settled)
         print("The response of DefaultApi->get_transactions_settlements:\n")
         pprint(api_response)
     except Exception as e:
@@ -4077,6 +4344,8 @@ Name | Type | Description  | Notes
  **position_id** | **str**| Position ID to filter settlements | [optional] 
  **tx_kind** | **str**| Transaction kind to filter settlements | [optional] 
  **created_after** | **datetime**| Filter settlements created after this time | [optional] 
+ **created_before** | **datetime**| Filter settlements created before this time | [optional] 
+ **settled_after** | **datetime**| Filter settlements settled after this time | [optional] 
  **settled_before** | **datetime**| Filter settlements settled before this time | [optional] 
  **is_settled** | **bool**| Filter settlements by settlement status | [optional] 
 
@@ -5474,6 +5743,187 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **leverage_get_historical_interest_rates**
+> HistoricalLeverageInterestRatesResponseEnvelope leverage_get_historical_interest_rates(asset_id, start=start, end=end)
+
+Get historical leverage interest rates for a specific asset
+
+### Example
+
+* Api Key Authentication (apiKeyAuthHeader):
+* Bearer (JWT) Authentication (bearerAuth):
+
+```python
+import dora_client
+from dora_client.models.historical_leverage_interest_rates_response_envelope import HistoricalLeverageInterestRatesResponseEnvelope
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging.dora.co
+# See configuration.py for a list of all supported configuration parameters.
+configuration = dora_client.Configuration(
+    host = "https://staging.dora.co"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration.api_key['apiKeyAuthHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyAuthHeader'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = dora_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+async with dora_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = dora_client.DefaultApi(api_client)
+    asset_id = 'asset_id_example' # str | 
+    start = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
+    end = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
+
+    try:
+        # Get historical leverage interest rates for a specific asset
+        api_response = await api_instance.leverage_get_historical_interest_rates(asset_id, start=start, end=end)
+        print("The response of DefaultApi->leverage_get_historical_interest_rates:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->leverage_get_historical_interest_rates: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **asset_id** | **str**|  | 
+ **start** | **datetime**|  | [optional] 
+ **end** | **datetime**|  | [optional] 
+
+### Return type
+
+[**HistoricalLeverageInterestRatesResponseEnvelope**](HistoricalLeverageInterestRatesResponseEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Historical leverage interest rates retrieved successfully |  -  |
+**400** | Bad request, e.g. invalid time parameter or end before/equal start |  -  |
+**401** | Unauthorized, e.g. user not logged in or invalid credentials |  -  |
+**500** | Internal server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **leverage_get_interest_rate**
+> LeverageInterestRateResponseEnvelope leverage_get_interest_rate(asset_id, start=start, end=end)
+
+Get leverage interest rate for a specific asset
+
+### Example
+
+* Api Key Authentication (apiKeyAuthHeader):
+* Bearer (JWT) Authentication (bearerAuth):
+
+```python
+import dora_client
+from dora_client.models.leverage_interest_rate_response_envelope import LeverageInterestRateResponseEnvelope
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging.dora.co
+# See configuration.py for a list of all supported configuration parameters.
+configuration = dora_client.Configuration(
+    host = "https://staging.dora.co"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration.api_key['apiKeyAuthHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyAuthHeader'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = dora_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+async with dora_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = dora_client.DefaultApi(api_client)
+    asset_id = 'asset_id_example' # str | 
+    start = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
+    end = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
+
+    try:
+        # Get leverage interest rate for a specific asset
+        api_response = await api_instance.leverage_get_interest_rate(asset_id, start=start, end=end)
+        print("The response of DefaultApi->leverage_get_interest_rate:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->leverage_get_interest_rate: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **asset_id** | **str**|  | 
+ **start** | **datetime**|  | [optional] 
+ **end** | **datetime**|  | [optional] 
+
+### Return type
+
+[**LeverageInterestRateResponseEnvelope**](LeverageInterestRateResponseEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Leverage interest rate retrieved successfully |  -  |
+**400** | Bad request, e.g. invalid/mismatched time parameters |  -  |
+**401** | Unauthorized, e.g. user not logged in or invalid credentials |  -  |
+**404** | No utilization data found for the selected window or asset not found |  -  |
+**500** | Internal server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **leverage_isolate_collateral**
 > IsolateCollateralResponse leverage_isolate_collateral(isolate_collateral_request)
 
@@ -6006,6 +6456,88 @@ Name | Type | Description  | Notes
 **401** | Unauthorized, e.g. user not logged in or invalid credentials |  -  |
 **404** | Pool not found |  -  |
 **409** | Conflict, e.g. the requested amount is not available to transfer |  -  |
+**500** | Internal server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **list_accounts_self_v2**
+> ListAccountsResponseV2Envelope list_accounts_self_v2()
+
+List all accounts for the authenticated user
+
+### Example
+
+* Api Key Authentication (apiKeyAuthHeader):
+* Bearer (JWT) Authentication (bearerAuth):
+
+```python
+import dora_client
+from dora_client.models.list_accounts_response_v2_envelope import ListAccountsResponseV2Envelope
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging.dora.co
+# See configuration.py for a list of all supported configuration parameters.
+configuration = dora_client.Configuration(
+    host = "https://staging.dora.co"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration.api_key['apiKeyAuthHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyAuthHeader'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = dora_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+async with dora_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = dora_client.DefaultApi(api_client)
+
+    try:
+        # List all accounts for the authenticated user
+        api_response = await api_instance.list_accounts_self_v2()
+        print("The response of DefaultApi->list_accounts_self_v2:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->list_accounts_self_v2: %s\n" % e)
+```
+
+
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**ListAccountsResponseV2Envelope**](ListAccountsResponseV2Envelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | List of accounts including the account id, the account name, and global account indicator |  -  |
+**400** | Bad request, e.g. invalid query parameters |  -  |
+**404** | User not found |  -  |
 **500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -7343,6 +7875,94 @@ No authorization required
 |-------------|-------------|------------------|
 **200** | Real-time trade updates |  -  |
 **400** | Bad request, e.g. invalid parameters |  -  |
+**500** | Internal server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **transfer_account_balances_v2**
+> TransferAccountBalancesResponseEnvelope transfer_account_balances_v2(transfer_account_balances_request)
+
+Transfer available balance between a user's accounts
+
+### Example
+
+* Api Key Authentication (apiKeyAuthHeader):
+* Bearer (JWT) Authentication (bearerAuth):
+
+```python
+import dora_client
+from dora_client.models.transfer_account_balances_request import TransferAccountBalancesRequest
+from dora_client.models.transfer_account_balances_response_envelope import TransferAccountBalancesResponseEnvelope
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging.dora.co
+# See configuration.py for a list of all supported configuration parameters.
+configuration = dora_client.Configuration(
+    host = "https://staging.dora.co"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration.api_key['apiKeyAuthHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyAuthHeader'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = dora_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+async with dora_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = dora_client.DefaultApi(api_client)
+    transfer_account_balances_request = dora_client.TransferAccountBalancesRequest() # TransferAccountBalancesRequest | 
+
+    try:
+        # Transfer available balance between a user's accounts
+        api_response = await api_instance.transfer_account_balances_v2(transfer_account_balances_request)
+        print("The response of DefaultApi->transfer_account_balances_v2:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->transfer_account_balances_v2: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **transfer_account_balances_request** | [**TransferAccountBalancesRequest**](TransferAccountBalancesRequest.md)|  | 
+
+### Return type
+
+[**TransferAccountBalancesResponseEnvelope**](TransferAccountBalancesResponseEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Isolated account created |  -  |
+**400** | Bad request, e.g. missing required fields |  -  |
+**401** | Unauthorized, user not logged in or does not have access to this orderbook |  -  |
+**409** | Conflict, e.g. the requested amount is not available to transfer |  -  |
 **500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

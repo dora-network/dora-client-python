@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List
 from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
@@ -28,7 +28,7 @@ class UnitedPosition(BaseModel):
     UnitedPosition
     """ # noqa: E501
     global_position_id: UUID
-    transaction_ids: Optional[List[UUID]] = None
+    transaction_ids: List[UUID]
     __properties: ClassVar[List[str]] = ["global_position_id", "transaction_ids"]
 
     model_config = ConfigDict(

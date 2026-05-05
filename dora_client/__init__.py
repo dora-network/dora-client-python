@@ -31,6 +31,11 @@ __all__ = [
     "APIKeyResponse",
     "APIKeyResponseEnvelope",
     "APIKeys",
+    "AccountBalanceTransfer",
+    "AccountPortfolioResponseV2",
+    "AccountPortfolioV2",
+    "AccountSummaryV2",
+    "AccountV2",
     "AllPositions",
     "AllPositionsResponseEnvelope",
     "AllWithdrawalInitiationsResponseEnvelope",
@@ -51,6 +56,7 @@ __all__ = [
     "ClaimLeverageAccruedInterest",
     "ClaimLeverageAccruedInterestRequest",
     "ClaimLeverageAccruedInterestResponseEnvelope",
+    "CloseAccountRequest",
     "ClosePositionRequest",
     "ClosePositionResp",
     "ClosePositionResponseEnvelope",
@@ -77,13 +83,19 @@ __all__ = [
     "GetAssetYTMByIDResponseEnvelope",
     "GetRealizedPnlSettlementsResponseEnvelope",
     "GetTopOfBookResponseEnvelope",
+    "HistoricalLeverageInterestRate",
+    "HistoricalLeverageInterestRates",
+    "HistoricalLeverageInterestRatesResponseEnvelope",
     "IsolateCollateralRequest",
     "IsolateCollateralResponse",
     "IsolatedCollateral",
     "IsolatedPosition",
+    "LedgerAccountsResponseV2Envelope",
     "LedgerModuleByAssetResponseEnvelope",
     "LedgerModuleResponseEnvelope",
     "LeverageBalanceResponse",
+    "LeverageInterestRate",
+    "LeverageInterestRateResponseEnvelope",
     "LeverageModuleResponse",
     "LeverageRequestError",
     "LeverageType",
@@ -91,6 +103,7 @@ __all__ = [
     "Liquidity",
     "LiquidityRequest",
     "LiquidityResponseEnvelope",
+    "ListAccountsResponseV2Envelope",
     "ListAssetPriceResponseEnvelope",
     "ListCandlesResponseEnvelope",
     "ListCouponPaymentsResponseEnvelope",
@@ -107,6 +120,8 @@ __all__ = [
     "Margin",
     "Metadata",
     "ModuleBalance",
+    "NewIsolatedAccountRequestV2",
+    "NewIsolatedAccountResponseV2Envelope",
     "Order",
     "OrderBook",
     "OrderBookBalance",
@@ -182,6 +197,8 @@ __all__ = [
     "TransactionsSettlementRequest",
     "TransactionsSettlementsResponse",
     "TransactionsSettlementsResponseEnvelope",
+    "TransferAccountBalancesRequest",
+    "TransferAccountBalancesResponseEnvelope",
     "TransferBalancesRequest",
     "TransferBalancesResponseEnvelope",
     "TransformedAssets",
@@ -240,6 +257,11 @@ from dora_client.exceptions import ApiException as ApiException
 from dora_client.models.api_key_response import APIKeyResponse as APIKeyResponse
 from dora_client.models.api_key_response_envelope import APIKeyResponseEnvelope as APIKeyResponseEnvelope
 from dora_client.models.api_keys import APIKeys as APIKeys
+from dora_client.models.account_balance_transfer import AccountBalanceTransfer as AccountBalanceTransfer
+from dora_client.models.account_portfolio_response_v2 import AccountPortfolioResponseV2 as AccountPortfolioResponseV2
+from dora_client.models.account_portfolio_v2 import AccountPortfolioV2 as AccountPortfolioV2
+from dora_client.models.account_summary_v2 import AccountSummaryV2 as AccountSummaryV2
+from dora_client.models.account_v2 import AccountV2 as AccountV2
 from dora_client.models.all_positions import AllPositions as AllPositions
 from dora_client.models.all_positions_response_envelope import AllPositionsResponseEnvelope as AllPositionsResponseEnvelope
 from dora_client.models.all_withdrawal_initiations_response_envelope import AllWithdrawalInitiationsResponseEnvelope as AllWithdrawalInitiationsResponseEnvelope
@@ -260,6 +282,7 @@ from dora_client.models.candle_resolution import CandleResolution as CandleResol
 from dora_client.models.claim_leverage_accrued_interest import ClaimLeverageAccruedInterest as ClaimLeverageAccruedInterest
 from dora_client.models.claim_leverage_accrued_interest_request import ClaimLeverageAccruedInterestRequest as ClaimLeverageAccruedInterestRequest
 from dora_client.models.claim_leverage_accrued_interest_response_envelope import ClaimLeverageAccruedInterestResponseEnvelope as ClaimLeverageAccruedInterestResponseEnvelope
+from dora_client.models.close_account_request import CloseAccountRequest as CloseAccountRequest
 from dora_client.models.close_position_request import ClosePositionRequest as ClosePositionRequest
 from dora_client.models.close_position_resp import ClosePositionResp as ClosePositionResp
 from dora_client.models.close_position_response_envelope import ClosePositionResponseEnvelope as ClosePositionResponseEnvelope
@@ -286,13 +309,19 @@ from dora_client.models.get_asset_by_id_response_envelope import GetAssetByIDRes
 from dora_client.models.get_asset_ytmby_id_response_envelope import GetAssetYTMByIDResponseEnvelope as GetAssetYTMByIDResponseEnvelope
 from dora_client.models.get_realized_pnl_settlements_response_envelope import GetRealizedPnlSettlementsResponseEnvelope as GetRealizedPnlSettlementsResponseEnvelope
 from dora_client.models.get_top_of_book_response_envelope import GetTopOfBookResponseEnvelope as GetTopOfBookResponseEnvelope
+from dora_client.models.historical_leverage_interest_rate import HistoricalLeverageInterestRate as HistoricalLeverageInterestRate
+from dora_client.models.historical_leverage_interest_rates import HistoricalLeverageInterestRates as HistoricalLeverageInterestRates
+from dora_client.models.historical_leverage_interest_rates_response_envelope import HistoricalLeverageInterestRatesResponseEnvelope as HistoricalLeverageInterestRatesResponseEnvelope
 from dora_client.models.isolate_collateral_request import IsolateCollateralRequest as IsolateCollateralRequest
 from dora_client.models.isolate_collateral_response import IsolateCollateralResponse as IsolateCollateralResponse
 from dora_client.models.isolated_collateral import IsolatedCollateral as IsolatedCollateral
 from dora_client.models.isolated_position import IsolatedPosition as IsolatedPosition
+from dora_client.models.ledger_accounts_response_v2_envelope import LedgerAccountsResponseV2Envelope as LedgerAccountsResponseV2Envelope
 from dora_client.models.ledger_module_by_asset_response_envelope import LedgerModuleByAssetResponseEnvelope as LedgerModuleByAssetResponseEnvelope
 from dora_client.models.ledger_module_response_envelope import LedgerModuleResponseEnvelope as LedgerModuleResponseEnvelope
 from dora_client.models.leverage_balance_response import LeverageBalanceResponse as LeverageBalanceResponse
+from dora_client.models.leverage_interest_rate import LeverageInterestRate as LeverageInterestRate
+from dora_client.models.leverage_interest_rate_response_envelope import LeverageInterestRateResponseEnvelope as LeverageInterestRateResponseEnvelope
 from dora_client.models.leverage_module_response import LeverageModuleResponse as LeverageModuleResponse
 from dora_client.models.leverage_request_error import LeverageRequestError as LeverageRequestError
 from dora_client.models.leverage_type import LeverageType as LeverageType
@@ -300,6 +329,7 @@ from dora_client.models.liquidation_targets_response_envelope import Liquidation
 from dora_client.models.liquidity import Liquidity as Liquidity
 from dora_client.models.liquidity_request import LiquidityRequest as LiquidityRequest
 from dora_client.models.liquidity_response_envelope import LiquidityResponseEnvelope as LiquidityResponseEnvelope
+from dora_client.models.list_accounts_response_v2_envelope import ListAccountsResponseV2Envelope as ListAccountsResponseV2Envelope
 from dora_client.models.list_asset_price_response_envelope import ListAssetPriceResponseEnvelope as ListAssetPriceResponseEnvelope
 from dora_client.models.list_candles_response_envelope import ListCandlesResponseEnvelope as ListCandlesResponseEnvelope
 from dora_client.models.list_coupon_payments_response_envelope import ListCouponPaymentsResponseEnvelope as ListCouponPaymentsResponseEnvelope
@@ -316,6 +346,8 @@ from dora_client.models.live_orderbook import LiveOrderbook as LiveOrderbook
 from dora_client.models.margin import Margin as Margin
 from dora_client.models.metadata import Metadata as Metadata
 from dora_client.models.module_balance import ModuleBalance as ModuleBalance
+from dora_client.models.new_isolated_account_request_v2 import NewIsolatedAccountRequestV2 as NewIsolatedAccountRequestV2
+from dora_client.models.new_isolated_account_response_v2_envelope import NewIsolatedAccountResponseV2Envelope as NewIsolatedAccountResponseV2Envelope
 from dora_client.models.order import Order as Order
 from dora_client.models.order_book import OrderBook as OrderBook
 from dora_client.models.order_book_balance import OrderBookBalance as OrderBookBalance
@@ -391,6 +423,8 @@ from dora_client.models.transactions_settlement import TransactionsSettlement as
 from dora_client.models.transactions_settlement_request import TransactionsSettlementRequest as TransactionsSettlementRequest
 from dora_client.models.transactions_settlements_response import TransactionsSettlementsResponse as TransactionsSettlementsResponse
 from dora_client.models.transactions_settlements_response_envelope import TransactionsSettlementsResponseEnvelope as TransactionsSettlementsResponseEnvelope
+from dora_client.models.transfer_account_balances_request import TransferAccountBalancesRequest as TransferAccountBalancesRequest
+from dora_client.models.transfer_account_balances_response_envelope import TransferAccountBalancesResponseEnvelope as TransferAccountBalancesResponseEnvelope
 from dora_client.models.transfer_balances_request import TransferBalancesRequest as TransferBalancesRequest
 from dora_client.models.transfer_balances_response_envelope import TransferBalancesResponseEnvelope as TransferBalancesResponseEnvelope
 from dora_client.models.transformed_assets import TransformedAssets as TransformedAssets

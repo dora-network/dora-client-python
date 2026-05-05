@@ -39,7 +39,11 @@ class Asset(BaseModel):
     description: StrictStr
     liquidation_weight: Union[Annotated[float, Field(le=1, strict=True, ge=0)], Annotated[int, Field(le=1, strict=True, ge=0)]]
     max_supply: Annotated[int, Field(strict=True, ge=0)]
-    max_utilization: Annotated[int, Field(strict=True, ge=0)]
+    max_utilization: Union[Annotated[float, Field(le=1, strict=True, ge=0)], Annotated[int, Field(le=1, strict=True, ge=0)]]
+    minimum_rate: Union[Annotated[float, Field(le=1, strict=True, ge=0)], Annotated[int, Field(le=1, strict=True, ge=0)]]
+    kink_rate: Union[Annotated[float, Field(le=1, strict=True, ge=0)], Annotated[int, Field(le=1, strict=True, ge=0)]]
+    maximum_rate: Union[Annotated[float, Field(le=1, strict=True, ge=0)], Annotated[int, Field(le=1, strict=True, ge=0)]]
+    kink_utilization: Union[Annotated[float, Field(le=1, strict=True, ge=0)], Annotated[int, Field(le=1, strict=True, ge=0)]]
     name: StrictStr
     symbol: StrictStr
     kind: AssetKind
@@ -52,7 +56,7 @@ class Asset(BaseModel):
     max_leverage: Union[Annotated[float, Field(strict=True, ge=1)], Annotated[int, Field(strict=True, ge=1)]]
     leverage_interest_rate: Optional[Union[StrictFloat, StrictInt]] = 0
     bond: Optional[Bond] = None
-    __properties: ClassVar[List[str]] = ["id", "collateral_weight", "created_at", "decimals", "fractionalized_units", "description", "liquidation_weight", "max_supply", "max_utilization", "name", "symbol", "kind", "yield", "can_add_liquidity", "can_direct_borrow", "can_onboard", "can_trade", "can_virtual_borrow", "max_leverage", "leverage_interest_rate", "bond"]
+    __properties: ClassVar[List[str]] = ["id", "collateral_weight", "created_at", "decimals", "fractionalized_units", "description", "liquidation_weight", "max_supply", "max_utilization", "minimum_rate", "kink_rate", "maximum_rate", "kink_utilization", "name", "symbol", "kind", "yield", "can_add_liquidity", "can_direct_borrow", "can_onboard", "can_trade", "can_virtual_borrow", "max_leverage", "leverage_interest_rate", "bond"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -117,6 +121,10 @@ class Asset(BaseModel):
             "liquidation_weight": obj.get("liquidation_weight"),
             "max_supply": obj.get("max_supply"),
             "max_utilization": obj.get("max_utilization"),
+            "minimum_rate": obj.get("minimum_rate"),
+            "kink_rate": obj.get("kink_rate"),
+            "maximum_rate": obj.get("maximum_rate"),
+            "kink_utilization": obj.get("kink_utilization"),
             "name": obj.get("name"),
             "symbol": obj.get("symbol"),
             "kind": obj.get("kind"),

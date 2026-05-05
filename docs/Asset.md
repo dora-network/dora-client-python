@@ -13,7 +13,11 @@ Name | Type | Description | Notes
 **description** | **str** |  | 
 **liquidation_weight** | **float** |  | 
 **max_supply** | **int** |  | 
-**max_utilization** | **int** |  | 
+**max_utilization** | **float** |  | 
+**minimum_rate** | **float** |  | 
+**kink_rate** | **float** |  | 
+**maximum_rate** | **float** |  | 
+**kink_utilization** | **float** |  | 
 **name** | **str** |  | 
 **symbol** | **str** |  | 
 **kind** | [**AssetKind**](AssetKind.md) |  | 

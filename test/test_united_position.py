@@ -43,6 +43,9 @@ class TestUnitedPosition(unittest.TestCase):
         else:
             return UnitedPosition(
                 global_position_id = '',
+                transaction_ids = [
+                    ''
+                    ],
         )
         """
 
