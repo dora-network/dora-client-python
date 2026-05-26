@@ -41,6 +41,7 @@ class TestCandle(unittest.TestCase):
                 high = '',
                 low = '',
                 close = '',
+                ytm = '',
                 volume = ''
             )
         else:
@@ -51,6 +52,7 @@ class TestCandle(unittest.TestCase):
                 high = '',
                 low = '',
                 close = '',
+                ytm = '',
                 volume = '',
         )
         """

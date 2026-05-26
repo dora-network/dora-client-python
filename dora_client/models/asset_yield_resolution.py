@@ -18,22 +18,22 @@ from enum import Enum
 from typing_extensions import Self
 
 
-class OrderBookStatus(str, Enum):
+class AssetYieldResolution(str, Enum):
     """
-    OrderBookStatus
+    AssetYieldResolution
     """
 
     """
     allowed enum values
     """
-    CLOSED = 'CLOSED'
-    OPEN = 'OPEN'
-    SUSPENDED = 'SUSPENDED'
-    TESTING = 'TESTING'
+    ENUM_1H = '1h'
+    ENUM_1D = '1d'
+    ENUM_7D = '7d'
+    ENUM_30D = '30d'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
-        """Create an instance of OrderBookStatus from a JSON string"""
+        """Create an instance of AssetYieldResolution from a JSON string"""
         return cls(json.loads(json_str))
 
 

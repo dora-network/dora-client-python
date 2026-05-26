@@ -31,6 +31,8 @@ from dora_client.models.asset_price import AssetPrice
 from dora_client.models.asset_price_response_envelope import AssetPriceResponseEnvelope
 from dora_client.models.asset_request_error import AssetRequestError
 from dora_client.models.asset_ytm import AssetYTM
+from dora_client.models.asset_yield import AssetYield
+from dora_client.models.asset_yield_resolution import AssetYieldResolution
 from dora_client.models.balance_transfer import BalanceTransfer
 from dora_client.models.balances_response import BalancesResponse
 from dora_client.models.bond import Bond
@@ -90,6 +92,7 @@ from dora_client.models.liquidity_request import LiquidityRequest
 from dora_client.models.liquidity_response_envelope import LiquidityResponseEnvelope
 from dora_client.models.list_accounts_response_v2_envelope import ListAccountsResponseV2Envelope
 from dora_client.models.list_asset_price_response_envelope import ListAssetPriceResponseEnvelope
+from dora_client.models.list_asset_yield_response_envelope import ListAssetYieldResponseEnvelope
 from dora_client.models.list_candles_response_envelope import ListCandlesResponseEnvelope
 from dora_client.models.list_coupon_payments_response_envelope import ListCouponPaymentsResponseEnvelope
 from dora_client.models.list_order_book_depth_response_envelope import ListOrderBookDepthResponseEnvelope

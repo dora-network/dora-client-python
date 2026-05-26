@@ -46,6 +46,8 @@ __all__ = [
     "AssetPriceResponseEnvelope",
     "AssetRequestError",
     "AssetYTM",
+    "AssetYield",
+    "AssetYieldResolution",
     "BalanceTransfer",
     "BalancesResponse",
     "Bond",
@@ -105,6 +107,7 @@ __all__ = [
     "LiquidityResponseEnvelope",
     "ListAccountsResponseV2Envelope",
     "ListAssetPriceResponseEnvelope",
+    "ListAssetYieldResponseEnvelope",
     "ListCandlesResponseEnvelope",
     "ListCouponPaymentsResponseEnvelope",
     "ListOrderBookDepthResponseEnvelope",
@@ -272,6 +275,8 @@ from dora_client.models.asset_price import AssetPrice as AssetPrice
 from dora_client.models.asset_price_response_envelope import AssetPriceResponseEnvelope as AssetPriceResponseEnvelope
 from dora_client.models.asset_request_error import AssetRequestError as AssetRequestError
 from dora_client.models.asset_ytm import AssetYTM as AssetYTM
+from dora_client.models.asset_yield import AssetYield as AssetYield
+from dora_client.models.asset_yield_resolution import AssetYieldResolution as AssetYieldResolution
 from dora_client.models.balance_transfer import BalanceTransfer as BalanceTransfer
 from dora_client.models.balances_response import BalancesResponse as BalancesResponse
 from dora_client.models.bond import Bond as Bond
@@ -331,6 +336,7 @@ from dora_client.models.liquidity_request import LiquidityRequest as LiquidityRe
 from dora_client.models.liquidity_response_envelope import LiquidityResponseEnvelope as LiquidityResponseEnvelope
 from dora_client.models.list_accounts_response_v2_envelope import ListAccountsResponseV2Envelope as ListAccountsResponseV2Envelope
 from dora_client.models.list_asset_price_response_envelope import ListAssetPriceResponseEnvelope as ListAssetPriceResponseEnvelope
+from dora_client.models.list_asset_yield_response_envelope import ListAssetYieldResponseEnvelope as ListAssetYieldResponseEnvelope
 from dora_client.models.list_candles_response_envelope import ListCandlesResponseEnvelope as ListCandlesResponseEnvelope
 from dora_client.models.list_coupon_payments_response_envelope import ListCouponPaymentsResponseEnvelope as ListCouponPaymentsResponseEnvelope
 from dora_client.models.list_order_book_depth_response_envelope import ListOrderBookDepthResponseEnvelope as ListOrderBookDepthResponseEnvelope

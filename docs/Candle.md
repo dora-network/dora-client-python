@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **high** | **str** |  | 
 **low** | **str** |  | 
 **close** | **str** |  | 
+**ytm** | **str** |  | 
 **volume** | **str** |  | 
 
 ## Example

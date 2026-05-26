@@ -17,26 +17,21 @@ import pprint
 import re  # noqa: F401
 import json
 
-from datetime import datetime
-from pydantic import BaseModel, ConfigDict, StrictStr
-from typing import Any, ClassVar, Dict, List
-from uuid import UUID
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
+from dora_client.models.asset_yield import AssetYield
+from dora_client.models.metadata import Metadata
 from typing import Optional, Set
 from typing_extensions import Self
 
-class Candle(BaseModel):
+class ListAssetYieldResponseEnvelope(BaseModel):
     """
-    Candle
+    ListAssetYieldResponseEnvelope
     """ # noqa: E501
-    order_book_id: UUID
-    start_timestamp: datetime
-    open: StrictStr
-    high: StrictStr
-    low: StrictStr
-    close: StrictStr
-    ytm: StrictStr
-    volume: StrictStr
-    __properties: ClassVar[List[str]] = ["order_book_id", "start_timestamp", "open", "high", "low", "close", "ytm", "volume"]
+    data: Optional[List[AssetYield]] = None
+    error: Optional[StrictStr] = Field(default=None, description="The error message. Present for error (non-2xx) responses.")
+    metadata: Metadata = Field(description="Metadata about the response, including status code and trace information.")
+    __properties: ClassVar[List[str]] = ["data", "error", "metadata"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -56,7 +51,7 @@ class Candle(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of Candle from a JSON string"""
+        """Create an instance of ListAssetYieldResponseEnvelope from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -77,11 +72,21 @@ class Candle(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in data (list)
+        _items = []
+        if self.data:
+            for _item_data in self.data:
+                if _item_data:
+                    _items.append(_item_data.to_dict())
+            _dict['data'] = _items
+        # override the default output from pydantic by calling `to_dict()` of metadata
+        if self.metadata:
+            _dict['metadata'] = self.metadata.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of Candle from a dict"""
+        """Create an instance of ListAssetYieldResponseEnvelope from a dict"""
         if obj is None:
             return None
 
@@ -89,14 +94,9 @@ class Candle(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "order_book_id": obj.get("order_book_id"),
-            "start_timestamp": obj.get("start_timestamp"),
-            "open": obj.get("open"),
-            "high": obj.get("high"),
-            "low": obj.get("low"),
-            "close": obj.get("close"),
-            "ytm": obj.get("ytm"),
-            "volume": obj.get("volume")
+            "data": [AssetYield.from_dict(_item) for _item in obj["data"]] if obj.get("data") is not None else None,
+            "error": obj.get("error"),
+            "metadata": Metadata.from_dict(obj["metadata"]) if obj.get("metadata") is not None else None
         })
         return _obj
 

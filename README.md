@@ -121,6 +121,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**get_api_keys_for_user_id**](docs/DefaultApi.md#get_api_keys_for_user_id) | **GET** /v1/user/{user_id}/apikey | Get user&#39;s api keys: admin or integrator only
 *DefaultApi* | [**get_asset_by_id**](docs/DefaultApi.md#get_asset_by_id) | **GET** /v1/assets/{asset_id} | Get asset by ID
 *DefaultApi* | [**get_asset_price**](docs/DefaultApi.md#get_asset_price) | **GET** /v1/price/asset/{asset_id} | Get the current price of an asset
+*DefaultApi* | [**get_asset_yield_data**](docs/DefaultApi.md#get_asset_yield_data) | **GET** /v1/charts/{asset_id}/yield | Get yield chart data for an asset
 *DefaultApi* | [**get_asset_ytmby_id**](docs/DefaultApi.md#get_asset_ytmby_id) | **GET** /v1/assets/{asset_id}/ytm | Get annualized yield to maturity for a bond asset
 *DefaultApi* | [**get_assets_stream**](docs/DefaultApi.md#get_assets_stream) | **GET** /v1/assets/stream | Get all inserts or updates for assets
 *DefaultApi* | [**get_candle_data**](docs/DefaultApi.md#get_candle_data) | **GET** /v1/charts/{order_book_id}/candle | Get candlestick data for an orderbook
@@ -222,6 +223,8 @@ Class | Method | HTTP request | Description
  - [AssetPriceResponseEnvelope](docs/AssetPriceResponseEnvelope.md)
  - [AssetRequestError](docs/AssetRequestError.md)
  - [AssetYTM](docs/AssetYTM.md)
+ - [AssetYield](docs/AssetYield.md)
+ - [AssetYieldResolution](docs/AssetYieldResolution.md)
  - [BalanceTransfer](docs/BalanceTransfer.md)
  - [BalancesResponse](docs/BalancesResponse.md)
  - [Bond](docs/Bond.md)
@@ -281,6 +284,7 @@ Class | Method | HTTP request | Description
  - [LiquidityResponseEnvelope](docs/LiquidityResponseEnvelope.md)
  - [ListAccountsResponseV2Envelope](docs/ListAccountsResponseV2Envelope.md)
  - [ListAssetPriceResponseEnvelope](docs/ListAssetPriceResponseEnvelope.md)
+ - [ListAssetYieldResponseEnvelope](docs/ListAssetYieldResponseEnvelope.md)
  - [ListCandlesResponseEnvelope](docs/ListCandlesResponseEnvelope.md)
  - [ListCouponPaymentsResponseEnvelope](docs/ListCouponPaymentsResponseEnvelope.md)
  - [ListOrderBookDepthResponseEnvelope](docs/ListOrderBookDepthResponseEnvelope.md)

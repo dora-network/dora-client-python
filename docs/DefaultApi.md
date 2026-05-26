@@ -24,6 +24,7 @@ Method | HTTP request | Description
 [**get_api_keys_for_user_id**](DefaultApi.md#get_api_keys_for_user_id) | **GET** /v1/user/{user_id}/apikey | Get user&#39;s api keys: admin or integrator only
 [**get_asset_by_id**](DefaultApi.md#get_asset_by_id) | **GET** /v1/assets/{asset_id} | Get asset by ID
 [**get_asset_price**](DefaultApi.md#get_asset_price) | **GET** /v1/price/asset/{asset_id} | Get the current price of an asset
+[**get_asset_yield_data**](DefaultApi.md#get_asset_yield_data) | **GET** /v1/charts/{asset_id}/yield | Get yield chart data for an asset
 [**get_asset_ytmby_id**](DefaultApi.md#get_asset_ytmby_id) | **GET** /v1/assets/{asset_id}/ytm | Get annualized yield to maturity for a bond asset
 [**get_assets_stream**](DefaultApi.md#get_assets_stream) | **GET** /v1/assets/stream | Get all inserts or updates for assets
 [**get_candle_data**](DefaultApi.md#get_candle_data) | **GET** /v1/charts/{order_book_id}/candle | Get candlestick data for an orderbook
@@ -1817,6 +1818,82 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | Current price of the asset |  -  |
 **400** | Bad request, e.g. invalid ID format |  -  |
+**404** | Asset not found |  -  |
+**500** | Internal server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_asset_yield_data**
+> ListAssetYieldResponseEnvelope get_asset_yield_data(asset_id, start, end, resolution)
+
+Get yield chart data for an asset
+
+### Example
+
+
+```python
+import dora_client
+from dora_client.models.asset_yield_resolution import AssetYieldResolution
+from dora_client.models.list_asset_yield_response_envelope import ListAssetYieldResponseEnvelope
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging.dora.co
+# See configuration.py for a list of all supported configuration parameters.
+configuration = dora_client.Configuration(
+    host = "https://staging.dora.co"
+)
+
+
+# Enter a context with an instance of the API client
+async with dora_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = dora_client.DefaultApi(api_client)
+    asset_id = 'asset_id_example' # str | 
+    start = '2013-10-20T19:20:30+01:00' # datetime | 
+    end = '2013-10-20T19:20:30+01:00' # datetime | 
+    resolution = dora_client.AssetYieldResolution() # AssetYieldResolution | 
+
+    try:
+        # Get yield chart data for an asset
+        api_response = await api_instance.get_asset_yield_data(asset_id, start, end, resolution)
+        print("The response of DefaultApi->get_asset_yield_data:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->get_asset_yield_data: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **asset_id** | **str**|  | 
+ **start** | **datetime**|  | 
+ **end** | **datetime**|  | 
+ **resolution** | [**AssetYieldResolution**](.md)|  | 
+
+### Return type
+
+[**ListAssetYieldResponseEnvelope**](ListAssetYieldResponseEnvelope.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Yield chart points |  -  |
+**400** | Bad request, e.g. invalid parameters |  -  |
 **404** | Asset not found |  -  |
 **500** | Internal server error |  -  |
 
@@ -6672,7 +6749,7 @@ configuration = dora_client.Configuration(
 async with dora_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = dora_client.DefaultApi(api_client)
-    status = dora_client.OrderBookStatus() # OrderBookStatus |  (optional)
+    status = [dora_client.OrderBookStatus()] # List[OrderBookStatus] |  (optional)
     base_asset_id = 'base_asset_id_example' # str |  (optional)
     quote_asset_id = 'quote_asset_id_example' # str |  (optional)
     page = 1 # int |  (optional) (default to 1)
@@ -6694,7 +6771,7 @@ async with dora_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **status** | [**OrderBookStatus**](.md)|  | [optional] 
+ **status** | [**List[OrderBookStatus]**](OrderBookStatus.md)|  | [optional] 
  **base_asset_id** | **str**|  | [optional] 
  **quote_asset_id** | **str**|  | [optional] 
  **page** | **int**|  | [optional] [default to 1]

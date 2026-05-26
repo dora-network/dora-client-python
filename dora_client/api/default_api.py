@@ -27,6 +27,7 @@ from dora_client.models.all_withdrawal_initiations_response_envelope import AllW
 from dora_client.models.asset_kind import AssetKind
 from dora_client.models.asset_price import AssetPrice
 from dora_client.models.asset_price_response_envelope import AssetPriceResponseEnvelope
+from dora_client.models.asset_yield_resolution import AssetYieldResolution
 from dora_client.models.cancel_order_response_envelope import CancelOrderResponseEnvelope
 from dora_client.models.candle_resolution import CandleResolution
 from dora_client.models.claim_leverage_accrued_interest_request import ClaimLeverageAccruedInterestRequest
@@ -61,6 +62,7 @@ from dora_client.models.liquidity_request import LiquidityRequest
 from dora_client.models.liquidity_response_envelope import LiquidityResponseEnvelope
 from dora_client.models.list_accounts_response_v2_envelope import ListAccountsResponseV2Envelope
 from dora_client.models.list_asset_price_response_envelope import ListAssetPriceResponseEnvelope
+from dora_client.models.list_asset_yield_response_envelope import ListAssetYieldResponseEnvelope
 from dora_client.models.list_candles_response_envelope import ListCandlesResponseEnvelope
 from dora_client.models.list_coupon_payments_response_envelope import ListCouponPaymentsResponseEnvelope
 from dora_client.models.list_order_book_depth_response_envelope import ListOrderBookDepthResponseEnvelope
@@ -5692,6 +5694,341 @@ class DefaultApi:
         return self.api_client.param_serialize(
             method='GET',
             resource_path='/v1/price/asset/{asset_id}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    async def get_asset_yield_data(
+        self,
+        asset_id: UUID,
+        start: datetime,
+        end: datetime,
+        resolution: AssetYieldResolution,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ListAssetYieldResponseEnvelope:
+        """Get yield chart data for an asset
+
+
+        :param asset_id: (required)
+        :type asset_id: str
+        :param start: (required)
+        :type start: datetime
+        :param end: (required)
+        :type end: datetime
+        :param resolution: (required)
+        :type resolution: AssetYieldResolution
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_asset_yield_data_serialize(
+            asset_id=asset_id,
+            start=start,
+            end=end,
+            resolution=resolution,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ListAssetYieldResponseEnvelope",
+            '400': "ResponseEnvelope",
+            '404': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    async def get_asset_yield_data_with_http_info(
+        self,
+        asset_id: UUID,
+        start: datetime,
+        end: datetime,
+        resolution: AssetYieldResolution,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ListAssetYieldResponseEnvelope]:
+        """Get yield chart data for an asset
+
+
+        :param asset_id: (required)
+        :type asset_id: str
+        :param start: (required)
+        :type start: datetime
+        :param end: (required)
+        :type end: datetime
+        :param resolution: (required)
+        :type resolution: AssetYieldResolution
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_asset_yield_data_serialize(
+            asset_id=asset_id,
+            start=start,
+            end=end,
+            resolution=resolution,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ListAssetYieldResponseEnvelope",
+            '400': "ResponseEnvelope",
+            '404': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    async def get_asset_yield_data_without_preload_content(
+        self,
+        asset_id: UUID,
+        start: datetime,
+        end: datetime,
+        resolution: AssetYieldResolution,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get yield chart data for an asset
+
+
+        :param asset_id: (required)
+        :type asset_id: str
+        :param start: (required)
+        :type start: datetime
+        :param end: (required)
+        :type end: datetime
+        :param resolution: (required)
+        :type resolution: AssetYieldResolution
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_asset_yield_data_serialize(
+            asset_id=asset_id,
+            start=start,
+            end=end,
+            resolution=resolution,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ListAssetYieldResponseEnvelope",
+            '400': "ResponseEnvelope",
+            '404': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_asset_yield_data_serialize(
+        self,
+        asset_id,
+        start,
+        end,
+        resolution,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if asset_id is not None:
+            _path_params['asset_id'] = asset_id
+        # process the query parameters
+        if start is not None:
+            if isinstance(start, datetime):
+                _query_params.append(
+                    (
+                        'start',
+                        start.strftime(
+                            self.api_client.configuration.datetime_format
+                        )
+                    )
+                )
+            else:
+                _query_params.append(('start', start))
+            
+        if end is not None:
+            if isinstance(end, datetime):
+                _query_params.append(
+                    (
+                        'end',
+                        end.strftime(
+                            self.api_client.configuration.datetime_format
+                        )
+                    )
+                )
+            else:
+                _query_params.append(('end', end))
+            
+        if resolution is not None:
+            
+            _query_params.append(('resolution', resolution.value))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/v1/charts/{asset_id}/yield',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -22552,7 +22889,7 @@ class DefaultApi:
     @validate_call
     async def list_order_books(
         self,
-        status: Optional[OrderBookStatus] = None,
+        status: Optional[List[OrderBookStatus]] = None,
         base_asset_id: Optional[UUID] = None,
         quote_asset_id: Optional[UUID] = None,
         page: Optional[Annotated[int, Field(strict=True, ge=1)]] = None,
@@ -22574,7 +22911,7 @@ class DefaultApi:
 
 
         :param status:
-        :type status: OrderBookStatus
+        :type status: List[OrderBookStatus]
         :param base_asset_id:
         :type base_asset_id: str
         :param quote_asset_id:
@@ -22637,7 +22974,7 @@ class DefaultApi:
     @validate_call
     async def list_order_books_with_http_info(
         self,
-        status: Optional[OrderBookStatus] = None,
+        status: Optional[List[OrderBookStatus]] = None,
         base_asset_id: Optional[UUID] = None,
         quote_asset_id: Optional[UUID] = None,
         page: Optional[Annotated[int, Field(strict=True, ge=1)]] = None,
@@ -22659,7 +22996,7 @@ class DefaultApi:
 
 
         :param status:
-        :type status: OrderBookStatus
+        :type status: List[OrderBookStatus]
         :param base_asset_id:
         :type base_asset_id: str
         :param quote_asset_id:
@@ -22722,7 +23059,7 @@ class DefaultApi:
     @validate_call
     async def list_order_books_without_preload_content(
         self,
-        status: Optional[OrderBookStatus] = None,
+        status: Optional[List[OrderBookStatus]] = None,
         base_asset_id: Optional[UUID] = None,
         quote_asset_id: Optional[UUID] = None,
         page: Optional[Annotated[int, Field(strict=True, ge=1)]] = None,
@@ -22744,7 +23081,7 @@ class DefaultApi:
 
 
         :param status:
-        :type status: OrderBookStatus
+        :type status: List[OrderBookStatus]
         :param base_asset_id:
         :type base_asset_id: str
         :param quote_asset_id:
@@ -22816,6 +23153,7 @@ class DefaultApi:
         _host = None
 
         _collection_formats: Dict[str, str] = {
+            'status': 'multi',
         }
 
         _path_params: Dict[str, str] = {}
@@ -22831,7 +23169,7 @@ class DefaultApi:
         # process the query parameters
         if status is not None:
             
-            _query_params.append(('status', status.value))
+            _query_params.append(('status', status))
             
         if base_asset_id is not None:
             

@@ -14,10 +14,10 @@
 
 import unittest
 
-from dora_client.models.list_candles_response_envelope import ListCandlesResponseEnvelope
+from dora_client.models.list_asset_yield_response_envelope import ListAssetYieldResponseEnvelope
 
-class TestListCandlesResponseEnvelope(unittest.TestCase):
-    """ListCandlesResponseEnvelope unit test stubs"""
+class TestListAssetYieldResponseEnvelope(unittest.TestCase):
+    """ListAssetYieldResponseEnvelope unit test stubs"""
 
     def setUp(self):
         pass
@@ -25,26 +25,24 @@ class TestListCandlesResponseEnvelope(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> ListCandlesResponseEnvelope:
-        """Test ListCandlesResponseEnvelope
+    def make_instance(self, include_optional) -> ListAssetYieldResponseEnvelope:
+        """Test ListAssetYieldResponseEnvelope
             include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `ListCandlesResponseEnvelope`
+        # uncomment below to create an instance of `ListAssetYieldResponseEnvelope`
         """
-        model = ListCandlesResponseEnvelope()
+        model = ListAssetYieldResponseEnvelope()
         if include_optional:
-            return ListCandlesResponseEnvelope(
+            return ListAssetYieldResponseEnvelope(
                 data = [
-                    dora_client.models.candle.Candle(
-                        order_book_id = '', 
-                        start_timestamp = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        open = '', 
-                        high = '', 
-                        low = '', 
-                        close = '', 
+                    dora_client.models.asset_yield.AssetYield(
+                        asset_id = '', 
+                        timestamp = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         ytm = '', 
-                        volume = '', )
+                        lending_yield = '', 
+                        tvl = '', 
+                        total_yield = '', )
                     ],
                 error = '',
                 metadata = dora_client.models.metadata.Metadata(
@@ -53,7 +51,7 @@ class TestListCandlesResponseEnvelope(unittest.TestCase):
                     request_id = '', )
             )
         else:
-            return ListCandlesResponseEnvelope(
+            return ListAssetYieldResponseEnvelope(
                 metadata = dora_client.models.metadata.Metadata(
                     status_code = 56, 
                     trace_id = '', 
@@ -61,8 +59,8 @@ class TestListCandlesResponseEnvelope(unittest.TestCase):
         )
         """
 
-    def testListCandlesResponseEnvelope(self):
-        """Test ListCandlesResponseEnvelope"""
+    def testListAssetYieldResponseEnvelope(self):
+        """Test ListAssetYieldResponseEnvelope"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

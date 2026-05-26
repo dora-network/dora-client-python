@@ -24,19 +24,17 @@ from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
-class Candle(BaseModel):
+class AssetYield(BaseModel):
     """
-    Candle
+    AssetYield
     """ # noqa: E501
-    order_book_id: UUID
-    start_timestamp: datetime
-    open: StrictStr
-    high: StrictStr
-    low: StrictStr
-    close: StrictStr
+    asset_id: UUID
+    timestamp: datetime
     ytm: StrictStr
-    volume: StrictStr
-    __properties: ClassVar[List[str]] = ["order_book_id", "start_timestamp", "open", "high", "low", "close", "ytm", "volume"]
+    lending_yield: StrictStr
+    tvl: StrictStr
+    total_yield: StrictStr
+    __properties: ClassVar[List[str]] = ["asset_id", "timestamp", "ytm", "lending_yield", "tvl", "total_yield"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -56,7 +54,7 @@ class Candle(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of Candle from a JSON string"""
+        """Create an instance of AssetYield from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -81,7 +79,7 @@ class Candle(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of Candle from a dict"""
+        """Create an instance of AssetYield from a dict"""
         if obj is None:
             return None
 
@@ -89,14 +87,12 @@ class Candle(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "order_book_id": obj.get("order_book_id"),
-            "start_timestamp": obj.get("start_timestamp"),
-            "open": obj.get("open"),
-            "high": obj.get("high"),
-            "low": obj.get("low"),
-            "close": obj.get("close"),
+            "asset_id": obj.get("asset_id"),
+            "timestamp": obj.get("timestamp"),
             "ytm": obj.get("ytm"),
-            "volume": obj.get("volume")
+            "lending_yield": obj.get("lending_yield"),
+            "tvl": obj.get("tvl"),
+            "total_yield": obj.get("total_yield")
         })
         return _obj
 

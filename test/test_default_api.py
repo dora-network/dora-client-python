@@ -166,6 +166,13 @@ class TestDefaultApi(unittest.IsolatedAsyncioTestCase):
         """
         pass
 
+    async def test_get_asset_yield_data(self) -> None:
+        """Test case for get_asset_yield_data
+
+        Get yield chart data for an asset
+        """
+        pass
+
     async def test_get_asset_ytmby_id(self) -> None:
         """Test case for get_asset_ytmby_id
 
