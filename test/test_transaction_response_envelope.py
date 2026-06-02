@@ -45,7 +45,12 @@ class TestTransactionResponseEnvelope(unittest.TestCase):
                     asset1 = '', 
                     user_id = '', 
                     admin_user_id = '', 
-                    order_side = 'BUY', ),
+                    order_side = 'BUY', 
+                    internal_transfer = dora_client.models.transaction_internal_transfer.TransactionInternalTransfer(
+                        from_account_id = '', 
+                        to_account_id = '', 
+                        asset_id = '', 
+                        quantity = '', ), ),
                 error = '',
                 metadata = dora_client.models.metadata.Metadata(
                     status_code = 56, 

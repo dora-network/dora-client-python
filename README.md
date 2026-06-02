@@ -370,6 +370,7 @@ Class | Method | HTTP request | Description
  - [TradeRequestError](docs/TradeRequestError.md)
  - [TradeResponseEnvelope](docs/TradeResponseEnvelope.md)
  - [Transaction](docs/Transaction.md)
+ - [TransactionInternalTransfer](docs/TransactionInternalTransfer.md)
  - [TransactionKind](docs/TransactionKind.md)
  - [TransactionRequestError](docs/TransactionRequestError.md)
  - [TransactionResponseEnvelope](docs/TransactionResponseEnvelope.md)

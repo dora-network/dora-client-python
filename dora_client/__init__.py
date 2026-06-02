@@ -193,6 +193,7 @@ __all__ = [
     "TradeRequestError",
     "TradeResponseEnvelope",
     "Transaction",
+    "TransactionInternalTransfer",
     "TransactionKind",
     "TransactionRequestError",
     "TransactionResponseEnvelope",
@@ -422,6 +423,7 @@ from dora_client.models.trade import Trade as Trade
 from dora_client.models.trade_request_error import TradeRequestError as TradeRequestError
 from dora_client.models.trade_response_envelope import TradeResponseEnvelope as TradeResponseEnvelope
 from dora_client.models.transaction import Transaction as Transaction
+from dora_client.models.transaction_internal_transfer import TransactionInternalTransfer as TransactionInternalTransfer
 from dora_client.models.transaction_kind import TransactionKind as TransactionKind
 from dora_client.models.transaction_request_error import TransactionRequestError as TransactionRequestError
 from dora_client.models.transaction_response_envelope import TransactionResponseEnvelope as TransactionResponseEnvelope

@@ -49,6 +49,7 @@ class TransactionKind(str, Enum):
     COLLATERALIZE = 'COLLATERALIZE'
     DE_MINUS_COLLATERALIZE = 'DE-COLLATERALIZE'
     COUPON_PAYMENT = 'COUPON_PAYMENT'
+    INTERNAL_TRANSFER = 'INTERNAL_TRANSFER'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

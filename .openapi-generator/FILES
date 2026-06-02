@@ -169,6 +169,7 @@ docs/Trade.md
 docs/TradeRequestError.md
 docs/TradeResponseEnvelope.md
 docs/Transaction.md
+docs/TransactionInternalTransfer.md
 docs/TransactionKind.md
 docs/TransactionRequestError.md
 docs/TransactionResponseEnvelope.md
@@ -389,6 +390,7 @@ dora_client/models/trade.py
 dora_client/models/trade_request_error.py
 dora_client/models/trade_response_envelope.py
 dora_client/models/transaction.py
+dora_client/models/transaction_internal_transfer.py
 dora_client/models/transaction_kind.py
 dora_client/models/transaction_request_error.py
 dora_client/models/transaction_response_envelope.py
@@ -611,6 +613,7 @@ test/test_trade.py
 test/test_trade_request_error.py
 test/test_trade_response_envelope.py
 test/test_transaction.py
+test/test_transaction_internal_transfer.py
 test/test_transaction_kind.py
 test/test_transaction_request_error.py
 test/test_transaction_response_envelope.py

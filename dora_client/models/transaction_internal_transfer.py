@@ -17,32 +17,21 @@ import pprint
 import re  # noqa: F401
 import json
 
-from datetime import datetime
 from pydantic import BaseModel, ConfigDict, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List
 from uuid import UUID
-from dora_client.models.side import Side
-from dora_client.models.transaction_internal_transfer import TransactionInternalTransfer
-from dora_client.models.transaction_kind import TransactionKind
 from typing import Optional, Set
 from typing_extensions import Self
 
-class Transaction(BaseModel):
+class TransactionInternalTransfer(BaseModel):
     """
-    Transaction
+    TransactionInternalTransfer
     """ # noqa: E501
-    id: UUID
-    created_at: datetime
-    kind: TransactionKind
-    asset0: UUID
-    quantity0: StrictStr
-    quantity1: StrictStr
-    asset1: UUID
-    user_id: UUID
-    admin_user_id: UUID
-    order_side: Side
-    internal_transfer: Optional[TransactionInternalTransfer] = None
-    __properties: ClassVar[List[str]] = ["id", "created_at", "kind", "asset0", "quantity0", "quantity1", "asset1", "user_id", "admin_user_id", "order_side", "internal_transfer"]
+    from_account_id: UUID
+    to_account_id: UUID
+    asset_id: UUID
+    quantity: StrictStr
+    __properties: ClassVar[List[str]] = ["from_account_id", "to_account_id", "asset_id", "quantity"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -62,7 +51,7 @@ class Transaction(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of Transaction from a JSON string"""
+        """Create an instance of TransactionInternalTransfer from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -83,14 +72,11 @@ class Transaction(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of internal_transfer
-        if self.internal_transfer:
-            _dict['internal_transfer'] = self.internal_transfer.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of Transaction from a dict"""
+        """Create an instance of TransactionInternalTransfer from a dict"""
         if obj is None:
             return None
 
@@ -98,17 +84,10 @@ class Transaction(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "id": obj.get("id"),
-            "created_at": obj.get("created_at"),
-            "kind": obj.get("kind"),
-            "asset0": obj.get("asset0"),
-            "quantity0": obj.get("quantity0"),
-            "quantity1": obj.get("quantity1"),
-            "asset1": obj.get("asset1"),
-            "user_id": obj.get("user_id"),
-            "admin_user_id": obj.get("admin_user_id"),
-            "order_side": obj.get("order_side"),
-            "internal_transfer": TransactionInternalTransfer.from_dict(obj["internal_transfer"]) if obj.get("internal_transfer") is not None else None
+            "from_account_id": obj.get("from_account_id"),
+            "to_account_id": obj.get("to_account_id"),
+            "asset_id": obj.get("asset_id"),
+            "quantity": obj.get("quantity")
         })
         return _obj
 

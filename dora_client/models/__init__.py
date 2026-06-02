@@ -178,6 +178,7 @@ from dora_client.models.trade import Trade
 from dora_client.models.trade_request_error import TradeRequestError
 from dora_client.models.trade_response_envelope import TradeResponseEnvelope
 from dora_client.models.transaction import Transaction
+from dora_client.models.transaction_internal_transfer import TransactionInternalTransfer
 from dora_client.models.transaction_kind import TransactionKind
 from dora_client.models.transaction_request_error import TransactionRequestError
 from dora_client.models.transaction_response_envelope import TransactionResponseEnvelope

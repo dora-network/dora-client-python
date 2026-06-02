@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **user_id** | **str** |  | 
 **admin_user_id** | **str** |  | 
 **order_side** | [**Side**](Side.md) |  | 
+**internal_transfer** | [**TransactionInternalTransfer**](TransactionInternalTransfer.md) |  | [optional] 
 
 ## Example
 
