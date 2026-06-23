@@ -23,6 +23,7 @@ from dora_client.models.update_field_boolean import UpdateFieldBoolean
 from dora_client.models.update_field_string import UpdateFieldString
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class UpdateUserConfigRequest(BaseModel):
     """
@@ -36,10 +37,12 @@ class UpdateUserConfigRequest(BaseModel):
     allow_liquidations_notifications: Optional[UpdateFieldBoolean] = Field(default=None, description="Optional: Whether to allow liquidations notifications.")
     allow_deposit_withdrawal_notifications: Optional[UpdateFieldBoolean] = Field(default=None, description="Optional: Whether to allow deposit/withdrawal notifications.")
     allow_orders_notifications: Optional[UpdateFieldBoolean] = Field(default=None, description="Optional: Whether to allow orders notifications.")
-    __properties: ClassVar[List[str]] = ["photo_url", "timezone", "show_tutorial_cards", "notifications_enabled", "allow_email_notifications", "allow_liquidations_notifications", "allow_deposit_withdrawal_notifications", "allow_orders_notifications"]
+    allow_copy_trading: Optional[UpdateFieldBoolean] = Field(default=None, description="Optional: Whether to allow copy trading.")
+    __properties: ClassVar[List[str]] = ["photo_url", "timezone", "show_tutorial_cards", "notifications_enabled", "allow_email_notifications", "allow_liquidations_notifications", "allow_deposit_withdrawal_notifications", "allow_orders_notifications", "allow_copy_trading"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -51,8 +54,7 @@ class UpdateUserConfigRequest(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
@@ -101,6 +103,9 @@ class UpdateUserConfigRequest(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of allow_orders_notifications
         if self.allow_orders_notifications:
             _dict['allow_orders_notifications'] = self.allow_orders_notifications.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of allow_copy_trading
+        if self.allow_copy_trading:
+            _dict['allow_copy_trading'] = self.allow_copy_trading.to_dict()
         return _dict
 
     @classmethod
@@ -120,7 +125,8 @@ class UpdateUserConfigRequest(BaseModel):
             "allow_email_notifications": UpdateFieldBoolean.from_dict(obj["allow_email_notifications"]) if obj.get("allow_email_notifications") is not None else None,
             "allow_liquidations_notifications": UpdateFieldBoolean.from_dict(obj["allow_liquidations_notifications"]) if obj.get("allow_liquidations_notifications") is not None else None,
             "allow_deposit_withdrawal_notifications": UpdateFieldBoolean.from_dict(obj["allow_deposit_withdrawal_notifications"]) if obj.get("allow_deposit_withdrawal_notifications") is not None else None,
-            "allow_orders_notifications": UpdateFieldBoolean.from_dict(obj["allow_orders_notifications"]) if obj.get("allow_orders_notifications") is not None else None
+            "allow_orders_notifications": UpdateFieldBoolean.from_dict(obj["allow_orders_notifications"]) if obj.get("allow_orders_notifications") is not None else None,
+            "allow_copy_trading": UpdateFieldBoolean.from_dict(obj["allow_copy_trading"]) if obj.get("allow_copy_trading") is not None else None
         })
         return _obj
 

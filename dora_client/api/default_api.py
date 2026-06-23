@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     DORA
 
@@ -10,6 +8,7 @@
 
     Do not edit the class manually.
 """  # noqa: E501
+
 
 import warnings
 from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
@@ -173,7 +172,7 @@ class DefaultApi:
         Approve a pending withdrawal request, allowing the transfer of assets to the outside world to proceed. Note that this does not interact with any external systems; it simply updates the status of the withdrawal request in the ledger. Actual transfer of assets must be handled separately.
 
         :param withdrawal_id: (required)
-        :type withdrawal_id: str
+        :type withdrawal_id: UUID
         :param withdrawal_request_reason:
         :type withdrawal_request_reason: WithdrawalRequestReason
         :param _request_timeout: timeout setting for this request. If one
@@ -248,7 +247,7 @@ class DefaultApi:
         Approve a pending withdrawal request, allowing the transfer of assets to the outside world to proceed. Note that this does not interact with any external systems; it simply updates the status of the withdrawal request in the ledger. Actual transfer of assets must be handled separately.
 
         :param withdrawal_id: (required)
-        :type withdrawal_id: str
+        :type withdrawal_id: UUID
         :param withdrawal_request_reason:
         :type withdrawal_request_reason: WithdrawalRequestReason
         :param _request_timeout: timeout setting for this request. If one
@@ -323,7 +322,7 @@ class DefaultApi:
         Approve a pending withdrawal request, allowing the transfer of assets to the outside world to proceed. Note that this does not interact with any external systems; it simply updates the status of the withdrawal request in the ledger. Actual transfer of assets must be handled separately.
 
         :param withdrawal_id: (required)
-        :type withdrawal_id: str
+        :type withdrawal_id: UUID
         :param withdrawal_request_reason:
         :type withdrawal_request_reason: WithdrawalRequestReason
         :param _request_timeout: timeout setting for this request. If one
@@ -478,9 +477,9 @@ class DefaultApi:
         :param order_book_id:
         :type order_book_id: str
         :param user_id:
-        :type user_id: str
+        :type user_id: UUID
         :param account_id:
-        :type account_id: str
+        :type account_id: UUID
         :param order_kind:
         :type order_kind: OrderKind
         :param _request_timeout: timeout setting for this request. If one
@@ -558,9 +557,9 @@ class DefaultApi:
         :param order_book_id:
         :type order_book_id: str
         :param user_id:
-        :type user_id: str
+        :type user_id: UUID
         :param account_id:
-        :type account_id: str
+        :type account_id: UUID
         :param order_kind:
         :type order_kind: OrderKind
         :param _request_timeout: timeout setting for this request. If one
@@ -638,9 +637,9 @@ class DefaultApi:
         :param order_book_id:
         :type order_book_id: str
         :param user_id:
-        :type user_id: str
+        :type user_id: UUID
         :param account_id:
-        :type account_id: str
+        :type account_id: UUID
         :param order_kind:
         :type order_kind: OrderKind
         :param _request_timeout: timeout setting for this request. If one
@@ -793,7 +792,7 @@ class DefaultApi:
         Cancel a pending withdrawal request, providing an optional reason for the cancellation.
 
         :param withdrawal_id: (required)
-        :type withdrawal_id: str
+        :type withdrawal_id: UUID
         :param withdrawal_request_reason:
         :type withdrawal_request_reason: WithdrawalRequestReason
         :param _request_timeout: timeout setting for this request. If one
@@ -868,7 +867,7 @@ class DefaultApi:
         Cancel a pending withdrawal request, providing an optional reason for the cancellation.
 
         :param withdrawal_id: (required)
-        :type withdrawal_id: str
+        :type withdrawal_id: UUID
         :param withdrawal_request_reason:
         :type withdrawal_request_reason: WithdrawalRequestReason
         :param _request_timeout: timeout setting for this request. If one
@@ -943,7 +942,7 @@ class DefaultApi:
         Cancel a pending withdrawal request, providing an optional reason for the cancellation.
 
         :param withdrawal_id: (required)
-        :type withdrawal_id: str
+        :type withdrawal_id: UUID
         :param withdrawal_request_reason:
         :type withdrawal_request_reason: WithdrawalRequestReason
         :param _request_timeout: timeout setting for this request. If one
@@ -1093,7 +1092,7 @@ class DefaultApi:
 
 
         :param order_id: (required)
-        :type order_id: str
+        :type order_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1163,7 +1162,7 @@ class DefaultApi:
 
 
         :param order_id: (required)
-        :type order_id: str
+        :type order_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1233,7 +1232,7 @@ class DefaultApi:
 
 
         :param order_id: (required)
-        :type order_id: str
+        :type order_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3908,7 +3907,7 @@ class DefaultApi:
 
 
         :param user_id: (required)
-        :type user_id: str
+        :type user_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3977,7 +3976,7 @@ class DefaultApi:
 
 
         :param user_id: (required)
-        :type user_id: str
+        :type user_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4046,7 +4045,7 @@ class DefaultApi:
 
 
         :param user_id: (required)
-        :type user_id: str
+        :type user_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -5199,7 +5198,7 @@ class DefaultApi:
 
 
         :param asset_id: (required)
-        :type asset_id: str
+        :type asset_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -5267,7 +5266,7 @@ class DefaultApi:
 
 
         :param asset_id: (required)
-        :type asset_id: str
+        :type asset_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -5335,7 +5334,7 @@ class DefaultApi:
 
 
         :param asset_id: (required)
-        :type asset_id: str
+        :type asset_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -5462,7 +5461,7 @@ class DefaultApi:
 
 
         :param asset_id: (required)
-        :type asset_id: str
+        :type asset_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -5531,7 +5530,7 @@ class DefaultApi:
 
 
         :param asset_id: (required)
-        :type asset_id: str
+        :type asset_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -5600,7 +5599,7 @@ class DefaultApi:
 
 
         :param asset_id: (required)
-        :type asset_id: str
+        :type asset_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -5733,7 +5732,7 @@ class DefaultApi:
 
 
         :param asset_id: (required)
-        :type asset_id: str
+        :type asset_id: UUID
         :param start: (required)
         :type start: datetime
         :param end: (required)
@@ -5814,7 +5813,7 @@ class DefaultApi:
 
 
         :param asset_id: (required)
-        :type asset_id: str
+        :type asset_id: UUID
         :param start: (required)
         :type start: datetime
         :param end: (required)
@@ -5895,7 +5894,7 @@ class DefaultApi:
 
 
         :param asset_id: (required)
-        :type asset_id: str
+        :type asset_id: UUID
         :param start: (required)
         :type start: datetime
         :param end: (required)
@@ -6065,7 +6064,7 @@ class DefaultApi:
 
 
         :param asset_id: (required)
-        :type asset_id: str
+        :type asset_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -6133,7 +6132,7 @@ class DefaultApi:
 
 
         :param asset_id: (required)
-        :type asset_id: str
+        :type asset_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -6201,7 +6200,7 @@ class DefaultApi:
 
 
         :param asset_id: (required)
-        :type asset_id: str
+        :type asset_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -6966,7 +6965,7 @@ class DefaultApi:
 
 
         :param asset_id: (required)
-        :type asset_id: str
+        :type asset_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -7034,7 +7033,7 @@ class DefaultApi:
 
 
         :param asset_id: (required)
-        :type asset_id: str
+        :type asset_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -7102,7 +7101,7 @@ class DefaultApi:
 
 
         :param asset_id: (required)
-        :type asset_id: str
+        :type asset_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -7229,7 +7228,7 @@ class DefaultApi:
 
 
         :param order_book_id: (required)
-        :type order_book_id: str
+        :type order_book_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -7298,7 +7297,7 @@ class DefaultApi:
 
 
         :param order_book_id: (required)
-        :type order_book_id: str
+        :type order_book_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -7367,7 +7366,7 @@ class DefaultApi:
 
 
         :param order_book_id: (required)
-        :type order_book_id: str
+        :type order_book_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -7495,7 +7494,7 @@ class DefaultApi:
 
 
         :param order_book_id: (required)
-        :type order_book_id: str
+        :type order_book_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -7564,7 +7563,7 @@ class DefaultApi:
 
 
         :param order_book_id: (required)
-        :type order_book_id: str
+        :type order_book_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -7633,7 +7632,7 @@ class DefaultApi:
 
 
         :param order_book_id: (required)
-        :type order_book_id: str
+        :type order_book_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -7761,7 +7760,7 @@ class DefaultApi:
 
 
         :param order_book_id: (required)
-        :type order_book_id: str
+        :type order_book_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -7831,7 +7830,7 @@ class DefaultApi:
 
 
         :param order_book_id: (required)
-        :type order_book_id: str
+        :type order_book_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -7901,7 +7900,7 @@ class DefaultApi:
 
 
         :param order_book_id: (required)
-        :type order_book_id: str
+        :type order_book_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -9039,7 +9038,7 @@ class DefaultApi:
 
 
         :param asset_id: (required)
-        :type asset_id: str
+        :type asset_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -9108,7 +9107,7 @@ class DefaultApi:
 
 
         :param asset_id: (required)
-        :type asset_id: str
+        :type asset_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -9177,7 +9176,7 @@ class DefaultApi:
 
 
         :param asset_id: (required)
-        :type asset_id: str
+        :type asset_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -10084,7 +10083,7 @@ class DefaultApi:
 
 
         :param user_id: (required)
-        :type user_id: str
+        :type user_id: UUID
         :param status:
         :type status: str
         :param _request_timeout: timeout setting for this request. If one
@@ -10157,7 +10156,7 @@ class DefaultApi:
 
 
         :param user_id: (required)
-        :type user_id: str
+        :type user_id: UUID
         :param status:
         :type status: str
         :param _request_timeout: timeout setting for this request. If one
@@ -10230,7 +10229,7 @@ class DefaultApi:
 
 
         :param user_id: (required)
-        :type user_id: str
+        :type user_id: UUID
         :param status:
         :type status: str
         :param _request_timeout: timeout setting for this request. If one
@@ -10368,7 +10367,7 @@ class DefaultApi:
 
 
         :param order_id: (required)
-        :type order_id: str
+        :type order_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -10438,7 +10437,7 @@ class DefaultApi:
 
 
         :param order_id: (required)
-        :type order_id: str
+        :type order_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -10508,7 +10507,7 @@ class DefaultApi:
 
 
         :param order_id: (required)
-        :type order_id: str
+        :type order_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -10639,7 +10638,7 @@ class DefaultApi:
 
 
         :param order_book_id: (required)
-        :type order_book_id: str
+        :type order_book_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -10707,7 +10706,7 @@ class DefaultApi:
 
 
         :param order_book_id: (required)
-        :type order_book_id: str
+        :type order_book_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -10775,7 +10774,7 @@ class DefaultApi:
 
 
         :param order_book_id: (required)
-        :type order_book_id: str
+        :type order_book_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -10904,7 +10903,7 @@ class DefaultApi:
 
 
         :param order_book_id: (required)
-        :type order_book_id: str
+        :type order_book_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -10973,7 +10972,7 @@ class DefaultApi:
 
 
         :param order_book_id: (required)
-        :type order_book_id: str
+        :type order_book_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -11042,7 +11041,7 @@ class DefaultApi:
 
 
         :param order_book_id: (required)
-        :type order_book_id: str
+        :type order_book_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -11170,7 +11169,7 @@ class DefaultApi:
 
 
         :param order_book_id: (required)
-        :type order_book_id: str
+        :type order_book_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -11240,7 +11239,7 @@ class DefaultApi:
 
 
         :param order_book_id: (required)
-        :type order_book_id: str
+        :type order_book_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -11310,7 +11309,7 @@ class DefaultApi:
 
 
         :param order_book_id: (required)
-        :type order_book_id: str
+        :type order_book_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -11439,7 +11438,7 @@ class DefaultApi:
 
 
         :param order_book_id: (required)
-        :type order_book_id: str
+        :type order_book_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -11508,7 +11507,7 @@ class DefaultApi:
 
 
         :param order_book_id: (required)
-        :type order_book_id: str
+        :type order_book_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -11577,7 +11576,7 @@ class DefaultApi:
 
 
         :param order_book_id: (required)
-        :type order_book_id: str
+        :type order_book_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -11705,7 +11704,7 @@ class DefaultApi:
 
 
         :param order_book_id: (required)
-        :type order_book_id: str
+        :type order_book_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -11775,7 +11774,7 @@ class DefaultApi:
 
 
         :param order_book_id: (required)
-        :type order_book_id: str
+        :type order_book_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -11845,7 +11844,7 @@ class DefaultApi:
 
 
         :param order_book_id: (required)
-        :type order_book_id: str
+        :type order_book_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -11976,7 +11975,7 @@ class DefaultApi:
 
 
         :param order_book_id: (required)
-        :type order_book_id: str
+        :type order_book_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -12045,7 +12044,7 @@ class DefaultApi:
 
 
         :param order_book_id: (required)
-        :type order_book_id: str
+        :type order_book_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -12114,7 +12113,7 @@ class DefaultApi:
 
 
         :param order_book_id: (required)
-        :type order_book_id: str
+        :type order_book_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -12244,7 +12243,7 @@ class DefaultApi:
 
 
         :param order_book_id: (required)
-        :type order_book_id: str
+        :type order_book_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -12313,7 +12312,7 @@ class DefaultApi:
 
 
         :param order_book_id: (required)
-        :type order_book_id: str
+        :type order_book_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -12382,7 +12381,7 @@ class DefaultApi:
 
 
         :param order_book_id: (required)
-        :type order_book_id: str
+        :type order_book_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -12763,7 +12762,7 @@ class DefaultApi:
 
 
         :param pool_id: (required)
-        :type pool_id: str
+        :type pool_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -12832,7 +12831,7 @@ class DefaultApi:
 
 
         :param pool_id: (required)
-        :type pool_id: str
+        :type pool_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -12901,7 +12900,7 @@ class DefaultApi:
 
 
         :param pool_id: (required)
-        :type pool_id: str
+        :type pool_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -13038,11 +13037,11 @@ class DefaultApi:
 
 
         :param user_id:
-        :type user_id: str
+        :type user_id: UUID
         :param tenant_id:
-        :type tenant_id: str
+        :type tenant_id: UUID
         :param position_id:
-        :type position_id: str
+        :type position_id: UUID
         :param created_after:
         :type created_after: datetime
         :param created_before:
@@ -13135,11 +13134,11 @@ class DefaultApi:
 
 
         :param user_id:
-        :type user_id: str
+        :type user_id: UUID
         :param tenant_id:
-        :type tenant_id: str
+        :type tenant_id: UUID
         :param position_id:
-        :type position_id: str
+        :type position_id: UUID
         :param created_after:
         :type created_after: datetime
         :param created_before:
@@ -13232,11 +13231,11 @@ class DefaultApi:
 
 
         :param user_id:
-        :type user_id: str
+        :type user_id: UUID
         :param tenant_id:
-        :type tenant_id: str
+        :type tenant_id: UUID
         :param position_id:
-        :type position_id: str
+        :type position_id: UUID
         :param created_after:
         :type created_after: datetime
         :param created_before:
@@ -13456,7 +13455,7 @@ class DefaultApi:
 
 
         :param trade_id: (required)
-        :type trade_id: str
+        :type trade_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -13525,7 +13524,7 @@ class DefaultApi:
 
 
         :param trade_id: (required)
-        :type trade_id: str
+        :type trade_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -13594,7 +13593,7 @@ class DefaultApi:
 
 
         :param trade_id: (required)
-        :type trade_id: str
+        :type trade_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -13729,7 +13728,7 @@ class DefaultApi:
         :param order_book_ids:
         :type order_book_ids: List[str]
         :param user_ids:
-        :type user_ids: List[str]
+        :type user_ids: List[UUID]
         :param start:
         :type start: datetime
         :param end:
@@ -13818,7 +13817,7 @@ class DefaultApi:
         :param order_book_ids:
         :type order_book_ids: List[str]
         :param user_ids:
-        :type user_ids: List[str]
+        :type user_ids: List[UUID]
         :param start:
         :type start: datetime
         :param end:
@@ -13907,7 +13906,7 @@ class DefaultApi:
         :param order_book_ids:
         :type order_book_ids: List[str]
         :param user_ids:
-        :type user_ids: List[str]
+        :type user_ids: List[UUID]
         :param start:
         :type start: datetime
         :param end:
@@ -14097,7 +14096,7 @@ class DefaultApi:
 
 
         :param transaction_id: (required)
-        :type transaction_id: str
+        :type transaction_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -14166,7 +14165,7 @@ class DefaultApi:
 
 
         :param transaction_id: (required)
-        :type transaction_id: str
+        :type transaction_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -14235,7 +14234,7 @@ class DefaultApi:
 
 
         :param transaction_id: (required)
-        :type transaction_id: str
+        :type transaction_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -14372,7 +14371,7 @@ class DefaultApi:
         :param pools:
         :type pools: List[str]
         :param user_ids:
-        :type user_ids: List[str]
+        :type user_ids: List[UUID]
         :param tx_kinds:
         :type tx_kinds: List[TransactionKind]
         :param start:
@@ -14380,7 +14379,7 @@ class DefaultApi:
         :param end:
         :type end: datetime
         :param tenant_id:
-        :type tenant_id: str
+        :type tenant_id: UUID
         :param page:
         :type page: int
         :param limit:
@@ -14468,7 +14467,7 @@ class DefaultApi:
         :param pools:
         :type pools: List[str]
         :param user_ids:
-        :type user_ids: List[str]
+        :type user_ids: List[UUID]
         :param tx_kinds:
         :type tx_kinds: List[TransactionKind]
         :param start:
@@ -14476,7 +14475,7 @@ class DefaultApi:
         :param end:
         :type end: datetime
         :param tenant_id:
-        :type tenant_id: str
+        :type tenant_id: UUID
         :param page:
         :type page: int
         :param limit:
@@ -14564,7 +14563,7 @@ class DefaultApi:
         :param pools:
         :type pools: List[str]
         :param user_ids:
-        :type user_ids: List[str]
+        :type user_ids: List[UUID]
         :param tx_kinds:
         :type tx_kinds: List[TransactionKind]
         :param start:
@@ -14572,7 +14571,7 @@ class DefaultApi:
         :param end:
         :type end: datetime
         :param tenant_id:
-        :type tenant_id: str
+        :type tenant_id: UUID
         :param page:
         :type page: int
         :param limit:
@@ -14778,9 +14777,9 @@ class DefaultApi:
         :param tenant_id: Tenant ID to filter settlements
         :type tenant_id: str
         :param user_id: User ID to filter settlements
-        :type user_id: str
+        :type user_id: UUID
         :param position_id: Position ID to filter settlements
-        :type position_id: str
+        :type position_id: UUID
         :param tx_kind: Transaction kind to filter settlements
         :type tx_kind: str
         :param created_after: Filter settlements created after this time
@@ -14879,9 +14878,9 @@ class DefaultApi:
         :param tenant_id: Tenant ID to filter settlements
         :type tenant_id: str
         :param user_id: User ID to filter settlements
-        :type user_id: str
+        :type user_id: UUID
         :param position_id: Position ID to filter settlements
-        :type position_id: str
+        :type position_id: UUID
         :param tx_kind: Transaction kind to filter settlements
         :type tx_kind: str
         :param created_after: Filter settlements created after this time
@@ -14980,9 +14979,9 @@ class DefaultApi:
         :param tenant_id: Tenant ID to filter settlements
         :type tenant_id: str
         :param user_id: User ID to filter settlements
-        :type user_id: str
+        :type user_id: UUID
         :param position_id: Position ID to filter settlements
-        :type position_id: str
+        :type position_id: UUID
         :param tx_kind: Transaction kind to filter settlements
         :type tx_kind: str
         :param created_after: Filter settlements created after this time
@@ -15244,7 +15243,6 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "List[StreamTransactionsEntry]",
             '400': "ResponseEnvelope",
-            '401': "ResponseEnvelope",
             '500': "ResponseEnvelope",
         }
         response_data = await self.api_client.call_api(
@@ -15313,7 +15311,6 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "List[StreamTransactionsEntry]",
             '400': "ResponseEnvelope",
-            '401': "ResponseEnvelope",
             '500': "ResponseEnvelope",
         }
         response_data = await self.api_client.call_api(
@@ -15382,7 +15379,6 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "List[StreamTransactionsEntry]",
             '400': "ResponseEnvelope",
-            '401': "ResponseEnvelope",
             '500': "ResponseEnvelope",
         }
         response_data = await self.api_client.call_api(
@@ -15446,7 +15442,6 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
-            'apiKeyAuthQuery'
         ]
 
         return self.api_client.param_serialize(
@@ -15488,7 +15483,7 @@ class DefaultApi:
 
 
         :param user_id: (required)
-        :type user_id: str
+        :type user_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -15557,7 +15552,7 @@ class DefaultApi:
 
 
         :param user_id: (required)
-        :type user_id: str
+        :type user_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -15626,7 +15621,7 @@ class DefaultApi:
 
 
         :param user_id: (required)
-        :type user_id: str
+        :type user_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -15756,7 +15751,7 @@ class DefaultApi:
 
 
         :param user_id: (required)
-        :type user_id: str
+        :type user_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -15826,7 +15821,7 @@ class DefaultApi:
 
 
         :param user_id: (required)
-        :type user_id: str
+        :type user_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -15896,7 +15891,7 @@ class DefaultApi:
 
 
         :param user_id: (required)
-        :type user_id: str
+        :type user_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -16026,7 +16021,7 @@ class DefaultApi:
 
 
         :param user_id: (required)
-        :type user_id: str
+        :type user_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -16096,7 +16091,7 @@ class DefaultApi:
 
 
         :param user_id: (required)
-        :type user_id: str
+        :type user_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -16166,7 +16161,7 @@ class DefaultApi:
 
 
         :param user_id: (required)
-        :type user_id: str
+        :type user_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -16296,7 +16291,7 @@ class DefaultApi:
 
 
         :param user_id: (required)
-        :type user_id: str
+        :type user_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -16366,7 +16361,7 @@ class DefaultApi:
 
 
         :param user_id: (required)
-        :type user_id: str
+        :type user_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -16436,7 +16431,7 @@ class DefaultApi:
 
 
         :param user_id: (required)
-        :type user_id: str
+        :type user_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -16568,9 +16563,9 @@ class DefaultApi:
 
 
         :param user_id: (required)
-        :type user_id: str
+        :type user_id: UUID
         :param order_book_id: (required)
-        :type order_book_id: str
+        :type order_book_id: UUID
         :param since:
         :type since: datetime
         :param _request_timeout: timeout setting for this request. If one
@@ -16646,9 +16641,9 @@ class DefaultApi:
 
 
         :param user_id: (required)
-        :type user_id: str
+        :type user_id: UUID
         :param order_book_id: (required)
-        :type order_book_id: str
+        :type order_book_id: UUID
         :param since:
         :type since: datetime
         :param _request_timeout: timeout setting for this request. If one
@@ -16724,9 +16719,9 @@ class DefaultApi:
 
 
         :param user_id: (required)
-        :type user_id: str
+        :type user_id: UUID
         :param order_book_id: (required)
-        :type order_book_id: str
+        :type order_book_id: UUID
         :param since:
         :type since: datetime
         :param _request_timeout: timeout setting for this request. If one
@@ -16878,7 +16873,7 @@ class DefaultApi:
 
 
         :param user_id: (required)
-        :type user_id: str
+        :type user_id: UUID
         :param since:
         :type since: datetime
         :param _request_timeout: timeout setting for this request. If one
@@ -16952,7 +16947,7 @@ class DefaultApi:
 
 
         :param user_id: (required)
-        :type user_id: str
+        :type user_id: UUID
         :param since:
         :type since: datetime
         :param _request_timeout: timeout setting for this request. If one
@@ -17026,7 +17021,7 @@ class DefaultApi:
 
 
         :param user_id: (required)
-        :type user_id: str
+        :type user_id: UUID
         :param since:
         :type since: datetime
         :param _request_timeout: timeout setting for this request. If one
@@ -17427,7 +17422,7 @@ class DefaultApi:
 
 
         :param user_id: (required)
-        :type user_id: str
+        :type user_id: UUID
         :param since:
         :type since: datetime
         :param _request_timeout: timeout setting for this request. If one
@@ -17501,7 +17496,7 @@ class DefaultApi:
 
 
         :param user_id: (required)
-        :type user_id: str
+        :type user_id: UUID
         :param since:
         :type since: datetime
         :param _request_timeout: timeout setting for this request. If one
@@ -17575,7 +17570,7 @@ class DefaultApi:
 
 
         :param user_id: (required)
-        :type user_id: str
+        :type user_id: UUID
         :param since:
         :type since: datetime
         :param _request_timeout: timeout setting for this request. If one
@@ -17728,7 +17723,7 @@ class DefaultApi:
 
 
         :param id:
-        :type id: str
+        :type id: UUID
         :param limit:
         :type limit: int
         :param offset:
@@ -17819,7 +17814,7 @@ class DefaultApi:
 
 
         :param id:
-        :type id: str
+        :type id: UUID
         :param limit:
         :type limit: int
         :param offset:
@@ -17910,7 +17905,7 @@ class DefaultApi:
 
 
         :param id:
-        :type id: str
+        :type id: UUID
         :param limit:
         :type limit: int
         :param offset:
@@ -18340,7 +18335,7 @@ class DefaultApi:
         Deposit assets into this user's account from the outside world. Note that this does not interact with any external systems; it simply adds the amount to the user's available balance in the ledger. Actual transfer of assets must be handled separately.
 
         :param user_id: (required)
-        :type user_id: str
+        :type user_id: UUID
         :param fund_user_request: (required)
         :type fund_user_request: FundUserRequest
         :param _request_timeout: timeout setting for this request. If one
@@ -18413,7 +18408,7 @@ class DefaultApi:
         Deposit assets into this user's account from the outside world. Note that this does not interact with any external systems; it simply adds the amount to the user's available balance in the ledger. Actual transfer of assets must be handled separately.
 
         :param user_id: (required)
-        :type user_id: str
+        :type user_id: UUID
         :param fund_user_request: (required)
         :type fund_user_request: FundUserRequest
         :param _request_timeout: timeout setting for this request. If one
@@ -18486,7 +18481,7 @@ class DefaultApi:
         Deposit assets into this user's account from the outside world. Note that this does not interact with any external systems; it simply adds the amount to the user's available balance in the ledger. Actual transfer of assets must be handled separately.
 
         :param user_id: (required)
-        :type user_id: str
+        :type user_id: UUID
         :param fund_user_request: (required)
         :type fund_user_request: FundUserRequest
         :param _request_timeout: timeout setting for this request. If one
@@ -18637,7 +18632,7 @@ class DefaultApi:
         Withdraw assets from this user's account to the outside world. Note that this does not interact with any external systems; it simply deducts the amount from the user's available balance in the ledger. Actual transfer of assets must be handled separately.
 
         :param user_id: (required)
-        :type user_id: str
+        :type user_id: UUID
         :param defund_user_request: (required)
         :type defund_user_request: DefundUserRequest
         :param status:
@@ -18714,7 +18709,7 @@ class DefaultApi:
         Withdraw assets from this user's account to the outside world. Note that this does not interact with any external systems; it simply deducts the amount from the user's available balance in the ledger. Actual transfer of assets must be handled separately.
 
         :param user_id: (required)
-        :type user_id: str
+        :type user_id: UUID
         :param defund_user_request: (required)
         :type defund_user_request: DefundUserRequest
         :param status:
@@ -18791,7 +18786,7 @@ class DefaultApi:
         Withdraw assets from this user's account to the outside world. Note that this does not interact with any external systems; it simply deducts the amount from the user's available balance in the ledger. Actual transfer of assets must be handled separately.
 
         :param user_id: (required)
-        :type user_id: str
+        :type user_id: UUID
         :param defund_user_request: (required)
         :type defund_user_request: DefundUserRequest
         :param status:
@@ -18949,7 +18944,7 @@ class DefaultApi:
         Withdraw assets from this user's account to the outside world. Note that this does not interact with any external systems; it simply deducts the amount from the user's available balance in the ledger. Actual transfer of assets must be handled separately.
 
         :param user_id: (required)
-        :type user_id: str
+        :type user_id: UUID
         :param defund_user_request: (required)
         :type defund_user_request: DefundUserRequest
         :param _request_timeout: timeout setting for this request. If one
@@ -19022,7 +19017,7 @@ class DefaultApi:
         Withdraw assets from this user's account to the outside world. Note that this does not interact with any external systems; it simply deducts the amount from the user's available balance in the ledger. Actual transfer of assets must be handled separately.
 
         :param user_id: (required)
-        :type user_id: str
+        :type user_id: UUID
         :param defund_user_request: (required)
         :type defund_user_request: DefundUserRequest
         :param _request_timeout: timeout setting for this request. If one
@@ -19095,7 +19090,7 @@ class DefaultApi:
         Withdraw assets from this user's account to the outside world. Note that this does not interact with any external systems; it simply deducts the amount from the user's available balance in the ledger. Actual transfer of assets must be handled separately.
 
         :param user_id: (required)
-        :type user_id: str
+        :type user_id: UUID
         :param defund_user_request: (required)
         :type defund_user_request: DefundUserRequest
         :param _request_timeout: timeout setting for this request. If one
@@ -19245,7 +19240,7 @@ class DefaultApi:
         Withdraw assets from the logged in user's account to the outside world. Note that this does not interact with any external systems; it simply deducts the amount from the user's available balance in the ledger. Actual transfer of assets must be handled separately.
 
         :param user_id: (required)
-        :type user_id: str
+        :type user_id: UUID
         :param defund_user_request: (required)
         :type defund_user_request: DefundUserRequest
         :param _request_timeout: timeout setting for this request. If one
@@ -19318,7 +19313,7 @@ class DefaultApi:
         Withdraw assets from the logged in user's account to the outside world. Note that this does not interact with any external systems; it simply deducts the amount from the user's available balance in the ledger. Actual transfer of assets must be handled separately.
 
         :param user_id: (required)
-        :type user_id: str
+        :type user_id: UUID
         :param defund_user_request: (required)
         :type defund_user_request: DefundUserRequest
         :param _request_timeout: timeout setting for this request. If one
@@ -19391,7 +19386,7 @@ class DefaultApi:
         Withdraw assets from the logged in user's account to the outside world. Note that this does not interact with any external systems; it simply deducts the amount from the user's available balance in the ledger. Actual transfer of assets must be handled separately.
 
         :param user_id: (required)
-        :type user_id: str
+        :type user_id: UUID
         :param defund_user_request: (required)
         :type defund_user_request: DefundUserRequest
         :param _request_timeout: timeout setting for this request. If one
@@ -19540,9 +19535,9 @@ class DefaultApi:
 
 
         :param position_id:
-        :type position_id: str
+        :type position_id: UUID
         :param asset_id:
-        :type asset_id: str
+        :type asset_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -19613,9 +19608,9 @@ class DefaultApi:
 
 
         :param position_id:
-        :type position_id: str
+        :type position_id: UUID
         :param asset_id:
-        :type asset_id: str
+        :type asset_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -19686,9 +19681,9 @@ class DefaultApi:
 
 
         :param position_id:
-        :type position_id: str
+        :type position_id: UUID
         :param asset_id:
-        :type asset_id: str
+        :type asset_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -19824,11 +19819,11 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> HistoricalLeverageInterestRatesResponseEnvelope:
-        """Get historical leverage interest rates for a specific asset
+        """Get historical leverage borrowing and lending yields for a specific asset
 
 
         :param asset_id: (required)
-        :type asset_id: str
+        :type asset_id: UUID
         :param start:
         :type start: datetime
         :param end:
@@ -19901,11 +19896,11 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[HistoricalLeverageInterestRatesResponseEnvelope]:
-        """Get historical leverage interest rates for a specific asset
+        """Get historical leverage borrowing and lending yields for a specific asset
 
 
         :param asset_id: (required)
-        :type asset_id: str
+        :type asset_id: UUID
         :param start:
         :type start: datetime
         :param end:
@@ -19978,11 +19973,11 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Get historical leverage interest rates for a specific asset
+        """Get historical leverage borrowing and lending yields for a specific asset
 
 
         :param asset_id: (required)
-        :type asset_id: str
+        :type asset_id: UUID
         :param start:
         :type start: datetime
         :param end:
@@ -20144,11 +20139,11 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> LeverageInterestRateResponseEnvelope:
-        """Get leverage interest rate for a specific asset
+        """Get leverage borrowing and lending yields for a specific asset
 
 
         :param asset_id: (required)
-        :type asset_id: str
+        :type asset_id: UUID
         :param start:
         :type start: datetime
         :param end:
@@ -20222,11 +20217,11 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[LeverageInterestRateResponseEnvelope]:
-        """Get leverage interest rate for a specific asset
+        """Get leverage borrowing and lending yields for a specific asset
 
 
         :param asset_id: (required)
-        :type asset_id: str
+        :type asset_id: UUID
         :param start:
         :type start: datetime
         :param end:
@@ -20300,11 +20295,11 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Get leverage interest rate for a specific asset
+        """Get leverage borrowing and lending yields for a specific asset
 
 
         :param asset_id: (required)
-        :type asset_id: str
+        :type asset_id: UUID
         :param start:
         :type start: datetime
         :param end:
@@ -21615,7 +21610,7 @@ class DefaultApi:
 
 
         :param pool_id: (required)
-        :type pool_id: str
+        :type pool_id: UUID
         :param liquidity_request: (required)
         :type liquidity_request: LiquidityRequest
         :param _request_timeout: timeout setting for this request. If one
@@ -21690,7 +21685,7 @@ class DefaultApi:
 
 
         :param pool_id: (required)
-        :type pool_id: str
+        :type pool_id: UUID
         :param liquidity_request: (required)
         :type liquidity_request: LiquidityRequest
         :param _request_timeout: timeout setting for this request. If one
@@ -21765,7 +21760,7 @@ class DefaultApi:
 
 
         :param pool_id: (required)
-        :type pool_id: str
+        :type pool_id: UUID
         :param liquidity_request: (required)
         :type liquidity_request: LiquidityRequest
         :param _request_timeout: timeout setting for this request. If one
@@ -21917,7 +21912,7 @@ class DefaultApi:
 
 
         :param pool_id: (required)
-        :type pool_id: str
+        :type pool_id: UUID
         :param liquidity_request: (required)
         :type liquidity_request: LiquidityRequest
         :param _request_timeout: timeout setting for this request. If one
@@ -21992,7 +21987,7 @@ class DefaultApi:
 
 
         :param pool_id: (required)
-        :type pool_id: str
+        :type pool_id: UUID
         :param liquidity_request: (required)
         :type liquidity_request: LiquidityRequest
         :param _request_timeout: timeout setting for this request. If one
@@ -22067,7 +22062,7 @@ class DefaultApi:
 
 
         :param pool_id: (required)
-        :type pool_id: str
+        :type pool_id: UUID
         :param liquidity_request: (required)
         :type liquidity_request: LiquidityRequest
         :param _request_timeout: timeout setting for this request. If one
@@ -22913,9 +22908,9 @@ class DefaultApi:
         :param status:
         :type status: List[OrderBookStatus]
         :param base_asset_id:
-        :type base_asset_id: str
+        :type base_asset_id: UUID
         :param quote_asset_id:
-        :type quote_asset_id: str
+        :type quote_asset_id: UUID
         :param page:
         :type page: int
         :param limit:
@@ -22998,9 +22993,9 @@ class DefaultApi:
         :param status:
         :type status: List[OrderBookStatus]
         :param base_asset_id:
-        :type base_asset_id: str
+        :type base_asset_id: UUID
         :param quote_asset_id:
-        :type quote_asset_id: str
+        :type quote_asset_id: UUID
         :param page:
         :type page: int
         :param limit:
@@ -23083,9 +23078,9 @@ class DefaultApi:
         :param status:
         :type status: List[OrderBookStatus]
         :param base_asset_id:
-        :type base_asset_id: str
+        :type base_asset_id: UUID
         :param quote_asset_id:
-        :type quote_asset_id: str
+        :type quote_asset_id: UUID
         :param page:
         :type page: int
         :param limit:
@@ -23253,7 +23248,7 @@ class DefaultApi:
 
 
         :param order_book_id:
-        :type order_book_id: List[str]
+        :type order_book_id: List[UUID]
         :param kind:
         :type kind: List[OrderKind]
         :param status:
@@ -23351,7 +23346,7 @@ class DefaultApi:
 
 
         :param order_book_id:
-        :type order_book_id: List[str]
+        :type order_book_id: List[UUID]
         :param kind:
         :type kind: List[OrderKind]
         :param status:
@@ -23449,7 +23444,7 @@ class DefaultApi:
 
 
         :param order_book_id:
-        :type order_book_id: List[str]
+        :type order_book_id: List[UUID]
         :param kind:
         :type kind: List[OrderKind]
         :param status:
@@ -24195,7 +24190,7 @@ class DefaultApi:
         Reject a pending withdrawal request, providing a reason for the rejection. Note that this does not interact with any external systems; it simply updates the status of the withdrawal request in the ledger. Actual transfer of assets must be handled separately.
 
         :param withdrawal_id: (required)
-        :type withdrawal_id: str
+        :type withdrawal_id: UUID
         :param withdrawal_request_reason: (required)
         :type withdrawal_request_reason: WithdrawalRequestReason
         :param _request_timeout: timeout setting for this request. If one
@@ -24270,7 +24265,7 @@ class DefaultApi:
         Reject a pending withdrawal request, providing a reason for the rejection. Note that this does not interact with any external systems; it simply updates the status of the withdrawal request in the ledger. Actual transfer of assets must be handled separately.
 
         :param withdrawal_id: (required)
-        :type withdrawal_id: str
+        :type withdrawal_id: UUID
         :param withdrawal_request_reason: (required)
         :type withdrawal_request_reason: WithdrawalRequestReason
         :param _request_timeout: timeout setting for this request. If one
@@ -24345,7 +24340,7 @@ class DefaultApi:
         Reject a pending withdrawal request, providing a reason for the rejection. Note that this does not interact with any external systems; it simply updates the status of the withdrawal request in the ledger. Actual transfer of assets must be handled separately.
 
         :param withdrawal_id: (required)
-        :type withdrawal_id: str
+        :type withdrawal_id: UUID
         :param withdrawal_request_reason: (required)
         :type withdrawal_request_reason: WithdrawalRequestReason
         :param _request_timeout: timeout setting for this request. If one
@@ -25321,7 +25316,7 @@ class DefaultApi:
 
 
         :param settlement_id: (required)
-        :type settlement_id: str
+        :type settlement_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -25390,7 +25385,7 @@ class DefaultApi:
 
 
         :param settlement_id: (required)
-        :type settlement_id: str
+        :type settlement_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -25459,7 +25454,7 @@ class DefaultApi:
 
 
         :param settlement_id: (required)
-        :type settlement_id: str
+        :type settlement_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -25852,7 +25847,6 @@ class DefaultApi:
     @validate_call
     async def stream_asset_prices(
         self,
-        since: Optional[datetime] = None,
         asset_id: Optional[UUID] = None,
         _request_timeout: Union[
             None,
@@ -25871,10 +25865,8 @@ class DefaultApi:
 
         Opens a WebSocket stream for real-time asset price updates. First message contains all current prices, subsequent messages contain only changed prices. Data is sent as JSON objects keyed by asset ID.
 
-        :param since:
-        :type since: datetime
         :param asset_id:
-        :type asset_id: str
+        :type asset_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -25898,7 +25890,6 @@ class DefaultApi:
         """ # noqa: E501
 
         _param = self._stream_asset_prices_serialize(
-            since=since,
             asset_id=asset_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -25925,7 +25916,6 @@ class DefaultApi:
     @validate_call
     async def stream_asset_prices_with_http_info(
         self,
-        since: Optional[datetime] = None,
         asset_id: Optional[UUID] = None,
         _request_timeout: Union[
             None,
@@ -25944,10 +25934,8 @@ class DefaultApi:
 
         Opens a WebSocket stream for real-time asset price updates. First message contains all current prices, subsequent messages contain only changed prices. Data is sent as JSON objects keyed by asset ID.
 
-        :param since:
-        :type since: datetime
         :param asset_id:
-        :type asset_id: str
+        :type asset_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -25971,7 +25959,6 @@ class DefaultApi:
         """ # noqa: E501
 
         _param = self._stream_asset_prices_serialize(
-            since=since,
             asset_id=asset_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -25998,7 +25985,6 @@ class DefaultApi:
     @validate_call
     async def stream_asset_prices_without_preload_content(
         self,
-        since: Optional[datetime] = None,
         asset_id: Optional[UUID] = None,
         _request_timeout: Union[
             None,
@@ -26017,10 +26003,8 @@ class DefaultApi:
 
         Opens a WebSocket stream for real-time asset price updates. First message contains all current prices, subsequent messages contain only changed prices. Data is sent as JSON objects keyed by asset ID.
 
-        :param since:
-        :type since: datetime
         :param asset_id:
-        :type asset_id: str
+        :type asset_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -26044,7 +26028,6 @@ class DefaultApi:
         """ # noqa: E501
 
         _param = self._stream_asset_prices_serialize(
-            since=since,
             asset_id=asset_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -26066,7 +26049,6 @@ class DefaultApi:
 
     def _stream_asset_prices_serialize(
         self,
-        since,
         asset_id,
         _request_auth,
         _content_type,
@@ -26090,19 +26072,6 @@ class DefaultApi:
 
         # process the path parameters
         # process the query parameters
-        if since is not None:
-            if isinstance(since, datetime):
-                _query_params.append(
-                    (
-                        'since',
-                        since.strftime(
-                            self.api_client.configuration.datetime_format
-                        )
-                    )
-                )
-            else:
-                _query_params.append(('since', since))
-            
         if asset_id is not None:
             
             _query_params.append(('asset_id', asset_id))
@@ -26474,7 +26443,7 @@ class DefaultApi:
 
 
         :param order_book_id: (required)
-        :type order_book_id: str
+        :type order_book_id: UUID
         :param since:
         :type since: datetime
         :param _request_timeout: timeout setting for this request. If one
@@ -26547,7 +26516,7 @@ class DefaultApi:
 
 
         :param order_book_id: (required)
-        :type order_book_id: str
+        :type order_book_id: UUID
         :param since:
         :type since: datetime
         :param _request_timeout: timeout setting for this request. If one
@@ -26620,7 +26589,7 @@ class DefaultApi:
 
 
         :param order_book_id: (required)
-        :type order_book_id: str
+        :type order_book_id: UUID
         :param since:
         :type since: datetime
         :param _request_timeout: timeout setting for this request. If one
@@ -26766,7 +26735,7 @@ class DefaultApi:
 
 
         :param order_book_id: (required)
-        :type order_book_id: str
+        :type order_book_id: UUID
         :param since:
         :type since: datetime
         :param _request_timeout: timeout setting for this request. If one
@@ -26839,7 +26808,7 @@ class DefaultApi:
 
 
         :param order_book_id: (required)
-        :type order_book_id: str
+        :type order_book_id: UUID
         :param since:
         :type since: datetime
         :param _request_timeout: timeout setting for this request. If one
@@ -26912,7 +26881,7 @@ class DefaultApi:
 
 
         :param order_book_id: (required)
-        :type order_book_id: str
+        :type order_book_id: UUID
         :param since:
         :type since: datetime
         :param _request_timeout: timeout setting for this request. If one
@@ -27058,7 +27027,7 @@ class DefaultApi:
 
 
         :param order_book_id: (required)
-        :type order_book_id: str
+        :type order_book_id: UUID
         :param since:
         :type since: datetime
         :param _request_timeout: timeout setting for this request. If one
@@ -27130,7 +27099,7 @@ class DefaultApi:
 
 
         :param order_book_id: (required)
-        :type order_book_id: str
+        :type order_book_id: UUID
         :param since:
         :type since: datetime
         :param _request_timeout: timeout setting for this request. If one
@@ -27202,7 +27171,7 @@ class DefaultApi:
 
 
         :param order_book_id: (required)
-        :type order_book_id: str
+        :type order_book_id: UUID
         :param since:
         :type since: datetime
         :param _request_timeout: timeout setting for this request. If one
@@ -27915,7 +27884,7 @@ class DefaultApi:
 
 
         :param user_id: (required)
-        :type user_id: str
+        :type user_id: UUID
         :param update_user_config_request: (required)
         :type update_user_config_request: UpdateUserConfigRequest
         :param _request_timeout: timeout setting for this request. If one
@@ -27988,7 +27957,7 @@ class DefaultApi:
 
 
         :param user_id: (required)
-        :type user_id: str
+        :type user_id: UUID
         :param update_user_config_request: (required)
         :type update_user_config_request: UpdateUserConfigRequest
         :param _request_timeout: timeout setting for this request. If one
@@ -28061,7 +28030,7 @@ class DefaultApi:
 
 
         :param user_id: (required)
-        :type user_id: str
+        :type user_id: UUID
         :param update_user_config_request: (required)
         :type update_user_config_request: UpdateUserConfigRequest
         :param _request_timeout: timeout setting for this request. If one
@@ -28772,7 +28741,7 @@ class DefaultApi:
 
 
         :param user_id: (required)
-        :type user_id: str
+        :type user_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -28841,7 +28810,7 @@ class DefaultApi:
 
 
         :param user_id: (required)
-        :type user_id: str
+        :type user_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -28910,7 +28879,7 @@ class DefaultApi:
 
 
         :param user_id: (required)
-        :type user_id: str
+        :type user_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of

@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** |  | 
+**id** | **UUID** |  | 
 **collateral_weight** | **float** |  | 
 **created_at** | **datetime** |  | 
 **decimals** | **int** |  | 

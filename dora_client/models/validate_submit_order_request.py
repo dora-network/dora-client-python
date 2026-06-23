@@ -28,6 +28,7 @@ from dora_client.models.side import Side
 from dora_client.models.tenant_restrictions import TenantRestrictions
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class ValidateSubmitOrderRequest(BaseModel):
     """
@@ -53,7 +54,8 @@ class ValidateSubmitOrderRequest(BaseModel):
     __properties: ClassVar[List[str]] = ["quantity", "tick", "kind", "side", "price", "good_till_date", "inverse_leverage", "user_balance", "base_asset_id", "quote_asset_id", "client_order_id", "position_assets", "assets_config", "stop_loss_price", "take_profit_price", "restrictions", "initial_capital"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -65,8 +67,7 @@ class ValidateSubmitOrderRequest(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:

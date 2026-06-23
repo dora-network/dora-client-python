@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**account_id** | **str** | The ID of the account | 
+**account_id** | **UUID** | The ID of the account | 
 **account_name** | **str** | The name of the account | 
 **is_global** | **bool** | Whether the account is the global or an isolated account | 
 

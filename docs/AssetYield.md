@@ -5,10 +5,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**asset_id** | **str** |  | 
+**asset_id** | **UUID** |  | 
 **timestamp** | **datetime** |  | 
 **ytm** | **str** |  | 
-**lending_yield** | **str** |  | 
+**borrowing_yield_rate** | **str** |  | 
+**lending_yield_rate** | **str** |  | 
+**price** | **str** |  | 
 **tvl** | **str** |  | 
 **total_yield** | **str** |  | 
 

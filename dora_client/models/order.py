@@ -28,6 +28,7 @@ from dora_client.models.side import Side
 from dora_client.models.trigger_type import TriggerType
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class Order(BaseModel):
     """
@@ -62,7 +63,8 @@ class Order(BaseModel):
     __properties: ClassVar[List[str]] = ["order_id", "order_book_id", "kind", "original_price", "avg_fill_price", "cancelled_quantity", "open_quantity", "original_quantity", "filled_quantity", "filled_notional", "locked_quantity", "impending_borrows_quantity", "last_update_at", "opened_at", "inverse_leverage", "side", "status", "user_id", "order_modifiers", "position_id", "order_info", "good_till_date", "trigger_price", "trigger_type", "client_order_id", "parent_order_id"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -74,8 +76,7 @@ class Order(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:

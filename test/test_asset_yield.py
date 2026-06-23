@@ -38,7 +38,9 @@ class TestAssetYield(unittest.TestCase):
                 asset_id = '',
                 timestamp = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 ytm = '',
-                lending_yield = '',
+                borrowing_yield_rate = '',
+                lending_yield_rate = '',
+                price = '',
                 tvl = '',
                 total_yield = ''
             )
@@ -47,7 +49,9 @@ class TestAssetYield(unittest.TestCase):
                 asset_id = '',
                 timestamp = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 ytm = '',
-                lending_yield = '',
+                borrowing_yield_rate = '',
+                lending_yield_rate = '',
+                price = '',
                 tvl = '',
                 total_yield = '',
         )

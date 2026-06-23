@@ -61,20 +61,7 @@ class TestResponseEnvelopeOfListAssets(unittest.TestCase):
                         can_virtual_borrow = True, 
                         max_leverage = 1, 
                         leverage_interest_rate = 1.337, 
-                        bond = dora_client.models.bond.Bond(
-                            id = '', 
-                            kind = 'COUPON-PAYING', 
-                            coupon_start_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                            created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                            final_coupon_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                            isin = '', 
-                            issued_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                            issuer = '', 
-                            maturity_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                            principal_value = '', 
-                            payments_per_year = 0, 
-                            payments_every = 1000, 
-                            next_coupon_payment = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ), )
+                        bond = null, )
                     ],
                 error = '',
                 metadata = dora_client.models.metadata.Metadata(

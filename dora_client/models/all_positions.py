@@ -22,6 +22,7 @@ from typing import Any, ClassVar, Dict, List
 from dora_client.models.position import Position
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class AllPositions(BaseModel):
     """
@@ -31,7 +32,8 @@ class AllPositions(BaseModel):
     __properties: ClassVar[List[str]] = ["all_positions"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -43,8 +45,7 @@ class AllPositions(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
@@ -69,6 +70,15 @@ class AllPositions(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each value in all_positions (dict of dict)
+        _field_dict_of_dict = {}
+        if self.all_positions:
+            for _key_all_positions, _value_all_positions in self.all_positions.items():
+                if _value_all_positions is not None:
+                    _field_dict_of_dict[_key_all_positions] = {
+                        _key: _value.to_dict() for _key, _value in _value_all_positions.items()
+                    }
+            _dict['all_positions'] = _field_dict_of_dict
         return _dict
 
     @classmethod

@@ -5,16 +5,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**user_id** | **str** |  | 
-**position_id** | **str** |  | 
-**asset_id** | **str** |  | 
-**coupon_payment_id** | **str** |  | 
+**user_id** | **UUID** |  | 
+**position_id** | **UUID** |  | 
+**asset_id** | **UUID** |  | 
+**coupon_payment_id** | **UUID** |  | 
 **seq** | **int** |  | 
 **pending** | **str** |  | 
 **completed** | **str** |  | 
 **started_at** | **datetime** |  | 
 **ended_at** | **datetime** |  | 
-**transaction_id** | **str** |  | [optional] 
+**transaction_id** | **UUID** |  | [optional] 
 
 ## Example
 

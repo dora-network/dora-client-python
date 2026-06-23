@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**account_id** | **str** |  | 
-**order_book_id** | **str** |  | 
+**account_id** | **UUID** |  | 
+**order_book_id** | **UUID** |  | 
 
 ## Example
 

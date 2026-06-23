@@ -24,6 +24,7 @@ from dora_client.models.position import Position
 from dora_client.models.transformed_assets import TransformedAssets
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class Portfolio(BaseModel):
     """
@@ -35,7 +36,8 @@ class Portfolio(BaseModel):
     __properties: ClassVar[List[str]] = ["user_id", "position", "net_stablecoin_equivalence"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -47,8 +49,7 @@ class Portfolio(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
@@ -73,13 +74,15 @@ class Portfolio(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each value in position (dict)
-        _field_dict = {}
+        # override the default output from pydantic by calling `to_dict()` of each value in position (dict of dict)
+        _field_dict_of_dict = {}
         if self.position:
-            for _key_position in self.position:
-                if self.position[_key_position]:
-                    _field_dict[_key_position] = self.position[_key_position].to_dict()
-            _dict['position'] = _field_dict
+            for _key_position, _value_position in self.position.items():
+                if _value_position is not None:
+                    _field_dict_of_dict[_key_position] = {
+                        _key: _value.to_dict() for _key, _value in _value_position.items()
+                    }
+            _dict['position'] = _field_dict_of_dict
         # override the default output from pydantic by calling `to_dict()` of net_stablecoin_equivalence
         if self.net_stablecoin_equivalence:
             _dict['net_stablecoin_equivalence'] = self.net_stablecoin_equivalence.to_dict()
@@ -104,7 +107,7 @@ class Portfolio(BaseModel):
                     if _v is not None
                     else None
                 )
-                for _k, _v in obj.get("position").items()
+                for _k, _v in obj["position"].items()
             )
             if obj.get("position") is not None
             else None,

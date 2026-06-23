@@ -13,8 +13,8 @@ Name | Type | Description | Notes
 **good_till_date** | **datetime** |  | [optional] 
 **inverse_leverage** | **str** |  | 
 **user_balance** | **str** | User balance used to ensure they can afford the requested quantity | 
-**base_asset_id** | **str** | base asset of orderbook | [optional] 
-**quote_asset_id** | **str** | quote asset of orderbook | [optional] 
+**base_asset_id** | **UUID** | base asset of orderbook | [optional] 
+**quote_asset_id** | **UUID** | quote asset of orderbook | [optional] 
 **client_order_id** | **str** | An optional client-provided identifier for the order. | [optional] 
 **position_assets** | [**List[PositionAsset]**](PositionAsset.md) | Full list of assets in the position with their price and collateral weight, required when inverse_leverage &lt; 1 for leverage health checks | [optional] 
 **assets_config** | [**List[AssetConfig]**](AssetConfig.md) | Configuration for the assets in the order | [optional] 

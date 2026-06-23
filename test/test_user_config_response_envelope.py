@@ -46,7 +46,8 @@ class TestUserConfigResponseEnvelope(unittest.TestCase):
                     allow_email_notifications = True, 
                     allow_liquidations_notifications = True, 
                     allow_deposit_withdrawal_notifications = True, 
-                    allow_orders_notifications = True, ),
+                    allow_orders_notifications = True, 
+                    allow_copy_trading = True, ),
                 error = '',
                 metadata = dora_client.models.metadata.Metadata(
                     status_code = 56, 

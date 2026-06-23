@@ -5,15 +5,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**asset_id** | **str** |  | 
+**asset_id** | **UUID** |  | 
 **updated_at** | **datetime** |  | 
-**utilization** | **decimal.Decimal** |  | 
-**maximum_utilization** | **decimal.Decimal** |  | 
-**minimum_rate** | **decimal.Decimal** |  | 
-**kink_rate** | **decimal.Decimal** |  | 
-**maximum_rate** | **decimal.Decimal** |  | 
-**kink_utilization** | **decimal.Decimal** |  | 
-**interest_rate** | **decimal.Decimal** |  | 
+**utilization** | **str** |  | 
+**maximum_utilization** | **str** |  | 
+**minimum_rate** | **str** |  | 
+**kink_rate** | **str** |  | 
+**maximum_rate** | **str** |  | 
+**kink_utilization** | **str** |  | 
+**borrowing_yield_rate** | **str** |  | 
+**lending_yield_rate** | **str** |  | 
+**yield_to_maturity** | **str** |  | 
 
 ## Example
 

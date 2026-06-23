@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** | The unique identifier for the account. Used, for example, when creating an order from an account, or deciding collateral should be transferred from account A to account B. | 
-**asset_id** | **str** |  | 
+**id** | **UUID** | The unique identifier for the account. Used, for example, when creating an order from an account, or deciding collateral should be transferred from account A to account B. | 
+**asset_id** | **UUID** |  | 
 **seq** | **int** |  | 
 **is_global** | **bool** |  | [optional] 
 **available** | **str** | The available balance in the account for this asset that are not locked, supplied, or used as collateral | 

@@ -24,6 +24,7 @@ from dora_client.models.account_v2 import AccountV2
 from dora_client.models.transformed_assets import TransformedAssets
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class AccountPortfolioV2(BaseModel):
     """
@@ -35,7 +36,8 @@ class AccountPortfolioV2(BaseModel):
     __properties: ClassVar[List[str]] = ["user_id", "accounts", "net_stablecoin_equivalence"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -47,8 +49,7 @@ class AccountPortfolioV2(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
@@ -73,13 +74,15 @@ class AccountPortfolioV2(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each value in accounts (dict)
-        _field_dict = {}
+        # override the default output from pydantic by calling `to_dict()` of each value in accounts (dict of dict)
+        _field_dict_of_dict = {}
         if self.accounts:
-            for _key_accounts in self.accounts:
-                if self.accounts[_key_accounts]:
-                    _field_dict[_key_accounts] = self.accounts[_key_accounts].to_dict()
-            _dict['accounts'] = _field_dict
+            for _key_accounts, _value_accounts in self.accounts.items():
+                if _value_accounts is not None:
+                    _field_dict_of_dict[_key_accounts] = {
+                        _key: _value.to_dict() for _key, _value in _value_accounts.items()
+                    }
+            _dict['accounts'] = _field_dict_of_dict
         # override the default output from pydantic by calling `to_dict()` of net_stablecoin_equivalence
         if self.net_stablecoin_equivalence:
             _dict['net_stablecoin_equivalence'] = self.net_stablecoin_equivalence.to_dict()
@@ -104,7 +107,7 @@ class AccountPortfolioV2(BaseModel):
                     if _v is not None
                     else None
                 )
-                for _k, _v in obj.get("accounts").items()
+                for _k, _v in obj["accounts"].items()
             )
             if obj.get("accounts") is not None
             else None,

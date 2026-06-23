@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**asset_id** | **str** |  | 
+**asset_id** | **UUID** |  | 
 **kind** | [**AssetKind**](AssetKind.md) |  | 
 **borrowed** | **str** |  | 
 **impending_borrows** | **str** |  | 

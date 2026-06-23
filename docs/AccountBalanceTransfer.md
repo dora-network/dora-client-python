@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**from_account_id** | **str** |  | 
-**to_account_id** | **str** |  | 
-**transaction_id** | **str** |  | 
+**from_account_id** | **UUID** |  | 
+**to_account_id** | **UUID** |  | 
+**transaction_id** | **UUID** |  | 
 
 ## Example
 

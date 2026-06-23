@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**global_position_id** | **str** |  | 
-**isolated_position_id** | **str** |  | 
-**transaction_id** | **str** |  | 
-**asset_id** | **str** |  | 
+**global_position_id** | **UUID** |  | 
+**isolated_position_id** | **UUID** |  | 
+**transaction_id** | **UUID** |  | 
+**asset_id** | **UUID** |  | 
 **quantity** | **str** |  | 
 
 ## Example

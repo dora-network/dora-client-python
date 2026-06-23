@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**order_book_id** | **str** |  | 
-**position_id** | **str** |  | 
-**transaction_id** | **str** |  | 
+**order_book_id** | **UUID** |  | 
+**position_id** | **UUID** |  | 
+**transaction_id** | **UUID** |  | 
 **base_quantity** | **str** |  | 
 **quote_quantity** | **str** |  | 
 **shares_quantity** | **str** |  | 

@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**order_book_id** | **str** |  | 
+**order_book_id** | **UUID** |  | 
 **bids** | [**List[PriceLevel]**](PriceLevel.md) |  | 
 **asks** | [**List[PriceLevel]**](PriceLevel.md) |  | 
 **timestamp** | **datetime** |  | 

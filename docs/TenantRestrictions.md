@@ -6,8 +6,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **tenant_id** | **str** | Tenant ID | 
-**deposit_limit** | **decimal.Decimal** | Maximum allowed deposit for the tenant. | 
-**trade_limit** | **decimal.Decimal** | Maximum allowed trade amount for the tenant. | 
+**deposit_limit** | **str** | Maximum allowed deposit for the tenant. | 
+**trade_limit** | **str** | Maximum allowed trade amount for the tenant. | 
 **updated_at** | **datetime** | Last update timestamp for the restrictions. | 
 
 ## Example

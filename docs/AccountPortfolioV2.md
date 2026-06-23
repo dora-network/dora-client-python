@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**user_id** | **str** |  | 
+**user_id** | **UUID** |  | 
 **accounts** | **Dict[str, Dict[str, AccountV2]]** |  | 
 **net_stablecoin_equivalence** | [**TransformedAssets**](TransformedAssets.md) |  | 
 

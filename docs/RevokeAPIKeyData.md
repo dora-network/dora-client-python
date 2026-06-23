@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**user_id** | **str** |  | 
+**user_id** | **UUID** |  | 
 **key_id** | **str** |  | 
 **label** | **str** |  | 
 **is_active** | **bool** |  | 

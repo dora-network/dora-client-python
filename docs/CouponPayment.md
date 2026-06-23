@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** |  | 
-**asset_id** | **str** |  | 
+**id** | **UUID** |  | 
+**asset_id** | **UUID** |  | 
 **var_yield** | **float** |  | 
 **start_at** | **datetime** |  | 
 **end_at** | **datetime** |  | 

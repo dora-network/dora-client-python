@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**asset_id** | **str** |  | 
+**asset_id** | **UUID** |  | 
 **seq** | **int** |  | 
 **available** | **str** | The available balance in the module for this asset | 
 **supplied** | **str** | The total amount supplied to the module for this asset | 

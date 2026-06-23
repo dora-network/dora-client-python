@@ -42,6 +42,10 @@ class TestCandle(unittest.TestCase):
                 low = '',
                 close = '',
                 ytm = '',
+                open_ytm = '',
+                close_ytm = '',
+                high_ytm = '',
+                low_ytm = '',
                 volume = ''
             )
         else:
@@ -52,7 +56,10 @@ class TestCandle(unittest.TestCase):
                 high = '',
                 low = '',
                 close = '',
-                ytm = '',
+                open_ytm = '',
+                close_ytm = '',
+                high_ytm = '',
+                low_ytm = '',
                 volume = '',
         )
         """

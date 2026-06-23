@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**order_book_id** | **str** |  | 
+**order_book_id** | **UUID** |  | 
 **order_book_seq** | **int** |  | [optional] 
 **base_quantity** | **float** |  | 
-**base_asset_id** | **str** |  | 
+**base_asset_id** | **UUID** |  | 
 **created_at** | **datetime** |  | 
 **display_name** | **str** |  | 
 **base_asset_fractionalized_units** | **int** |  | 
@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 **initial_assets_ratio** | **float** |  | 
 **maturity_at** | **datetime** |  | 
 **quote_quantity** | **float** |  | 
-**quote_asset_id** | **str** |  | 
+**quote_asset_id** | **UUID** |  | 
 **shares_quantity** | **float** |  | 
 **status** | [**OrderBookStatus**](OrderBookStatus.md) |  | 
 **tick_size** | **float** |  | 
@@ -25,7 +25,7 @@ Name | Type | Description | Notes
 **halted_at** | **datetime** |  | [optional] 
 **terminated_at** | **datetime** |  | [optional] 
 **pool_updated_at** | **datetime** |  | [optional] 
-**shares_asset_id** | **str** |  | 
+**shares_asset_id** | **UUID** |  | 
 
 ## Example
 

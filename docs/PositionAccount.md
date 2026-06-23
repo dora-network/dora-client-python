@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**position_id** | **str** | The ID of the position account | 
+**position_id** | **UUID** | The ID of the position account | 
 **position_name** | **str** | The name of the position account | 
 **is_global** | **bool** | Whether the position account is the global or an isolated account | 
 

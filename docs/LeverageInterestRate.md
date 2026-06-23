@@ -5,11 +5,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**asset_id** | **str** |  | 
-**utilization** | **decimal.Decimal** |  | 
-**avg_utilization** | **decimal.Decimal** |  | 
-**avg_interest_rate** | **decimal.Decimal** |  | 
-**interest_rate** | **decimal.Decimal** |  | 
+**asset_id** | **UUID** |  | 
+**utilization** | **str** |  | 
+**avg_utilization** | **str** |  | 
+**avg_borrowing_yield_rate** | **str** |  | 
+**avg_lending_yield_rate** | **str** |  | 
+**borrowing_yield_rate** | **str** |  | 
+**lending_yield_rate** | **str** |  | 
+**yield_to_maturity** | **str** |  | 
 **start_time** | **datetime** |  | 
 **end_time** | **datetime** |  | 
 

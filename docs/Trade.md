@@ -5,15 +5,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**transaction_id** | **str** |  | 
-**asset_0** | **str** |  | 
+**transaction_id** | **UUID** |  | 
+**asset_0** | **UUID** |  | 
 **created_at** | **datetime** |  | 
-**order_book_id** | **str** |  | 
-**order_id** | **str** |  | 
+**order_book_id** | **UUID** |  | 
+**order_id** | **UUID** |  | 
 **order_seq** | **int** |  | 
 **price** | **str** |  | 
 **quantity_0** | **str** |  | 
-**user_id** | **str** |  | 
+**user_id** | **UUID** |  | 
 **side** | [**Side**](Side.md) |  | 
 **aggressor_indicator** | **bool** | If true, then this order is the aggressor (taker); otherwise it is the maker. | 
 

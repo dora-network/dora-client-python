@@ -512,14 +512,14 @@ class TestDefaultApi(unittest.IsolatedAsyncioTestCase):
     async def test_leverage_get_historical_interest_rates(self) -> None:
         """Test case for leverage_get_historical_interest_rates
 
-        Get historical leverage interest rates for a specific asset
+        Get historical leverage borrowing and lending yields for a specific asset
         """
         pass
 
     async def test_leverage_get_interest_rate(self) -> None:
         """Test case for leverage_get_interest_rate
 
-        Get leverage interest rate for a specific asset
+        Get leverage borrowing and lending yields for a specific asset
         """
         pass
 

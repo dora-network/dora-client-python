@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** |  | 
+**id** | **UUID** |  | 
 **photo_url** | **str** |  | [optional] 
 **timezone** | **str** | User&#39;s timezone, e.g., &#39;America/New_York&#39;, or an offset. | [optional] 
 **created_at** | **datetime** |  | 
@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **allow_liquidations_notifications** | **bool** |  | 
 **allow_deposit_withdrawal_notifications** | **bool** |  | 
 **allow_orders_notifications** | **bool** |  | 
+**allow_copy_trading** | **bool** |  | 
 
 ## Example
 

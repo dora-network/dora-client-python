@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**order_book_id** | **str** | The ID of the order book. | 
+**order_book_id** | **UUID** | The ID of the order book. | 
 **base_quantity** | **float** | The quantity of the base asset. | 
 **quote_quantity** | **float** | The quantity of the quote asset. | 
 **shares_quantity** | **float** | The quantity of pool shares. | 

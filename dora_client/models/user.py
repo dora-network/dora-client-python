@@ -25,6 +25,7 @@ from dora_client.models.country_code import CountryCode
 from dora_client.models.user_role import UserRole
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class User(BaseModel):
     """
@@ -52,10 +53,12 @@ class User(BaseModel):
     allow_liquidations_notifications: StrictBool
     allow_deposit_withdrawal_notifications: StrictBool
     allow_orders_notifications: StrictBool
-    __properties: ClassVar[List[str]] = ["id", "closed_at", "disabled_at", "email", "first_name", "last_name", "country_of_domicile", "native_asset_id", "photo_url", "provider", "provider_id", "roles", "timezone", "timezone_offset", "verified_at", "show_tutorial_cards", "notifications_enabled", "tenant_id", "allow_email_notifications", "allow_liquidations_notifications", "allow_deposit_withdrawal_notifications", "allow_orders_notifications"]
+    allow_copy_trading: StrictBool
+    __properties: ClassVar[List[str]] = ["id", "closed_at", "disabled_at", "email", "first_name", "last_name", "country_of_domicile", "native_asset_id", "photo_url", "provider", "provider_id", "roles", "timezone", "timezone_offset", "verified_at", "show_tutorial_cards", "notifications_enabled", "tenant_id", "allow_email_notifications", "allow_liquidations_notifications", "allow_deposit_withdrawal_notifications", "allow_orders_notifications", "allow_copy_trading"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -67,8 +70,7 @@ class User(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
@@ -126,7 +128,8 @@ class User(BaseModel):
             "allow_email_notifications": obj.get("allow_email_notifications"),
             "allow_liquidations_notifications": obj.get("allow_liquidations_notifications"),
             "allow_deposit_withdrawal_notifications": obj.get("allow_deposit_withdrawal_notifications"),
-            "allow_orders_notifications": obj.get("allow_orders_notifications")
+            "allow_orders_notifications": obj.get("allow_orders_notifications"),
+            "allow_copy_trading": obj.get("allow_copy_trading")
         })
         return _obj
 

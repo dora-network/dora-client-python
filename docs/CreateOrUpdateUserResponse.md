@@ -6,7 +6,7 @@ Response body for POST /user or PUT /user/{id}: contains the ID of the created o
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** | The ID of the created or updated user. | 
+**id** | **UUID** | The ID of the created or updated user. | 
 
 ## Example
 

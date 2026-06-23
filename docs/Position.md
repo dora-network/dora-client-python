@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** | The unique identifier for the position. Used, for example, when creating an order from a position, or deciding collateral should be transferred from position A to position B. | 
-**asset_id** | **str** |  | 
+**id** | **UUID** | The unique identifier for the position. Used, for example, when creating an order from a position, or deciding collateral should be transferred from position A to position B. | 
+**asset_id** | **UUID** |  | 
 **seq** | **int** |  | 
 **is_global** | **bool** |  | [optional] 
 **available** | **str** | The available balance in the position for this asset that are not locked, supplied, or used as collateral | 

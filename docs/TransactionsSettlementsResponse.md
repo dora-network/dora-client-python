@@ -6,8 +6,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **settlements** | [**List[TransactionsSettlement]**](TransactionsSettlement.md) |  | [optional] 
-**user_totals** | **Dict[str, decimal.Decimal]** |  | [optional] 
-**tenant_totals** | **Dict[str, decimal.Decimal]** |  | [optional] 
+**user_totals** | **Dict[str, str]** |  | [optional] 
+**tenant_totals** | **Dict[str, str]** |  | [optional] 
 
 ## Example
 

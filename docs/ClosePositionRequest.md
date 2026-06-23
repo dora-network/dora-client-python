@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**position_id** | **str** |  | 
-**order_book_id** | **str** |  | 
+**position_id** | **UUID** |  | 
+**order_book_id** | **UUID** |  | 
 
 ## Example
 

@@ -58,6 +58,9 @@ class TestUpdateUserConfigRequest(unittest.TestCase):
                     value = True, ),
                 allow_orders_notifications = dora_client.models.update_field_boolean.UpdateFieldBoolean(
                     update = True, 
+                    value = True, ),
+                allow_copy_trading = dora_client.models.update_field_boolean.UpdateFieldBoolean(
+                    update = True, 
                     value = True, )
             )
         else:

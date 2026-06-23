@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**stop_loss_order_id** | **str** |  | [optional] 
-**take_profit_order_id** | **str** |  | [optional] 
+**stop_loss_order_id** | **UUID** |  | [optional] 
+**take_profit_order_id** | **UUID** |  | [optional] 
 
 ## Example
 

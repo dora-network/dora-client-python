@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**global_position_id** | **str** |  | 
-**isolated_position_id** | **str** |  | 
-**transaction_id** | **str** |  | 
+**global_position_id** | **UUID** |  | 
+**isolated_position_id** | **UUID** |  | 
+**transaction_id** | **UUID** |  | 
 
 ## Example
 

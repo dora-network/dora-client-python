@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**order_id** | **str** |  | 
-**order_book_id** | **str** |  | 
+**order_id** | **UUID** |  | 
+**order_book_id** | **UUID** |  | 
 **kind** | [**OrderKind**](OrderKind.md) |  | 
 **original_price** | **str** | If Kind is LIMIT, this is the original limit price. If Kind is MARKET, this may be 0 or omitted. | 
 **avg_fill_price** | **str** |  | 
@@ -15,22 +15,22 @@ Name | Type | Description | Notes
 **original_quantity** | **str** | The original quantity of the order when it was created. | 
 **filled_quantity** | **str** | Quantity that has been filled so far. | 
 **filled_notional** | **str** | Quote quantity that has been filled so far. | 
-**locked_quantity** | **decimal.Decimal** | Balance locked to ensure limit buy orders have sufficient balance to be fulfilled | 
-**impending_borrows_quantity** | **decimal.Decimal** | Borrows locked from the liquidity pool to ensure limit short sell orders have sufficient balance to be fulfilled | 
+**locked_quantity** | **str** | Balance locked to ensure limit buy orders have sufficient balance to be fulfilled | 
+**impending_borrows_quantity** | **str** | Borrows locked from the liquidity pool to ensure limit short sell orders have sufficient balance to be fulfilled | 
 **last_update_at** | **datetime** |  | 
 **opened_at** | **datetime** |  | 
 **inverse_leverage** | **str** |  | 
 **side** | [**Side**](Side.md) |  | 
 **status** | [**OrderStatus**](OrderStatus.md) |  | 
-**user_id** | **str** |  | 
+**user_id** | **UUID** |  | 
 **order_modifiers** | [**List[OrderModifierKind]**](OrderModifierKind.md) |  | [optional] 
-**position_id** | **str** |  | 
+**position_id** | **UUID** |  | 
 **order_info** | **str** |  | [optional] 
 **good_till_date** | **datetime** |  | [optional] 
 **trigger_price** | **str** |  | [optional] 
 **trigger_type** | [**TriggerType**](TriggerType.md) |  | [optional] 
 **client_order_id** | **str** | An optional client-provided identifier for the order. | [optional] 
-**parent_order_id** | **str** |  | [optional] 
+**parent_order_id** | **UUID** |  | [optional] 
 
 ## Example
 

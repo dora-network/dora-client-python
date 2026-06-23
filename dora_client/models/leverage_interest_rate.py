@@ -23,6 +23,7 @@ from typing import Any, ClassVar, Dict, List
 from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class LeverageInterestRate(BaseModel):
     """
@@ -31,14 +32,18 @@ class LeverageInterestRate(BaseModel):
     asset_id: UUID
     utilization: StrictStr
     avg_utilization: StrictStr
-    avg_interest_rate: StrictStr
-    interest_rate: StrictStr
+    avg_borrowing_yield_rate: StrictStr
+    avg_lending_yield_rate: StrictStr
+    borrowing_yield_rate: StrictStr
+    lending_yield_rate: StrictStr
+    yield_to_maturity: StrictStr
     start_time: datetime
     end_time: datetime
-    __properties: ClassVar[List[str]] = ["asset_id", "utilization", "avg_utilization", "avg_interest_rate", "interest_rate", "start_time", "end_time"]
+    __properties: ClassVar[List[str]] = ["asset_id", "utilization", "avg_utilization", "avg_borrowing_yield_rate", "avg_lending_yield_rate", "borrowing_yield_rate", "lending_yield_rate", "yield_to_maturity", "start_time", "end_time"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -50,8 +55,7 @@ class LeverageInterestRate(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
@@ -91,8 +95,11 @@ class LeverageInterestRate(BaseModel):
             "asset_id": obj.get("asset_id"),
             "utilization": obj.get("utilization"),
             "avg_utilization": obj.get("avg_utilization"),
-            "avg_interest_rate": obj.get("avg_interest_rate"),
-            "interest_rate": obj.get("interest_rate"),
+            "avg_borrowing_yield_rate": obj.get("avg_borrowing_yield_rate"),
+            "avg_lending_yield_rate": obj.get("avg_lending_yield_rate"),
+            "borrowing_yield_rate": obj.get("borrowing_yield_rate"),
+            "lending_yield_rate": obj.get("lending_yield_rate"),
+            "yield_to_maturity": obj.get("yield_to_maturity"),
             "start_time": obj.get("start_time"),
             "end_time": obj.get("end_time")
         })

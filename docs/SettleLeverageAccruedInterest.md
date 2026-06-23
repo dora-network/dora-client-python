@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**transaction_id** | **str** |  | 
-**asset_id** | **str** |  | 
-**position_id** | **str** |  | 
+**transaction_id** | **UUID** |  | 
+**asset_id** | **UUID** |  | 
+**position_id** | **UUID** |  | 
 **current_accrued_interest_usd** | **str** |  | 
 
 ## Example

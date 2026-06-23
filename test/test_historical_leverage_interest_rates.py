@@ -48,7 +48,9 @@ class TestHistoricalLeverageInterestRates(unittest.TestCase):
                         kink_rate = '', 
                         maximum_rate = '', 
                         kink_utilization = '', 
-                        interest_rate = '', )
+                        borrowing_yield_rate = '', 
+                        lending_yield_rate = '', 
+                        yield_to_maturity = '', )
                     ]
             )
         else:
@@ -66,7 +68,9 @@ class TestHistoricalLeverageInterestRates(unittest.TestCase):
                         kink_rate = '', 
                         maximum_rate = '', 
                         kink_utilization = '', 
-                        interest_rate = '', )
+                        borrowing_yield_rate = '', 
+                        lending_yield_rate = '', 
+                        yield_to_maturity = '', )
                     ],
         )
         """

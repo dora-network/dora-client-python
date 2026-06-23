@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**from_position_id** | **str** |  | 
-**to_position_id** | **str** |  | 
-**asset_id** | **str** |  | 
+**from_position_id** | **UUID** |  | 
+**to_position_id** | **UUID** |  | 
+**asset_id** | **UUID** |  | 
 **quantity** | **str** |  | 
 
 ## Example

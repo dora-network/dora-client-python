@@ -38,8 +38,11 @@ class TestLeverageInterestRate(unittest.TestCase):
                 asset_id = '',
                 utilization = '',
                 avg_utilization = '',
-                avg_interest_rate = '',
-                interest_rate = '',
+                avg_borrowing_yield_rate = '',
+                avg_lending_yield_rate = '',
+                borrowing_yield_rate = '',
+                lending_yield_rate = '',
+                yield_to_maturity = '',
                 start_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 end_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f')
             )
@@ -48,8 +51,11 @@ class TestLeverageInterestRate(unittest.TestCase):
                 asset_id = '',
                 utilization = '',
                 avg_utilization = '',
-                avg_interest_rate = '',
-                interest_rate = '',
+                avg_borrowing_yield_rate = '',
+                avg_lending_yield_rate = '',
+                borrowing_yield_rate = '',
+                lending_yield_rate = '',
+                yield_to_maturity = '',
                 start_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 end_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
         )

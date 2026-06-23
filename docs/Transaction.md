@@ -5,15 +5,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** |  | 
+**id** | **UUID** |  | 
 **created_at** | **datetime** |  | 
 **kind** | [**TransactionKind**](TransactionKind.md) |  | 
-**asset0** | **str** |  | 
+**asset0** | **UUID** |  | 
 **quantity0** | **str** |  | 
 **quantity1** | **str** |  | 
-**asset1** | **str** |  | 
-**user_id** | **str** |  | 
-**admin_user_id** | **str** |  | 
+**asset1** | **UUID** |  | 
+**user_id** | **UUID** |  | 
+**admin_user_id** | **UUID** |  | 
 **order_side** | [**Side**](Side.md) |  | 
 **internal_transfer** | [**TransactionInternalTransfer**](TransactionInternalTransfer.md) |  | [optional] 
 

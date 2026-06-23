@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**order_book_id** | **str** |  | 
+**order_book_id** | **UUID** |  | 
 **mid_price** | **str** |  | 
 **spread** | **str** |  | 
 **best_bid** | **str** |  | 

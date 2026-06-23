@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **kind** | [**OrderKind**](OrderKind.md) |  | 
 **side** | [**Side**](Side.md) | Required: Must be either &#39;BUY&#39; or &#39;SELL&#39; | 
 **from_global_position** | **bool** | use global position for the order or isolated. required. | 
-**order_book_id** | **str** | Required: the order book to submit the order to | 
+**order_book_id** | **UUID** | Required: the order book to submit the order to | 
 **order_modifiers** | [**List[OrderModifierKind]**](OrderModifierKind.md) |  | [optional] 
 **good_till_date** | **datetime** |  | [optional] 
 **client_order_id** | **str** | An optional client-provided identifier for the order. | [optional] 

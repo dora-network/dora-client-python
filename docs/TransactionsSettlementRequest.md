@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**tx_ids** | **List[str]** |  | [optional] 
+**tx_ids** | **List[UUID]** |  | [optional] 
 
 ## Example
 

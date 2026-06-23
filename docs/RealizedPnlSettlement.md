@@ -5,12 +5,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** | The ID of the realized PnL settlement | 
-**user_id** | **str** | The ID of the user associated with the realized PnL settlement | 
+**id** | **UUID** | The ID of the realized PnL settlement | 
+**user_id** | **UUID** | The ID of the user associated with the realized PnL settlement | 
 **tenant_id** | **str** | The ID of the tenant associated with the realized PnL settlement | 
-**position_id** | **str** | The ID of the position associated with the realized PnL settlement | 
-**order_id** | **str** | The ID of the position-closing order associated with the realized PnL settlement | 
-**realized_usd** | **decimal.Decimal** | The amount of realized PnL in USD | 
+**position_id** | **UUID** | The ID of the position associated with the realized PnL settlement | 
+**order_id** | **UUID** | The ID of the position-closing order associated with the realized PnL settlement | 
+**realized_usd** | **str** | The amount of realized PnL in USD | 
 **settled_at** | **datetime** | The timestamp when the realized PnL settlement was settled | [optional] 
 **created_at** | **datetime** | The timestamp when the realized PnL settlement was created | 
 

@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**asset_id** | **str** |  | 
+**asset_id** | **UUID** |  | 
 **price** | **str** |  | 
 **ytm** | **str** |  | [optional] 
 **time** | **datetime** |  | 

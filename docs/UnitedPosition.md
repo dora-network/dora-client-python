@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**global_position_id** | **str** |  | 
-**transaction_ids** | **List[str]** |  | 
+**global_position_id** | **UUID** |  | 
+**transaction_ids** | **List[UUID]** |  | 
 
 ## Example
 

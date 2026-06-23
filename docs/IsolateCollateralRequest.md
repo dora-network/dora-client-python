@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**global_position_id** | **str** |  | 
-**asset_id** | **str** |  | 
+**global_position_id** | **UUID** |  | 
+**asset_id** | **UUID** |  | 
 **quantity** | **str** |  | 
 
 ## Example

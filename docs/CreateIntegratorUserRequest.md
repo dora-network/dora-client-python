@@ -9,10 +9,10 @@ Name | Type | Description | Notes
 **first_name** | **str** |  | [optional] 
 **last_name** | **str** |  | [optional] 
 **country_of_domicile** | [**CountryCode**](CountryCode.md) |  | [optional] 
-**native_asset_id** | **str** |  | [optional] 
+**native_asset_id** | **UUID** |  | [optional] 
 **photo_url** | **str** |  | [optional] 
 **provider** | **str** |  | [optional] 
-**provider_id** | **str** |  | [optional] 
+**provider_id** | **UUID** |  | [optional] 
 **timezone** | **str** |  | [optional] 
 
 ## Example

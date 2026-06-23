@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**global_account_id** | **str** |  | 
-**asset_id** | **str** |  | 
-**quantity** | **decimal.Decimal** |  | 
+**global_account_id** | **UUID** |  | 
+**asset_id** | **UUID** |  | 
+**quantity** | **str** |  | 
 **account_name** | **str** |  | [optional] 
 
 ## Example

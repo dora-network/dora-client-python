@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**global_position_id** | **str** |  | 
+**global_position_id** | **UUID** |  | 
 
 ## Example
 

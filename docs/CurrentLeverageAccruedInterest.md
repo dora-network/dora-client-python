@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**user_id** | **str** |  | 
-**asset_id** | **str** |  | 
-**position_id** | **str** |  | 
+**user_id** | **UUID** |  | 
+**asset_id** | **UUID** |  | 
+**position_id** | **UUID** |  | 
 **current_accrued_interest_usd** | **str** |  | 
 **asset_name** | **str** |  | [optional] 
 **asset_symbol** | **str** |  | [optional] 

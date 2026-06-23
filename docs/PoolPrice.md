@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**pool_id** | **str** |  | 
+**pool_id** | **UUID** |  | 
 **price** | **str** |  | 
 **timestamp** | **datetime** |  | 
 

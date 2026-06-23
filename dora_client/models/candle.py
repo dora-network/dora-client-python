@@ -18,11 +18,12 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, StrictStr
-from typing import Any, ClassVar, Dict, List
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
 from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class Candle(BaseModel):
     """
@@ -34,12 +35,17 @@ class Candle(BaseModel):
     high: StrictStr
     low: StrictStr
     close: StrictStr
-    ytm: StrictStr
+    ytm: Optional[StrictStr] = Field(default=None, description="DEPRECATED: Use close_ytm instead.")
+    open_ytm: StrictStr
+    close_ytm: StrictStr
+    high_ytm: StrictStr
+    low_ytm: StrictStr
     volume: StrictStr
-    __properties: ClassVar[List[str]] = ["order_book_id", "start_timestamp", "open", "high", "low", "close", "ytm", "volume"]
+    __properties: ClassVar[List[str]] = ["order_book_id", "start_timestamp", "open", "high", "low", "close", "ytm", "open_ytm", "close_ytm", "high_ytm", "low_ytm", "volume"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -51,8 +57,7 @@ class Candle(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
@@ -96,6 +101,10 @@ class Candle(BaseModel):
             "low": obj.get("low"),
             "close": obj.get("close"),
             "ytm": obj.get("ytm"),
+            "open_ytm": obj.get("open_ytm"),
+            "close_ytm": obj.get("close_ytm"),
+            "high_ytm": obj.get("high_ytm"),
+            "low_ytm": obj.get("low_ytm"),
             "volume": obj.get("volume")
         })
         return _obj

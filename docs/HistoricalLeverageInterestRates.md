@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**asset_id** | **str** |  | 
+**asset_id** | **UUID** |  | 
 **start_time** | **datetime** |  | 
 **end_time** | **datetime** |  | 
 **rates** | [**List[HistoricalLeverageInterestRate]**](HistoricalLeverageInterestRate.md) |  | 

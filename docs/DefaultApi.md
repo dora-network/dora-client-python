@@ -73,8 +73,8 @@ Method | HTTP request | Description
 [**ledger_withdraw_request**](DefaultApi.md#ledger_withdraw_request) | **POST** /v1/ledger/withdraw/requests/{user_id} | Initiate a withdrawal request for this user to the outside world
 [**ledger_withdraw_request_self**](DefaultApi.md#ledger_withdraw_request_self) | **POST** /v1/ledger/withdraw/requests/self | Initiate a withdrawal request for the logged in user to the outside world
 [**leverage_get_accrued_interest_by_user**](DefaultApi.md#leverage_get_accrued_interest_by_user) | **GET** /v1/leverage/accrued_interest/self | Get current accrued leverage interest for the user
-[**leverage_get_historical_interest_rates**](DefaultApi.md#leverage_get_historical_interest_rates) | **GET** /v1/leverage/interest_rate/{asset_id}/historical | Get historical leverage interest rates for a specific asset
-[**leverage_get_interest_rate**](DefaultApi.md#leverage_get_interest_rate) | **GET** /v1/leverage/interest_rate/{asset_id} | Get leverage interest rate for a specific asset
+[**leverage_get_historical_interest_rates**](DefaultApi.md#leverage_get_historical_interest_rates) | **GET** /v1/leverage/interest_rate/{asset_id}/historical | Get historical leverage borrowing and lending yields for a specific asset
+[**leverage_get_interest_rate**](DefaultApi.md#leverage_get_interest_rate) | **GET** /v1/leverage/interest_rate/{asset_id} | Get leverage borrowing and lending yields for a specific asset
 [**leverage_isolate_collateral**](DefaultApi.md#leverage_isolate_collateral) | **POST** /v1/leverage/isolate_collateral | Create an isolated position by transferring collateral to the position from the user&#39;s global collateral
 [**leverage_supply**](DefaultApi.md#leverage_supply) | **POST** /v1/leverage/supply | Supply leverage for a specific asset
 [**leverage_unite**](DefaultApi.md#leverage_unite) | **POST** /v1/leverage/unite | Combines all isolated positions into a single global position
@@ -151,7 +151,7 @@ configuration = dora_client.Configuration(
 async with dora_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = dora_client.DefaultApi(api_client)
-    withdrawal_id = 'withdrawal_id_example' # str | 
+    withdrawal_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
     withdrawal_request_reason = dora_client.WithdrawalRequestReason() # WithdrawalRequestReason |  (optional)
 
     try:
@@ -170,7 +170,7 @@ async with dora_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **withdrawal_id** | **str**|  | 
+ **withdrawal_id** | **UUID**|  | 
  **withdrawal_request_reason** | [**WithdrawalRequestReason**](WithdrawalRequestReason.md)|  | [optional] 
 
 ### Return type
@@ -242,8 +242,8 @@ async with dora_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = dora_client.DefaultApi(api_client)
     order_book_id = 'order_book_id_example' # str |  (optional)
-    user_id = 'user_id_example' # str |  (optional)
-    account_id = 'account_id_example' # str |  (optional)
+    user_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID |  (optional)
+    account_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID |  (optional)
     order_kind = dora_client.OrderKind() # OrderKind |  (optional)
 
     try:
@@ -263,8 +263,8 @@ async with dora_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **order_book_id** | **str**|  | [optional] 
- **user_id** | **str**|  | [optional] 
- **account_id** | **str**|  | [optional] 
+ **user_id** | **UUID**|  | [optional] 
+ **account_id** | **UUID**|  | [optional] 
  **order_kind** | [**OrderKind**](.md)|  | [optional] 
 
 ### Return type
@@ -335,7 +335,7 @@ configuration = dora_client.Configuration(
 async with dora_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = dora_client.DefaultApi(api_client)
-    withdrawal_id = 'withdrawal_id_example' # str | 
+    withdrawal_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
     withdrawal_request_reason = dora_client.WithdrawalRequestReason() # WithdrawalRequestReason |  (optional)
 
     try:
@@ -354,7 +354,7 @@ async with dora_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **withdrawal_id** | **str**|  | 
+ **withdrawal_id** | **UUID**|  | 
  **withdrawal_request_reason** | [**WithdrawalRequestReason**](WithdrawalRequestReason.md)|  | [optional] 
 
 ### Return type
@@ -424,7 +424,7 @@ configuration = dora_client.Configuration(
 async with dora_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = dora_client.DefaultApi(api_client)
-    order_id = 'order_id_example' # str | 
+    order_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
 
     try:
         # Cancel an order by ID
@@ -442,7 +442,7 @@ async with dora_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **order_id** | **str**|  | 
+ **order_id** | **UUID**|  | 
 
 ### Return type
 
@@ -1296,7 +1296,7 @@ configuration = dora_client.Configuration(
 async with dora_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = dora_client.DefaultApi(api_client)
-    user_id = 'user_id_example' # str | 
+    user_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
 
     try:
         # Delete user by ID
@@ -1314,7 +1314,7 @@ async with dora_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_id** | **str**|  | 
+ **user_id** | **UUID**|  | 
 
 ### Return type
 
@@ -1694,7 +1694,7 @@ configuration = dora_client.Configuration(
 async with dora_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = dora_client.DefaultApi(api_client)
-    asset_id = 'asset_id_example' # str | 
+    asset_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
 
     try:
         # Get asset by ID
@@ -1712,7 +1712,7 @@ async with dora_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **asset_id** | **str**|  | 
+ **asset_id** | **UUID**|  | 
 
 ### Return type
 
@@ -1779,7 +1779,7 @@ configuration = dora_client.Configuration(
 async with dora_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = dora_client.DefaultApi(api_client)
-    asset_id = 'asset_id_example' # str | 
+    asset_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
 
     try:
         # Get the current price of an asset
@@ -1797,7 +1797,7 @@ async with dora_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **asset_id** | **str**|  | 
+ **asset_id** | **UUID**|  | 
 
 ### Return type
 
@@ -1849,7 +1849,7 @@ configuration = dora_client.Configuration(
 async with dora_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = dora_client.DefaultApi(api_client)
-    asset_id = 'asset_id_example' # str | 
+    asset_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
     start = '2013-10-20T19:20:30+01:00' # datetime | 
     end = '2013-10-20T19:20:30+01:00' # datetime | 
     resolution = dora_client.AssetYieldResolution() # AssetYieldResolution | 
@@ -1870,7 +1870,7 @@ async with dora_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **asset_id** | **str**|  | 
+ **asset_id** | **UUID**|  | 
  **start** | **datetime**|  | 
  **end** | **datetime**|  | 
  **resolution** | [**AssetYieldResolution**](.md)|  | 
@@ -1924,7 +1924,7 @@ configuration = dora_client.Configuration(
 async with dora_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = dora_client.DefaultApi(api_client)
-    asset_id = 'asset_id_example' # str | 
+    asset_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
 
     try:
         # Get annualized yield to maturity for a bond asset
@@ -1942,7 +1942,7 @@ async with dora_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **asset_id** | **str**|  | 
+ **asset_id** | **UUID**|  | 
 
 ### Return type
 
@@ -2139,7 +2139,7 @@ configuration = dora_client.Configuration(
 async with dora_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = dora_client.DefaultApi(api_client)
-    asset_id = 'asset_id_example' # str | 
+    asset_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
 
     try:
         # Get coupon payments for a bond asset
@@ -2157,7 +2157,7 @@ async with dora_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **asset_id** | **str**|  | 
+ **asset_id** | **UUID**|  | 
 
 ### Return type
 
@@ -2207,7 +2207,7 @@ configuration = dora_client.Configuration(
 async with dora_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = dora_client.DefaultApi(api_client)
-    order_book_id = 'order_book_id_example' # str | 
+    order_book_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
 
     try:
         # Get the top price levels for a specific orderbook (L1 market depth)
@@ -2225,7 +2225,7 @@ async with dora_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **order_book_id** | **str**|  | 
+ **order_book_id** | **UUID**|  | 
 
 ### Return type
 
@@ -2276,7 +2276,7 @@ configuration = dora_client.Configuration(
 async with dora_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = dora_client.DefaultApi(api_client)
-    order_book_id = 'order_book_id_example' # str | 
+    order_book_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
 
     try:
         # Get the aggregated price levels for a specific orderbook (L2 market depth)
@@ -2294,7 +2294,7 @@ async with dora_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **order_book_id** | **str**|  | 
+ **order_book_id** | **UUID**|  | 
 
 ### Return type
 
@@ -2345,7 +2345,7 @@ configuration = dora_client.Configuration(
 async with dora_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = dora_client.DefaultApi(api_client)
-    order_book_id = 'order_book_id_example' # str | 
+    order_book_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
 
     try:
         # Get all open orders for a specific orderbook (L3 market depth)
@@ -2363,7 +2363,7 @@ async with dora_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **order_book_id** | **str**|  | 
+ **order_book_id** | **UUID**|  | 
 
 ### Return type
 
@@ -2759,7 +2759,7 @@ configuration = dora_client.Configuration(
 async with dora_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = dora_client.DefaultApi(api_client)
-    asset_id = 'asset_id_example' # str | 
+    asset_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
 
     try:
         # Get the module object for a single asset ID
@@ -2777,7 +2777,7 @@ async with dora_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **asset_id** | **str**|  | 
+ **asset_id** | **UUID**|  | 
 
 ### Return type
 
@@ -3095,7 +3095,7 @@ configuration = dora_client.Configuration(
 async with dora_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = dora_client.DefaultApi(api_client)
-    user_id = 'user_id_example' # str | 
+    user_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
     status = 'status_example' # str |  (optional)
 
     try:
@@ -3114,7 +3114,7 @@ async with dora_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_id** | **str**|  | 
+ **user_id** | **UUID**|  | 
  **status** | **str**|  | [optional] 
 
 ### Return type
@@ -3183,7 +3183,7 @@ configuration = dora_client.Configuration(
 async with dora_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = dora_client.DefaultApi(api_client)
-    order_id = 'order_id_example' # str | 
+    order_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
 
     try:
         # Get order by ID
@@ -3201,7 +3201,7 @@ async with dora_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **order_id** | **str**|  | 
+ **order_id** | **UUID**|  | 
 
 ### Return type
 
@@ -3270,7 +3270,7 @@ configuration = dora_client.Configuration(
 async with dora_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = dora_client.DefaultApi(api_client)
-    order_book_id = 'order_book_id_example' # str | 
+    order_book_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
 
     try:
         # Get orderbook by ID
@@ -3288,7 +3288,7 @@ async with dora_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **order_book_id** | **str**|  | 
+ **order_book_id** | **UUID**|  | 
 
 ### Return type
 
@@ -3338,7 +3338,7 @@ configuration = dora_client.Configuration(
 async with dora_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = dora_client.DefaultApi(api_client)
-    order_book_id = 'order_book_id_example' # str | 
+    order_book_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
 
     try:
         # Get the aggregated price levels for a specific orderbook (L2 market depth)
@@ -3356,7 +3356,7 @@ async with dora_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **order_book_id** | **str**|  | 
+ **order_book_id** | **UUID**|  | 
 
 ### Return type
 
@@ -3407,7 +3407,7 @@ configuration = dora_client.Configuration(
 async with dora_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = dora_client.DefaultApi(api_client)
-    order_book_id = 'order_book_id_example' # str | 
+    order_book_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
 
     try:
         # Get all open orders for a specific orderbook (L3 market depth)
@@ -3425,7 +3425,7 @@ async with dora_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **order_book_id** | **str**|  | 
+ **order_book_id** | **UUID**|  | 
 
 ### Return type
 
@@ -3477,7 +3477,7 @@ configuration = dora_client.Configuration(
 async with dora_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = dora_client.DefaultApi(api_client)
-    order_book_id = 'order_book_id_example' # str | 
+    order_book_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
 
     try:
         # Get orderbook stats
@@ -3495,7 +3495,7 @@ async with dora_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **order_book_id** | **str**|  | 
+ **order_book_id** | **UUID**|  | 
 
 ### Return type
 
@@ -3563,7 +3563,7 @@ configuration = dora_client.Configuration(
 async with dora_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = dora_client.DefaultApi(api_client)
-    order_book_id = 'order_book_id_example' # str | 
+    order_book_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
 
     try:
         # Orderbook stats stream
@@ -3581,7 +3581,7 @@ async with dora_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **order_book_id** | **str**|  | 
+ **order_book_id** | **UUID**|  | 
 
 ### Return type
 
@@ -3650,7 +3650,7 @@ configuration = dora_client.Configuration(
 async with dora_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = dora_client.DefaultApi(api_client)
-    order_book_id = 'order_book_id_example' # str | 
+    order_book_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
 
     try:
         # Get summary of an orderbook
@@ -3668,7 +3668,7 @@ async with dora_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **order_book_id** | **str**|  | 
+ **order_book_id** | **UUID**|  | 
 
 ### Return type
 
@@ -3719,7 +3719,7 @@ configuration = dora_client.Configuration(
 async with dora_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = dora_client.DefaultApi(api_client)
-    order_book_id = 'order_book_id_example' # str | 
+    order_book_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
 
     try:
         # Get the top price levels for a specific orderbook (L1 market depth)
@@ -3737,7 +3737,7 @@ async with dora_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **order_book_id** | **str**|  | 
+ **order_book_id** | **UUID**|  | 
 
 ### Return type
 
@@ -3887,7 +3887,7 @@ configuration = dora_client.Configuration(
 async with dora_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = dora_client.DefaultApi(api_client)
-    pool_id = 'pool_id_example' # str | 
+    pool_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
 
     try:
         # Get the current price of a pool
@@ -3905,7 +3905,7 @@ async with dora_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pool_id** | **str**|  | 
+ **pool_id** | **UUID**|  | 
 
 ### Return type
 
@@ -3973,9 +3973,9 @@ configuration = dora_client.Configuration(
 async with dora_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = dora_client.DefaultApi(api_client)
-    user_id = 'user_id_example' # str |  (optional)
-    tenant_id = 'tenant_id_example' # str |  (optional)
-    position_id = 'position_id_example' # str |  (optional)
+    user_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID |  (optional)
+    tenant_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID |  (optional)
+    position_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID |  (optional)
     created_after = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
     created_before = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
     settled_after = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
@@ -3998,9 +3998,9 @@ async with dora_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_id** | **str**|  | [optional] 
- **tenant_id** | **str**|  | [optional] 
- **position_id** | **str**|  | [optional] 
+ **user_id** | **UUID**|  | [optional] 
+ **tenant_id** | **UUID**|  | [optional] 
+ **position_id** | **UUID**|  | [optional] 
  **created_after** | **datetime**|  | [optional] 
  **created_before** | **datetime**|  | [optional] 
  **settled_after** | **datetime**|  | [optional] 
@@ -4056,7 +4056,7 @@ configuration = dora_client.Configuration(
 async with dora_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = dora_client.DefaultApi(api_client)
-    trade_id = 'trade_id_example' # str | 
+    trade_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
 
     try:
         # Get a trade by ID
@@ -4074,7 +4074,7 @@ async with dora_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **trade_id** | **str**|  | 
+ **trade_id** | **UUID**|  | 
 
 ### Return type
 
@@ -4143,7 +4143,7 @@ async with dora_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = dora_client.DefaultApi(api_client)
     order_book_ids = ['order_book_ids_example'] # List[str] |  (optional)
-    user_ids = ['user_ids_example'] # List[str] |  (optional)
+    user_ids = None # List[UUID] |  (optional)
     start = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
     end = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
     page = 1 # int |  (optional) (default to 1)
@@ -4166,7 +4166,7 @@ async with dora_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **order_book_ids** | [**List[str]**](str.md)|  | [optional] 
- **user_ids** | [**List[str]**](str.md)|  | [optional] 
+ **user_ids** | [**List[UUID]**](UUID.md)|  | [optional] 
  **start** | **datetime**|  | [optional] 
  **end** | **datetime**|  | [optional] 
  **page** | **int**|  | [optional] [default to 1]
@@ -4221,7 +4221,7 @@ configuration = dora_client.Configuration(
 async with dora_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = dora_client.DefaultApi(api_client)
-    transaction_id = 'transaction_id_example' # str | 
+    transaction_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
 
     try:
         # Get a transaction by ID
@@ -4239,7 +4239,7 @@ async with dora_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **transaction_id** | **str**|  | 
+ **transaction_id** | **UUID**|  | 
 
 ### Return type
 
@@ -4292,11 +4292,11 @@ async with dora_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = dora_client.DefaultApi(api_client)
     pools = ['pools_example'] # List[str] |  (optional)
-    user_ids = ['user_ids_example'] # List[str] |  (optional)
+    user_ids = None # List[UUID] |  (optional)
     tx_kinds = [dora_client.TransactionKind()] # List[TransactionKind] |  (optional)
     start = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
     end = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
-    tenant_id = 'tenant_id_example' # str |  (optional)
+    tenant_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID |  (optional)
     page = 1 # int |  (optional) (default to 1)
     limit = 100 # int |  (optional) (default to 100)
 
@@ -4317,11 +4317,11 @@ async with dora_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **pools** | [**List[str]**](str.md)|  | [optional] 
- **user_ids** | [**List[str]**](str.md)|  | [optional] 
+ **user_ids** | [**List[UUID]**](UUID.md)|  | [optional] 
  **tx_kinds** | [**List[TransactionKind]**](TransactionKind.md)|  | [optional] 
  **start** | **datetime**|  | [optional] 
  **end** | **datetime**|  | [optional] 
- **tenant_id** | **str**|  | [optional] 
+ **tenant_id** | **UUID**|  | [optional] 
  **page** | **int**|  | [optional] [default to 1]
  **limit** | **int**|  | [optional] [default to 100]
 
@@ -4391,8 +4391,8 @@ async with dora_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = dora_client.DefaultApi(api_client)
     tenant_id = 'tenant_id_example' # str | Tenant ID to filter settlements (optional)
-    user_id = 'user_id_example' # str | User ID to filter settlements (optional)
-    position_id = 'position_id_example' # str | Position ID to filter settlements (optional)
+    user_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | User ID to filter settlements (optional)
+    position_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | Position ID to filter settlements (optional)
     tx_kind = 'tx_kind_example' # str | Transaction kind to filter settlements (optional)
     created_after = '2013-10-20T19:20:30+01:00' # datetime | Filter settlements created after this time (optional)
     created_before = '2013-10-20T19:20:30+01:00' # datetime | Filter settlements created before this time (optional)
@@ -4417,8 +4417,8 @@ async with dora_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **tenant_id** | **str**| Tenant ID to filter settlements | [optional] 
- **user_id** | **str**| User ID to filter settlements | [optional] 
- **position_id** | **str**| Position ID to filter settlements | [optional] 
+ **user_id** | **UUID**| User ID to filter settlements | [optional] 
+ **position_id** | **UUID**| Position ID to filter settlements | [optional] 
  **tx_kind** | **str**| Transaction kind to filter settlements | [optional] 
  **created_after** | **datetime**| Filter settlements created after this time | [optional] 
  **created_before** | **datetime**| Filter settlements created before this time | [optional] 
@@ -4457,7 +4457,6 @@ Get transactions since a specific time, and open a stream for further updates
 
 ### Example
 
-* Api Key Authentication (apiKeyAuthQuery):
 
 ```python
 import dora_client
@@ -4471,16 +4470,6 @@ configuration = dora_client.Configuration(
     host = "https://staging.dora.co"
 )
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: apiKeyAuthQuery
-configuration.api_key['apiKeyAuthQuery'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['apiKeyAuthQuery'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 async with dora_client.ApiClient(configuration) as api_client:
@@ -4512,7 +4501,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKeyAuthQuery](../README.md#apiKeyAuthQuery)
+No authorization required
 
 ### HTTP request headers
 
@@ -4525,7 +4514,6 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | Transactions stream |  -  |
 **400** | Bad request, e.g. invalid query parameters |  -  |
-**401** | Unauthorized, user not logged in or does not have access to these transactions |  -  |
 **500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -4572,7 +4560,7 @@ configuration = dora_client.Configuration(
 async with dora_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = dora_client.DefaultApi(api_client)
-    user_id = 'user_id_example' # str | 
+    user_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
 
     try:
         # Get user by ID (admin only)
@@ -4590,7 +4578,7 @@ async with dora_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_id** | **str**|  | 
+ **user_id** | **UUID**|  | 
 
 ### Return type
 
@@ -4652,7 +4640,7 @@ configuration.api_key['apiKeyAuthQuery'] = os.environ["API_KEY"]
 async with dora_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = dora_client.DefaultApi(api_client)
-    user_id = 'user_id_example' # str | 
+    user_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
 
     try:
         # Stream user's coupon payment accruals in real time
@@ -4670,7 +4658,7 @@ async with dora_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_id** | **str**|  | 
+ **user_id** | **UUID**|  | 
 
 ### Return type
 
@@ -4733,7 +4721,7 @@ configuration.api_key['apiKeyAuthQuery'] = os.environ["API_KEY"]
 async with dora_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = dora_client.DefaultApi(api_client)
-    user_id = 'user_id_example' # str | 
+    user_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
 
     try:
         # Get a snapshot of user's ledger updates since a specific time, and opens a stream for further updates
@@ -4751,7 +4739,7 @@ async with dora_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_id** | **str**|  | 
+ **user_id** | **UUID**|  | 
 
 ### Return type
 
@@ -4814,7 +4802,7 @@ configuration.api_key['apiKeyAuthQuery'] = os.environ["API_KEY"]
 async with dora_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = dora_client.DefaultApi(api_client)
-    user_id = 'user_id_example' # str | 
+    user_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
 
     try:
         # Stream user's current leverage accrued interest in real time
@@ -4832,7 +4820,7 @@ async with dora_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_id** | **str**|  | 
+ **user_id** | **UUID**|  | 
 
 ### Return type
 
@@ -4895,8 +4883,8 @@ configuration.api_key['apiKeyAuthQuery'] = os.environ["API_KEY"]
 async with dora_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = dora_client.DefaultApi(api_client)
-    user_id = 'user_id_example' # str | 
-    order_book_id = 'order_book_id_example' # str | 
+    user_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
+    order_book_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
     since = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 
     try:
@@ -4915,8 +4903,8 @@ async with dora_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_id** | **str**|  | 
- **order_book_id** | **str**|  | 
+ **user_id** | **UUID**|  | 
+ **order_book_id** | **UUID**|  | 
  **since** | **datetime**|  | [optional] 
 
 ### Return type
@@ -4980,7 +4968,7 @@ configuration.api_key['apiKeyAuthQuery'] = os.environ["API_KEY"]
 async with dora_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = dora_client.DefaultApi(api_client)
-    user_id = 'user_id_example' # str | 
+    user_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
     since = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 
     try:
@@ -4999,7 +4987,7 @@ async with dora_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_id** | **str**|  | 
+ **user_id** | **UUID**|  | 
  **since** | **datetime**|  | [optional] 
 
 ### Return type
@@ -5145,7 +5133,7 @@ configuration.api_key['apiKeyAuthQuery'] = os.environ["API_KEY"]
 async with dora_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = dora_client.DefaultApi(api_client)
-    user_id = 'user_id_example' # str | 
+    user_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
     since = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 
     try:
@@ -5164,7 +5152,7 @@ async with dora_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_id** | **str**|  | 
+ **user_id** | **UUID**|  | 
  **since** | **datetime**|  | [optional] 
 
 ### Return type
@@ -5235,7 +5223,7 @@ configuration = dora_client.Configuration(
 async with dora_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = dora_client.DefaultApi(api_client)
-    id = 'id_example' # str |  (optional)
+    id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID |  (optional)
     limit = 100 # int |  (optional) (default to 100)
     offset = 0 # int |  (optional) (default to 0)
     email = 'email_example' # str |  (optional)
@@ -5259,7 +5247,7 @@ async with dora_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**|  | [optional] 
+ **id** | **UUID**|  | [optional] 
  **limit** | **int**|  | [optional] [default to 100]
  **offset** | **int**|  | [optional] [default to 0]
  **email** | **str**|  | [optional] 
@@ -5415,7 +5403,7 @@ configuration = dora_client.Configuration(
 async with dora_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = dora_client.DefaultApi(api_client)
-    user_id = 'user_id_example' # str | 
+    user_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
     fund_user_request = dora_client.FundUserRequest() # FundUserRequest | 
 
     try:
@@ -5434,7 +5422,7 @@ async with dora_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_id** | **str**|  | 
+ **user_id** | **UUID**|  | 
  **fund_user_request** | [**FundUserRequest**](FundUserRequest.md)|  | 
 
 ### Return type
@@ -5505,7 +5493,7 @@ configuration = dora_client.Configuration(
 async with dora_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = dora_client.DefaultApi(api_client)
-    user_id = 'user_id_example' # str | 
+    user_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
     defund_user_request = dora_client.DefundUserRequest() # DefundUserRequest | 
     status = 'status_example' # str |  (optional)
 
@@ -5525,7 +5513,7 @@ async with dora_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_id** | **str**|  | 
+ **user_id** | **UUID**|  | 
  **defund_user_request** | [**DefundUserRequest**](DefundUserRequest.md)|  | 
  **status** | **str**|  | [optional] 
 
@@ -5597,7 +5585,7 @@ configuration = dora_client.Configuration(
 async with dora_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = dora_client.DefaultApi(api_client)
-    user_id = 'user_id_example' # str | 
+    user_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
     defund_user_request = dora_client.DefundUserRequest() # DefundUserRequest | 
 
     try:
@@ -5616,7 +5604,7 @@ async with dora_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_id** | **str**|  | 
+ **user_id** | **UUID**|  | 
  **defund_user_request** | [**DefundUserRequest**](DefundUserRequest.md)|  | 
 
 ### Return type
@@ -5687,7 +5675,7 @@ configuration = dora_client.Configuration(
 async with dora_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = dora_client.DefaultApi(api_client)
-    user_id = 'user_id_example' # str | 
+    user_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
     defund_user_request = dora_client.DefundUserRequest() # DefundUserRequest | 
 
     try:
@@ -5706,7 +5694,7 @@ async with dora_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_id** | **str**|  | 
+ **user_id** | **UUID**|  | 
  **defund_user_request** | [**DefundUserRequest**](DefundUserRequest.md)|  | 
 
 ### Return type
@@ -5774,8 +5762,8 @@ configuration = dora_client.Configuration(
 async with dora_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = dora_client.DefaultApi(api_client)
-    position_id = 'position_id_example' # str |  (optional)
-    asset_id = 'asset_id_example' # str |  (optional)
+    position_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID |  (optional)
+    asset_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID |  (optional)
 
     try:
         # Get current accrued leverage interest for the user
@@ -5793,8 +5781,8 @@ async with dora_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **position_id** | **str**|  | [optional] 
- **asset_id** | **str**|  | [optional] 
+ **position_id** | **UUID**|  | [optional] 
+ **asset_id** | **UUID**|  | [optional] 
 
 ### Return type
 
@@ -5823,7 +5811,7 @@ Name | Type | Description  | Notes
 # **leverage_get_historical_interest_rates**
 > HistoricalLeverageInterestRatesResponseEnvelope leverage_get_historical_interest_rates(asset_id, start=start, end=end)
 
-Get historical leverage interest rates for a specific asset
+Get historical leverage borrowing and lending yields for a specific asset
 
 ### Example
 
@@ -5862,12 +5850,12 @@ configuration = dora_client.Configuration(
 async with dora_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = dora_client.DefaultApi(api_client)
-    asset_id = 'asset_id_example' # str | 
+    asset_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
     start = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
     end = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 
     try:
-        # Get historical leverage interest rates for a specific asset
+        # Get historical leverage borrowing and lending yields for a specific asset
         api_response = await api_instance.leverage_get_historical_interest_rates(asset_id, start=start, end=end)
         print("The response of DefaultApi->leverage_get_historical_interest_rates:\n")
         pprint(api_response)
@@ -5882,7 +5870,7 @@ async with dora_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **asset_id** | **str**|  | 
+ **asset_id** | **UUID**|  | 
  **start** | **datetime**|  | [optional] 
  **end** | **datetime**|  | [optional] 
 
@@ -5903,7 +5891,7 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Historical leverage interest rates retrieved successfully |  -  |
+**200** | Historical leverage borrowing and lending yields retrieved successfully |  -  |
 **400** | Bad request, e.g. invalid time parameter or end before/equal start |  -  |
 **401** | Unauthorized, e.g. user not logged in or invalid credentials |  -  |
 **500** | Internal server error |  -  |
@@ -5913,7 +5901,7 @@ Name | Type | Description  | Notes
 # **leverage_get_interest_rate**
 > LeverageInterestRateResponseEnvelope leverage_get_interest_rate(asset_id, start=start, end=end)
 
-Get leverage interest rate for a specific asset
+Get leverage borrowing and lending yields for a specific asset
 
 ### Example
 
@@ -5952,12 +5940,12 @@ configuration = dora_client.Configuration(
 async with dora_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = dora_client.DefaultApi(api_client)
-    asset_id = 'asset_id_example' # str | 
+    asset_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
     start = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
     end = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 
     try:
-        # Get leverage interest rate for a specific asset
+        # Get leverage borrowing and lending yields for a specific asset
         api_response = await api_instance.leverage_get_interest_rate(asset_id, start=start, end=end)
         print("The response of DefaultApi->leverage_get_interest_rate:\n")
         pprint(api_response)
@@ -5972,7 +5960,7 @@ async with dora_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **asset_id** | **str**|  | 
+ **asset_id** | **UUID**|  | 
  **start** | **datetime**|  | [optional] 
  **end** | **datetime**|  | [optional] 
 
@@ -5993,7 +5981,7 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Leverage interest rate retrieved successfully |  -  |
+**200** | Leverage borrowing and lending yields retrieved successfully |  -  |
 **400** | Bad request, e.g. invalid/mismatched time parameters |  -  |
 **401** | Unauthorized, e.g. user not logged in or invalid credentials |  -  |
 **404** | No utilization data found for the selected window or asset not found |  -  |
@@ -6398,7 +6386,7 @@ configuration = dora_client.Configuration(
 async with dora_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = dora_client.DefaultApi(api_client)
-    pool_id = 'pool_id_example' # str | 
+    pool_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
     liquidity_request = dora_client.LiquidityRequest() # LiquidityRequest | 
 
     try:
@@ -6417,7 +6405,7 @@ async with dora_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pool_id** | **str**|  | 
+ **pool_id** | **UUID**|  | 
  **liquidity_request** | [**LiquidityRequest**](LiquidityRequest.md)|  | 
 
 ### Return type
@@ -6489,7 +6477,7 @@ configuration = dora_client.Configuration(
 async with dora_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = dora_client.DefaultApi(api_client)
-    pool_id = 'pool_id_example' # str | 
+    pool_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
     liquidity_request = dora_client.LiquidityRequest() # LiquidityRequest | 
 
     try:
@@ -6508,7 +6496,7 @@ async with dora_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pool_id** | **str**|  | 
+ **pool_id** | **UUID**|  | 
  **liquidity_request** | [**LiquidityRequest**](LiquidityRequest.md)|  | 
 
 ### Return type
@@ -6750,8 +6738,8 @@ async with dora_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = dora_client.DefaultApi(api_client)
     status = [dora_client.OrderBookStatus()] # List[OrderBookStatus] |  (optional)
-    base_asset_id = 'base_asset_id_example' # str |  (optional)
-    quote_asset_id = 'quote_asset_id_example' # str |  (optional)
+    base_asset_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID |  (optional)
+    quote_asset_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID |  (optional)
     page = 1 # int |  (optional) (default to 1)
     limit = 100 # int |  (optional) (default to 100)
 
@@ -6772,8 +6760,8 @@ async with dora_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **status** | [**List[OrderBookStatus]**](OrderBookStatus.md)|  | [optional] 
- **base_asset_id** | **str**|  | [optional] 
- **quote_asset_id** | **str**|  | [optional] 
+ **base_asset_id** | **UUID**|  | [optional] 
+ **quote_asset_id** | **UUID**|  | [optional] 
  **page** | **int**|  | [optional] [default to 1]
  **limit** | **int**|  | [optional] [default to 100]
 
@@ -6846,7 +6834,7 @@ configuration = dora_client.Configuration(
 async with dora_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = dora_client.DefaultApi(api_client)
-    order_book_id = ['order_book_id_example'] # List[str] |  (optional)
+    order_book_id = None # List[UUID] |  (optional)
     kind = [dora_client.OrderKind()] # List[OrderKind] |  (optional)
     status = [dora_client.OrderStatus()] # List[OrderStatus] |  (optional)
     side = dora_client.Side() # Side |  (optional)
@@ -6871,7 +6859,7 @@ async with dora_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **order_book_id** | [**List[str]**](str.md)|  | [optional] 
+ **order_book_id** | [**List[UUID]**](UUID.md)|  | [optional] 
  **kind** | [**List[OrderKind]**](OrderKind.md)|  | [optional] 
  **status** | [**List[OrderStatus]**](OrderStatus.md)|  | [optional] 
  **side** | [**Side**](.md)|  | [optional] 
@@ -7119,7 +7107,7 @@ configuration = dora_client.Configuration(
 async with dora_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = dora_client.DefaultApi(api_client)
-    withdrawal_id = 'withdrawal_id_example' # str | 
+    withdrawal_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
     withdrawal_request_reason = dora_client.WithdrawalRequestReason() # WithdrawalRequestReason | 
 
     try:
@@ -7138,7 +7126,7 @@ async with dora_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **withdrawal_id** | **str**|  | 
+ **withdrawal_id** | **UUID**|  | 
  **withdrawal_request_reason** | [**WithdrawalRequestReason**](WithdrawalRequestReason.md)|  | 
 
 ### Return type
@@ -7467,7 +7455,7 @@ configuration = dora_client.Configuration(
 async with dora_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = dora_client.DefaultApi(api_client)
-    settlement_id = 'settlement_id_example' # str | 
+    settlement_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
 
     try:
         # Mark a realized P&L settlement as settled
@@ -7485,7 +7473,7 @@ async with dora_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **settlement_id** | **str**|  | 
+ **settlement_id** | **UUID**|  | 
 
 ### Return type
 
@@ -7599,7 +7587,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **stream_asset_prices**
-> Dict[str, AssetPrice] stream_asset_prices(since=since, asset_id=asset_id)
+> Dict[str, AssetPrice] stream_asset_prices(asset_id=asset_id)
 
 Stream real-time asset prices as map objects
 
@@ -7625,12 +7613,11 @@ configuration = dora_client.Configuration(
 async with dora_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = dora_client.DefaultApi(api_client)
-    since = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
-    asset_id = 'asset_id_example' # str |  (optional)
+    asset_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID |  (optional)
 
     try:
         # Stream real-time asset prices as map objects
-        api_response = await api_instance.stream_asset_prices(since=since, asset_id=asset_id)
+        api_response = await api_instance.stream_asset_prices(asset_id=asset_id)
         print("The response of DefaultApi->stream_asset_prices:\n")
         pprint(api_response)
     except Exception as e:
@@ -7644,8 +7631,7 @@ async with dora_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **since** | **datetime**|  | [optional] 
- **asset_id** | **str**|  | [optional] 
+ **asset_id** | **UUID**|  | [optional] 
 
 ### Return type
 
@@ -7769,7 +7755,7 @@ configuration = dora_client.Configuration(
 async with dora_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = dora_client.DefaultApi(api_client)
-    order_book_id = 'order_book_id_example' # str | 
+    order_book_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
     since = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 
     try:
@@ -7788,7 +7774,7 @@ async with dora_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **order_book_id** | **str**|  | 
+ **order_book_id** | **UUID**|  | 
  **since** | **datetime**|  | [optional] 
 
 ### Return type
@@ -7840,7 +7826,7 @@ configuration = dora_client.Configuration(
 async with dora_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = dora_client.DefaultApi(api_client)
-    order_book_id = 'order_book_id_example' # str | 
+    order_book_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
     since = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 
     try:
@@ -7859,7 +7845,7 @@ async with dora_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **order_book_id** | **str**|  | 
+ **order_book_id** | **UUID**|  | 
  **since** | **datetime**|  | [optional] 
 
 ### Return type
@@ -7911,7 +7897,7 @@ configuration = dora_client.Configuration(
 async with dora_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = dora_client.DefaultApi(api_client)
-    order_book_id = 'order_book_id_example' # str | 
+    order_book_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
     since = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
 
     try:
@@ -7930,7 +7916,7 @@ async with dora_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **order_book_id** | **str**|  | 
+ **order_book_id** | **UUID**|  | 
  **since** | **datetime**|  | [optional] 
 
 ### Return type
@@ -8175,7 +8161,7 @@ configuration = dora_client.Configuration(
 async with dora_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = dora_client.DefaultApi(api_client)
-    user_id = 'user_id_example' # str | 
+    user_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
     update_user_config_request = dora_client.UpdateUserConfigRequest() # UpdateUserConfigRequest | 
 
     try:
@@ -8194,7 +8180,7 @@ async with dora_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_id** | **str**|  | 
+ **user_id** | **UUID**|  | 
  **update_user_config_request** | [**UpdateUserConfigRequest**](UpdateUserConfigRequest.md)|  | 
 
 ### Return type
@@ -8437,7 +8423,7 @@ configuration = dora_client.Configuration(
 async with dora_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = dora_client.DefaultApi(api_client)
-    user_id = 'user_id_example' # str | 
+    user_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
 
     try:
         # Verify a user by ID
@@ -8455,7 +8441,7 @@ async with dora_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_id** | **str**|  | 
+ **user_id** | **UUID**|  | 
 
 ### Return type
 

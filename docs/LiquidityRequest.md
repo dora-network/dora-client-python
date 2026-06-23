@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**position_id** | **str** |  | 
+**position_id** | **UUID** |  | 
 **quantity** | **str** |  | 
 
 ## Example

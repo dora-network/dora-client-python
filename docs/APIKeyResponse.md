@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**user_id** | **str** |  | 
+**user_id** | **UUID** |  | 
 **key_id** | **str** |  | 
 **label** | **str** |  | 
 **expires_at** | **datetime** |  | [optional] 

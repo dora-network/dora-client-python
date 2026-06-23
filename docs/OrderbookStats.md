@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**order_book_id** | **str** |  | 
+**order_book_id** | **UUID** |  | 
 **open_price** | **str** | Open price of the orderbook | 
 **last_price** | **str** | Price of the most recent executed trade. | 
 **high_24h** | **str** | Highest price of the orderbook in the last 24 hours. | 

@@ -43,6 +43,10 @@ class TestStreamCandlesEntry(unittest.TestCase):
                     low = '', 
                     close = '', 
                     ytm = '', 
+                    open_ytm = '', 
+                    close_ytm = '', 
+                    high_ytm = '', 
+                    low_ytm = '', 
                     volume = '', ),
                 time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f')
             )
@@ -56,6 +60,10 @@ class TestStreamCandlesEntry(unittest.TestCase):
                     low = '', 
                     close = '', 
                     ytm = '', 
+                    open_ytm = '', 
+                    close_ytm = '', 
+                    high_ytm = '', 
+                    low_ytm = '', 
                     volume = '', ),
                 time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
         )

@@ -5,12 +5,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**price** | **decimal.Decimal** |  | 
-**order_book_id** | **str** | Required: the order book to submit the order to | 
-**position_id** | **str** | Required: the position to submit the order to | 
-**asset_id** | **str** | Required: the asset to submit the order to | 
-**stop_loss_price** | **decimal.Decimal** | Stop loss price | [optional] 
-**take_profit_price** | **decimal.Decimal** | Take profit price | [optional] 
+**price** | **str** |  | 
+**order_book_id** | **UUID** | Required: the order book to submit the order to | 
+**position_id** | **UUID** | Required: the position to submit the order to | 
+**asset_id** | **UUID** | Required: the asset to submit the order to | 
+**stop_loss_price** | **str** | Stop loss price | [optional] 
+**take_profit_price** | **str** | Take profit price | [optional] 
 
 ## Example
 

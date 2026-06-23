@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **allow_liquidations_notifications** | [**UpdateFieldBoolean**](UpdateFieldBoolean.md) | Optional: Whether to allow liquidations notifications. | [optional] 
 **allow_deposit_withdrawal_notifications** | [**UpdateFieldBoolean**](UpdateFieldBoolean.md) | Optional: Whether to allow deposit/withdrawal notifications. | [optional] 
 **allow_orders_notifications** | [**UpdateFieldBoolean**](UpdateFieldBoolean.md) | Optional: Whether to allow orders notifications. | [optional] 
+**allow_copy_trading** | [**UpdateFieldBoolean**](UpdateFieldBoolean.md) | Optional: Whether to allow copy trading. | [optional] 
 
 ## Example
 

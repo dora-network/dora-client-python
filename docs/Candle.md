@@ -5,13 +5,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**order_book_id** | **str** |  | 
+**order_book_id** | **UUID** |  | 
 **start_timestamp** | **datetime** |  | 
 **open** | **str** |  | 
 **high** | **str** |  | 
 **low** | **str** |  | 
 **close** | **str** |  | 
-**ytm** | **str** |  | 
+**ytm** | **str** | DEPRECATED: Use close_ytm instead. | [optional] 
+**open_ytm** | **str** |  | 
+**close_ytm** | **str** |  | 
+**high_ytm** | **str** |  | 
+**low_ytm** | **str** |  | 
 **volume** | **str** |  | 
 
 ## Example

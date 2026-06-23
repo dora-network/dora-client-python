@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**from_account_id** | **str** |  | 
-**to_account_id** | **str** |  | 
-**asset_id** | **str** |  | 
-**quantity** | **decimal.Decimal** |  | 
+**from_account_id** | **UUID** |  | 
+**to_account_id** | **UUID** |  | 
+**asset_id** | **UUID** |  | 
+**quantity** | **str** |  | 
 
 ## Example
 

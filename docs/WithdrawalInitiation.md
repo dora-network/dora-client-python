@@ -5,16 +5,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**withdrawal_id** | **str** |  | 
-**user_id** | **str** |  | 
-**position_id** | **str** |  | 
-**asset_id** | **str** |  | 
+**withdrawal_id** | **UUID** |  | 
+**user_id** | **UUID** |  | 
+**position_id** | **UUID** |  | 
+**asset_id** | **UUID** |  | 
 **quantity** | **str** |  | 
 **status** | [**WithdrawalStatus**](WithdrawalStatus.md) |  | 
 **created_at** | **datetime** |  | 
-**created_by** | **str** |  | 
+**created_by** | **UUID** |  | 
 **updated_at** | **datetime** |  | 
-**updated_by** | **str** |  | 
+**updated_by** | **UUID** |  | 
 **reason** | **str** |  | 
 
 ## Example

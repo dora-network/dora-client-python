@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**order_id** | **str** |  | [optional] 
+**order_id** | **UUID** |  | [optional] 
 
 ## Example
 

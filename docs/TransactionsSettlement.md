@@ -5,15 +5,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**tx_id** | **str** |  | 
-**user_id** | **str** |  | 
+**tx_id** | **UUID** |  | 
+**user_id** | **UUID** |  | 
 **tenant_id** | **str** |  | 
-**position_id** | **str** |  | 
+**position_id** | **UUID** |  | 
 **tx_kind** | **str** |  | 
-**quantity_usd** | **decimal.Decimal** |  | 
+**quantity_usd** | **str** |  | 
 **created_at** | **datetime** |  | 
 **settled_at** | **datetime** |  | [optional] 
-**settled_by** | **str** |  | [optional] 
+**settled_by** | **UUID** |  | [optional] 
 
 ## Example
 
