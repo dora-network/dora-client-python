@@ -58,7 +58,10 @@ class TestValidateSubmitOrderRequest(unittest.TestCase):
                 assets_config = [
                     dora_client.models.asset_config.AssetConfig(
                         asset_id = '', 
-                        price = '', )
+                        price = '', 
+                        module_available = '', 
+                        module_supplied = '', 
+                        module_borrowed = '', )
                     ],
                 stop_loss_price = '',
                 take_profit_price = '',

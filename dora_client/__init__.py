@@ -64,6 +64,7 @@ __all__ = [
     "ClosePositionResponseEnvelope",
     "Collateral",
     "CountryCode",
+    "CouponKind",
     "CouponPayment",
     "CreateAPIKeyData",
     "CreateAPIKeyRequest",
@@ -83,6 +84,7 @@ __all__ = [
     "FundUserResponseEnvelope",
     "GetAssetByIDResponseEnvelope",
     "GetAssetYTMByIDResponseEnvelope",
+    "GetPnLRankingResponse",
     "GetRealizedPnlSettlementsResponseEnvelope",
     "GetTopOfBookResponseEnvelope",
     "HistoricalLeverageInterestRate",
@@ -151,6 +153,7 @@ __all__ = [
     "PayLeverageAccruedInterest",
     "PayLeverageAccruedInterestRequest",
     "PayLeverageAccruedInterestResponseEnvelope",
+    "PnLRankingResponse",
     "PoolPrice",
     "PoolPriceResponseEnvelope",
     "PoolRequestError",
@@ -294,6 +297,7 @@ from dora_client.models.close_position_resp import ClosePositionResp as ClosePos
 from dora_client.models.close_position_response_envelope import ClosePositionResponseEnvelope as ClosePositionResponseEnvelope
 from dora_client.models.collateral import Collateral as Collateral
 from dora_client.models.country_code import CountryCode as CountryCode
+from dora_client.models.coupon_kind import CouponKind as CouponKind
 from dora_client.models.coupon_payment import CouponPayment as CouponPayment
 from dora_client.models.create_api_key_data import CreateAPIKeyData as CreateAPIKeyData
 from dora_client.models.create_api_key_request import CreateAPIKeyRequest as CreateAPIKeyRequest
@@ -313,6 +317,7 @@ from dora_client.models.fund_user_request import FundUserRequest as FundUserRequ
 from dora_client.models.fund_user_response_envelope import FundUserResponseEnvelope as FundUserResponseEnvelope
 from dora_client.models.get_asset_by_id_response_envelope import GetAssetByIDResponseEnvelope as GetAssetByIDResponseEnvelope
 from dora_client.models.get_asset_ytmby_id_response_envelope import GetAssetYTMByIDResponseEnvelope as GetAssetYTMByIDResponseEnvelope
+from dora_client.models.get_pn_l_ranking_response import GetPnLRankingResponse as GetPnLRankingResponse
 from dora_client.models.get_realized_pnl_settlements_response_envelope import GetRealizedPnlSettlementsResponseEnvelope as GetRealizedPnlSettlementsResponseEnvelope
 from dora_client.models.get_top_of_book_response_envelope import GetTopOfBookResponseEnvelope as GetTopOfBookResponseEnvelope
 from dora_client.models.historical_leverage_interest_rate import HistoricalLeverageInterestRate as HistoricalLeverageInterestRate
@@ -381,6 +386,7 @@ from dora_client.models.pl_summary import PLSummary as PLSummary
 from dora_client.models.pay_leverage_accrued_interest import PayLeverageAccruedInterest as PayLeverageAccruedInterest
 from dora_client.models.pay_leverage_accrued_interest_request import PayLeverageAccruedInterestRequest as PayLeverageAccruedInterestRequest
 from dora_client.models.pay_leverage_accrued_interest_response_envelope import PayLeverageAccruedInterestResponseEnvelope as PayLeverageAccruedInterestResponseEnvelope
+from dora_client.models.pn_l_ranking_response import PnLRankingResponse as PnLRankingResponse
 from dora_client.models.pool_price import PoolPrice as PoolPrice
 from dora_client.models.pool_price_response_envelope import PoolPriceResponseEnvelope as PoolPriceResponseEnvelope
 from dora_client.models.pool_request_error import PoolRequestError as PoolRequestError

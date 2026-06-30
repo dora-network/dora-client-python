@@ -17,23 +17,25 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List
 from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
 
-class AssetConfig(BaseModel):
+class PnLRankingResponse(BaseModel):
     """
-    AssetConfig
+    PnLRankingResponse
     """ # noqa: E501
-    asset_id: UUID
-    price: StrictStr = Field(description="if an asset is a CURRENCY, set 1 USD price,If an asset is a BOND and the price isn't found, set to 0 USD   You can find price details on /price/asset/{asset_id} route")
-    module_available: Optional[StrictStr] = Field(default=None, description="Optional leverage module available balance for this asset, from /v1/ledger/module/{asset_id}. If provided, validation rejects orders that need to borrow more than the module can supply.")
-    module_supplied: Optional[StrictStr] = Field(default=None, description="Optional leverage module total supplied balance for this asset, from /v1/ledger/module/{asset_id}. Required with module_available when the asset has max_utilization.")
-    module_borrowed: Optional[StrictStr] = Field(default=None, description="Optional leverage module borrowed balance for this asset, from /v1/ledger/module/{asset_id}. Required with module_available when the asset has max_utilization.")
-    __properties: ClassVar[List[str]] = ["asset_id", "price", "module_available", "module_supplied", "module_borrowed"]
+    user_id: UUID
+    first_name: StrictStr
+    total_pnl: StrictStr
+    total_trades: StrictInt
+    winning_trades: StrictInt
+    losing_trades: StrictInt
+    win_rate: StrictStr
+    __properties: ClassVar[List[str]] = ["user_id", "first_name", "total_pnl", "total_trades", "winning_trades", "losing_trades", "win_rate"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -53,7 +55,7 @@ class AssetConfig(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of AssetConfig from a JSON string"""
+        """Create an instance of PnLRankingResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -78,7 +80,7 @@ class AssetConfig(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of AssetConfig from a dict"""
+        """Create an instance of PnLRankingResponse from a dict"""
         if obj is None:
             return None
 
@@ -86,11 +88,13 @@ class AssetConfig(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "asset_id": obj.get("asset_id"),
-            "price": obj.get("price"),
-            "module_available": obj.get("module_available"),
-            "module_supplied": obj.get("module_supplied"),
-            "module_borrowed": obj.get("module_borrowed")
+            "user_id": obj.get("user_id"),
+            "first_name": obj.get("first_name"),
+            "total_pnl": obj.get("total_pnl"),
+            "total_trades": obj.get("total_trades"),
+            "winning_trades": obj.get("winning_trades"),
+            "losing_trades": obj.get("losing_trades"),
+            "win_rate": obj.get("win_rate")
         })
         return _obj
 

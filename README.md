@@ -149,6 +149,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**get_pl_for_self_by_account**](docs/DefaultApi.md#get_pl_for_self_by_account) | **GET** /v1/pl/self | Get account-by-account PL breakdown for the logged in user
 *DefaultApi* | [**get_pool_price**](docs/DefaultApi.md#get_pool_price) | **GET** /v1/price/pool/{pool_id} | Get the current price of a pool
 *DefaultApi* | [**get_realized_pnl_settlements**](docs/DefaultApi.md#get_realized_pnl_settlements) | **GET** /v1/realized_pnl_settlements | Get realized P&amp;L settlements with filters
+*DefaultApi* | [**get_top_traders_by_pn_l**](docs/DefaultApi.md#get_top_traders_by_pn_l) | **GET** /v1/user/ranking | Get top traders by PnL
 *DefaultApi* | [**get_trade_by_id**](docs/DefaultApi.md#get_trade_by_id) | **GET** /v1/trades/{trade_id} | Get a trade by ID
 *DefaultApi* | [**get_trades**](docs/DefaultApi.md#get_trades) | **GET** /v1/trades | Get a filtered, paginated list of trades
 *DefaultApi* | [**get_transaction_by_id**](docs/DefaultApi.md#get_transaction_by_id) | **GET** /v1/transactions/{transaction_id} | Get a transaction by ID
@@ -241,6 +242,7 @@ Class | Method | HTTP request | Description
  - [ClosePositionResponseEnvelope](docs/ClosePositionResponseEnvelope.md)
  - [Collateral](docs/Collateral.md)
  - [CountryCode](docs/CountryCode.md)
+ - [CouponKind](docs/CouponKind.md)
  - [CouponPayment](docs/CouponPayment.md)
  - [CreateAPIKeyData](docs/CreateAPIKeyData.md)
  - [CreateAPIKeyRequest](docs/CreateAPIKeyRequest.md)
@@ -260,6 +262,7 @@ Class | Method | HTTP request | Description
  - [FundUserResponseEnvelope](docs/FundUserResponseEnvelope.md)
  - [GetAssetByIDResponseEnvelope](docs/GetAssetByIDResponseEnvelope.md)
  - [GetAssetYTMByIDResponseEnvelope](docs/GetAssetYTMByIDResponseEnvelope.md)
+ - [GetPnLRankingResponse](docs/GetPnLRankingResponse.md)
  - [GetRealizedPnlSettlementsResponseEnvelope](docs/GetRealizedPnlSettlementsResponseEnvelope.md)
  - [GetTopOfBookResponseEnvelope](docs/GetTopOfBookResponseEnvelope.md)
  - [HistoricalLeverageInterestRate](docs/HistoricalLeverageInterestRate.md)
@@ -328,6 +331,7 @@ Class | Method | HTTP request | Description
  - [PayLeverageAccruedInterest](docs/PayLeverageAccruedInterest.md)
  - [PayLeverageAccruedInterestRequest](docs/PayLeverageAccruedInterestRequest.md)
  - [PayLeverageAccruedInterestResponseEnvelope](docs/PayLeverageAccruedInterestResponseEnvelope.md)
+ - [PnLRankingResponse](docs/PnLRankingResponse.md)
  - [PoolPrice](docs/PoolPrice.md)
  - [PoolPriceResponseEnvelope](docs/PoolPriceResponseEnvelope.md)
  - [PoolRequestError](docs/PoolRequestError.md)

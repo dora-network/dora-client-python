@@ -52,6 +52,7 @@ Method | HTTP request | Description
 [**get_pl_for_self_by_account**](DefaultApi.md#get_pl_for_self_by_account) | **GET** /v1/pl/self | Get account-by-account PL breakdown for the logged in user
 [**get_pool_price**](DefaultApi.md#get_pool_price) | **GET** /v1/price/pool/{pool_id} | Get the current price of a pool
 [**get_realized_pnl_settlements**](DefaultApi.md#get_realized_pnl_settlements) | **GET** /v1/realized_pnl_settlements | Get realized P&amp;L settlements with filters
+[**get_top_traders_by_pn_l**](DefaultApi.md#get_top_traders_by_pn_l) | **GET** /v1/user/ranking | Get top traders by PnL
 [**get_trade_by_id**](DefaultApi.md#get_trade_by_id) | **GET** /v1/trades/{trade_id} | Get a trade by ID
 [**get_trades**](DefaultApi.md#get_trades) | **GET** /v1/trades | Get a filtered, paginated list of trades
 [**get_transaction_by_id**](DefaultApi.md#get_transaction_by_id) | **GET** /v1/transactions/{transaction_id} | Get a transaction by ID
@@ -4031,6 +4032,95 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_top_traders_by_pn_l**
+> GetPnLRankingResponse get_top_traders_by_pn_l(start, end, limit=limit)
+
+Get top traders by PnL
+
+### Example
+
+* Api Key Authentication (apiKeyAuthHeader):
+* Bearer (JWT) Authentication (bearerAuth):
+
+```python
+import dora_client
+from dora_client.models.get_pn_l_ranking_response import GetPnLRankingResponse
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging.dora.co
+# See configuration.py for a list of all supported configuration parameters.
+configuration = dora_client.Configuration(
+    host = "https://staging.dora.co"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration.api_key['apiKeyAuthHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyAuthHeader'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = dora_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+async with dora_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = dora_client.DefaultApi(api_client)
+    start = '2013-10-20T19:20:30+01:00' # datetime | 
+    end = '2013-10-20T19:20:30+01:00' # datetime | 
+    limit = 56 # int |  (optional)
+
+    try:
+        # Get top traders by PnL
+        api_response = await api_instance.get_top_traders_by_pn_l(start, end, limit=limit)
+        print("The response of DefaultApi->get_top_traders_by_pn_l:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->get_top_traders_by_pn_l: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **start** | **datetime**|  | 
+ **end** | **datetime**|  | 
+ **limit** | **int**|  | [optional] 
+
+### Return type
+
+[**GetPnLRankingResponse**](GetPnLRankingResponse.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Top traders by PnL |  -  |
+**400** | Bad request, e.g. invalid path parameters |  -  |
+**500** | Internal server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_trade_by_id**
 > TradeResponseEnvelope get_trade_by_id(trade_id)
 
@@ -6790,7 +6880,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_orders**
-> ListOrdersResponseEnvelope list_orders(order_book_id=order_book_id, kind=kind, status=status, side=side, var_from=var_from, to=to, page=page, limit=limit)
+> ListOrdersResponseEnvelope list_orders(user_id=user_id, order_book_id=order_book_id, kind=kind, status=status, side=side, var_from=var_from, to=to, page=page, limit=limit)
 
 List all orders
 
@@ -6834,6 +6924,7 @@ configuration = dora_client.Configuration(
 async with dora_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = dora_client.DefaultApi(api_client)
+    user_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | Filter by user ID (only allowed if the user has copy trading enabled) (optional)
     order_book_id = None # List[UUID] |  (optional)
     kind = [dora_client.OrderKind()] # List[OrderKind] |  (optional)
     status = [dora_client.OrderStatus()] # List[OrderStatus] |  (optional)
@@ -6845,7 +6936,7 @@ async with dora_client.ApiClient(configuration) as api_client:
 
     try:
         # List all orders
-        api_response = await api_instance.list_orders(order_book_id=order_book_id, kind=kind, status=status, side=side, var_from=var_from, to=to, page=page, limit=limit)
+        api_response = await api_instance.list_orders(user_id=user_id, order_book_id=order_book_id, kind=kind, status=status, side=side, var_from=var_from, to=to, page=page, limit=limit)
         print("The response of DefaultApi->list_orders:\n")
         pprint(api_response)
     except Exception as e:
@@ -6859,6 +6950,7 @@ async with dora_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **user_id** | **UUID**| Filter by user ID (only allowed if the user has copy trading enabled) | [optional] 
  **order_book_id** | [**List[UUID]**](UUID.md)|  | [optional] 
  **kind** | [**List[OrderKind]**](OrderKind.md)|  | [optional] 
  **status** | [**List[OrderStatus]**](OrderStatus.md)|  | [optional] 

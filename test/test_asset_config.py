@@ -36,7 +36,10 @@ class TestAssetConfig(unittest.TestCase):
         if include_optional:
             return AssetConfig(
                 asset_id = '',
-                price = ''
+                price = '',
+                module_available = '',
+                module_supplied = '',
+                module_borrowed = ''
             )
         else:
             return AssetConfig(

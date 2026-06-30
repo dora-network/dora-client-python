@@ -19,21 +19,20 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from uuid import UUID
+from dora_client.models.metadata import Metadata
+from dora_client.models.pn_l_ranking_response import PnLRankingResponse
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
 
-class AssetConfig(BaseModel):
+class GetPnLRankingResponse(BaseModel):
     """
-    AssetConfig
+    GetPnLRankingResponse
     """ # noqa: E501
-    asset_id: UUID
-    price: StrictStr = Field(description="if an asset is a CURRENCY, set 1 USD price,If an asset is a BOND and the price isn't found, set to 0 USD   You can find price details on /price/asset/{asset_id} route")
-    module_available: Optional[StrictStr] = Field(default=None, description="Optional leverage module available balance for this asset, from /v1/ledger/module/{asset_id}. If provided, validation rejects orders that need to borrow more than the module can supply.")
-    module_supplied: Optional[StrictStr] = Field(default=None, description="Optional leverage module total supplied balance for this asset, from /v1/ledger/module/{asset_id}. Required with module_available when the asset has max_utilization.")
-    module_borrowed: Optional[StrictStr] = Field(default=None, description="Optional leverage module borrowed balance for this asset, from /v1/ledger/module/{asset_id}. Required with module_available when the asset has max_utilization.")
-    __properties: ClassVar[List[str]] = ["asset_id", "price", "module_available", "module_supplied", "module_borrowed"]
+    data: Optional[List[PnLRankingResponse]] = None
+    error: Optional[StrictStr] = Field(default=None, description="The error message. Present for error (non-2xx) responses.")
+    metadata: Metadata = Field(description="Metadata about the response, including status code and trace information.")
+    __properties: ClassVar[List[str]] = ["data", "error", "metadata"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -53,7 +52,7 @@ class AssetConfig(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of AssetConfig from a JSON string"""
+        """Create an instance of GetPnLRankingResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -74,11 +73,21 @@ class AssetConfig(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in data (list)
+        _items = []
+        if self.data:
+            for _item_data in self.data:
+                if _item_data:
+                    _items.append(_item_data.to_dict())
+            _dict['data'] = _items
+        # override the default output from pydantic by calling `to_dict()` of metadata
+        if self.metadata:
+            _dict['metadata'] = self.metadata.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of AssetConfig from a dict"""
+        """Create an instance of GetPnLRankingResponse from a dict"""
         if obj is None:
             return None
 
@@ -86,11 +95,9 @@ class AssetConfig(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "asset_id": obj.get("asset_id"),
-            "price": obj.get("price"),
-            "module_available": obj.get("module_available"),
-            "module_supplied": obj.get("module_supplied"),
-            "module_borrowed": obj.get("module_borrowed")
+            "data": [PnLRankingResponse.from_dict(_item) for _item in obj["data"]] if obj.get("data") is not None else None,
+            "error": obj.get("error"),
+            "metadata": Metadata.from_dict(obj["metadata"]) if obj.get("metadata") is not None else None
         })
         return _obj
 

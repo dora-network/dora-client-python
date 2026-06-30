@@ -49,6 +49,7 @@ from dora_client.models.close_position_resp import ClosePositionResp
 from dora_client.models.close_position_response_envelope import ClosePositionResponseEnvelope
 from dora_client.models.collateral import Collateral
 from dora_client.models.country_code import CountryCode
+from dora_client.models.coupon_kind import CouponKind
 from dora_client.models.coupon_payment import CouponPayment
 from dora_client.models.create_api_key_data import CreateAPIKeyData
 from dora_client.models.create_api_key_request import CreateAPIKeyRequest
@@ -68,6 +69,7 @@ from dora_client.models.fund_user_request import FundUserRequest
 from dora_client.models.fund_user_response_envelope import FundUserResponseEnvelope
 from dora_client.models.get_asset_by_id_response_envelope import GetAssetByIDResponseEnvelope
 from dora_client.models.get_asset_ytmby_id_response_envelope import GetAssetYTMByIDResponseEnvelope
+from dora_client.models.get_pn_l_ranking_response import GetPnLRankingResponse
 from dora_client.models.get_realized_pnl_settlements_response_envelope import GetRealizedPnlSettlementsResponseEnvelope
 from dora_client.models.get_top_of_book_response_envelope import GetTopOfBookResponseEnvelope
 from dora_client.models.historical_leverage_interest_rate import HistoricalLeverageInterestRate
@@ -136,6 +138,7 @@ from dora_client.models.pl_summary import PLSummary
 from dora_client.models.pay_leverage_accrued_interest import PayLeverageAccruedInterest
 from dora_client.models.pay_leverage_accrued_interest_request import PayLeverageAccruedInterestRequest
 from dora_client.models.pay_leverage_accrued_interest_response_envelope import PayLeverageAccruedInterestResponseEnvelope
+from dora_client.models.pn_l_ranking_response import PnLRankingResponse
 from dora_client.models.pool_price import PoolPrice
 from dora_client.models.pool_price_response_envelope import PoolPriceResponseEnvelope
 from dora_client.models.pool_request_error import PoolRequestError

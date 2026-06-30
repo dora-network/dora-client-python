@@ -362,6 +362,13 @@ class TestDefaultApi(unittest.IsolatedAsyncioTestCase):
         """
         pass
 
+    async def test_get_top_traders_by_pn_l(self) -> None:
+        """Test case for get_top_traders_by_pn_l
+
+        Get top traders by PnL
+        """
+        pass
+
     async def test_get_trade_by_id(self) -> None:
         """Test case for get_trade_by_id
 

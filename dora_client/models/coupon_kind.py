@@ -18,20 +18,20 @@ from enum import Enum
 from typing_extensions import Self
 
 
-class BondKind(str, Enum):
+class CouponKind(str, Enum):
     """
-    BondKind
+    CouponKind
     """
 
     """
     allowed enum values
     """
-    CORPORATE = 'CORPORATE'
-    TREASURY = 'TREASURY'
+    COUPON_MINUS_PAYING = 'COUPON-PAYING'
+    PRINCIPAL_MINUS_ONLY = 'PRINCIPAL-ONLY'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
-        """Create an instance of BondKind from a JSON string"""
+        """Create an instance of CouponKind from a JSON string"""
         return cls(json.loads(json_str))
 
 

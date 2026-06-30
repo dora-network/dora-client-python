@@ -39,6 +39,7 @@ docs/ClosePositionResp.md
 docs/ClosePositionResponseEnvelope.md
 docs/Collateral.md
 docs/CountryCode.md
+docs/CouponKind.md
 docs/CouponPayment.md
 docs/CreateAPIKeyData.md
 docs/CreateAPIKeyRequest.md
@@ -59,6 +60,7 @@ docs/FundUserRequest.md
 docs/FundUserResponseEnvelope.md
 docs/GetAssetByIDResponseEnvelope.md
 docs/GetAssetYTMByIDResponseEnvelope.md
+docs/GetPnLRankingResponse.md
 docs/GetRealizedPnlSettlementsResponseEnvelope.md
 docs/GetTopOfBookResponseEnvelope.md
 docs/HistoricalLeverageInterestRate.md
@@ -127,6 +129,7 @@ docs/PLSummary.md
 docs/PayLeverageAccruedInterest.md
 docs/PayLeverageAccruedInterestRequest.md
 docs/PayLeverageAccruedInterestResponseEnvelope.md
+docs/PnLRankingResponse.md
 docs/PoolPrice.md
 docs/PoolPriceResponseEnvelope.md
 docs/PoolRequestError.md
@@ -261,6 +264,7 @@ dora_client/models/close_position_resp.py
 dora_client/models/close_position_response_envelope.py
 dora_client/models/collateral.py
 dora_client/models/country_code.py
+dora_client/models/coupon_kind.py
 dora_client/models/coupon_payment.py
 dora_client/models/create_api_key_data.py
 dora_client/models/create_api_key_request.py
@@ -280,6 +284,7 @@ dora_client/models/fund_user_request.py
 dora_client/models/fund_user_response_envelope.py
 dora_client/models/get_asset_by_id_response_envelope.py
 dora_client/models/get_asset_ytmby_id_response_envelope.py
+dora_client/models/get_pn_l_ranking_response.py
 dora_client/models/get_realized_pnl_settlements_response_envelope.py
 dora_client/models/get_top_of_book_response_envelope.py
 dora_client/models/historical_leverage_interest_rate.py
@@ -348,6 +353,7 @@ dora_client/models/pl_account.py
 dora_client/models/pl_asset.py
 dora_client/models/pl_response_envelope.py
 dora_client/models/pl_summary.py
+dora_client/models/pn_l_ranking_response.py
 dora_client/models/pool_price.py
 dora_client/models/pool_price_response_envelope.py
 dora_client/models/pool_request_error.py
@@ -483,6 +489,7 @@ test/test_close_position_resp.py
 test/test_close_position_response_envelope.py
 test/test_collateral.py
 test/test_country_code.py
+test/test_coupon_kind.py
 test/test_coupon_payment.py
 test/test_create_api_key_data.py
 test/test_create_api_key_request.py
@@ -503,6 +510,7 @@ test/test_fund_user_request.py
 test/test_fund_user_response_envelope.py
 test/test_get_asset_by_id_response_envelope.py
 test/test_get_asset_ytmby_id_response_envelope.py
+test/test_get_pn_l_ranking_response.py
 test/test_get_realized_pnl_settlements_response_envelope.py
 test/test_get_top_of_book_response_envelope.py
 test/test_historical_leverage_interest_rate.py
@@ -571,6 +579,7 @@ test/test_pl_account.py
 test/test_pl_asset.py
 test/test_pl_response_envelope.py
 test/test_pl_summary.py
+test/test_pn_l_ranking_response.py
 test/test_pool_price.py
 test/test_pool_price_response_envelope.py
 test/test_pool_request_error.py

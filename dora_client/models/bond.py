@@ -23,6 +23,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from uuid import UUID
 from dora_client.models.bond_kind import BondKind
+from dora_client.models.coupon_kind import CouponKind
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -32,7 +33,9 @@ class Bond(BaseModel):
     Bond
     """ # noqa: E501
     id: UUID
-    kind: BondKind
+    kind: CouponKind
+    coupon_kind: Optional[CouponKind] = None
+    bond_kind: Optional[BondKind] = None
     coupon_start_at: Optional[datetime] = None
     created_at: datetime
     final_coupon_at: Optional[datetime] = None
@@ -44,7 +47,7 @@ class Bond(BaseModel):
     payments_per_year: Annotated[int, Field(strict=True, ge=0)]
     payments_every: Optional[Annotated[int, Field(strict=True, ge=1000)]] = Field(default=None, description="Coupon payment frequency in nanoseconds (minimum 1000 i.e. 1 microsecond)")
     next_coupon_payment: Optional[datetime] = None
-    __properties: ClassVar[List[str]] = ["id", "kind", "coupon_start_at", "created_at", "final_coupon_at", "isin", "issued_at", "issuer", "maturity_at", "principal_value", "payments_per_year", "payments_every", "next_coupon_payment"]
+    __properties: ClassVar[List[str]] = ["id", "kind", "coupon_kind", "bond_kind", "coupon_start_at", "created_at", "final_coupon_at", "isin", "issued_at", "issuer", "maturity_at", "principal_value", "payments_per_year", "payments_every", "next_coupon_payment"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -99,6 +102,8 @@ class Bond(BaseModel):
         _obj = cls.model_validate({
             "id": obj.get("id"),
             "kind": obj.get("kind"),
+            "coupon_kind": obj.get("coupon_kind"),
+            "bond_kind": obj.get("bond_kind"),
             "coupon_start_at": obj.get("coupon_start_at"),
             "created_at": obj.get("created_at"),
             "final_coupon_at": obj.get("final_coupon_at"),
