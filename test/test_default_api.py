@@ -96,13 +96,6 @@ class TestDefaultApi(unittest.IsolatedAsyncioTestCase):
         """
         pass
 
-    async def test_create_new_isolated_account_v2(self) -> None:
-        """Test case for create_new_isolated_account_v2
-
-        Create a new isolated account for a user transferring available assets into the account
-        """
-        pass
-
     async def test_create_order(self) -> None:
         """Test case for create_order
 
@@ -198,6 +191,13 @@ class TestDefaultApi(unittest.IsolatedAsyncioTestCase):
         """Test case for get_coupon_payments_by_asset_id
 
         Get coupon payments for a bond asset
+        """
+        pass
+
+    async def test_get_deposit_instructions(self) -> None:
+        """Test case for get_deposit_instructions
+
+        Get per-chain instructions for depositing USDC into the Dora vault
         """
         pass
 
@@ -583,6 +583,13 @@ class TestDefaultApi(unittest.IsolatedAsyncioTestCase):
         """Test case for list_assets
 
         List assets
+        """
+        pass
+
+    async def test_list_deposits(self) -> None:
+        """Test case for list_deposits
+
+        List USDC deposits
         """
         pass
 

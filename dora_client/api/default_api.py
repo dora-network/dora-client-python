@@ -44,6 +44,7 @@ from dora_client.models.create_order_request import CreateOrderRequest
 from dora_client.models.create_order_response_envelope import CreateOrderResponseEnvelope
 from dora_client.models.current_leverage_accrued_interest_response_envelope import CurrentLeverageAccruedInterestResponseEnvelope
 from dora_client.models.defund_user_request import DefundUserRequest
+from dora_client.models.deposit_instructions_response_envelope import DepositInstructionsResponseEnvelope
 from dora_client.models.fund_user_request import FundUserRequest
 from dora_client.models.fund_user_response_envelope import FundUserResponseEnvelope
 from dora_client.models.get_asset_by_id_response_envelope import GetAssetByIDResponseEnvelope
@@ -65,6 +66,7 @@ from dora_client.models.list_asset_price_response_envelope import ListAssetPrice
 from dora_client.models.list_asset_yield_response_envelope import ListAssetYieldResponseEnvelope
 from dora_client.models.list_candles_response_envelope import ListCandlesResponseEnvelope
 from dora_client.models.list_coupon_payments_response_envelope import ListCouponPaymentsResponseEnvelope
+from dora_client.models.list_deposits_response_envelope import ListDepositsResponseEnvelope
 from dora_client.models.list_order_book_depth_response_envelope import ListOrderBookDepthResponseEnvelope
 from dora_client.models.list_orderbook_response_envelope import ListOrderbookResponseEnvelope
 from dora_client.models.list_orders_response_envelope import ListOrdersResponseEnvelope
@@ -73,8 +75,6 @@ from dora_client.models.list_trade_response_envelope import ListTradeResponseEnv
 from dora_client.models.list_transactions_response_envelope import ListTransactionsResponseEnvelope
 from dora_client.models.list_users_response_envelope import ListUsersResponseEnvelope
 from dora_client.models.live_orderbook import LiveOrderbook
-from dora_client.models.new_isolated_account_request_v2 import NewIsolatedAccountRequestV2
-from dora_client.models.new_isolated_account_response_v2_envelope import NewIsolatedAccountResponseV2Envelope
 from dora_client.models.order_book_response_envelope import OrderBookResponseEnvelope
 from dora_client.models.order_book_status import OrderBookStatus
 from dora_client.models.order_book_summary_response_envelope import OrderBookSummaryResponseEnvelope
@@ -3029,290 +3029,6 @@ class DefaultApi:
         return self.api_client.param_serialize(
             method='POST',
             resource_path='/v1/orders/conditional',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
-
-
-
-
-    @validate_call
-    async def create_new_isolated_account_v2(
-        self,
-        new_isolated_account_request_v2: NewIsolatedAccountRequestV2,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> NewIsolatedAccountResponseV2Envelope:
-        """Create a new isolated account for a user transferring available assets into the account
-
-
-        :param new_isolated_account_request_v2: (required)
-        :type new_isolated_account_request_v2: NewIsolatedAccountRequestV2
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._create_new_isolated_account_v2_serialize(
-            new_isolated_account_request_v2=new_isolated_account_request_v2,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '201': "NewIsolatedAccountResponseV2Envelope",
-            '400': "ResponseEnvelope",
-            '401': "ResponseEnvelope",
-            '409': "ResponseEnvelope",
-            '500': "ResponseEnvelope",
-        }
-        response_data = await self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        await response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    async def create_new_isolated_account_v2_with_http_info(
-        self,
-        new_isolated_account_request_v2: NewIsolatedAccountRequestV2,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[NewIsolatedAccountResponseV2Envelope]:
-        """Create a new isolated account for a user transferring available assets into the account
-
-
-        :param new_isolated_account_request_v2: (required)
-        :type new_isolated_account_request_v2: NewIsolatedAccountRequestV2
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._create_new_isolated_account_v2_serialize(
-            new_isolated_account_request_v2=new_isolated_account_request_v2,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '201': "NewIsolatedAccountResponseV2Envelope",
-            '400': "ResponseEnvelope",
-            '401': "ResponseEnvelope",
-            '409': "ResponseEnvelope",
-            '500': "ResponseEnvelope",
-        }
-        response_data = await self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        await response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-
-    @validate_call
-    async def create_new_isolated_account_v2_without_preload_content(
-        self,
-        new_isolated_account_request_v2: NewIsolatedAccountRequestV2,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """Create a new isolated account for a user transferring available assets into the account
-
-
-        :param new_isolated_account_request_v2: (required)
-        :type new_isolated_account_request_v2: NewIsolatedAccountRequestV2
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._create_new_isolated_account_v2_serialize(
-            new_isolated_account_request_v2=new_isolated_account_request_v2,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '201': "NewIsolatedAccountResponseV2Envelope",
-            '400': "ResponseEnvelope",
-            '401': "ResponseEnvelope",
-            '409': "ResponseEnvelope",
-            '500': "ResponseEnvelope",
-        }
-        response_data = await self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _create_new_isolated_account_v2_serialize(
-        self,
-        new_isolated_account_request_v2,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> RequestSerialized:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[
-            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
-        ] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        # process the query parameters
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-        if new_isolated_account_request_v2 is not None:
-            _body_params = new_isolated_account_request_v2
-
-
-        # set the HTTP header `Accept`
-        if 'Accept' not in _header_params:
-            _header_params['Accept'] = self.api_client.select_header_accept(
-                [
-                    'application/json'
-                ]
-            )
-
-        # set the HTTP header `Content-Type`
-        if _content_type:
-            _header_params['Content-Type'] = _content_type
-        else:
-            _default_content_type = (
-                self.api_client.select_header_content_type(
-                    [
-                        'application/json'
-                    ]
-                )
-            )
-            if _default_content_type is not None:
-                _header_params['Content-Type'] = _default_content_type
-
-        # authentication setting
-        _auth_settings: List[str] = [
-            'apiKeyAuthHeader', 
-            'bearerAuth'
-        ]
-
-        return self.api_client.param_serialize(
-            method='POST',
-            resource_path='/v2/accounts/new_isolated',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -7193,6 +6909,330 @@ class DefaultApi:
         return self.api_client.param_serialize(
             method='GET',
             resource_path='/v1/assets/{asset_id}/coupon_payments',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    async def get_deposit_instructions(
+        self,
+        quantity: Annotated[StrictStr, Field(description="Human-decimal USDC quantity to deposit, e.g. '100.50'. Must be positive, with at most 6 decimal places.")],
+        owner_address: Annotated[StrictStr, Field(description="The user's wallet address as a 0x-prefixed 20-byte hex string. Used as the permit owner.")],
+        nonce: Annotated[StrictStr, Field(description="The owner's current USDC permit nonce (read client-side), as a non-negative decimal string. It belongs to the single supported chain.")],
+        client_reference_id: Annotated[Optional[StrictStr], Field(description="Optional client-supplied reference as a hex string (0x prefix optional), at most 32 bytes. Left-aligned into the deposit call's bytes32 argument.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> DepositInstructionsResponseEnvelope:
+        """Get per-chain instructions for depositing USDC into the Dora vault
+
+        Returns everything the caller needs to deposit USDC into the Dora vault with a single signature and a single transaction: an EIP-712 (EIP-2612 permit) typed-data payload to sign with eth_signTypedData_v4, and the descriptor of the vault deposit() call. The client splits the permit signature into v/r/s and ABI-encodes the deposit function with the returned args plus (v, r, s); no separate approve transaction is needed. Only a single chain is currently supported: the provided nonce belongs to it, and the chains array holds at most one entry.
+
+        :param quantity: Human-decimal USDC quantity to deposit, e.g. '100.50'. Must be positive, with at most 6 decimal places. (required)
+        :type quantity: str
+        :param owner_address: The user's wallet address as a 0x-prefixed 20-byte hex string. Used as the permit owner. (required)
+        :type owner_address: str
+        :param nonce: The owner's current USDC permit nonce (read client-side), as a non-negative decimal string. It belongs to the single supported chain. (required)
+        :type nonce: str
+        :param client_reference_id: Optional client-supplied reference as a hex string (0x prefix optional), at most 32 bytes. Left-aligned into the deposit call's bytes32 argument.
+        :type client_reference_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_deposit_instructions_serialize(
+            quantity=quantity,
+            owner_address=owner_address,
+            nonce=nonce,
+            client_reference_id=client_reference_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "DepositInstructionsResponseEnvelope",
+            '400': "ResponseEnvelope",
+            '401': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    async def get_deposit_instructions_with_http_info(
+        self,
+        quantity: Annotated[StrictStr, Field(description="Human-decimal USDC quantity to deposit, e.g. '100.50'. Must be positive, with at most 6 decimal places.")],
+        owner_address: Annotated[StrictStr, Field(description="The user's wallet address as a 0x-prefixed 20-byte hex string. Used as the permit owner.")],
+        nonce: Annotated[StrictStr, Field(description="The owner's current USDC permit nonce (read client-side), as a non-negative decimal string. It belongs to the single supported chain.")],
+        client_reference_id: Annotated[Optional[StrictStr], Field(description="Optional client-supplied reference as a hex string (0x prefix optional), at most 32 bytes. Left-aligned into the deposit call's bytes32 argument.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[DepositInstructionsResponseEnvelope]:
+        """Get per-chain instructions for depositing USDC into the Dora vault
+
+        Returns everything the caller needs to deposit USDC into the Dora vault with a single signature and a single transaction: an EIP-712 (EIP-2612 permit) typed-data payload to sign with eth_signTypedData_v4, and the descriptor of the vault deposit() call. The client splits the permit signature into v/r/s and ABI-encodes the deposit function with the returned args plus (v, r, s); no separate approve transaction is needed. Only a single chain is currently supported: the provided nonce belongs to it, and the chains array holds at most one entry.
+
+        :param quantity: Human-decimal USDC quantity to deposit, e.g. '100.50'. Must be positive, with at most 6 decimal places. (required)
+        :type quantity: str
+        :param owner_address: The user's wallet address as a 0x-prefixed 20-byte hex string. Used as the permit owner. (required)
+        :type owner_address: str
+        :param nonce: The owner's current USDC permit nonce (read client-side), as a non-negative decimal string. It belongs to the single supported chain. (required)
+        :type nonce: str
+        :param client_reference_id: Optional client-supplied reference as a hex string (0x prefix optional), at most 32 bytes. Left-aligned into the deposit call's bytes32 argument.
+        :type client_reference_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_deposit_instructions_serialize(
+            quantity=quantity,
+            owner_address=owner_address,
+            nonce=nonce,
+            client_reference_id=client_reference_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "DepositInstructionsResponseEnvelope",
+            '400': "ResponseEnvelope",
+            '401': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    async def get_deposit_instructions_without_preload_content(
+        self,
+        quantity: Annotated[StrictStr, Field(description="Human-decimal USDC quantity to deposit, e.g. '100.50'. Must be positive, with at most 6 decimal places.")],
+        owner_address: Annotated[StrictStr, Field(description="The user's wallet address as a 0x-prefixed 20-byte hex string. Used as the permit owner.")],
+        nonce: Annotated[StrictStr, Field(description="The owner's current USDC permit nonce (read client-side), as a non-negative decimal string. It belongs to the single supported chain.")],
+        client_reference_id: Annotated[Optional[StrictStr], Field(description="Optional client-supplied reference as a hex string (0x prefix optional), at most 32 bytes. Left-aligned into the deposit call's bytes32 argument.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get per-chain instructions for depositing USDC into the Dora vault
+
+        Returns everything the caller needs to deposit USDC into the Dora vault with a single signature and a single transaction: an EIP-712 (EIP-2612 permit) typed-data payload to sign with eth_signTypedData_v4, and the descriptor of the vault deposit() call. The client splits the permit signature into v/r/s and ABI-encodes the deposit function with the returned args plus (v, r, s); no separate approve transaction is needed. Only a single chain is currently supported: the provided nonce belongs to it, and the chains array holds at most one entry.
+
+        :param quantity: Human-decimal USDC quantity to deposit, e.g. '100.50'. Must be positive, with at most 6 decimal places. (required)
+        :type quantity: str
+        :param owner_address: The user's wallet address as a 0x-prefixed 20-byte hex string. Used as the permit owner. (required)
+        :type owner_address: str
+        :param nonce: The owner's current USDC permit nonce (read client-side), as a non-negative decimal string. It belongs to the single supported chain. (required)
+        :type nonce: str
+        :param client_reference_id: Optional client-supplied reference as a hex string (0x prefix optional), at most 32 bytes. Left-aligned into the deposit call's bytes32 argument.
+        :type client_reference_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_deposit_instructions_serialize(
+            quantity=quantity,
+            owner_address=owner_address,
+            nonce=nonce,
+            client_reference_id=client_reference_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "DepositInstructionsResponseEnvelope",
+            '400': "ResponseEnvelope",
+            '401': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_deposit_instructions_serialize(
+        self,
+        quantity,
+        owner_address,
+        nonce,
+        client_reference_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        if quantity is not None:
+            
+            _query_params.append(('quantity', quantity))
+            
+        if owner_address is not None:
+            
+            _query_params.append(('owner_address', owner_address))
+            
+        if nonce is not None:
+            
+            _query_params.append(('nonce', nonce))
+            
+        if client_reference_id is not None:
+            
+            _query_params.append(('client_reference_id', client_reference_id))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyAuthHeader', 
+            'bearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/v1/web3/deposit-instructions',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -23202,6 +23242,316 @@ class DefaultApi:
 
 
     @validate_call
+    async def list_deposits(
+        self,
+        user_id: Annotated[Optional[UUID], Field(description="Filter by user ID. Non-admin callers may only specify their own user ID.")] = None,
+        page: Optional[Annotated[int, Field(strict=True, ge=1)]] = None,
+        limit: Optional[Annotated[int, Field(le=100, strict=True, ge=1)]] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ListDepositsResponseEnvelope:
+        """List USDC deposits
+
+        Lists USDC deposits ordered by observed_at descending. Admin users may list deposits for any user (or all users); non-admin users may only list their own deposits.
+
+        :param user_id: Filter by user ID. Non-admin callers may only specify their own user ID.
+        :type user_id: UUID
+        :param page:
+        :type page: int
+        :param limit:
+        :type limit: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._list_deposits_serialize(
+            user_id=user_id,
+            page=page,
+            limit=limit,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ListDepositsResponseEnvelope",
+            '400': "ResponseEnvelope",
+            '401': "ResponseEnvelope",
+            '403': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    async def list_deposits_with_http_info(
+        self,
+        user_id: Annotated[Optional[UUID], Field(description="Filter by user ID. Non-admin callers may only specify their own user ID.")] = None,
+        page: Optional[Annotated[int, Field(strict=True, ge=1)]] = None,
+        limit: Optional[Annotated[int, Field(le=100, strict=True, ge=1)]] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ListDepositsResponseEnvelope]:
+        """List USDC deposits
+
+        Lists USDC deposits ordered by observed_at descending. Admin users may list deposits for any user (or all users); non-admin users may only list their own deposits.
+
+        :param user_id: Filter by user ID. Non-admin callers may only specify their own user ID.
+        :type user_id: UUID
+        :param page:
+        :type page: int
+        :param limit:
+        :type limit: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._list_deposits_serialize(
+            user_id=user_id,
+            page=page,
+            limit=limit,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ListDepositsResponseEnvelope",
+            '400': "ResponseEnvelope",
+            '401': "ResponseEnvelope",
+            '403': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    async def list_deposits_without_preload_content(
+        self,
+        user_id: Annotated[Optional[UUID], Field(description="Filter by user ID. Non-admin callers may only specify their own user ID.")] = None,
+        page: Optional[Annotated[int, Field(strict=True, ge=1)]] = None,
+        limit: Optional[Annotated[int, Field(le=100, strict=True, ge=1)]] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """List USDC deposits
+
+        Lists USDC deposits ordered by observed_at descending. Admin users may list deposits for any user (or all users); non-admin users may only list their own deposits.
+
+        :param user_id: Filter by user ID. Non-admin callers may only specify their own user ID.
+        :type user_id: UUID
+        :param page:
+        :type page: int
+        :param limit:
+        :type limit: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._list_deposits_serialize(
+            user_id=user_id,
+            page=page,
+            limit=limit,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ListDepositsResponseEnvelope",
+            '400': "ResponseEnvelope",
+            '401': "ResponseEnvelope",
+            '403': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _list_deposits_serialize(
+        self,
+        user_id,
+        page,
+        limit,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        if user_id is not None:
+            
+            _query_params.append(('user_id', user_id))
+            
+        if page is not None:
+            
+            _query_params.append(('page', page))
+            
+        if limit is not None:
+            
+            _query_params.append(('limit', limit))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyAuthHeader', 
+            'bearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/v1/web3/deposits',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     async def list_order_books(
         self,
         status: Optional[List[OrderBookStatus]] = None,
@@ -23543,7 +23893,7 @@ class DefaultApi:
     @validate_call
     async def list_orders(
         self,
-        user_id: Annotated[Optional[UUID], Field(description="Filter by user ID (only allowed if the user has copy trading enabled)")] = None,
+        user_id: Annotated[Optional[UUID], Field(description="Filter by user ID (only allowed if the user has copy trading enabled, or if the requester is an Admin or Integrator within the same tenant)")] = None,
         order_book_id: Optional[List[UUID]] = None,
         kind: Optional[List[OrderKind]] = None,
         status: Optional[List[OrderStatus]] = None,
@@ -23568,7 +23918,7 @@ class DefaultApi:
         """List all orders
 
 
-        :param user_id: Filter by user ID (only allowed if the user has copy trading enabled)
+        :param user_id: Filter by user ID (only allowed if the user has copy trading enabled, or if the requester is an Admin or Integrator within the same tenant)
         :type user_id: UUID
         :param order_book_id:
         :type order_book_id: List[UUID]
@@ -23645,7 +23995,7 @@ class DefaultApi:
     @validate_call
     async def list_orders_with_http_info(
         self,
-        user_id: Annotated[Optional[UUID], Field(description="Filter by user ID (only allowed if the user has copy trading enabled)")] = None,
+        user_id: Annotated[Optional[UUID], Field(description="Filter by user ID (only allowed if the user has copy trading enabled, or if the requester is an Admin or Integrator within the same tenant)")] = None,
         order_book_id: Optional[List[UUID]] = None,
         kind: Optional[List[OrderKind]] = None,
         status: Optional[List[OrderStatus]] = None,
@@ -23670,7 +24020,7 @@ class DefaultApi:
         """List all orders
 
 
-        :param user_id: Filter by user ID (only allowed if the user has copy trading enabled)
+        :param user_id: Filter by user ID (only allowed if the user has copy trading enabled, or if the requester is an Admin or Integrator within the same tenant)
         :type user_id: UUID
         :param order_book_id:
         :type order_book_id: List[UUID]
@@ -23747,7 +24097,7 @@ class DefaultApi:
     @validate_call
     async def list_orders_without_preload_content(
         self,
-        user_id: Annotated[Optional[UUID], Field(description="Filter by user ID (only allowed if the user has copy trading enabled)")] = None,
+        user_id: Annotated[Optional[UUID], Field(description="Filter by user ID (only allowed if the user has copy trading enabled, or if the requester is an Admin or Integrator within the same tenant)")] = None,
         order_book_id: Optional[List[UUID]] = None,
         kind: Optional[List[OrderKind]] = None,
         status: Optional[List[OrderStatus]] = None,
@@ -23772,7 +24122,7 @@ class DefaultApi:
         """List all orders
 
 
-        :param user_id: Filter by user ID (only allowed if the user has copy trading enabled)
+        :param user_id: Filter by user ID (only allowed if the user has copy trading enabled, or if the requester is an Admin or Integrator within the same tenant)
         :type user_id: UUID
         :param order_book_id:
         :type order_book_id: List[UUID]

@@ -79,6 +79,12 @@ __all__ = [
     "CurrentLeverageAccruedInterest",
     "CurrentLeverageAccruedInterestResponseEnvelope",
     "DefundUserRequest",
+    "DepositArgs",
+    "DepositCall",
+    "DepositInstructionForChain",
+    "DepositInstructionsResponse",
+    "DepositInstructionsResponseEnvelope",
+    "DepositResponse",
     "FundUser",
     "FundUserRequest",
     "FundUserResponseEnvelope",
@@ -112,6 +118,7 @@ __all__ = [
     "ListAssetYieldResponseEnvelope",
     "ListCandlesResponseEnvelope",
     "ListCouponPaymentsResponseEnvelope",
+    "ListDepositsResponseEnvelope",
     "ListOrderBookDepthResponseEnvelope",
     "ListOrderbookResponseEnvelope",
     "ListOrdersResponseEnvelope",
@@ -153,6 +160,9 @@ __all__ = [
     "PayLeverageAccruedInterest",
     "PayLeverageAccruedInterestRequest",
     "PayLeverageAccruedInterestResponseEnvelope",
+    "PermitDomain",
+    "PermitMessage",
+    "PermitTypedData",
     "PnLRankingResponse",
     "PoolPrice",
     "PoolPriceResponseEnvelope",
@@ -210,6 +220,7 @@ __all__ = [
     "TransferBalancesResponseEnvelope",
     "TransformedAssets",
     "TriggerType",
+    "TypedDataField",
     "UnitePositionRequest",
     "UnitePositionResponseEnvelope",
     "UnitedPosition",
@@ -237,6 +248,7 @@ __all__ = [
     "UserValueResponseEnvelope",
     "ValidateSubmitOrderRequest",
     "ValidateSubmitOrderResponse",
+    "Web3EventStatus",
     "Withdraw",
     "WithdrawRequest",
     "WithdrawResponseEnvelope",
@@ -312,6 +324,12 @@ from dora_client.models.create_order_response_envelope import CreateOrderRespons
 from dora_client.models.current_leverage_accrued_interest import CurrentLeverageAccruedInterest as CurrentLeverageAccruedInterest
 from dora_client.models.current_leverage_accrued_interest_response_envelope import CurrentLeverageAccruedInterestResponseEnvelope as CurrentLeverageAccruedInterestResponseEnvelope
 from dora_client.models.defund_user_request import DefundUserRequest as DefundUserRequest
+from dora_client.models.deposit_args import DepositArgs as DepositArgs
+from dora_client.models.deposit_call import DepositCall as DepositCall
+from dora_client.models.deposit_instruction_for_chain import DepositInstructionForChain as DepositInstructionForChain
+from dora_client.models.deposit_instructions_response import DepositInstructionsResponse as DepositInstructionsResponse
+from dora_client.models.deposit_instructions_response_envelope import DepositInstructionsResponseEnvelope as DepositInstructionsResponseEnvelope
+from dora_client.models.deposit_response import DepositResponse as DepositResponse
 from dora_client.models.fund_user import FundUser as FundUser
 from dora_client.models.fund_user_request import FundUserRequest as FundUserRequest
 from dora_client.models.fund_user_response_envelope import FundUserResponseEnvelope as FundUserResponseEnvelope
@@ -345,6 +363,7 @@ from dora_client.models.list_asset_price_response_envelope import ListAssetPrice
 from dora_client.models.list_asset_yield_response_envelope import ListAssetYieldResponseEnvelope as ListAssetYieldResponseEnvelope
 from dora_client.models.list_candles_response_envelope import ListCandlesResponseEnvelope as ListCandlesResponseEnvelope
 from dora_client.models.list_coupon_payments_response_envelope import ListCouponPaymentsResponseEnvelope as ListCouponPaymentsResponseEnvelope
+from dora_client.models.list_deposits_response_envelope import ListDepositsResponseEnvelope as ListDepositsResponseEnvelope
 from dora_client.models.list_order_book_depth_response_envelope import ListOrderBookDepthResponseEnvelope as ListOrderBookDepthResponseEnvelope
 from dora_client.models.list_orderbook_response_envelope import ListOrderbookResponseEnvelope as ListOrderbookResponseEnvelope
 from dora_client.models.list_orders_response_envelope import ListOrdersResponseEnvelope as ListOrdersResponseEnvelope
@@ -386,6 +405,9 @@ from dora_client.models.pl_summary import PLSummary as PLSummary
 from dora_client.models.pay_leverage_accrued_interest import PayLeverageAccruedInterest as PayLeverageAccruedInterest
 from dora_client.models.pay_leverage_accrued_interest_request import PayLeverageAccruedInterestRequest as PayLeverageAccruedInterestRequest
 from dora_client.models.pay_leverage_accrued_interest_response_envelope import PayLeverageAccruedInterestResponseEnvelope as PayLeverageAccruedInterestResponseEnvelope
+from dora_client.models.permit_domain import PermitDomain as PermitDomain
+from dora_client.models.permit_message import PermitMessage as PermitMessage
+from dora_client.models.permit_typed_data import PermitTypedData as PermitTypedData
 from dora_client.models.pn_l_ranking_response import PnLRankingResponse as PnLRankingResponse
 from dora_client.models.pool_price import PoolPrice as PoolPrice
 from dora_client.models.pool_price_response_envelope import PoolPriceResponseEnvelope as PoolPriceResponseEnvelope
@@ -443,6 +465,7 @@ from dora_client.models.transfer_balances_request import TransferBalancesRequest
 from dora_client.models.transfer_balances_response_envelope import TransferBalancesResponseEnvelope as TransferBalancesResponseEnvelope
 from dora_client.models.transformed_assets import TransformedAssets as TransformedAssets
 from dora_client.models.trigger_type import TriggerType as TriggerType
+from dora_client.models.typed_data_field import TypedDataField as TypedDataField
 from dora_client.models.unite_position_request import UnitePositionRequest as UnitePositionRequest
 from dora_client.models.unite_position_response_envelope import UnitePositionResponseEnvelope as UnitePositionResponseEnvelope
 from dora_client.models.united_position import UnitedPosition as UnitedPosition
@@ -470,6 +493,7 @@ from dora_client.models.user_value import UserValue as UserValue
 from dora_client.models.user_value_response_envelope import UserValueResponseEnvelope as UserValueResponseEnvelope
 from dora_client.models.validate_submit_order_request import ValidateSubmitOrderRequest as ValidateSubmitOrderRequest
 from dora_client.models.validate_submit_order_response import ValidateSubmitOrderResponse as ValidateSubmitOrderResponse
+from dora_client.models.web3_event_status import Web3EventStatus as Web3EventStatus
 from dora_client.models.withdraw import Withdraw as Withdraw
 from dora_client.models.withdraw_request import WithdrawRequest as WithdrawRequest
 from dora_client.models.withdraw_response_envelope import WithdrawResponseEnvelope as WithdrawResponseEnvelope

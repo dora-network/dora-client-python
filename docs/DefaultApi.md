@@ -14,7 +14,6 @@ Method | HTTP request | Description
 [**create_api_key_for_user**](DefaultApi.md#create_api_key_for_user) | **POST** /v1/user/apikey | Create apikey for a user
 [**create_api_key_for_user_id**](DefaultApi.md#create_api_key_for_user_id) | **POST** /v1/user/{user_id}/apikey | Create apikey for a user
 [**create_conditional_order**](DefaultApi.md#create_conditional_order) | **POST** /v1/orders/conditional | Create a new conditional orders
-[**create_new_isolated_account_v2**](DefaultApi.md#create_new_isolated_account_v2) | **POST** /v2/accounts/new_isolated | Create a new isolated account for a user transferring available assets into the account
 [**create_order**](DefaultApi.md#create_order) | **POST** /v1/orders | Create a new order
 [**create_user**](DefaultApi.md#create_user) | **POST** /v1/integrators/user | Create a new user
 [**delete_user**](DefaultApi.md#delete_user) | **DELETE** /v1/user/{user_id} | Delete user by ID
@@ -29,6 +28,7 @@ Method | HTTP request | Description
 [**get_assets_stream**](DefaultApi.md#get_assets_stream) | **GET** /v1/assets/stream | Get all inserts or updates for assets
 [**get_candle_data**](DefaultApi.md#get_candle_data) | **GET** /v1/charts/{order_book_id}/candle | Get candlestick data for an orderbook
 [**get_coupon_payments_by_asset_id**](DefaultApi.md#get_coupon_payments_by_asset_id) | **GET** /v1/assets/{asset_id}/coupon_payments | Get coupon payments for a bond asset
+[**get_deposit_instructions**](DefaultApi.md#get_deposit_instructions) | **GET** /v1/web3/deposit-instructions | Get per-chain instructions for depositing USDC into the Dora vault
 [**get_l1_depth**](DefaultApi.md#get_l1_depth) | **GET** /v1/orderbooks/{order_book_id}/L1 | Get the top price levels for a specific orderbook (L1 market depth)
 [**get_l2_depth**](DefaultApi.md#get_l2_depth) | **GET** /v1/orderbooks/{order_book_id}/L2 | Get the aggregated price levels for a specific orderbook (L2 market depth)
 [**get_l3_depth**](DefaultApi.md#get_l3_depth) | **GET** /v1/orderbooks/{order_book_id}/L3 | Get all open orders for a specific orderbook (L3 market depth)
@@ -84,6 +84,7 @@ Method | HTTP request | Description
 [**liquidity_subtract**](DefaultApi.md#liquidity_subtract) | **POST** /v1/liquidity/pool/{pool_id}/remove | Subtract liquidity from a pool
 [**list_accounts_self_v2**](DefaultApi.md#list_accounts_self_v2) | **GET** /v2/user/self/accounts | List all accounts for the authenticated user
 [**list_assets**](DefaultApi.md#list_assets) | **GET** /v1/assets | List assets
+[**list_deposits**](DefaultApi.md#list_deposits) | **GET** /v1/web3/deposits | List USDC deposits
 [**list_order_books**](DefaultApi.md#list_order_books) | **GET** /v1/orderbooks | List order books
 [**list_orders**](DefaultApi.md#list_orders) | **GET** /v1/orders | List all orders
 [**list_position_accounts_self**](DefaultApi.md#list_position_accounts_self) | **GET** /v1/user/self/position_accounts | List all position accounts for the authenticated user
@@ -990,94 +991,6 @@ Name | Type | Description  | Notes
 **201** | Conditional orders are created |  -  |
 **400** | Bad request, e.g. missing required fields |  -  |
 **401** | Unauthorized, user not logged in or does not have access to this orderbook |  -  |
-**500** | Internal server error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **create_new_isolated_account_v2**
-> NewIsolatedAccountResponseV2Envelope create_new_isolated_account_v2(new_isolated_account_request_v2)
-
-Create a new isolated account for a user transferring available assets into the account
-
-### Example
-
-* Api Key Authentication (apiKeyAuthHeader):
-* Bearer (JWT) Authentication (bearerAuth):
-
-```python
-import dora_client
-from dora_client.models.new_isolated_account_request_v2 import NewIsolatedAccountRequestV2
-from dora_client.models.new_isolated_account_response_v2_envelope import NewIsolatedAccountResponseV2Envelope
-from dora_client.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://staging.dora.co
-# See configuration.py for a list of all supported configuration parameters.
-configuration = dora_client.Configuration(
-    host = "https://staging.dora.co"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: apiKeyAuthHeader
-configuration.api_key['apiKeyAuthHeader'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['apiKeyAuthHeader'] = 'Bearer'
-
-# Configure Bearer authorization (JWT): bearerAuth
-configuration = dora_client.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
-
-# Enter a context with an instance of the API client
-async with dora_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = dora_client.DefaultApi(api_client)
-    new_isolated_account_request_v2 = dora_client.NewIsolatedAccountRequestV2() # NewIsolatedAccountRequestV2 | 
-
-    try:
-        # Create a new isolated account for a user transferring available assets into the account
-        api_response = await api_instance.create_new_isolated_account_v2(new_isolated_account_request_v2)
-        print("The response of DefaultApi->create_new_isolated_account_v2:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling DefaultApi->create_new_isolated_account_v2: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **new_isolated_account_request_v2** | [**NewIsolatedAccountRequestV2**](NewIsolatedAccountRequestV2.md)|  | 
-
-### Return type
-
-[**NewIsolatedAccountResponseV2Envelope**](NewIsolatedAccountResponseV2Envelope.md)
-
-### Authorization
-
-[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**201** | Isolated account created |  -  |
-**400** | Bad request, e.g. missing required fields |  -  |
-**401** | Unauthorized, user not logged in or does not have access to this orderbook |  -  |
-**409** | Conflict, e.g. the requested amount is not available to transfer |  -  |
 **500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -2180,6 +2093,100 @@ No authorization required
 **200** | List of coupon payments |  -  |
 **400** | Bad request, e.g. invalid query parameters |  -  |
 **404** | Asset not found or no coupon payments available |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_deposit_instructions**
+> DepositInstructionsResponseEnvelope get_deposit_instructions(quantity, owner_address, nonce, client_reference_id=client_reference_id)
+
+Get per-chain instructions for depositing USDC into the Dora vault
+
+Returns everything the caller needs to deposit USDC into the Dora vault with a single signature and a single transaction: an EIP-712 (EIP-2612 permit) typed-data payload to sign with eth_signTypedData_v4, and the descriptor of the vault deposit() call. The client splits the permit signature into v/r/s and ABI-encodes the deposit function with the returned args plus (v, r, s); no separate approve transaction is needed. Only a single chain is currently supported: the provided nonce belongs to it, and the chains array holds at most one entry.
+
+### Example
+
+* Api Key Authentication (apiKeyAuthHeader):
+* Bearer (JWT) Authentication (bearerAuth):
+
+```python
+import dora_client
+from dora_client.models.deposit_instructions_response_envelope import DepositInstructionsResponseEnvelope
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging.dora.co
+# See configuration.py for a list of all supported configuration parameters.
+configuration = dora_client.Configuration(
+    host = "https://staging.dora.co"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration.api_key['apiKeyAuthHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyAuthHeader'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = dora_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+async with dora_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = dora_client.DefaultApi(api_client)
+    quantity = 'quantity_example' # str | Human-decimal USDC quantity to deposit, e.g. '100.50'. Must be positive, with at most 6 decimal places.
+    owner_address = 'owner_address_example' # str | The user's wallet address as a 0x-prefixed 20-byte hex string. Used as the permit owner.
+    nonce = 'nonce_example' # str | The owner's current USDC permit nonce (read client-side), as a non-negative decimal string. It belongs to the single supported chain.
+    client_reference_id = 'client_reference_id_example' # str | Optional client-supplied reference as a hex string (0x prefix optional), at most 32 bytes. Left-aligned into the deposit call's bytes32 argument. (optional)
+
+    try:
+        # Get per-chain instructions for depositing USDC into the Dora vault
+        api_response = await api_instance.get_deposit_instructions(quantity, owner_address, nonce, client_reference_id=client_reference_id)
+        print("The response of DefaultApi->get_deposit_instructions:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->get_deposit_instructions: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **quantity** | **str**| Human-decimal USDC quantity to deposit, e.g. &#39;100.50&#39;. Must be positive, with at most 6 decimal places. | 
+ **owner_address** | **str**| The user&#39;s wallet address as a 0x-prefixed 20-byte hex string. Used as the permit owner. | 
+ **nonce** | **str**| The owner&#39;s current USDC permit nonce (read client-side), as a non-negative decimal string. It belongs to the single supported chain. | 
+ **client_reference_id** | **str**| Optional client-supplied reference as a hex string (0x prefix optional), at most 32 bytes. Left-aligned into the deposit call&#39;s bytes32 argument. | [optional] 
+
+### Return type
+
+[**DepositInstructionsResponseEnvelope**](DepositInstructionsResponseEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Per-chain deposit instructions for the authenticated user |  -  |
+**400** | Bad request, e.g. invalid or missing quantity, owner_address, or nonce, or an invalid client_reference_id |  -  |
+**401** | Unauthorized, user not logged in |  -  |
+**500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -6784,6 +6791,99 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **list_deposits**
+> ListDepositsResponseEnvelope list_deposits(user_id=user_id, page=page, limit=limit)
+
+List USDC deposits
+
+Lists USDC deposits ordered by observed_at descending. Admin users may list deposits for any user (or all users); non-admin users may only list their own deposits.
+
+### Example
+
+* Api Key Authentication (apiKeyAuthHeader):
+* Bearer (JWT) Authentication (bearerAuth):
+
+```python
+import dora_client
+from dora_client.models.list_deposits_response_envelope import ListDepositsResponseEnvelope
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging.dora.co
+# See configuration.py for a list of all supported configuration parameters.
+configuration = dora_client.Configuration(
+    host = "https://staging.dora.co"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration.api_key['apiKeyAuthHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyAuthHeader'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = dora_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+async with dora_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = dora_client.DefaultApi(api_client)
+    user_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | Filter by user ID. Non-admin callers may only specify their own user ID. (optional)
+    page = 1 # int |  (optional) (default to 1)
+    limit = 50 # int |  (optional) (default to 50)
+
+    try:
+        # List USDC deposits
+        api_response = await api_instance.list_deposits(user_id=user_id, page=page, limit=limit)
+        print("The response of DefaultApi->list_deposits:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->list_deposits: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **user_id** | **UUID**| Filter by user ID. Non-admin callers may only specify their own user ID. | [optional] 
+ **page** | **int**|  | [optional] [default to 1]
+ **limit** | **int**|  | [optional] [default to 50]
+
+### Return type
+
+[**ListDepositsResponseEnvelope**](ListDepositsResponseEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | A list of deposits |  -  |
+**400** | Bad request, e.g. invalid query parameters |  -  |
+**401** | Unauthorized, user not logged in |  -  |
+**403** | Forbidden, e.g. a non-admin user requesting another user&#39;s deposits |  -  |
+**500** | Internal server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **list_order_books**
 > ListOrderbookResponseEnvelope list_order_books(status=status, base_asset_id=base_asset_id, quote_asset_id=quote_asset_id, page=page, limit=limit)
 
@@ -6924,7 +7024,7 @@ configuration = dora_client.Configuration(
 async with dora_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = dora_client.DefaultApi(api_client)
-    user_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | Filter by user ID (only allowed if the user has copy trading enabled) (optional)
+    user_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | Filter by user ID (only allowed if the user has copy trading enabled, or if the requester is an Admin or Integrator within the same tenant) (optional)
     order_book_id = None # List[UUID] |  (optional)
     kind = [dora_client.OrderKind()] # List[OrderKind] |  (optional)
     status = [dora_client.OrderStatus()] # List[OrderStatus] |  (optional)
@@ -6950,7 +7050,7 @@ async with dora_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_id** | **UUID**| Filter by user ID (only allowed if the user has copy trading enabled) | [optional] 
+ **user_id** | **UUID**| Filter by user ID (only allowed if the user has copy trading enabled, or if the requester is an Admin or Integrator within the same tenant) | [optional] 
  **order_book_id** | [**List[UUID]**](UUID.md)|  | [optional] 
  **kind** | [**List[OrderKind]**](OrderKind.md)|  | [optional] 
  **status** | [**List[OrderStatus]**](OrderStatus.md)|  | [optional] 

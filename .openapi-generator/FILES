@@ -55,6 +55,12 @@ docs/CurrentLeverageAccruedInterest.md
 docs/CurrentLeverageAccruedInterestResponseEnvelope.md
 docs/DefaultApi.md
 docs/DefundUserRequest.md
+docs/DepositArgs.md
+docs/DepositCall.md
+docs/DepositInstructionForChain.md
+docs/DepositInstructionsResponse.md
+docs/DepositInstructionsResponseEnvelope.md
+docs/DepositResponse.md
 docs/FundUser.md
 docs/FundUserRequest.md
 docs/FundUserResponseEnvelope.md
@@ -88,6 +94,7 @@ docs/ListAssetPriceResponseEnvelope.md
 docs/ListAssetYieldResponseEnvelope.md
 docs/ListCandlesResponseEnvelope.md
 docs/ListCouponPaymentsResponseEnvelope.md
+docs/ListDepositsResponseEnvelope.md
 docs/ListOrderBookDepthResponseEnvelope.md
 docs/ListOrderbookResponseEnvelope.md
 docs/ListOrdersResponseEnvelope.md
@@ -129,6 +136,9 @@ docs/PLSummary.md
 docs/PayLeverageAccruedInterest.md
 docs/PayLeverageAccruedInterestRequest.md
 docs/PayLeverageAccruedInterestResponseEnvelope.md
+docs/PermitDomain.md
+docs/PermitMessage.md
+docs/PermitTypedData.md
 docs/PnLRankingResponse.md
 docs/PoolPrice.md
 docs/PoolPriceResponseEnvelope.md
@@ -186,6 +196,7 @@ docs/TransferBalancesRequest.md
 docs/TransferBalancesResponseEnvelope.md
 docs/TransformedAssets.md
 docs/TriggerType.md
+docs/TypedDataField.md
 docs/UnitePositionRequest.md
 docs/UnitePositionResponseEnvelope.md
 docs/UnitedPosition.md
@@ -213,6 +224,7 @@ docs/UserValue.md
 docs/UserValueResponseEnvelope.md
 docs/ValidateSubmitOrderRequest.md
 docs/ValidateSubmitOrderResponse.md
+docs/Web3EventStatus.md
 docs/Withdraw.md
 docs/WithdrawRequest.md
 docs/WithdrawResponseEnvelope.md
@@ -279,6 +291,12 @@ dora_client/models/create_order_response_envelope.py
 dora_client/models/current_leverage_accrued_interest.py
 dora_client/models/current_leverage_accrued_interest_response_envelope.py
 dora_client/models/defund_user_request.py
+dora_client/models/deposit_args.py
+dora_client/models/deposit_call.py
+dora_client/models/deposit_instruction_for_chain.py
+dora_client/models/deposit_instructions_response.py
+dora_client/models/deposit_instructions_response_envelope.py
+dora_client/models/deposit_response.py
 dora_client/models/fund_user.py
 dora_client/models/fund_user_request.py
 dora_client/models/fund_user_response_envelope.py
@@ -312,6 +330,7 @@ dora_client/models/list_asset_price_response_envelope.py
 dora_client/models/list_asset_yield_response_envelope.py
 dora_client/models/list_candles_response_envelope.py
 dora_client/models/list_coupon_payments_response_envelope.py
+dora_client/models/list_deposits_response_envelope.py
 dora_client/models/list_order_book_depth_response_envelope.py
 dora_client/models/list_orderbook_response_envelope.py
 dora_client/models/list_orders_response_envelope.py
@@ -349,6 +368,9 @@ dora_client/models/orderbook_stats_response_envelope.py
 dora_client/models/pay_leverage_accrued_interest.py
 dora_client/models/pay_leverage_accrued_interest_request.py
 dora_client/models/pay_leverage_accrued_interest_response_envelope.py
+dora_client/models/permit_domain.py
+dora_client/models/permit_message.py
+dora_client/models/permit_typed_data.py
 dora_client/models/pl_account.py
 dora_client/models/pl_asset.py
 dora_client/models/pl_response_envelope.py
@@ -410,6 +432,7 @@ dora_client/models/transfer_balances_request.py
 dora_client/models/transfer_balances_response_envelope.py
 dora_client/models/transformed_assets.py
 dora_client/models/trigger_type.py
+dora_client/models/typed_data_field.py
 dora_client/models/unite_position_request.py
 dora_client/models/unite_position_response_envelope.py
 dora_client/models/united_position.py
@@ -437,6 +460,7 @@ dora_client/models/user_value.py
 dora_client/models/user_value_response_envelope.py
 dora_client/models/validate_submit_order_request.py
 dora_client/models/validate_submit_order_response.py
+dora_client/models/web3_event_status.py
 dora_client/models/withdraw.py
 dora_client/models/withdraw_request.py
 dora_client/models/withdraw_response_envelope.py
@@ -505,6 +529,12 @@ test/test_current_leverage_accrued_interest.py
 test/test_current_leverage_accrued_interest_response_envelope.py
 test/test_default_api.py
 test/test_defund_user_request.py
+test/test_deposit_args.py
+test/test_deposit_call.py
+test/test_deposit_instruction_for_chain.py
+test/test_deposit_instructions_response.py
+test/test_deposit_instructions_response_envelope.py
+test/test_deposit_response.py
 test/test_fund_user.py
 test/test_fund_user_request.py
 test/test_fund_user_response_envelope.py
@@ -538,6 +568,7 @@ test/test_list_asset_price_response_envelope.py
 test/test_list_asset_yield_response_envelope.py
 test/test_list_candles_response_envelope.py
 test/test_list_coupon_payments_response_envelope.py
+test/test_list_deposits_response_envelope.py
 test/test_list_order_book_depth_response_envelope.py
 test/test_list_orderbook_response_envelope.py
 test/test_list_orders_response_envelope.py
@@ -575,6 +606,9 @@ test/test_orderbook_stats_response_envelope.py
 test/test_pay_leverage_accrued_interest.py
 test/test_pay_leverage_accrued_interest_request.py
 test/test_pay_leverage_accrued_interest_response_envelope.py
+test/test_permit_domain.py
+test/test_permit_message.py
+test/test_permit_typed_data.py
 test/test_pl_account.py
 test/test_pl_asset.py
 test/test_pl_response_envelope.py
@@ -636,6 +670,7 @@ test/test_transfer_balances_request.py
 test/test_transfer_balances_response_envelope.py
 test/test_transformed_assets.py
 test/test_trigger_type.py
+test/test_typed_data_field.py
 test/test_unite_position_request.py
 test/test_unite_position_response_envelope.py
 test/test_united_position.py
@@ -663,6 +698,7 @@ test/test_user_value.py
 test/test_user_value_response_envelope.py
 test/test_validate_submit_order_request.py
 test/test_validate_submit_order_response.py
+test/test_web3_event_status.py
 test/test_withdraw.py
 test/test_withdraw_request.py
 test/test_withdraw_response_envelope.py

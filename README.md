@@ -111,7 +111,6 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**create_api_key_for_user**](docs/DefaultApi.md#create_api_key_for_user) | **POST** /v1/user/apikey | Create apikey for a user
 *DefaultApi* | [**create_api_key_for_user_id**](docs/DefaultApi.md#create_api_key_for_user_id) | **POST** /v1/user/{user_id}/apikey | Create apikey for a user
 *DefaultApi* | [**create_conditional_order**](docs/DefaultApi.md#create_conditional_order) | **POST** /v1/orders/conditional | Create a new conditional orders
-*DefaultApi* | [**create_new_isolated_account_v2**](docs/DefaultApi.md#create_new_isolated_account_v2) | **POST** /v2/accounts/new_isolated | Create a new isolated account for a user transferring available assets into the account
 *DefaultApi* | [**create_order**](docs/DefaultApi.md#create_order) | **POST** /v1/orders | Create a new order
 *DefaultApi* | [**create_user**](docs/DefaultApi.md#create_user) | **POST** /v1/integrators/user | Create a new user
 *DefaultApi* | [**delete_user**](docs/DefaultApi.md#delete_user) | **DELETE** /v1/user/{user_id} | Delete user by ID
@@ -126,6 +125,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**get_assets_stream**](docs/DefaultApi.md#get_assets_stream) | **GET** /v1/assets/stream | Get all inserts or updates for assets
 *DefaultApi* | [**get_candle_data**](docs/DefaultApi.md#get_candle_data) | **GET** /v1/charts/{order_book_id}/candle | Get candlestick data for an orderbook
 *DefaultApi* | [**get_coupon_payments_by_asset_id**](docs/DefaultApi.md#get_coupon_payments_by_asset_id) | **GET** /v1/assets/{asset_id}/coupon_payments | Get coupon payments for a bond asset
+*DefaultApi* | [**get_deposit_instructions**](docs/DefaultApi.md#get_deposit_instructions) | **GET** /v1/web3/deposit-instructions | Get per-chain instructions for depositing USDC into the Dora vault
 *DefaultApi* | [**get_l1_depth**](docs/DefaultApi.md#get_l1_depth) | **GET** /v1/orderbooks/{order_book_id}/L1 | Get the top price levels for a specific orderbook (L1 market depth)
 *DefaultApi* | [**get_l2_depth**](docs/DefaultApi.md#get_l2_depth) | **GET** /v1/orderbooks/{order_book_id}/L2 | Get the aggregated price levels for a specific orderbook (L2 market depth)
 *DefaultApi* | [**get_l3_depth**](docs/DefaultApi.md#get_l3_depth) | **GET** /v1/orderbooks/{order_book_id}/L3 | Get all open orders for a specific orderbook (L3 market depth)
@@ -181,6 +181,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**liquidity_subtract**](docs/DefaultApi.md#liquidity_subtract) | **POST** /v1/liquidity/pool/{pool_id}/remove | Subtract liquidity from a pool
 *DefaultApi* | [**list_accounts_self_v2**](docs/DefaultApi.md#list_accounts_self_v2) | **GET** /v2/user/self/accounts | List all accounts for the authenticated user
 *DefaultApi* | [**list_assets**](docs/DefaultApi.md#list_assets) | **GET** /v1/assets | List assets
+*DefaultApi* | [**list_deposits**](docs/DefaultApi.md#list_deposits) | **GET** /v1/web3/deposits | List USDC deposits
 *DefaultApi* | [**list_order_books**](docs/DefaultApi.md#list_order_books) | **GET** /v1/orderbooks | List order books
 *DefaultApi* | [**list_orders**](docs/DefaultApi.md#list_orders) | **GET** /v1/orders | List all orders
 *DefaultApi* | [**list_position_accounts_self**](docs/DefaultApi.md#list_position_accounts_self) | **GET** /v1/user/self/position_accounts | List all position accounts for the authenticated user
@@ -257,6 +258,12 @@ Class | Method | HTTP request | Description
  - [CurrentLeverageAccruedInterest](docs/CurrentLeverageAccruedInterest.md)
  - [CurrentLeverageAccruedInterestResponseEnvelope](docs/CurrentLeverageAccruedInterestResponseEnvelope.md)
  - [DefundUserRequest](docs/DefundUserRequest.md)
+ - [DepositArgs](docs/DepositArgs.md)
+ - [DepositCall](docs/DepositCall.md)
+ - [DepositInstructionForChain](docs/DepositInstructionForChain.md)
+ - [DepositInstructionsResponse](docs/DepositInstructionsResponse.md)
+ - [DepositInstructionsResponseEnvelope](docs/DepositInstructionsResponseEnvelope.md)
+ - [DepositResponse](docs/DepositResponse.md)
  - [FundUser](docs/FundUser.md)
  - [FundUserRequest](docs/FundUserRequest.md)
  - [FundUserResponseEnvelope](docs/FundUserResponseEnvelope.md)
@@ -290,6 +297,7 @@ Class | Method | HTTP request | Description
  - [ListAssetYieldResponseEnvelope](docs/ListAssetYieldResponseEnvelope.md)
  - [ListCandlesResponseEnvelope](docs/ListCandlesResponseEnvelope.md)
  - [ListCouponPaymentsResponseEnvelope](docs/ListCouponPaymentsResponseEnvelope.md)
+ - [ListDepositsResponseEnvelope](docs/ListDepositsResponseEnvelope.md)
  - [ListOrderBookDepthResponseEnvelope](docs/ListOrderBookDepthResponseEnvelope.md)
  - [ListOrderbookResponseEnvelope](docs/ListOrderbookResponseEnvelope.md)
  - [ListOrdersResponseEnvelope](docs/ListOrdersResponseEnvelope.md)
@@ -331,6 +339,9 @@ Class | Method | HTTP request | Description
  - [PayLeverageAccruedInterest](docs/PayLeverageAccruedInterest.md)
  - [PayLeverageAccruedInterestRequest](docs/PayLeverageAccruedInterestRequest.md)
  - [PayLeverageAccruedInterestResponseEnvelope](docs/PayLeverageAccruedInterestResponseEnvelope.md)
+ - [PermitDomain](docs/PermitDomain.md)
+ - [PermitMessage](docs/PermitMessage.md)
+ - [PermitTypedData](docs/PermitTypedData.md)
  - [PnLRankingResponse](docs/PnLRankingResponse.md)
  - [PoolPrice](docs/PoolPrice.md)
  - [PoolPriceResponseEnvelope](docs/PoolPriceResponseEnvelope.md)
@@ -388,6 +399,7 @@ Class | Method | HTTP request | Description
  - [TransferBalancesResponseEnvelope](docs/TransferBalancesResponseEnvelope.md)
  - [TransformedAssets](docs/TransformedAssets.md)
  - [TriggerType](docs/TriggerType.md)
+ - [TypedDataField](docs/TypedDataField.md)
  - [UnitePositionRequest](docs/UnitePositionRequest.md)
  - [UnitePositionResponseEnvelope](docs/UnitePositionResponseEnvelope.md)
  - [UnitedPosition](docs/UnitedPosition.md)
@@ -415,6 +427,7 @@ Class | Method | HTTP request | Description
  - [UserValueResponseEnvelope](docs/UserValueResponseEnvelope.md)
  - [ValidateSubmitOrderRequest](docs/ValidateSubmitOrderRequest.md)
  - [ValidateSubmitOrderResponse](docs/ValidateSubmitOrderResponse.md)
+ - [Web3EventStatus](docs/Web3EventStatus.md)
  - [Withdraw](docs/Withdraw.md)
  - [WithdrawRequest](docs/WithdrawRequest.md)
  - [WithdrawResponseEnvelope](docs/WithdrawResponseEnvelope.md)
