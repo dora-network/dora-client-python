@@ -17,22 +17,22 @@ import pprint
 import re  # noqa: F401
 import json
 
-from datetime import datetime
-from pydantic import BaseModel, ConfigDict, StrictStr
-from typing import Any, ClassVar, Dict, List
-from uuid import UUID
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
+from dora_client.models.metadata import Metadata
+from dora_client.models.repay_usd_result import RepayUSDResult
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
 
-class PoolPrice(BaseModel):
+class RepayUSDResponseEnvelope(BaseModel):
     """
-    PoolPrice
+    RepayUSDResponseEnvelope
     """ # noqa: E501
-    pool_id: UUID
-    price: StrictStr
-    time: datetime
-    __properties: ClassVar[List[str]] = ["pool_id", "price", "time"]
+    data: Optional[RepayUSDResult] = None
+    error: Optional[StrictStr] = Field(default=None, description="The error message. Present for error (non-2xx) responses.")
+    metadata: Metadata = Field(description="Metadata about the response, including status code and trace information.")
+    __properties: ClassVar[List[str]] = ["data", "error", "metadata"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -52,7 +52,7 @@ class PoolPrice(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of PoolPrice from a JSON string"""
+        """Create an instance of RepayUSDResponseEnvelope from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -73,11 +73,17 @@ class PoolPrice(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of data
+        if self.data:
+            _dict['data'] = self.data.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of metadata
+        if self.metadata:
+            _dict['metadata'] = self.metadata.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of PoolPrice from a dict"""
+        """Create an instance of RepayUSDResponseEnvelope from a dict"""
         if obj is None:
             return None
 
@@ -85,9 +91,9 @@ class PoolPrice(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "pool_id": obj.get("pool_id"),
-            "price": obj.get("price"),
-            "time": obj.get("time")
+            "data": RepayUSDResult.from_dict(obj["data"]) if obj.get("data") is not None else None,
+            "error": obj.get("error"),
+            "metadata": Metadata.from_dict(obj["metadata"]) if obj.get("metadata") is not None else None
         })
         return _obj
 

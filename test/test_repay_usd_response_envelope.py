@@ -14,10 +14,10 @@
 
 import unittest
 
-from dora_client.models.pool_price_response_envelope import PoolPriceResponseEnvelope
+from dora_client.models.repay_usd_response_envelope import RepayUSDResponseEnvelope
 
-class TestPoolPriceResponseEnvelope(unittest.TestCase):
-    """PoolPriceResponseEnvelope unit test stubs"""
+class TestRepayUSDResponseEnvelope(unittest.TestCase):
+    """RepayUSDResponseEnvelope unit test stubs"""
 
     def setUp(self):
         pass
@@ -25,20 +25,21 @@ class TestPoolPriceResponseEnvelope(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> PoolPriceResponseEnvelope:
-        """Test PoolPriceResponseEnvelope
+    def make_instance(self, include_optional) -> RepayUSDResponseEnvelope:
+        """Test RepayUSDResponseEnvelope
             include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `PoolPriceResponseEnvelope`
+        # uncomment below to create an instance of `RepayUSDResponseEnvelope`
         """
-        model = PoolPriceResponseEnvelope()
+        model = RepayUSDResponseEnvelope()
         if include_optional:
-            return PoolPriceResponseEnvelope(
-                data = dora_client.models.pool_price.PoolPrice(
-                    pool_id = '', 
-                    price = '', 
-                    time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ),
+            return RepayUSDResponseEnvelope(
+                data = dora_client.models.repay_usd_result.RepayUSDResult(
+                    position_id = '', 
+                    asset_id = '', 
+                    repaid = '', 
+                    transaction_id = '', ),
                 error = '',
                 metadata = dora_client.models.metadata.Metadata(
                     status_code = 56, 
@@ -46,7 +47,7 @@ class TestPoolPriceResponseEnvelope(unittest.TestCase):
                     request_id = '', )
             )
         else:
-            return PoolPriceResponseEnvelope(
+            return RepayUSDResponseEnvelope(
                 metadata = dora_client.models.metadata.Metadata(
                     status_code = 56, 
                     trace_id = '', 
@@ -54,8 +55,8 @@ class TestPoolPriceResponseEnvelope(unittest.TestCase):
         )
         """
 
-    def testPoolPriceResponseEnvelope(self):
-        """Test PoolPriceResponseEnvelope"""
+    def testRepayUSDResponseEnvelope(self):
+        """Test RepayUSDResponseEnvelope"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

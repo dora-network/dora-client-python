@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **pool_id** | **UUID** |  | 
 **price** | **str** |  | 
-**timestamp** | **datetime** |  | 
+**time** | **datetime** |  | 
 
 ## Example
 

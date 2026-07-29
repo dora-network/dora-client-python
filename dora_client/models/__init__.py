@@ -75,6 +75,7 @@ from dora_client.models.fund_user_request import FundUserRequest
 from dora_client.models.fund_user_response_envelope import FundUserResponseEnvelope
 from dora_client.models.get_asset_by_id_response_envelope import GetAssetByIDResponseEnvelope
 from dora_client.models.get_asset_ytmby_id_response_envelope import GetAssetYTMByIDResponseEnvelope
+from dora_client.models.get_copy_traders_response import GetCopyTradersResponse
 from dora_client.models.get_pn_l_ranking_response import GetPnLRankingResponse
 from dora_client.models.get_realized_pnl_settlements_response_envelope import GetRealizedPnlSettlementsResponseEnvelope
 from dora_client.models.get_top_of_book_response_envelope import GetTopOfBookResponseEnvelope
@@ -162,6 +163,9 @@ from dora_client.models.position_type import PositionType
 from dora_client.models.price_level import PriceLevel
 from dora_client.models.realized_pnl_settlement import RealizedPnlSettlement
 from dora_client.models.realized_pnl_settlements import RealizedPnlSettlements
+from dora_client.models.repay_usd_request import RepayUSDRequest
+from dora_client.models.repay_usd_response_envelope import RepayUSDResponseEnvelope
+from dora_client.models.repay_usd_result import RepayUSDResult
 from dora_client.models.response_envelope import ResponseEnvelope
 from dora_client.models.response_envelope_of_list_assets import ResponseEnvelopeOfListAssets
 from dora_client.models.revoke_api_key_data import RevokeAPIKeyData

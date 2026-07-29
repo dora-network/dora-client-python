@@ -66,6 +66,7 @@ docs/FundUserRequest.md
 docs/FundUserResponseEnvelope.md
 docs/GetAssetByIDResponseEnvelope.md
 docs/GetAssetYTMByIDResponseEnvelope.md
+docs/GetCopyTradersResponse.md
 docs/GetPnLRankingResponse.md
 docs/GetRealizedPnlSettlementsResponseEnvelope.md
 docs/GetTopOfBookResponseEnvelope.md
@@ -153,6 +154,9 @@ docs/PositionType.md
 docs/PriceLevel.md
 docs/RealizedPnlSettlement.md
 docs/RealizedPnlSettlements.md
+docs/RepayUSDRequest.md
+docs/RepayUSDResponseEnvelope.md
+docs/RepayUSDResult.md
 docs/ResponseEnvelope.md
 docs/ResponseEnvelopeOfListAssets.md
 docs/RevokeAPIKeyData.md
@@ -302,6 +306,7 @@ dora_client/models/fund_user_request.py
 dora_client/models/fund_user_response_envelope.py
 dora_client/models/get_asset_by_id_response_envelope.py
 dora_client/models/get_asset_ytmby_id_response_envelope.py
+dora_client/models/get_copy_traders_response.py
 dora_client/models/get_pn_l_ranking_response.py
 dora_client/models/get_realized_pnl_settlements_response_envelope.py
 dora_client/models/get_top_of_book_response_envelope.py
@@ -389,6 +394,9 @@ dora_client/models/position_type.py
 dora_client/models/price_level.py
 dora_client/models/realized_pnl_settlement.py
 dora_client/models/realized_pnl_settlements.py
+dora_client/models/repay_usd_request.py
+dora_client/models/repay_usd_response_envelope.py
+dora_client/models/repay_usd_result.py
 dora_client/models/response_envelope.py
 dora_client/models/response_envelope_of_list_assets.py
 dora_client/models/revoke_api_key_data.py
@@ -540,6 +548,7 @@ test/test_fund_user_request.py
 test/test_fund_user_response_envelope.py
 test/test_get_asset_by_id_response_envelope.py
 test/test_get_asset_ytmby_id_response_envelope.py
+test/test_get_copy_traders_response.py
 test/test_get_pn_l_ranking_response.py
 test/test_get_realized_pnl_settlements_response_envelope.py
 test/test_get_top_of_book_response_envelope.py
@@ -627,6 +636,9 @@ test/test_position_type.py
 test/test_price_level.py
 test/test_realized_pnl_settlement.py
 test/test_realized_pnl_settlements.py
+test/test_repay_usd_request.py
+test/test_repay_usd_response_envelope.py
+test/test_repay_usd_result.py
 test/test_response_envelope.py
 test/test_response_envelope_of_list_assets.py
 test/test_revoke_api_key_data.py

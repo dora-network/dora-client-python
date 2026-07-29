@@ -187,6 +187,13 @@ class TestDefaultApi(unittest.IsolatedAsyncioTestCase):
         """
         pass
 
+    async def test_get_copy_traders(self) -> None:
+        """Test case for get_copy_traders
+
+        Get list of user IDs with copy trading enabled
+        """
+        pass
+
     async def test_get_coupon_payments_by_asset_id(self) -> None:
         """Test case for get_coupon_payments_by_asset_id
 
@@ -625,6 +632,13 @@ class TestDefaultApi(unittest.IsolatedAsyncioTestCase):
         """Test case for reject_ledger_withdraw_request
 
         Reject a pending withdrawal request
+        """
+        pass
+
+    async def test_repay_usd(self) -> None:
+        """Test case for repay_usd
+
+        Repay borrowed USD, then accrue and pay leverage interest
         """
         pass
 

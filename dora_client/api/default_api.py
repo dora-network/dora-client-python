@@ -49,6 +49,7 @@ from dora_client.models.fund_user_request import FundUserRequest
 from dora_client.models.fund_user_response_envelope import FundUserResponseEnvelope
 from dora_client.models.get_asset_by_id_response_envelope import GetAssetByIDResponseEnvelope
 from dora_client.models.get_asset_ytmby_id_response_envelope import GetAssetYTMByIDResponseEnvelope
+from dora_client.models.get_copy_traders_response import GetCopyTradersResponse
 from dora_client.models.get_pn_l_ranking_response import GetPnLRankingResponse
 from dora_client.models.get_realized_pnl_settlements_response_envelope import GetRealizedPnlSettlementsResponseEnvelope
 from dora_client.models.get_top_of_book_response_envelope import GetTopOfBookResponseEnvelope
@@ -87,6 +88,8 @@ from dora_client.models.pl_response_envelope import PLResponseEnvelope
 from dora_client.models.pay_leverage_accrued_interest_request import PayLeverageAccruedInterestRequest
 from dora_client.models.pay_leverage_accrued_interest_response_envelope import PayLeverageAccruedInterestResponseEnvelope
 from dora_client.models.pool_price_response_envelope import PoolPriceResponseEnvelope
+from dora_client.models.repay_usd_request import RepayUSDRequest
+from dora_client.models.repay_usd_response_envelope import RepayUSDResponseEnvelope
 from dora_client.models.response_envelope_of_list_assets import ResponseEnvelopeOfListAssets
 from dora_client.models.revoke_api_key_response_envelope import RevokeAPIKeyResponseEnvelope
 from dora_client.models.settle_leverage_accrued_interest_request import SettleLeverageAccruedInterestRequest
@@ -5447,6 +5450,7 @@ class DefaultApi:
     ) -> ListAssetYieldResponseEnvelope:
         """Get yield chart data for an asset
 
+        Returns complete yield buckets starting at `start`; `end` is exclusive and a trailing partial bucket is omitted. Requests are limited to 10,000 complete buckets.
 
         :param asset_id: (required)
         :type asset_id: UUID
@@ -5494,6 +5498,7 @@ class DefaultApi:
             '400': "ResponseEnvelope",
             '404': "ResponseEnvelope",
             '500': "ResponseEnvelope",
+            '504': "ResponseEnvelope",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -5528,6 +5533,7 @@ class DefaultApi:
     ) -> ApiResponse[ListAssetYieldResponseEnvelope]:
         """Get yield chart data for an asset
 
+        Returns complete yield buckets starting at `start`; `end` is exclusive and a trailing partial bucket is omitted. Requests are limited to 10,000 complete buckets.
 
         :param asset_id: (required)
         :type asset_id: UUID
@@ -5575,6 +5581,7 @@ class DefaultApi:
             '400': "ResponseEnvelope",
             '404': "ResponseEnvelope",
             '500': "ResponseEnvelope",
+            '504': "ResponseEnvelope",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -5609,6 +5616,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Get yield chart data for an asset
 
+        Returns complete yield buckets starting at `start`; `end` is exclusive and a trailing partial bucket is omitted. Requests are limited to 10,000 complete buckets.
 
         :param asset_id: (required)
         :type asset_id: UUID
@@ -5656,6 +5664,7 @@ class DefaultApi:
             '400': "ResponseEnvelope",
             '404': "ResponseEnvelope",
             '500': "ResponseEnvelope",
+            '504': "ResponseEnvelope",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -6646,6 +6655,290 @@ class DefaultApi:
         return self.api_client.param_serialize(
             method='GET',
             resource_path='/v1/charts/{order_book_id}/candle',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    async def get_copy_traders(
+        self,
+        page: Optional[Annotated[int, Field(strict=True, ge=1)]] = None,
+        limit: Optional[Annotated[int, Field(le=100, strict=True, ge=1)]] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> GetCopyTradersResponse:
+        """Get list of user IDs with copy trading enabled
+
+
+        :param page:
+        :type page: int
+        :param limit:
+        :type limit: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_copy_traders_serialize(
+            page=page,
+            limit=limit,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "GetCopyTradersResponse",
+            '400': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    async def get_copy_traders_with_http_info(
+        self,
+        page: Optional[Annotated[int, Field(strict=True, ge=1)]] = None,
+        limit: Optional[Annotated[int, Field(le=100, strict=True, ge=1)]] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[GetCopyTradersResponse]:
+        """Get list of user IDs with copy trading enabled
+
+
+        :param page:
+        :type page: int
+        :param limit:
+        :type limit: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_copy_traders_serialize(
+            page=page,
+            limit=limit,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "GetCopyTradersResponse",
+            '400': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    async def get_copy_traders_without_preload_content(
+        self,
+        page: Optional[Annotated[int, Field(strict=True, ge=1)]] = None,
+        limit: Optional[Annotated[int, Field(le=100, strict=True, ge=1)]] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get list of user IDs with copy trading enabled
+
+
+        :param page:
+        :type page: int
+        :param limit:
+        :type limit: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_copy_traders_serialize(
+            page=page,
+            limit=limit,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "GetCopyTradersResponse",
+            '400': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_copy_traders_serialize(
+        self,
+        page,
+        limit,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        if page is not None:
+            
+            _query_params.append(('page', page))
+            
+        if limit is not None:
+            
+            _query_params.append(('limit', limit))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyAuthHeader', 
+            'bearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/v1/user/copy_traders',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -10406,6 +10699,7 @@ class DefaultApi:
     ) -> OrderResponseEnvelope:
         """Get order by ID
 
+        Get details of a specific order. Traders can only view their own orders. Admins can view any order. Integrators can view orders for users within their tenant.
 
         :param order_id: (required)
         :type order_id: UUID
@@ -10476,6 +10770,7 @@ class DefaultApi:
     ) -> ApiResponse[OrderResponseEnvelope]:
         """Get order by ID
 
+        Get details of a specific order. Traders can only view their own orders. Admins can view any order. Integrators can view orders for users within their tenant.
 
         :param order_id: (required)
         :type order_id: UUID
@@ -10546,6 +10841,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Get order by ID
 
+        Get details of a specific order. Traders can only view their own orders. Admins can view any order. Integrators can view orders for users within their tenant.
 
         :param order_id: (required)
         :type order_id: UUID
@@ -13478,9 +13774,11 @@ class DefaultApi:
     @validate_call
     async def get_top_traders_by_pn_l(
         self,
-        start: datetime,
-        end: datetime,
-        limit: Optional[Annotated[int, Field(le=100, strict=True, ge=1)]] = None,
+        start: Annotated[datetime, Field(description="Start timestamp (inclusive) in RFC3339 format.")],
+        end: Annotated[datetime, Field(description="End timestamp (exclusive) in RFC3339 format.")],
+        page: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="1-based page number for pagination.")] = None,
+        limit: Annotated[Optional[Annotated[int, Field(le=100, strict=True, ge=1)]], Field(description="Number of records per page (max 100). Defaults to 100.")] = None,
+        all: Annotated[Optional[StrictBool], Field(description="When true, includes users with allow_copy_trading=false. Requires admin role.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -13496,13 +13794,18 @@ class DefaultApi:
     ) -> GetPnLRankingResponse:
         """Get top traders by PnL
 
+        Returns user PnL ranking for the provided time range. By default only users with allow_copy_trading=true are included. Set all=true to include all users; this requires an admin role.
 
-        :param start: (required)
+        :param start: Start timestamp (inclusive) in RFC3339 format. (required)
         :type start: datetime
-        :param end: (required)
+        :param end: End timestamp (exclusive) in RFC3339 format. (required)
         :type end: datetime
-        :param limit:
+        :param page: 1-based page number for pagination.
+        :type page: int
+        :param limit: Number of records per page (max 100). Defaults to 100.
         :type limit: int
+        :param all: When true, includes users with allow_copy_trading=false. Requires admin role.
+        :type all: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -13528,7 +13831,9 @@ class DefaultApi:
         _param = self._get_top_traders_by_pn_l_serialize(
             start=start,
             end=end,
+            page=page,
             limit=limit,
+            all=all,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -13538,6 +13843,8 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "GetPnLRankingResponse",
             '400': "ResponseEnvelope",
+            '401': "ResponseEnvelope",
+            '403': "ResponseEnvelope",
             '500': "ResponseEnvelope",
         }
         response_data = await self.api_client.call_api(
@@ -13554,9 +13861,11 @@ class DefaultApi:
     @validate_call
     async def get_top_traders_by_pn_l_with_http_info(
         self,
-        start: datetime,
-        end: datetime,
-        limit: Optional[Annotated[int, Field(le=100, strict=True, ge=1)]] = None,
+        start: Annotated[datetime, Field(description="Start timestamp (inclusive) in RFC3339 format.")],
+        end: Annotated[datetime, Field(description="End timestamp (exclusive) in RFC3339 format.")],
+        page: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="1-based page number for pagination.")] = None,
+        limit: Annotated[Optional[Annotated[int, Field(le=100, strict=True, ge=1)]], Field(description="Number of records per page (max 100). Defaults to 100.")] = None,
+        all: Annotated[Optional[StrictBool], Field(description="When true, includes users with allow_copy_trading=false. Requires admin role.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -13572,13 +13881,18 @@ class DefaultApi:
     ) -> ApiResponse[GetPnLRankingResponse]:
         """Get top traders by PnL
 
+        Returns user PnL ranking for the provided time range. By default only users with allow_copy_trading=true are included. Set all=true to include all users; this requires an admin role.
 
-        :param start: (required)
+        :param start: Start timestamp (inclusive) in RFC3339 format. (required)
         :type start: datetime
-        :param end: (required)
+        :param end: End timestamp (exclusive) in RFC3339 format. (required)
         :type end: datetime
-        :param limit:
+        :param page: 1-based page number for pagination.
+        :type page: int
+        :param limit: Number of records per page (max 100). Defaults to 100.
         :type limit: int
+        :param all: When true, includes users with allow_copy_trading=false. Requires admin role.
+        :type all: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -13604,7 +13918,9 @@ class DefaultApi:
         _param = self._get_top_traders_by_pn_l_serialize(
             start=start,
             end=end,
+            page=page,
             limit=limit,
+            all=all,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -13614,6 +13930,8 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "GetPnLRankingResponse",
             '400': "ResponseEnvelope",
+            '401': "ResponseEnvelope",
+            '403': "ResponseEnvelope",
             '500': "ResponseEnvelope",
         }
         response_data = await self.api_client.call_api(
@@ -13630,9 +13948,11 @@ class DefaultApi:
     @validate_call
     async def get_top_traders_by_pn_l_without_preload_content(
         self,
-        start: datetime,
-        end: datetime,
-        limit: Optional[Annotated[int, Field(le=100, strict=True, ge=1)]] = None,
+        start: Annotated[datetime, Field(description="Start timestamp (inclusive) in RFC3339 format.")],
+        end: Annotated[datetime, Field(description="End timestamp (exclusive) in RFC3339 format.")],
+        page: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="1-based page number for pagination.")] = None,
+        limit: Annotated[Optional[Annotated[int, Field(le=100, strict=True, ge=1)]], Field(description="Number of records per page (max 100). Defaults to 100.")] = None,
+        all: Annotated[Optional[StrictBool], Field(description="When true, includes users with allow_copy_trading=false. Requires admin role.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -13648,13 +13968,18 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Get top traders by PnL
 
+        Returns user PnL ranking for the provided time range. By default only users with allow_copy_trading=true are included. Set all=true to include all users; this requires an admin role.
 
-        :param start: (required)
+        :param start: Start timestamp (inclusive) in RFC3339 format. (required)
         :type start: datetime
-        :param end: (required)
+        :param end: End timestamp (exclusive) in RFC3339 format. (required)
         :type end: datetime
-        :param limit:
+        :param page: 1-based page number for pagination.
+        :type page: int
+        :param limit: Number of records per page (max 100). Defaults to 100.
         :type limit: int
+        :param all: When true, includes users with allow_copy_trading=false. Requires admin role.
+        :type all: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -13680,7 +14005,9 @@ class DefaultApi:
         _param = self._get_top_traders_by_pn_l_serialize(
             start=start,
             end=end,
+            page=page,
             limit=limit,
+            all=all,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -13690,6 +14017,8 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "GetPnLRankingResponse",
             '400': "ResponseEnvelope",
+            '401': "ResponseEnvelope",
+            '403': "ResponseEnvelope",
             '500': "ResponseEnvelope",
         }
         response_data = await self.api_client.call_api(
@@ -13703,7 +14032,9 @@ class DefaultApi:
         self,
         start,
         end,
+        page,
         limit,
+        all,
         _request_auth,
         _content_type,
         _headers,
@@ -13752,9 +14083,17 @@ class DefaultApi:
             else:
                 _query_params.append(('end', end))
             
+        if page is not None:
+            
+            _query_params.append(('page', page))
+            
         if limit is not None:
             
             _query_params.append(('limit', limit))
+            
+        if all is not None:
+            
+            _query_params.append(('all', all))
             
         # process the header parameters
         # process the form parameters
@@ -25141,6 +25480,293 @@ class DefaultApi:
         return self.api_client.param_serialize(
             method='POST',
             resource_path='/v1/ledger/withdraw/requests/{withdrawal_id}/reject',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    async def repay_usd(
+        self,
+        repay_usd_request: RepayUSDRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RepayUSDResponseEnvelope:
+        """Repay borrowed USD, then accrue and pay leverage interest
+
+
+        :param repay_usd_request: (required)
+        :type repay_usd_request: RepayUSDRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._repay_usd_serialize(
+            repay_usd_request=repay_usd_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "RepayUSDResponseEnvelope",
+            '400': "ResponseEnvelope",
+            '401': "ResponseEnvelope",
+            '404': "ResponseEnvelope",
+            '409': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    async def repay_usd_with_http_info(
+        self,
+        repay_usd_request: RepayUSDRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[RepayUSDResponseEnvelope]:
+        """Repay borrowed USD, then accrue and pay leverage interest
+
+
+        :param repay_usd_request: (required)
+        :type repay_usd_request: RepayUSDRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._repay_usd_serialize(
+            repay_usd_request=repay_usd_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "RepayUSDResponseEnvelope",
+            '400': "ResponseEnvelope",
+            '401': "ResponseEnvelope",
+            '404': "ResponseEnvelope",
+            '409': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    async def repay_usd_without_preload_content(
+        self,
+        repay_usd_request: RepayUSDRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Repay borrowed USD, then accrue and pay leverage interest
+
+
+        :param repay_usd_request: (required)
+        :type repay_usd_request: RepayUSDRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._repay_usd_serialize(
+            repay_usd_request=repay_usd_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "RepayUSDResponseEnvelope",
+            '400': "ResponseEnvelope",
+            '401': "ResponseEnvelope",
+            '404': "ResponseEnvelope",
+            '409': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _repay_usd_serialize(
+        self,
+        repay_usd_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if repay_usd_request is not None:
+            _body_params = repay_usd_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyAuthHeader', 
+            'bearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/v1/positions/repay_usd',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,

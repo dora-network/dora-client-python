@@ -27,6 +27,7 @@ Method | HTTP request | Description
 [**get_asset_ytmby_id**](DefaultApi.md#get_asset_ytmby_id) | **GET** /v1/assets/{asset_id}/ytm | Get annualized yield to maturity for a bond asset
 [**get_assets_stream**](DefaultApi.md#get_assets_stream) | **GET** /v1/assets/stream | Get all inserts or updates for assets
 [**get_candle_data**](DefaultApi.md#get_candle_data) | **GET** /v1/charts/{order_book_id}/candle | Get candlestick data for an orderbook
+[**get_copy_traders**](DefaultApi.md#get_copy_traders) | **GET** /v1/user/copy_traders | Get list of user IDs with copy trading enabled
 [**get_coupon_payments_by_asset_id**](DefaultApi.md#get_coupon_payments_by_asset_id) | **GET** /v1/assets/{asset_id}/coupon_payments | Get coupon payments for a bond asset
 [**get_deposit_instructions**](DefaultApi.md#get_deposit_instructions) | **GET** /v1/web3/deposit-instructions | Get per-chain instructions for depositing USDC into the Dora vault
 [**get_l1_depth**](DefaultApi.md#get_l1_depth) | **GET** /v1/orderbooks/{order_book_id}/L1 | Get the top price levels for a specific orderbook (L1 market depth)
@@ -90,6 +91,7 @@ Method | HTTP request | Description
 [**list_position_accounts_self**](DefaultApi.md#list_position_accounts_self) | **GET** /v1/user/self/position_accounts | List all position accounts for the authenticated user
 [**pay_leverage_get_accrued_interest**](DefaultApi.md#pay_leverage_get_accrued_interest) | **POST** /v1/leverage/accrued_interest/pay | Pay current accrued leverage interest for a specific user
 [**reject_ledger_withdraw_request**](DefaultApi.md#reject_ledger_withdraw_request) | **POST** /v1/ledger/withdraw/requests/{withdrawal_id}/reject | Reject a pending withdrawal request
+[**repay_usd**](DefaultApi.md#repay_usd) | **POST** /v1/positions/repay_usd | Repay borrowed USD, then accrue and pay leverage interest
 [**revoke_api_key_for_user**](DefaultApi.md#revoke_api_key_for_user) | **PUT** /v1/user/apikey/{key_id}/revoke | Revoke apikey for a user
 [**revoke_api_key_for_user_id**](DefaultApi.md#revoke_api_key_for_user_id) | **PUT** /v1/user/{user_id}/apikey/{key_id}/revoke | Revoke apikey for a user: admin or integrator only
 [**settle_leverage_accrued_interest**](DefaultApi.md#settle_leverage_accrued_interest) | **POST** /v1/leverage/accrued_interest/settle | Settle current accrued leverage interest for a specific user
@@ -1742,6 +1744,8 @@ Name | Type | Description  | Notes
 
 Get yield chart data for an asset
 
+Returns complete yield buckets starting at `start`; `end` is exclusive and a trailing partial bucket is omitted. Requests are limited to 10,000 complete buckets.
+
 ### Example
 
 
@@ -1807,9 +1811,10 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Yield chart points |  -  |
-**400** | Bad request, e.g. invalid parameters |  -  |
+**400** | Bad request, e.g. invalid parameters or more than 10,000 complete buckets |  -  |
 **404** | Asset not found |  -  |
 **500** | Internal server error |  -  |
+**504** | Yield query exceeded its execution deadline |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2024,6 +2029,93 @@ No authorization required
 **200** | Candlestick data |  -  |
 **400** | Bad request, e.g. invalid parameters |  -  |
 **404** | Orderbook not found |  -  |
+**500** | Internal server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_copy_traders**
+> GetCopyTradersResponse get_copy_traders(page=page, limit=limit)
+
+Get list of user IDs with copy trading enabled
+
+### Example
+
+* Api Key Authentication (apiKeyAuthHeader):
+* Bearer (JWT) Authentication (bearerAuth):
+
+```python
+import dora_client
+from dora_client.models.get_copy_traders_response import GetCopyTradersResponse
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging.dora.co
+# See configuration.py for a list of all supported configuration parameters.
+configuration = dora_client.Configuration(
+    host = "https://staging.dora.co"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration.api_key['apiKeyAuthHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyAuthHeader'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = dora_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+async with dora_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = dora_client.DefaultApi(api_client)
+    page = 1 # int |  (optional) (default to 1)
+    limit = 100 # int |  (optional) (default to 100)
+
+    try:
+        # Get list of user IDs with copy trading enabled
+        api_response = await api_instance.get_copy_traders(page=page, limit=limit)
+        print("The response of DefaultApi->get_copy_traders:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->get_copy_traders: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **page** | **int**|  | [optional] [default to 1]
+ **limit** | **int**|  | [optional] [default to 100]
+
+### Return type
+
+[**GetCopyTradersResponse**](GetCopyTradersResponse.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | List of user IDs who have allow_copy_trading enabled |  -  |
+**400** | Bad request, e.g. invalid pagination parameters |  -  |
 **500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -3154,6 +3246,8 @@ Name | Type | Description  | Notes
 
 Get order by ID
 
+Get details of a specific order. Traders can only view their own orders. Admins can view any order. Integrators can view orders for users within their tenant.
+
 ### Example
 
 * Api Key Authentication (apiKeyAuthHeader):
@@ -4040,9 +4134,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_top_traders_by_pn_l**
-> GetPnLRankingResponse get_top_traders_by_pn_l(start, end, limit=limit)
+> GetPnLRankingResponse get_top_traders_by_pn_l(start, end, page=page, limit=limit, all=all)
 
 Get top traders by PnL
+
+Returns user PnL ranking for the provided time range. By default only users with allow_copy_trading=true are included. Set all=true to include all users; this requires an admin role.
 
 ### Example
 
@@ -4081,13 +4177,15 @@ configuration = dora_client.Configuration(
 async with dora_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = dora_client.DefaultApi(api_client)
-    start = '2013-10-20T19:20:30+01:00' # datetime | 
-    end = '2013-10-20T19:20:30+01:00' # datetime | 
-    limit = 56 # int |  (optional)
+    start = '2013-10-20T19:20:30+01:00' # datetime | Start timestamp (inclusive) in RFC3339 format.
+    end = '2013-10-20T19:20:30+01:00' # datetime | End timestamp (exclusive) in RFC3339 format.
+    page = 1 # int | 1-based page number for pagination. (optional) (default to 1)
+    limit = 100 # int | Number of records per page (max 100). Defaults to 100. (optional) (default to 100)
+    all = False # bool | When true, includes users with allow_copy_trading=false. Requires admin role. (optional) (default to False)
 
     try:
         # Get top traders by PnL
-        api_response = await api_instance.get_top_traders_by_pn_l(start, end, limit=limit)
+        api_response = await api_instance.get_top_traders_by_pn_l(start, end, page=page, limit=limit, all=all)
         print("The response of DefaultApi->get_top_traders_by_pn_l:\n")
         pprint(api_response)
     except Exception as e:
@@ -4101,9 +4199,11 @@ async with dora_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **start** | **datetime**|  | 
- **end** | **datetime**|  | 
- **limit** | **int**|  | [optional] 
+ **start** | **datetime**| Start timestamp (inclusive) in RFC3339 format. | 
+ **end** | **datetime**| End timestamp (exclusive) in RFC3339 format. | 
+ **page** | **int**| 1-based page number for pagination. | [optional] [default to 1]
+ **limit** | **int**| Number of records per page (max 100). Defaults to 100. | [optional] [default to 100]
+ **all** | **bool**| When true, includes users with allow_copy_trading&#x3D;false. Requires admin role. | [optional] [default to False]
 
 ### Return type
 
@@ -4123,7 +4223,9 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Top traders by PnL |  -  |
-**400** | Bad request, e.g. invalid path parameters |  -  |
+**400** | Bad request, e.g. invalid query parameters |  -  |
+**401** | Unauthorized (authentication required when all&#x3D;true) |  -  |
+**403** | Forbidden (admin role required when all&#x3D;true) |  -  |
 **500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -7342,6 +7444,95 @@ Name | Type | Description  | Notes
 **400** | Bad request, e.g. invalid withdrawal ID format or request is not in a pending state |  -  |
 **404** | Withdrawal request not found |  -  |
 **403** | Forbidden, user does not have permission to reject this withdrawal request |  -  |
+**500** | Internal server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **repay_usd**
+> RepayUSDResponseEnvelope repay_usd(repay_usd_request)
+
+Repay borrowed USD, then accrue and pay leverage interest
+
+### Example
+
+* Api Key Authentication (apiKeyAuthHeader):
+* Bearer (JWT) Authentication (bearerAuth):
+
+```python
+import dora_client
+from dora_client.models.repay_usd_request import RepayUSDRequest
+from dora_client.models.repay_usd_response_envelope import RepayUSDResponseEnvelope
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging.dora.co
+# See configuration.py for a list of all supported configuration parameters.
+configuration = dora_client.Configuration(
+    host = "https://staging.dora.co"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration.api_key['apiKeyAuthHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyAuthHeader'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = dora_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+async with dora_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = dora_client.DefaultApi(api_client)
+    repay_usd_request = dora_client.RepayUSDRequest() # RepayUSDRequest | 
+
+    try:
+        # Repay borrowed USD, then accrue and pay leverage interest
+        api_response = await api_instance.repay_usd(repay_usd_request)
+        print("The response of DefaultApi->repay_usd:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->repay_usd: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **repay_usd_request** | [**RepayUSDRequest**](RepayUSDRequest.md)|  | 
+
+### Return type
+
+[**RepayUSDResponseEnvelope**](RepayUSDResponseEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | USD borrow repaid |  -  |
+**400** | Bad request, e.g. missing position_id |  -  |
+**401** | Unauthorized |  -  |
+**404** | Position or USD asset not found |  -  |
+**409** | Position is not eligible for repayment or has no repayable USD balance |  -  |
 **500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

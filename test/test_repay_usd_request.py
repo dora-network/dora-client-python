@@ -14,10 +14,10 @@
 
 import unittest
 
-from dora_client.models.pool_price import PoolPrice
+from dora_client.models.repay_usd_request import RepayUSDRequest
 
-class TestPoolPrice(unittest.TestCase):
-    """PoolPrice unit test stubs"""
+class TestRepayUSDRequest(unittest.TestCase):
+    """RepayUSDRequest unit test stubs"""
 
     def setUp(self):
         pass
@@ -25,30 +25,26 @@ class TestPoolPrice(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> PoolPrice:
-        """Test PoolPrice
+    def make_instance(self, include_optional) -> RepayUSDRequest:
+        """Test RepayUSDRequest
             include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `PoolPrice`
+        # uncomment below to create an instance of `RepayUSDRequest`
         """
-        model = PoolPrice()
+        model = RepayUSDRequest()
         if include_optional:
-            return PoolPrice(
-                pool_id = '',
-                price = '',
-                time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f')
+            return RepayUSDRequest(
+                position_id = ''
             )
         else:
-            return PoolPrice(
-                pool_id = '',
-                price = '',
-                time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+            return RepayUSDRequest(
+                position_id = '',
         )
         """
 
-    def testPoolPrice(self):
-        """Test PoolPrice"""
+    def testRepayUSDRequest(self):
+        """Test RepayUSDRequest"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

@@ -17,22 +17,19 @@ import pprint
 import re  # noqa: F401
 import json
 
-from datetime import datetime
-from pydantic import BaseModel, ConfigDict, StrictStr
+from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List
 from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
 
-class PoolPrice(BaseModel):
+class RepayUSDRequest(BaseModel):
     """
-    PoolPrice
+    RepayUSDRequest
     """ # noqa: E501
-    pool_id: UUID
-    price: StrictStr
-    time: datetime
-    __properties: ClassVar[List[str]] = ["pool_id", "price", "time"]
+    position_id: UUID
+    __properties: ClassVar[List[str]] = ["position_id"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -52,7 +49,7 @@ class PoolPrice(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of PoolPrice from a JSON string"""
+        """Create an instance of RepayUSDRequest from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -77,7 +74,7 @@ class PoolPrice(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of PoolPrice from a dict"""
+        """Create an instance of RepayUSDRequest from a dict"""
         if obj is None:
             return None
 
@@ -85,9 +82,7 @@ class PoolPrice(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "pool_id": obj.get("pool_id"),
-            "price": obj.get("price"),
-            "time": obj.get("time")
+            "position_id": obj.get("position_id")
         })
         return _obj
 

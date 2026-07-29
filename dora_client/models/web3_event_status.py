@@ -29,6 +29,8 @@ class Web3EventStatus(str, Enum):
     PENDING = 'PENDING'
     FINALIZED = 'FINALIZED'
     ORPHANED = 'ORPHANED'
+    USER_NOT_EXIST = 'USER_NOT_EXIST'
+    DUST = 'DUST'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

@@ -14,10 +14,10 @@
 
 import unittest
 
-from dora_client.models.pool_price import PoolPrice
+from dora_client.models.repay_usd_result import RepayUSDResult
 
-class TestPoolPrice(unittest.TestCase):
-    """PoolPrice unit test stubs"""
+class TestRepayUSDResult(unittest.TestCase):
+    """RepayUSDResult unit test stubs"""
 
     def setUp(self):
         pass
@@ -25,30 +25,32 @@ class TestPoolPrice(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> PoolPrice:
-        """Test PoolPrice
+    def make_instance(self, include_optional) -> RepayUSDResult:
+        """Test RepayUSDResult
             include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `PoolPrice`
+        # uncomment below to create an instance of `RepayUSDResult`
         """
-        model = PoolPrice()
+        model = RepayUSDResult()
         if include_optional:
-            return PoolPrice(
-                pool_id = '',
-                price = '',
-                time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f')
+            return RepayUSDResult(
+                position_id = '',
+                asset_id = '',
+                repaid = '',
+                transaction_id = ''
             )
         else:
-            return PoolPrice(
-                pool_id = '',
-                price = '',
-                time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+            return RepayUSDResult(
+                position_id = '',
+                asset_id = '',
+                repaid = '',
+                transaction_id = '',
         )
         """
 
-    def testPoolPrice(self):
-        """Test PoolPrice"""
+    def testRepayUSDResult(self):
+        """Test RepayUSDResult"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 
