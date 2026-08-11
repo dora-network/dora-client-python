@@ -26,6 +26,13 @@ class TestDefaultApi(unittest.IsolatedAsyncioTestCase):
     async def asyncTearDown(self) -> None:
         await self.api.api_client.close()
 
+    async def test_add_trading_challenge_users(self) -> None:
+        """Test case for add_trading_challenge_users
+
+        Add users to a trading challenge
+        """
+        pass
+
     async def test_approve_ledger_withdraw_request(self) -> None:
         """Test case for approve_ledger_withdraw_request
 
@@ -58,6 +65,13 @@ class TestDefaultApi(unittest.IsolatedAsyncioTestCase):
         """Test case for claim_leverage_get_accrued_interest
 
         Claim current accrued leverage interest for a specific user
+        """
+        pass
+
+    async def test_claim_trading_challenge_prize(self) -> None:
+        """Test case for claim_trading_challenge_prize
+
+        Claim challenge prize
         """
         pass
 
@@ -100,6 +114,13 @@ class TestDefaultApi(unittest.IsolatedAsyncioTestCase):
         """Test case for create_order
 
         Create a new order
+        """
+        pass
+
+    async def test_create_trading_challenge(self) -> None:
+        """Test case for create_trading_challenge
+
+        Create a trading challenge
         """
         pass
 
@@ -187,10 +208,24 @@ class TestDefaultApi(unittest.IsolatedAsyncioTestCase):
         """
         pass
 
+    async def test_get_cash_reserve_by_user_id(self) -> None:
+        """Test case for get_cash_reserve_by_user_id
+
+        Get the minimum USD cash reserve requirement for the given user
+        """
+        pass
+
+    async def test_get_cash_reserve_self(self) -> None:
+        """Test case for get_cash_reserve_self
+
+        Get the minimum USD cash reserve requirement for the logged in user
+        """
+        pass
+
     async def test_get_copy_traders(self) -> None:
         """Test case for get_copy_traders
 
-        Get list of user IDs with copy trading enabled
+        Get list of users with copy trading enabled
         """
         pass
 
@@ -387,6 +422,27 @@ class TestDefaultApi(unittest.IsolatedAsyncioTestCase):
         """Test case for get_trades
 
         Get a filtered, paginated list of trades
+        """
+        pass
+
+    async def test_get_trading_challenge_by_id(self) -> None:
+        """Test case for get_trading_challenge_by_id
+
+        Get trading challenge by ID
+        """
+        pass
+
+    async def test_get_trading_challenge_daily_snapshots(self) -> None:
+        """Test case for get_trading_challenge_daily_snapshots
+
+        Get trading challenge daily snapshots
+        """
+        pass
+
+    async def test_get_trading_challenge_results(self) -> None:
+        """Test case for get_trading_challenge_results
+
+        Get trading challenge results
         """
         pass
 
@@ -621,6 +677,13 @@ class TestDefaultApi(unittest.IsolatedAsyncioTestCase):
         """
         pass
 
+    async def test_list_trading_challenges(self) -> None:
+        """Test case for list_trading_challenges
+
+        List trading challenges
+        """
+        pass
+
     async def test_pay_leverage_get_accrued_interest(self) -> None:
         """Test case for pay_leverage_get_accrued_interest
 
@@ -632,6 +695,13 @@ class TestDefaultApi(unittest.IsolatedAsyncioTestCase):
         """Test case for reject_ledger_withdraw_request
 
         Reject a pending withdrawal request
+        """
+        pass
+
+    async def test_remove_trading_challenge_users(self) -> None:
+        """Test case for remove_trading_challenge_users
+
+        Remove users from a trading challenge
         """
         pass
 

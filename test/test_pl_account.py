@@ -67,7 +67,9 @@ class TestPLAccount(unittest.TestCase):
                     account_equity = '', 
                     available = '', 
                     health = '', 
-                    ltv = '', )
+                    ltv = '', 
+                    realized_pl = '', 
+                    unrealized_pl = '', )
             )
         else:
             return PLAccount(
@@ -103,7 +105,9 @@ class TestPLAccount(unittest.TestCase):
                     account_equity = '', 
                     available = '', 
                     health = '', 
-                    ltv = '', ),
+                    ltv = '', 
+                    realized_pl = '', 
+                    unrealized_pl = '', ),
         )
         """
 

@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **email** | **str** |  | 
 **first_name** | **str** |  | 
 **last_name** | **str** |  | 
+**user_name** | **str** |  | 
 **country_of_domicile** | [**CountryCode**](CountryCode.md) |  | 
 **native_asset_id** | **UUID** |  | 
 **photo_url** | **str** |  | [optional] 

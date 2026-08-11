@@ -36,6 +36,7 @@ __all__ = [
     "AccountPortfolioV2",
     "AccountSummaryV2",
     "AccountV2",
+    "AddTradingChallengeUsersRequest",
     "AllPositions",
     "AllPositionsResponseEnvelope",
     "AllWithdrawalInitiationsResponseEnvelope",
@@ -55,14 +56,20 @@ __all__ = [
     "CancelOrderResponseEnvelope",
     "Candle",
     "CandleResolution",
+    "CashReserveBreakdown",
+    "CashReserveResponse",
+    "CashReserveResponseEnvelope",
     "ClaimLeverageAccruedInterest",
     "ClaimLeverageAccruedInterestRequest",
     "ClaimLeverageAccruedInterestResponseEnvelope",
+    "ClaimTradingChallengeResponse",
+    "ClaimTradingChallengeResponseEnvelope",
     "CloseAccountRequest",
     "ClosePositionRequest",
     "ClosePositionResp",
     "ClosePositionResponseEnvelope",
     "Collateral",
+    "CopyTrader",
     "CountryCode",
     "CouponKind",
     "CouponPayment",
@@ -76,6 +83,7 @@ __all__ = [
     "CreateOrUpdateUserResponse",
     "CreateOrderRequest",
     "CreateOrderResponseEnvelope",
+    "CreateTradingChallengeRequest",
     "CurrentLeverageAccruedInterest",
     "CurrentLeverageAccruedInterestResponseEnvelope",
     "DefundUserRequest",
@@ -178,6 +186,7 @@ __all__ = [
     "PriceLevel",
     "RealizedPnlSettlement",
     "RealizedPnlSettlements",
+    "RemoveTradingChallengeUsersRequest",
     "RepayUSDRequest",
     "RepayUSDResponseEnvelope",
     "RepayUSDResult",
@@ -209,6 +218,15 @@ __all__ = [
     "Trade",
     "TradeRequestError",
     "TradeResponseEnvelope",
+    "TradingChallenge",
+    "TradingChallengeDailySnapshot",
+    "TradingChallengeDailySnapshotsResponseEnvelope",
+    "TradingChallengeListResponseEnvelope",
+    "TradingChallengeResponseEnvelope",
+    "TradingChallengeResult",
+    "TradingChallengeResultsResponseEnvelope",
+    "TradingChallengeStatus",
+    "TradingChallengeType",
     "Transaction",
     "TransactionInternalTransfer",
     "TransactionKind",
@@ -285,6 +303,7 @@ from dora_client.models.account_portfolio_response_v2 import AccountPortfolioRes
 from dora_client.models.account_portfolio_v2 import AccountPortfolioV2 as AccountPortfolioV2
 from dora_client.models.account_summary_v2 import AccountSummaryV2 as AccountSummaryV2
 from dora_client.models.account_v2 import AccountV2 as AccountV2
+from dora_client.models.add_trading_challenge_users_request import AddTradingChallengeUsersRequest as AddTradingChallengeUsersRequest
 from dora_client.models.all_positions import AllPositions as AllPositions
 from dora_client.models.all_positions_response_envelope import AllPositionsResponseEnvelope as AllPositionsResponseEnvelope
 from dora_client.models.all_withdrawal_initiations_response_envelope import AllWithdrawalInitiationsResponseEnvelope as AllWithdrawalInitiationsResponseEnvelope
@@ -304,14 +323,20 @@ from dora_client.models.bond_kind import BondKind as BondKind
 from dora_client.models.cancel_order_response_envelope import CancelOrderResponseEnvelope as CancelOrderResponseEnvelope
 from dora_client.models.candle import Candle as Candle
 from dora_client.models.candle_resolution import CandleResolution as CandleResolution
+from dora_client.models.cash_reserve_breakdown import CashReserveBreakdown as CashReserveBreakdown
+from dora_client.models.cash_reserve_response import CashReserveResponse as CashReserveResponse
+from dora_client.models.cash_reserve_response_envelope import CashReserveResponseEnvelope as CashReserveResponseEnvelope
 from dora_client.models.claim_leverage_accrued_interest import ClaimLeverageAccruedInterest as ClaimLeverageAccruedInterest
 from dora_client.models.claim_leverage_accrued_interest_request import ClaimLeverageAccruedInterestRequest as ClaimLeverageAccruedInterestRequest
 from dora_client.models.claim_leverage_accrued_interest_response_envelope import ClaimLeverageAccruedInterestResponseEnvelope as ClaimLeverageAccruedInterestResponseEnvelope
+from dora_client.models.claim_trading_challenge_response import ClaimTradingChallengeResponse as ClaimTradingChallengeResponse
+from dora_client.models.claim_trading_challenge_response_envelope import ClaimTradingChallengeResponseEnvelope as ClaimTradingChallengeResponseEnvelope
 from dora_client.models.close_account_request import CloseAccountRequest as CloseAccountRequest
 from dora_client.models.close_position_request import ClosePositionRequest as ClosePositionRequest
 from dora_client.models.close_position_resp import ClosePositionResp as ClosePositionResp
 from dora_client.models.close_position_response_envelope import ClosePositionResponseEnvelope as ClosePositionResponseEnvelope
 from dora_client.models.collateral import Collateral as Collateral
+from dora_client.models.copy_trader import CopyTrader as CopyTrader
 from dora_client.models.country_code import CountryCode as CountryCode
 from dora_client.models.coupon_kind import CouponKind as CouponKind
 from dora_client.models.coupon_payment import CouponPayment as CouponPayment
@@ -325,6 +350,7 @@ from dora_client.models.create_integrator_user_request import CreateIntegratorUs
 from dora_client.models.create_or_update_user_response import CreateOrUpdateUserResponse as CreateOrUpdateUserResponse
 from dora_client.models.create_order_request import CreateOrderRequest as CreateOrderRequest
 from dora_client.models.create_order_response_envelope import CreateOrderResponseEnvelope as CreateOrderResponseEnvelope
+from dora_client.models.create_trading_challenge_request import CreateTradingChallengeRequest as CreateTradingChallengeRequest
 from dora_client.models.current_leverage_accrued_interest import CurrentLeverageAccruedInterest as CurrentLeverageAccruedInterest
 from dora_client.models.current_leverage_accrued_interest_response_envelope import CurrentLeverageAccruedInterestResponseEnvelope as CurrentLeverageAccruedInterestResponseEnvelope
 from dora_client.models.defund_user_request import DefundUserRequest as DefundUserRequest
@@ -427,6 +453,7 @@ from dora_client.models.position_type import PositionType as PositionType
 from dora_client.models.price_level import PriceLevel as PriceLevel
 from dora_client.models.realized_pnl_settlement import RealizedPnlSettlement as RealizedPnlSettlement
 from dora_client.models.realized_pnl_settlements import RealizedPnlSettlements as RealizedPnlSettlements
+from dora_client.models.remove_trading_challenge_users_request import RemoveTradingChallengeUsersRequest as RemoveTradingChallengeUsersRequest
 from dora_client.models.repay_usd_request import RepayUSDRequest as RepayUSDRequest
 from dora_client.models.repay_usd_response_envelope import RepayUSDResponseEnvelope as RepayUSDResponseEnvelope
 from dora_client.models.repay_usd_result import RepayUSDResult as RepayUSDResult
@@ -458,6 +485,15 @@ from dora_client.models.tenant_restrictions import TenantRestrictions as TenantR
 from dora_client.models.trade import Trade as Trade
 from dora_client.models.trade_request_error import TradeRequestError as TradeRequestError
 from dora_client.models.trade_response_envelope import TradeResponseEnvelope as TradeResponseEnvelope
+from dora_client.models.trading_challenge import TradingChallenge as TradingChallenge
+from dora_client.models.trading_challenge_daily_snapshot import TradingChallengeDailySnapshot as TradingChallengeDailySnapshot
+from dora_client.models.trading_challenge_daily_snapshots_response_envelope import TradingChallengeDailySnapshotsResponseEnvelope as TradingChallengeDailySnapshotsResponseEnvelope
+from dora_client.models.trading_challenge_list_response_envelope import TradingChallengeListResponseEnvelope as TradingChallengeListResponseEnvelope
+from dora_client.models.trading_challenge_response_envelope import TradingChallengeResponseEnvelope as TradingChallengeResponseEnvelope
+from dora_client.models.trading_challenge_result import TradingChallengeResult as TradingChallengeResult
+from dora_client.models.trading_challenge_results_response_envelope import TradingChallengeResultsResponseEnvelope as TradingChallengeResultsResponseEnvelope
+from dora_client.models.trading_challenge_status import TradingChallengeStatus as TradingChallengeStatus
+from dora_client.models.trading_challenge_type import TradingChallengeType as TradingChallengeType
 from dora_client.models.transaction import Transaction as Transaction
 from dora_client.models.transaction_internal_transfer import TransactionInternalTransfer as TransactionInternalTransfer
 from dora_client.models.transaction_kind import TransactionKind as TransactionKind

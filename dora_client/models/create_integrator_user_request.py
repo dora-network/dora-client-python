@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from uuid import UUID
 from dora_client.models.country_code import CountryCode
@@ -32,8 +32,9 @@ class CreateIntegratorUserRequest(BaseModel):
     email: Optional[StrictStr] = None
     first_name: Optional[StrictStr] = None
     last_name: Optional[StrictStr] = None
+    user_name: Optional[StrictStr] = None
     country_of_domicile: Optional[CountryCode] = None
-    native_asset_id: Optional[UUID] = None
+    native_asset_id: Optional[UUID] = Field(default=None, description="Optional: the user's native asset ID. Must be a CURRENCY asset; defaults to USD. The USDC asset is never allowed for integrator-created users.")
     photo_url: Optional[StrictStr] = None
     provider: Optional[StrictStr] = None
     provider_id: Optional[UUID] = None

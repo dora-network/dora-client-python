@@ -38,6 +38,7 @@ class TestCreateIntegratorUserRequest(unittest.TestCase):
                 email = '',
                 first_name = '',
                 last_name = '',
+                user_name = '',
                 country_of_domicile = 'IN',
                 native_asset_id = '',
                 photo_url = '',

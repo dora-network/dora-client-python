@@ -69,7 +69,9 @@ class TestPLResponseEnvelope(unittest.TestCase):
                             account_equity = '', 
                             available = '', 
                             health = '', 
-                            ltv = '', ), )
+                            ltv = '', 
+                            realized_pl = '', 
+                            unrealized_pl = '', ), )
                     ],
                 error = '',
                 metadata = dora_client.models.metadata.Metadata(

@@ -36,7 +36,9 @@ class TestGetCopyTradersResponse(unittest.TestCase):
         if include_optional:
             return GetCopyTradersResponse(
                 data = [
-                    ''
+                    dora_client.models.copy_trader.CopyTrader(
+                        user_id = '', 
+                        user_name = '', )
                     ],
                 error = '',
                 metadata = dora_client.models.metadata.Metadata(

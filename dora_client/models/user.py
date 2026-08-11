@@ -37,6 +37,7 @@ class User(BaseModel):
     email: StrictStr
     first_name: StrictStr
     last_name: StrictStr
+    user_name: StrictStr
     country_of_domicile: CountryCode
     native_asset_id: UUID
     photo_url: Optional[StrictStr] = None
@@ -54,7 +55,7 @@ class User(BaseModel):
     allow_deposit_withdrawal_notifications: StrictBool
     allow_orders_notifications: StrictBool
     allow_copy_trading: StrictBool
-    __properties: ClassVar[List[str]] = ["id", "closed_at", "disabled_at", "email", "first_name", "last_name", "country_of_domicile", "native_asset_id", "photo_url", "provider", "provider_id", "roles", "timezone", "timezone_offset", "verified_at", "show_tutorial_cards", "notifications_enabled", "tenant_id", "allow_email_notifications", "allow_liquidations_notifications", "allow_deposit_withdrawal_notifications", "allow_orders_notifications", "allow_copy_trading"]
+    __properties: ClassVar[List[str]] = ["id", "closed_at", "disabled_at", "email", "first_name", "last_name", "user_name", "country_of_domicile", "native_asset_id", "photo_url", "provider", "provider_id", "roles", "timezone", "timezone_offset", "verified_at", "show_tutorial_cards", "notifications_enabled", "tenant_id", "allow_email_notifications", "allow_liquidations_notifications", "allow_deposit_withdrawal_notifications", "allow_orders_notifications", "allow_copy_trading"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -113,6 +114,7 @@ class User(BaseModel):
             "email": obj.get("email"),
             "first_name": obj.get("first_name"),
             "last_name": obj.get("last_name"),
+            "user_name": obj.get("user_name"),
             "country_of_domicile": obj.get("country_of_domicile"),
             "native_asset_id": obj.get("native_asset_id"),
             "photo_url": obj.get("photo_url"),

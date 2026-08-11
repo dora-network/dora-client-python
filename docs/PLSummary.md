@@ -10,6 +10,8 @@ Name | Type | Description | Notes
 **available** | **str** |  | 
 **health** | **str** |  | 
 **ltv** | **str** |  | 
+**realized_pl** | **str** | The realized profit or loss since account inception | 
+**unrealized_pl** | **str** | The unrealized profit or loss for the account&#39;s current open positions | 
 
 ## Example
 

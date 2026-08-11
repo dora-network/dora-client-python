@@ -39,7 +39,9 @@ class TestPLSummary(unittest.TestCase):
                 account_equity = '',
                 available = '',
                 health = '',
-                ltv = ''
+                ltv = '',
+                realized_pl = '',
+                unrealized_pl = ''
             )
         else:
             return PLSummary(
@@ -48,6 +50,8 @@ class TestPLSummary(unittest.TestCase):
                 available = '',
                 health = '',
                 ltv = '',
+                realized_pl = '',
+                unrealized_pl = '',
         )
         """
 

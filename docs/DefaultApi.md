@@ -4,17 +4,20 @@ All URIs are relative to *https://staging.dora.co*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**add_trading_challenge_users**](DefaultApi.md#add_trading_challenge_users) | **PUT** /v1/trading_challenges/add_users | Add users to a trading challenge
 [**approve_ledger_withdraw_request**](DefaultApi.md#approve_ledger_withdraw_request) | **POST** /v1/ledger/withdraw/requests/{withdrawal_id}/approve | Approve a pending withdrawal request
 [**cancel_all_open_orders**](DefaultApi.md#cancel_all_open_orders) | **DELETE** /v1/orders | Cancel all open orders, if user passes orderbook or account_id on query params it will cancel all orders on specific orderbook or account, admin can cancel user&#39;s orders on specific orderbook
 [**cancel_ledger_withdraw_request**](DefaultApi.md#cancel_ledger_withdraw_request) | **POST** /v1/ledger/withdraw/requests/{withdrawal_id}/cancel | Cancel a pending withdrawal request
 [**cancel_order_by_id**](DefaultApi.md#cancel_order_by_id) | **DELETE** /v1/orders/{order_id} | Cancel an order by ID
 [**claim_leverage_get_accrued_interest**](DefaultApi.md#claim_leverage_get_accrued_interest) | **POST** /v1/leverage/accrued_interest/claim | Claim current accrued leverage interest for a specific user
+[**claim_trading_challenge_prize**](DefaultApi.md#claim_trading_challenge_prize) | **POST** /v1/trading_challenges/{trading_challenge_id}/claim | Claim challenge prize
 [**close_isolated_account_v2**](DefaultApi.md#close_isolated_account_v2) | **POST** /v2/accounts/close | Close an isolated account, repaying the borrowed
 [**close_isolated_position**](DefaultApi.md#close_isolated_position) | **POST** /v1/positions/close | Close isolated positions, repaying the borrowed
 [**create_api_key_for_user**](DefaultApi.md#create_api_key_for_user) | **POST** /v1/user/apikey | Create apikey for a user
 [**create_api_key_for_user_id**](DefaultApi.md#create_api_key_for_user_id) | **POST** /v1/user/{user_id}/apikey | Create apikey for a user
 [**create_conditional_order**](DefaultApi.md#create_conditional_order) | **POST** /v1/orders/conditional | Create a new conditional orders
 [**create_order**](DefaultApi.md#create_order) | **POST** /v1/orders | Create a new order
+[**create_trading_challenge**](DefaultApi.md#create_trading_challenge) | **POST** /v1/trading_challenges | Create a trading challenge
 [**create_user**](DefaultApi.md#create_user) | **POST** /v1/integrators/user | Create a new user
 [**delete_user**](DefaultApi.md#delete_user) | **DELETE** /v1/user/{user_id} | Delete user by ID
 [**get_all_asset_prices**](DefaultApi.md#get_all_asset_prices) | **GET** /v1/price | Get the current price of all assets
@@ -27,7 +30,9 @@ Method | HTTP request | Description
 [**get_asset_ytmby_id**](DefaultApi.md#get_asset_ytmby_id) | **GET** /v1/assets/{asset_id}/ytm | Get annualized yield to maturity for a bond asset
 [**get_assets_stream**](DefaultApi.md#get_assets_stream) | **GET** /v1/assets/stream | Get all inserts or updates for assets
 [**get_candle_data**](DefaultApi.md#get_candle_data) | **GET** /v1/charts/{order_book_id}/candle | Get candlestick data for an orderbook
-[**get_copy_traders**](DefaultApi.md#get_copy_traders) | **GET** /v1/user/copy_traders | Get list of user IDs with copy trading enabled
+[**get_cash_reserve_by_user_id**](DefaultApi.md#get_cash_reserve_by_user_id) | **GET** /v1/accounts/{user_id}/cash_reserve | Get the minimum USD cash reserve requirement for the given user
+[**get_cash_reserve_self**](DefaultApi.md#get_cash_reserve_self) | **GET** /v1/accounts/self/cash_reserve | Get the minimum USD cash reserve requirement for the logged in user
+[**get_copy_traders**](DefaultApi.md#get_copy_traders) | **GET** /v1/user/copy_traders | Get list of users with copy trading enabled
 [**get_coupon_payments_by_asset_id**](DefaultApi.md#get_coupon_payments_by_asset_id) | **GET** /v1/assets/{asset_id}/coupon_payments | Get coupon payments for a bond asset
 [**get_deposit_instructions**](DefaultApi.md#get_deposit_instructions) | **GET** /v1/web3/deposit-instructions | Get per-chain instructions for depositing USDC into the Dora vault
 [**get_l1_depth**](DefaultApi.md#get_l1_depth) | **GET** /v1/orderbooks/{order_book_id}/L1 | Get the top price levels for a specific orderbook (L1 market depth)
@@ -56,6 +61,9 @@ Method | HTTP request | Description
 [**get_top_traders_by_pn_l**](DefaultApi.md#get_top_traders_by_pn_l) | **GET** /v1/user/ranking | Get top traders by PnL
 [**get_trade_by_id**](DefaultApi.md#get_trade_by_id) | **GET** /v1/trades/{trade_id} | Get a trade by ID
 [**get_trades**](DefaultApi.md#get_trades) | **GET** /v1/trades | Get a filtered, paginated list of trades
+[**get_trading_challenge_by_id**](DefaultApi.md#get_trading_challenge_by_id) | **GET** /v1/trading_challenges/{trading_challenge_id} | Get trading challenge by ID
+[**get_trading_challenge_daily_snapshots**](DefaultApi.md#get_trading_challenge_daily_snapshots) | **GET** /v1/trading_challenges/{trading_challenge_id}/daily_snapshots | Get trading challenge daily snapshots
+[**get_trading_challenge_results**](DefaultApi.md#get_trading_challenge_results) | **GET** /v1/trading_challenges/{trading_challenge_id}/results | Get trading challenge results
 [**get_transaction_by_id**](DefaultApi.md#get_transaction_by_id) | **GET** /v1/transactions/{transaction_id} | Get a transaction by ID
 [**get_transactions**](DefaultApi.md#get_transactions) | **GET** /v1/transactions | Get a filtered, paginated list of transactions
 [**get_transactions_settlements**](DefaultApi.md#get_transactions_settlements) | **GET** /v1/transactions/settlements | Get transactions settlements with filters
@@ -89,8 +97,10 @@ Method | HTTP request | Description
 [**list_order_books**](DefaultApi.md#list_order_books) | **GET** /v1/orderbooks | List order books
 [**list_orders**](DefaultApi.md#list_orders) | **GET** /v1/orders | List all orders
 [**list_position_accounts_self**](DefaultApi.md#list_position_accounts_self) | **GET** /v1/user/self/position_accounts | List all position accounts for the authenticated user
+[**list_trading_challenges**](DefaultApi.md#list_trading_challenges) | **GET** /v1/trading_challenges | List trading challenges
 [**pay_leverage_get_accrued_interest**](DefaultApi.md#pay_leverage_get_accrued_interest) | **POST** /v1/leverage/accrued_interest/pay | Pay current accrued leverage interest for a specific user
 [**reject_ledger_withdraw_request**](DefaultApi.md#reject_ledger_withdraw_request) | **POST** /v1/ledger/withdraw/requests/{withdrawal_id}/reject | Reject a pending withdrawal request
+[**remove_trading_challenge_users**](DefaultApi.md#remove_trading_challenge_users) | **PUT** /v1/trading_challenges/remove_users | Remove users from a trading challenge
 [**repay_usd**](DefaultApi.md#repay_usd) | **POST** /v1/positions/repay_usd | Repay borrowed USD, then accrue and pay leverage interest
 [**revoke_api_key_for_user**](DefaultApi.md#revoke_api_key_for_user) | **PUT** /v1/user/apikey/{key_id}/revoke | Revoke apikey for a user
 [**revoke_api_key_for_user_id**](DefaultApi.md#revoke_api_key_for_user_id) | **PUT** /v1/user/{user_id}/apikey/{key_id}/revoke | Revoke apikey for a user: admin or integrator only
@@ -109,6 +119,93 @@ Method | HTTP request | Description
 [**validate_submit_order**](DefaultApi.md#validate_submit_order) | **POST** /v1/orders/validate | Validate submit order request data
 [**verify_user**](DefaultApi.md#verify_user) | **PUT** /v1/user/{user_id}/verify | Verify a user by ID
 
+
+# **add_trading_challenge_users**
+> TradingChallengeResponseEnvelope add_trading_challenge_users(add_trading_challenge_users_request)
+
+Add users to a trading challenge
+
+### Example
+
+* Api Key Authentication (apiKeyAuthHeader):
+* Bearer (JWT) Authentication (bearerAuth):
+
+```python
+import dora_client
+from dora_client.models.add_trading_challenge_users_request import AddTradingChallengeUsersRequest
+from dora_client.models.trading_challenge_response_envelope import TradingChallengeResponseEnvelope
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging.dora.co
+# See configuration.py for a list of all supported configuration parameters.
+configuration = dora_client.Configuration(
+    host = "https://staging.dora.co"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration.api_key['apiKeyAuthHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyAuthHeader'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = dora_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+async with dora_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = dora_client.DefaultApi(api_client)
+    add_trading_challenge_users_request = dora_client.AddTradingChallengeUsersRequest() # AddTradingChallengeUsersRequest | 
+
+    try:
+        # Add users to a trading challenge
+        api_response = await api_instance.add_trading_challenge_users(add_trading_challenge_users_request)
+        print("The response of DefaultApi->add_trading_challenge_users:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->add_trading_challenge_users: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **add_trading_challenge_users_request** | [**AddTradingChallengeUsersRequest**](AddTradingChallengeUsersRequest.md)|  | 
+
+### Return type
+
+[**TradingChallengeResponseEnvelope**](TradingChallengeResponseEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Users added |  -  |
+**400** | Bad request |  -  |
+**409** | Conflict |  -  |
+**500** | Internal server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **approve_ledger_withdraw_request**
 > WithdrawalInitiationResponseEnvelope approve_ledger_withdraw_request(withdrawal_id, withdrawal_request_reason=withdrawal_request_reason)
@@ -556,6 +653,92 @@ Name | Type | Description  | Notes
 **200** | Current leverage accrued interest claimed successfully |  -  |
 **400** | Bad request, e.g. invalid parameters |  -  |
 **401** | Unauthorized, e.g. user not logged in or invalid credentials |  -  |
+**500** | Internal server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **claim_trading_challenge_prize**
+> ClaimTradingChallengeResponseEnvelope claim_trading_challenge_prize(trading_challenge_id)
+
+Claim challenge prize
+
+### Example
+
+* Api Key Authentication (apiKeyAuthHeader):
+* Bearer (JWT) Authentication (bearerAuth):
+
+```python
+import dora_client
+from dora_client.models.claim_trading_challenge_response_envelope import ClaimTradingChallengeResponseEnvelope
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging.dora.co
+# See configuration.py for a list of all supported configuration parameters.
+configuration = dora_client.Configuration(
+    host = "https://staging.dora.co"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration.api_key['apiKeyAuthHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyAuthHeader'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = dora_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+async with dora_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = dora_client.DefaultApi(api_client)
+    trading_challenge_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
+
+    try:
+        # Claim challenge prize
+        api_response = await api_instance.claim_trading_challenge_prize(trading_challenge_id)
+        print("The response of DefaultApi->claim_trading_challenge_prize:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->claim_trading_challenge_prize: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **trading_challenge_id** | **UUID**|  | 
+
+### Return type
+
+[**ClaimTradingChallengeResponseEnvelope**](ClaimTradingChallengeResponseEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Prize claimed |  -  |
+**403** | Forbidden |  -  |
+**409** | Conflict |  -  |
 **500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1080,6 +1263,94 @@ Name | Type | Description  | Notes
 **201** | Order created |  -  |
 **400** | Bad request, e.g. missing required fields |  -  |
 **401** | Unauthorized, user not logged in or does not have access to this orderbook |  -  |
+**403** | Forbidden, e.g. the user&#39;s Global Account USD balance is below the required minimum cash reserve |  -  |
+**500** | Internal server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **create_trading_challenge**
+> TradingChallengeResponseEnvelope create_trading_challenge(create_trading_challenge_request)
+
+Create a trading challenge
+
+### Example
+
+* Api Key Authentication (apiKeyAuthHeader):
+* Bearer (JWT) Authentication (bearerAuth):
+
+```python
+import dora_client
+from dora_client.models.create_trading_challenge_request import CreateTradingChallengeRequest
+from dora_client.models.trading_challenge_response_envelope import TradingChallengeResponseEnvelope
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging.dora.co
+# See configuration.py for a list of all supported configuration parameters.
+configuration = dora_client.Configuration(
+    host = "https://staging.dora.co"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration.api_key['apiKeyAuthHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyAuthHeader'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = dora_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+async with dora_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = dora_client.DefaultApi(api_client)
+    create_trading_challenge_request = dora_client.CreateTradingChallengeRequest() # CreateTradingChallengeRequest | 
+
+    try:
+        # Create a trading challenge
+        api_response = await api_instance.create_trading_challenge(create_trading_challenge_request)
+        print("The response of DefaultApi->create_trading_challenge:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->create_trading_challenge: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **create_trading_challenge_request** | [**CreateTradingChallengeRequest**](CreateTradingChallengeRequest.md)|  | 
+
+### Return type
+
+[**TradingChallengeResponseEnvelope**](TradingChallengeResponseEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Trading challenge created |  -  |
+**400** | Bad request |  -  |
+**409** | Conflict |  -  |
 **500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -2033,10 +2304,184 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_cash_reserve_by_user_id**
+> CashReserveResponseEnvelope get_cash_reserve_by_user_id(user_id)
+
+Get the minimum USD cash reserve requirement for the given user
+
+Returns the user's available Global Account USD balance alongside their minimum cash reserve requirement and its breakdown. While available_usd is below required_usd the user may not open new leveraged positions, submit buy orders, transfer assets out of their Global Account or withdraw.
+
+### Example
+
+* Api Key Authentication (apiKeyAuthHeader):
+* Bearer (JWT) Authentication (bearerAuth):
+
+```python
+import dora_client
+from dora_client.models.cash_reserve_response_envelope import CashReserveResponseEnvelope
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging.dora.co
+# See configuration.py for a list of all supported configuration parameters.
+configuration = dora_client.Configuration(
+    host = "https://staging.dora.co"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration.api_key['apiKeyAuthHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyAuthHeader'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = dora_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+async with dora_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = dora_client.DefaultApi(api_client)
+    user_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
+
+    try:
+        # Get the minimum USD cash reserve requirement for the given user
+        api_response = await api_instance.get_cash_reserve_by_user_id(user_id)
+        print("The response of DefaultApi->get_cash_reserve_by_user_id:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->get_cash_reserve_by_user_id: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **user_id** | **UUID**|  | 
+
+### Return type
+
+[**CashReserveResponseEnvelope**](CashReserveResponseEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The user&#39;s minimum USD cash reserve state |  -  |
+**400** | Bad request, e.g. invalid user ID format |  -  |
+**401** | Unauthorized, user not logged in |  -  |
+**403** | Forbidden, the caller may only read their own cash reserve |  -  |
+**500** | Internal server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_cash_reserve_self**
+> CashReserveResponseEnvelope get_cash_reserve_self()
+
+Get the minimum USD cash reserve requirement for the logged in user
+
+Returns the user's available Global Account USD balance alongside their minimum cash reserve requirement and its breakdown. While available_usd is below required_usd the user may not open new leveraged positions, submit buy orders, transfer assets out of their Global Account or withdraw.
+
+### Example
+
+* Api Key Authentication (apiKeyAuthHeader):
+* Bearer (JWT) Authentication (bearerAuth):
+
+```python
+import dora_client
+from dora_client.models.cash_reserve_response_envelope import CashReserveResponseEnvelope
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging.dora.co
+# See configuration.py for a list of all supported configuration parameters.
+configuration = dora_client.Configuration(
+    host = "https://staging.dora.co"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration.api_key['apiKeyAuthHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyAuthHeader'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = dora_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+async with dora_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = dora_client.DefaultApi(api_client)
+
+    try:
+        # Get the minimum USD cash reserve requirement for the logged in user
+        api_response = await api_instance.get_cash_reserve_self()
+        print("The response of DefaultApi->get_cash_reserve_self:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->get_cash_reserve_self: %s\n" % e)
+```
+
+
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**CashReserveResponseEnvelope**](CashReserveResponseEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The user&#39;s minimum USD cash reserve state |  -  |
+**400** | Bad request, e.g. invalid user ID format |  -  |
+**401** | Unauthorized, user not logged in |  -  |
+**403** | Forbidden, the caller may only read their own cash reserve |  -  |
+**500** | Internal server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_copy_traders**
 > GetCopyTradersResponse get_copy_traders(page=page, limit=limit)
 
-Get list of user IDs with copy trading enabled
+Get list of users with copy trading enabled
 
 ### Example
 
@@ -2079,7 +2524,7 @@ async with dora_client.ApiClient(configuration) as api_client:
     limit = 100 # int |  (optional) (default to 100)
 
     try:
-        # Get list of user IDs with copy trading enabled
+        # Get list of users with copy trading enabled
         api_response = await api_instance.get_copy_traders(page=page, limit=limit)
         print("The response of DefaultApi->get_copy_traders:\n")
         pprint(api_response)
@@ -2114,7 +2559,7 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | List of user IDs who have allow_copy_trading enabled |  -  |
+**200** | List of users who have allow_copy_trading enabled |  -  |
 **400** | Bad request, e.g. invalid pagination parameters |  -  |
 **500** | Internal server error |  -  |
 
@@ -2193,7 +2638,7 @@ No authorization required
 
 Get per-chain instructions for depositing USDC into the Dora vault
 
-Returns everything the caller needs to deposit USDC into the Dora vault with a single signature and a single transaction: an EIP-712 (EIP-2612 permit) typed-data payload to sign with eth_signTypedData_v4, and the descriptor of the vault deposit() call. The client splits the permit signature into v/r/s and ABI-encodes the deposit function with the returned args plus (v, r, s); no separate approve transaction is needed. Only a single chain is currently supported: the provided nonce belongs to it, and the chains array holds at most one entry.
+Returns everything the caller needs to deposit USDC into the Dora vault with a single signature and a single transaction: an EIP-712 (EIP-2612 permit) typed-data payload to sign with eth_signTypedData_v4, and the descriptor of the vault deposit() call. The client splits the permit signature into v/r/s and ABI-encodes the deposit function with the returned args plus (v, r, s); no separate approve transaction is needed. Only a single chain is currently supported: the provided nonce belongs to it, and the chains array holds at most one entry. Restricted to DORA tenant users whose native asset is USDC.
 
 ### Example
 
@@ -2278,6 +2723,7 @@ Name | Type | Description  | Notes
 **200** | Per-chain deposit instructions for the authenticated user |  -  |
 **400** | Bad request, e.g. invalid or missing quantity, owner_address, or nonce, or an invalid client_reference_id |  -  |
 **401** | Unauthorized, user not logged in |  -  |
+**403** | Forbidden: access is restricted to DORA tenant users whose native asset is USDC. Admin and indexer API keys have no native asset and are also denied. |  -  |
 **500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -4395,6 +4841,269 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_trading_challenge_by_id**
+> TradingChallengeResponseEnvelope get_trading_challenge_by_id(trading_challenge_id)
+
+Get trading challenge by ID
+
+### Example
+
+* Api Key Authentication (apiKeyAuthHeader):
+* Bearer (JWT) Authentication (bearerAuth):
+
+```python
+import dora_client
+from dora_client.models.trading_challenge_response_envelope import TradingChallengeResponseEnvelope
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging.dora.co
+# See configuration.py for a list of all supported configuration parameters.
+configuration = dora_client.Configuration(
+    host = "https://staging.dora.co"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration.api_key['apiKeyAuthHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyAuthHeader'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = dora_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+async with dora_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = dora_client.DefaultApi(api_client)
+    trading_challenge_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
+
+    try:
+        # Get trading challenge by ID
+        api_response = await api_instance.get_trading_challenge_by_id(trading_challenge_id)
+        print("The response of DefaultApi->get_trading_challenge_by_id:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->get_trading_challenge_by_id: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **trading_challenge_id** | **UUID**|  | 
+
+### Return type
+
+[**TradingChallengeResponseEnvelope**](TradingChallengeResponseEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Trading challenge |  -  |
+**400** | Bad request |  -  |
+**403** | Forbidden |  -  |
+**404** | Not found |  -  |
+**500** | Internal server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_trading_challenge_daily_snapshots**
+> TradingChallengeDailySnapshotsResponseEnvelope get_trading_challenge_daily_snapshots(trading_challenge_id)
+
+Get trading challenge daily snapshots
+
+### Example
+
+* Api Key Authentication (apiKeyAuthHeader):
+* Bearer (JWT) Authentication (bearerAuth):
+
+```python
+import dora_client
+from dora_client.models.trading_challenge_daily_snapshots_response_envelope import TradingChallengeDailySnapshotsResponseEnvelope
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging.dora.co
+# See configuration.py for a list of all supported configuration parameters.
+configuration = dora_client.Configuration(
+    host = "https://staging.dora.co"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration.api_key['apiKeyAuthHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyAuthHeader'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = dora_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+async with dora_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = dora_client.DefaultApi(api_client)
+    trading_challenge_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
+
+    try:
+        # Get trading challenge daily snapshots
+        api_response = await api_instance.get_trading_challenge_daily_snapshots(trading_challenge_id)
+        print("The response of DefaultApi->get_trading_challenge_daily_snapshots:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->get_trading_challenge_daily_snapshots: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **trading_challenge_id** | **UUID**|  | 
+
+### Return type
+
+[**TradingChallengeDailySnapshotsResponseEnvelope**](TradingChallengeDailySnapshotsResponseEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Daily snapshots |  -  |
+**400** | Bad request |  -  |
+**403** | Forbidden |  -  |
+**404** | Not found |  -  |
+**500** | Internal server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_trading_challenge_results**
+> TradingChallengeResultsResponseEnvelope get_trading_challenge_results(trading_challenge_id, board=board)
+
+Get trading challenge results
+
+### Example
+
+* Api Key Authentication (apiKeyAuthHeader):
+* Bearer (JWT) Authentication (bearerAuth):
+
+```python
+import dora_client
+from dora_client.models.trading_challenge_results_response_envelope import TradingChallengeResultsResponseEnvelope
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging.dora.co
+# See configuration.py for a list of all supported configuration parameters.
+configuration = dora_client.Configuration(
+    host = "https://staging.dora.co"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration.api_key['apiKeyAuthHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyAuthHeader'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = dora_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+async with dora_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = dora_client.DefaultApi(api_client)
+    trading_challenge_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
+    board = TOP_PNL # str | Leaderboard board selector. Defaults to TOP_PNL. (optional) (default to TOP_PNL)
+
+    try:
+        # Get trading challenge results
+        api_response = await api_instance.get_trading_challenge_results(trading_challenge_id, board=board)
+        print("The response of DefaultApi->get_trading_challenge_results:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->get_trading_challenge_results: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **trading_challenge_id** | **UUID**|  | 
+ **board** | **str**| Leaderboard board selector. Defaults to TOP_PNL. | [optional] [default to TOP_PNL]
+
+### Return type
+
+[**TradingChallengeResultsResponseEnvelope**](TradingChallengeResultsResponseEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Challenge results |  -  |
+**400** | Bad request |  -  |
+**403** | Forbidden |  -  |
+**404** | Not found |  -  |
+**500** | Internal server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_transaction_by_id**
 > TransactionResponseEnvelope get_transaction_by_id(transaction_id)
 
@@ -5643,6 +6352,7 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **201** | Deposit successful |  -  |
 **400** | Bad request, e.g. invalid parameters or insufficient funds |  -  |
+**403** | Forbidden, e.g. an integrator depositing a non-USD asset, or a USD deposit to a user whose native asset is USDC (their USD only moves on chain, as USDC) |  -  |
 **500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -5735,6 +6445,7 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **201** | Withdraw successful |  -  |
 **400** | Bad request, e.g. invalid parameters or insufficient funds |  -  |
+**403** | Forbidden: the acting user is not permitted, or the target user&#39;s native asset is USDC - their USD only moves on chain, as a USDC deposit or withdrawal |  -  |
 **500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -5825,6 +6536,7 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **201** | Withdraw request initiation successful |  -  |
 **400** | Bad request, e.g. invalid parameters or insufficient funds |  -  |
+**403** | Forbidden: the acting user is not permitted, or the target user&#39;s native asset is USDC - their USD only moves on chain, as an USDC deposit or withdrawal |  -  |
 **500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -5915,6 +6627,7 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **201** | Withdraw request initiation successful |  -  |
 **400** | Bad request, e.g. invalid parameters or insufficient funds |  -  |
+**403** | Forbidden, e.g. the user&#39;s Global Account USD balance is below the required minimum cash reserve |  -  |
 **500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -7269,6 +7982,101 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **list_trading_challenges**
+> TradingChallengeListResponseEnvelope list_trading_challenges(tenant_id=tenant_id, type=type, status=status, start=start, end=end)
+
+List trading challenges
+
+### Example
+
+* Api Key Authentication (apiKeyAuthHeader):
+* Bearer (JWT) Authentication (bearerAuth):
+
+```python
+import dora_client
+from dora_client.models.trading_challenge_list_response_envelope import TradingChallengeListResponseEnvelope
+from dora_client.models.trading_challenge_status import TradingChallengeStatus
+from dora_client.models.trading_challenge_type import TradingChallengeType
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging.dora.co
+# See configuration.py for a list of all supported configuration parameters.
+configuration = dora_client.Configuration(
+    host = "https://staging.dora.co"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration.api_key['apiKeyAuthHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyAuthHeader'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = dora_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+async with dora_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = dora_client.DefaultApi(api_client)
+    tenant_id = 'tenant_id_example' # str |  (optional)
+    type = dora_client.TradingChallengeType() # TradingChallengeType |  (optional)
+    status = dora_client.TradingChallengeStatus() # TradingChallengeStatus |  (optional)
+    start = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
+    end = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
+
+    try:
+        # List trading challenges
+        api_response = await api_instance.list_trading_challenges(tenant_id=tenant_id, type=type, status=status, start=start, end=end)
+        print("The response of DefaultApi->list_trading_challenges:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->list_trading_challenges: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **tenant_id** | **str**|  | [optional] 
+ **type** | [**TradingChallengeType**](.md)|  | [optional] 
+ **status** | [**TradingChallengeStatus**](.md)|  | [optional] 
+ **start** | **datetime**|  | [optional] 
+ **end** | **datetime**|  | [optional] 
+
+### Return type
+
+[**TradingChallengeListResponseEnvelope**](TradingChallengeListResponseEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Trading challenges list |  -  |
+**400** | Bad request |  -  |
+**500** | Internal server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **pay_leverage_get_accrued_interest**
 > PayLeverageAccruedInterestResponseEnvelope pay_leverage_get_accrued_interest(pay_leverage_accrued_interest_request)
 
@@ -7444,6 +8252,93 @@ Name | Type | Description  | Notes
 **400** | Bad request, e.g. invalid withdrawal ID format or request is not in a pending state |  -  |
 **404** | Withdrawal request not found |  -  |
 **403** | Forbidden, user does not have permission to reject this withdrawal request |  -  |
+**500** | Internal server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **remove_trading_challenge_users**
+> TradingChallengeResponseEnvelope remove_trading_challenge_users(remove_trading_challenge_users_request)
+
+Remove users from a trading challenge
+
+### Example
+
+* Api Key Authentication (apiKeyAuthHeader):
+* Bearer (JWT) Authentication (bearerAuth):
+
+```python
+import dora_client
+from dora_client.models.remove_trading_challenge_users_request import RemoveTradingChallengeUsersRequest
+from dora_client.models.trading_challenge_response_envelope import TradingChallengeResponseEnvelope
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging.dora.co
+# See configuration.py for a list of all supported configuration parameters.
+configuration = dora_client.Configuration(
+    host = "https://staging.dora.co"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration.api_key['apiKeyAuthHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyAuthHeader'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = dora_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+async with dora_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = dora_client.DefaultApi(api_client)
+    remove_trading_challenge_users_request = dora_client.RemoveTradingChallengeUsersRequest() # RemoveTradingChallengeUsersRequest | 
+
+    try:
+        # Remove users from a trading challenge
+        api_response = await api_instance.remove_trading_challenge_users(remove_trading_challenge_users_request)
+        print("The response of DefaultApi->remove_trading_challenge_users:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->remove_trading_challenge_users: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **remove_trading_challenge_users_request** | [**RemoveTradingChallengeUsersRequest**](RemoveTradingChallengeUsersRequest.md)|  | 
+
+### Return type
+
+[**TradingChallengeResponseEnvelope**](TradingChallengeResponseEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Users removed |  -  |
+**400** | Bad request |  -  |
+**409** | Conflict |  -  |
 **500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -8408,6 +9303,7 @@ Name | Type | Description  | Notes
 **201** | Isolated account created |  -  |
 **400** | Bad request, e.g. missing required fields |  -  |
 **401** | Unauthorized, user not logged in or does not have access to this orderbook |  -  |
+**403** | Forbidden, e.g. the user&#39;s Global Account USD balance is below the required minimum cash reserve |  -  |
 **409** | Conflict, e.g. the requested amount is not available to transfer |  -  |
 **500** | Internal server error |  -  |
 
@@ -8496,6 +9392,7 @@ Name | Type | Description  | Notes
 **201** | Isolated Position Created |  -  |
 **400** | Bad request, e.g. missing required fields |  -  |
 **401** | Unauthorized, user not logged in or does not have access to this orderbook |  -  |
+**403** | Forbidden, e.g. the user&#39;s Global Account USD balance is below the required minimum cash reserve |  -  |
 **409** | Conflict, e.g. the requested amount is not available to transfer |  -  |
 **500** | Internal server error |  -  |
 

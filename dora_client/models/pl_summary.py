@@ -32,7 +32,9 @@ class PLSummary(BaseModel):
     available: StrictStr
     health: StrictStr
     ltv: StrictStr
-    __properties: ClassVar[List[str]] = ["leverage", "account_equity", "available", "health", "ltv"]
+    realized_pl: StrictStr = Field(description="The realized profit or loss since account inception")
+    unrealized_pl: StrictStr = Field(description="The unrealized profit or loss for the account's current open positions")
+    __properties: ClassVar[List[str]] = ["leverage", "account_equity", "available", "health", "ltv", "realized_pl", "unrealized_pl"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -89,7 +91,9 @@ class PLSummary(BaseModel):
             "account_equity": obj.get("account_equity"),
             "available": obj.get("available"),
             "health": obj.get("health"),
-            "ltv": obj.get("ltv")
+            "ltv": obj.get("ltv"),
+            "realized_pl": obj.get("realized_pl"),
+            "unrealized_pl": obj.get("unrealized_pl")
         })
         return _obj
 
