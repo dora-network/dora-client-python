@@ -810,6 +810,13 @@ class TestDefaultApi(unittest.IsolatedAsyncioTestCase):
         """
         pass
 
+    async def test_update_user_kyc(self) -> None:
+        """Test case for update_user_kyc
+
+        Set or clear a user's KYC completion timestamp
+        """
+        pass
+
     async def test_validate_submit_order(self) -> None:
         """Test case for validate_submit_order
 

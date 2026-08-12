@@ -55,7 +55,8 @@ class User(BaseModel):
     allow_deposit_withdrawal_notifications: StrictBool
     allow_orders_notifications: StrictBool
     allow_copy_trading: StrictBool
-    __properties: ClassVar[List[str]] = ["id", "closed_at", "disabled_at", "email", "first_name", "last_name", "user_name", "country_of_domicile", "native_asset_id", "photo_url", "provider", "provider_id", "roles", "timezone", "timezone_offset", "verified_at", "show_tutorial_cards", "notifications_enabled", "tenant_id", "allow_email_notifications", "allow_liquidations_notifications", "allow_deposit_withdrawal_notifications", "allow_orders_notifications", "allow_copy_trading"]
+    kyc_completed_at: Optional[datetime] = Field(default=None, description="When the user completed KYC. Omitted/null if KYC has not been completed. Set via POST /v1/integrators/user/{user_id}/kyc.")
+    __properties: ClassVar[List[str]] = ["id", "closed_at", "disabled_at", "email", "first_name", "last_name", "user_name", "country_of_domicile", "native_asset_id", "photo_url", "provider", "provider_id", "roles", "timezone", "timezone_offset", "verified_at", "show_tutorial_cards", "notifications_enabled", "tenant_id", "allow_email_notifications", "allow_liquidations_notifications", "allow_deposit_withdrawal_notifications", "allow_orders_notifications", "allow_copy_trading", "kyc_completed_at"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -131,7 +132,8 @@ class User(BaseModel):
             "allow_liquidations_notifications": obj.get("allow_liquidations_notifications"),
             "allow_deposit_withdrawal_notifications": obj.get("allow_deposit_withdrawal_notifications"),
             "allow_orders_notifications": obj.get("allow_orders_notifications"),
-            "allow_copy_trading": obj.get("allow_copy_trading")
+            "allow_copy_trading": obj.get("allow_copy_trading"),
+            "kyc_completed_at": obj.get("kyc_completed_at")
         })
         return _obj
 

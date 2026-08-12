@@ -212,6 +212,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**transfer_available_balances**](docs/DefaultApi.md#transfer_available_balances) | **POST** /v1/positions/transfer_balances | Transfer available balance between a user&#39;s accounts (e.g. global to isolated position)
 *DefaultApi* | [**update_user_config**](docs/DefaultApi.md#update_user_config) | **PUT** /v1/user/{user_id}/config | Update user configuration by ID
 *DefaultApi* | [**update_user_config_self**](docs/DefaultApi.md#update_user_config_self) | **PUT** /v1/user/config/self | Update user configuration for the authenticated user
+*DefaultApi* | [**update_user_kyc**](docs/DefaultApi.md#update_user_kyc) | **POST** /v1/integrators/user/{user_id}/kyc | Set or clear a user&#39;s KYC completion timestamp
 *DefaultApi* | [**validate_submit_order**](docs/DefaultApi.md#validate_submit_order) | **POST** /v1/orders/validate | Validate submit order request data
 *DefaultApi* | [**verify_user**](docs/DefaultApi.md#verify_user) | **PUT** /v1/user/{user_id}/verify | Verify a user by ID
 
@@ -440,6 +441,9 @@ Class | Method | HTTP request | Description
  - [UpdateFieldString](docs/UpdateFieldString.md)
  - [UpdateRolesString](docs/UpdateRolesString.md)
  - [UpdateUserConfigRequest](docs/UpdateUserConfigRequest.md)
+ - [UpdateUserKYCRequest](docs/UpdateUserKYCRequest.md)
+ - [UpdateUserKYCResponse](docs/UpdateUserKYCResponse.md)
+ - [UpdateUserKYCResponseEnvelope](docs/UpdateUserKYCResponseEnvelope.md)
  - [User](docs/User.md)
  - [UserBalanceResponseEnvelope](docs/UserBalanceResponseEnvelope.md)
  - [UserConfig](docs/UserConfig.md)

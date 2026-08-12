@@ -226,6 +226,9 @@ docs/UpdateFieldBoolean.md
 docs/UpdateFieldString.md
 docs/UpdateRolesString.md
 docs/UpdateUserConfigRequest.md
+docs/UpdateUserKYCRequest.md
+docs/UpdateUserKYCResponse.md
+docs/UpdateUserKYCResponseEnvelope.md
 docs/User.md
 docs/UserBalanceResponseEnvelope.md
 docs/UserConfig.md
@@ -484,6 +487,9 @@ dora_client/models/update_field_boolean.py
 dora_client/models/update_field_string.py
 dora_client/models/update_roles_string.py
 dora_client/models/update_user_config_request.py
+dora_client/models/update_user_kyc_request.py
+dora_client/models/update_user_kyc_response.py
+dora_client/models/update_user_kyc_response_envelope.py
 dora_client/models/user.py
 dora_client/models/user_balance_response_envelope.py
 dora_client/models/user_config.py
@@ -744,6 +750,9 @@ test/test_update_field_boolean.py
 test/test_update_field_string.py
 test/test_update_roles_string.py
 test/test_update_user_config_request.py
+test/test_update_user_kyc_request.py
+test/test_update_user_kyc_response.py
+test/test_update_user_kyc_response_envelope.py
 test/test_user.py
 test/test_user_balance_response_envelope.py
 test/test_user_config.py

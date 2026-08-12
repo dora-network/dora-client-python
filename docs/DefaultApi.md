@@ -116,6 +116,7 @@ Method | HTTP request | Description
 [**transfer_available_balances**](DefaultApi.md#transfer_available_balances) | **POST** /v1/positions/transfer_balances | Transfer available balance between a user&#39;s accounts (e.g. global to isolated position)
 [**update_user_config**](DefaultApi.md#update_user_config) | **PUT** /v1/user/{user_id}/config | Update user configuration by ID
 [**update_user_config_self**](DefaultApi.md#update_user_config_self) | **PUT** /v1/user/config/self | Update user configuration for the authenticated user
+[**update_user_kyc**](DefaultApi.md#update_user_kyc) | **POST** /v1/integrators/user/{user_id}/kyc | Set or clear a user&#39;s KYC completion timestamp
 [**validate_submit_order**](DefaultApi.md#validate_submit_order) | **POST** /v1/orders/validate | Validate submit order request data
 [**verify_user**](DefaultApi.md#verify_user) | **PUT** /v1/user/{user_id}/verify | Verify a user by ID
 
@@ -7795,7 +7796,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_orders**
-> ListOrdersResponseEnvelope list_orders(user_id=user_id, order_book_id=order_book_id, kind=kind, status=status, side=side, var_from=var_from, to=to, page=page, limit=limit)
+> ListOrdersResponseEnvelope list_orders(user_id=user_id, order_book_id=order_book_id, kind=kind, status=status, side=side, var_from=var_from, to=to, page=page, limit=limit, client_order_id=client_order_id)
 
 List all orders
 
@@ -7848,10 +7849,11 @@ async with dora_client.ApiClient(configuration) as api_client:
     to = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
     page = 1 # int |  (optional) (default to 1)
     limit = 100 # int |  (optional) (default to 100)
+    client_order_id = 'client_order_id_example' # str | Filter by client order ID prefix (max 256 characters) (optional)
 
     try:
         # List all orders
-        api_response = await api_instance.list_orders(user_id=user_id, order_book_id=order_book_id, kind=kind, status=status, side=side, var_from=var_from, to=to, page=page, limit=limit)
+        api_response = await api_instance.list_orders(user_id=user_id, order_book_id=order_book_id, kind=kind, status=status, side=side, var_from=var_from, to=to, page=page, limit=limit, client_order_id=client_order_id)
         print("The response of DefaultApi->list_orders:\n")
         pprint(api_response)
     except Exception as e:
@@ -7874,6 +7876,7 @@ Name | Type | Description  | Notes
  **to** | **datetime**|  | [optional] 
  **page** | **int**|  | [optional] [default to 1]
  **limit** | **int**|  | [optional] [default to 100]
+ **client_order_id** | **str**| Filter by client order ID prefix (max 256 characters) | [optional] 
 
 ### Return type
 
@@ -9569,6 +9572,97 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | User configuration updated |  -  |
 **400** | Bad request, e.g. invalid query parameters |  -  |
+**404** | User not found |  -  |
+**500** | Internal server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **update_user_kyc**
+> UpdateUserKYCResponseEnvelope update_user_kyc(user_id, update_user_kyc_request)
+
+Set or clear a user's KYC completion timestamp
+
+### Example
+
+* Api Key Authentication (apiKeyAuthHeader):
+* Bearer (JWT) Authentication (bearerAuth):
+
+```python
+import dora_client
+from dora_client.models.update_user_kyc_request import UpdateUserKYCRequest
+from dora_client.models.update_user_kyc_response_envelope import UpdateUserKYCResponseEnvelope
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging.dora.co
+# See configuration.py for a list of all supported configuration parameters.
+configuration = dora_client.Configuration(
+    host = "https://staging.dora.co"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration.api_key['apiKeyAuthHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyAuthHeader'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = dora_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+async with dora_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = dora_client.DefaultApi(api_client)
+    user_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
+    update_user_kyc_request = dora_client.UpdateUserKYCRequest() # UpdateUserKYCRequest | 
+
+    try:
+        # Set or clear a user's KYC completion timestamp
+        api_response = await api_instance.update_user_kyc(user_id, update_user_kyc_request)
+        print("The response of DefaultApi->update_user_kyc:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->update_user_kyc: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **user_id** | **UUID**|  | 
+ **update_user_kyc_request** | [**UpdateUserKYCRequest**](UpdateUserKYCRequest.md)|  | 
+
+### Return type
+
+[**UpdateUserKYCResponseEnvelope**](UpdateUserKYCResponseEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | User KYC status updated |  -  |
+**400** | Bad request, e.g. invalid user id or request body |  -  |
+**401** | Unauthorized |  -  |
+**403** | Forbidden |  -  |
 **404** | User not found |  -  |
 **500** | Internal server error |  -  |
 

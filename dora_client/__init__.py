@@ -250,6 +250,9 @@ __all__ = [
     "UpdateFieldString",
     "UpdateRolesString",
     "UpdateUserConfigRequest",
+    "UpdateUserKYCRequest",
+    "UpdateUserKYCResponse",
+    "UpdateUserKYCResponseEnvelope",
     "User",
     "UserBalanceResponseEnvelope",
     "UserConfig",
@@ -517,6 +520,9 @@ from dora_client.models.update_field_boolean import UpdateFieldBoolean as Update
 from dora_client.models.update_field_string import UpdateFieldString as UpdateFieldString
 from dora_client.models.update_roles_string import UpdateRolesString as UpdateRolesString
 from dora_client.models.update_user_config_request import UpdateUserConfigRequest as UpdateUserConfigRequest
+from dora_client.models.update_user_kyc_request import UpdateUserKYCRequest as UpdateUserKYCRequest
+from dora_client.models.update_user_kyc_response import UpdateUserKYCResponse as UpdateUserKYCResponse
+from dora_client.models.update_user_kyc_response_envelope import UpdateUserKYCResponseEnvelope as UpdateUserKYCResponseEnvelope
 from dora_client.models.user import User as User
 from dora_client.models.user_balance_response_envelope import UserBalanceResponseEnvelope as UserBalanceResponseEnvelope
 from dora_client.models.user_config import UserConfig as UserConfig

@@ -235,6 +235,9 @@ from dora_client.models.update_field_boolean import UpdateFieldBoolean
 from dora_client.models.update_field_string import UpdateFieldString
 from dora_client.models.update_roles_string import UpdateRolesString
 from dora_client.models.update_user_config_request import UpdateUserConfigRequest
+from dora_client.models.update_user_kyc_request import UpdateUserKYCRequest
+from dora_client.models.update_user_kyc_response import UpdateUserKYCResponse
+from dora_client.models.update_user_kyc_response_envelope import UpdateUserKYCResponseEnvelope
 from dora_client.models.user import User
 from dora_client.models.user_balance_response_envelope import UserBalanceResponseEnvelope
 from dora_client.models.user_config import UserConfig

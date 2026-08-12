@@ -61,7 +61,8 @@ class TestUserEnvelope(unittest.TestCase):
                     allow_liquidations_notifications = True, 
                     allow_deposit_withdrawal_notifications = True, 
                     allow_orders_notifications = True, 
-                    allow_copy_trading = True, ),
+                    allow_copy_trading = True, 
+                    kyc_completed_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ),
                 error = '',
                 metadata = dora_client.models.metadata.Metadata(
                     status_code = 56, 

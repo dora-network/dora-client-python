@@ -29,6 +29,7 @@ Name | Type | Description | Notes
 **allow_deposit_withdrawal_notifications** | **bool** |  | 
 **allow_orders_notifications** | **bool** |  | 
 **allow_copy_trading** | **bool** |  | 
+**kyc_completed_at** | **datetime** | When the user completed KYC. Omitted/null if KYC has not been completed. Set via POST /v1/integrators/user/{user_id}/kyc. | [optional] 
 
 ## Example
 
