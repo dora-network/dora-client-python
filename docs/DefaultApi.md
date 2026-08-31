@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**add_trading_challenge_users**](DefaultApi.md#add_trading_challenge_users) | **PUT** /v1/trading_challenges/add_users | Add users to a trading challenge
 [**approve_ledger_withdraw_request**](DefaultApi.md#approve_ledger_withdraw_request) | **POST** /v1/ledger/withdraw/requests/{withdrawal_id}/approve | Approve a pending withdrawal request
+[**approve_trading_challenge_registration_request**](DefaultApi.md#approve_trading_challenge_registration_request) | **POST** /v1/trading_challenges/registration_requests/{request_id}/approve | Approve a trading challenge registration request
 [**cancel_all_open_orders**](DefaultApi.md#cancel_all_open_orders) | **DELETE** /v1/orders | Cancel all open orders, if user passes orderbook or account_id on query params it will cancel all orders on specific orderbook or account, admin can cancel user&#39;s orders on specific orderbook
 [**cancel_ledger_withdraw_request**](DefaultApi.md#cancel_ledger_withdraw_request) | **POST** /v1/ledger/withdraw/requests/{withdrawal_id}/cancel | Cancel a pending withdrawal request
 [**cancel_order_by_id**](DefaultApi.md#cancel_order_by_id) | **DELETE** /v1/orders/{order_id} | Cancel an order by ID
@@ -70,6 +71,7 @@ Method | HTTP request | Description
 [**get_transactions_stream**](DefaultApi.md#get_transactions_stream) | **GET** /v1/transactions/stream | Get transactions since a specific time, and open a stream for further updates
 [**get_user_by_id**](DefaultApi.md#get_user_by_id) | **GET** /v1/user/{user_id} | Get user by ID (admin only)
 [**get_user_coupon_payments_stream**](DefaultApi.md#get_user_coupon_payments_stream) | **GET** /v1/user/{user_id}/coupon_payments/stream | Stream user&#39;s coupon payment accruals in real time
+[**get_user_deactivation**](DefaultApi.md#get_user_deactivation) | **GET** /v1/user/{user_id}/deactivation | Get the latest account deactivation request for a user
 [**get_user_ledger_stream**](DefaultApi.md#get_user_ledger_stream) | **GET** /v1/user/{user_id}/ledger/stream | Get a snapshot of user&#39;s ledger updates since a specific time, and opens a stream for further updates
 [**get_user_leverage_accrued_interest_stream**](DefaultApi.md#get_user_leverage_accrued_interest_stream) | **GET** /v1/user/{user_id}/leverage/accrued_interest/stream | Stream user&#39;s current leverage accrued interest in real time
 [**get_user_order_updates_stream**](DefaultApi.md#get_user_order_updates_stream) | **GET** /v1/user/{user_id}/orders/{order_book_id}/updates/stream | Get a snapshot of user&#39;s order updates for the given order book since a specific time, and opens a stream for further updates
@@ -97,9 +99,12 @@ Method | HTTP request | Description
 [**list_order_books**](DefaultApi.md#list_order_books) | **GET** /v1/orderbooks | List order books
 [**list_orders**](DefaultApi.md#list_orders) | **GET** /v1/orders | List all orders
 [**list_position_accounts_self**](DefaultApi.md#list_position_accounts_self) | **GET** /v1/user/self/position_accounts | List all position accounts for the authenticated user
+[**list_trading_challenge_registration_requests**](DefaultApi.md#list_trading_challenge_registration_requests) | **GET** /v1/trading_challenges/registration_requests | List trading challenge registration requests
 [**list_trading_challenges**](DefaultApi.md#list_trading_challenges) | **GET** /v1/trading_challenges | List trading challenges
+[**list_user_deactivations**](DefaultApi.md#list_user_deactivations) | **GET** /v1/user/deactivations | Get the current deactivation status across all users
 [**pay_leverage_get_accrued_interest**](DefaultApi.md#pay_leverage_get_accrued_interest) | **POST** /v1/leverage/accrued_interest/pay | Pay current accrued leverage interest for a specific user
 [**reject_ledger_withdraw_request**](DefaultApi.md#reject_ledger_withdraw_request) | **POST** /v1/ledger/withdraw/requests/{withdrawal_id}/reject | Reject a pending withdrawal request
+[**reject_trading_challenge_registration_request**](DefaultApi.md#reject_trading_challenge_registration_request) | **POST** /v1/trading_challenges/registration_requests/{request_id}/reject | Reject a trading challenge registration request
 [**remove_trading_challenge_users**](DefaultApi.md#remove_trading_challenge_users) | **PUT** /v1/trading_challenges/remove_users | Remove users from a trading challenge
 [**repay_usd**](DefaultApi.md#repay_usd) | **POST** /v1/positions/repay_usd | Repay borrowed USD, then accrue and pay leverage interest
 [**revoke_api_key_for_user**](DefaultApi.md#revoke_api_key_for_user) | **PUT** /v1/user/apikey/{key_id}/revoke | Revoke apikey for a user
@@ -112,8 +117,11 @@ Method | HTTP request | Description
 [**stream_order_book_balances**](DefaultApi.md#stream_order_book_balances) | **GET** /v1/orderbooks/{order_book_id}/balances/stream | Get a snapshot of base and quote balances for an order book and open a stream for real-time updates
 [**stream_orderbook_open_orders**](DefaultApi.md#stream_orderbook_open_orders) | **GET** /v1/orderbooks/{order_book_id}/open/stream | Get a snapshot of open orders in an order book and open a stream for real-time updates
 [**stream_trades**](DefaultApi.md#stream_trades) | **GET** /v1/trades/{order_book_id}/stream | Get a snapshot of trades executed on the given order book from a specific date and open a stream for real-time updates
+[**terminate_own_trading_challenge_participation**](DefaultApi.md#terminate_own_trading_challenge_participation) | **POST** /v1/trading_challenges/{trading_challenge_id}/participants/self/terminate | Leave a trading challenge
+[**terminate_trading_challenge_participation**](DefaultApi.md#terminate_trading_challenge_participation) | **POST** /v1/trading_challenges/{trading_challenge_id}/participants/{user_id}/terminate | Terminate a participation in a trading challenge
 [**transfer_account_balances_v2**](DefaultApi.md#transfer_account_balances_v2) | **POST** /v2/accounts/transfer_balances | Transfer available balance between a user&#39;s accounts
 [**transfer_available_balances**](DefaultApi.md#transfer_available_balances) | **POST** /v1/positions/transfer_balances | Transfer available balance between a user&#39;s accounts (e.g. global to isolated position)
+[**update_trading_challenge**](DefaultApi.md#update_trading_challenge) | **PUT** /v1/trading_challenges/{trading_challenge_id} | Update a trading challenge
 [**update_user_config**](DefaultApi.md#update_user_config) | **PUT** /v1/user/{user_id}/config | Update user configuration by ID
 [**update_user_config_self**](DefaultApi.md#update_user_config_self) | **PUT** /v1/user/config/self | Update user configuration for the authenticated user
 [**update_user_kyc**](DefaultApi.md#update_user_kyc) | **POST** /v1/integrators/user/{user_id}/kyc | Set or clear a user&#39;s KYC completion timestamp
@@ -125,6 +133,8 @@ Method | HTTP request | Description
 > TradingChallengeResponseEnvelope add_trading_challenge_users(add_trading_challenge_users_request)
 
 Add users to a trading challenge
+
+Add existing users to a trading challenge. For COMPETITION_MANAGER, the challenge must be assigned in managed_competition_ids. A user must have an empty ledger to join: deposits and withdrawals are barred from enrolment until the challenge is over, so that challenge credits are the only thing a participant holds and the teardown sweep cannot destroy funds of their own.
 
 ### Example
 
@@ -296,6 +306,100 @@ Name | Type | Description  | Notes
 **400** | Bad request, e.g. invalid withdrawal ID format or request is not in a pending state |  -  |
 **404** | Withdrawal request not found |  -  |
 **403** | Forbidden, user does not have permission to approve this withdrawal request |  -  |
+**500** | Internal server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **approve_trading_challenge_registration_request**
+> TradingChallengeRegistrationRequestResponseEnvelope approve_trading_challenge_registration_request(request_id, review_trading_challenge_registration_request=review_trading_challenge_registration_request)
+
+Approve a trading challenge registration request
+
+Accessible to admins (any challenge), integrators (their own tenant only) and competition managers (their assigned challenges only). Enrolment runs the same checks as add_users, so a challenge that filled up, now overlaps another of the user's challenges, or whose applicant no longer has an empty ledger is rejected with a 409 and the request stays open.
+
+### Example
+
+* Api Key Authentication (apiKeyAuthHeader):
+* Bearer (JWT) Authentication (bearerAuth):
+
+```python
+import dora_client
+from dora_client.models.review_trading_challenge_registration_request import ReviewTradingChallengeRegistrationRequest
+from dora_client.models.trading_challenge_registration_request_response_envelope import TradingChallengeRegistrationRequestResponseEnvelope
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging.dora.co
+# See configuration.py for a list of all supported configuration parameters.
+configuration = dora_client.Configuration(
+    host = "https://staging.dora.co"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration.api_key['apiKeyAuthHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyAuthHeader'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = dora_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+async with dora_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = dora_client.DefaultApi(api_client)
+    request_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
+    review_trading_challenge_registration_request = dora_client.ReviewTradingChallengeRegistrationRequest() # ReviewTradingChallengeRegistrationRequest |  (optional)
+
+    try:
+        # Approve a trading challenge registration request
+        api_response = await api_instance.approve_trading_challenge_registration_request(request_id, review_trading_challenge_registration_request=review_trading_challenge_registration_request)
+        print("The response of DefaultApi->approve_trading_challenge_registration_request:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->approve_trading_challenge_registration_request: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **request_id** | **UUID**|  | 
+ **review_trading_challenge_registration_request** | [**ReviewTradingChallengeRegistrationRequest**](ReviewTradingChallengeRegistrationRequest.md)|  | [optional] 
+
+### Return type
+
+[**TradingChallengeRegistrationRequestResponseEnvelope**](TradingChallengeRegistrationRequestResponseEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The settled request |  -  |
+**400** | Bad request, e.g. an invalid filter or an over-long reason |  -  |
+**401** | Unauthorized |  -  |
+**403** | Forbidden: the caller may not administer this challenge |  -  |
+**404** | Registration request not found |  -  |
+**409** | The request was already settled, or the challenge cannot take the user |  -  |
 **500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -662,6 +766,8 @@ Name | Type | Description  | Notes
 > ClaimTradingChallengeResponseEnvelope claim_trading_challenge_prize(trading_challenge_id)
 
 Claim challenge prize
+
+Claim the prize of a challenge the caller is eligible for. A TOURNAMENT claim credits the prize matching the crown and reactivates the account. A CASH claim winds the account down, sweeps every remaining challenge credit and awards the CASH_CROWN: the account is left deactivated with a zero balance, and the reward is redeemed out of band. Both mark the participation PRIZE_CLAIMED.
 
 ### Example
 
@@ -1273,6 +1379,8 @@ Name | Type | Description  | Notes
 > TradingChallengeResponseEnvelope create_trading_challenge(create_trading_challenge_request)
 
 Create a trading challenge
+
+Create a new trading challenge. Allowed for ADMIN and INTEGRATOR only.
 
 ### Example
 
@@ -4847,6 +4955,8 @@ Name | Type | Description  | Notes
 
 Get trading challenge by ID
 
+Fetch one trading challenge. COMPETITION_MANAGER can access only assigned challenge IDs.
+
 ### Example
 
 * Api Key Authentication (apiKeyAuthHeader):
@@ -4934,6 +5044,8 @@ Name | Type | Description  | Notes
 
 Get trading challenge daily snapshots
 
+List participant daily snapshots for a challenge. COMPETITION_MANAGER can access only assigned challenge IDs.
+
 ### Example
 
 * Api Key Authentication (apiKeyAuthHeader):
@@ -5020,6 +5132,8 @@ Name | Type | Description  | Notes
 > TradingChallengeResultsResponseEnvelope get_trading_challenge_results(trading_challenge_id, board=board)
 
 Get trading challenge results
+
+List challenge leaderboard/results. COMPETITION_MANAGER can access only assigned challenge IDs.
 
 ### Example
 
@@ -5205,7 +5319,7 @@ async with dora_client.ApiClient(configuration) as api_client:
     tx_kinds = [dora_client.TransactionKind()] # List[TransactionKind] |  (optional)
     start = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
     end = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
-    tenant_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID |  (optional)
+    tenant_id = 'tenant_id_example' # str |  (optional)
     page = 1 # int |  (optional) (default to 1)
     limit = 100 # int |  (optional) (default to 100)
 
@@ -5230,7 +5344,7 @@ Name | Type | Description  | Notes
  **tx_kinds** | [**List[TransactionKind]**](TransactionKind.md)|  | [optional] 
  **start** | **datetime**|  | [optional] 
  **end** | **datetime**|  | [optional] 
- **tenant_id** | **UUID**|  | [optional] 
+ **tenant_id** | **str**|  | [optional] 
  **page** | **int**|  | [optional] [default to 1]
  **limit** | **int**|  | [optional] [default to 100]
 
@@ -5590,6 +5704,95 @@ Name | Type | Description  | Notes
 **400** | Bad request, e.g. invalid query parameters |  -  |
 **401** | Unauthorized, user not logged in or does not have access to this data |  -  |
 **404** | User not found or no coupon payments available |  -  |
+**500** | Internal server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_user_deactivation**
+> UserDeactivationResponseEnvelope get_user_deactivation(user_id)
+
+Get the latest account deactivation request for a user
+
+Returns the user's latest deactivation request, i.e. their current deactivation status. Integrators may only request users belonging to their own tenant.
+
+### Example
+
+* Api Key Authentication (apiKeyAuthHeader):
+* Bearer (JWT) Authentication (bearerAuth):
+
+```python
+import dora_client
+from dora_client.models.user_deactivation_response_envelope import UserDeactivationResponseEnvelope
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging.dora.co
+# See configuration.py for a list of all supported configuration parameters.
+configuration = dora_client.Configuration(
+    host = "https://staging.dora.co"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration.api_key['apiKeyAuthHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyAuthHeader'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = dora_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+async with dora_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = dora_client.DefaultApi(api_client)
+    user_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
+
+    try:
+        # Get the latest account deactivation request for a user
+        api_response = await api_instance.get_user_deactivation(user_id)
+        print("The response of DefaultApi->get_user_deactivation:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->get_user_deactivation: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **user_id** | **UUID**|  | 
+
+### Return type
+
+[**UserDeactivationResponseEnvelope**](UserDeactivationResponseEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Latest deactivation request |  -  |
+**401** | Unauthorized |  -  |
+**403** | Forbidden, e.g. the user does not belong to the integrator&#39;s tenant |  -  |
+**404** | No deactivation found for this user |  -  |
 **500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -7985,10 +8188,111 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **list_trading_challenge_registration_requests**
+> TradingChallengeRegistrationRequestListResponseEnvelope list_trading_challenge_registration_requests(trading_challenge_id=trading_challenge_id, user_id=user_id, status=status, tenant_id=tenant_id, limit=limit, offset=offset)
+
+List trading challenge registration requests
+
+The review queue. Admins see every tenant and may filter to one, an integrator is pinned to their own tenant, and a competition manager only sees the requests of the challenges assigned to them.
+
+### Example
+
+* Api Key Authentication (apiKeyAuthHeader):
+* Bearer (JWT) Authentication (bearerAuth):
+
+```python
+import dora_client
+from dora_client.models.trading_challenge_registration_request_list_response_envelope import TradingChallengeRegistrationRequestListResponseEnvelope
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging.dora.co
+# See configuration.py for a list of all supported configuration parameters.
+configuration = dora_client.Configuration(
+    host = "https://staging.dora.co"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration.api_key['apiKeyAuthHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyAuthHeader'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = dora_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+async with dora_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = dora_client.DefaultApi(api_client)
+    trading_challenge_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | Only requests for this challenge. (optional)
+    user_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | Only requests from this user. (optional)
+    status = 'status_example' # str | Only requests in this state. (optional)
+    tenant_id = 'tenant_id_example' # str | Admins only; an integrator may only name their own tenant. (optional)
+    limit = 100 # int | Page size, capped at 1000. (optional) (default to 100)
+    offset = 0 # int | Rows to skip. (optional) (default to 0)
+
+    try:
+        # List trading challenge registration requests
+        api_response = await api_instance.list_trading_challenge_registration_requests(trading_challenge_id=trading_challenge_id, user_id=user_id, status=status, tenant_id=tenant_id, limit=limit, offset=offset)
+        print("The response of DefaultApi->list_trading_challenge_registration_requests:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->list_trading_challenge_registration_requests: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **trading_challenge_id** | **UUID**| Only requests for this challenge. | [optional] 
+ **user_id** | **UUID**| Only requests from this user. | [optional] 
+ **status** | **str**| Only requests in this state. | [optional] 
+ **tenant_id** | **str**| Admins only; an integrator may only name their own tenant. | [optional] 
+ **limit** | **int**| Page size, capped at 1000. | [optional] [default to 100]
+ **offset** | **int**| Rows to skip. | [optional] [default to 0]
+
+### Return type
+
+[**TradingChallengeRegistrationRequestListResponseEnvelope**](TradingChallengeRegistrationRequestListResponseEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The matching requests, newest first |  -  |
+**400** | Bad request, e.g. an invalid filter or an over-long reason |  -  |
+**401** | Unauthorized |  -  |
+**403** | Forbidden: the caller may not administer this challenge |  -  |
+**500** | Internal server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **list_trading_challenges**
 > TradingChallengeListResponseEnvelope list_trading_challenges(tenant_id=tenant_id, type=type, status=status, start=start, end=end)
 
 List trading challenges
+
+List trading challenges. COMPETITION_MANAGER callers only receive challenges present in their managed_competition_ids.
 
 ### Example
 
@@ -8076,6 +8380,101 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | Trading challenges list |  -  |
 **400** | Bad request |  -  |
+**500** | Internal server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **list_user_deactivations**
+> UserDeactivationListResponseEnvelope list_user_deactivations(status=status, tenant_id=tenant_id, trading_challenge_id=trading_challenge_id, user_ids=user_ids)
+
+Get the current deactivation status across all users
+
+Returns each user's latest deactivation request, i.e. their current status. Users with no deactivation history are absent. Ordered by request creation time, newest first. Integrators only see users of their own tenant, unless that tenant is global.
+
+### Example
+
+* Api Key Authentication (apiKeyAuthHeader):
+* Bearer (JWT) Authentication (bearerAuth):
+
+```python
+import dora_client
+from dora_client.models.user_deactivation_list_response_envelope import UserDeactivationListResponseEnvelope
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging.dora.co
+# See configuration.py for a list of all supported configuration parameters.
+configuration = dora_client.Configuration(
+    host = "https://staging.dora.co"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration.api_key['apiKeyAuthHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyAuthHeader'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = dora_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+async with dora_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = dora_client.DefaultApi(api_client)
+    status = 'status_example' # str | Only return users whose latest request has this status. (optional)
+    tenant_id = 'tenant_id_example' # str | Only return users belonging to this tenant. At most one of tenant_id, trading_challenge_id and user_ids may be passed; combining them is rejected. An integrator whose tenant is not global may only pass their own tenant. (optional)
+    trading_challenge_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | Only return participants of this trading challenge. Mutually exclusive with tenant_id and user_ids. (optional)
+    user_ids = 'user_ids_example' # str | Comma-separated user IDs to return. Mutually exclusive with tenant_id and trading_challenge_id. (optional)
+
+    try:
+        # Get the current deactivation status across all users
+        api_response = await api_instance.list_user_deactivations(status=status, tenant_id=tenant_id, trading_challenge_id=trading_challenge_id, user_ids=user_ids)
+        print("The response of DefaultApi->list_user_deactivations:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->list_user_deactivations: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **status** | **str**| Only return users whose latest request has this status. | [optional] 
+ **tenant_id** | **str**| Only return users belonging to this tenant. At most one of tenant_id, trading_challenge_id and user_ids may be passed; combining them is rejected. An integrator whose tenant is not global may only pass their own tenant. | [optional] 
+ **trading_challenge_id** | **UUID**| Only return participants of this trading challenge. Mutually exclusive with tenant_id and user_ids. | [optional] 
+ **user_ids** | **str**| Comma-separated user IDs to return. Mutually exclusive with tenant_id and trading_challenge_id. | [optional] 
+
+### Return type
+
+[**UserDeactivationListResponseEnvelope**](UserDeactivationListResponseEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Latest deactivation request per user |  -  |
+**400** | Invalid status, trading_challenge_id or user_ids value, or multiple selectors passed |  -  |
+**401** | Unauthorized |  -  |
+**403** | Integrator requested a tenant other than their own |  -  |
 **500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -8259,10 +8658,106 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **reject_trading_challenge_registration_request**
+> TradingChallengeRegistrationRequestResponseEnvelope reject_trading_challenge_registration_request(request_id, review_trading_challenge_registration_request=review_trading_challenge_registration_request)
+
+Reject a trading challenge registration request
+
+Accessible to admins (any challenge), integrators (their own tenant only) and competition managers (their assigned challenges only).
+
+### Example
+
+* Api Key Authentication (apiKeyAuthHeader):
+* Bearer (JWT) Authentication (bearerAuth):
+
+```python
+import dora_client
+from dora_client.models.review_trading_challenge_registration_request import ReviewTradingChallengeRegistrationRequest
+from dora_client.models.trading_challenge_registration_request_response_envelope import TradingChallengeRegistrationRequestResponseEnvelope
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging.dora.co
+# See configuration.py for a list of all supported configuration parameters.
+configuration = dora_client.Configuration(
+    host = "https://staging.dora.co"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration.api_key['apiKeyAuthHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyAuthHeader'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = dora_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+async with dora_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = dora_client.DefaultApi(api_client)
+    request_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
+    review_trading_challenge_registration_request = dora_client.ReviewTradingChallengeRegistrationRequest() # ReviewTradingChallengeRegistrationRequest |  (optional)
+
+    try:
+        # Reject a trading challenge registration request
+        api_response = await api_instance.reject_trading_challenge_registration_request(request_id, review_trading_challenge_registration_request=review_trading_challenge_registration_request)
+        print("The response of DefaultApi->reject_trading_challenge_registration_request:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->reject_trading_challenge_registration_request: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **request_id** | **UUID**|  | 
+ **review_trading_challenge_registration_request** | [**ReviewTradingChallengeRegistrationRequest**](ReviewTradingChallengeRegistrationRequest.md)|  | [optional] 
+
+### Return type
+
+[**TradingChallengeRegistrationRequestResponseEnvelope**](TradingChallengeRegistrationRequestResponseEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The settled request |  -  |
+**400** | Bad request, e.g. an invalid filter or an over-long reason |  -  |
+**401** | Unauthorized |  -  |
+**403** | Forbidden: the caller may not administer this challenge |  -  |
+**404** | Registration request not found |  -  |
+**409** | The request was already settled, or the challenge cannot take the user |  -  |
+**500** | Internal server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **remove_trading_challenge_users**
 > TradingChallengeResponseEnvelope remove_trading_challenge_users(remove_trading_challenge_users_request)
 
 Remove users from a trading challenge
+
+Remove users from a trading challenge. For COMPETITION_MANAGER, the challenge must be assigned in managed_competition_ids.
 
 ### Example
 
@@ -9223,6 +9718,186 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **terminate_own_trading_challenge_participation**
+> TerminateTradingChallengeResponseEnvelope terminate_own_trading_challenge_participation(trading_challenge_id)
+
+Leave a trading challenge
+
+Convenience alias that terminates the caller's own participation; redirects to /v1/trading_challenges/{trading_challenge_id}/participants/{user_id}/terminate. End a participant's run in a challenge before its own rules would: the participant leaves, or an operator removes them. No prize is paid, even to a participant who could have claimed one -- claim the prize first if that is what you want. The account is wound down, every remaining challenge credit is swept, and the participation is marked TERMINATED and frozen: from then on it takes no further daily snapshots and never appears in the results ranking again. The user is left deactivated with no challenge balance, and is free to register for another challenge. Participants may only terminate their own run; terminating someone else's requires admin, integrator (same tenant) or challenge manager (assigned challenge) rights.
+
+### Example
+
+* Api Key Authentication (apiKeyAuthHeader):
+* Bearer (JWT) Authentication (bearerAuth):
+
+```python
+import dora_client
+from dora_client.models.terminate_trading_challenge_response_envelope import TerminateTradingChallengeResponseEnvelope
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging.dora.co
+# See configuration.py for a list of all supported configuration parameters.
+configuration = dora_client.Configuration(
+    host = "https://staging.dora.co"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration.api_key['apiKeyAuthHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyAuthHeader'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = dora_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+async with dora_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = dora_client.DefaultApi(api_client)
+    trading_challenge_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
+
+    try:
+        # Leave a trading challenge
+        api_response = await api_instance.terminate_own_trading_challenge_participation(trading_challenge_id)
+        print("The response of DefaultApi->terminate_own_trading_challenge_participation:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->terminate_own_trading_challenge_participation: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **trading_challenge_id** | **UUID**|  | 
+
+### Return type
+
+[**TerminateTradingChallengeResponseEnvelope**](TerminateTradingChallengeResponseEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Participation terminated |  -  |
+**403** | Forbidden |  -  |
+**404** | Challenge, user or participation not found |  -  |
+**409** | Conflict, e.g. the participation already settled or another deactivation is in progress |  -  |
+**500** | Internal server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **terminate_trading_challenge_participation**
+> TerminateTradingChallengeResponseEnvelope terminate_trading_challenge_participation(trading_challenge_id, user_id)
+
+Terminate a participation in a trading challenge
+
+End a participant's run in a challenge before its own rules would: the participant leaves, or an operator removes them. No prize is paid, even to a participant who could have claimed one -- claim the prize first if that is what you want. The account is wound down, every remaining challenge credit is swept, and the participation is marked TERMINATED and frozen: from then on it takes no further daily snapshots and never appears in the results ranking again. The user is left deactivated with no challenge balance, and is free to register for another challenge. Participants may only terminate their own run; terminating someone else's requires admin, integrator (same tenant) or challenge manager (assigned challenge) rights.
+
+### Example
+
+* Api Key Authentication (apiKeyAuthHeader):
+* Bearer (JWT) Authentication (bearerAuth):
+
+```python
+import dora_client
+from dora_client.models.terminate_trading_challenge_response_envelope import TerminateTradingChallengeResponseEnvelope
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging.dora.co
+# See configuration.py for a list of all supported configuration parameters.
+configuration = dora_client.Configuration(
+    host = "https://staging.dora.co"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration.api_key['apiKeyAuthHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyAuthHeader'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = dora_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+async with dora_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = dora_client.DefaultApi(api_client)
+    trading_challenge_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
+    user_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
+
+    try:
+        # Terminate a participation in a trading challenge
+        api_response = await api_instance.terminate_trading_challenge_participation(trading_challenge_id, user_id)
+        print("The response of DefaultApi->terminate_trading_challenge_participation:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->terminate_trading_challenge_participation: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **trading_challenge_id** | **UUID**|  | 
+ **user_id** | **UUID**|  | 
+
+### Return type
+
+[**TerminateTradingChallengeResponseEnvelope**](TerminateTradingChallengeResponseEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Participation terminated |  -  |
+**403** | Forbidden |  -  |
+**404** | Challenge, user or participation not found |  -  |
+**409** | Conflict, e.g. the participation already settled or another deactivation is in progress |  -  |
+**500** | Internal server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **transfer_account_balances_v2**
 > TransferAccountBalancesResponseEnvelope transfer_account_balances_v2(transfer_account_balances_request)
 
@@ -9397,6 +10072,99 @@ Name | Type | Description  | Notes
 **401** | Unauthorized, user not logged in or does not have access to this orderbook |  -  |
 **403** | Forbidden, e.g. the user&#39;s Global Account USD balance is below the required minimum cash reserve |  -  |
 **409** | Conflict, e.g. the requested amount is not available to transfer |  -  |
+**500** | Internal server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **update_trading_challenge**
+> TradingChallengeResponseEnvelope update_trading_challenge(trading_challenge_id, update_trading_challenge_request)
+
+Update a trading challenge
+
+Partially update a trading challenge: a field that is absent from the body is left unchanged. Which fields may be updated depends on the challenge status. PENDING accepts every field. ACTIVE accepts only name, max_users, end and the three prize quantities, because participants are already funded and being measured. COMPLETED accepts none. A request that touches a field the current status does not allow is rejected as a whole with 409. ADMIN may update any challenge, INTEGRATOR only challenges of its own tenant, and COMPETITION_MANAGER only assigned challenge IDs.
+
+### Example
+
+* Api Key Authentication (apiKeyAuthHeader):
+* Bearer (JWT) Authentication (bearerAuth):
+
+```python
+import dora_client
+from dora_client.models.trading_challenge_response_envelope import TradingChallengeResponseEnvelope
+from dora_client.models.update_trading_challenge_request import UpdateTradingChallengeRequest
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging.dora.co
+# See configuration.py for a list of all supported configuration parameters.
+configuration = dora_client.Configuration(
+    host = "https://staging.dora.co"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration.api_key['apiKeyAuthHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyAuthHeader'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = dora_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+async with dora_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = dora_client.DefaultApi(api_client)
+    trading_challenge_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
+    update_trading_challenge_request = dora_client.UpdateTradingChallengeRequest() # UpdateTradingChallengeRequest | 
+
+    try:
+        # Update a trading challenge
+        api_response = await api_instance.update_trading_challenge(trading_challenge_id, update_trading_challenge_request)
+        print("The response of DefaultApi->update_trading_challenge:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->update_trading_challenge: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **trading_challenge_id** | **UUID**|  | 
+ **update_trading_challenge_request** | [**UpdateTradingChallengeRequest**](UpdateTradingChallengeRequest.md)|  | 
+
+### Return type
+
+[**TradingChallengeResponseEnvelope**](TradingChallengeResponseEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Trading challenge updated |  -  |
+**400** | Bad request |  -  |
+**403** | Forbidden |  -  |
+**404** | Not found |  -  |
+**409** | Conflict: the field is not updatable in the current status, or the update clashes with another challenge or its participants |  -  |
 **500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

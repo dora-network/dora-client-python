@@ -40,6 +40,13 @@ class TestDefaultApi(unittest.IsolatedAsyncioTestCase):
         """
         pass
 
+    async def test_approve_trading_challenge_registration_request(self) -> None:
+        """Test case for approve_trading_challenge_registration_request
+
+        Approve a trading challenge registration request
+        """
+        pass
+
     async def test_cancel_all_open_orders(self) -> None:
         """Test case for cancel_all_open_orders
 
@@ -488,6 +495,13 @@ class TestDefaultApi(unittest.IsolatedAsyncioTestCase):
         """
         pass
 
+    async def test_get_user_deactivation(self) -> None:
+        """Test case for get_user_deactivation
+
+        Get the latest account deactivation request for a user
+        """
+        pass
+
     async def test_get_user_ledger_stream(self) -> None:
         """Test case for get_user_ledger_stream
 
@@ -677,10 +691,24 @@ class TestDefaultApi(unittest.IsolatedAsyncioTestCase):
         """
         pass
 
+    async def test_list_trading_challenge_registration_requests(self) -> None:
+        """Test case for list_trading_challenge_registration_requests
+
+        List trading challenge registration requests
+        """
+        pass
+
     async def test_list_trading_challenges(self) -> None:
         """Test case for list_trading_challenges
 
         List trading challenges
+        """
+        pass
+
+    async def test_list_user_deactivations(self) -> None:
+        """Test case for list_user_deactivations
+
+        Get the current deactivation status across all users
         """
         pass
 
@@ -695,6 +723,13 @@ class TestDefaultApi(unittest.IsolatedAsyncioTestCase):
         """Test case for reject_ledger_withdraw_request
 
         Reject a pending withdrawal request
+        """
+        pass
+
+    async def test_reject_trading_challenge_registration_request(self) -> None:
+        """Test case for reject_trading_challenge_registration_request
+
+        Reject a trading challenge registration request
         """
         pass
 
@@ -782,6 +817,20 @@ class TestDefaultApi(unittest.IsolatedAsyncioTestCase):
         """
         pass
 
+    async def test_terminate_own_trading_challenge_participation(self) -> None:
+        """Test case for terminate_own_trading_challenge_participation
+
+        Leave a trading challenge
+        """
+        pass
+
+    async def test_terminate_trading_challenge_participation(self) -> None:
+        """Test case for terminate_trading_challenge_participation
+
+        Terminate a participation in a trading challenge
+        """
+        pass
+
     async def test_transfer_account_balances_v2(self) -> None:
         """Test case for transfer_account_balances_v2
 
@@ -793,6 +842,13 @@ class TestDefaultApi(unittest.IsolatedAsyncioTestCase):
         """Test case for transfer_available_balances
 
         Transfer available balance between a user's accounts (e.g. global to isolated position)
+        """
+        pass
+
+    async def test_update_trading_challenge(self) -> None:
+        """Test case for update_trading_challenge
+
+        Update a trading challenge
         """
         pass
 

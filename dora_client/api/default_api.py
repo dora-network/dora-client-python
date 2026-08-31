@@ -16,7 +16,7 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
 from datetime import datetime
-from pydantic import Field, StrictBool, StrictStr, field_validator
+from pydantic import Field, StrictBool, StrictInt, StrictStr, field_validator
 from typing import Dict, List, Optional
 from typing_extensions import Annotated
 from uuid import UUID
@@ -96,6 +96,7 @@ from dora_client.models.remove_trading_challenge_users_request import RemoveTrad
 from dora_client.models.repay_usd_request import RepayUSDRequest
 from dora_client.models.repay_usd_response_envelope import RepayUSDResponseEnvelope
 from dora_client.models.response_envelope_of_list_assets import ResponseEnvelopeOfListAssets
+from dora_client.models.review_trading_challenge_registration_request import ReviewTradingChallengeRegistrationRequest
 from dora_client.models.revoke_api_key_response_envelope import RevokeAPIKeyResponseEnvelope
 from dora_client.models.settle_leverage_accrued_interest_request import SettleLeverageAccruedInterestRequest
 from dora_client.models.settle_leverage_accrued_interest_response_envelope import SettleLeverageAccruedInterestResponseEnvelope
@@ -112,9 +113,12 @@ from dora_client.models.stream_transactions_entry import StreamTransactionsEntry
 from dora_client.models.stream_user_coupon_payments_response import StreamUserCouponPaymentsResponse
 from dora_client.models.supply_request import SupplyRequest
 from dora_client.models.supply_response_envelope import SupplyResponseEnvelope
+from dora_client.models.terminate_trading_challenge_response_envelope import TerminateTradingChallengeResponseEnvelope
 from dora_client.models.trade_response_envelope import TradeResponseEnvelope
 from dora_client.models.trading_challenge_daily_snapshots_response_envelope import TradingChallengeDailySnapshotsResponseEnvelope
 from dora_client.models.trading_challenge_list_response_envelope import TradingChallengeListResponseEnvelope
+from dora_client.models.trading_challenge_registration_request_list_response_envelope import TradingChallengeRegistrationRequestListResponseEnvelope
+from dora_client.models.trading_challenge_registration_request_response_envelope import TradingChallengeRegistrationRequestResponseEnvelope
 from dora_client.models.trading_challenge_response_envelope import TradingChallengeResponseEnvelope
 from dora_client.models.trading_challenge_results_response_envelope import TradingChallengeResultsResponseEnvelope
 from dora_client.models.trading_challenge_status import TradingChallengeStatus
@@ -130,11 +134,14 @@ from dora_client.models.transfer_balances_request import TransferBalancesRequest
 from dora_client.models.transfer_balances_response_envelope import TransferBalancesResponseEnvelope
 from dora_client.models.unite_position_request import UnitePositionRequest
 from dora_client.models.unite_position_response_envelope import UnitePositionResponseEnvelope
+from dora_client.models.update_trading_challenge_request import UpdateTradingChallengeRequest
 from dora_client.models.update_user_config_request import UpdateUserConfigRequest
 from dora_client.models.update_user_kyc_request import UpdateUserKYCRequest
 from dora_client.models.update_user_kyc_response_envelope import UpdateUserKYCResponseEnvelope
 from dora_client.models.user_balance_response_envelope import UserBalanceResponseEnvelope
 from dora_client.models.user_created_response_envelope import UserCreatedResponseEnvelope
+from dora_client.models.user_deactivation_list_response_envelope import UserDeactivationListResponseEnvelope
+from dora_client.models.user_deactivation_response_envelope import UserDeactivationResponseEnvelope
 from dora_client.models.user_deleted_response_envelope import UserDeletedResponseEnvelope
 from dora_client.models.user_envelope import UserEnvelope
 from dora_client.models.user_interest_response_envelope import UserInterestResponseEnvelope
@@ -185,6 +192,7 @@ class DefaultApi:
     ) -> TradingChallengeResponseEnvelope:
         """Add users to a trading challenge
 
+        Add existing users to a trading challenge. For COMPETITION_MANAGER, the challenge must be assigned in managed_competition_ids. A user must have an empty ledger to join: deposits and withdrawals are barred from enrolment until the challenge is over, so that challenge credits are the only thing a participant holds and the teardown sweep cannot destroy funds of their own.
 
         :param add_trading_challenge_users_request: (required)
         :type add_trading_challenge_users_request: AddTradingChallengeUsersRequest
@@ -254,6 +262,7 @@ class DefaultApi:
     ) -> ApiResponse[TradingChallengeResponseEnvelope]:
         """Add users to a trading challenge
 
+        Add existing users to a trading challenge. For COMPETITION_MANAGER, the challenge must be assigned in managed_competition_ids. A user must have an empty ledger to join: deposits and withdrawals are barred from enrolment until the challenge is over, so that challenge credits are the only thing a participant holds and the teardown sweep cannot destroy funds of their own.
 
         :param add_trading_challenge_users_request: (required)
         :type add_trading_challenge_users_request: AddTradingChallengeUsersRequest
@@ -323,6 +332,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Add users to a trading challenge
 
+        Add existing users to a trading challenge. For COMPETITION_MANAGER, the challenge must be assigned in managed_competition_ids. A user must have an empty ledger to join: deposits and withdrawals are barred from enrolment until the challenge is over, so that challenge credits are the only thing a participant holds and the teardown sweep cannot destroy funds of their own.
 
         :param add_trading_challenge_users_request: (required)
         :type add_trading_challenge_users_request: AddTradingChallengeUsersRequest
@@ -734,6 +744,314 @@ class DefaultApi:
         return self.api_client.param_serialize(
             method='POST',
             resource_path='/v1/ledger/withdraw/requests/{withdrawal_id}/approve',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    async def approve_trading_challenge_registration_request(
+        self,
+        request_id: UUID,
+        review_trading_challenge_registration_request: Optional[ReviewTradingChallengeRegistrationRequest] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> TradingChallengeRegistrationRequestResponseEnvelope:
+        """Approve a trading challenge registration request
+
+        Accessible to admins (any challenge), integrators (their own tenant only) and competition managers (their assigned challenges only). Enrolment runs the same checks as add_users, so a challenge that filled up, now overlaps another of the user's challenges, or whose applicant no longer has an empty ledger is rejected with a 409 and the request stays open.
+
+        :param request_id: (required)
+        :type request_id: UUID
+        :param review_trading_challenge_registration_request:
+        :type review_trading_challenge_registration_request: ReviewTradingChallengeRegistrationRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._approve_trading_challenge_registration_request_serialize(
+            request_id=request_id,
+            review_trading_challenge_registration_request=review_trading_challenge_registration_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "TradingChallengeRegistrationRequestResponseEnvelope",
+            '400': "ResponseEnvelope",
+            '401': "ResponseEnvelope",
+            '403': "ResponseEnvelope",
+            '404': "ResponseEnvelope",
+            '409': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    async def approve_trading_challenge_registration_request_with_http_info(
+        self,
+        request_id: UUID,
+        review_trading_challenge_registration_request: Optional[ReviewTradingChallengeRegistrationRequest] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[TradingChallengeRegistrationRequestResponseEnvelope]:
+        """Approve a trading challenge registration request
+
+        Accessible to admins (any challenge), integrators (their own tenant only) and competition managers (their assigned challenges only). Enrolment runs the same checks as add_users, so a challenge that filled up, now overlaps another of the user's challenges, or whose applicant no longer has an empty ledger is rejected with a 409 and the request stays open.
+
+        :param request_id: (required)
+        :type request_id: UUID
+        :param review_trading_challenge_registration_request:
+        :type review_trading_challenge_registration_request: ReviewTradingChallengeRegistrationRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._approve_trading_challenge_registration_request_serialize(
+            request_id=request_id,
+            review_trading_challenge_registration_request=review_trading_challenge_registration_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "TradingChallengeRegistrationRequestResponseEnvelope",
+            '400': "ResponseEnvelope",
+            '401': "ResponseEnvelope",
+            '403': "ResponseEnvelope",
+            '404': "ResponseEnvelope",
+            '409': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    async def approve_trading_challenge_registration_request_without_preload_content(
+        self,
+        request_id: UUID,
+        review_trading_challenge_registration_request: Optional[ReviewTradingChallengeRegistrationRequest] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Approve a trading challenge registration request
+
+        Accessible to admins (any challenge), integrators (their own tenant only) and competition managers (their assigned challenges only). Enrolment runs the same checks as add_users, so a challenge that filled up, now overlaps another of the user's challenges, or whose applicant no longer has an empty ledger is rejected with a 409 and the request stays open.
+
+        :param request_id: (required)
+        :type request_id: UUID
+        :param review_trading_challenge_registration_request:
+        :type review_trading_challenge_registration_request: ReviewTradingChallengeRegistrationRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._approve_trading_challenge_registration_request_serialize(
+            request_id=request_id,
+            review_trading_challenge_registration_request=review_trading_challenge_registration_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "TradingChallengeRegistrationRequestResponseEnvelope",
+            '400': "ResponseEnvelope",
+            '401': "ResponseEnvelope",
+            '403': "ResponseEnvelope",
+            '404': "ResponseEnvelope",
+            '409': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _approve_trading_challenge_registration_request_serialize(
+        self,
+        request_id,
+        review_trading_challenge_registration_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if request_id is not None:
+            _path_params['request_id'] = request_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if review_trading_challenge_registration_request is not None:
+            _body_params = review_trading_challenge_registration_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyAuthHeader', 
+            'bearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/v1/trading_challenges/registration_requests/{request_id}/approve',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -1940,6 +2258,7 @@ class DefaultApi:
     ) -> ClaimTradingChallengeResponseEnvelope:
         """Claim challenge prize
 
+        Claim the prize of a challenge the caller is eligible for. A TOURNAMENT claim credits the prize matching the crown and reactivates the account. A CASH claim winds the account down, sweeps every remaining challenge credit and awards the CASH_CROWN: the account is left deactivated with a zero balance, and the reward is redeemed out of band. Both mark the participation PRIZE_CLAIMED.
 
         :param trading_challenge_id: (required)
         :type trading_challenge_id: UUID
@@ -2009,6 +2328,7 @@ class DefaultApi:
     ) -> ApiResponse[ClaimTradingChallengeResponseEnvelope]:
         """Claim challenge prize
 
+        Claim the prize of a challenge the caller is eligible for. A TOURNAMENT claim credits the prize matching the crown and reactivates the account. A CASH claim winds the account down, sweeps every remaining challenge credit and awards the CASH_CROWN: the account is left deactivated with a zero balance, and the reward is redeemed out of band. Both mark the participation PRIZE_CLAIMED.
 
         :param trading_challenge_id: (required)
         :type trading_challenge_id: UUID
@@ -2078,6 +2398,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Claim challenge prize
 
+        Claim the prize of a challenge the caller is eligible for. A TOURNAMENT claim credits the prize matching the crown and reactivates the account. A CASH claim winds the account down, sweeps every remaining challenge credit and awards the CASH_CROWN: the account is left deactivated with a zero balance, and the reward is redeemed out of band. Both mark the participation PRIZE_CLAIMED.
 
         :param trading_challenge_id: (required)
         :type trading_challenge_id: UUID
@@ -3912,6 +4233,7 @@ class DefaultApi:
     ) -> TradingChallengeResponseEnvelope:
         """Create a trading challenge
 
+        Create a new trading challenge. Allowed for ADMIN and INTEGRATOR only.
 
         :param create_trading_challenge_request: (required)
         :type create_trading_challenge_request: CreateTradingChallengeRequest
@@ -3981,6 +4303,7 @@ class DefaultApi:
     ) -> ApiResponse[TradingChallengeResponseEnvelope]:
         """Create a trading challenge
 
+        Create a new trading challenge. Allowed for ADMIN and INTEGRATOR only.
 
         :param create_trading_challenge_request: (required)
         :type create_trading_challenge_request: CreateTradingChallengeRequest
@@ -4050,6 +4373,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Create a trading challenge
 
+        Create a new trading challenge. Allowed for ADMIN and INTEGRATOR only.
 
         :param create_trading_challenge_request: (required)
         :type create_trading_challenge_request: CreateTradingChallengeRequest
@@ -16175,6 +16499,7 @@ class DefaultApi:
     ) -> TradingChallengeResponseEnvelope:
         """Get trading challenge by ID
 
+        Fetch one trading challenge. COMPETITION_MANAGER can access only assigned challenge IDs.
 
         :param trading_challenge_id: (required)
         :type trading_challenge_id: UUID
@@ -16245,6 +16570,7 @@ class DefaultApi:
     ) -> ApiResponse[TradingChallengeResponseEnvelope]:
         """Get trading challenge by ID
 
+        Fetch one trading challenge. COMPETITION_MANAGER can access only assigned challenge IDs.
 
         :param trading_challenge_id: (required)
         :type trading_challenge_id: UUID
@@ -16315,6 +16641,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Get trading challenge by ID
 
+        Fetch one trading challenge. COMPETITION_MANAGER can access only assigned challenge IDs.
 
         :param trading_challenge_id: (required)
         :type trading_challenge_id: UUID
@@ -16446,6 +16773,7 @@ class DefaultApi:
     ) -> TradingChallengeDailySnapshotsResponseEnvelope:
         """Get trading challenge daily snapshots
 
+        List participant daily snapshots for a challenge. COMPETITION_MANAGER can access only assigned challenge IDs.
 
         :param trading_challenge_id: (required)
         :type trading_challenge_id: UUID
@@ -16516,6 +16844,7 @@ class DefaultApi:
     ) -> ApiResponse[TradingChallengeDailySnapshotsResponseEnvelope]:
         """Get trading challenge daily snapshots
 
+        List participant daily snapshots for a challenge. COMPETITION_MANAGER can access only assigned challenge IDs.
 
         :param trading_challenge_id: (required)
         :type trading_challenge_id: UUID
@@ -16586,6 +16915,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Get trading challenge daily snapshots
 
+        List participant daily snapshots for a challenge. COMPETITION_MANAGER can access only assigned challenge IDs.
 
         :param trading_challenge_id: (required)
         :type trading_challenge_id: UUID
@@ -16718,6 +17048,7 @@ class DefaultApi:
     ) -> TradingChallengeResultsResponseEnvelope:
         """Get trading challenge results
 
+        List challenge leaderboard/results. COMPETITION_MANAGER can access only assigned challenge IDs.
 
         :param trading_challenge_id: (required)
         :type trading_challenge_id: UUID
@@ -16792,6 +17123,7 @@ class DefaultApi:
     ) -> ApiResponse[TradingChallengeResultsResponseEnvelope]:
         """Get trading challenge results
 
+        List challenge leaderboard/results. COMPETITION_MANAGER can access only assigned challenge IDs.
 
         :param trading_challenge_id: (required)
         :type trading_challenge_id: UUID
@@ -16866,6 +17198,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Get trading challenge results
 
+        List challenge leaderboard/results. COMPETITION_MANAGER can access only assigned challenge IDs.
 
         :param trading_challenge_id: (required)
         :type trading_challenge_id: UUID
@@ -17260,7 +17593,7 @@ class DefaultApi:
         tx_kinds: Optional[List[TransactionKind]] = None,
         start: Optional[datetime] = None,
         end: Optional[datetime] = None,
-        tenant_id: Optional[UUID] = None,
+        tenant_id: Optional[StrictStr] = None,
         page: Optional[Annotated[int, Field(strict=True, ge=1)]] = None,
         limit: Optional[Annotated[int, Field(strict=True, ge=1)]] = None,
         _request_timeout: Union[
@@ -17290,7 +17623,7 @@ class DefaultApi:
         :param end:
         :type end: datetime
         :param tenant_id:
-        :type tenant_id: UUID
+        :type tenant_id: str
         :param page:
         :type page: int
         :param limit:
@@ -17356,7 +17689,7 @@ class DefaultApi:
         tx_kinds: Optional[List[TransactionKind]] = None,
         start: Optional[datetime] = None,
         end: Optional[datetime] = None,
-        tenant_id: Optional[UUID] = None,
+        tenant_id: Optional[StrictStr] = None,
         page: Optional[Annotated[int, Field(strict=True, ge=1)]] = None,
         limit: Optional[Annotated[int, Field(strict=True, ge=1)]] = None,
         _request_timeout: Union[
@@ -17386,7 +17719,7 @@ class DefaultApi:
         :param end:
         :type end: datetime
         :param tenant_id:
-        :type tenant_id: UUID
+        :type tenant_id: str
         :param page:
         :type page: int
         :param limit:
@@ -17452,7 +17785,7 @@ class DefaultApi:
         tx_kinds: Optional[List[TransactionKind]] = None,
         start: Optional[datetime] = None,
         end: Optional[datetime] = None,
-        tenant_id: Optional[UUID] = None,
+        tenant_id: Optional[StrictStr] = None,
         page: Optional[Annotated[int, Field(strict=True, ge=1)]] = None,
         limit: Optional[Annotated[int, Field(strict=True, ge=1)]] = None,
         _request_timeout: Union[
@@ -17482,7 +17815,7 @@ class DefaultApi:
         :param end:
         :type end: datetime
         :param tenant_id:
-        :type tenant_id: UUID
+        :type tenant_id: str
         :param page:
         :type page: int
         :param limit:
@@ -18896,6 +19229,280 @@ class DefaultApi:
         return self.api_client.param_serialize(
             method='GET',
             resource_path='/v1/user/{user_id}/coupon_payments/stream',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    async def get_user_deactivation(
+        self,
+        user_id: UUID,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> UserDeactivationResponseEnvelope:
+        """Get the latest account deactivation request for a user
+
+        Returns the user's latest deactivation request, i.e. their current deactivation status. Integrators may only request users belonging to their own tenant.
+
+        :param user_id: (required)
+        :type user_id: UUID
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_user_deactivation_serialize(
+            user_id=user_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "UserDeactivationResponseEnvelope",
+            '401': "ResponseEnvelope",
+            '403': "ResponseEnvelope",
+            '404': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    async def get_user_deactivation_with_http_info(
+        self,
+        user_id: UUID,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[UserDeactivationResponseEnvelope]:
+        """Get the latest account deactivation request for a user
+
+        Returns the user's latest deactivation request, i.e. their current deactivation status. Integrators may only request users belonging to their own tenant.
+
+        :param user_id: (required)
+        :type user_id: UUID
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_user_deactivation_serialize(
+            user_id=user_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "UserDeactivationResponseEnvelope",
+            '401': "ResponseEnvelope",
+            '403': "ResponseEnvelope",
+            '404': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    async def get_user_deactivation_without_preload_content(
+        self,
+        user_id: UUID,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get the latest account deactivation request for a user
+
+        Returns the user's latest deactivation request, i.e. their current deactivation status. Integrators may only request users belonging to their own tenant.
+
+        :param user_id: (required)
+        :type user_id: UUID
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_user_deactivation_serialize(
+            user_id=user_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "UserDeactivationResponseEnvelope",
+            '401': "ResponseEnvelope",
+            '403': "ResponseEnvelope",
+            '404': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_user_deactivation_serialize(
+        self,
+        user_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if user_id is not None:
+            _path_params['user_id'] = user_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyAuthHeader', 
+            'bearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/v1/user/{user_id}/deactivation',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -27154,6 +27761,367 @@ class DefaultApi:
 
 
     @validate_call
+    async def list_trading_challenge_registration_requests(
+        self,
+        trading_challenge_id: Annotated[Optional[UUID], Field(description="Only requests for this challenge.")] = None,
+        user_id: Annotated[Optional[UUID], Field(description="Only requests from this user.")] = None,
+        status: Annotated[Optional[StrictStr], Field(description="Only requests in this state.")] = None,
+        tenant_id: Annotated[Optional[StrictStr], Field(description="Admins only; an integrator may only name their own tenant.")] = None,
+        limit: Annotated[Optional[Annotated[int, Field(le=1000, strict=True)]], Field(description="Page size, capped at 1000.")] = None,
+        offset: Annotated[Optional[StrictInt], Field(description="Rows to skip.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> TradingChallengeRegistrationRequestListResponseEnvelope:
+        """List trading challenge registration requests
+
+        The review queue. Admins see every tenant and may filter to one, an integrator is pinned to their own tenant, and a competition manager only sees the requests of the challenges assigned to them.
+
+        :param trading_challenge_id: Only requests for this challenge.
+        :type trading_challenge_id: UUID
+        :param user_id: Only requests from this user.
+        :type user_id: UUID
+        :param status: Only requests in this state.
+        :type status: str
+        :param tenant_id: Admins only; an integrator may only name their own tenant.
+        :type tenant_id: str
+        :param limit: Page size, capped at 1000.
+        :type limit: int
+        :param offset: Rows to skip.
+        :type offset: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._list_trading_challenge_registration_requests_serialize(
+            trading_challenge_id=trading_challenge_id,
+            user_id=user_id,
+            status=status,
+            tenant_id=tenant_id,
+            limit=limit,
+            offset=offset,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "TradingChallengeRegistrationRequestListResponseEnvelope",
+            '400': "ResponseEnvelope",
+            '401': "ResponseEnvelope",
+            '403': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    async def list_trading_challenge_registration_requests_with_http_info(
+        self,
+        trading_challenge_id: Annotated[Optional[UUID], Field(description="Only requests for this challenge.")] = None,
+        user_id: Annotated[Optional[UUID], Field(description="Only requests from this user.")] = None,
+        status: Annotated[Optional[StrictStr], Field(description="Only requests in this state.")] = None,
+        tenant_id: Annotated[Optional[StrictStr], Field(description="Admins only; an integrator may only name their own tenant.")] = None,
+        limit: Annotated[Optional[Annotated[int, Field(le=1000, strict=True)]], Field(description="Page size, capped at 1000.")] = None,
+        offset: Annotated[Optional[StrictInt], Field(description="Rows to skip.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[TradingChallengeRegistrationRequestListResponseEnvelope]:
+        """List trading challenge registration requests
+
+        The review queue. Admins see every tenant and may filter to one, an integrator is pinned to their own tenant, and a competition manager only sees the requests of the challenges assigned to them.
+
+        :param trading_challenge_id: Only requests for this challenge.
+        :type trading_challenge_id: UUID
+        :param user_id: Only requests from this user.
+        :type user_id: UUID
+        :param status: Only requests in this state.
+        :type status: str
+        :param tenant_id: Admins only; an integrator may only name their own tenant.
+        :type tenant_id: str
+        :param limit: Page size, capped at 1000.
+        :type limit: int
+        :param offset: Rows to skip.
+        :type offset: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._list_trading_challenge_registration_requests_serialize(
+            trading_challenge_id=trading_challenge_id,
+            user_id=user_id,
+            status=status,
+            tenant_id=tenant_id,
+            limit=limit,
+            offset=offset,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "TradingChallengeRegistrationRequestListResponseEnvelope",
+            '400': "ResponseEnvelope",
+            '401': "ResponseEnvelope",
+            '403': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    async def list_trading_challenge_registration_requests_without_preload_content(
+        self,
+        trading_challenge_id: Annotated[Optional[UUID], Field(description="Only requests for this challenge.")] = None,
+        user_id: Annotated[Optional[UUID], Field(description="Only requests from this user.")] = None,
+        status: Annotated[Optional[StrictStr], Field(description="Only requests in this state.")] = None,
+        tenant_id: Annotated[Optional[StrictStr], Field(description="Admins only; an integrator may only name their own tenant.")] = None,
+        limit: Annotated[Optional[Annotated[int, Field(le=1000, strict=True)]], Field(description="Page size, capped at 1000.")] = None,
+        offset: Annotated[Optional[StrictInt], Field(description="Rows to skip.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """List trading challenge registration requests
+
+        The review queue. Admins see every tenant and may filter to one, an integrator is pinned to their own tenant, and a competition manager only sees the requests of the challenges assigned to them.
+
+        :param trading_challenge_id: Only requests for this challenge.
+        :type trading_challenge_id: UUID
+        :param user_id: Only requests from this user.
+        :type user_id: UUID
+        :param status: Only requests in this state.
+        :type status: str
+        :param tenant_id: Admins only; an integrator may only name their own tenant.
+        :type tenant_id: str
+        :param limit: Page size, capped at 1000.
+        :type limit: int
+        :param offset: Rows to skip.
+        :type offset: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._list_trading_challenge_registration_requests_serialize(
+            trading_challenge_id=trading_challenge_id,
+            user_id=user_id,
+            status=status,
+            tenant_id=tenant_id,
+            limit=limit,
+            offset=offset,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "TradingChallengeRegistrationRequestListResponseEnvelope",
+            '400': "ResponseEnvelope",
+            '401': "ResponseEnvelope",
+            '403': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _list_trading_challenge_registration_requests_serialize(
+        self,
+        trading_challenge_id,
+        user_id,
+        status,
+        tenant_id,
+        limit,
+        offset,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        if trading_challenge_id is not None:
+            
+            _query_params.append(('trading_challenge_id', trading_challenge_id))
+            
+        if user_id is not None:
+            
+            _query_params.append(('user_id', user_id))
+            
+        if status is not None:
+            
+            _query_params.append(('status', status))
+            
+        if tenant_id is not None:
+            
+            _query_params.append(('tenant_id', tenant_id))
+            
+        if limit is not None:
+            
+            _query_params.append(('limit', limit))
+            
+        if offset is not None:
+            
+            _query_params.append(('offset', offset))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyAuthHeader', 
+            'bearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/v1/trading_challenges/registration_requests',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     async def list_trading_challenges(
         self,
         tenant_id: Optional[StrictStr] = None,
@@ -27176,6 +28144,7 @@ class DefaultApi:
     ) -> TradingChallengeListResponseEnvelope:
         """List trading challenges
 
+        List trading challenges. COMPETITION_MANAGER callers only receive challenges present in their managed_competition_ids.
 
         :param tenant_id:
         :type tenant_id: str
@@ -27260,6 +28229,7 @@ class DefaultApi:
     ) -> ApiResponse[TradingChallengeListResponseEnvelope]:
         """List trading challenges
 
+        List trading challenges. COMPETITION_MANAGER callers only receive challenges present in their managed_competition_ids.
 
         :param tenant_id:
         :type tenant_id: str
@@ -27344,6 +28314,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """List trading challenges
 
+        List trading challenges. COMPETITION_MANAGER callers only receive challenges present in their managed_competition_ids.
 
         :param tenant_id:
         :type tenant_id: str
@@ -27491,6 +28462,333 @@ class DefaultApi:
         return self.api_client.param_serialize(
             method='GET',
             resource_path='/v1/trading_challenges',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    async def list_user_deactivations(
+        self,
+        status: Annotated[Optional[StrictStr], Field(description="Only return users whose latest request has this status.")] = None,
+        tenant_id: Annotated[Optional[StrictStr], Field(description="Only return users belonging to this tenant. At most one of tenant_id, trading_challenge_id and user_ids may be passed; combining them is rejected. An integrator whose tenant is not global may only pass their own tenant.")] = None,
+        trading_challenge_id: Annotated[Optional[UUID], Field(description="Only return participants of this trading challenge. Mutually exclusive with tenant_id and user_ids.")] = None,
+        user_ids: Annotated[Optional[StrictStr], Field(description="Comma-separated user IDs to return. Mutually exclusive with tenant_id and trading_challenge_id.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> UserDeactivationListResponseEnvelope:
+        """Get the current deactivation status across all users
+
+        Returns each user's latest deactivation request, i.e. their current status. Users with no deactivation history are absent. Ordered by request creation time, newest first. Integrators only see users of their own tenant, unless that tenant is global.
+
+        :param status: Only return users whose latest request has this status.
+        :type status: str
+        :param tenant_id: Only return users belonging to this tenant. At most one of tenant_id, trading_challenge_id and user_ids may be passed; combining them is rejected. An integrator whose tenant is not global may only pass their own tenant.
+        :type tenant_id: str
+        :param trading_challenge_id: Only return participants of this trading challenge. Mutually exclusive with tenant_id and user_ids.
+        :type trading_challenge_id: UUID
+        :param user_ids: Comma-separated user IDs to return. Mutually exclusive with tenant_id and trading_challenge_id.
+        :type user_ids: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._list_user_deactivations_serialize(
+            status=status,
+            tenant_id=tenant_id,
+            trading_challenge_id=trading_challenge_id,
+            user_ids=user_ids,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "UserDeactivationListResponseEnvelope",
+            '400': "ResponseEnvelope",
+            '401': "ResponseEnvelope",
+            '403': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    async def list_user_deactivations_with_http_info(
+        self,
+        status: Annotated[Optional[StrictStr], Field(description="Only return users whose latest request has this status.")] = None,
+        tenant_id: Annotated[Optional[StrictStr], Field(description="Only return users belonging to this tenant. At most one of tenant_id, trading_challenge_id and user_ids may be passed; combining them is rejected. An integrator whose tenant is not global may only pass their own tenant.")] = None,
+        trading_challenge_id: Annotated[Optional[UUID], Field(description="Only return participants of this trading challenge. Mutually exclusive with tenant_id and user_ids.")] = None,
+        user_ids: Annotated[Optional[StrictStr], Field(description="Comma-separated user IDs to return. Mutually exclusive with tenant_id and trading_challenge_id.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[UserDeactivationListResponseEnvelope]:
+        """Get the current deactivation status across all users
+
+        Returns each user's latest deactivation request, i.e. their current status. Users with no deactivation history are absent. Ordered by request creation time, newest first. Integrators only see users of their own tenant, unless that tenant is global.
+
+        :param status: Only return users whose latest request has this status.
+        :type status: str
+        :param tenant_id: Only return users belonging to this tenant. At most one of tenant_id, trading_challenge_id and user_ids may be passed; combining them is rejected. An integrator whose tenant is not global may only pass their own tenant.
+        :type tenant_id: str
+        :param trading_challenge_id: Only return participants of this trading challenge. Mutually exclusive with tenant_id and user_ids.
+        :type trading_challenge_id: UUID
+        :param user_ids: Comma-separated user IDs to return. Mutually exclusive with tenant_id and trading_challenge_id.
+        :type user_ids: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._list_user_deactivations_serialize(
+            status=status,
+            tenant_id=tenant_id,
+            trading_challenge_id=trading_challenge_id,
+            user_ids=user_ids,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "UserDeactivationListResponseEnvelope",
+            '400': "ResponseEnvelope",
+            '401': "ResponseEnvelope",
+            '403': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    async def list_user_deactivations_without_preload_content(
+        self,
+        status: Annotated[Optional[StrictStr], Field(description="Only return users whose latest request has this status.")] = None,
+        tenant_id: Annotated[Optional[StrictStr], Field(description="Only return users belonging to this tenant. At most one of tenant_id, trading_challenge_id and user_ids may be passed; combining them is rejected. An integrator whose tenant is not global may only pass their own tenant.")] = None,
+        trading_challenge_id: Annotated[Optional[UUID], Field(description="Only return participants of this trading challenge. Mutually exclusive with tenant_id and user_ids.")] = None,
+        user_ids: Annotated[Optional[StrictStr], Field(description="Comma-separated user IDs to return. Mutually exclusive with tenant_id and trading_challenge_id.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get the current deactivation status across all users
+
+        Returns each user's latest deactivation request, i.e. their current status. Users with no deactivation history are absent. Ordered by request creation time, newest first. Integrators only see users of their own tenant, unless that tenant is global.
+
+        :param status: Only return users whose latest request has this status.
+        :type status: str
+        :param tenant_id: Only return users belonging to this tenant. At most one of tenant_id, trading_challenge_id and user_ids may be passed; combining them is rejected. An integrator whose tenant is not global may only pass their own tenant.
+        :type tenant_id: str
+        :param trading_challenge_id: Only return participants of this trading challenge. Mutually exclusive with tenant_id and user_ids.
+        :type trading_challenge_id: UUID
+        :param user_ids: Comma-separated user IDs to return. Mutually exclusive with tenant_id and trading_challenge_id.
+        :type user_ids: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._list_user_deactivations_serialize(
+            status=status,
+            tenant_id=tenant_id,
+            trading_challenge_id=trading_challenge_id,
+            user_ids=user_ids,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "UserDeactivationListResponseEnvelope",
+            '400': "ResponseEnvelope",
+            '401': "ResponseEnvelope",
+            '403': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _list_user_deactivations_serialize(
+        self,
+        status,
+        tenant_id,
+        trading_challenge_id,
+        user_ids,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        if status is not None:
+            
+            _query_params.append(('status', status))
+            
+        if tenant_id is not None:
+            
+            _query_params.append(('tenant_id', tenant_id))
+            
+        if trading_challenge_id is not None:
+            
+            _query_params.append(('trading_challenge_id', trading_challenge_id))
+            
+        if user_ids is not None:
+            
+            _query_params.append(('user_ids', user_ids))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyAuthHeader', 
+            'bearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/v1/user/deactivations',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -28090,6 +29388,314 @@ class DefaultApi:
 
 
     @validate_call
+    async def reject_trading_challenge_registration_request(
+        self,
+        request_id: UUID,
+        review_trading_challenge_registration_request: Optional[ReviewTradingChallengeRegistrationRequest] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> TradingChallengeRegistrationRequestResponseEnvelope:
+        """Reject a trading challenge registration request
+
+        Accessible to admins (any challenge), integrators (their own tenant only) and competition managers (their assigned challenges only).
+
+        :param request_id: (required)
+        :type request_id: UUID
+        :param review_trading_challenge_registration_request:
+        :type review_trading_challenge_registration_request: ReviewTradingChallengeRegistrationRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._reject_trading_challenge_registration_request_serialize(
+            request_id=request_id,
+            review_trading_challenge_registration_request=review_trading_challenge_registration_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "TradingChallengeRegistrationRequestResponseEnvelope",
+            '400': "ResponseEnvelope",
+            '401': "ResponseEnvelope",
+            '403': "ResponseEnvelope",
+            '404': "ResponseEnvelope",
+            '409': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    async def reject_trading_challenge_registration_request_with_http_info(
+        self,
+        request_id: UUID,
+        review_trading_challenge_registration_request: Optional[ReviewTradingChallengeRegistrationRequest] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[TradingChallengeRegistrationRequestResponseEnvelope]:
+        """Reject a trading challenge registration request
+
+        Accessible to admins (any challenge), integrators (their own tenant only) and competition managers (their assigned challenges only).
+
+        :param request_id: (required)
+        :type request_id: UUID
+        :param review_trading_challenge_registration_request:
+        :type review_trading_challenge_registration_request: ReviewTradingChallengeRegistrationRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._reject_trading_challenge_registration_request_serialize(
+            request_id=request_id,
+            review_trading_challenge_registration_request=review_trading_challenge_registration_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "TradingChallengeRegistrationRequestResponseEnvelope",
+            '400': "ResponseEnvelope",
+            '401': "ResponseEnvelope",
+            '403': "ResponseEnvelope",
+            '404': "ResponseEnvelope",
+            '409': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    async def reject_trading_challenge_registration_request_without_preload_content(
+        self,
+        request_id: UUID,
+        review_trading_challenge_registration_request: Optional[ReviewTradingChallengeRegistrationRequest] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Reject a trading challenge registration request
+
+        Accessible to admins (any challenge), integrators (their own tenant only) and competition managers (their assigned challenges only).
+
+        :param request_id: (required)
+        :type request_id: UUID
+        :param review_trading_challenge_registration_request:
+        :type review_trading_challenge_registration_request: ReviewTradingChallengeRegistrationRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._reject_trading_challenge_registration_request_serialize(
+            request_id=request_id,
+            review_trading_challenge_registration_request=review_trading_challenge_registration_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "TradingChallengeRegistrationRequestResponseEnvelope",
+            '400': "ResponseEnvelope",
+            '401': "ResponseEnvelope",
+            '403': "ResponseEnvelope",
+            '404': "ResponseEnvelope",
+            '409': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _reject_trading_challenge_registration_request_serialize(
+        self,
+        request_id,
+        review_trading_challenge_registration_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if request_id is not None:
+            _path_params['request_id'] = request_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if review_trading_challenge_registration_request is not None:
+            _body_params = review_trading_challenge_registration_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyAuthHeader', 
+            'bearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/v1/trading_challenges/registration_requests/{request_id}/reject',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     async def remove_trading_challenge_users(
         self,
         remove_trading_challenge_users_request: RemoveTradingChallengeUsersRequest,
@@ -28108,6 +29714,7 @@ class DefaultApi:
     ) -> TradingChallengeResponseEnvelope:
         """Remove users from a trading challenge
 
+        Remove users from a trading challenge. For COMPETITION_MANAGER, the challenge must be assigned in managed_competition_ids.
 
         :param remove_trading_challenge_users_request: (required)
         :type remove_trading_challenge_users_request: RemoveTradingChallengeUsersRequest
@@ -28177,6 +29784,7 @@ class DefaultApi:
     ) -> ApiResponse[TradingChallengeResponseEnvelope]:
         """Remove users from a trading challenge
 
+        Remove users from a trading challenge. For COMPETITION_MANAGER, the challenge must be assigned in managed_competition_ids.
 
         :param remove_trading_challenge_users_request: (required)
         :type remove_trading_challenge_users_request: RemoveTradingChallengeUsersRequest
@@ -28246,6 +29854,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Remove users from a trading challenge
 
+        Remove users from a trading challenge. For COMPETITION_MANAGER, the challenge must be assigned in managed_competition_ids.
 
         :param remove_trading_challenge_users_request: (required)
         :type remove_trading_challenge_users_request: RemoveTradingChallengeUsersRequest
@@ -31483,6 +33092,569 @@ class DefaultApi:
 
 
     @validate_call
+    async def terminate_own_trading_challenge_participation(
+        self,
+        trading_challenge_id: UUID,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> TerminateTradingChallengeResponseEnvelope:
+        """Leave a trading challenge
+
+        Convenience alias that terminates the caller's own participation; redirects to /v1/trading_challenges/{trading_challenge_id}/participants/{user_id}/terminate. End a participant's run in a challenge before its own rules would: the participant leaves, or an operator removes them. No prize is paid, even to a participant who could have claimed one -- claim the prize first if that is what you want. The account is wound down, every remaining challenge credit is swept, and the participation is marked TERMINATED and frozen: from then on it takes no further daily snapshots and never appears in the results ranking again. The user is left deactivated with no challenge balance, and is free to register for another challenge. Participants may only terminate their own run; terminating someone else's requires admin, integrator (same tenant) or challenge manager (assigned challenge) rights.
+
+        :param trading_challenge_id: (required)
+        :type trading_challenge_id: UUID
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._terminate_own_trading_challenge_participation_serialize(
+            trading_challenge_id=trading_challenge_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "TerminateTradingChallengeResponseEnvelope",
+            '403': "ResponseEnvelope",
+            '404': "ResponseEnvelope",
+            '409': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    async def terminate_own_trading_challenge_participation_with_http_info(
+        self,
+        trading_challenge_id: UUID,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[TerminateTradingChallengeResponseEnvelope]:
+        """Leave a trading challenge
+
+        Convenience alias that terminates the caller's own participation; redirects to /v1/trading_challenges/{trading_challenge_id}/participants/{user_id}/terminate. End a participant's run in a challenge before its own rules would: the participant leaves, or an operator removes them. No prize is paid, even to a participant who could have claimed one -- claim the prize first if that is what you want. The account is wound down, every remaining challenge credit is swept, and the participation is marked TERMINATED and frozen: from then on it takes no further daily snapshots and never appears in the results ranking again. The user is left deactivated with no challenge balance, and is free to register for another challenge. Participants may only terminate their own run; terminating someone else's requires admin, integrator (same tenant) or challenge manager (assigned challenge) rights.
+
+        :param trading_challenge_id: (required)
+        :type trading_challenge_id: UUID
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._terminate_own_trading_challenge_participation_serialize(
+            trading_challenge_id=trading_challenge_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "TerminateTradingChallengeResponseEnvelope",
+            '403': "ResponseEnvelope",
+            '404': "ResponseEnvelope",
+            '409': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    async def terminate_own_trading_challenge_participation_without_preload_content(
+        self,
+        trading_challenge_id: UUID,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Leave a trading challenge
+
+        Convenience alias that terminates the caller's own participation; redirects to /v1/trading_challenges/{trading_challenge_id}/participants/{user_id}/terminate. End a participant's run in a challenge before its own rules would: the participant leaves, or an operator removes them. No prize is paid, even to a participant who could have claimed one -- claim the prize first if that is what you want. The account is wound down, every remaining challenge credit is swept, and the participation is marked TERMINATED and frozen: from then on it takes no further daily snapshots and never appears in the results ranking again. The user is left deactivated with no challenge balance, and is free to register for another challenge. Participants may only terminate their own run; terminating someone else's requires admin, integrator (same tenant) or challenge manager (assigned challenge) rights.
+
+        :param trading_challenge_id: (required)
+        :type trading_challenge_id: UUID
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._terminate_own_trading_challenge_participation_serialize(
+            trading_challenge_id=trading_challenge_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "TerminateTradingChallengeResponseEnvelope",
+            '403': "ResponseEnvelope",
+            '404': "ResponseEnvelope",
+            '409': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _terminate_own_trading_challenge_participation_serialize(
+        self,
+        trading_challenge_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if trading_challenge_id is not None:
+            _path_params['trading_challenge_id'] = trading_challenge_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyAuthHeader', 
+            'bearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/v1/trading_challenges/{trading_challenge_id}/participants/self/terminate',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    async def terminate_trading_challenge_participation(
+        self,
+        trading_challenge_id: UUID,
+        user_id: UUID,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> TerminateTradingChallengeResponseEnvelope:
+        """Terminate a participation in a trading challenge
+
+        End a participant's run in a challenge before its own rules would: the participant leaves, or an operator removes them. No prize is paid, even to a participant who could have claimed one -- claim the prize first if that is what you want. The account is wound down, every remaining challenge credit is swept, and the participation is marked TERMINATED and frozen: from then on it takes no further daily snapshots and never appears in the results ranking again. The user is left deactivated with no challenge balance, and is free to register for another challenge. Participants may only terminate their own run; terminating someone else's requires admin, integrator (same tenant) or challenge manager (assigned challenge) rights.
+
+        :param trading_challenge_id: (required)
+        :type trading_challenge_id: UUID
+        :param user_id: (required)
+        :type user_id: UUID
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._terminate_trading_challenge_participation_serialize(
+            trading_challenge_id=trading_challenge_id,
+            user_id=user_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "TerminateTradingChallengeResponseEnvelope",
+            '403': "ResponseEnvelope",
+            '404': "ResponseEnvelope",
+            '409': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    async def terminate_trading_challenge_participation_with_http_info(
+        self,
+        trading_challenge_id: UUID,
+        user_id: UUID,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[TerminateTradingChallengeResponseEnvelope]:
+        """Terminate a participation in a trading challenge
+
+        End a participant's run in a challenge before its own rules would: the participant leaves, or an operator removes them. No prize is paid, even to a participant who could have claimed one -- claim the prize first if that is what you want. The account is wound down, every remaining challenge credit is swept, and the participation is marked TERMINATED and frozen: from then on it takes no further daily snapshots and never appears in the results ranking again. The user is left deactivated with no challenge balance, and is free to register for another challenge. Participants may only terminate their own run; terminating someone else's requires admin, integrator (same tenant) or challenge manager (assigned challenge) rights.
+
+        :param trading_challenge_id: (required)
+        :type trading_challenge_id: UUID
+        :param user_id: (required)
+        :type user_id: UUID
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._terminate_trading_challenge_participation_serialize(
+            trading_challenge_id=trading_challenge_id,
+            user_id=user_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "TerminateTradingChallengeResponseEnvelope",
+            '403': "ResponseEnvelope",
+            '404': "ResponseEnvelope",
+            '409': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    async def terminate_trading_challenge_participation_without_preload_content(
+        self,
+        trading_challenge_id: UUID,
+        user_id: UUID,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Terminate a participation in a trading challenge
+
+        End a participant's run in a challenge before its own rules would: the participant leaves, or an operator removes them. No prize is paid, even to a participant who could have claimed one -- claim the prize first if that is what you want. The account is wound down, every remaining challenge credit is swept, and the participation is marked TERMINATED and frozen: from then on it takes no further daily snapshots and never appears in the results ranking again. The user is left deactivated with no challenge balance, and is free to register for another challenge. Participants may only terminate their own run; terminating someone else's requires admin, integrator (same tenant) or challenge manager (assigned challenge) rights.
+
+        :param trading_challenge_id: (required)
+        :type trading_challenge_id: UUID
+        :param user_id: (required)
+        :type user_id: UUID
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._terminate_trading_challenge_participation_serialize(
+            trading_challenge_id=trading_challenge_id,
+            user_id=user_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "TerminateTradingChallengeResponseEnvelope",
+            '403': "ResponseEnvelope",
+            '404': "ResponseEnvelope",
+            '409': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _terminate_trading_challenge_participation_serialize(
+        self,
+        trading_challenge_id,
+        user_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if trading_challenge_id is not None:
+            _path_params['trading_challenge_id'] = trading_challenge_id
+        if user_id is not None:
+            _path_params['user_id'] = user_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyAuthHeader', 
+            'bearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/v1/trading_challenges/{trading_challenge_id}/participants/{user_id}/terminate',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     async def transfer_account_balances_v2(
         self,
         transfer_account_balances_request: TransferAccountBalancesRequest,
@@ -32041,6 +34213,311 @@ class DefaultApi:
         return self.api_client.param_serialize(
             method='POST',
             resource_path='/v1/positions/transfer_balances',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    async def update_trading_challenge(
+        self,
+        trading_challenge_id: UUID,
+        update_trading_challenge_request: UpdateTradingChallengeRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> TradingChallengeResponseEnvelope:
+        """Update a trading challenge
+
+        Partially update a trading challenge: a field that is absent from the body is left unchanged. Which fields may be updated depends on the challenge status. PENDING accepts every field. ACTIVE accepts only name, max_users, end and the three prize quantities, because participants are already funded and being measured. COMPLETED accepts none. A request that touches a field the current status does not allow is rejected as a whole with 409. ADMIN may update any challenge, INTEGRATOR only challenges of its own tenant, and COMPETITION_MANAGER only assigned challenge IDs.
+
+        :param trading_challenge_id: (required)
+        :type trading_challenge_id: UUID
+        :param update_trading_challenge_request: (required)
+        :type update_trading_challenge_request: UpdateTradingChallengeRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_trading_challenge_serialize(
+            trading_challenge_id=trading_challenge_id,
+            update_trading_challenge_request=update_trading_challenge_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "TradingChallengeResponseEnvelope",
+            '400': "ResponseEnvelope",
+            '403': "ResponseEnvelope",
+            '404': "ResponseEnvelope",
+            '409': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    async def update_trading_challenge_with_http_info(
+        self,
+        trading_challenge_id: UUID,
+        update_trading_challenge_request: UpdateTradingChallengeRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[TradingChallengeResponseEnvelope]:
+        """Update a trading challenge
+
+        Partially update a trading challenge: a field that is absent from the body is left unchanged. Which fields may be updated depends on the challenge status. PENDING accepts every field. ACTIVE accepts only name, max_users, end and the three prize quantities, because participants are already funded and being measured. COMPLETED accepts none. A request that touches a field the current status does not allow is rejected as a whole with 409. ADMIN may update any challenge, INTEGRATOR only challenges of its own tenant, and COMPETITION_MANAGER only assigned challenge IDs.
+
+        :param trading_challenge_id: (required)
+        :type trading_challenge_id: UUID
+        :param update_trading_challenge_request: (required)
+        :type update_trading_challenge_request: UpdateTradingChallengeRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_trading_challenge_serialize(
+            trading_challenge_id=trading_challenge_id,
+            update_trading_challenge_request=update_trading_challenge_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "TradingChallengeResponseEnvelope",
+            '400': "ResponseEnvelope",
+            '403': "ResponseEnvelope",
+            '404': "ResponseEnvelope",
+            '409': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    async def update_trading_challenge_without_preload_content(
+        self,
+        trading_challenge_id: UUID,
+        update_trading_challenge_request: UpdateTradingChallengeRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Update a trading challenge
+
+        Partially update a trading challenge: a field that is absent from the body is left unchanged. Which fields may be updated depends on the challenge status. PENDING accepts every field. ACTIVE accepts only name, max_users, end and the three prize quantities, because participants are already funded and being measured. COMPLETED accepts none. A request that touches a field the current status does not allow is rejected as a whole with 409. ADMIN may update any challenge, INTEGRATOR only challenges of its own tenant, and COMPETITION_MANAGER only assigned challenge IDs.
+
+        :param trading_challenge_id: (required)
+        :type trading_challenge_id: UUID
+        :param update_trading_challenge_request: (required)
+        :type update_trading_challenge_request: UpdateTradingChallengeRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_trading_challenge_serialize(
+            trading_challenge_id=trading_challenge_id,
+            update_trading_challenge_request=update_trading_challenge_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "TradingChallengeResponseEnvelope",
+            '400': "ResponseEnvelope",
+            '403': "ResponseEnvelope",
+            '404': "ResponseEnvelope",
+            '409': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _update_trading_challenge_serialize(
+        self,
+        trading_challenge_id,
+        update_trading_challenge_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if trading_challenge_id is not None:
+            _path_params['trading_challenge_id'] = trading_challenge_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if update_trading_challenge_request is not None:
+            _body_params = update_trading_challenge_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyAuthHeader', 
+            'bearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/v1/trading_challenges/{trading_challenge_id}',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,

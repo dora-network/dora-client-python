@@ -9,6 +9,8 @@ Name | Type | Description | Notes
 **kind** | [**CouponKind**](CouponKind.md) |  | 
 **coupon_kind** | [**CouponKind**](CouponKind.md) |  | [optional] 
 **bond_kind** | [**BondKind**](BondKind.md) |  | [optional] 
+**bond_run_status** | [**BondRunStatus**](BondRunStatus.md) |  | [optional] 
+**credit_rating** | [**CreditRating**](CreditRating.md) |  | [optional] 
 **coupon_start_at** | **datetime** |  | [optional] 
 **created_at** | **datetime** |  | 
 **final_coupon_at** | **datetime** |  | [optional] 

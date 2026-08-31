@@ -28,6 +28,7 @@ docs/BalanceTransfer.md
 docs/BalancesResponse.md
 docs/Bond.md
 docs/BondKind.md
+docs/BondRunStatus.md
 docs/CancelOrderResponseEnvelope.md
 docs/Candle.md
 docs/CandleResolution.md
@@ -59,6 +60,7 @@ docs/CreateOrUpdateUserResponse.md
 docs/CreateOrderRequest.md
 docs/CreateOrderResponseEnvelope.md
 docs/CreateTradingChallengeRequest.md
+docs/CreditRating.md
 docs/CurrentLeverageAccruedInterest.md
 docs/CurrentLeverageAccruedInterestResponseEnvelope.md
 docs/DefaultApi.md
@@ -168,6 +170,7 @@ docs/RepayUSDResponseEnvelope.md
 docs/RepayUSDResult.md
 docs/ResponseEnvelope.md
 docs/ResponseEnvelopeOfListAssets.md
+docs/ReviewTradingChallengeRegistrationRequest.md
 docs/RevokeAPIKeyData.md
 docs/RevokeAPIKeyResponseEnvelope.md
 docs/SettleLeverageAccruedInterest.md
@@ -191,6 +194,8 @@ docs/Supply.md
 docs/SupplyRequest.md
 docs/SupplyResponseEnvelope.md
 docs/TenantRestrictions.md
+docs/TerminateTradingChallengeResponse.md
+docs/TerminateTradingChallengeResponseEnvelope.md
 docs/Trade.md
 docs/TradeRequestError.md
 docs/TradeResponseEnvelope.md
@@ -198,6 +203,9 @@ docs/TradingChallenge.md
 docs/TradingChallengeDailySnapshot.md
 docs/TradingChallengeDailySnapshotsResponseEnvelope.md
 docs/TradingChallengeListResponseEnvelope.md
+docs/TradingChallengeRegistrationRequest.md
+docs/TradingChallengeRegistrationRequestListResponseEnvelope.md
+docs/TradingChallengeRegistrationRequestResponseEnvelope.md
 docs/TradingChallengeResponseEnvelope.md
 docs/TradingChallengeResult.md
 docs/TradingChallengeResultsResponseEnvelope.md
@@ -223,8 +231,12 @@ docs/UnitePositionRequest.md
 docs/UnitePositionResponseEnvelope.md
 docs/UnitedPosition.md
 docs/UpdateFieldBoolean.md
+docs/UpdateFieldDateTime.md
+docs/UpdateFieldDecimal.md
+docs/UpdateFieldInteger.md
 docs/UpdateFieldString.md
 docs/UpdateRolesString.md
+docs/UpdateTradingChallengeRequest.md
 docs/UpdateUserConfigRequest.md
 docs/UpdateUserKYCRequest.md
 docs/UpdateUserKYCResponse.md
@@ -237,6 +249,9 @@ docs/UserCouponPayment.md
 docs/UserCouponPaymentAssetSummary.md
 docs/UserCouponPaymentsResponseData.md
 docs/UserCreatedResponseEnvelope.md
+docs/UserDeactivation.md
+docs/UserDeactivationListResponseEnvelope.md
+docs/UserDeactivationResponseEnvelope.md
 docs/UserDeletedResponseEnvelope.md
 docs/UserEnvelope.md
 docs/UserExistsResponse.md
@@ -290,6 +305,7 @@ dora_client/models/balance_transfer.py
 dora_client/models/balances_response.py
 dora_client/models/bond.py
 dora_client/models/bond_kind.py
+dora_client/models/bond_run_status.py
 dora_client/models/cancel_order_response_envelope.py
 dora_client/models/candle.py
 dora_client/models/candle_resolution.py
@@ -321,6 +337,7 @@ dora_client/models/create_or_update_user_response.py
 dora_client/models/create_order_request.py
 dora_client/models/create_order_response_envelope.py
 dora_client/models/create_trading_challenge_request.py
+dora_client/models/credit_rating.py
 dora_client/models/current_leverage_accrued_interest.py
 dora_client/models/current_leverage_accrued_interest_response_envelope.py
 dora_client/models/defund_user_request.py
@@ -429,6 +446,7 @@ dora_client/models/repay_usd_response_envelope.py
 dora_client/models/repay_usd_result.py
 dora_client/models/response_envelope.py
 dora_client/models/response_envelope_of_list_assets.py
+dora_client/models/review_trading_challenge_registration_request.py
 dora_client/models/revoke_api_key_data.py
 dora_client/models/revoke_api_key_response_envelope.py
 dora_client/models/settle_leverage_accrued_interest.py
@@ -452,6 +470,8 @@ dora_client/models/supply.py
 dora_client/models/supply_request.py
 dora_client/models/supply_response_envelope.py
 dora_client/models/tenant_restrictions.py
+dora_client/models/terminate_trading_challenge_response.py
+dora_client/models/terminate_trading_challenge_response_envelope.py
 dora_client/models/trade.py
 dora_client/models/trade_request_error.py
 dora_client/models/trade_response_envelope.py
@@ -459,6 +479,9 @@ dora_client/models/trading_challenge.py
 dora_client/models/trading_challenge_daily_snapshot.py
 dora_client/models/trading_challenge_daily_snapshots_response_envelope.py
 dora_client/models/trading_challenge_list_response_envelope.py
+dora_client/models/trading_challenge_registration_request.py
+dora_client/models/trading_challenge_registration_request_list_response_envelope.py
+dora_client/models/trading_challenge_registration_request_response_envelope.py
 dora_client/models/trading_challenge_response_envelope.py
 dora_client/models/trading_challenge_result.py
 dora_client/models/trading_challenge_results_response_envelope.py
@@ -484,8 +507,12 @@ dora_client/models/unite_position_request.py
 dora_client/models/unite_position_response_envelope.py
 dora_client/models/united_position.py
 dora_client/models/update_field_boolean.py
+dora_client/models/update_field_date_time.py
+dora_client/models/update_field_decimal.py
+dora_client/models/update_field_integer.py
 dora_client/models/update_field_string.py
 dora_client/models/update_roles_string.py
+dora_client/models/update_trading_challenge_request.py
 dora_client/models/update_user_config_request.py
 dora_client/models/update_user_kyc_request.py
 dora_client/models/update_user_kyc_response.py
@@ -498,6 +525,9 @@ dora_client/models/user_coupon_payment.py
 dora_client/models/user_coupon_payment_asset_summary.py
 dora_client/models/user_coupon_payments_response_data.py
 dora_client/models/user_created_response_envelope.py
+dora_client/models/user_deactivation.py
+dora_client/models/user_deactivation_list_response_envelope.py
+dora_client/models/user_deactivation_response_envelope.py
 dora_client/models/user_deleted_response_envelope.py
 dora_client/models/user_envelope.py
 dora_client/models/user_exists_response.py
@@ -552,6 +582,7 @@ test/test_balance_transfer.py
 test/test_balances_response.py
 test/test_bond.py
 test/test_bond_kind.py
+test/test_bond_run_status.py
 test/test_cancel_order_response_envelope.py
 test/test_candle.py
 test/test_candle_resolution.py
@@ -583,6 +614,7 @@ test/test_create_or_update_user_response.py
 test/test_create_order_request.py
 test/test_create_order_response_envelope.py
 test/test_create_trading_challenge_request.py
+test/test_credit_rating.py
 test/test_current_leverage_accrued_interest.py
 test/test_current_leverage_accrued_interest_response_envelope.py
 test/test_default_api.py
@@ -692,6 +724,7 @@ test/test_repay_usd_response_envelope.py
 test/test_repay_usd_result.py
 test/test_response_envelope.py
 test/test_response_envelope_of_list_assets.py
+test/test_review_trading_challenge_registration_request.py
 test/test_revoke_api_key_data.py
 test/test_revoke_api_key_response_envelope.py
 test/test_settle_leverage_accrued_interest.py
@@ -715,6 +748,8 @@ test/test_supply.py
 test/test_supply_request.py
 test/test_supply_response_envelope.py
 test/test_tenant_restrictions.py
+test/test_terminate_trading_challenge_response.py
+test/test_terminate_trading_challenge_response_envelope.py
 test/test_trade.py
 test/test_trade_request_error.py
 test/test_trade_response_envelope.py
@@ -722,6 +757,9 @@ test/test_trading_challenge.py
 test/test_trading_challenge_daily_snapshot.py
 test/test_trading_challenge_daily_snapshots_response_envelope.py
 test/test_trading_challenge_list_response_envelope.py
+test/test_trading_challenge_registration_request.py
+test/test_trading_challenge_registration_request_list_response_envelope.py
+test/test_trading_challenge_registration_request_response_envelope.py
 test/test_trading_challenge_response_envelope.py
 test/test_trading_challenge_result.py
 test/test_trading_challenge_results_response_envelope.py
@@ -747,8 +785,12 @@ test/test_unite_position_request.py
 test/test_unite_position_response_envelope.py
 test/test_united_position.py
 test/test_update_field_boolean.py
+test/test_update_field_date_time.py
+test/test_update_field_decimal.py
+test/test_update_field_integer.py
 test/test_update_field_string.py
 test/test_update_roles_string.py
+test/test_update_trading_challenge_request.py
 test/test_update_user_config_request.py
 test/test_update_user_kyc_request.py
 test/test_update_user_kyc_response.py
@@ -761,6 +803,9 @@ test/test_user_coupon_payment.py
 test/test_user_coupon_payment_asset_summary.py
 test/test_user_coupon_payments_response_data.py
 test/test_user_created_response_envelope.py
+test/test_user_deactivation.py
+test/test_user_deactivation_list_response_envelope.py
+test/test_user_deactivation_response_envelope.py
 test/test_user_deleted_response_envelope.py
 test/test_user_envelope.py
 test/test_user_exists_response.py

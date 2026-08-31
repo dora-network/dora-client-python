@@ -64,6 +64,8 @@ class TestAsset(unittest.TestCase):
                     kind = 'COUPON-PAYING', 
                     coupon_kind = 'COUPON-PAYING', 
                     bond_kind = 'CORPORATE', 
+                    bond_run_status = null, 
+                    credit_rating = null, 
                     coupon_start_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                     created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                     final_coupon_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 

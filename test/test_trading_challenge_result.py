@@ -49,6 +49,7 @@ class TestTradingChallengeResult(unittest.TestCase):
                 status = 'PENDING',
                 crown = 'NONE',
                 created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                deactivation_status = 'ACTIVE',
                 current_day_daily_volume = '',
                 current_day_daily_pnl = '',
                 current_day_trading_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),

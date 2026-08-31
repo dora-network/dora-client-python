@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **provider** | **str** |  | [optional] 
 **provider_id** | **UUID** |  | [optional] 
 **timezone** | **str** |  | [optional] 
+**challenge_id** | **UUID** | Optional: sign the new user up for this trading challenge. This creates a PENDING registration request that an admin, the tenant&#39;s integrator or one of the challenge&#39;s managers must approve before the user is actually enrolled. The challenge must belong to the new user&#39;s tenant and still be open for entries, otherwise the whole sign-up fails. | [optional] 
 
 ## Example
 

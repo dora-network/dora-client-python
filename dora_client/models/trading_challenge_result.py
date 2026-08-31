@@ -43,11 +43,12 @@ class TradingChallengeResult(BaseModel):
     status: Optional[StrictStr] = None
     crown: Optional[StrictStr] = None
     created_at: Optional[datetime] = None
+    deactivation_status: Optional[StrictStr] = None
     current_day_daily_volume: Optional[StrictStr] = None
     current_day_daily_pnl: Optional[StrictStr] = None
     current_day_trading_date: Optional[date] = None
     cum_trades: Optional[StrictInt] = None
-    __properties: ClassVar[List[str]] = ["trading_challenge_id", "user_id", "user_name", "cum_volume", "cum_pnl", "pnl_pct", "calendar_days_since_start", "active_days", "compliant_days", "crown_eligible", "claim_eligible", "status", "crown", "created_at", "current_day_daily_volume", "current_day_daily_pnl", "current_day_trading_date", "cum_trades"]
+    __properties: ClassVar[List[str]] = ["trading_challenge_id", "user_id", "user_name", "cum_volume", "cum_pnl", "pnl_pct", "calendar_days_since_start", "active_days", "compliant_days", "crown_eligible", "claim_eligible", "status", "crown", "created_at", "deactivation_status", "current_day_daily_volume", "current_day_daily_pnl", "current_day_trading_date", "cum_trades"]
 
     @field_validator('status')
     def status_validate_enum(cls, value):
@@ -55,8 +56,8 @@ class TradingChallengeResult(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['PENDING', 'FUNDED', 'ACTIVE', 'BUSTED', 'COMPLETED', 'PRIZE_CLAIMED']):
-            raise ValueError("must be one of enum values ('PENDING', 'FUNDED', 'ACTIVE', 'BUSTED', 'COMPLETED', 'PRIZE_CLAIMED')")
+        if value not in set(['PENDING', 'FUNDED', 'ACTIVE', 'BUSTED', 'COMPLETED', 'PRIZE_CLAIMED', 'TERMINATED']):
+            raise ValueError("must be one of enum values ('PENDING', 'FUNDED', 'ACTIVE', 'BUSTED', 'COMPLETED', 'PRIZE_CLAIMED', 'TERMINATED')")
         return value
 
     @field_validator('crown')
@@ -65,8 +66,18 @@ class TradingChallengeResult(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['NONE', 'PNL_GOLD', 'PNL_SILVER', 'PNL_BRONZE', 'VOLUME_GOLD', 'VOLUME_SILVER', 'VOLUME_BRONZE', 'IRON_GOLD', 'IRON_SILVER', 'IRON_BRONZE']):
-            raise ValueError("must be one of enum values ('NONE', 'PNL_GOLD', 'PNL_SILVER', 'PNL_BRONZE', 'VOLUME_GOLD', 'VOLUME_SILVER', 'VOLUME_BRONZE', 'IRON_GOLD', 'IRON_SILVER', 'IRON_BRONZE')")
+        if value not in set(['NONE', 'PNL_GOLD', 'PNL_SILVER', 'PNL_BRONZE', 'VOLUME_GOLD', 'VOLUME_SILVER', 'VOLUME_BRONZE', 'IRON_GOLD', 'IRON_SILVER', 'IRON_BRONZE', 'CASH_CROWN']):
+            raise ValueError("must be one of enum values ('NONE', 'PNL_GOLD', 'PNL_SILVER', 'PNL_BRONZE', 'VOLUME_GOLD', 'VOLUME_SILVER', 'VOLUME_BRONZE', 'IRON_GOLD', 'IRON_SILVER', 'IRON_BRONZE', 'CASH_CROWN')")
+        return value
+
+    @field_validator('deactivation_status')
+    def deactivation_status_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['ACTIVE', 'DEACTIVATED']):
+            raise ValueError("must be one of enum values ('ACTIVE', 'DEACTIVATED')")
         return value
 
     model_config = ConfigDict(
@@ -134,6 +145,7 @@ class TradingChallengeResult(BaseModel):
             "status": obj.get("status"),
             "crown": obj.get("crown"),
             "created_at": obj.get("created_at"),
+            "deactivation_status": obj.get("deactivation_status"),
             "current_day_daily_volume": obj.get("current_day_daily_volume"),
             "current_day_daily_pnl": obj.get("current_day_daily_pnl"),
             "current_day_trading_date": obj.get("current_day_trading_date"),

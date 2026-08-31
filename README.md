@@ -102,6 +102,7 @@ Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *DefaultApi* | [**add_trading_challenge_users**](docs/DefaultApi.md#add_trading_challenge_users) | **PUT** /v1/trading_challenges/add_users | Add users to a trading challenge
 *DefaultApi* | [**approve_ledger_withdraw_request**](docs/DefaultApi.md#approve_ledger_withdraw_request) | **POST** /v1/ledger/withdraw/requests/{withdrawal_id}/approve | Approve a pending withdrawal request
+*DefaultApi* | [**approve_trading_challenge_registration_request**](docs/DefaultApi.md#approve_trading_challenge_registration_request) | **POST** /v1/trading_challenges/registration_requests/{request_id}/approve | Approve a trading challenge registration request
 *DefaultApi* | [**cancel_all_open_orders**](docs/DefaultApi.md#cancel_all_open_orders) | **DELETE** /v1/orders | Cancel all open orders, if user passes orderbook or account_id on query params it will cancel all orders on specific orderbook or account, admin can cancel user&#39;s orders on specific orderbook
 *DefaultApi* | [**cancel_ledger_withdraw_request**](docs/DefaultApi.md#cancel_ledger_withdraw_request) | **POST** /v1/ledger/withdraw/requests/{withdrawal_id}/cancel | Cancel a pending withdrawal request
 *DefaultApi* | [**cancel_order_by_id**](docs/DefaultApi.md#cancel_order_by_id) | **DELETE** /v1/orders/{order_id} | Cancel an order by ID
@@ -166,6 +167,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**get_transactions_stream**](docs/DefaultApi.md#get_transactions_stream) | **GET** /v1/transactions/stream | Get transactions since a specific time, and open a stream for further updates
 *DefaultApi* | [**get_user_by_id**](docs/DefaultApi.md#get_user_by_id) | **GET** /v1/user/{user_id} | Get user by ID (admin only)
 *DefaultApi* | [**get_user_coupon_payments_stream**](docs/DefaultApi.md#get_user_coupon_payments_stream) | **GET** /v1/user/{user_id}/coupon_payments/stream | Stream user&#39;s coupon payment accruals in real time
+*DefaultApi* | [**get_user_deactivation**](docs/DefaultApi.md#get_user_deactivation) | **GET** /v1/user/{user_id}/deactivation | Get the latest account deactivation request for a user
 *DefaultApi* | [**get_user_ledger_stream**](docs/DefaultApi.md#get_user_ledger_stream) | **GET** /v1/user/{user_id}/ledger/stream | Get a snapshot of user&#39;s ledger updates since a specific time, and opens a stream for further updates
 *DefaultApi* | [**get_user_leverage_accrued_interest_stream**](docs/DefaultApi.md#get_user_leverage_accrued_interest_stream) | **GET** /v1/user/{user_id}/leverage/accrued_interest/stream | Stream user&#39;s current leverage accrued interest in real time
 *DefaultApi* | [**get_user_order_updates_stream**](docs/DefaultApi.md#get_user_order_updates_stream) | **GET** /v1/user/{user_id}/orders/{order_book_id}/updates/stream | Get a snapshot of user&#39;s order updates for the given order book since a specific time, and opens a stream for further updates
@@ -193,9 +195,12 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**list_order_books**](docs/DefaultApi.md#list_order_books) | **GET** /v1/orderbooks | List order books
 *DefaultApi* | [**list_orders**](docs/DefaultApi.md#list_orders) | **GET** /v1/orders | List all orders
 *DefaultApi* | [**list_position_accounts_self**](docs/DefaultApi.md#list_position_accounts_self) | **GET** /v1/user/self/position_accounts | List all position accounts for the authenticated user
+*DefaultApi* | [**list_trading_challenge_registration_requests**](docs/DefaultApi.md#list_trading_challenge_registration_requests) | **GET** /v1/trading_challenges/registration_requests | List trading challenge registration requests
 *DefaultApi* | [**list_trading_challenges**](docs/DefaultApi.md#list_trading_challenges) | **GET** /v1/trading_challenges | List trading challenges
+*DefaultApi* | [**list_user_deactivations**](docs/DefaultApi.md#list_user_deactivations) | **GET** /v1/user/deactivations | Get the current deactivation status across all users
 *DefaultApi* | [**pay_leverage_get_accrued_interest**](docs/DefaultApi.md#pay_leverage_get_accrued_interest) | **POST** /v1/leverage/accrued_interest/pay | Pay current accrued leverage interest for a specific user
 *DefaultApi* | [**reject_ledger_withdraw_request**](docs/DefaultApi.md#reject_ledger_withdraw_request) | **POST** /v1/ledger/withdraw/requests/{withdrawal_id}/reject | Reject a pending withdrawal request
+*DefaultApi* | [**reject_trading_challenge_registration_request**](docs/DefaultApi.md#reject_trading_challenge_registration_request) | **POST** /v1/trading_challenges/registration_requests/{request_id}/reject | Reject a trading challenge registration request
 *DefaultApi* | [**remove_trading_challenge_users**](docs/DefaultApi.md#remove_trading_challenge_users) | **PUT** /v1/trading_challenges/remove_users | Remove users from a trading challenge
 *DefaultApi* | [**repay_usd**](docs/DefaultApi.md#repay_usd) | **POST** /v1/positions/repay_usd | Repay borrowed USD, then accrue and pay leverage interest
 *DefaultApi* | [**revoke_api_key_for_user**](docs/DefaultApi.md#revoke_api_key_for_user) | **PUT** /v1/user/apikey/{key_id}/revoke | Revoke apikey for a user
@@ -208,8 +213,11 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**stream_order_book_balances**](docs/DefaultApi.md#stream_order_book_balances) | **GET** /v1/orderbooks/{order_book_id}/balances/stream | Get a snapshot of base and quote balances for an order book and open a stream for real-time updates
 *DefaultApi* | [**stream_orderbook_open_orders**](docs/DefaultApi.md#stream_orderbook_open_orders) | **GET** /v1/orderbooks/{order_book_id}/open/stream | Get a snapshot of open orders in an order book and open a stream for real-time updates
 *DefaultApi* | [**stream_trades**](docs/DefaultApi.md#stream_trades) | **GET** /v1/trades/{order_book_id}/stream | Get a snapshot of trades executed on the given order book from a specific date and open a stream for real-time updates
+*DefaultApi* | [**terminate_own_trading_challenge_participation**](docs/DefaultApi.md#terminate_own_trading_challenge_participation) | **POST** /v1/trading_challenges/{trading_challenge_id}/participants/self/terminate | Leave a trading challenge
+*DefaultApi* | [**terminate_trading_challenge_participation**](docs/DefaultApi.md#terminate_trading_challenge_participation) | **POST** /v1/trading_challenges/{trading_challenge_id}/participants/{user_id}/terminate | Terminate a participation in a trading challenge
 *DefaultApi* | [**transfer_account_balances_v2**](docs/DefaultApi.md#transfer_account_balances_v2) | **POST** /v2/accounts/transfer_balances | Transfer available balance between a user&#39;s accounts
 *DefaultApi* | [**transfer_available_balances**](docs/DefaultApi.md#transfer_available_balances) | **POST** /v1/positions/transfer_balances | Transfer available balance between a user&#39;s accounts (e.g. global to isolated position)
+*DefaultApi* | [**update_trading_challenge**](docs/DefaultApi.md#update_trading_challenge) | **PUT** /v1/trading_challenges/{trading_challenge_id} | Update a trading challenge
 *DefaultApi* | [**update_user_config**](docs/DefaultApi.md#update_user_config) | **PUT** /v1/user/{user_id}/config | Update user configuration by ID
 *DefaultApi* | [**update_user_config_self**](docs/DefaultApi.md#update_user_config_self) | **PUT** /v1/user/config/self | Update user configuration for the authenticated user
 *DefaultApi* | [**update_user_kyc**](docs/DefaultApi.md#update_user_kyc) | **POST** /v1/integrators/user/{user_id}/kyc | Set or clear a user&#39;s KYC completion timestamp
@@ -244,6 +252,7 @@ Class | Method | HTTP request | Description
  - [BalancesResponse](docs/BalancesResponse.md)
  - [Bond](docs/Bond.md)
  - [BondKind](docs/BondKind.md)
+ - [BondRunStatus](docs/BondRunStatus.md)
  - [CancelOrderResponseEnvelope](docs/CancelOrderResponseEnvelope.md)
  - [Candle](docs/Candle.md)
  - [CandleResolution](docs/CandleResolution.md)
@@ -275,6 +284,7 @@ Class | Method | HTTP request | Description
  - [CreateOrderRequest](docs/CreateOrderRequest.md)
  - [CreateOrderResponseEnvelope](docs/CreateOrderResponseEnvelope.md)
  - [CreateTradingChallengeRequest](docs/CreateTradingChallengeRequest.md)
+ - [CreditRating](docs/CreditRating.md)
  - [CurrentLeverageAccruedInterest](docs/CurrentLeverageAccruedInterest.md)
  - [CurrentLeverageAccruedInterestResponseEnvelope](docs/CurrentLeverageAccruedInterestResponseEnvelope.md)
  - [DefundUserRequest](docs/DefundUserRequest.md)
@@ -383,6 +393,7 @@ Class | Method | HTTP request | Description
  - [RepayUSDResult](docs/RepayUSDResult.md)
  - [ResponseEnvelope](docs/ResponseEnvelope.md)
  - [ResponseEnvelopeOfListAssets](docs/ResponseEnvelopeOfListAssets.md)
+ - [ReviewTradingChallengeRegistrationRequest](docs/ReviewTradingChallengeRegistrationRequest.md)
  - [RevokeAPIKeyData](docs/RevokeAPIKeyData.md)
  - [RevokeAPIKeyResponseEnvelope](docs/RevokeAPIKeyResponseEnvelope.md)
  - [SettleLeverageAccruedInterest](docs/SettleLeverageAccruedInterest.md)
@@ -406,6 +417,8 @@ Class | Method | HTTP request | Description
  - [SupplyRequest](docs/SupplyRequest.md)
  - [SupplyResponseEnvelope](docs/SupplyResponseEnvelope.md)
  - [TenantRestrictions](docs/TenantRestrictions.md)
+ - [TerminateTradingChallengeResponse](docs/TerminateTradingChallengeResponse.md)
+ - [TerminateTradingChallengeResponseEnvelope](docs/TerminateTradingChallengeResponseEnvelope.md)
  - [Trade](docs/Trade.md)
  - [TradeRequestError](docs/TradeRequestError.md)
  - [TradeResponseEnvelope](docs/TradeResponseEnvelope.md)
@@ -413,6 +426,9 @@ Class | Method | HTTP request | Description
  - [TradingChallengeDailySnapshot](docs/TradingChallengeDailySnapshot.md)
  - [TradingChallengeDailySnapshotsResponseEnvelope](docs/TradingChallengeDailySnapshotsResponseEnvelope.md)
  - [TradingChallengeListResponseEnvelope](docs/TradingChallengeListResponseEnvelope.md)
+ - [TradingChallengeRegistrationRequest](docs/TradingChallengeRegistrationRequest.md)
+ - [TradingChallengeRegistrationRequestListResponseEnvelope](docs/TradingChallengeRegistrationRequestListResponseEnvelope.md)
+ - [TradingChallengeRegistrationRequestResponseEnvelope](docs/TradingChallengeRegistrationRequestResponseEnvelope.md)
  - [TradingChallengeResponseEnvelope](docs/TradingChallengeResponseEnvelope.md)
  - [TradingChallengeResult](docs/TradingChallengeResult.md)
  - [TradingChallengeResultsResponseEnvelope](docs/TradingChallengeResultsResponseEnvelope.md)
@@ -438,8 +454,12 @@ Class | Method | HTTP request | Description
  - [UnitePositionResponseEnvelope](docs/UnitePositionResponseEnvelope.md)
  - [UnitedPosition](docs/UnitedPosition.md)
  - [UpdateFieldBoolean](docs/UpdateFieldBoolean.md)
+ - [UpdateFieldDateTime](docs/UpdateFieldDateTime.md)
+ - [UpdateFieldDecimal](docs/UpdateFieldDecimal.md)
+ - [UpdateFieldInteger](docs/UpdateFieldInteger.md)
  - [UpdateFieldString](docs/UpdateFieldString.md)
  - [UpdateRolesString](docs/UpdateRolesString.md)
+ - [UpdateTradingChallengeRequest](docs/UpdateTradingChallengeRequest.md)
  - [UpdateUserConfigRequest](docs/UpdateUserConfigRequest.md)
  - [UpdateUserKYCRequest](docs/UpdateUserKYCRequest.md)
  - [UpdateUserKYCResponse](docs/UpdateUserKYCResponse.md)
@@ -452,6 +472,9 @@ Class | Method | HTTP request | Description
  - [UserCouponPaymentAssetSummary](docs/UserCouponPaymentAssetSummary.md)
  - [UserCouponPaymentsResponseData](docs/UserCouponPaymentsResponseData.md)
  - [UserCreatedResponseEnvelope](docs/UserCreatedResponseEnvelope.md)
+ - [UserDeactivation](docs/UserDeactivation.md)
+ - [UserDeactivationListResponseEnvelope](docs/UserDeactivationListResponseEnvelope.md)
+ - [UserDeactivationResponseEnvelope](docs/UserDeactivationResponseEnvelope.md)
  - [UserDeletedResponseEnvelope](docs/UserDeletedResponseEnvelope.md)
  - [UserEnvelope](docs/UserEnvelope.md)
  - [UserExistsResponse](docs/UserExistsResponse.md)

@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **provider** | **str** |  | [optional] 
 **provider_id** | **UUID** |  | [optional] 
 **roles** | [**List[UserRole]**](UserRole.md) |  | 
+**managed_competition_ids** | **List[UUID]** | Competition IDs this user is explicitly allowed to manage when they have COMPETITION_MANAGER role. Empty means no competition-management access. | [optional] 
 **timezone** | **str** | User&#39;s timezone, e.g., &#39;America/New_York&#39;, or an offset. | [optional] 
 **timezone_offset** | **int** | timezone offset in seconds | [optional] 
 **verified_at** | **datetime** |  | [optional] 

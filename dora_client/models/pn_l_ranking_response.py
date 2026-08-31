@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List
 from uuid import UUID
 from typing import Optional, Set
@@ -31,11 +31,17 @@ class PnLRankingResponse(BaseModel):
     user_id: UUID
     first_name: StrictStr
     total_pnl: StrictStr
+    realized_pnl: StrictStr = Field(description="Cumulative realized PnL across the user's full trading lifetime.")
     total_trades: StrictInt
     winning_trades: StrictInt
     losing_trades: StrictInt
     win_rate: StrictStr
-    __properties: ClassVar[List[str]] = ["user_id", "first_name", "total_pnl", "total_trades", "winning_trades", "losing_trades", "win_rate"]
+    daily_trading_volume: StrictStr = Field(description="Executed trading volume for the current UTC day.")
+    total_trading_volume: StrictStr = Field(description="Cumulative executed trading volume across all UTC trading days.")
+    active_trading_days: StrictInt = Field(description="Number of distinct UTC days on which the user has at least one executed fill.")
+    activated: StrictBool = Field(description="True once the user has traded on at least 5 distinct UTC days.")
+    kyc_approved: StrictBool = Field(description="Whether the user is currently considered KYC/verification approved.")
+    __properties: ClassVar[List[str]] = ["user_id", "first_name", "total_pnl", "realized_pnl", "total_trades", "winning_trades", "losing_trades", "win_rate", "daily_trading_volume", "total_trading_volume", "active_trading_days", "activated", "kyc_approved"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -91,10 +97,16 @@ class PnLRankingResponse(BaseModel):
             "user_id": obj.get("user_id"),
             "first_name": obj.get("first_name"),
             "total_pnl": obj.get("total_pnl"),
+            "realized_pnl": obj.get("realized_pnl"),
             "total_trades": obj.get("total_trades"),
             "winning_trades": obj.get("winning_trades"),
             "losing_trades": obj.get("losing_trades"),
-            "win_rate": obj.get("win_rate")
+            "win_rate": obj.get("win_rate"),
+            "daily_trading_volume": obj.get("daily_trading_volume"),
+            "total_trading_volume": obj.get("total_trading_volume"),
+            "active_trading_days": obj.get("active_trading_days"),
+            "activated": obj.get("activated"),
+            "kyc_approved": obj.get("kyc_approved")
         })
         return _obj
 

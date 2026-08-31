@@ -53,6 +53,7 @@ __all__ = [
     "BalancesResponse",
     "Bond",
     "BondKind",
+    "BondRunStatus",
     "CancelOrderResponseEnvelope",
     "Candle",
     "CandleResolution",
@@ -84,6 +85,7 @@ __all__ = [
     "CreateOrderRequest",
     "CreateOrderResponseEnvelope",
     "CreateTradingChallengeRequest",
+    "CreditRating",
     "CurrentLeverageAccruedInterest",
     "CurrentLeverageAccruedInterestResponseEnvelope",
     "DefundUserRequest",
@@ -192,6 +194,7 @@ __all__ = [
     "RepayUSDResult",
     "ResponseEnvelope",
     "ResponseEnvelopeOfListAssets",
+    "ReviewTradingChallengeRegistrationRequest",
     "RevokeAPIKeyData",
     "RevokeAPIKeyResponseEnvelope",
     "SettleLeverageAccruedInterest",
@@ -215,6 +218,8 @@ __all__ = [
     "SupplyRequest",
     "SupplyResponseEnvelope",
     "TenantRestrictions",
+    "TerminateTradingChallengeResponse",
+    "TerminateTradingChallengeResponseEnvelope",
     "Trade",
     "TradeRequestError",
     "TradeResponseEnvelope",
@@ -222,6 +227,9 @@ __all__ = [
     "TradingChallengeDailySnapshot",
     "TradingChallengeDailySnapshotsResponseEnvelope",
     "TradingChallengeListResponseEnvelope",
+    "TradingChallengeRegistrationRequest",
+    "TradingChallengeRegistrationRequestListResponseEnvelope",
+    "TradingChallengeRegistrationRequestResponseEnvelope",
     "TradingChallengeResponseEnvelope",
     "TradingChallengeResult",
     "TradingChallengeResultsResponseEnvelope",
@@ -247,8 +255,12 @@ __all__ = [
     "UnitePositionResponseEnvelope",
     "UnitedPosition",
     "UpdateFieldBoolean",
+    "UpdateFieldDateTime",
+    "UpdateFieldDecimal",
+    "UpdateFieldInteger",
     "UpdateFieldString",
     "UpdateRolesString",
+    "UpdateTradingChallengeRequest",
     "UpdateUserConfigRequest",
     "UpdateUserKYCRequest",
     "UpdateUserKYCResponse",
@@ -261,6 +273,9 @@ __all__ = [
     "UserCouponPaymentAssetSummary",
     "UserCouponPaymentsResponseData",
     "UserCreatedResponseEnvelope",
+    "UserDeactivation",
+    "UserDeactivationListResponseEnvelope",
+    "UserDeactivationResponseEnvelope",
     "UserDeletedResponseEnvelope",
     "UserEnvelope",
     "UserExistsResponse",
@@ -323,6 +338,7 @@ from dora_client.models.balance_transfer import BalanceTransfer as BalanceTransf
 from dora_client.models.balances_response import BalancesResponse as BalancesResponse
 from dora_client.models.bond import Bond as Bond
 from dora_client.models.bond_kind import BondKind as BondKind
+from dora_client.models.bond_run_status import BondRunStatus as BondRunStatus
 from dora_client.models.cancel_order_response_envelope import CancelOrderResponseEnvelope as CancelOrderResponseEnvelope
 from dora_client.models.candle import Candle as Candle
 from dora_client.models.candle_resolution import CandleResolution as CandleResolution
@@ -354,6 +370,7 @@ from dora_client.models.create_or_update_user_response import CreateOrUpdateUser
 from dora_client.models.create_order_request import CreateOrderRequest as CreateOrderRequest
 from dora_client.models.create_order_response_envelope import CreateOrderResponseEnvelope as CreateOrderResponseEnvelope
 from dora_client.models.create_trading_challenge_request import CreateTradingChallengeRequest as CreateTradingChallengeRequest
+from dora_client.models.credit_rating import CreditRating as CreditRating
 from dora_client.models.current_leverage_accrued_interest import CurrentLeverageAccruedInterest as CurrentLeverageAccruedInterest
 from dora_client.models.current_leverage_accrued_interest_response_envelope import CurrentLeverageAccruedInterestResponseEnvelope as CurrentLeverageAccruedInterestResponseEnvelope
 from dora_client.models.defund_user_request import DefundUserRequest as DefundUserRequest
@@ -462,6 +479,7 @@ from dora_client.models.repay_usd_response_envelope import RepayUSDResponseEnvel
 from dora_client.models.repay_usd_result import RepayUSDResult as RepayUSDResult
 from dora_client.models.response_envelope import ResponseEnvelope as ResponseEnvelope
 from dora_client.models.response_envelope_of_list_assets import ResponseEnvelopeOfListAssets as ResponseEnvelopeOfListAssets
+from dora_client.models.review_trading_challenge_registration_request import ReviewTradingChallengeRegistrationRequest as ReviewTradingChallengeRegistrationRequest
 from dora_client.models.revoke_api_key_data import RevokeAPIKeyData as RevokeAPIKeyData
 from dora_client.models.revoke_api_key_response_envelope import RevokeAPIKeyResponseEnvelope as RevokeAPIKeyResponseEnvelope
 from dora_client.models.settle_leverage_accrued_interest import SettleLeverageAccruedInterest as SettleLeverageAccruedInterest
@@ -485,6 +503,8 @@ from dora_client.models.supply import Supply as Supply
 from dora_client.models.supply_request import SupplyRequest as SupplyRequest
 from dora_client.models.supply_response_envelope import SupplyResponseEnvelope as SupplyResponseEnvelope
 from dora_client.models.tenant_restrictions import TenantRestrictions as TenantRestrictions
+from dora_client.models.terminate_trading_challenge_response import TerminateTradingChallengeResponse as TerminateTradingChallengeResponse
+from dora_client.models.terminate_trading_challenge_response_envelope import TerminateTradingChallengeResponseEnvelope as TerminateTradingChallengeResponseEnvelope
 from dora_client.models.trade import Trade as Trade
 from dora_client.models.trade_request_error import TradeRequestError as TradeRequestError
 from dora_client.models.trade_response_envelope import TradeResponseEnvelope as TradeResponseEnvelope
@@ -492,6 +512,9 @@ from dora_client.models.trading_challenge import TradingChallenge as TradingChal
 from dora_client.models.trading_challenge_daily_snapshot import TradingChallengeDailySnapshot as TradingChallengeDailySnapshot
 from dora_client.models.trading_challenge_daily_snapshots_response_envelope import TradingChallengeDailySnapshotsResponseEnvelope as TradingChallengeDailySnapshotsResponseEnvelope
 from dora_client.models.trading_challenge_list_response_envelope import TradingChallengeListResponseEnvelope as TradingChallengeListResponseEnvelope
+from dora_client.models.trading_challenge_registration_request import TradingChallengeRegistrationRequest as TradingChallengeRegistrationRequest
+from dora_client.models.trading_challenge_registration_request_list_response_envelope import TradingChallengeRegistrationRequestListResponseEnvelope as TradingChallengeRegistrationRequestListResponseEnvelope
+from dora_client.models.trading_challenge_registration_request_response_envelope import TradingChallengeRegistrationRequestResponseEnvelope as TradingChallengeRegistrationRequestResponseEnvelope
 from dora_client.models.trading_challenge_response_envelope import TradingChallengeResponseEnvelope as TradingChallengeResponseEnvelope
 from dora_client.models.trading_challenge_result import TradingChallengeResult as TradingChallengeResult
 from dora_client.models.trading_challenge_results_response_envelope import TradingChallengeResultsResponseEnvelope as TradingChallengeResultsResponseEnvelope
@@ -517,8 +540,12 @@ from dora_client.models.unite_position_request import UnitePositionRequest as Un
 from dora_client.models.unite_position_response_envelope import UnitePositionResponseEnvelope as UnitePositionResponseEnvelope
 from dora_client.models.united_position import UnitedPosition as UnitedPosition
 from dora_client.models.update_field_boolean import UpdateFieldBoolean as UpdateFieldBoolean
+from dora_client.models.update_field_date_time import UpdateFieldDateTime as UpdateFieldDateTime
+from dora_client.models.update_field_decimal import UpdateFieldDecimal as UpdateFieldDecimal
+from dora_client.models.update_field_integer import UpdateFieldInteger as UpdateFieldInteger
 from dora_client.models.update_field_string import UpdateFieldString as UpdateFieldString
 from dora_client.models.update_roles_string import UpdateRolesString as UpdateRolesString
+from dora_client.models.update_trading_challenge_request import UpdateTradingChallengeRequest as UpdateTradingChallengeRequest
 from dora_client.models.update_user_config_request import UpdateUserConfigRequest as UpdateUserConfigRequest
 from dora_client.models.update_user_kyc_request import UpdateUserKYCRequest as UpdateUserKYCRequest
 from dora_client.models.update_user_kyc_response import UpdateUserKYCResponse as UpdateUserKYCResponse
@@ -531,6 +558,9 @@ from dora_client.models.user_coupon_payment import UserCouponPayment as UserCoup
 from dora_client.models.user_coupon_payment_asset_summary import UserCouponPaymentAssetSummary as UserCouponPaymentAssetSummary
 from dora_client.models.user_coupon_payments_response_data import UserCouponPaymentsResponseData as UserCouponPaymentsResponseData
 from dora_client.models.user_created_response_envelope import UserCreatedResponseEnvelope as UserCreatedResponseEnvelope
+from dora_client.models.user_deactivation import UserDeactivation as UserDeactivation
+from dora_client.models.user_deactivation_list_response_envelope import UserDeactivationListResponseEnvelope as UserDeactivationListResponseEnvelope
+from dora_client.models.user_deactivation_response_envelope import UserDeactivationResponseEnvelope as UserDeactivationResponseEnvelope
 from dora_client.models.user_deleted_response_envelope import UserDeletedResponseEnvelope as UserDeletedResponseEnvelope
 from dora_client.models.user_envelope import UserEnvelope as UserEnvelope
 from dora_client.models.user_exists_response import UserExistsResponse as UserExistsResponse

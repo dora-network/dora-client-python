@@ -38,20 +38,32 @@ class TestPnLRankingResponse(unittest.TestCase):
                 user_id = '',
                 first_name = '',
                 total_pnl = '',
+                realized_pnl = '',
                 total_trades = 56,
                 winning_trades = 56,
                 losing_trades = 56,
-                win_rate = ''
+                win_rate = '',
+                daily_trading_volume = '',
+                total_trading_volume = '',
+                active_trading_days = 56,
+                activated = True,
+                kyc_approved = True
             )
         else:
             return PnLRankingResponse(
                 user_id = '',
                 first_name = '',
                 total_pnl = '',
+                realized_pnl = '',
                 total_trades = 56,
                 winning_trades = 56,
                 losing_trades = 56,
                 win_rate = '',
+                daily_trading_volume = '',
+                total_trading_volume = '',
+                active_trading_days = 56,
+                activated = True,
+                kyc_approved = True,
         )
         """
 

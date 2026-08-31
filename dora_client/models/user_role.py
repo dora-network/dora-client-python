@@ -33,6 +33,8 @@ class UserRole(str, Enum):
     LIQUIDITY_PROVIDER = 'LIQUIDITY_PROVIDER'
     TRADER = 'TRADER'
     INTEGRATOR = 'INTEGRATOR'
+    INDEXER = 'INDEXER'
+    COMPETITION_MANAGER = 'COMPETITION_MANAGER'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

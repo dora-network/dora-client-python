@@ -39,6 +39,7 @@ class CreateIntegratorUserRequest(BaseModel):
     provider: Optional[StrictStr] = None
     provider_id: Optional[UUID] = None
     timezone: Optional[StrictStr] = None
+    challenge_id: Optional[UUID] = Field(default=None, description="Optional: sign the new user up for this trading challenge. This creates a PENDING registration request that an admin, the tenant's integrator or one of the challenge's managers must approve before the user is actually enrolled. The challenge must belong to the new user's tenant and still be open for entries, otherwise the whole sign-up fails.")
     __properties: ClassVar[List[str]] = []
 
     model_config = ConfigDict(

@@ -19,6 +19,7 @@ Name | Type | Description | Notes
 **status** | **str** |  | [optional] 
 **crown** | **str** |  | [optional] 
 **created_at** | **datetime** |  | [optional] 
+**deactivation_status** | **str** |  | [optional] 
 **current_day_daily_volume** | **str** |  | [optional] 
 **current_day_daily_pnl** | **str** |  | [optional] 
 **current_day_trading_date** | **date** |  | [optional] 

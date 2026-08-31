@@ -51,6 +51,16 @@
 
 * `INTERNAL_TRANSFER` (value: `'INTERNAL_TRANSFER'`)
 
+* `ISOLATE_AVAILABLE` (value: `'ISOLATE_AVAILABLE'`)
+
+* `BORROW` (value: `'BORROW'`)
+
+* `TRADING_CHALLENGE_DEPOSIT` (value: `'TRADING_CHALLENGE_DEPOSIT'`)
+
+* `TRADING_CHALLENGE_WITHDRAW` (value: `'TRADING_CHALLENGE_WITHDRAW'`)
+
+* `TRADING_FEE` (value: `'TRADING_FEE'`)
+
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

@@ -44,7 +44,8 @@ class TestCreateIntegratorUserRequest(unittest.TestCase):
                 photo_url = '',
                 provider = '',
                 provider_id = '',
-                timezone = ''
+                timezone = '',
+                challenge_id = ''
             )
         else:
             return CreateIntegratorUserRequest(
