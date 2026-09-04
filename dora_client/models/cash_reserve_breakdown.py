@@ -29,7 +29,7 @@ class CashReserveBreakdown(BaseModel):
     """ # noqa: E501
     completed_pac: StrictStr = Field(description="Completed PAC (partially accrued coupon) obligations the user owes, in USD.")
     outstanding_lai: StrictStr = Field(description="Outstanding LAI (leverage accrued interest) the user owes, in USD.")
-    estimated_fees: StrictStr = Field(description="Estimated trading fees for the current settlement period, capped at a configured fraction (1% by default) of the user's traded USD volume since 00:00:00 UTC.")
+    estimated_fees: StrictStr = Field(description="Estimated trading fees for the current settlement period, capped at a configured fraction (1% by default) of the user's traded USD volume since 00:00:00 UTC plus the USD notional their open orders are still going to trade.")
     borrowed_portion: StrictStr = Field(description="Configured fraction (10% by default) of the user's total outstanding borrowed value, in USD.")
     floor: StrictStr = Field(description="Configured absolute minimum requirement, in USD.")
     total: StrictStr = Field(description="The amount of USD the user must keep available in their Global Account.")

@@ -19,20 +19,20 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from typing_extensions import Annotated
-from uuid import UUID
+from dora_client.models.fee_quote_response import FeeQuoteResponse
+from dora_client.models.metadata import Metadata
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
 
-class AddTradingChallengeUsersRequest(BaseModel):
+class FeeQuoteResponseEnvelope(BaseModel):
     """
-    AddTradingChallengeUsersRequest
+    FeeQuoteResponseEnvelope
     """ # noqa: E501
-    trading_challenge_id: UUID
-    users: Optional[Annotated[List[UUID], Field(min_length=1)]] = Field(default=None, description="List of user IDs to add. Provide exactly one of users or emails.")
-    emails: Optional[Annotated[List[StrictStr], Field(min_length=1)]] = Field(default=None, description="List of user emails to add. Provide exactly one of users or emails.")
-    __properties: ClassVar[List[str]] = []
+    data: Optional[FeeQuoteResponse] = None
+    error: Optional[StrictStr] = Field(default=None, description="The error message. Present for error (non-2xx) responses.")
+    metadata: Metadata = Field(description="Metadata about the response, including status code and trace information.")
+    __properties: ClassVar[List[str]] = ["data", "error", "metadata"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -52,7 +52,7 @@ class AddTradingChallengeUsersRequest(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of AddTradingChallengeUsersRequest from a JSON string"""
+        """Create an instance of FeeQuoteResponseEnvelope from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -73,11 +73,17 @@ class AddTradingChallengeUsersRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of data
+        if self.data:
+            _dict['data'] = self.data.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of metadata
+        if self.metadata:
+            _dict['metadata'] = self.metadata.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of AddTradingChallengeUsersRequest from a dict"""
+        """Create an instance of FeeQuoteResponseEnvelope from a dict"""
         if obj is None:
             return None
 
@@ -85,6 +91,9 @@ class AddTradingChallengeUsersRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "data": FeeQuoteResponse.from_dict(obj["data"]) if obj.get("data") is not None else None,
+            "error": obj.get("error"),
+            "metadata": Metadata.from_dict(obj["metadata"]) if obj.get("metadata") is not None else None
         })
         return _obj
 

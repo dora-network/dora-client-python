@@ -17,22 +17,25 @@ import pprint
 import re  # noqa: F401
 import json
 
+from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
-from typing_extensions import Annotated
-from uuid import UUID
+from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
 
-class AddTradingChallengeUsersRequest(BaseModel):
+class FeeQuoteResponse(BaseModel):
     """
-    AddTradingChallengeUsersRequest
+    The estimated network fee to withdraw USDC via web3, alongside a signed, TTL-bound quote token the client submits with a later withdrawal so the server can validate the fee it was quoted.
     """ # noqa: E501
-    trading_challenge_id: UUID
-    users: Optional[Annotated[List[UUID], Field(min_length=1)]] = Field(default=None, description="List of user IDs to add. Provide exactly one of users or emails.")
-    emails: Optional[Annotated[List[StrictStr], Field(min_length=1)]] = Field(default=None, description="List of user emails to add. Provide exactly one of users or emails.")
-    __properties: ClassVar[List[str]] = []
+    to: StrictStr = Field(description="The withdrawal destination address, echoed from the request.")
+    quantity: StrictStr = Field(description="Human-decimal USDC withdrawal quantity, echoed from the request.")
+    fee: StrictStr = Field(description="The estimated network fee, in human USDC.")
+    fee_base_units: StrictStr = Field(description="The estimated network fee, in micro-USDC base units.")
+    chain_id: StrictStr = Field(description="EVM chain ID the quote was computed for.")
+    quote_token: StrictStr = Field(description="Signed, TTL-bound quote token to submit with a later withdrawal so the server can validate the fee it was quoted.")
+    expires_at: datetime = Field(description="When the quote token expires.")
+    __properties: ClassVar[List[str]] = ["to", "quantity", "fee", "fee_base_units", "chain_id", "quote_token", "expires_at"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -52,7 +55,7 @@ class AddTradingChallengeUsersRequest(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of AddTradingChallengeUsersRequest from a JSON string"""
+        """Create an instance of FeeQuoteResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -77,7 +80,7 @@ class AddTradingChallengeUsersRequest(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of AddTradingChallengeUsersRequest from a dict"""
+        """Create an instance of FeeQuoteResponse from a dict"""
         if obj is None:
             return None
 
@@ -85,6 +88,13 @@ class AddTradingChallengeUsersRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "to": obj.get("to"),
+            "quantity": obj.get("quantity"),
+            "fee": obj.get("fee"),
+            "fee_base_units": obj.get("fee_base_units"),
+            "chain_id": obj.get("chain_id"),
+            "quote_token": obj.get("quote_token"),
+            "expires_at": obj.get("expires_at")
         })
         return _obj
 

@@ -38,14 +38,14 @@ class TestAddTradingChallengeUsersRequest(unittest.TestCase):
                 trading_challenge_id = '',
                 users = [
                     ''
+                    ],
+                emails = [
+                    ''
                     ]
             )
         else:
             return AddTradingChallengeUsersRequest(
                 trading_challenge_id = '',
-                users = [
-                    ''
-                    ],
         )
         """
 

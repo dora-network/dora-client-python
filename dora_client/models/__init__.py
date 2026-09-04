@@ -80,6 +80,8 @@ from dora_client.models.deposit_instruction_for_chain import DepositInstructionF
 from dora_client.models.deposit_instructions_response import DepositInstructionsResponse
 from dora_client.models.deposit_instructions_response_envelope import DepositInstructionsResponseEnvelope
 from dora_client.models.deposit_response import DepositResponse
+from dora_client.models.fee_quote_response import FeeQuoteResponse
+from dora_client.models.fee_quote_response_envelope import FeeQuoteResponseEnvelope
 from dora_client.models.fund_user import FundUser
 from dora_client.models.fund_user_request import FundUserRequest
 from dora_client.models.fund_user_response_envelope import FundUserResponseEnvelope

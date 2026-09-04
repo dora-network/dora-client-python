@@ -558,6 +558,13 @@ class TestDefaultApi(unittest.IsolatedAsyncioTestCase):
         """
         pass
 
+    async def test_get_withdrawal_fee_quote(self) -> None:
+        """Test case for get_withdrawal_fee_quote
+
+        Estimate the network fee to withdraw USDC via web3
+        """
+        pass
+
     async def test_ledger_deposit(self) -> None:
         """Test case for ledger_deposit
 

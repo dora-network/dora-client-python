@@ -95,6 +95,8 @@ __all__ = [
     "DepositInstructionsResponse",
     "DepositInstructionsResponseEnvelope",
     "DepositResponse",
+    "FeeQuoteResponse",
+    "FeeQuoteResponseEnvelope",
     "FundUser",
     "FundUserRequest",
     "FundUserResponseEnvelope",
@@ -380,6 +382,8 @@ from dora_client.models.deposit_instruction_for_chain import DepositInstructionF
 from dora_client.models.deposit_instructions_response import DepositInstructionsResponse as DepositInstructionsResponse
 from dora_client.models.deposit_instructions_response_envelope import DepositInstructionsResponseEnvelope as DepositInstructionsResponseEnvelope
 from dora_client.models.deposit_response import DepositResponse as DepositResponse
+from dora_client.models.fee_quote_response import FeeQuoteResponse as FeeQuoteResponse
+from dora_client.models.fee_quote_response_envelope import FeeQuoteResponseEnvelope as FeeQuoteResponseEnvelope
 from dora_client.models.fund_user import FundUser as FundUser
 from dora_client.models.fund_user_request import FundUserRequest as FundUserRequest
 from dora_client.models.fund_user_response_envelope import FundUserResponseEnvelope as FundUserResponseEnvelope

@@ -49,6 +49,7 @@ from dora_client.models.create_trading_challenge_request import CreateTradingCha
 from dora_client.models.current_leverage_accrued_interest_response_envelope import CurrentLeverageAccruedInterestResponseEnvelope
 from dora_client.models.defund_user_request import DefundUserRequest
 from dora_client.models.deposit_instructions_response_envelope import DepositInstructionsResponseEnvelope
+from dora_client.models.fee_quote_response_envelope import FeeQuoteResponseEnvelope
 from dora_client.models.fund_user_request import FundUserRequest
 from dora_client.models.fund_user_response_envelope import FundUserResponseEnvelope
 from dora_client.models.get_asset_by_id_response_envelope import GetAssetByIDResponseEnvelope
@@ -176,7 +177,7 @@ class DefaultApi:
     @validate_call
     async def add_trading_challenge_users(
         self,
-        add_trading_challenge_users_request: AddTradingChallengeUsersRequest,
+        add_trading_challenge_users_request: Optional[AddTradingChallengeUsersRequest],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -246,7 +247,7 @@ class DefaultApi:
     @validate_call
     async def add_trading_challenge_users_with_http_info(
         self,
-        add_trading_challenge_users_request: AddTradingChallengeUsersRequest,
+        add_trading_challenge_users_request: Optional[AddTradingChallengeUsersRequest],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -316,7 +317,7 @@ class DefaultApi:
     @validate_call
     async def add_trading_challenge_users_without_preload_content(
         self,
-        add_trading_challenge_users_request: AddTradingChallengeUsersRequest,
+        add_trading_challenge_users_request: Optional[AddTradingChallengeUsersRequest],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -21831,6 +21832,308 @@ class DefaultApi:
 
 
     @validate_call
+    async def get_withdrawal_fee_quote(
+        self,
+        to: Annotated[StrictStr, Field(description="The destination wallet address as a 0x-prefixed 20-byte hex string. Must not be the zero address.")],
+        quantity: Annotated[StrictStr, Field(description="Human-decimal USDC quantity to withdraw, e.g. '100.50'. Must be positive.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> FeeQuoteResponseEnvelope:
+        """Estimate the network fee to withdraw USDC via web3
+
+        Examines on-chain conditions and simulates a withdrawal transaction to estimate the fee a user needs to pay when they make their withdrawal request. Restricted to DORA tenant users whose native asset is USDC.
+
+        :param to: The destination wallet address as a 0x-prefixed 20-byte hex string. Must not be the zero address. (required)
+        :type to: str
+        :param quantity: Human-decimal USDC quantity to withdraw, e.g. '100.50'. Must be positive. (required)
+        :type quantity: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_withdrawal_fee_quote_serialize(
+            to=to,
+            quantity=quantity,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "FeeQuoteResponseEnvelope",
+            '400': "ResponseEnvelope",
+            '401': "ResponseEnvelope",
+            '403': "ResponseEnvelope",
+            '429': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+            '502': "ResponseEnvelope",
+            '503': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    async def get_withdrawal_fee_quote_with_http_info(
+        self,
+        to: Annotated[StrictStr, Field(description="The destination wallet address as a 0x-prefixed 20-byte hex string. Must not be the zero address.")],
+        quantity: Annotated[StrictStr, Field(description="Human-decimal USDC quantity to withdraw, e.g. '100.50'. Must be positive.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[FeeQuoteResponseEnvelope]:
+        """Estimate the network fee to withdraw USDC via web3
+
+        Examines on-chain conditions and simulates a withdrawal transaction to estimate the fee a user needs to pay when they make their withdrawal request. Restricted to DORA tenant users whose native asset is USDC.
+
+        :param to: The destination wallet address as a 0x-prefixed 20-byte hex string. Must not be the zero address. (required)
+        :type to: str
+        :param quantity: Human-decimal USDC quantity to withdraw, e.g. '100.50'. Must be positive. (required)
+        :type quantity: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_withdrawal_fee_quote_serialize(
+            to=to,
+            quantity=quantity,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "FeeQuoteResponseEnvelope",
+            '400': "ResponseEnvelope",
+            '401': "ResponseEnvelope",
+            '403': "ResponseEnvelope",
+            '429': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+            '502': "ResponseEnvelope",
+            '503': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    async def get_withdrawal_fee_quote_without_preload_content(
+        self,
+        to: Annotated[StrictStr, Field(description="The destination wallet address as a 0x-prefixed 20-byte hex string. Must not be the zero address.")],
+        quantity: Annotated[StrictStr, Field(description="Human-decimal USDC quantity to withdraw, e.g. '100.50'. Must be positive.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Estimate the network fee to withdraw USDC via web3
+
+        Examines on-chain conditions and simulates a withdrawal transaction to estimate the fee a user needs to pay when they make their withdrawal request. Restricted to DORA tenant users whose native asset is USDC.
+
+        :param to: The destination wallet address as a 0x-prefixed 20-byte hex string. Must not be the zero address. (required)
+        :type to: str
+        :param quantity: Human-decimal USDC quantity to withdraw, e.g. '100.50'. Must be positive. (required)
+        :type quantity: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_withdrawal_fee_quote_serialize(
+            to=to,
+            quantity=quantity,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "FeeQuoteResponseEnvelope",
+            '400': "ResponseEnvelope",
+            '401': "ResponseEnvelope",
+            '403': "ResponseEnvelope",
+            '429': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+            '502': "ResponseEnvelope",
+            '503': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_withdrawal_fee_quote_serialize(
+        self,
+        to,
+        quantity,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        if to is not None:
+            
+            _query_params.append(('to', to))
+            
+        if quantity is not None:
+            
+            _query_params.append(('quantity', quantity))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyAuthHeader', 
+            'bearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/v1/web3/withdrawals/fee-quote',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     async def ledger_deposit(
         self,
         user_id: UUID,
@@ -29698,7 +30001,7 @@ class DefaultApi:
     @validate_call
     async def remove_trading_challenge_users(
         self,
-        remove_trading_challenge_users_request: RemoveTradingChallengeUsersRequest,
+        remove_trading_challenge_users_request: Optional[RemoveTradingChallengeUsersRequest],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -29768,7 +30071,7 @@ class DefaultApi:
     @validate_call
     async def remove_trading_challenge_users_with_http_info(
         self,
-        remove_trading_challenge_users_request: RemoveTradingChallengeUsersRequest,
+        remove_trading_challenge_users_request: Optional[RemoveTradingChallengeUsersRequest],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -29838,7 +30141,7 @@ class DefaultApi:
     @validate_call
     async def remove_trading_challenge_users_without_preload_content(
         self,
-        remove_trading_challenge_users_request: RemoveTradingChallengeUsersRequest,
+        remove_trading_challenge_users_request: Optional[RemoveTradingChallengeUsersRequest],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],

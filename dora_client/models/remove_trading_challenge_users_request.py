@@ -17,8 +17,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict
-from typing import Any, ClassVar, Dict, List
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
 from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
@@ -29,8 +30,9 @@ class RemoveTradingChallengeUsersRequest(BaseModel):
     RemoveTradingChallengeUsersRequest
     """ # noqa: E501
     trading_challenge_id: UUID
-    users: List[UUID]
-    __properties: ClassVar[List[str]] = ["trading_challenge_id", "users"]
+    users: Optional[Annotated[List[UUID], Field(min_length=1)]] = Field(default=None, description="List of user IDs to remove. Provide exactly one of users or emails.")
+    emails: Optional[Annotated[List[StrictStr], Field(min_length=1)]] = Field(default=None, description="List of user emails to remove. Provide exactly one of users or emails.")
+    __properties: ClassVar[List[str]] = []
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -83,8 +85,6 @@ class RemoveTradingChallengeUsersRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "trading_challenge_id": obj.get("trading_challenge_id"),
-            "users": obj.get("users")
         })
         return _obj
 

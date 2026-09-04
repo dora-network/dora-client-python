@@ -40,6 +40,8 @@ class TestCashReserveResponse(unittest.TestCase):
                 committed_usd = '',
                 required_usd = '',
                 satisfied = True,
+                max_volume_usd = '',
+                max_borrow_usd = '',
                 breakdown = dora_client.models.cash_reserve_breakdown.CashReserveBreakdown(
                     completed_pac = '', 
                     outstanding_lai = '', 
@@ -55,6 +57,8 @@ class TestCashReserveResponse(unittest.TestCase):
                 committed_usd = '',
                 required_usd = '',
                 satisfied = True,
+                max_volume_usd = '',
+                max_borrow_usd = '',
                 breakdown = dora_client.models.cash_reserve_breakdown.CashReserveBreakdown(
                     completed_pac = '', 
                     outstanding_lai = '', 

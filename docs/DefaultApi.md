@@ -80,6 +80,7 @@ Method | HTTP request | Description
 [**get_user_transactions_stream**](DefaultApi.md#get_user_transactions_stream) | **GET** /v1/user/{user_id}/transactions/stream | Get a snapshot of user&#39;s executed transactions since a specific time, and opens a stream for further updates
 [**get_users**](DefaultApi.md#get_users) | **GET** /v1/user | Get all users (admin only)
 [**get_users_api_keys**](DefaultApi.md#get_users_api_keys) | **GET** /v1/user/apikey | Get user&#39;s api keys
+[**get_withdrawal_fee_quote**](DefaultApi.md#get_withdrawal_fee_quote) | **GET** /v1/web3/withdrawals/fee-quote | Estimate the network fee to withdraw USDC via web3
 [**ledger_deposit**](DefaultApi.md#ledger_deposit) | **POST** /v1/ledger/deposit/{user_id} | Deposit assets into this user&#39;s account from the outside world
 [**ledger_withdraw**](DefaultApi.md#ledger_withdraw) | **POST** /v1/ledger/withdraw/{user_id} | Withdraw assets from this user to the outside world
 [**ledger_withdraw_request**](DefaultApi.md#ledger_withdraw_request) | **POST** /v1/ledger/withdraw/requests/{user_id} | Initiate a withdrawal request for this user to the outside world
@@ -6467,6 +6468,100 @@ This endpoint does not need any parameter.
 **200** | A list of existing api-keys |  -  |
 **400** | Bad request, e.g. invalid path parameters |  -  |
 **500** | Internal server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_withdrawal_fee_quote**
+> FeeQuoteResponseEnvelope get_withdrawal_fee_quote(to, quantity)
+
+Estimate the network fee to withdraw USDC via web3
+
+Examines on-chain conditions and simulates a withdrawal transaction to estimate the fee a user needs to pay when they make their withdrawal request. Restricted to DORA tenant users whose native asset is USDC.
+
+### Example
+
+* Api Key Authentication (apiKeyAuthHeader):
+* Bearer (JWT) Authentication (bearerAuth):
+
+```python
+import dora_client
+from dora_client.models.fee_quote_response_envelope import FeeQuoteResponseEnvelope
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging.dora.co
+# See configuration.py for a list of all supported configuration parameters.
+configuration = dora_client.Configuration(
+    host = "https://staging.dora.co"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration.api_key['apiKeyAuthHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyAuthHeader'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = dora_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+async with dora_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = dora_client.DefaultApi(api_client)
+    to = 'to_example' # str | The destination wallet address as a 0x-prefixed 20-byte hex string. Must not be the zero address.
+    quantity = 'quantity_example' # str | Human-decimal USDC quantity to withdraw, e.g. '100.50'. Must be positive.
+
+    try:
+        # Estimate the network fee to withdraw USDC via web3
+        api_response = await api_instance.get_withdrawal_fee_quote(to, quantity)
+        print("The response of DefaultApi->get_withdrawal_fee_quote:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->get_withdrawal_fee_quote: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **to** | **str**| The destination wallet address as a 0x-prefixed 20-byte hex string. Must not be the zero address. | 
+ **quantity** | **str**| Human-decimal USDC quantity to withdraw, e.g. &#39;100.50&#39;. Must be positive. | 
+
+### Return type
+
+[**FeeQuoteResponseEnvelope**](FeeQuoteResponseEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Fee quote for the requested withdrawal |  -  |
+**400** | Bad request, e.g. invalid or missing to address, or invalid or non-positive quantity |  -  |
+**401** | Unauthorized, user not logged in |  -  |
+**403** | Forbidden: access is restricted to DORA tenant users whose native asset is USDC. Admin and indexer API keys have no native asset and are also denied. |  -  |
+**429** | Rate limit exceeded; this endpoint is limited to 1 request per minute per user |  -  |
+**500** | Internal server error |  -  |
+**502** | Bad gateway, e.g. the withdrawal simulation reverted (insufficient vault liquidity, paused vault) or the web3 data provider (gas estimation or price feed) failed |  -  |
+**503** | Service unavailable: this deployment is not configured to handle web3 withdrawals. The fee quote handler could not be wired up at startup (e.g. missing web3 data provider or quote signing configuration), so the route exists but always reports this error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

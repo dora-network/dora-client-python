@@ -71,6 +71,8 @@ docs/DepositInstructionForChain.md
 docs/DepositInstructionsResponse.md
 docs/DepositInstructionsResponseEnvelope.md
 docs/DepositResponse.md
+docs/FeeQuoteResponse.md
+docs/FeeQuoteResponseEnvelope.md
 docs/FundUser.md
 docs/FundUserRequest.md
 docs/FundUserResponseEnvelope.md
@@ -347,6 +349,8 @@ dora_client/models/deposit_instruction_for_chain.py
 dora_client/models/deposit_instructions_response.py
 dora_client/models/deposit_instructions_response_envelope.py
 dora_client/models/deposit_response.py
+dora_client/models/fee_quote_response.py
+dora_client/models/fee_quote_response_envelope.py
 dora_client/models/fund_user.py
 dora_client/models/fund_user_request.py
 dora_client/models/fund_user_response_envelope.py
@@ -625,6 +629,8 @@ test/test_deposit_instruction_for_chain.py
 test/test_deposit_instructions_response.py
 test/test_deposit_instructions_response_envelope.py
 test/test_deposit_response.py
+test/test_fee_quote_response.py
+test/test_fee_quote_response_envelope.py
 test/test_fund_user.py
 test/test_fund_user_request.py
 test/test_fund_user_response_envelope.py

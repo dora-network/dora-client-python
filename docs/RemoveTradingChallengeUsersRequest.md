@@ -6,7 +6,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **trading_challenge_id** | **UUID** |  | 
-**users** | **List[UUID]** |  | 
+**users** | **List[UUID]** | List of user IDs to remove. Provide exactly one of users or emails. | [optional] 
+**emails** | **List[str]** | List of user emails to remove. Provide exactly one of users or emails. | [optional] 
 
 ## Example
 

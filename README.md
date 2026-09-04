@@ -176,6 +176,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**get_user_transactions_stream**](docs/DefaultApi.md#get_user_transactions_stream) | **GET** /v1/user/{user_id}/transactions/stream | Get a snapshot of user&#39;s executed transactions since a specific time, and opens a stream for further updates
 *DefaultApi* | [**get_users**](docs/DefaultApi.md#get_users) | **GET** /v1/user | Get all users (admin only)
 *DefaultApi* | [**get_users_api_keys**](docs/DefaultApi.md#get_users_api_keys) | **GET** /v1/user/apikey | Get user&#39;s api keys
+*DefaultApi* | [**get_withdrawal_fee_quote**](docs/DefaultApi.md#get_withdrawal_fee_quote) | **GET** /v1/web3/withdrawals/fee-quote | Estimate the network fee to withdraw USDC via web3
 *DefaultApi* | [**ledger_deposit**](docs/DefaultApi.md#ledger_deposit) | **POST** /v1/ledger/deposit/{user_id} | Deposit assets into this user&#39;s account from the outside world
 *DefaultApi* | [**ledger_withdraw**](docs/DefaultApi.md#ledger_withdraw) | **POST** /v1/ledger/withdraw/{user_id} | Withdraw assets from this user to the outside world
 *DefaultApi* | [**ledger_withdraw_request**](docs/DefaultApi.md#ledger_withdraw_request) | **POST** /v1/ledger/withdraw/requests/{user_id} | Initiate a withdrawal request for this user to the outside world
@@ -294,6 +295,8 @@ Class | Method | HTTP request | Description
  - [DepositInstructionsResponse](docs/DepositInstructionsResponse.md)
  - [DepositInstructionsResponseEnvelope](docs/DepositInstructionsResponseEnvelope.md)
  - [DepositResponse](docs/DepositResponse.md)
+ - [FeeQuoteResponse](docs/FeeQuoteResponse.md)
+ - [FeeQuoteResponseEnvelope](docs/FeeQuoteResponseEnvelope.md)
  - [FundUser](docs/FundUser.md)
  - [FundUserRequest](docs/FundUserRequest.md)
  - [FundUserResponseEnvelope](docs/FundUserResponseEnvelope.md)

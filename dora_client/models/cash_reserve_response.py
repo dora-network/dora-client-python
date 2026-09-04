@@ -33,8 +33,10 @@ class CashReserveResponse(BaseModel):
     committed_usd: StrictStr = Field(description="USD still counted in available_usd but already claimed by the user's open market buy orders on the Global Account, which reserve no funds at submission time. The reserve is evaluated against available_usd minus committed_usd.")
     required_usd: StrictStr = Field(description="The user's minimum USD cash reserve requirement.")
     satisfied: StrictBool = Field(description="Whether available_usd minus committed_usd is at least required_usd.")
+    max_volume_usd: StrictStr = Field(description="How much more traded USD notional the user can add to the current settlement period before the reserve stops being covered, for an order that borrows nothing. Null means the fee leg does not constrain the user, because the guard is disabled or the trading fee volume cap is zero.")
+    max_borrow_usd: StrictStr = Field(description="How much more the user can borrow before the reserve stops being covered, for an order that adds no traded volume. Null means the borrow leg does not constrain the user, because the guard is disabled or the borrowed fraction is zero. The two caps are single axis: a leveraged order consumes both at once and is admissible when notional/max_volume_usd + borrowed/max_borrow_usd <= 1.")
     breakdown: CashReserveBreakdown
-    __properties: ClassVar[List[str]] = ["enforced", "available_usd", "committed_usd", "required_usd", "satisfied", "breakdown"]
+    __properties: ClassVar[List[str]] = ["enforced", "available_usd", "committed_usd", "required_usd", "satisfied", "max_volume_usd", "max_borrow_usd", "breakdown"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -95,6 +97,8 @@ class CashReserveResponse(BaseModel):
             "committed_usd": obj.get("committed_usd"),
             "required_usd": obj.get("required_usd"),
             "satisfied": obj.get("satisfied"),
+            "max_volume_usd": obj.get("max_volume_usd"),
+            "max_borrow_usd": obj.get("max_borrow_usd"),
             "breakdown": CashReserveBreakdown.from_dict(obj["breakdown"]) if obj.get("breakdown") is not None else None
         })
         return _obj
