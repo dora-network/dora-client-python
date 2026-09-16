@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **tenant_id** | **str** | Tenant ID | 
-**deposit_limit** | **str** | Maximum allowed deposit for the tenant. | 
+**daily_deposit_limit** | **str** | Maximum allowed deposit for the tenant per day. | 
 **trade_limit** | **str** | Maximum allowed trade amount for the tenant. | 
 **updated_at** | **datetime** | Last update timestamp for the restrictions. | 
 

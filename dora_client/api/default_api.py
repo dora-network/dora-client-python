@@ -15,24 +15,34 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from datetime import datetime
+from datetime import date, datetime
 from pydantic import Field, StrictBool, StrictInt, StrictStr, field_validator
 from typing import Dict, List, Optional
 from typing_extensions import Annotated
 from uuid import UUID
 from dora_client.models.api_key_response_envelope import APIKeyResponseEnvelope
 from dora_client.models.add_trading_challenge_users_request import AddTradingChallengeUsersRequest
+from dora_client.models.affiliate_attribution_envelope import AffiliateAttributionEnvelope
+from dora_client.models.affiliate_cash_flow_report_envelope import AffiliateCashFlowReportEnvelope
+from dora_client.models.affiliate_membership_list_envelope import AffiliateMembershipListEnvelope
+from dora_client.models.affiliate_program_envelope import AffiliateProgramEnvelope
+from dora_client.models.affiliate_program_list_envelope import AffiliateProgramListEnvelope
+from dora_client.models.affiliate_referral_report_envelope import AffiliateReferralReportEnvelope
+from dora_client.models.affiliate_referrer_envelope import AffiliateReferrerEnvelope
+from dora_client.models.affiliate_referrer_list_envelope import AffiliateReferrerListEnvelope
 from dora_client.models.all_positions_response_envelope import AllPositionsResponseEnvelope
 from dora_client.models.all_withdrawal_initiations_response_envelope import AllWithdrawalInitiationsResponseEnvelope
 from dora_client.models.asset_kind import AssetKind
 from dora_client.models.asset_price import AssetPrice
 from dora_client.models.asset_price_response_envelope import AssetPriceResponseEnvelope
 from dora_client.models.asset_yield_resolution import AssetYieldResolution
+from dora_client.models.assign_affiliate_referral_request import AssignAffiliateReferralRequest
 from dora_client.models.cancel_order_response_envelope import CancelOrderResponseEnvelope
 from dora_client.models.candle_resolution import CandleResolution
 from dora_client.models.cash_reserve_response_envelope import CashReserveResponseEnvelope
 from dora_client.models.claim_leverage_accrued_interest_request import ClaimLeverageAccruedInterestRequest
 from dora_client.models.claim_leverage_accrued_interest_response_envelope import ClaimLeverageAccruedInterestResponseEnvelope
+from dora_client.models.claim_promo_link_request import ClaimPromoLinkRequest
 from dora_client.models.claim_trading_challenge_response_envelope import ClaimTradingChallengeResponseEnvelope
 from dora_client.models.close_account_request import CloseAccountRequest
 from dora_client.models.close_position_request import ClosePositionRequest
@@ -40,12 +50,14 @@ from dora_client.models.close_position_response_envelope import ClosePositionRes
 from dora_client.models.country_code import CountryCode
 from dora_client.models.create_api_key_request import CreateAPIKeyRequest
 from dora_client.models.create_api_key_response_envelope import CreateAPIKeyResponseEnvelope
+from dora_client.models.create_affiliate_program_request import CreateAffiliateProgramRequest
 from dora_client.models.create_conditional_order_request import CreateConditionalOrderRequest
 from dora_client.models.create_conditional_order_response_envelope import CreateConditionalOrderResponseEnvelope
 from dora_client.models.create_integrator_user_request import CreateIntegratorUserRequest
 from dora_client.models.create_order_request import CreateOrderRequest
 from dora_client.models.create_order_response_envelope import CreateOrderResponseEnvelope
 from dora_client.models.create_trading_challenge_request import CreateTradingChallengeRequest
+from dora_client.models.create_withdrawal_request import CreateWithdrawalRequest
 from dora_client.models.current_leverage_accrued_interest_response_envelope import CurrentLeverageAccruedInterestResponseEnvelope
 from dora_client.models.defund_user_request import DefundUserRequest
 from dora_client.models.deposit_instructions_response_envelope import DepositInstructionsResponseEnvelope
@@ -61,6 +73,8 @@ from dora_client.models.get_top_of_book_response_envelope import GetTopOfBookRes
 from dora_client.models.historical_leverage_interest_rates_response_envelope import HistoricalLeverageInterestRatesResponseEnvelope
 from dora_client.models.isolate_collateral_request import IsolateCollateralRequest
 from dora_client.models.isolate_collateral_response import IsolateCollateralResponse
+from dora_client.models.issue_promo_link_batch_request import IssuePromoLinkBatchRequest
+from dora_client.models.issue_promo_link_batch_response import IssuePromoLinkBatchResponse
 from dora_client.models.ledger_accounts_response_v2_envelope import LedgerAccountsResponseV2Envelope
 from dora_client.models.ledger_module_by_asset_response_envelope import LedgerModuleByAssetResponseEnvelope
 from dora_client.models.ledger_module_response_envelope import LedgerModuleResponseEnvelope
@@ -80,6 +94,7 @@ from dora_client.models.list_position_accounts_response_envelope import ListPosi
 from dora_client.models.list_trade_response_envelope import ListTradeResponseEnvelope
 from dora_client.models.list_transactions_response_envelope import ListTransactionsResponseEnvelope
 from dora_client.models.list_users_response_envelope import ListUsersResponseEnvelope
+from dora_client.models.list_withdrawals_response_envelope import ListWithdrawalsResponseEnvelope
 from dora_client.models.live_orderbook import LiveOrderbook
 from dora_client.models.order_book_response_envelope import OrderBookResponseEnvelope
 from dora_client.models.order_book_status import OrderBookStatus
@@ -93,12 +108,20 @@ from dora_client.models.pl_response_envelope import PLResponseEnvelope
 from dora_client.models.pay_leverage_accrued_interest_request import PayLeverageAccruedInterestRequest
 from dora_client.models.pay_leverage_accrued_interest_response_envelope import PayLeverageAccruedInterestResponseEnvelope
 from dora_client.models.pool_price_response_envelope import PoolPriceResponseEnvelope
+from dora_client.models.promo_attribution_response import PromoAttributionResponse
+from dora_client.models.promo_claim_response_envelope import PromoClaimResponseEnvelope
+from dora_client.models.promo_link_batch_list_response import PromoLinkBatchListResponse
+from dora_client.models.promo_link_list_response import PromoLinkListResponse
+from dora_client.models.promo_link_status import PromoLinkStatus
+from dora_client.models.register_affiliate_referrer_request import RegisterAffiliateReferrerRequest
 from dora_client.models.remove_trading_challenge_users_request import RemoveTradingChallengeUsersRequest
 from dora_client.models.repay_usd_request import RepayUSDRequest
 from dora_client.models.repay_usd_response_envelope import RepayUSDResponseEnvelope
 from dora_client.models.response_envelope_of_list_assets import ResponseEnvelopeOfListAssets
 from dora_client.models.review_trading_challenge_registration_request import ReviewTradingChallengeRegistrationRequest
 from dora_client.models.revoke_api_key_response_envelope import RevokeAPIKeyResponseEnvelope
+from dora_client.models.revoke_promo_link_request import RevokePromoLinkRequest
+from dora_client.models.revoke_promo_link_response import RevokePromoLinkResponse
 from dora_client.models.settle_leverage_accrued_interest_request import SettleLeverageAccruedInterestRequest
 from dora_client.models.settle_leverage_accrued_interest_response_envelope import SettleLeverageAccruedInterestResponseEnvelope
 from dora_client.models.settle_realized_pnl_record_response_envelope import SettleRealizedPnlRecordResponseEnvelope
@@ -135,6 +158,7 @@ from dora_client.models.transfer_balances_request import TransferBalancesRequest
 from dora_client.models.transfer_balances_response_envelope import TransferBalancesResponseEnvelope
 from dora_client.models.unite_position_request import UnitePositionRequest
 from dora_client.models.unite_position_response_envelope import UnitePositionResponseEnvelope
+from dora_client.models.update_affiliate_program_request import UpdateAffiliateProgramRequest
 from dora_client.models.update_trading_challenge_request import UpdateTradingChallengeRequest
 from dora_client.models.update_user_config_request import UpdateUserConfigRequest
 from dora_client.models.update_user_kyc_request import UpdateUserKYCRequest
@@ -151,10 +175,12 @@ from dora_client.models.user_updated_response_envelope import UserUpdatedRespons
 from dora_client.models.user_value_response_envelope import UserValueResponseEnvelope
 from dora_client.models.validate_submit_order_request import ValidateSubmitOrderRequest
 from dora_client.models.validate_submit_order_response import ValidateSubmitOrderResponse
+from dora_client.models.web3_withdrawal_status import Web3WithdrawalStatus
 from dora_client.models.withdraw_request import WithdrawRequest
 from dora_client.models.withdraw_response_envelope import WithdrawResponseEnvelope
 from dora_client.models.withdrawal_initiation_response_envelope import WithdrawalInitiationResponseEnvelope
 from dora_client.models.withdrawal_request_reason import WithdrawalRequestReason
+from dora_client.models.withdrawal_response_envelope import WithdrawalResponseEnvelope
 
 from dora_client.api_client import ApiClient, RequestSerialized
 from dora_client.api_response import ApiResponse
@@ -1053,6 +1079,302 @@ class DefaultApi:
         return self.api_client.param_serialize(
             method='POST',
             resource_path='/v1/trading_challenges/registration_requests/{request_id}/approve',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    async def assign_affiliate_referral(
+        self,
+        assign_affiliate_referral_request: AssignAffiliateReferralRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> AffiliateAttributionEnvelope:
+        """Assign your affiliate referrer
+
+        Authenticated existing users may assign a referral code once, within their own tenant. No user_id or tenant_id override is accepted. New assignments reject self-referral and require an active program. Repeating the same code returns the original assignment without changing its timestamp; changing the code returns 409. Only activity from assignment onward counts. This does not change signup_source.
+
+        :param assign_affiliate_referral_request: (required)
+        :type assign_affiliate_referral_request: AssignAffiliateReferralRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._assign_affiliate_referral_serialize(
+            assign_affiliate_referral_request=assign_affiliate_referral_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "AffiliateAttributionEnvelope",
+            '400': "AffiliateError",
+            '401': "AffiliateError",
+            '403': "AffiliateError",
+            '404': "AffiliateError",
+            '500': "AffiliateError",
+            '409': "AffiliateError",
+            '200': "AffiliateAttributionEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    async def assign_affiliate_referral_with_http_info(
+        self,
+        assign_affiliate_referral_request: AssignAffiliateReferralRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[AffiliateAttributionEnvelope]:
+        """Assign your affiliate referrer
+
+        Authenticated existing users may assign a referral code once, within their own tenant. No user_id or tenant_id override is accepted. New assignments reject self-referral and require an active program. Repeating the same code returns the original assignment without changing its timestamp; changing the code returns 409. Only activity from assignment onward counts. This does not change signup_source.
+
+        :param assign_affiliate_referral_request: (required)
+        :type assign_affiliate_referral_request: AssignAffiliateReferralRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._assign_affiliate_referral_serialize(
+            assign_affiliate_referral_request=assign_affiliate_referral_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "AffiliateAttributionEnvelope",
+            '400': "AffiliateError",
+            '401': "AffiliateError",
+            '403': "AffiliateError",
+            '404': "AffiliateError",
+            '500': "AffiliateError",
+            '409': "AffiliateError",
+            '200': "AffiliateAttributionEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    async def assign_affiliate_referral_without_preload_content(
+        self,
+        assign_affiliate_referral_request: AssignAffiliateReferralRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Assign your affiliate referrer
+
+        Authenticated existing users may assign a referral code once, within their own tenant. No user_id or tenant_id override is accepted. New assignments reject self-referral and require an active program. Repeating the same code returns the original assignment without changing its timestamp; changing the code returns 409. Only activity from assignment onward counts. This does not change signup_source.
+
+        :param assign_affiliate_referral_request: (required)
+        :type assign_affiliate_referral_request: AssignAffiliateReferralRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._assign_affiliate_referral_serialize(
+            assign_affiliate_referral_request=assign_affiliate_referral_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "AffiliateAttributionEnvelope",
+            '400': "AffiliateError",
+            '401': "AffiliateError",
+            '403': "AffiliateError",
+            '404': "AffiliateError",
+            '500': "AffiliateError",
+            '409': "AffiliateError",
+            '200': "AffiliateAttributionEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _assign_affiliate_referral_serialize(
+        self,
+        assign_affiliate_referral_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if assign_affiliate_referral_request is not None:
+            _body_params = assign_affiliate_referral_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyAuthHeader', 
+            'bearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/v1/affiliate_referrals/self',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -2241,6 +2563,312 @@ class DefaultApi:
 
 
     @validate_call
+    async def claim_promo_link(
+        self,
+        token: Annotated[str, Field(min_length=1, strict=True, description="Opaque bearer claim token")],
+        claim_promo_link_request: ClaimPromoLinkRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> PromoClaimResponseEnvelope:
+        """Claim a public QR promotion link
+
+
+        :param token: Opaque bearer claim token (required)
+        :type token: str
+        :param claim_promo_link_request: (required)
+        :type claim_promo_link_request: ClaimPromoLinkRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._claim_promo_link_serialize(
+            token=token,
+            claim_promo_link_request=claim_promo_link_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "PromoClaimResponseEnvelope",
+            '400': "ResponseEnvelope",
+            '404': "ResponseEnvelope",
+            '409': "ResponseEnvelope",
+            '410': "ResponseEnvelope",
+            '429': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+            '503': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    async def claim_promo_link_with_http_info(
+        self,
+        token: Annotated[str, Field(min_length=1, strict=True, description="Opaque bearer claim token")],
+        claim_promo_link_request: ClaimPromoLinkRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[PromoClaimResponseEnvelope]:
+        """Claim a public QR promotion link
+
+
+        :param token: Opaque bearer claim token (required)
+        :type token: str
+        :param claim_promo_link_request: (required)
+        :type claim_promo_link_request: ClaimPromoLinkRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._claim_promo_link_serialize(
+            token=token,
+            claim_promo_link_request=claim_promo_link_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "PromoClaimResponseEnvelope",
+            '400': "ResponseEnvelope",
+            '404': "ResponseEnvelope",
+            '409': "ResponseEnvelope",
+            '410': "ResponseEnvelope",
+            '429': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+            '503': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    async def claim_promo_link_without_preload_content(
+        self,
+        token: Annotated[str, Field(min_length=1, strict=True, description="Opaque bearer claim token")],
+        claim_promo_link_request: ClaimPromoLinkRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Claim a public QR promotion link
+
+
+        :param token: Opaque bearer claim token (required)
+        :type token: str
+        :param claim_promo_link_request: (required)
+        :type claim_promo_link_request: ClaimPromoLinkRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._claim_promo_link_serialize(
+            token=token,
+            claim_promo_link_request=claim_promo_link_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "PromoClaimResponseEnvelope",
+            '400': "ResponseEnvelope",
+            '404': "ResponseEnvelope",
+            '409': "ResponseEnvelope",
+            '410': "ResponseEnvelope",
+            '429': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+            '503': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _claim_promo_link_serialize(
+        self,
+        token,
+        claim_promo_link_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if token is not None:
+            _path_params['token'] = token
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if claim_promo_link_request is not None:
+            _body_params = claim_promo_link_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/v1/promo/claim/{token}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     async def claim_trading_challenge_prize(
         self,
         trading_challenge_id: UUID,
@@ -3064,6 +3692,293 @@ class DefaultApi:
         return self.api_client.param_serialize(
             method='POST',
             resource_path='/v1/positions/close',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    async def create_affiliate_program(
+        self,
+        create_affiliate_program_request: CreateAffiliateProgramRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> AffiliateProgramEnvelope:
+        """Create an affiliate program
+
+        ADMIN or INTEGRATOR required. Integrators are restricted to their own tenant; ADMIN overrides other roles. tenant_id is required. Set is_active to true to create an active program.
+
+        :param create_affiliate_program_request: (required)
+        :type create_affiliate_program_request: CreateAffiliateProgramRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._create_affiliate_program_serialize(
+            create_affiliate_program_request=create_affiliate_program_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "AffiliateProgramEnvelope",
+            '400': "AffiliateError",
+            '401': "AffiliateError",
+            '403': "AffiliateError",
+            '500': "AffiliateError",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    async def create_affiliate_program_with_http_info(
+        self,
+        create_affiliate_program_request: CreateAffiliateProgramRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[AffiliateProgramEnvelope]:
+        """Create an affiliate program
+
+        ADMIN or INTEGRATOR required. Integrators are restricted to their own tenant; ADMIN overrides other roles. tenant_id is required. Set is_active to true to create an active program.
+
+        :param create_affiliate_program_request: (required)
+        :type create_affiliate_program_request: CreateAffiliateProgramRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._create_affiliate_program_serialize(
+            create_affiliate_program_request=create_affiliate_program_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "AffiliateProgramEnvelope",
+            '400': "AffiliateError",
+            '401': "AffiliateError",
+            '403': "AffiliateError",
+            '500': "AffiliateError",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    async def create_affiliate_program_without_preload_content(
+        self,
+        create_affiliate_program_request: CreateAffiliateProgramRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Create an affiliate program
+
+        ADMIN or INTEGRATOR required. Integrators are restricted to their own tenant; ADMIN overrides other roles. tenant_id is required. Set is_active to true to create an active program.
+
+        :param create_affiliate_program_request: (required)
+        :type create_affiliate_program_request: CreateAffiliateProgramRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._create_affiliate_program_serialize(
+            create_affiliate_program_request=create_affiliate_program_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "AffiliateProgramEnvelope",
+            '400': "AffiliateError",
+            '401': "AffiliateError",
+            '403': "AffiliateError",
+            '500': "AffiliateError",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _create_affiliate_program_serialize(
+        self,
+        create_affiliate_program_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if create_affiliate_program_request is not None:
+            _body_params = create_affiliate_program_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyAuthHeader', 
+            'bearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/v1/affiliate_programs',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -4552,6 +5467,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
+            '409': "AffiliateError",
             '201': "UserCreatedResponseEnvelope",
             '400': "ResponseEnvelope",
             '500': "ResponseEnvelope",
@@ -4620,6 +5536,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
+            '409': "AffiliateError",
             '201': "UserCreatedResponseEnvelope",
             '400': "ResponseEnvelope",
             '500': "ResponseEnvelope",
@@ -4688,6 +5605,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
+            '409': "AffiliateError",
             '201': "UserCreatedResponseEnvelope",
             '400': "ResponseEnvelope",
             '500': "ResponseEnvelope",
@@ -4762,6 +5680,299 @@ class DefaultApi:
         return self.api_client.param_serialize(
             method='POST',
             resource_path='/v1/integrators/user',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    async def create_withdrawal(
+        self,
+        create_withdrawal_request: CreateWithdrawalRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> WithdrawalResponseEnvelope:
+        """Create a USDC withdrawal request
+
+        Reserves the requested quantity against the caller's available balance (moving it to pending_withdrawal) and creates a PENDING withdrawal. No fee quote is required and no fee is reserved: the withdrawal's fee is quoted and locked later, as part of approval. Idempotent on withdrawal_id: a repeat request carrying the same to_address and quantity reserves nothing further and returns the existing withdrawal with 200. Reusing a withdrawal_id with a different to_address or quantity is a conflict (409), not a replay, and reserves nothing. Restricted to DORA tenant users whose native asset is USDC.
+
+        :param create_withdrawal_request: (required)
+        :type create_withdrawal_request: CreateWithdrawalRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._create_withdrawal_serialize(
+            create_withdrawal_request=create_withdrawal_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "WithdrawalResponseEnvelope",
+            '200': "WithdrawalResponseEnvelope",
+            '400': "ResponseEnvelope",
+            '401': "ResponseEnvelope",
+            '403': "ResponseEnvelope",
+            '409': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    async def create_withdrawal_with_http_info(
+        self,
+        create_withdrawal_request: CreateWithdrawalRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[WithdrawalResponseEnvelope]:
+        """Create a USDC withdrawal request
+
+        Reserves the requested quantity against the caller's available balance (moving it to pending_withdrawal) and creates a PENDING withdrawal. No fee quote is required and no fee is reserved: the withdrawal's fee is quoted and locked later, as part of approval. Idempotent on withdrawal_id: a repeat request carrying the same to_address and quantity reserves nothing further and returns the existing withdrawal with 200. Reusing a withdrawal_id with a different to_address or quantity is a conflict (409), not a replay, and reserves nothing. Restricted to DORA tenant users whose native asset is USDC.
+
+        :param create_withdrawal_request: (required)
+        :type create_withdrawal_request: CreateWithdrawalRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._create_withdrawal_serialize(
+            create_withdrawal_request=create_withdrawal_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "WithdrawalResponseEnvelope",
+            '200': "WithdrawalResponseEnvelope",
+            '400': "ResponseEnvelope",
+            '401': "ResponseEnvelope",
+            '403': "ResponseEnvelope",
+            '409': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    async def create_withdrawal_without_preload_content(
+        self,
+        create_withdrawal_request: CreateWithdrawalRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Create a USDC withdrawal request
+
+        Reserves the requested quantity against the caller's available balance (moving it to pending_withdrawal) and creates a PENDING withdrawal. No fee quote is required and no fee is reserved: the withdrawal's fee is quoted and locked later, as part of approval. Idempotent on withdrawal_id: a repeat request carrying the same to_address and quantity reserves nothing further and returns the existing withdrawal with 200. Reusing a withdrawal_id with a different to_address or quantity is a conflict (409), not a replay, and reserves nothing. Restricted to DORA tenant users whose native asset is USDC.
+
+        :param create_withdrawal_request: (required)
+        :type create_withdrawal_request: CreateWithdrawalRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._create_withdrawal_serialize(
+            create_withdrawal_request=create_withdrawal_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "WithdrawalResponseEnvelope",
+            '200': "WithdrawalResponseEnvelope",
+            '400': "ResponseEnvelope",
+            '401': "ResponseEnvelope",
+            '403': "ResponseEnvelope",
+            '409': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _create_withdrawal_serialize(
+        self,
+        create_withdrawal_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if create_withdrawal_request is not None:
+            _body_params = create_withdrawal_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyAuthHeader', 
+            'bearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/v1/web3/withdrawals',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -5030,6 +6241,557 @@ class DefaultApi:
         return self.api_client.param_serialize(
             method='DELETE',
             resource_path='/v1/user/{user_id}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    async def export_promo_links_csv(
+        self,
+        batch_id: UUID,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> str:
+        """Export promotional links as CSV
+
+        Stream private claim URLs with Cache-Control private, no-store. ADMIN and same-tenant INTEGRATOR only.
+
+        :param batch_id: (required)
+        :type batch_id: UUID
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._export_promo_links_csv_serialize(
+            batch_id=batch_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "str",
+            '400': None,
+            '403': None,
+            '404': None,
+            '500': None,
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    async def export_promo_links_csv_with_http_info(
+        self,
+        batch_id: UUID,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[str]:
+        """Export promotional links as CSV
+
+        Stream private claim URLs with Cache-Control private, no-store. ADMIN and same-tenant INTEGRATOR only.
+
+        :param batch_id: (required)
+        :type batch_id: UUID
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._export_promo_links_csv_serialize(
+            batch_id=batch_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "str",
+            '400': None,
+            '403': None,
+            '404': None,
+            '500': None,
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    async def export_promo_links_csv_without_preload_content(
+        self,
+        batch_id: UUID,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Export promotional links as CSV
+
+        Stream private claim URLs with Cache-Control private, no-store. ADMIN and same-tenant INTEGRATOR only.
+
+        :param batch_id: (required)
+        :type batch_id: UUID
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._export_promo_links_csv_serialize(
+            batch_id=batch_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "str",
+            '400': None,
+            '403': None,
+            '404': None,
+            '500': None,
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _export_promo_links_csv_serialize(
+        self,
+        batch_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if batch_id is not None:
+            _path_params['batch_id'] = batch_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/csv'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyAuthHeader', 
+            'bearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/v1/link_batches/{batch_id}/links.csv',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    async def get_affiliate_program(
+        self,
+        program_id: UUID,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> AffiliateProgramEnvelope:
+        """Get an affiliate program
+
+        ADMIN or INTEGRATOR required. Integrators are restricted to their own tenant; ADMIN overrides other roles. 
+
+        :param program_id: (required)
+        :type program_id: UUID
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_affiliate_program_serialize(
+            program_id=program_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AffiliateProgramEnvelope",
+            '400': "AffiliateError",
+            '401': "AffiliateError",
+            '403': "AffiliateError",
+            '404': "AffiliateError",
+            '500': "AffiliateError",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    async def get_affiliate_program_with_http_info(
+        self,
+        program_id: UUID,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[AffiliateProgramEnvelope]:
+        """Get an affiliate program
+
+        ADMIN or INTEGRATOR required. Integrators are restricted to their own tenant; ADMIN overrides other roles. 
+
+        :param program_id: (required)
+        :type program_id: UUID
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_affiliate_program_serialize(
+            program_id=program_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AffiliateProgramEnvelope",
+            '400': "AffiliateError",
+            '401': "AffiliateError",
+            '403': "AffiliateError",
+            '404': "AffiliateError",
+            '500': "AffiliateError",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    async def get_affiliate_program_without_preload_content(
+        self,
+        program_id: UUID,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get an affiliate program
+
+        ADMIN or INTEGRATOR required. Integrators are restricted to their own tenant; ADMIN overrides other roles. 
+
+        :param program_id: (required)
+        :type program_id: UUID
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_affiliate_program_serialize(
+            program_id=program_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AffiliateProgramEnvelope",
+            '400': "AffiliateError",
+            '401': "AffiliateError",
+            '403': "AffiliateError",
+            '404': "AffiliateError",
+            '500': "AffiliateError",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_affiliate_program_serialize(
+        self,
+        program_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if program_id is not None:
+            _path_params['program_id'] = program_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyAuthHeader', 
+            'bearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/v1/affiliate_programs/{program_id}',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -7528,6 +9290,7 @@ class DefaultApi:
     ) -> ListCandlesResponseEnvelope:
         """Get candlestick data for an orderbook
 
+        Returns candle data in the requested [start, end) range for the selected resolution. Responses are capped to the most recent 5,000 candles per request.
 
         :param order_book_id: (required)
         :type order_book_id: str
@@ -7609,6 +9372,7 @@ class DefaultApi:
     ) -> ApiResponse[ListCandlesResponseEnvelope]:
         """Get candlestick data for an orderbook
 
+        Returns candle data in the requested [start, end) range for the selected resolution. Responses are capped to the most recent 5,000 candles per request.
 
         :param order_book_id: (required)
         :type order_book_id: str
@@ -7690,6 +9454,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Get candlestick data for an orderbook
 
+        Returns candle data in the requested [start, end) range for the selected resolution. Responses are capped to the most recent 5,000 candles per request.
 
         :param order_book_id: (required)
         :type order_book_id: str
@@ -15054,6 +16819,280 @@ class DefaultApi:
 
 
     @validate_call
+    async def get_promo_attribution(
+        self,
+        trading_challenge_id: UUID,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> PromoAttributionResponse:
+        """Get promotional source attribution
+
+        Return the QR source funnel and decimal totals in one bounded aggregate query. ADMIN and same-tenant INTEGRATOR only.
+
+        :param trading_challenge_id: (required)
+        :type trading_challenge_id: UUID
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_promo_attribution_serialize(
+            trading_challenge_id=trading_challenge_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "PromoAttributionResponse",
+            '400': None,
+            '403': None,
+            '404': None,
+            '500': None,
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    async def get_promo_attribution_with_http_info(
+        self,
+        trading_challenge_id: UUID,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[PromoAttributionResponse]:
+        """Get promotional source attribution
+
+        Return the QR source funnel and decimal totals in one bounded aggregate query. ADMIN and same-tenant INTEGRATOR only.
+
+        :param trading_challenge_id: (required)
+        :type trading_challenge_id: UUID
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_promo_attribution_serialize(
+            trading_challenge_id=trading_challenge_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "PromoAttributionResponse",
+            '400': None,
+            '403': None,
+            '404': None,
+            '500': None,
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    async def get_promo_attribution_without_preload_content(
+        self,
+        trading_challenge_id: UUID,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get promotional source attribution
+
+        Return the QR source funnel and decimal totals in one bounded aggregate query. ADMIN and same-tenant INTEGRATOR only.
+
+        :param trading_challenge_id: (required)
+        :type trading_challenge_id: UUID
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_promo_attribution_serialize(
+            trading_challenge_id=trading_challenge_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "PromoAttributionResponse",
+            '400': None,
+            '403': None,
+            '404': None,
+            '500': None,
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_promo_attribution_serialize(
+        self,
+        trading_challenge_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if trading_challenge_id is not None:
+            _path_params['trading_challenge_id'] = trading_challenge_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyAuthHeader', 
+            'bearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/v1/trading_challenges/{trading_challenge_id}/attribution',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     async def get_realized_pnl_settlements(
         self,
         user_id: Optional[UUID] = None,
@@ -21832,6 +23871,280 @@ class DefaultApi:
 
 
     @validate_call
+    async def get_withdrawal(
+        self,
+        withdrawal_id: Annotated[UUID, Field(description="The withdrawal ID.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> WithdrawalResponseEnvelope:
+        """Get a USDC withdrawal by ID
+
+        Returns a single USDC withdrawal. A caller may read its own withdrawals; admins may read any user's.
+
+        :param withdrawal_id: The withdrawal ID. (required)
+        :type withdrawal_id: UUID
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_withdrawal_serialize(
+            withdrawal_id=withdrawal_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "WithdrawalResponseEnvelope",
+            '400': "ResponseEnvelope",
+            '401': "ResponseEnvelope",
+            '404': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    async def get_withdrawal_with_http_info(
+        self,
+        withdrawal_id: Annotated[UUID, Field(description="The withdrawal ID.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[WithdrawalResponseEnvelope]:
+        """Get a USDC withdrawal by ID
+
+        Returns a single USDC withdrawal. A caller may read its own withdrawals; admins may read any user's.
+
+        :param withdrawal_id: The withdrawal ID. (required)
+        :type withdrawal_id: UUID
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_withdrawal_serialize(
+            withdrawal_id=withdrawal_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "WithdrawalResponseEnvelope",
+            '400': "ResponseEnvelope",
+            '401': "ResponseEnvelope",
+            '404': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    async def get_withdrawal_without_preload_content(
+        self,
+        withdrawal_id: Annotated[UUID, Field(description="The withdrawal ID.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get a USDC withdrawal by ID
+
+        Returns a single USDC withdrawal. A caller may read its own withdrawals; admins may read any user's.
+
+        :param withdrawal_id: The withdrawal ID. (required)
+        :type withdrawal_id: UUID
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_withdrawal_serialize(
+            withdrawal_id=withdrawal_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "WithdrawalResponseEnvelope",
+            '400': "ResponseEnvelope",
+            '401': "ResponseEnvelope",
+            '404': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_withdrawal_serialize(
+        self,
+        withdrawal_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if withdrawal_id is not None:
+            _path_params['withdrawal_id'] = withdrawal_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyAuthHeader', 
+            'bearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/v1/web3/withdrawals/{withdrawal_id}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     async def get_withdrawal_fee_quote(
         self,
         to: Annotated[StrictStr, Field(description="The destination wallet address as a 0x-prefixed 20-byte hex string. Must not be the zero address.")],
@@ -21851,7 +24164,7 @@ class DefaultApi:
     ) -> FeeQuoteResponseEnvelope:
         """Estimate the network fee to withdraw USDC via web3
 
-        Examines on-chain conditions and simulates a withdrawal transaction to estimate the fee a user needs to pay when they make their withdrawal request. Restricted to DORA tenant users whose native asset is USDC.
+        Examines on-chain conditions and simulates a withdrawal transaction to estimate the fee a user needs to pay for a withdrawal. The fee is not charged when the withdrawal is requested; the quote is redeemed later, when the fee is locked as part of approval. Restricted to DORA tenant users whose native asset is USDC.
 
         :param to: The destination wallet address as a 0x-prefixed 20-byte hex string. Must not be the zero address. (required)
         :type to: str
@@ -21929,7 +24242,7 @@ class DefaultApi:
     ) -> ApiResponse[FeeQuoteResponseEnvelope]:
         """Estimate the network fee to withdraw USDC via web3
 
-        Examines on-chain conditions and simulates a withdrawal transaction to estimate the fee a user needs to pay when they make their withdrawal request. Restricted to DORA tenant users whose native asset is USDC.
+        Examines on-chain conditions and simulates a withdrawal transaction to estimate the fee a user needs to pay for a withdrawal. The fee is not charged when the withdrawal is requested; the quote is redeemed later, when the fee is locked as part of approval. Restricted to DORA tenant users whose native asset is USDC.
 
         :param to: The destination wallet address as a 0x-prefixed 20-byte hex string. Must not be the zero address. (required)
         :type to: str
@@ -22007,7 +24320,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Estimate the network fee to withdraw USDC via web3
 
-        Examines on-chain conditions and simulates a withdrawal transaction to estimate the fee a user needs to pay when they make their withdrawal request. Restricted to DORA tenant users whose native asset is USDC.
+        Examines on-chain conditions and simulates a withdrawal transaction to estimate the fee a user needs to pay for a withdrawal. The fee is not charged when the withdrawal is requested; the quote is redeemed later, when the fee is locked as part of approval. Restricted to DORA tenant users whose native asset is USDC.
 
         :param to: The destination wallet address as a 0x-prefixed 20-byte hex string. Must not be the zero address. (required)
         :type to: str
@@ -22118,6 +24431,329 @@ class DefaultApi:
         return self.api_client.param_serialize(
             method='GET',
             resource_path='/v1/web3/withdrawals/fee-quote',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    async def issue_promo_link_batch(
+        self,
+        trading_challenge_id: UUID,
+        idempotency_key: Annotated[str, Field(min_length=1, strict=True, max_length=256)],
+        issue_promo_link_batch_request: IssuePromoLinkBatchRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> IssuePromoLinkBatchResponse:
+        """Issue a promotional link batch
+
+        Atomically reserve QR campaign capacity and create opaque, encrypted promotional links. ADMIN and same-tenant INTEGRATOR only. Exact idempotent replays return 200; first creation returns 201; key reuse with another payload returns 409.
+
+        :param trading_challenge_id: (required)
+        :type trading_challenge_id: UUID
+        :param idempotency_key: (required)
+        :type idempotency_key: str
+        :param issue_promo_link_batch_request: (required)
+        :type issue_promo_link_batch_request: IssuePromoLinkBatchRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._issue_promo_link_batch_serialize(
+            trading_challenge_id=trading_challenge_id,
+            idempotency_key=idempotency_key,
+            issue_promo_link_batch_request=issue_promo_link_batch_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "IssuePromoLinkBatchResponse",
+            '201': "IssuePromoLinkBatchResponse",
+            '400': None,
+            '403': None,
+            '404': None,
+            '409': None,
+            '500': None,
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    async def issue_promo_link_batch_with_http_info(
+        self,
+        trading_challenge_id: UUID,
+        idempotency_key: Annotated[str, Field(min_length=1, strict=True, max_length=256)],
+        issue_promo_link_batch_request: IssuePromoLinkBatchRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[IssuePromoLinkBatchResponse]:
+        """Issue a promotional link batch
+
+        Atomically reserve QR campaign capacity and create opaque, encrypted promotional links. ADMIN and same-tenant INTEGRATOR only. Exact idempotent replays return 200; first creation returns 201; key reuse with another payload returns 409.
+
+        :param trading_challenge_id: (required)
+        :type trading_challenge_id: UUID
+        :param idempotency_key: (required)
+        :type idempotency_key: str
+        :param issue_promo_link_batch_request: (required)
+        :type issue_promo_link_batch_request: IssuePromoLinkBatchRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._issue_promo_link_batch_serialize(
+            trading_challenge_id=trading_challenge_id,
+            idempotency_key=idempotency_key,
+            issue_promo_link_batch_request=issue_promo_link_batch_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "IssuePromoLinkBatchResponse",
+            '201': "IssuePromoLinkBatchResponse",
+            '400': None,
+            '403': None,
+            '404': None,
+            '409': None,
+            '500': None,
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    async def issue_promo_link_batch_without_preload_content(
+        self,
+        trading_challenge_id: UUID,
+        idempotency_key: Annotated[str, Field(min_length=1, strict=True, max_length=256)],
+        issue_promo_link_batch_request: IssuePromoLinkBatchRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Issue a promotional link batch
+
+        Atomically reserve QR campaign capacity and create opaque, encrypted promotional links. ADMIN and same-tenant INTEGRATOR only. Exact idempotent replays return 200; first creation returns 201; key reuse with another payload returns 409.
+
+        :param trading_challenge_id: (required)
+        :type trading_challenge_id: UUID
+        :param idempotency_key: (required)
+        :type idempotency_key: str
+        :param issue_promo_link_batch_request: (required)
+        :type issue_promo_link_batch_request: IssuePromoLinkBatchRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._issue_promo_link_batch_serialize(
+            trading_challenge_id=trading_challenge_id,
+            idempotency_key=idempotency_key,
+            issue_promo_link_batch_request=issue_promo_link_batch_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "IssuePromoLinkBatchResponse",
+            '201': "IssuePromoLinkBatchResponse",
+            '400': None,
+            '403': None,
+            '404': None,
+            '409': None,
+            '500': None,
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _issue_promo_link_batch_serialize(
+        self,
+        trading_challenge_id,
+        idempotency_key,
+        issue_promo_link_batch_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if trading_challenge_id is not None:
+            _path_params['trading_challenge_id'] = trading_challenge_id
+        # process the query parameters
+        # process the header parameters
+        if idempotency_key is not None:
+            _header_params['Idempotency-Key'] = idempotency_key
+        # process the form parameters
+        # process the body parameter
+        if issue_promo_link_batch_request is not None:
+            _body_params = issue_promo_link_batch_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyAuthHeader', 
+            'bearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/v1/trading_challenges/{trading_challenge_id}/link_batches',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -26279,6 +28915,1307 @@ class DefaultApi:
 
 
     @validate_call
+    async def list_affiliate_cash_flows(
+        self,
+        program_id: UUID,
+        user_id: UUID,
+        limit: Optional[Annotated[int, Field(le=100, strict=True, ge=1)]] = None,
+        page: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="One-based page; the resulting offset must not exceed 2147483647. Results sort by created_at then id descending.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> AffiliateCashFlowReportEnvelope:
+        """List a referred user's customer cash flows
+
+        Authenticated access. ADMIN can inspect all programs. INTEGRATOR is limited to its own tenant. Other users must be registered referrers and see only their own referrals. Deactivation retains historical reports. Currency EXTERNAL_DEPOSIT and EXTERNAL_WITHDRAW ledger events only. Pending withdrawals and promotional credits are excluded. Amounts are positive native asset units identified by asset_symbol. The date is when the completed movement was recorded in the ledger. Only events at or after the user's referral assignment are included.
+
+        :param program_id: (required)
+        :type program_id: UUID
+        :param user_id: (required)
+        :type user_id: UUID
+        :param limit:
+        :type limit: int
+        :param page: One-based page; the resulting offset must not exceed 2147483647. Results sort by created_at then id descending.
+        :type page: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._list_affiliate_cash_flows_serialize(
+            program_id=program_id,
+            user_id=user_id,
+            limit=limit,
+            page=page,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AffiliateCashFlowReportEnvelope",
+            '400': "AffiliateError",
+            '401': "AffiliateError",
+            '403': "AffiliateError",
+            '404': "AffiliateError",
+            '500': "AffiliateError",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    async def list_affiliate_cash_flows_with_http_info(
+        self,
+        program_id: UUID,
+        user_id: UUID,
+        limit: Optional[Annotated[int, Field(le=100, strict=True, ge=1)]] = None,
+        page: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="One-based page; the resulting offset must not exceed 2147483647. Results sort by created_at then id descending.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[AffiliateCashFlowReportEnvelope]:
+        """List a referred user's customer cash flows
+
+        Authenticated access. ADMIN can inspect all programs. INTEGRATOR is limited to its own tenant. Other users must be registered referrers and see only their own referrals. Deactivation retains historical reports. Currency EXTERNAL_DEPOSIT and EXTERNAL_WITHDRAW ledger events only. Pending withdrawals and promotional credits are excluded. Amounts are positive native asset units identified by asset_symbol. The date is when the completed movement was recorded in the ledger. Only events at or after the user's referral assignment are included.
+
+        :param program_id: (required)
+        :type program_id: UUID
+        :param user_id: (required)
+        :type user_id: UUID
+        :param limit:
+        :type limit: int
+        :param page: One-based page; the resulting offset must not exceed 2147483647. Results sort by created_at then id descending.
+        :type page: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._list_affiliate_cash_flows_serialize(
+            program_id=program_id,
+            user_id=user_id,
+            limit=limit,
+            page=page,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AffiliateCashFlowReportEnvelope",
+            '400': "AffiliateError",
+            '401': "AffiliateError",
+            '403': "AffiliateError",
+            '404': "AffiliateError",
+            '500': "AffiliateError",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    async def list_affiliate_cash_flows_without_preload_content(
+        self,
+        program_id: UUID,
+        user_id: UUID,
+        limit: Optional[Annotated[int, Field(le=100, strict=True, ge=1)]] = None,
+        page: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="One-based page; the resulting offset must not exceed 2147483647. Results sort by created_at then id descending.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """List a referred user's customer cash flows
+
+        Authenticated access. ADMIN can inspect all programs. INTEGRATOR is limited to its own tenant. Other users must be registered referrers and see only their own referrals. Deactivation retains historical reports. Currency EXTERNAL_DEPOSIT and EXTERNAL_WITHDRAW ledger events only. Pending withdrawals and promotional credits are excluded. Amounts are positive native asset units identified by asset_symbol. The date is when the completed movement was recorded in the ledger. Only events at or after the user's referral assignment are included.
+
+        :param program_id: (required)
+        :type program_id: UUID
+        :param user_id: (required)
+        :type user_id: UUID
+        :param limit:
+        :type limit: int
+        :param page: One-based page; the resulting offset must not exceed 2147483647. Results sort by created_at then id descending.
+        :type page: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._list_affiliate_cash_flows_serialize(
+            program_id=program_id,
+            user_id=user_id,
+            limit=limit,
+            page=page,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AffiliateCashFlowReportEnvelope",
+            '400': "AffiliateError",
+            '401': "AffiliateError",
+            '403': "AffiliateError",
+            '404': "AffiliateError",
+            '500': "AffiliateError",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _list_affiliate_cash_flows_serialize(
+        self,
+        program_id,
+        user_id,
+        limit,
+        page,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if program_id is not None:
+            _path_params['program_id'] = program_id
+        if user_id is not None:
+            _path_params['user_id'] = user_id
+        # process the query parameters
+        if limit is not None:
+            
+            _query_params.append(('limit', limit))
+            
+        if page is not None:
+            
+            _query_params.append(('page', page))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyAuthHeader', 
+            'bearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/v1/affiliate_programs/{program_id}/referrals/{user_id}/cash_flows',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    async def list_affiliate_programs(
+        self,
+        tenant_id: Annotated[Optional[Annotated[str, Field(min_length=1, strict=True, max_length=256)]], Field(description="Integrators default to their own tenant and cannot select another. Admins may select any tenant.")] = None,
+        limit: Optional[Annotated[int, Field(le=100, strict=True, ge=1)]] = None,
+        page: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="One-based page; the resulting offset must not exceed 2147483647. Results sort by created_at then id descending.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> AffiliateProgramListEnvelope:
+        """List affiliate programs
+
+        ADMIN or INTEGRATOR required. Integrators are restricted to their own tenant; ADMIN overrides other roles. Admins without a tenant filter list all tenants. Inactive programs are included.
+
+        :param tenant_id: Integrators default to their own tenant and cannot select another. Admins may select any tenant.
+        :type tenant_id: str
+        :param limit:
+        :type limit: int
+        :param page: One-based page; the resulting offset must not exceed 2147483647. Results sort by created_at then id descending.
+        :type page: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._list_affiliate_programs_serialize(
+            tenant_id=tenant_id,
+            limit=limit,
+            page=page,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AffiliateProgramListEnvelope",
+            '400': "AffiliateError",
+            '401': "AffiliateError",
+            '403': "AffiliateError",
+            '500': "AffiliateError",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    async def list_affiliate_programs_with_http_info(
+        self,
+        tenant_id: Annotated[Optional[Annotated[str, Field(min_length=1, strict=True, max_length=256)]], Field(description="Integrators default to their own tenant and cannot select another. Admins may select any tenant.")] = None,
+        limit: Optional[Annotated[int, Field(le=100, strict=True, ge=1)]] = None,
+        page: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="One-based page; the resulting offset must not exceed 2147483647. Results sort by created_at then id descending.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[AffiliateProgramListEnvelope]:
+        """List affiliate programs
+
+        ADMIN or INTEGRATOR required. Integrators are restricted to their own tenant; ADMIN overrides other roles. Admins without a tenant filter list all tenants. Inactive programs are included.
+
+        :param tenant_id: Integrators default to their own tenant and cannot select another. Admins may select any tenant.
+        :type tenant_id: str
+        :param limit:
+        :type limit: int
+        :param page: One-based page; the resulting offset must not exceed 2147483647. Results sort by created_at then id descending.
+        :type page: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._list_affiliate_programs_serialize(
+            tenant_id=tenant_id,
+            limit=limit,
+            page=page,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AffiliateProgramListEnvelope",
+            '400': "AffiliateError",
+            '401': "AffiliateError",
+            '403': "AffiliateError",
+            '500': "AffiliateError",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    async def list_affiliate_programs_without_preload_content(
+        self,
+        tenant_id: Annotated[Optional[Annotated[str, Field(min_length=1, strict=True, max_length=256)]], Field(description="Integrators default to their own tenant and cannot select another. Admins may select any tenant.")] = None,
+        limit: Optional[Annotated[int, Field(le=100, strict=True, ge=1)]] = None,
+        page: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="One-based page; the resulting offset must not exceed 2147483647. Results sort by created_at then id descending.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """List affiliate programs
+
+        ADMIN or INTEGRATOR required. Integrators are restricted to their own tenant; ADMIN overrides other roles. Admins without a tenant filter list all tenants. Inactive programs are included.
+
+        :param tenant_id: Integrators default to their own tenant and cannot select another. Admins may select any tenant.
+        :type tenant_id: str
+        :param limit:
+        :type limit: int
+        :param page: One-based page; the resulting offset must not exceed 2147483647. Results sort by created_at then id descending.
+        :type page: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._list_affiliate_programs_serialize(
+            tenant_id=tenant_id,
+            limit=limit,
+            page=page,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AffiliateProgramListEnvelope",
+            '400': "AffiliateError",
+            '401': "AffiliateError",
+            '403': "AffiliateError",
+            '500': "AffiliateError",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _list_affiliate_programs_serialize(
+        self,
+        tenant_id,
+        limit,
+        page,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        if tenant_id is not None:
+            
+            _query_params.append(('tenant_id', tenant_id))
+            
+        if limit is not None:
+            
+            _query_params.append(('limit', limit))
+            
+        if page is not None:
+            
+            _query_params.append(('page', page))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyAuthHeader', 
+            'bearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/v1/affiliate_programs',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    async def list_affiliate_referrals(
+        self,
+        program_id: UUID,
+        var_date: Optional[date] = None,
+        referrer_id: Optional[UUID] = None,
+        limit: Optional[Annotated[int, Field(le=100, strict=True, ge=1)]] = None,
+        page: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="One-based page; the resulting offset must not exceed 2147483647. Results sort by attribution created_at then user_id descending.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> AffiliateReferralReportEnvelope:
+        """List referred users and activity
+
+        Authenticated access. ADMIN can inspect all programs. INTEGRATOR is limited to its own tenant. Other users must be registered referrers and see only their own referrals. Deactivation retains historical reports. date defaults to the current UTC day. Daily volume and realized PnL use the selected UTC day; monthly volume and realized PnL use its UTC calendar month. Trade activity, PnL and currency cash-flow counts/dates include only events at or after attributed_at. Signup and KYC fields describe the user profile. Promotional and trading-challenge credits, non-currency assets, pending and rejected withdrawals are excluded from customer cash flows. Discord status is unknown until an integration exists.
+
+        :param program_id: (required)
+        :type program_id: UUID
+        :param var_date:
+        :type var_date: date
+        :param referrer_id:
+        :type referrer_id: UUID
+        :param limit:
+        :type limit: int
+        :param page: One-based page; the resulting offset must not exceed 2147483647. Results sort by attribution created_at then user_id descending.
+        :type page: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._list_affiliate_referrals_serialize(
+            program_id=program_id,
+            var_date=var_date,
+            referrer_id=referrer_id,
+            limit=limit,
+            page=page,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AffiliateReferralReportEnvelope",
+            '400': "AffiliateError",
+            '401': "AffiliateError",
+            '403': "AffiliateError",
+            '404': "AffiliateError",
+            '500': "AffiliateError",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    async def list_affiliate_referrals_with_http_info(
+        self,
+        program_id: UUID,
+        var_date: Optional[date] = None,
+        referrer_id: Optional[UUID] = None,
+        limit: Optional[Annotated[int, Field(le=100, strict=True, ge=1)]] = None,
+        page: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="One-based page; the resulting offset must not exceed 2147483647. Results sort by attribution created_at then user_id descending.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[AffiliateReferralReportEnvelope]:
+        """List referred users and activity
+
+        Authenticated access. ADMIN can inspect all programs. INTEGRATOR is limited to its own tenant. Other users must be registered referrers and see only their own referrals. Deactivation retains historical reports. date defaults to the current UTC day. Daily volume and realized PnL use the selected UTC day; monthly volume and realized PnL use its UTC calendar month. Trade activity, PnL and currency cash-flow counts/dates include only events at or after attributed_at. Signup and KYC fields describe the user profile. Promotional and trading-challenge credits, non-currency assets, pending and rejected withdrawals are excluded from customer cash flows. Discord status is unknown until an integration exists.
+
+        :param program_id: (required)
+        :type program_id: UUID
+        :param var_date:
+        :type var_date: date
+        :param referrer_id:
+        :type referrer_id: UUID
+        :param limit:
+        :type limit: int
+        :param page: One-based page; the resulting offset must not exceed 2147483647. Results sort by attribution created_at then user_id descending.
+        :type page: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._list_affiliate_referrals_serialize(
+            program_id=program_id,
+            var_date=var_date,
+            referrer_id=referrer_id,
+            limit=limit,
+            page=page,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AffiliateReferralReportEnvelope",
+            '400': "AffiliateError",
+            '401': "AffiliateError",
+            '403': "AffiliateError",
+            '404': "AffiliateError",
+            '500': "AffiliateError",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    async def list_affiliate_referrals_without_preload_content(
+        self,
+        program_id: UUID,
+        var_date: Optional[date] = None,
+        referrer_id: Optional[UUID] = None,
+        limit: Optional[Annotated[int, Field(le=100, strict=True, ge=1)]] = None,
+        page: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="One-based page; the resulting offset must not exceed 2147483647. Results sort by attribution created_at then user_id descending.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """List referred users and activity
+
+        Authenticated access. ADMIN can inspect all programs. INTEGRATOR is limited to its own tenant. Other users must be registered referrers and see only their own referrals. Deactivation retains historical reports. date defaults to the current UTC day. Daily volume and realized PnL use the selected UTC day; monthly volume and realized PnL use its UTC calendar month. Trade activity, PnL and currency cash-flow counts/dates include only events at or after attributed_at. Signup and KYC fields describe the user profile. Promotional and trading-challenge credits, non-currency assets, pending and rejected withdrawals are excluded from customer cash flows. Discord status is unknown until an integration exists.
+
+        :param program_id: (required)
+        :type program_id: UUID
+        :param var_date:
+        :type var_date: date
+        :param referrer_id:
+        :type referrer_id: UUID
+        :param limit:
+        :type limit: int
+        :param page: One-based page; the resulting offset must not exceed 2147483647. Results sort by attribution created_at then user_id descending.
+        :type page: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._list_affiliate_referrals_serialize(
+            program_id=program_id,
+            var_date=var_date,
+            referrer_id=referrer_id,
+            limit=limit,
+            page=page,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AffiliateReferralReportEnvelope",
+            '400': "AffiliateError",
+            '401': "AffiliateError",
+            '403': "AffiliateError",
+            '404': "AffiliateError",
+            '500': "AffiliateError",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _list_affiliate_referrals_serialize(
+        self,
+        program_id,
+        var_date,
+        referrer_id,
+        limit,
+        page,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if program_id is not None:
+            _path_params['program_id'] = program_id
+        # process the query parameters
+        if var_date is not None:
+            if isinstance(var_date, date):
+                _query_params.append(
+                    (
+                        'date',
+                        var_date.strftime(
+                            self.api_client.configuration.date_format
+                        )
+                    )
+                )
+            else:
+                _query_params.append(('date', var_date))
+            
+        if referrer_id is not None:
+            
+            _query_params.append(('referrer_id', referrer_id))
+            
+        if limit is not None:
+            
+            _query_params.append(('limit', limit))
+            
+        if page is not None:
+            
+            _query_params.append(('page', page))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyAuthHeader', 
+            'bearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/v1/affiliate_programs/{program_id}/referrals',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    async def list_affiliate_referrers(
+        self,
+        program_id: UUID,
+        limit: Optional[Annotated[int, Field(le=100, strict=True, ge=1)]] = None,
+        page: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="One-based page; the resulting offset must not exceed 2147483647. Results sort by created_at then id descending.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> AffiliateReferrerListEnvelope:
+        """List program referrers
+
+        ADMIN or INTEGRATOR required. Integrators are restricted to their own tenant; ADMIN overrides other roles. Includes registrations in inactive programs.
+
+        :param program_id: (required)
+        :type program_id: UUID
+        :param limit:
+        :type limit: int
+        :param page: One-based page; the resulting offset must not exceed 2147483647. Results sort by created_at then id descending.
+        :type page: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._list_affiliate_referrers_serialize(
+            program_id=program_id,
+            limit=limit,
+            page=page,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AffiliateReferrerListEnvelope",
+            '400': "AffiliateError",
+            '401': "AffiliateError",
+            '403': "AffiliateError",
+            '404': "AffiliateError",
+            '500': "AffiliateError",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    async def list_affiliate_referrers_with_http_info(
+        self,
+        program_id: UUID,
+        limit: Optional[Annotated[int, Field(le=100, strict=True, ge=1)]] = None,
+        page: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="One-based page; the resulting offset must not exceed 2147483647. Results sort by created_at then id descending.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[AffiliateReferrerListEnvelope]:
+        """List program referrers
+
+        ADMIN or INTEGRATOR required. Integrators are restricted to their own tenant; ADMIN overrides other roles. Includes registrations in inactive programs.
+
+        :param program_id: (required)
+        :type program_id: UUID
+        :param limit:
+        :type limit: int
+        :param page: One-based page; the resulting offset must not exceed 2147483647. Results sort by created_at then id descending.
+        :type page: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._list_affiliate_referrers_serialize(
+            program_id=program_id,
+            limit=limit,
+            page=page,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AffiliateReferrerListEnvelope",
+            '400': "AffiliateError",
+            '401': "AffiliateError",
+            '403': "AffiliateError",
+            '404': "AffiliateError",
+            '500': "AffiliateError",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    async def list_affiliate_referrers_without_preload_content(
+        self,
+        program_id: UUID,
+        limit: Optional[Annotated[int, Field(le=100, strict=True, ge=1)]] = None,
+        page: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="One-based page; the resulting offset must not exceed 2147483647. Results sort by created_at then id descending.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """List program referrers
+
+        ADMIN or INTEGRATOR required. Integrators are restricted to their own tenant; ADMIN overrides other roles. Includes registrations in inactive programs.
+
+        :param program_id: (required)
+        :type program_id: UUID
+        :param limit:
+        :type limit: int
+        :param page: One-based page; the resulting offset must not exceed 2147483647. Results sort by created_at then id descending.
+        :type page: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._list_affiliate_referrers_serialize(
+            program_id=program_id,
+            limit=limit,
+            page=page,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AffiliateReferrerListEnvelope",
+            '400': "AffiliateError",
+            '401': "AffiliateError",
+            '403': "AffiliateError",
+            '404': "AffiliateError",
+            '500': "AffiliateError",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _list_affiliate_referrers_serialize(
+        self,
+        program_id,
+        limit,
+        page,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if program_id is not None:
+            _path_params['program_id'] = program_id
+        # process the query parameters
+        if limit is not None:
+            
+            _query_params.append(('limit', limit))
+            
+        if page is not None:
+            
+            _query_params.append(('page', page))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyAuthHeader', 
+            'bearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/v1/affiliate_programs/{program_id}/referrers',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     async def list_assets(
         self,
         created_after: Optional[datetime] = None,
@@ -27811,6 +31748,299 @@ class DefaultApi:
 
 
     @validate_call
+    async def list_own_affiliate_memberships(
+        self,
+        limit: Optional[Annotated[int, Field(le=100, strict=True, ge=1)]] = None,
+        page: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="One-based page; the resulting offset must not exceed 2147483647. Results sort by created_at then id descending.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> AffiliateMembershipListEnvelope:
+        """List your affiliate memberships
+
+        Returns only the authenticated user's memberships and reusable codes, including inactive programs.
+
+        :param limit:
+        :type limit: int
+        :param page: One-based page; the resulting offset must not exceed 2147483647. Results sort by created_at then id descending.
+        :type page: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._list_own_affiliate_memberships_serialize(
+            limit=limit,
+            page=page,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AffiliateMembershipListEnvelope",
+            '400': "AffiliateError",
+            '401': "AffiliateError",
+            '403': "AffiliateError",
+            '500': "AffiliateError",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    async def list_own_affiliate_memberships_with_http_info(
+        self,
+        limit: Optional[Annotated[int, Field(le=100, strict=True, ge=1)]] = None,
+        page: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="One-based page; the resulting offset must not exceed 2147483647. Results sort by created_at then id descending.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[AffiliateMembershipListEnvelope]:
+        """List your affiliate memberships
+
+        Returns only the authenticated user's memberships and reusable codes, including inactive programs.
+
+        :param limit:
+        :type limit: int
+        :param page: One-based page; the resulting offset must not exceed 2147483647. Results sort by created_at then id descending.
+        :type page: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._list_own_affiliate_memberships_serialize(
+            limit=limit,
+            page=page,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AffiliateMembershipListEnvelope",
+            '400': "AffiliateError",
+            '401': "AffiliateError",
+            '403': "AffiliateError",
+            '500': "AffiliateError",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    async def list_own_affiliate_memberships_without_preload_content(
+        self,
+        limit: Optional[Annotated[int, Field(le=100, strict=True, ge=1)]] = None,
+        page: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="One-based page; the resulting offset must not exceed 2147483647. Results sort by created_at then id descending.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """List your affiliate memberships
+
+        Returns only the authenticated user's memberships and reusable codes, including inactive programs.
+
+        :param limit:
+        :type limit: int
+        :param page: One-based page; the resulting offset must not exceed 2147483647. Results sort by created_at then id descending.
+        :type page: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._list_own_affiliate_memberships_serialize(
+            limit=limit,
+            page=page,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AffiliateMembershipListEnvelope",
+            '400': "AffiliateError",
+            '401': "AffiliateError",
+            '403': "AffiliateError",
+            '500': "AffiliateError",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _list_own_affiliate_memberships_serialize(
+        self,
+        limit,
+        page,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        if limit is not None:
+            
+            _query_params.append(('limit', limit))
+            
+        if page is not None:
+            
+            _query_params.append(('page', page))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyAuthHeader', 
+            'bearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/v1/affiliate_referrers/self',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     async def list_position_accounts_self(
         self,
         _request_timeout: Union[
@@ -28048,6 +32278,622 @@ class DefaultApi:
         return self.api_client.param_serialize(
             method='GET',
             resource_path='/v1/user/self/position_accounts',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    async def list_promo_link_batches(
+        self,
+        trading_challenge_id: UUID,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> PromoLinkBatchListResponse:
+        """List promotional link batches
+
+        Return source metadata and ISSUED, CLAIMED, and REVOKED counts for each batch. ADMIN and same-tenant INTEGRATOR only.
+
+        :param trading_challenge_id: (required)
+        :type trading_challenge_id: UUID
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._list_promo_link_batches_serialize(
+            trading_challenge_id=trading_challenge_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "PromoLinkBatchListResponse",
+            '400': None,
+            '403': None,
+            '404': None,
+            '500': None,
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    async def list_promo_link_batches_with_http_info(
+        self,
+        trading_challenge_id: UUID,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[PromoLinkBatchListResponse]:
+        """List promotional link batches
+
+        Return source metadata and ISSUED, CLAIMED, and REVOKED counts for each batch. ADMIN and same-tenant INTEGRATOR only.
+
+        :param trading_challenge_id: (required)
+        :type trading_challenge_id: UUID
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._list_promo_link_batches_serialize(
+            trading_challenge_id=trading_challenge_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "PromoLinkBatchListResponse",
+            '400': None,
+            '403': None,
+            '404': None,
+            '500': None,
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    async def list_promo_link_batches_without_preload_content(
+        self,
+        trading_challenge_id: UUID,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """List promotional link batches
+
+        Return source metadata and ISSUED, CLAIMED, and REVOKED counts for each batch. ADMIN and same-tenant INTEGRATOR only.
+
+        :param trading_challenge_id: (required)
+        :type trading_challenge_id: UUID
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._list_promo_link_batches_serialize(
+            trading_challenge_id=trading_challenge_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "PromoLinkBatchListResponse",
+            '400': None,
+            '403': None,
+            '404': None,
+            '500': None,
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _list_promo_link_batches_serialize(
+        self,
+        trading_challenge_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if trading_challenge_id is not None:
+            _path_params['trading_challenge_id'] = trading_challenge_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyAuthHeader', 
+            'bearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/v1/trading_challenges/{trading_challenge_id}/link_batches',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    async def list_promo_links(
+        self,
+        batch_id: UUID,
+        limit: Optional[Annotated[int, Field(le=500, strict=True, ge=1)]] = None,
+        cursor: Optional[StrictStr] = None,
+        status: Optional[PromoLinkStatus] = None,
+        reveal: Optional[StrictBool] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> PromoLinkListResponse:
+        """List promotional links
+
+        Keyset-paginated batch links. URLs are omitted by default and decrypted only when reveal=true. ADMIN and same-tenant INTEGRATOR only.
+
+        :param batch_id: (required)
+        :type batch_id: UUID
+        :param limit:
+        :type limit: int
+        :param cursor:
+        :type cursor: str
+        :param status:
+        :type status: PromoLinkStatus
+        :param reveal:
+        :type reveal: bool
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._list_promo_links_serialize(
+            batch_id=batch_id,
+            limit=limit,
+            cursor=cursor,
+            status=status,
+            reveal=reveal,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "PromoLinkListResponse",
+            '400': None,
+            '403': None,
+            '404': None,
+            '500': None,
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    async def list_promo_links_with_http_info(
+        self,
+        batch_id: UUID,
+        limit: Optional[Annotated[int, Field(le=500, strict=True, ge=1)]] = None,
+        cursor: Optional[StrictStr] = None,
+        status: Optional[PromoLinkStatus] = None,
+        reveal: Optional[StrictBool] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[PromoLinkListResponse]:
+        """List promotional links
+
+        Keyset-paginated batch links. URLs are omitted by default and decrypted only when reveal=true. ADMIN and same-tenant INTEGRATOR only.
+
+        :param batch_id: (required)
+        :type batch_id: UUID
+        :param limit:
+        :type limit: int
+        :param cursor:
+        :type cursor: str
+        :param status:
+        :type status: PromoLinkStatus
+        :param reveal:
+        :type reveal: bool
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._list_promo_links_serialize(
+            batch_id=batch_id,
+            limit=limit,
+            cursor=cursor,
+            status=status,
+            reveal=reveal,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "PromoLinkListResponse",
+            '400': None,
+            '403': None,
+            '404': None,
+            '500': None,
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    async def list_promo_links_without_preload_content(
+        self,
+        batch_id: UUID,
+        limit: Optional[Annotated[int, Field(le=500, strict=True, ge=1)]] = None,
+        cursor: Optional[StrictStr] = None,
+        status: Optional[PromoLinkStatus] = None,
+        reveal: Optional[StrictBool] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """List promotional links
+
+        Keyset-paginated batch links. URLs are omitted by default and decrypted only when reveal=true. ADMIN and same-tenant INTEGRATOR only.
+
+        :param batch_id: (required)
+        :type batch_id: UUID
+        :param limit:
+        :type limit: int
+        :param cursor:
+        :type cursor: str
+        :param status:
+        :type status: PromoLinkStatus
+        :param reveal:
+        :type reveal: bool
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._list_promo_links_serialize(
+            batch_id=batch_id,
+            limit=limit,
+            cursor=cursor,
+            status=status,
+            reveal=reveal,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "PromoLinkListResponse",
+            '400': None,
+            '403': None,
+            '404': None,
+            '500': None,
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _list_promo_links_serialize(
+        self,
+        batch_id,
+        limit,
+        cursor,
+        status,
+        reveal,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if batch_id is not None:
+            _path_params['batch_id'] = batch_id
+        # process the query parameters
+        if limit is not None:
+            
+            _query_params.append(('limit', limit))
+            
+        if cursor is not None:
+            
+            _query_params.append(('cursor', cursor))
+            
+        if status is not None:
+            
+            _query_params.append(('status', status.value))
+            
+        if reveal is not None:
+            
+            _query_params.append(('reveal', reveal))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyAuthHeader', 
+            'bearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/v1/link_batches/{batch_id}/links',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -29108,6 +33954,627 @@ class DefaultApi:
 
 
     @validate_call
+    async def list_withdrawals(
+        self,
+        user_id: Annotated[Optional[UUID], Field(description="Filter by user ID. Non-admin callers may only specify their own user ID.")] = None,
+        status: Annotated[Optional[Web3WithdrawalStatus], Field(description="Filter by withdrawal status.")] = None,
+        page: Optional[Annotated[int, Field(strict=True, ge=1)]] = None,
+        limit: Optional[Annotated[int, Field(le=100, strict=True, ge=1)]] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ListWithdrawalsResponseEnvelope:
+        """List USDC withdrawals
+
+        Lists USDC withdrawals ordered by created_at descending. Non-admin callers are always scoped to their own withdrawals. Admin callers get every user's withdrawals by default, and may narrow to one user with `user_id`.
+
+        :param user_id: Filter by user ID. Non-admin callers may only specify their own user ID.
+        :type user_id: UUID
+        :param status: Filter by withdrawal status.
+        :type status: Web3WithdrawalStatus
+        :param page:
+        :type page: int
+        :param limit:
+        :type limit: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._list_withdrawals_serialize(
+            user_id=user_id,
+            status=status,
+            page=page,
+            limit=limit,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ListWithdrawalsResponseEnvelope",
+            '400': "ResponseEnvelope",
+            '401': "ResponseEnvelope",
+            '403': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    async def list_withdrawals_with_http_info(
+        self,
+        user_id: Annotated[Optional[UUID], Field(description="Filter by user ID. Non-admin callers may only specify their own user ID.")] = None,
+        status: Annotated[Optional[Web3WithdrawalStatus], Field(description="Filter by withdrawal status.")] = None,
+        page: Optional[Annotated[int, Field(strict=True, ge=1)]] = None,
+        limit: Optional[Annotated[int, Field(le=100, strict=True, ge=1)]] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ListWithdrawalsResponseEnvelope]:
+        """List USDC withdrawals
+
+        Lists USDC withdrawals ordered by created_at descending. Non-admin callers are always scoped to their own withdrawals. Admin callers get every user's withdrawals by default, and may narrow to one user with `user_id`.
+
+        :param user_id: Filter by user ID. Non-admin callers may only specify their own user ID.
+        :type user_id: UUID
+        :param status: Filter by withdrawal status.
+        :type status: Web3WithdrawalStatus
+        :param page:
+        :type page: int
+        :param limit:
+        :type limit: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._list_withdrawals_serialize(
+            user_id=user_id,
+            status=status,
+            page=page,
+            limit=limit,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ListWithdrawalsResponseEnvelope",
+            '400': "ResponseEnvelope",
+            '401': "ResponseEnvelope",
+            '403': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    async def list_withdrawals_without_preload_content(
+        self,
+        user_id: Annotated[Optional[UUID], Field(description="Filter by user ID. Non-admin callers may only specify their own user ID.")] = None,
+        status: Annotated[Optional[Web3WithdrawalStatus], Field(description="Filter by withdrawal status.")] = None,
+        page: Optional[Annotated[int, Field(strict=True, ge=1)]] = None,
+        limit: Optional[Annotated[int, Field(le=100, strict=True, ge=1)]] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """List USDC withdrawals
+
+        Lists USDC withdrawals ordered by created_at descending. Non-admin callers are always scoped to their own withdrawals. Admin callers get every user's withdrawals by default, and may narrow to one user with `user_id`.
+
+        :param user_id: Filter by user ID. Non-admin callers may only specify their own user ID.
+        :type user_id: UUID
+        :param status: Filter by withdrawal status.
+        :type status: Web3WithdrawalStatus
+        :param page:
+        :type page: int
+        :param limit:
+        :type limit: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._list_withdrawals_serialize(
+            user_id=user_id,
+            status=status,
+            page=page,
+            limit=limit,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ListWithdrawalsResponseEnvelope",
+            '400': "ResponseEnvelope",
+            '401': "ResponseEnvelope",
+            '403': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _list_withdrawals_serialize(
+        self,
+        user_id,
+        status,
+        page,
+        limit,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        if user_id is not None:
+            
+            _query_params.append(('user_id', user_id))
+            
+        if status is not None:
+            
+            _query_params.append(('status', status.value))
+            
+        if page is not None:
+            
+            _query_params.append(('page', page))
+            
+        if limit is not None:
+            
+            _query_params.append(('limit', limit))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyAuthHeader', 
+            'bearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/v1/web3/withdrawals',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    async def lookup_affiliate_code(
+        self,
+        code: Annotated[str, Field(strict=True)],
+        tenant_id: Annotated[Optional[Annotated[str, Field(min_length=1, strict=True, max_length=256)]], Field(description="Integrators default to their own tenant and cannot select another. Admins may select any tenant.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> AffiliateReferrerEnvelope:
+        """Look up a reusable referral code
+
+        ADMIN or INTEGRATOR required, within tenant permissions. Admins must supply tenant_id. Case-insensitive lookup requires an active program and never consumes the code. Attribution happens separately at signup or through POST /v1/affiliate_referrals/self.
+
+        :param code: (required)
+        :type code: str
+        :param tenant_id: Integrators default to their own tenant and cannot select another. Admins may select any tenant.
+        :type tenant_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._lookup_affiliate_code_serialize(
+            code=code,
+            tenant_id=tenant_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AffiliateReferrerEnvelope",
+            '400': "AffiliateError",
+            '401': "AffiliateError",
+            '403': "AffiliateError",
+            '404': "AffiliateError",
+            '500': "AffiliateError",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    async def lookup_affiliate_code_with_http_info(
+        self,
+        code: Annotated[str, Field(strict=True)],
+        tenant_id: Annotated[Optional[Annotated[str, Field(min_length=1, strict=True, max_length=256)]], Field(description="Integrators default to their own tenant and cannot select another. Admins may select any tenant.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[AffiliateReferrerEnvelope]:
+        """Look up a reusable referral code
+
+        ADMIN or INTEGRATOR required, within tenant permissions. Admins must supply tenant_id. Case-insensitive lookup requires an active program and never consumes the code. Attribution happens separately at signup or through POST /v1/affiliate_referrals/self.
+
+        :param code: (required)
+        :type code: str
+        :param tenant_id: Integrators default to their own tenant and cannot select another. Admins may select any tenant.
+        :type tenant_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._lookup_affiliate_code_serialize(
+            code=code,
+            tenant_id=tenant_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AffiliateReferrerEnvelope",
+            '400': "AffiliateError",
+            '401': "AffiliateError",
+            '403': "AffiliateError",
+            '404': "AffiliateError",
+            '500': "AffiliateError",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    async def lookup_affiliate_code_without_preload_content(
+        self,
+        code: Annotated[str, Field(strict=True)],
+        tenant_id: Annotated[Optional[Annotated[str, Field(min_length=1, strict=True, max_length=256)]], Field(description="Integrators default to their own tenant and cannot select another. Admins may select any tenant.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Look up a reusable referral code
+
+        ADMIN or INTEGRATOR required, within tenant permissions. Admins must supply tenant_id. Case-insensitive lookup requires an active program and never consumes the code. Attribution happens separately at signup or through POST /v1/affiliate_referrals/self.
+
+        :param code: (required)
+        :type code: str
+        :param tenant_id: Integrators default to their own tenant and cannot select another. Admins may select any tenant.
+        :type tenant_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._lookup_affiliate_code_serialize(
+            code=code,
+            tenant_id=tenant_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AffiliateReferrerEnvelope",
+            '400': "AffiliateError",
+            '401': "AffiliateError",
+            '403': "AffiliateError",
+            '404': "AffiliateError",
+            '500': "AffiliateError",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _lookup_affiliate_code_serialize(
+        self,
+        code,
+        tenant_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if code is not None:
+            _path_params['code'] = code
+        # process the query parameters
+        if tenant_id is not None:
+            
+            _query_params.append(('tenant_id', tenant_id))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyAuthHeader', 
+            'bearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/v1/affiliate_codes/{code}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     async def pay_leverage_get_accrued_interest(
         self,
         pay_leverage_accrued_interest_request: PayLeverageAccruedInterestRequest,
@@ -29373,6 +34840,314 @@ class DefaultApi:
         return self.api_client.param_serialize(
             method='POST',
             resource_path='/v1/leverage/accrued_interest/pay',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    async def register_affiliate_referrer(
+        self,
+        program_id: UUID,
+        register_affiliate_referrer_request: RegisterAffiliateReferrerRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> AffiliateReferrerEnvelope:
+        """Register an existing user as a referrer
+
+        ADMIN or INTEGRATOR required, within tenant permissions. Accepts an optional custom referral_code and generates one when omitted or empty. Codes are stored uppercase and globally unique. Duplicate membership or code returns 409. Users may supply the code at signup or assign it later through POST /v1/affiliate_referrals/self.
+
+        :param program_id: (required)
+        :type program_id: UUID
+        :param register_affiliate_referrer_request: (required)
+        :type register_affiliate_referrer_request: RegisterAffiliateReferrerRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._register_affiliate_referrer_serialize(
+            program_id=program_id,
+            register_affiliate_referrer_request=register_affiliate_referrer_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "AffiliateReferrerEnvelope",
+            '400': "AffiliateError",
+            '401': "AffiliateError",
+            '403': "AffiliateError",
+            '404': "AffiliateError",
+            '500': "AffiliateError",
+            '409': "AffiliateError",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    async def register_affiliate_referrer_with_http_info(
+        self,
+        program_id: UUID,
+        register_affiliate_referrer_request: RegisterAffiliateReferrerRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[AffiliateReferrerEnvelope]:
+        """Register an existing user as a referrer
+
+        ADMIN or INTEGRATOR required, within tenant permissions. Accepts an optional custom referral_code and generates one when omitted or empty. Codes are stored uppercase and globally unique. Duplicate membership or code returns 409. Users may supply the code at signup or assign it later through POST /v1/affiliate_referrals/self.
+
+        :param program_id: (required)
+        :type program_id: UUID
+        :param register_affiliate_referrer_request: (required)
+        :type register_affiliate_referrer_request: RegisterAffiliateReferrerRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._register_affiliate_referrer_serialize(
+            program_id=program_id,
+            register_affiliate_referrer_request=register_affiliate_referrer_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "AffiliateReferrerEnvelope",
+            '400': "AffiliateError",
+            '401': "AffiliateError",
+            '403': "AffiliateError",
+            '404': "AffiliateError",
+            '500': "AffiliateError",
+            '409': "AffiliateError",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    async def register_affiliate_referrer_without_preload_content(
+        self,
+        program_id: UUID,
+        register_affiliate_referrer_request: RegisterAffiliateReferrerRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Register an existing user as a referrer
+
+        ADMIN or INTEGRATOR required, within tenant permissions. Accepts an optional custom referral_code and generates one when omitted or empty. Codes are stored uppercase and globally unique. Duplicate membership or code returns 409. Users may supply the code at signup or assign it later through POST /v1/affiliate_referrals/self.
+
+        :param program_id: (required)
+        :type program_id: UUID
+        :param register_affiliate_referrer_request: (required)
+        :type register_affiliate_referrer_request: RegisterAffiliateReferrerRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._register_affiliate_referrer_serialize(
+            program_id=program_id,
+            register_affiliate_referrer_request=register_affiliate_referrer_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "AffiliateReferrerEnvelope",
+            '400': "AffiliateError",
+            '401': "AffiliateError",
+            '403': "AffiliateError",
+            '404': "AffiliateError",
+            '500': "AffiliateError",
+            '409': "AffiliateError",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _register_affiliate_referrer_serialize(
+        self,
+        program_id,
+        register_affiliate_referrer_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if program_id is not None:
+            _path_params['program_id'] = program_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if register_affiliate_referrer_request is not None:
+            _body_params = register_affiliate_referrer_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyAuthHeader', 
+            'bearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/v1/affiliate_programs/{program_id}/referrers',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -30283,6 +36058,331 @@ class DefaultApi:
 
 
     @validate_call
+    async def render_promo_link_qr(
+        self,
+        link_id: UUID,
+        size: Optional[Annotated[int, Field(le=2048, strict=True, ge=128)]] = None,
+        format: Optional[StrictStr] = None,
+        ec: Optional[StrictStr] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> str:
+        """Render a promotional link QR code
+
+        Render the exact private claim URL as PNG with Cache-Control private, no-store. ADMIN and same-tenant INTEGRATOR only.
+
+        :param link_id: (required)
+        :type link_id: UUID
+        :param size:
+        :type size: int
+        :param format:
+        :type format: str
+        :param ec:
+        :type ec: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._render_promo_link_qr_serialize(
+            link_id=link_id,
+            size=size,
+            format=format,
+            ec=ec,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "str",
+            '400': None,
+            '403': None,
+            '404': None,
+            '500': None,
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    async def render_promo_link_qr_with_http_info(
+        self,
+        link_id: UUID,
+        size: Optional[Annotated[int, Field(le=2048, strict=True, ge=128)]] = None,
+        format: Optional[StrictStr] = None,
+        ec: Optional[StrictStr] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[str]:
+        """Render a promotional link QR code
+
+        Render the exact private claim URL as PNG with Cache-Control private, no-store. ADMIN and same-tenant INTEGRATOR only.
+
+        :param link_id: (required)
+        :type link_id: UUID
+        :param size:
+        :type size: int
+        :param format:
+        :type format: str
+        :param ec:
+        :type ec: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._render_promo_link_qr_serialize(
+            link_id=link_id,
+            size=size,
+            format=format,
+            ec=ec,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "str",
+            '400': None,
+            '403': None,
+            '404': None,
+            '500': None,
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    async def render_promo_link_qr_without_preload_content(
+        self,
+        link_id: UUID,
+        size: Optional[Annotated[int, Field(le=2048, strict=True, ge=128)]] = None,
+        format: Optional[StrictStr] = None,
+        ec: Optional[StrictStr] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Render a promotional link QR code
+
+        Render the exact private claim URL as PNG with Cache-Control private, no-store. ADMIN and same-tenant INTEGRATOR only.
+
+        :param link_id: (required)
+        :type link_id: UUID
+        :param size:
+        :type size: int
+        :param format:
+        :type format: str
+        :param ec:
+        :type ec: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._render_promo_link_qr_serialize(
+            link_id=link_id,
+            size=size,
+            format=format,
+            ec=ec,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "str",
+            '400': None,
+            '403': None,
+            '404': None,
+            '500': None,
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _render_promo_link_qr_serialize(
+        self,
+        link_id,
+        size,
+        format,
+        ec,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if link_id is not None:
+            _path_params['link_id'] = link_id
+        # process the query parameters
+        if size is not None:
+            
+            _query_params.append(('size', size))
+            
+        if format is not None:
+            
+            _query_params.append(('format', format))
+            
+        if ec is not None:
+            
+            _query_params.append(('ec', ec))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'image/png'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyAuthHeader', 
+            'bearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/v1/promo_links/{link_id}/qr',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     async def repay_usd(
         self,
         repay_usd_request: RepayUSDRequest,
@@ -30554,6 +36654,269 @@ class DefaultApi:
         return self.api_client.param_serialize(
             method='POST',
             resource_path='/v1/positions/repay_usd',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    async def resolve_promo_claim(
+        self,
+        token: Annotated[str, Field(min_length=1, strict=True, description="Opaque bearer claim token")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> PromoClaimResponseEnvelope:
+        """Resolve a public QR promotion claim link
+
+
+        :param token: Opaque bearer claim token (required)
+        :type token: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._resolve_promo_claim_serialize(
+            token=token,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "PromoClaimResponseEnvelope",
+            '429': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    async def resolve_promo_claim_with_http_info(
+        self,
+        token: Annotated[str, Field(min_length=1, strict=True, description="Opaque bearer claim token")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[PromoClaimResponseEnvelope]:
+        """Resolve a public QR promotion claim link
+
+
+        :param token: Opaque bearer claim token (required)
+        :type token: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._resolve_promo_claim_serialize(
+            token=token,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "PromoClaimResponseEnvelope",
+            '429': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    async def resolve_promo_claim_without_preload_content(
+        self,
+        token: Annotated[str, Field(min_length=1, strict=True, description="Opaque bearer claim token")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Resolve a public QR promotion claim link
+
+
+        :param token: Opaque bearer claim token (required)
+        :type token: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._resolve_promo_claim_serialize(
+            token=token,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "PromoClaimResponseEnvelope",
+            '429': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _resolve_promo_claim_serialize(
+        self,
+        token,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if token is not None:
+            _path_params['token'] = token
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/v1/promo/claim/{token}',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -31099,6 +37462,311 @@ class DefaultApi:
         return self.api_client.param_serialize(
             method='PUT',
             resource_path='/v1/user/{user_id}/apikey/{key_id}/revoke',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    async def revoke_promo_link(
+        self,
+        link_id: UUID,
+        revoke_promo_link_request: RevokePromoLinkRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RevokePromoLinkResponse:
+        """Revoke a promotional link
+
+        Revoke an unclaimed link and return one unit of QR campaign capacity. Repeating an already-revoked request is idempotent; claimed links return 409.
+
+        :param link_id: (required)
+        :type link_id: UUID
+        :param revoke_promo_link_request: (required)
+        :type revoke_promo_link_request: RevokePromoLinkRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._revoke_promo_link_serialize(
+            link_id=link_id,
+            revoke_promo_link_request=revoke_promo_link_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "RevokePromoLinkResponse",
+            '400': None,
+            '403': None,
+            '404': None,
+            '409': None,
+            '500': None,
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    async def revoke_promo_link_with_http_info(
+        self,
+        link_id: UUID,
+        revoke_promo_link_request: RevokePromoLinkRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[RevokePromoLinkResponse]:
+        """Revoke a promotional link
+
+        Revoke an unclaimed link and return one unit of QR campaign capacity. Repeating an already-revoked request is idempotent; claimed links return 409.
+
+        :param link_id: (required)
+        :type link_id: UUID
+        :param revoke_promo_link_request: (required)
+        :type revoke_promo_link_request: RevokePromoLinkRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._revoke_promo_link_serialize(
+            link_id=link_id,
+            revoke_promo_link_request=revoke_promo_link_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "RevokePromoLinkResponse",
+            '400': None,
+            '403': None,
+            '404': None,
+            '409': None,
+            '500': None,
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    async def revoke_promo_link_without_preload_content(
+        self,
+        link_id: UUID,
+        revoke_promo_link_request: RevokePromoLinkRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Revoke a promotional link
+
+        Revoke an unclaimed link and return one unit of QR campaign capacity. Repeating an already-revoked request is idempotent; claimed links return 409.
+
+        :param link_id: (required)
+        :type link_id: UUID
+        :param revoke_promo_link_request: (required)
+        :type revoke_promo_link_request: RevokePromoLinkRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._revoke_promo_link_serialize(
+            link_id=link_id,
+            revoke_promo_link_request=revoke_promo_link_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "RevokePromoLinkResponse",
+            '400': None,
+            '403': None,
+            '404': None,
+            '409': None,
+            '500': None,
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _revoke_promo_link_serialize(
+        self,
+        link_id,
+        revoke_promo_link_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if link_id is not None:
+            _path_params['link_id'] = link_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if revoke_promo_link_request is not None:
+            _body_params = revoke_promo_link_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyAuthHeader', 
+            'bearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/v1/promo_links/{link_id}/revoke',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -34516,6 +41184,311 @@ class DefaultApi:
         return self.api_client.param_serialize(
             method='POST',
             resource_path='/v1/positions/transfer_balances',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    async def update_affiliate_program(
+        self,
+        program_id: UUID,
+        update_affiliate_program_request: UpdateAffiliateProgramRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> AffiliateProgramEnvelope:
+        """Update an affiliate program
+
+        ADMIN or INTEGRATOR required. Integrators are restricted to their own tenant; ADMIN overrides other roles. Omitted and null fields are preserved. Fields accept direct values or {update, value} objects. Tenant ownership cannot be changed. Deactivation preserves codes and registrations.
+
+        :param program_id: (required)
+        :type program_id: UUID
+        :param update_affiliate_program_request: (required)
+        :type update_affiliate_program_request: UpdateAffiliateProgramRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_affiliate_program_serialize(
+            program_id=program_id,
+            update_affiliate_program_request=update_affiliate_program_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AffiliateProgramEnvelope",
+            '400': "AffiliateError",
+            '401': "AffiliateError",
+            '403': "AffiliateError",
+            '404': "AffiliateError",
+            '500': "AffiliateError",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    async def update_affiliate_program_with_http_info(
+        self,
+        program_id: UUID,
+        update_affiliate_program_request: UpdateAffiliateProgramRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[AffiliateProgramEnvelope]:
+        """Update an affiliate program
+
+        ADMIN or INTEGRATOR required. Integrators are restricted to their own tenant; ADMIN overrides other roles. Omitted and null fields are preserved. Fields accept direct values or {update, value} objects. Tenant ownership cannot be changed. Deactivation preserves codes and registrations.
+
+        :param program_id: (required)
+        :type program_id: UUID
+        :param update_affiliate_program_request: (required)
+        :type update_affiliate_program_request: UpdateAffiliateProgramRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_affiliate_program_serialize(
+            program_id=program_id,
+            update_affiliate_program_request=update_affiliate_program_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AffiliateProgramEnvelope",
+            '400': "AffiliateError",
+            '401': "AffiliateError",
+            '403': "AffiliateError",
+            '404': "AffiliateError",
+            '500': "AffiliateError",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    async def update_affiliate_program_without_preload_content(
+        self,
+        program_id: UUID,
+        update_affiliate_program_request: UpdateAffiliateProgramRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Update an affiliate program
+
+        ADMIN or INTEGRATOR required. Integrators are restricted to their own tenant; ADMIN overrides other roles. Omitted and null fields are preserved. Fields accept direct values or {update, value} objects. Tenant ownership cannot be changed. Deactivation preserves codes and registrations.
+
+        :param program_id: (required)
+        :type program_id: UUID
+        :param update_affiliate_program_request: (required)
+        :type update_affiliate_program_request: UpdateAffiliateProgramRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_affiliate_program_serialize(
+            program_id=program_id,
+            update_affiliate_program_request=update_affiliate_program_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AffiliateProgramEnvelope",
+            '400': "AffiliateError",
+            '401': "AffiliateError",
+            '403': "AffiliateError",
+            '404': "AffiliateError",
+            '500': "AffiliateError",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _update_affiliate_program_serialize(
+        self,
+        program_id,
+        update_affiliate_program_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if program_id is not None:
+            _path_params['program_id'] = program_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if update_affiliate_program_request is not None:
+            _body_params = update_affiliate_program_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyAuthHeader', 
+            'bearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/v1/affiliate_programs/{program_id}',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,

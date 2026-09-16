@@ -28,6 +28,7 @@ class TradingChallengeType(str, Enum):
     """
     TOURNAMENT = 'TOURNAMENT'
     CASH = 'CASH'
+    QR_PROMO = 'QR_PROMO'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

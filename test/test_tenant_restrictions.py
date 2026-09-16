@@ -36,14 +36,14 @@ class TestTenantRestrictions(unittest.TestCase):
         if include_optional:
             return TenantRestrictions(
                 tenant_id = '',
-                deposit_limit = '',
+                daily_deposit_limit = '',
                 trade_limit = '',
                 updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f')
             )
         else:
             return TenantRestrictions(
                 tenant_id = '',
-                deposit_limit = '',
+                daily_deposit_limit = '',
                 trade_limit = '',
                 updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
         )

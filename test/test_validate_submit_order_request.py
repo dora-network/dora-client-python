@@ -67,7 +67,7 @@ class TestValidateSubmitOrderRequest(unittest.TestCase):
                 take_profit_price = '',
                 restrictions = dora_client.models.tenant_restrictions.TenantRestrictions(
                     tenant_id = '', 
-                    deposit_limit = '', 
+                    daily_deposit_limit = '', 
                     trade_limit = '', 
                     updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ),
                 initial_capital = ''

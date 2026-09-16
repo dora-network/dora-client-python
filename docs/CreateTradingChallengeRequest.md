@@ -20,6 +20,7 @@ Name | Type | Description | Notes
 **avg_daily_volume_condition** | **str** |  | [optional] 
 **minimum_equity_percentage_condition** | **int** |  | [optional] 
 **users** | **List[UUID]** |  | [optional] 
+**qr** | [**CreateTradingChallengeQRRequest**](CreateTradingChallengeQRRequest.md) | Required for QR_PROMO and rejected for other challenge types. QR_PROMO requests must omit users. | [optional] 
 
 ## Example
 

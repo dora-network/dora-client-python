@@ -22,6 +22,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from uuid import UUID
+from dora_client.models.create_trading_challenge_qr_request import CreateTradingChallengeQRRequest
 from dora_client.models.trading_challenge_type import TradingChallengeType
 from typing import Optional, Set
 from typing_extensions import Self
@@ -46,7 +47,8 @@ class CreateTradingChallengeRequest(BaseModel):
     avg_daily_volume_condition: Optional[StrictStr] = None
     minimum_equity_percentage_condition: Optional[Annotated[int, Field(le=99, strict=True, ge=0)]] = None
     users: Optional[List[UUID]] = None
-    __properties: ClassVar[List[str]] = ["tenant_id", "name", "type", "max_users", "start", "end", "initial_user_balance", "gold_prize_quantity", "silver_prize_quantity", "bronze_prize_quantity", "pnl_condition", "total_volume_condition", "avg_daily_volume_condition", "minimum_equity_percentage_condition", "users"]
+    qr: Optional[CreateTradingChallengeQRRequest] = Field(default=None, description="Required for QR_PROMO and rejected for other challenge types. QR_PROMO requests must omit users.")
+    __properties: ClassVar[List[str]] = ["tenant_id", "name", "type", "max_users", "start", "end", "initial_user_balance", "gold_prize_quantity", "silver_prize_quantity", "bronze_prize_quantity", "pnl_condition", "total_volume_condition", "avg_daily_volume_condition", "minimum_equity_percentage_condition", "users", "qr"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -87,6 +89,9 @@ class CreateTradingChallengeRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of qr
+        if self.qr:
+            _dict['qr'] = self.qr.to_dict()
         return _dict
 
     @classmethod
@@ -113,7 +118,8 @@ class CreateTradingChallengeRequest(BaseModel):
             "total_volume_condition": obj.get("total_volume_condition"),
             "avg_daily_volume_condition": obj.get("avg_daily_volume_condition"),
             "minimum_equity_percentage_condition": obj.get("minimum_equity_percentage_condition"),
-            "users": obj.get("users")
+            "users": obj.get("users"),
+            "qr": CreateTradingChallengeQRRequest.from_dict(obj["qr"]) if obj.get("qr") is not None else None
         })
         return _obj
 

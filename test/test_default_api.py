@@ -47,6 +47,13 @@ class TestDefaultApi(unittest.IsolatedAsyncioTestCase):
         """
         pass
 
+    async def test_assign_affiliate_referral(self) -> None:
+        """Test case for assign_affiliate_referral
+
+        Assign your affiliate referrer
+        """
+        pass
+
     async def test_cancel_all_open_orders(self) -> None:
         """Test case for cancel_all_open_orders
 
@@ -75,6 +82,13 @@ class TestDefaultApi(unittest.IsolatedAsyncioTestCase):
         """
         pass
 
+    async def test_claim_promo_link(self) -> None:
+        """Test case for claim_promo_link
+
+        Claim a public QR promotion link
+        """
+        pass
+
     async def test_claim_trading_challenge_prize(self) -> None:
         """Test case for claim_trading_challenge_prize
 
@@ -93,6 +107,13 @@ class TestDefaultApi(unittest.IsolatedAsyncioTestCase):
         """Test case for close_isolated_position
 
         Close isolated positions, repaying the borrowed
+        """
+        pass
+
+    async def test_create_affiliate_program(self) -> None:
+        """Test case for create_affiliate_program
+
+        Create an affiliate program
         """
         pass
 
@@ -138,10 +159,31 @@ class TestDefaultApi(unittest.IsolatedAsyncioTestCase):
         """
         pass
 
+    async def test_create_withdrawal(self) -> None:
+        """Test case for create_withdrawal
+
+        Create a USDC withdrawal request
+        """
+        pass
+
     async def test_delete_user(self) -> None:
         """Test case for delete_user
 
         Delete user by ID
+        """
+        pass
+
+    async def test_export_promo_links_csv(self) -> None:
+        """Test case for export_promo_links_csv
+
+        Export promotional links as CSV
+        """
+        pass
+
+    async def test_get_affiliate_program(self) -> None:
+        """Test case for get_affiliate_program
+
+        Get an affiliate program
         """
         pass
 
@@ -404,6 +446,13 @@ class TestDefaultApi(unittest.IsolatedAsyncioTestCase):
         """
         pass
 
+    async def test_get_promo_attribution(self) -> None:
+        """Test case for get_promo_attribution
+
+        Get promotional source attribution
+        """
+        pass
+
     async def test_get_realized_pnl_settlements(self) -> None:
         """Test case for get_realized_pnl_settlements
 
@@ -558,10 +607,24 @@ class TestDefaultApi(unittest.IsolatedAsyncioTestCase):
         """
         pass
 
+    async def test_get_withdrawal(self) -> None:
+        """Test case for get_withdrawal
+
+        Get a USDC withdrawal by ID
+        """
+        pass
+
     async def test_get_withdrawal_fee_quote(self) -> None:
         """Test case for get_withdrawal_fee_quote
 
         Estimate the network fee to withdraw USDC via web3
+        """
+        pass
+
+    async def test_issue_promo_link_batch(self) -> None:
+        """Test case for issue_promo_link_batch
+
+        Issue a promotional link batch
         """
         pass
 
@@ -663,6 +726,34 @@ class TestDefaultApi(unittest.IsolatedAsyncioTestCase):
         """
         pass
 
+    async def test_list_affiliate_cash_flows(self) -> None:
+        """Test case for list_affiliate_cash_flows
+
+        List a referred user's customer cash flows
+        """
+        pass
+
+    async def test_list_affiliate_programs(self) -> None:
+        """Test case for list_affiliate_programs
+
+        List affiliate programs
+        """
+        pass
+
+    async def test_list_affiliate_referrals(self) -> None:
+        """Test case for list_affiliate_referrals
+
+        List referred users and activity
+        """
+        pass
+
+    async def test_list_affiliate_referrers(self) -> None:
+        """Test case for list_affiliate_referrers
+
+        List program referrers
+        """
+        pass
+
     async def test_list_assets(self) -> None:
         """Test case for list_assets
 
@@ -691,10 +782,31 @@ class TestDefaultApi(unittest.IsolatedAsyncioTestCase):
         """
         pass
 
+    async def test_list_own_affiliate_memberships(self) -> None:
+        """Test case for list_own_affiliate_memberships
+
+        List your affiliate memberships
+        """
+        pass
+
     async def test_list_position_accounts_self(self) -> None:
         """Test case for list_position_accounts_self
 
         List all position accounts for the authenticated user
+        """
+        pass
+
+    async def test_list_promo_link_batches(self) -> None:
+        """Test case for list_promo_link_batches
+
+        List promotional link batches
+        """
+        pass
+
+    async def test_list_promo_links(self) -> None:
+        """Test case for list_promo_links
+
+        List promotional links
         """
         pass
 
@@ -719,10 +831,31 @@ class TestDefaultApi(unittest.IsolatedAsyncioTestCase):
         """
         pass
 
+    async def test_list_withdrawals(self) -> None:
+        """Test case for list_withdrawals
+
+        List USDC withdrawals
+        """
+        pass
+
+    async def test_lookup_affiliate_code(self) -> None:
+        """Test case for lookup_affiliate_code
+
+        Look up a reusable referral code
+        """
+        pass
+
     async def test_pay_leverage_get_accrued_interest(self) -> None:
         """Test case for pay_leverage_get_accrued_interest
 
         Pay current accrued leverage interest for a specific user
+        """
+        pass
+
+    async def test_register_affiliate_referrer(self) -> None:
+        """Test case for register_affiliate_referrer
+
+        Register an existing user as a referrer
         """
         pass
 
@@ -747,10 +880,24 @@ class TestDefaultApi(unittest.IsolatedAsyncioTestCase):
         """
         pass
 
+    async def test_render_promo_link_qr(self) -> None:
+        """Test case for render_promo_link_qr
+
+        Render a promotional link QR code
+        """
+        pass
+
     async def test_repay_usd(self) -> None:
         """Test case for repay_usd
 
         Repay borrowed USD, then accrue and pay leverage interest
+        """
+        pass
+
+    async def test_resolve_promo_claim(self) -> None:
+        """Test case for resolve_promo_claim
+
+        Resolve a public QR promotion claim link
         """
         pass
 
@@ -765,6 +912,13 @@ class TestDefaultApi(unittest.IsolatedAsyncioTestCase):
         """Test case for revoke_api_key_for_user_id
 
         Revoke apikey for a user: admin or integrator only
+        """
+        pass
+
+    async def test_revoke_promo_link(self) -> None:
+        """Test case for revoke_promo_link
+
+        Revoke a promotional link
         """
         pass
 
@@ -849,6 +1003,13 @@ class TestDefaultApi(unittest.IsolatedAsyncioTestCase):
         """Test case for transfer_available_balances
 
         Transfer available balance between a user's accounts (e.g. global to isolated position)
+        """
+        pass
+
+    async def test_update_affiliate_program(self) -> None:
+        """Test case for update_affiliate_program
+
+        Update an affiliate program
         """
         pass
 

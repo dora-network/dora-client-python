@@ -21,6 +21,7 @@ from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from uuid import UUID
+from dora_client.models.trading_challenge_qr import TradingChallengeQR
 from dora_client.models.trading_challenge_status import TradingChallengeStatus
 from dora_client.models.trading_challenge_type import TradingChallengeType
 from typing import Optional, Set
@@ -51,7 +52,9 @@ class TradingChallenge(BaseModel):
     last_processed_at: Optional[datetime] = None
     users: Optional[List[UUID]] = None
     users_count: StrictInt
-    __properties: ClassVar[List[str]] = ["id", "name", "tenant_id", "type", "status", "max_users", "start_at", "end_at", "initial_user_balance", "gold_prize_quantity", "silver_prize_quantity", "bronze_prize_quantity", "pnl_condition", "total_volume_condition", "avg_daily_volume_condition", "minimum_equity_percentage_condition", "created_at", "last_processed_at", "users", "users_count"]
+    qr: Optional[TradingChallengeQR] = None
+    worst_case_exposure: Optional[StrictStr] = Field(default=None, description="For QR_PROMO, max_users multiplied by initial_user_balance plus max_reward_amount.")
+    __properties: ClassVar[List[str]] = ["id", "name", "tenant_id", "type", "status", "max_users", "start_at", "end_at", "initial_user_balance", "gold_prize_quantity", "silver_prize_quantity", "bronze_prize_quantity", "pnl_condition", "total_volume_condition", "avg_daily_volume_condition", "minimum_equity_percentage_condition", "created_at", "last_processed_at", "users", "users_count", "qr", "worst_case_exposure"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -92,6 +95,9 @@ class TradingChallenge(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of qr
+        if self.qr:
+            _dict['qr'] = self.qr.to_dict()
         return _dict
 
     @classmethod
@@ -123,7 +129,9 @@ class TradingChallenge(BaseModel):
             "created_at": obj.get("created_at"),
             "last_processed_at": obj.get("last_processed_at"),
             "users": obj.get("users"),
-            "users_count": obj.get("users_count")
+            "users_count": obj.get("users_count"),
+            "qr": TradingChallengeQR.from_dict(obj["qr"]) if obj.get("qr") is not None else None,
+            "worst_case_exposure": obj.get("worst_case_exposure")
         })
         return _obj
 

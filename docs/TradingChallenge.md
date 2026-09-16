@@ -25,6 +25,8 @@ Name | Type | Description | Notes
 **last_processed_at** | **datetime** |  | [optional] 
 **users** | **List[UUID]** |  | [optional] 
 **users_count** | **int** |  | 
+**qr** | [**TradingChallengeQR**](TradingChallengeQR.md) |  | [optional] 
+**worst_case_exposure** | **str** | For QR_PROMO, max_users multiplied by initial_user_balance plus max_reward_amount. | [optional] 
 
 ## Example
 

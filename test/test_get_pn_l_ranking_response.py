@@ -35,22 +35,26 @@ class TestGetPnLRankingResponse(unittest.TestCase):
         model = GetPnLRankingResponse()
         if include_optional:
             return GetPnLRankingResponse(
-                data = [
-                    dora_client.models.pn_l_ranking_response.PnLRankingResponse(
-                        user_id = '', 
-                        first_name = '', 
-                        total_pnl = '', 
-                        realized_pnl = '', 
-                        total_trades = 56, 
-                        winning_trades = 56, 
-                        losing_trades = 56, 
-                        win_rate = '', 
-                        daily_trading_volume = '', 
-                        total_trading_volume = '', 
-                        active_trading_days = 56, 
-                        activated = True, 
-                        kyc_approved = True, )
-                    ],
+                data = dora_client.models.pn_l_ranking_responses.PnLRankingResponses(
+                    summary = dora_client.models.pn_l_ranking_summary.PnLRankingSummary(
+                        all_users_daily_trading_volume = '', 
+                        all_users_total_trading_volume = '', ), 
+                    rankings = [
+                        dora_client.models.pn_l_ranking_response.PnLRankingResponse(
+                            user_id = '', 
+                            first_name = '', 
+                            total_pnl = '', 
+                            realized_pnl = '', 
+                            total_trades = 56, 
+                            winning_trades = 56, 
+                            losing_trades = 56, 
+                            win_rate = '', 
+                            daily_trading_volume = '', 
+                            total_trading_volume = '', 
+                            active_trading_days = 56, 
+                            activated = True, 
+                            kyc_approved = True, )
+                        ], ),
                 error = '',
                 metadata = dora_client.models.metadata.Metadata(
                     status_code = 56, 

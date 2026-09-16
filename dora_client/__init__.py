@@ -37,6 +37,23 @@ __all__ = [
     "AccountSummaryV2",
     "AccountV2",
     "AddTradingChallengeUsersRequest",
+    "AffiliateAttribution",
+    "AffiliateAttributionEnvelope",
+    "AffiliateCashFlow",
+    "AffiliateCashFlowReport",
+    "AffiliateCashFlowReportEnvelope",
+    "AffiliateError",
+    "AffiliateMembership",
+    "AffiliateMembershipListEnvelope",
+    "AffiliateProgram",
+    "AffiliateProgramEnvelope",
+    "AffiliateProgramListEnvelope",
+    "AffiliateReferral",
+    "AffiliateReferralReport",
+    "AffiliateReferralReportEnvelope",
+    "AffiliateReferrer",
+    "AffiliateReferrerEnvelope",
+    "AffiliateReferrerListEnvelope",
     "AllPositions",
     "AllPositionsResponseEnvelope",
     "AllWithdrawalInitiationsResponseEnvelope",
@@ -49,6 +66,7 @@ __all__ = [
     "AssetYTM",
     "AssetYield",
     "AssetYieldResolution",
+    "AssignAffiliateReferralRequest",
     "BalanceTransfer",
     "BalancesResponse",
     "Bond",
@@ -63,6 +81,7 @@ __all__ = [
     "ClaimLeverageAccruedInterest",
     "ClaimLeverageAccruedInterestRequest",
     "ClaimLeverageAccruedInterestResponseEnvelope",
+    "ClaimPromoLinkRequest",
     "ClaimTradingChallengeResponse",
     "ClaimTradingChallengeResponseEnvelope",
     "CloseAccountRequest",
@@ -77,6 +96,7 @@ __all__ = [
     "CreateAPIKeyData",
     "CreateAPIKeyRequest",
     "CreateAPIKeyResponseEnvelope",
+    "CreateAffiliateProgramRequest",
     "CreateConditionalOrderRequest",
     "CreateConditionalOrderResponseData",
     "CreateConditionalOrderResponseEnvelope",
@@ -84,7 +104,9 @@ __all__ = [
     "CreateOrUpdateUserResponse",
     "CreateOrderRequest",
     "CreateOrderResponseEnvelope",
+    "CreateTradingChallengeQRRequest",
     "CreateTradingChallengeRequest",
+    "CreateWithdrawalRequest",
     "CreditRating",
     "CurrentLeverageAccruedInterest",
     "CurrentLeverageAccruedInterestResponseEnvelope",
@@ -113,6 +135,10 @@ __all__ = [
     "IsolateCollateralResponse",
     "IsolatedCollateral",
     "IsolatedPosition",
+    "IssuePromoLinkBatchRequest",
+    "IssuePromoLinkBatchResponse",
+    "IssuePromoLinkBatchResponseAllOfData",
+    "IssuedPromoLink",
     "LedgerAccountsResponseV2Envelope",
     "LedgerModuleByAssetResponseEnvelope",
     "LedgerModuleResponseEnvelope",
@@ -141,6 +167,7 @@ __all__ = [
     "ListTransactionsResponseEnvelope",
     "ListUserCouponPaymentsResponseEnvelope",
     "ListUsersResponseEnvelope",
+    "ListWithdrawalsResponseEnvelope",
     "LiveOrderbook",
     "Margin",
     "Metadata",
@@ -177,6 +204,8 @@ __all__ = [
     "PermitMessage",
     "PermitTypedData",
     "PnLRankingResponse",
+    "PnLRankingResponses",
+    "PnLRankingSummary",
     "PoolPrice",
     "PoolPriceResponseEnvelope",
     "PoolRequestError",
@@ -188,8 +217,23 @@ __all__ = [
     "PositionSide",
     "PositionType",
     "PriceLevel",
+    "PromoAttributionResponse",
+    "PromoAttributionResponseAllOfData",
+    "PromoAttributionSource",
+    "PromoClaimResponseEnvelope",
+    "PromoClaimResponseEnvelopeAllOfData",
+    "PromoClaimState",
+    "PromoLinkAdmin",
+    "PromoLinkBatchListResponse",
+    "PromoLinkBatchListResponseAllOfData",
+    "PromoLinkBatchSummary",
+    "PromoLinkListResponse",
+    "PromoLinkListResponseAllOfData",
+    "PromoLinkStatus",
+    "PromoSourceType",
     "RealizedPnlSettlement",
     "RealizedPnlSettlements",
+    "RegisterAffiliateReferrerRequest",
     "RemoveTradingChallengeUsersRequest",
     "RepayUSDRequest",
     "RepayUSDResponseEnvelope",
@@ -199,6 +243,9 @@ __all__ = [
     "ReviewTradingChallengeRegistrationRequest",
     "RevokeAPIKeyData",
     "RevokeAPIKeyResponseEnvelope",
+    "RevokePromoLinkRequest",
+    "RevokePromoLinkResponse",
+    "RevokePromoLinkResponseAllOfData",
     "SettleLeverageAccruedInterest",
     "SettleLeverageAccruedInterestRequest",
     "SettleLeverageAccruedInterestResponseEnvelope",
@@ -229,6 +276,7 @@ __all__ = [
     "TradingChallengeDailySnapshot",
     "TradingChallengeDailySnapshotsResponseEnvelope",
     "TradingChallengeListResponseEnvelope",
+    "TradingChallengeQR",
     "TradingChallengeRegistrationRequest",
     "TradingChallengeRegistrationRequestListResponseEnvelope",
     "TradingChallengeRegistrationRequestResponseEnvelope",
@@ -256,6 +304,10 @@ __all__ = [
     "UnitePositionRequest",
     "UnitePositionResponseEnvelope",
     "UnitedPosition",
+    "UpdateAffiliateProgramRequest",
+    "UpdateAffiliateProgramRequestDescription",
+    "UpdateAffiliateProgramRequestIsActive",
+    "UpdateAffiliateProgramRequestName",
     "UpdateFieldBoolean",
     "UpdateFieldDateTime",
     "UpdateFieldDecimal",
@@ -291,12 +343,15 @@ __all__ = [
     "ValidateSubmitOrderRequest",
     "ValidateSubmitOrderResponse",
     "Web3EventStatus",
+    "Web3WithdrawalStatus",
     "Withdraw",
     "WithdrawRequest",
     "WithdrawResponseEnvelope",
     "WithdrawalInitiation",
     "WithdrawalInitiationResponseEnvelope",
     "WithdrawalRequestReason",
+    "WithdrawalResponse",
+    "WithdrawalResponseEnvelope",
     "WithdrawalStatus",
 ]
 
@@ -324,6 +379,23 @@ from dora_client.models.account_portfolio_v2 import AccountPortfolioV2 as Accoun
 from dora_client.models.account_summary_v2 import AccountSummaryV2 as AccountSummaryV2
 from dora_client.models.account_v2 import AccountV2 as AccountV2
 from dora_client.models.add_trading_challenge_users_request import AddTradingChallengeUsersRequest as AddTradingChallengeUsersRequest
+from dora_client.models.affiliate_attribution import AffiliateAttribution as AffiliateAttribution
+from dora_client.models.affiliate_attribution_envelope import AffiliateAttributionEnvelope as AffiliateAttributionEnvelope
+from dora_client.models.affiliate_cash_flow import AffiliateCashFlow as AffiliateCashFlow
+from dora_client.models.affiliate_cash_flow_report import AffiliateCashFlowReport as AffiliateCashFlowReport
+from dora_client.models.affiliate_cash_flow_report_envelope import AffiliateCashFlowReportEnvelope as AffiliateCashFlowReportEnvelope
+from dora_client.models.affiliate_error import AffiliateError as AffiliateError
+from dora_client.models.affiliate_membership import AffiliateMembership as AffiliateMembership
+from dora_client.models.affiliate_membership_list_envelope import AffiliateMembershipListEnvelope as AffiliateMembershipListEnvelope
+from dora_client.models.affiliate_program import AffiliateProgram as AffiliateProgram
+from dora_client.models.affiliate_program_envelope import AffiliateProgramEnvelope as AffiliateProgramEnvelope
+from dora_client.models.affiliate_program_list_envelope import AffiliateProgramListEnvelope as AffiliateProgramListEnvelope
+from dora_client.models.affiliate_referral import AffiliateReferral as AffiliateReferral
+from dora_client.models.affiliate_referral_report import AffiliateReferralReport as AffiliateReferralReport
+from dora_client.models.affiliate_referral_report_envelope import AffiliateReferralReportEnvelope as AffiliateReferralReportEnvelope
+from dora_client.models.affiliate_referrer import AffiliateReferrer as AffiliateReferrer
+from dora_client.models.affiliate_referrer_envelope import AffiliateReferrerEnvelope as AffiliateReferrerEnvelope
+from dora_client.models.affiliate_referrer_list_envelope import AffiliateReferrerListEnvelope as AffiliateReferrerListEnvelope
 from dora_client.models.all_positions import AllPositions as AllPositions
 from dora_client.models.all_positions_response_envelope import AllPositionsResponseEnvelope as AllPositionsResponseEnvelope
 from dora_client.models.all_withdrawal_initiations_response_envelope import AllWithdrawalInitiationsResponseEnvelope as AllWithdrawalInitiationsResponseEnvelope
@@ -336,6 +408,7 @@ from dora_client.models.asset_request_error import AssetRequestError as AssetReq
 from dora_client.models.asset_ytm import AssetYTM as AssetYTM
 from dora_client.models.asset_yield import AssetYield as AssetYield
 from dora_client.models.asset_yield_resolution import AssetYieldResolution as AssetYieldResolution
+from dora_client.models.assign_affiliate_referral_request import AssignAffiliateReferralRequest as AssignAffiliateReferralRequest
 from dora_client.models.balance_transfer import BalanceTransfer as BalanceTransfer
 from dora_client.models.balances_response import BalancesResponse as BalancesResponse
 from dora_client.models.bond import Bond as Bond
@@ -350,6 +423,7 @@ from dora_client.models.cash_reserve_response_envelope import CashReserveRespons
 from dora_client.models.claim_leverage_accrued_interest import ClaimLeverageAccruedInterest as ClaimLeverageAccruedInterest
 from dora_client.models.claim_leverage_accrued_interest_request import ClaimLeverageAccruedInterestRequest as ClaimLeverageAccruedInterestRequest
 from dora_client.models.claim_leverage_accrued_interest_response_envelope import ClaimLeverageAccruedInterestResponseEnvelope as ClaimLeverageAccruedInterestResponseEnvelope
+from dora_client.models.claim_promo_link_request import ClaimPromoLinkRequest as ClaimPromoLinkRequest
 from dora_client.models.claim_trading_challenge_response import ClaimTradingChallengeResponse as ClaimTradingChallengeResponse
 from dora_client.models.claim_trading_challenge_response_envelope import ClaimTradingChallengeResponseEnvelope as ClaimTradingChallengeResponseEnvelope
 from dora_client.models.close_account_request import CloseAccountRequest as CloseAccountRequest
@@ -364,6 +438,7 @@ from dora_client.models.coupon_payment import CouponPayment as CouponPayment
 from dora_client.models.create_api_key_data import CreateAPIKeyData as CreateAPIKeyData
 from dora_client.models.create_api_key_request import CreateAPIKeyRequest as CreateAPIKeyRequest
 from dora_client.models.create_api_key_response_envelope import CreateAPIKeyResponseEnvelope as CreateAPIKeyResponseEnvelope
+from dora_client.models.create_affiliate_program_request import CreateAffiliateProgramRequest as CreateAffiliateProgramRequest
 from dora_client.models.create_conditional_order_request import CreateConditionalOrderRequest as CreateConditionalOrderRequest
 from dora_client.models.create_conditional_order_response_data import CreateConditionalOrderResponseData as CreateConditionalOrderResponseData
 from dora_client.models.create_conditional_order_response_envelope import CreateConditionalOrderResponseEnvelope as CreateConditionalOrderResponseEnvelope
@@ -371,7 +446,9 @@ from dora_client.models.create_integrator_user_request import CreateIntegratorUs
 from dora_client.models.create_or_update_user_response import CreateOrUpdateUserResponse as CreateOrUpdateUserResponse
 from dora_client.models.create_order_request import CreateOrderRequest as CreateOrderRequest
 from dora_client.models.create_order_response_envelope import CreateOrderResponseEnvelope as CreateOrderResponseEnvelope
+from dora_client.models.create_trading_challenge_qr_request import CreateTradingChallengeQRRequest as CreateTradingChallengeQRRequest
 from dora_client.models.create_trading_challenge_request import CreateTradingChallengeRequest as CreateTradingChallengeRequest
+from dora_client.models.create_withdrawal_request import CreateWithdrawalRequest as CreateWithdrawalRequest
 from dora_client.models.credit_rating import CreditRating as CreditRating
 from dora_client.models.current_leverage_accrued_interest import CurrentLeverageAccruedInterest as CurrentLeverageAccruedInterest
 from dora_client.models.current_leverage_accrued_interest_response_envelope import CurrentLeverageAccruedInterestResponseEnvelope as CurrentLeverageAccruedInterestResponseEnvelope
@@ -400,6 +477,10 @@ from dora_client.models.isolate_collateral_request import IsolateCollateralReque
 from dora_client.models.isolate_collateral_response import IsolateCollateralResponse as IsolateCollateralResponse
 from dora_client.models.isolated_collateral import IsolatedCollateral as IsolatedCollateral
 from dora_client.models.isolated_position import IsolatedPosition as IsolatedPosition
+from dora_client.models.issue_promo_link_batch_request import IssuePromoLinkBatchRequest as IssuePromoLinkBatchRequest
+from dora_client.models.issue_promo_link_batch_response import IssuePromoLinkBatchResponse as IssuePromoLinkBatchResponse
+from dora_client.models.issue_promo_link_batch_response_all_of_data import IssuePromoLinkBatchResponseAllOfData as IssuePromoLinkBatchResponseAllOfData
+from dora_client.models.issued_promo_link import IssuedPromoLink as IssuedPromoLink
 from dora_client.models.ledger_accounts_response_v2_envelope import LedgerAccountsResponseV2Envelope as LedgerAccountsResponseV2Envelope
 from dora_client.models.ledger_module_by_asset_response_envelope import LedgerModuleByAssetResponseEnvelope as LedgerModuleByAssetResponseEnvelope
 from dora_client.models.ledger_module_response_envelope import LedgerModuleResponseEnvelope as LedgerModuleResponseEnvelope
@@ -428,6 +509,7 @@ from dora_client.models.list_trade_response_envelope import ListTradeResponseEnv
 from dora_client.models.list_transactions_response_envelope import ListTransactionsResponseEnvelope as ListTransactionsResponseEnvelope
 from dora_client.models.list_user_coupon_payments_response_envelope import ListUserCouponPaymentsResponseEnvelope as ListUserCouponPaymentsResponseEnvelope
 from dora_client.models.list_users_response_envelope import ListUsersResponseEnvelope as ListUsersResponseEnvelope
+from dora_client.models.list_withdrawals_response_envelope import ListWithdrawalsResponseEnvelope as ListWithdrawalsResponseEnvelope
 from dora_client.models.live_orderbook import LiveOrderbook as LiveOrderbook
 from dora_client.models.margin import Margin as Margin
 from dora_client.models.metadata import Metadata as Metadata
@@ -464,6 +546,8 @@ from dora_client.models.permit_domain import PermitDomain as PermitDomain
 from dora_client.models.permit_message import PermitMessage as PermitMessage
 from dora_client.models.permit_typed_data import PermitTypedData as PermitTypedData
 from dora_client.models.pn_l_ranking_response import PnLRankingResponse as PnLRankingResponse
+from dora_client.models.pn_l_ranking_responses import PnLRankingResponses as PnLRankingResponses
+from dora_client.models.pn_l_ranking_summary import PnLRankingSummary as PnLRankingSummary
 from dora_client.models.pool_price import PoolPrice as PoolPrice
 from dora_client.models.pool_price_response_envelope import PoolPriceResponseEnvelope as PoolPriceResponseEnvelope
 from dora_client.models.pool_request_error import PoolRequestError as PoolRequestError
@@ -475,8 +559,23 @@ from dora_client.models.position_response import PositionResponse as PositionRes
 from dora_client.models.position_side import PositionSide as PositionSide
 from dora_client.models.position_type import PositionType as PositionType
 from dora_client.models.price_level import PriceLevel as PriceLevel
+from dora_client.models.promo_attribution_response import PromoAttributionResponse as PromoAttributionResponse
+from dora_client.models.promo_attribution_response_all_of_data import PromoAttributionResponseAllOfData as PromoAttributionResponseAllOfData
+from dora_client.models.promo_attribution_source import PromoAttributionSource as PromoAttributionSource
+from dora_client.models.promo_claim_response_envelope import PromoClaimResponseEnvelope as PromoClaimResponseEnvelope
+from dora_client.models.promo_claim_response_envelope_all_of_data import PromoClaimResponseEnvelopeAllOfData as PromoClaimResponseEnvelopeAllOfData
+from dora_client.models.promo_claim_state import PromoClaimState as PromoClaimState
+from dora_client.models.promo_link_admin import PromoLinkAdmin as PromoLinkAdmin
+from dora_client.models.promo_link_batch_list_response import PromoLinkBatchListResponse as PromoLinkBatchListResponse
+from dora_client.models.promo_link_batch_list_response_all_of_data import PromoLinkBatchListResponseAllOfData as PromoLinkBatchListResponseAllOfData
+from dora_client.models.promo_link_batch_summary import PromoLinkBatchSummary as PromoLinkBatchSummary
+from dora_client.models.promo_link_list_response import PromoLinkListResponse as PromoLinkListResponse
+from dora_client.models.promo_link_list_response_all_of_data import PromoLinkListResponseAllOfData as PromoLinkListResponseAllOfData
+from dora_client.models.promo_link_status import PromoLinkStatus as PromoLinkStatus
+from dora_client.models.promo_source_type import PromoSourceType as PromoSourceType
 from dora_client.models.realized_pnl_settlement import RealizedPnlSettlement as RealizedPnlSettlement
 from dora_client.models.realized_pnl_settlements import RealizedPnlSettlements as RealizedPnlSettlements
+from dora_client.models.register_affiliate_referrer_request import RegisterAffiliateReferrerRequest as RegisterAffiliateReferrerRequest
 from dora_client.models.remove_trading_challenge_users_request import RemoveTradingChallengeUsersRequest as RemoveTradingChallengeUsersRequest
 from dora_client.models.repay_usd_request import RepayUSDRequest as RepayUSDRequest
 from dora_client.models.repay_usd_response_envelope import RepayUSDResponseEnvelope as RepayUSDResponseEnvelope
@@ -486,6 +585,9 @@ from dora_client.models.response_envelope_of_list_assets import ResponseEnvelope
 from dora_client.models.review_trading_challenge_registration_request import ReviewTradingChallengeRegistrationRequest as ReviewTradingChallengeRegistrationRequest
 from dora_client.models.revoke_api_key_data import RevokeAPIKeyData as RevokeAPIKeyData
 from dora_client.models.revoke_api_key_response_envelope import RevokeAPIKeyResponseEnvelope as RevokeAPIKeyResponseEnvelope
+from dora_client.models.revoke_promo_link_request import RevokePromoLinkRequest as RevokePromoLinkRequest
+from dora_client.models.revoke_promo_link_response import RevokePromoLinkResponse as RevokePromoLinkResponse
+from dora_client.models.revoke_promo_link_response_all_of_data import RevokePromoLinkResponseAllOfData as RevokePromoLinkResponseAllOfData
 from dora_client.models.settle_leverage_accrued_interest import SettleLeverageAccruedInterest as SettleLeverageAccruedInterest
 from dora_client.models.settle_leverage_accrued_interest_request import SettleLeverageAccruedInterestRequest as SettleLeverageAccruedInterestRequest
 from dora_client.models.settle_leverage_accrued_interest_response_envelope import SettleLeverageAccruedInterestResponseEnvelope as SettleLeverageAccruedInterestResponseEnvelope
@@ -516,6 +618,7 @@ from dora_client.models.trading_challenge import TradingChallenge as TradingChal
 from dora_client.models.trading_challenge_daily_snapshot import TradingChallengeDailySnapshot as TradingChallengeDailySnapshot
 from dora_client.models.trading_challenge_daily_snapshots_response_envelope import TradingChallengeDailySnapshotsResponseEnvelope as TradingChallengeDailySnapshotsResponseEnvelope
 from dora_client.models.trading_challenge_list_response_envelope import TradingChallengeListResponseEnvelope as TradingChallengeListResponseEnvelope
+from dora_client.models.trading_challenge_qr import TradingChallengeQR as TradingChallengeQR
 from dora_client.models.trading_challenge_registration_request import TradingChallengeRegistrationRequest as TradingChallengeRegistrationRequest
 from dora_client.models.trading_challenge_registration_request_list_response_envelope import TradingChallengeRegistrationRequestListResponseEnvelope as TradingChallengeRegistrationRequestListResponseEnvelope
 from dora_client.models.trading_challenge_registration_request_response_envelope import TradingChallengeRegistrationRequestResponseEnvelope as TradingChallengeRegistrationRequestResponseEnvelope
@@ -543,6 +646,10 @@ from dora_client.models.typed_data_field import TypedDataField as TypedDataField
 from dora_client.models.unite_position_request import UnitePositionRequest as UnitePositionRequest
 from dora_client.models.unite_position_response_envelope import UnitePositionResponseEnvelope as UnitePositionResponseEnvelope
 from dora_client.models.united_position import UnitedPosition as UnitedPosition
+from dora_client.models.update_affiliate_program_request import UpdateAffiliateProgramRequest as UpdateAffiliateProgramRequest
+from dora_client.models.update_affiliate_program_request_description import UpdateAffiliateProgramRequestDescription as UpdateAffiliateProgramRequestDescription
+from dora_client.models.update_affiliate_program_request_is_active import UpdateAffiliateProgramRequestIsActive as UpdateAffiliateProgramRequestIsActive
+from dora_client.models.update_affiliate_program_request_name import UpdateAffiliateProgramRequestName as UpdateAffiliateProgramRequestName
 from dora_client.models.update_field_boolean import UpdateFieldBoolean as UpdateFieldBoolean
 from dora_client.models.update_field_date_time import UpdateFieldDateTime as UpdateFieldDateTime
 from dora_client.models.update_field_decimal import UpdateFieldDecimal as UpdateFieldDecimal
@@ -578,11 +685,14 @@ from dora_client.models.user_value_response_envelope import UserValueResponseEnv
 from dora_client.models.validate_submit_order_request import ValidateSubmitOrderRequest as ValidateSubmitOrderRequest
 from dora_client.models.validate_submit_order_response import ValidateSubmitOrderResponse as ValidateSubmitOrderResponse
 from dora_client.models.web3_event_status import Web3EventStatus as Web3EventStatus
+from dora_client.models.web3_withdrawal_status import Web3WithdrawalStatus as Web3WithdrawalStatus
 from dora_client.models.withdraw import Withdraw as Withdraw
 from dora_client.models.withdraw_request import WithdrawRequest as WithdrawRequest
 from dora_client.models.withdraw_response_envelope import WithdrawResponseEnvelope as WithdrawResponseEnvelope
 from dora_client.models.withdrawal_initiation import WithdrawalInitiation as WithdrawalInitiation
 from dora_client.models.withdrawal_initiation_response_envelope import WithdrawalInitiationResponseEnvelope as WithdrawalInitiationResponseEnvelope
 from dora_client.models.withdrawal_request_reason import WithdrawalRequestReason as WithdrawalRequestReason
+from dora_client.models.withdrawal_response import WithdrawalResponse as WithdrawalResponse
+from dora_client.models.withdrawal_response_envelope import WithdrawalResponseEnvelope as WithdrawalResponseEnvelope
 from dora_client.models.withdrawal_status import WithdrawalStatus as WithdrawalStatus
 

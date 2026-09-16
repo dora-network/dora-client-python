@@ -29,10 +29,10 @@ class TenantRestrictions(BaseModel):
     TenantRestrictions
     """ # noqa: E501
     tenant_id: StrictStr = Field(description="Tenant ID")
-    deposit_limit: StrictStr = Field(description="Maximum allowed deposit for the tenant.")
+    daily_deposit_limit: StrictStr = Field(description="Maximum allowed deposit for the tenant per day.")
     trade_limit: StrictStr = Field(description="Maximum allowed trade amount for the tenant.")
     updated_at: datetime = Field(description="Last update timestamp for the restrictions.")
-    __properties: ClassVar[List[str]] = ["tenant_id", "deposit_limit", "trade_limit", "updated_at"]
+    __properties: ClassVar[List[str]] = ["tenant_id", "daily_deposit_limit", "trade_limit", "updated_at"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -86,7 +86,7 @@ class TenantRestrictions(BaseModel):
 
         _obj = cls.model_validate({
             "tenant_id": obj.get("tenant_id"),
-            "deposit_limit": obj.get("deposit_limit"),
+            "daily_deposit_limit": obj.get("daily_deposit_limit"),
             "trade_limit": obj.get("trade_limit"),
             "updated_at": obj.get("updated_at")
         })

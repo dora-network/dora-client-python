@@ -56,7 +56,14 @@ class TestTradingChallenge(unittest.TestCase):
                 users = [
                     ''
                     ],
-                users_count = 56
+                users_count = 56,
+                qr = dora_client.models.trading_challenge_qr.TradingChallengeQR(
+                    min_reward_amount = '', 
+                    max_reward_amount = '', 
+                    reward_claim_grace_days = 56, 
+                    claimed_links_count = 56, 
+                    issued_links_count = 56, ),
+                worst_case_exposure = ''
             )
         else:
             return TradingChallenge(

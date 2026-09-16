@@ -51,7 +51,11 @@ class TestCreateTradingChallengeRequest(unittest.TestCase):
                 minimum_equity_percentage_condition = 0,
                 users = [
                     ''
-                    ]
+                    ],
+                qr = dora_client.models.create_trading_challenge_qr_request.CreateTradingChallengeQRRequest(
+                    min_reward_amount = '', 
+                    max_reward_amount = '', 
+                    reward_claim_grace_days = 0, )
             )
         else:
             return CreateTradingChallengeRequest(

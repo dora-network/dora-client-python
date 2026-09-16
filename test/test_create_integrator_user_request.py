@@ -35,6 +35,8 @@ class TestCreateIntegratorUserRequest(unittest.TestCase):
         model = CreateIntegratorUserRequest()
         if include_optional:
             return CreateIntegratorUserRequest(
+                referral_code = '',
+                signup_source = '',
                 email = '',
                 first_name = '',
                 last_name = '',
