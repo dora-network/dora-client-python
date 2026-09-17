@@ -249,6 +249,8 @@ docs/Trade.md
 docs/TradeRequestError.md
 docs/TradeResponseEnvelope.md
 docs/TradingChallenge.md
+docs/TradingChallengeAllResult.md
+docs/TradingChallengeAllResultsResponseEnvelope.md
 docs/TradingChallengeDailySnapshot.md
 docs/TradingChallengeDailySnapshotsResponseEnvelope.md
 docs/TradingChallengeListResponseEnvelope.md
@@ -582,6 +584,8 @@ dora_client/models/trade.py
 dora_client/models/trade_request_error.py
 dora_client/models/trade_response_envelope.py
 dora_client/models/trading_challenge.py
+dora_client/models/trading_challenge_all_result.py
+dora_client/models/trading_challenge_all_results_response_envelope.py
 dora_client/models/trading_challenge_daily_snapshot.py
 dora_client/models/trading_challenge_daily_snapshots_response_envelope.py
 dora_client/models/trading_challenge_list_response_envelope.py
@@ -917,6 +921,8 @@ test/test_trade.py
 test/test_trade_request_error.py
 test/test_trade_response_envelope.py
 test/test_trading_challenge.py
+test/test_trading_challenge_all_result.py
+test/test_trading_challenge_all_results_response_envelope.py
 test/test_trading_challenge_daily_snapshot.py
 test/test_trading_challenge_daily_snapshots_response_envelope.py
 test/test_trading_challenge_list_response_envelope.py

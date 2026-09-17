@@ -69,6 +69,7 @@ Method | HTTP request | Description
 [**get_top_traders_by_pn_l**](DefaultApi.md#get_top_traders_by_pn_l) | **GET** /v1/user/ranking | Get top traders by PnL
 [**get_trade_by_id**](DefaultApi.md#get_trade_by_id) | **GET** /v1/trades/{trade_id} | Get a trade by ID
 [**get_trades**](DefaultApi.md#get_trades) | **GET** /v1/trades | Get a filtered, paginated list of trades
+[**get_trading_challenge_all_results**](DefaultApi.md#get_trading_challenge_all_results) | **GET** /v1/trading_challenges/all/results | Get combined results across all trading challenge
 [**get_trading_challenge_by_id**](DefaultApi.md#get_trading_challenge_by_id) | **GET** /v1/trading_challenges/{trading_challenge_id} | Get trading challenge by ID
 [**get_trading_challenge_daily_snapshots**](DefaultApi.md#get_trading_challenge_daily_snapshots) | **GET** /v1/trading_challenges/{trading_challenge_id}/daily_snapshots | Get trading challenge daily snapshots
 [**get_trading_challenge_results**](DefaultApi.md#get_trading_challenge_results) | **GET** /v1/trading_challenges/{trading_challenge_id}/results | Get trading challenge results
@@ -5595,6 +5596,83 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_trading_challenge_all_results**
+> TradingChallengeAllResultsResponseEnvelope get_trading_challenge_all_results(board, start, end, trading_challenge_type)
+
+Get combined results across all trading challenge
+
+List trading challenge leaderboard/results filtered by board, trading_challenge_type, start date and end date across all challenges.
+
+### Example
+
+
+```python
+import dora_client
+from dora_client.models.trading_challenge_all_results_response_envelope import TradingChallengeAllResultsResponseEnvelope
+from dora_client.models.trading_challenge_type import TradingChallengeType
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging.dora.co
+# See configuration.py for a list of all supported configuration parameters.
+configuration = dora_client.Configuration(
+    host = "https://staging.dora.co"
+)
+
+
+# Enter a context with an instance of the API client
+async with dora_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = dora_client.DefaultApi(api_client)
+    board = 'board_example' # str | Leaderboard board selector.
+    start = '2013-10-20' # date | Inclusive start date in YYYY-MM-DD format.
+    end = '2013-10-20' # date | Inclusive end date in YYYY-MM-DD format.
+    trading_challenge_type = dora_client.TradingChallengeType() # TradingChallengeType | Challenge type to include in aggregation.
+
+    try:
+        # Get combined results across all trading challenge
+        api_response = await api_instance.get_trading_challenge_all_results(board, start, end, trading_challenge_type)
+        print("The response of DefaultApi->get_trading_challenge_all_results:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->get_trading_challenge_all_results: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **board** | **str**| Leaderboard board selector. | 
+ **start** | **date**| Inclusive start date in YYYY-MM-DD format. | 
+ **end** | **date**| Inclusive end date in YYYY-MM-DD format. | 
+ **trading_challenge_type** | [**TradingChallengeType**](.md)| Challenge type to include in aggregation. | 
+
+### Return type
+
+[**TradingChallengeAllResultsResponseEnvelope**](TradingChallengeAllResultsResponseEnvelope.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | All trading challenge results |  -  |
+**400** | Bad request |  -  |
+**500** | Internal server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_trading_challenge_by_id**
 > TradingChallengeResponseEnvelope get_trading_challenge_by_id(trading_challenge_id)
 
@@ -5778,12 +5856,10 @@ Name | Type | Description  | Notes
 
 Get trading challenge results
 
-List challenge leaderboard/results. COMPETITION_MANAGER can access only assigned challenge IDs.
+List challenge leaderboard/results. Public endpoint.
 
 ### Example
 
-* Api Key Authentication (apiKeyAuthHeader):
-* Bearer (JWT) Authentication (bearerAuth):
 
 ```python
 import dora_client
@@ -5797,21 +5873,6 @@ configuration = dora_client.Configuration(
     host = "https://staging.dora.co"
 )
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: apiKeyAuthHeader
-configuration.api_key['apiKeyAuthHeader'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['apiKeyAuthHeader'] = 'Bearer'
-
-# Configure Bearer authorization (JWT): bearerAuth
-configuration = dora_client.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
 
 # Enter a context with an instance of the API client
 async with dora_client.ApiClient(configuration) as api_client:
@@ -5845,7 +5906,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -5858,7 +5919,6 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | Challenge results |  -  |
 **400** | Bad request |  -  |
-**403** | Forbidden |  -  |
 **404** | Not found |  -  |
 **500** | Internal server error |  -  |
 

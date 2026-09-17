@@ -481,6 +481,13 @@ class TestDefaultApi(unittest.IsolatedAsyncioTestCase):
         """
         pass
 
+    async def test_get_trading_challenge_all_results(self) -> None:
+        """Test case for get_trading_challenge_all_results
+
+        Get combined results across all trading challenge
+        """
+        pass
+
     async def test_get_trading_challenge_by_id(self) -> None:
         """Test case for get_trading_challenge_by_id
 

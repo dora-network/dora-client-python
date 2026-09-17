@@ -139,6 +139,7 @@ from dora_client.models.supply_request import SupplyRequest
 from dora_client.models.supply_response_envelope import SupplyResponseEnvelope
 from dora_client.models.terminate_trading_challenge_response_envelope import TerminateTradingChallengeResponseEnvelope
 from dora_client.models.trade_response_envelope import TradeResponseEnvelope
+from dora_client.models.trading_challenge_all_results_response_envelope import TradingChallengeAllResultsResponseEnvelope
 from dora_client.models.trading_challenge_daily_snapshots_response_envelope import TradingChallengeDailySnapshotsResponseEnvelope
 from dora_client.models.trading_challenge_list_response_envelope import TradingChallengeListResponseEnvelope
 from dora_client.models.trading_challenge_registration_request_list_response_envelope import TradingChallengeRegistrationRequestListResponseEnvelope
@@ -18521,6 +18522,343 @@ class DefaultApi:
 
 
     @validate_call
+    async def get_trading_challenge_all_results(
+        self,
+        board: Annotated[StrictStr, Field(description="Leaderboard board selector.")],
+        start: Annotated[date, Field(description="Inclusive start date in YYYY-MM-DD format.")],
+        end: Annotated[date, Field(description="Inclusive end date in YYYY-MM-DD format.")],
+        trading_challenge_type: Annotated[TradingChallengeType, Field(description="Challenge type to include in aggregation.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> TradingChallengeAllResultsResponseEnvelope:
+        """Get combined results across all trading challenge
+
+        List trading challenge leaderboard/results filtered by board, trading_challenge_type, start date and end date across all challenges.
+
+        :param board: Leaderboard board selector. (required)
+        :type board: str
+        :param start: Inclusive start date in YYYY-MM-DD format. (required)
+        :type start: date
+        :param end: Inclusive end date in YYYY-MM-DD format. (required)
+        :type end: date
+        :param trading_challenge_type: Challenge type to include in aggregation. (required)
+        :type trading_challenge_type: TradingChallengeType
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_trading_challenge_all_results_serialize(
+            board=board,
+            start=start,
+            end=end,
+            trading_challenge_type=trading_challenge_type,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "TradingChallengeAllResultsResponseEnvelope",
+            '400': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    async def get_trading_challenge_all_results_with_http_info(
+        self,
+        board: Annotated[StrictStr, Field(description="Leaderboard board selector.")],
+        start: Annotated[date, Field(description="Inclusive start date in YYYY-MM-DD format.")],
+        end: Annotated[date, Field(description="Inclusive end date in YYYY-MM-DD format.")],
+        trading_challenge_type: Annotated[TradingChallengeType, Field(description="Challenge type to include in aggregation.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[TradingChallengeAllResultsResponseEnvelope]:
+        """Get combined results across all trading challenge
+
+        List trading challenge leaderboard/results filtered by board, trading_challenge_type, start date and end date across all challenges.
+
+        :param board: Leaderboard board selector. (required)
+        :type board: str
+        :param start: Inclusive start date in YYYY-MM-DD format. (required)
+        :type start: date
+        :param end: Inclusive end date in YYYY-MM-DD format. (required)
+        :type end: date
+        :param trading_challenge_type: Challenge type to include in aggregation. (required)
+        :type trading_challenge_type: TradingChallengeType
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_trading_challenge_all_results_serialize(
+            board=board,
+            start=start,
+            end=end,
+            trading_challenge_type=trading_challenge_type,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "TradingChallengeAllResultsResponseEnvelope",
+            '400': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    async def get_trading_challenge_all_results_without_preload_content(
+        self,
+        board: Annotated[StrictStr, Field(description="Leaderboard board selector.")],
+        start: Annotated[date, Field(description="Inclusive start date in YYYY-MM-DD format.")],
+        end: Annotated[date, Field(description="Inclusive end date in YYYY-MM-DD format.")],
+        trading_challenge_type: Annotated[TradingChallengeType, Field(description="Challenge type to include in aggregation.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get combined results across all trading challenge
+
+        List trading challenge leaderboard/results filtered by board, trading_challenge_type, start date and end date across all challenges.
+
+        :param board: Leaderboard board selector. (required)
+        :type board: str
+        :param start: Inclusive start date in YYYY-MM-DD format. (required)
+        :type start: date
+        :param end: Inclusive end date in YYYY-MM-DD format. (required)
+        :type end: date
+        :param trading_challenge_type: Challenge type to include in aggregation. (required)
+        :type trading_challenge_type: TradingChallengeType
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_trading_challenge_all_results_serialize(
+            board=board,
+            start=start,
+            end=end,
+            trading_challenge_type=trading_challenge_type,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "TradingChallengeAllResultsResponseEnvelope",
+            '400': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_trading_challenge_all_results_serialize(
+        self,
+        board,
+        start,
+        end,
+        trading_challenge_type,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        if board is not None:
+            
+            _query_params.append(('board', board))
+            
+        if start is not None:
+            if isinstance(start, date):
+                _query_params.append(
+                    (
+                        'start',
+                        start.strftime(
+                            self.api_client.configuration.date_format
+                        )
+                    )
+                )
+            else:
+                _query_params.append(('start', start))
+            
+        if end is not None:
+            if isinstance(end, date):
+                _query_params.append(
+                    (
+                        'end',
+                        end.strftime(
+                            self.api_client.configuration.date_format
+                        )
+                    )
+                )
+            else:
+                _query_params.append(('end', end))
+            
+        if trading_challenge_type is not None:
+            
+            _query_params.append(('trading_challenge_type', trading_challenge_type.value))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/v1/trading_challenges/all/results',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     async def get_trading_challenge_by_id(
         self,
         trading_challenge_id: UUID,
@@ -19088,7 +19426,7 @@ class DefaultApi:
     ) -> TradingChallengeResultsResponseEnvelope:
         """Get trading challenge results
 
-        List challenge leaderboard/results. COMPETITION_MANAGER can access only assigned challenge IDs.
+        List challenge leaderboard/results. Public endpoint.
 
         :param trading_challenge_id: (required)
         :type trading_challenge_id: UUID
@@ -19128,7 +19466,6 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "TradingChallengeResultsResponseEnvelope",
             '400': "ResponseEnvelope",
-            '403': "ResponseEnvelope",
             '404': "ResponseEnvelope",
             '500': "ResponseEnvelope",
         }
@@ -19163,7 +19500,7 @@ class DefaultApi:
     ) -> ApiResponse[TradingChallengeResultsResponseEnvelope]:
         """Get trading challenge results
 
-        List challenge leaderboard/results. COMPETITION_MANAGER can access only assigned challenge IDs.
+        List challenge leaderboard/results. Public endpoint.
 
         :param trading_challenge_id: (required)
         :type trading_challenge_id: UUID
@@ -19203,7 +19540,6 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "TradingChallengeResultsResponseEnvelope",
             '400': "ResponseEnvelope",
-            '403': "ResponseEnvelope",
             '404': "ResponseEnvelope",
             '500': "ResponseEnvelope",
         }
@@ -19238,7 +19574,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Get trading challenge results
 
-        List challenge leaderboard/results. COMPETITION_MANAGER can access only assigned challenge IDs.
+        List challenge leaderboard/results. Public endpoint.
 
         :param trading_challenge_id: (required)
         :type trading_challenge_id: UUID
@@ -19278,7 +19614,6 @@ class DefaultApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "TradingChallengeResultsResponseEnvelope",
             '400': "ResponseEnvelope",
-            '403': "ResponseEnvelope",
             '404': "ResponseEnvelope",
             '500': "ResponseEnvelope",
         }
@@ -19337,8 +19672,6 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
-            'apiKeyAuthHeader', 
-            'bearerAuth'
         ]
 
         return self.api_client.param_serialize(

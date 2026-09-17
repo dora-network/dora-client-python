@@ -273,6 +273,8 @@ __all__ = [
     "TradeRequestError",
     "TradeResponseEnvelope",
     "TradingChallenge",
+    "TradingChallengeAllResult",
+    "TradingChallengeAllResultsResponseEnvelope",
     "TradingChallengeDailySnapshot",
     "TradingChallengeDailySnapshotsResponseEnvelope",
     "TradingChallengeListResponseEnvelope",
@@ -615,6 +617,8 @@ from dora_client.models.trade import Trade as Trade
 from dora_client.models.trade_request_error import TradeRequestError as TradeRequestError
 from dora_client.models.trade_response_envelope import TradeResponseEnvelope as TradeResponseEnvelope
 from dora_client.models.trading_challenge import TradingChallenge as TradingChallenge
+from dora_client.models.trading_challenge_all_result import TradingChallengeAllResult as TradingChallengeAllResult
+from dora_client.models.trading_challenge_all_results_response_envelope import TradingChallengeAllResultsResponseEnvelope as TradingChallengeAllResultsResponseEnvelope
 from dora_client.models.trading_challenge_daily_snapshot import TradingChallengeDailySnapshot as TradingChallengeDailySnapshot
 from dora_client.models.trading_challenge_daily_snapshots_response_envelope import TradingChallengeDailySnapshotsResponseEnvelope as TradingChallengeDailySnapshotsResponseEnvelope
 from dora_client.models.trading_challenge_list_response_envelope import TradingChallengeListResponseEnvelope as TradingChallengeListResponseEnvelope
