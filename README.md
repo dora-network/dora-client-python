@@ -217,6 +217,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**list_trading_challenges**](docs/DefaultApi.md#list_trading_challenges) | **GET** /v1/trading_challenges | List trading challenges
 *DefaultApi* | [**list_user_deactivations**](docs/DefaultApi.md#list_user_deactivations) | **GET** /v1/user/deactivations | Get the current deactivation status across all users
 *DefaultApi* | [**list_withdrawals**](docs/DefaultApi.md#list_withdrawals) | **GET** /v1/web3/withdrawals | List USDC withdrawals
+*DefaultApi* | [**lock_withdrawal_fee**](docs/DefaultApi.md#lock_withdrawal_fee) | **PUT** /v1/web3/withdrawals/{withdrawal_id} | Lock the network fee for an approved USDC withdrawal
 *DefaultApi* | [**lookup_affiliate_code**](docs/DefaultApi.md#lookup_affiliate_code) | **GET** /v1/affiliate_codes/{code} | Look up a reusable referral code
 *DefaultApi* | [**pay_leverage_get_accrued_interest**](docs/DefaultApi.md#pay_leverage_get_accrued_interest) | **POST** /v1/leverage/accrued_interest/pay | Pay current accrued leverage interest for a specific user
 *DefaultApi* | [**register_affiliate_referrer**](docs/DefaultApi.md#register_affiliate_referrer) | **POST** /v1/affiliate_programs/{program_id}/referrers | Register an existing user as a referrer
@@ -237,6 +238,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**stream_order_book_balances**](docs/DefaultApi.md#stream_order_book_balances) | **GET** /v1/orderbooks/{order_book_id}/balances/stream | Get a snapshot of base and quote balances for an order book and open a stream for real-time updates
 *DefaultApi* | [**stream_orderbook_open_orders**](docs/DefaultApi.md#stream_orderbook_open_orders) | **GET** /v1/orderbooks/{order_book_id}/open/stream | Get a snapshot of open orders in an order book and open a stream for real-time updates
 *DefaultApi* | [**stream_trades**](docs/DefaultApi.md#stream_trades) | **GET** /v1/trades/{order_book_id}/stream | Get a snapshot of trades executed on the given order book from a specific date and open a stream for real-time updates
+*DefaultApi* | [**tenant_guarantee_fund_history**](docs/DefaultApi.md#tenant_guarantee_fund_history) | **GET** /v1/tenants/{tenant_id}/guarantee_fund | List guarantee fund ledger rows and totals by transaction kind for a tenant.
 *DefaultApi* | [**terminate_own_trading_challenge_participation**](docs/DefaultApi.md#terminate_own_trading_challenge_participation) | **POST** /v1/trading_challenges/{trading_challenge_id}/participants/self/terminate | Leave a trading challenge
 *DefaultApi* | [**terminate_trading_challenge_participation**](docs/DefaultApi.md#terminate_trading_challenge_participation) | **POST** /v1/trading_challenges/{trading_challenge_id}/participants/{user_id}/terminate | Terminate a participation in a trading challenge
 *DefaultApi* | [**transfer_account_balances_v2**](docs/DefaultApi.md#transfer_account_balances_v2) | **POST** /v2/accounts/transfer_balances | Transfer available balance between a user&#39;s accounts
@@ -393,6 +395,7 @@ Class | Method | HTTP request | Description
  - [ListUsersResponseEnvelope](docs/ListUsersResponseEnvelope.md)
  - [ListWithdrawalsResponseEnvelope](docs/ListWithdrawalsResponseEnvelope.md)
  - [LiveOrderbook](docs/LiveOrderbook.md)
+ - [LockWithdrawalFeeRequest](docs/LockWithdrawalFeeRequest.md)
  - [Margin](docs/Margin.md)
  - [Metadata](docs/Metadata.md)
  - [ModuleBalance](docs/ModuleBalance.md)
@@ -490,6 +493,10 @@ Class | Method | HTTP request | Description
  - [Supply](docs/Supply.md)
  - [SupplyRequest](docs/SupplyRequest.md)
  - [SupplyResponseEnvelope](docs/SupplyResponseEnvelope.md)
+ - [TenantGuaranteeFundHistory](docs/TenantGuaranteeFundHistory.md)
+ - [TenantGuaranteeFundHistoryResponseEnvelope](docs/TenantGuaranteeFundHistoryResponseEnvelope.md)
+ - [TenantGuaranteeFundRow](docs/TenantGuaranteeFundRow.md)
+ - [TenantGuaranteeFundSummary](docs/TenantGuaranteeFundSummary.md)
  - [TenantRestrictions](docs/TenantRestrictions.md)
  - [TerminateTradingChallengeResponse](docs/TerminateTradingChallengeResponse.md)
  - [TerminateTradingChallengeResponseEnvelope](docs/TerminateTradingChallengeResponseEnvelope.md)

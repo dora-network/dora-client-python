@@ -121,6 +121,7 @@ Method | HTTP request | Description
 [**list_trading_challenges**](DefaultApi.md#list_trading_challenges) | **GET** /v1/trading_challenges | List trading challenges
 [**list_user_deactivations**](DefaultApi.md#list_user_deactivations) | **GET** /v1/user/deactivations | Get the current deactivation status across all users
 [**list_withdrawals**](DefaultApi.md#list_withdrawals) | **GET** /v1/web3/withdrawals | List USDC withdrawals
+[**lock_withdrawal_fee**](DefaultApi.md#lock_withdrawal_fee) | **PUT** /v1/web3/withdrawals/{withdrawal_id} | Lock the network fee for an approved USDC withdrawal
 [**lookup_affiliate_code**](DefaultApi.md#lookup_affiliate_code) | **GET** /v1/affiliate_codes/{code} | Look up a reusable referral code
 [**pay_leverage_get_accrued_interest**](DefaultApi.md#pay_leverage_get_accrued_interest) | **POST** /v1/leverage/accrued_interest/pay | Pay current accrued leverage interest for a specific user
 [**register_affiliate_referrer**](DefaultApi.md#register_affiliate_referrer) | **POST** /v1/affiliate_programs/{program_id}/referrers | Register an existing user as a referrer
@@ -141,6 +142,7 @@ Method | HTTP request | Description
 [**stream_order_book_balances**](DefaultApi.md#stream_order_book_balances) | **GET** /v1/orderbooks/{order_book_id}/balances/stream | Get a snapshot of base and quote balances for an order book and open a stream for real-time updates
 [**stream_orderbook_open_orders**](DefaultApi.md#stream_orderbook_open_orders) | **GET** /v1/orderbooks/{order_book_id}/open/stream | Get a snapshot of open orders in an order book and open a stream for real-time updates
 [**stream_trades**](DefaultApi.md#stream_trades) | **GET** /v1/trades/{order_book_id}/stream | Get a snapshot of trades executed on the given order book from a specific date and open a stream for real-time updates
+[**tenant_guarantee_fund_history**](DefaultApi.md#tenant_guarantee_fund_history) | **GET** /v1/tenants/{tenant_id}/guarantee_fund | List guarantee fund ledger rows and totals by transaction kind for a tenant.
 [**terminate_own_trading_challenge_participation**](DefaultApi.md#terminate_own_trading_challenge_participation) | **POST** /v1/trading_challenges/{trading_challenge_id}/participants/self/terminate | Leave a trading challenge
 [**terminate_trading_challenge_participation**](DefaultApi.md#terminate_trading_challenge_participation) | **POST** /v1/trading_challenges/{trading_challenge_id}/participants/{user_id}/terminate | Terminate a participation in a trading challenge
 [**transfer_account_balances_v2**](DefaultApi.md#transfer_account_balances_v2) | **POST** /v2/accounts/transfer_balances | Transfer available balance between a user&#39;s accounts
@@ -2679,10 +2681,12 @@ Name | Type | Description  | Notes
 
 Get yield chart data for an asset
 
-Returns complete yield buckets starting at `start`; `end` is exclusive and a trailing partial bucket is omitted. Requests are limited to 10,000 complete buckets.
+Returns complete yield buckets starting at `start`; `end` is exclusive and a trailing partial bucket is omitted. Requests are limited to 10,000 complete buckets. Public callers may query only the last month. Authenticated callers may query up to the last six months. If credentials are supplied but invalid, the request is rejected as unauthorized.
 
 ### Example
 
+* Api Key Authentication (apiKeyAuthHeader):
+* Bearer (JWT) Authentication (bearerAuth):
 
 ```python
 import dora_client
@@ -2697,6 +2701,21 @@ configuration = dora_client.Configuration(
     host = "https://staging.dora.co"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration.api_key['apiKeyAuthHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyAuthHeader'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = dora_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
 
 # Enter a context with an instance of the API client
 async with dora_client.ApiClient(configuration) as api_client:
@@ -2734,7 +2753,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -2897,10 +2916,12 @@ No authorization required
 
 Get candlestick data for an orderbook
 
-Returns candle data in the requested [start, end) range for the selected resolution. Responses are capped to the most recent 5,000 candles per request.
+Returns candle data in the requested [start, end) range for the selected resolution, capped to the most recent 5,000 candles per request. Public callers may query data from up to the last month, while authenticated callers may query up to the last six months (requests with invalid credentials will be rejected as unauthorized).
 
 ### Example
 
+* Api Key Authentication (apiKeyAuthHeader):
+* Bearer (JWT) Authentication (bearerAuth):
 
 ```python
 import dora_client
@@ -2915,6 +2936,21 @@ configuration = dora_client.Configuration(
     host = "https://staging.dora.co"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration.api_key['apiKeyAuthHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyAuthHeader'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = dora_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
 
 # Enter a context with an instance of the API client
 async with dora_client.ApiClient(configuration) as api_client:
@@ -2952,7 +2988,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -5505,6 +5541,8 @@ No authorization required
 
 Get a filtered, paginated list of trades
 
+Role-based date window: public callers are limited to the last month; authenticated callers may query up to the last six months. If `start` is omitted it defaults to the role-based minimum. If credentials are supplied but invalid, the request is rejected as unauthorized.
+
 ### Example
 
 * Api Key Authentication (apiKeyAuthHeader):
@@ -5998,8 +6036,12 @@ No authorization required
 
 Get a filtered, paginated list of transactions
 
+Role-based date window: public callers are limited to the last month; authenticated callers may query up to the last six months. If `start` is omitted it defaults to the role-based minimum. If credentials are supplied but invalid, the request is rejected as unauthorized.
+
 ### Example
 
+* Api Key Authentication (apiKeyAuthHeader):
+* Bearer (JWT) Authentication (bearerAuth):
 
 ```python
 import dora_client
@@ -6014,6 +6056,21 @@ configuration = dora_client.Configuration(
     host = "https://staging.dora.co"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration.api_key['apiKeyAuthHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyAuthHeader'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = dora_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
 
 # Enter a context with an instance of the API client
 async with dora_client.ApiClient(configuration) as api_client:
@@ -6059,7 +6116,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -7265,11 +7322,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_withdrawal_fee_quote**
-> FeeQuoteResponseEnvelope get_withdrawal_fee_quote(to, quantity)
+> FeeQuoteResponseEnvelope get_withdrawal_fee_quote(withdrawal_id)
 
 Estimate the network fee to withdraw USDC via web3
 
-Examines on-chain conditions and simulates a withdrawal transaction to estimate the fee a user needs to pay for a withdrawal. The fee is not charged when the withdrawal is requested; the quote is redeemed later, when the fee is locked as part of approval. Restricted to DORA tenant users whose native asset is USDC.
+Examines on-chain conditions and simulates the named withdrawal to estimate the network fee the user must reserve before it can be submitted on-chain. The withdrawal must already exist, belong to the caller, and have been approved by an admin (status APPROVED_WITHOUT_FEE); its destination and quantity are read from the row, not taken from the request. The returned quote token is bound to that one withdrawal and is redeemed at PUT /v1/web3/withdrawals/{withdrawal_id}, which reserves the fee and moves the withdrawal to APPROVED. Restricted to DORA tenant users whose native asset is USDC.
 
 ### Example
 
@@ -7308,12 +7365,11 @@ configuration = dora_client.Configuration(
 async with dora_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = dora_client.DefaultApi(api_client)
-    to = 'to_example' # str | The destination wallet address as a 0x-prefixed 20-byte hex string. Must not be the zero address.
-    quantity = 'quantity_example' # str | Human-decimal USDC quantity to withdraw, e.g. '100.50'. Must be positive.
+    withdrawal_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | The withdrawal to quote a fee for. It must belong to the caller and be in status APPROVED_WITHOUT_FEE; the destination and quantity are read from it rather than supplied here.
 
     try:
         # Estimate the network fee to withdraw USDC via web3
-        api_response = await api_instance.get_withdrawal_fee_quote(to, quantity)
+        api_response = await api_instance.get_withdrawal_fee_quote(withdrawal_id)
         print("The response of DefaultApi->get_withdrawal_fee_quote:\n")
         pprint(api_response)
     except Exception as e:
@@ -7327,8 +7383,7 @@ async with dora_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **to** | **str**| The destination wallet address as a 0x-prefixed 20-byte hex string. Must not be the zero address. | 
- **quantity** | **str**| Human-decimal USDC quantity to withdraw, e.g. &#39;100.50&#39;. Must be positive. | 
+ **withdrawal_id** | **UUID**| The withdrawal to quote a fee for. It must belong to the caller and be in status APPROVED_WITHOUT_FEE; the destination and quantity are read from it rather than supplied here. | 
 
 ### Return type
 
@@ -7348,9 +7403,11 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Fee quote for the requested withdrawal |  -  |
-**400** | Bad request, e.g. invalid or missing to address, or invalid or non-positive quantity |  -  |
+**400** | Bad request: the withdrawal_id query parameter is missing or is not a UUID |  -  |
 **401** | Unauthorized, user not logged in |  -  |
 **403** | Forbidden: access is restricted to DORA tenant users whose native asset is USDC. Admin and indexer API keys have no native asset and are also denied. |  -  |
+**404** | Withdrawal not found, or it belongs to another user |  -  |
+**409** | Conflict: the withdrawal is not APPROVED_WITHOUT_FEE (not yet approved, already paid for, or terminal), or it is bound to a chain other than the registered one |  -  |
 **429** | Rate limit exceeded; this endpoint is limited to 1 request per minute per user |  -  |
 **500** | Internal server error |  -  |
 **502** | Bad gateway, e.g. the withdrawal simulation reverted (insufficient vault liquidity, paused vault) or the web3 data provider (gas estimation or price feed) failed |  -  |
@@ -10218,6 +10275,102 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **lock_withdrawal_fee**
+> WithdrawalResponseEnvelope lock_withdrawal_fee(withdrawal_id, lock_withdrawal_fee_request)
+
+Lock the network fee for an approved USDC withdrawal
+
+Redeems a fee quote against a withdrawal an admin has approved. The quoted fee is reserved on top of the quantity reserved when the request was created, so the same risk checks the request cleared are run again for it: an active trading challenge, a deactivated account, account health, the minimum cash reserve, and overdue coupon payments. A fee that would take the caller below the minimum cash reserve is refused and nothing is reserved.
+
+### Example
+
+* Api Key Authentication (apiKeyAuthHeader):
+* Bearer (JWT) Authentication (bearerAuth):
+
+```python
+import dora_client
+from dora_client.models.lock_withdrawal_fee_request import LockWithdrawalFeeRequest
+from dora_client.models.withdrawal_response_envelope import WithdrawalResponseEnvelope
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging.dora.co
+# See configuration.py for a list of all supported configuration parameters.
+configuration = dora_client.Configuration(
+    host = "https://staging.dora.co"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration.api_key['apiKeyAuthHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyAuthHeader'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = dora_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+async with dora_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = dora_client.DefaultApi(api_client)
+    withdrawal_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | The withdrawal to redeem the quote against. It must be owned by the caller and be in status APPROVED_WITHOUT_FEE.
+    lock_withdrawal_fee_request = dora_client.LockWithdrawalFeeRequest() # LockWithdrawalFeeRequest | 
+
+    try:
+        # Lock the network fee for an approved USDC withdrawal
+        api_response = await api_instance.lock_withdrawal_fee(withdrawal_id, lock_withdrawal_fee_request)
+        print("The response of DefaultApi->lock_withdrawal_fee:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->lock_withdrawal_fee: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **withdrawal_id** | **UUID**| The withdrawal to redeem the quote against. It must be owned by the caller and be in status APPROVED_WITHOUT_FEE. | 
+ **lock_withdrawal_fee_request** | [**LockWithdrawalFeeRequest**](LockWithdrawalFeeRequest.md)|  | 
+
+### Return type
+
+[**WithdrawalResponseEnvelope**](WithdrawalResponseEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Fee reserved; the withdrawal is now APPROVED and eligible for submission |  -  |
+**400** | Bad request, e.g. an invalid body or withdrawal_id, an unparseable or unauthentic quote token, or a quote issued for a different destination, quantity, or chain |  -  |
+**401** | Unauthorized, user not logged in |  -  |
+**403** | Forbidden: access is restricted to DORA tenant users whose native asset is USDC (admin and indexer API keys have no native asset and are also denied); the caller is taking part in an active trading challenge; the caller&#39;s account is deactivated or being deactivated; or reserving the fee would leave the caller below the minimum cash reserve. |  -  |
+**404** | Withdrawal not found, or it belongs to another user |  -  |
+**409** | Conflict, e.g. the withdrawal is not APPROVED_WITHOUT_FEE (not yet approved, already paid for, or terminal), the available balance cannot cover the fee, there is no USD ledger account to reserve the fee from, an unhealthy account, overdue coupon payments, or a concurrent balance change kept the reservation from being recorded |  -  |
+**410** | The quote token has expired; request a new fee quote |  -  |
+**500** | Internal server error |  -  |
+**503** | Fee locking is not configured on this deployment |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **lookup_affiliate_code**
 > AffiliateReferrerEnvelope lookup_affiliate_code(code, tenant_id=tenant_id)
 
@@ -11894,6 +12047,101 @@ No authorization required
 |-------------|-------------|------------------|
 **200** | Real-time trade updates |  -  |
 **400** | Bad request, e.g. invalid parameters |  -  |
+**500** | Internal server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **tenant_guarantee_fund_history**
+> TenantGuaranteeFundHistoryResponseEnvelope tenant_guarantee_fund_history(tenant_id, start_date=start_date, end_date=end_date, tx_kind=tx_kind)
+
+List guarantee fund ledger rows and totals by transaction kind for a tenant.
+
+Returns guarantee fund ledger rows for a tenant filtered by updated_at range and tx_kind, with totals_by_tx_kind summary.
+
+### Example
+
+* Api Key Authentication (apiKeyAuthHeader):
+* Bearer (JWT) Authentication (bearerAuth):
+
+```python
+import dora_client
+from dora_client.models.tenant_guarantee_fund_history_response_envelope import TenantGuaranteeFundHistoryResponseEnvelope
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging.dora.co
+# See configuration.py for a list of all supported configuration parameters.
+configuration = dora_client.Configuration(
+    host = "https://staging.dora.co"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration.api_key['apiKeyAuthHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyAuthHeader'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = dora_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+async with dora_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = dora_client.DefaultApi(api_client)
+    tenant_id = 'tenant_id_example' # str | 
+    start_date = '2013-10-20T19:20:30+01:00' # datetime | Optional inclusive lower bound for updated_at (RFC3339). (optional)
+    end_date = '2013-10-20T19:20:30+01:00' # datetime | Optional inclusive upper bound for updated_at (RFC3339). (optional)
+    tx_kind = 'tx_kind_example' # str | Optional transaction kind filter. (optional)
+
+    try:
+        # List guarantee fund ledger rows and totals by transaction kind for a tenant.
+        api_response = await api_instance.tenant_guarantee_fund_history(tenant_id, start_date=start_date, end_date=end_date, tx_kind=tx_kind)
+        print("The response of DefaultApi->tenant_guarantee_fund_history:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->tenant_guarantee_fund_history: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **tenant_id** | **str**|  | 
+ **start_date** | **datetime**| Optional inclusive lower bound for updated_at (RFC3339). | [optional] 
+ **end_date** | **datetime**| Optional inclusive upper bound for updated_at (RFC3339). | [optional] 
+ **tx_kind** | **str**| Optional transaction kind filter. | [optional] 
+
+### Return type
+
+[**TenantGuaranteeFundHistoryResponseEnvelope**](TenantGuaranteeFundHistoryResponseEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Tenant guarantee fund history and summary. |  -  |
+**400** | Bad request |  -  |
+**401** | Unauthorized |  -  |
+**403** | Forbidden |  -  |
 **500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

@@ -145,6 +145,7 @@ docs/ListUserCouponPaymentsResponseEnvelope.md
 docs/ListUsersResponseEnvelope.md
 docs/ListWithdrawalsResponseEnvelope.md
 docs/LiveOrderbook.md
+docs/LockWithdrawalFeeRequest.md
 docs/Margin.md
 docs/Metadata.md
 docs/ModuleBalance.md
@@ -242,6 +243,10 @@ docs/StreamUserCouponPaymentsResponse.md
 docs/Supply.md
 docs/SupplyRequest.md
 docs/SupplyResponseEnvelope.md
+docs/TenantGuaranteeFundHistory.md
+docs/TenantGuaranteeFundHistoryResponseEnvelope.md
+docs/TenantGuaranteeFundRow.md
+docs/TenantGuaranteeFundSummary.md
 docs/TenantRestrictions.md
 docs/TerminateTradingChallengeResponse.md
 docs/TerminateTradingChallengeResponseEnvelope.md
@@ -480,6 +485,7 @@ dora_client/models/list_user_coupon_payments_response_envelope.py
 dora_client/models/list_users_response_envelope.py
 dora_client/models/list_withdrawals_response_envelope.py
 dora_client/models/live_orderbook.py
+dora_client/models/lock_withdrawal_fee_request.py
 dora_client/models/margin.py
 dora_client/models/metadata.py
 dora_client/models/module_balance.py
@@ -577,6 +583,10 @@ dora_client/models/stream_user_coupon_payments_response.py
 dora_client/models/supply.py
 dora_client/models/supply_request.py
 dora_client/models/supply_response_envelope.py
+dora_client/models/tenant_guarantee_fund_history.py
+dora_client/models/tenant_guarantee_fund_history_response_envelope.py
+dora_client/models/tenant_guarantee_fund_row.py
+dora_client/models/tenant_guarantee_fund_summary.py
 dora_client/models/tenant_restrictions.py
 dora_client/models/terminate_trading_challenge_response.py
 dora_client/models/terminate_trading_challenge_response_envelope.py
@@ -817,6 +827,7 @@ test/test_list_user_coupon_payments_response_envelope.py
 test/test_list_users_response_envelope.py
 test/test_list_withdrawals_response_envelope.py
 test/test_live_orderbook.py
+test/test_lock_withdrawal_fee_request.py
 test/test_margin.py
 test/test_metadata.py
 test/test_module_balance.py
@@ -914,6 +925,10 @@ test/test_stream_user_coupon_payments_response.py
 test/test_supply.py
 test/test_supply_request.py
 test/test_supply_response_envelope.py
+test/test_tenant_guarantee_fund_history.py
+test/test_tenant_guarantee_fund_history_response_envelope.py
+test/test_tenant_guarantee_fund_row.py
+test/test_tenant_guarantee_fund_summary.py
 test/test_tenant_restrictions.py
 test/test_terminate_trading_challenge_response.py
 test/test_terminate_trading_challenge_response_envelope.py

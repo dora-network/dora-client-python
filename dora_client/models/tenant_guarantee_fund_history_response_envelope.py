@@ -17,27 +17,22 @@ import pprint
 import re  # noqa: F401
 import json
 
-from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List
-from uuid import UUID
+from typing import Any, ClassVar, Dict, List, Optional
+from dora_client.models.metadata import Metadata
+from dora_client.models.tenant_guarantee_fund_history import TenantGuaranteeFundHistory
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
 
-class FeeQuoteResponse(BaseModel):
+class TenantGuaranteeFundHistoryResponseEnvelope(BaseModel):
     """
-    The estimated network fee for one approved USDC withdrawal, alongside a signed, TTL-bound quote token bound to that withdrawal. Submit the token to PUT /v1/web3/withdrawals/{withdrawal_id} to reserve the quoted fee.
+    TenantGuaranteeFundHistoryResponseEnvelope
     """ # noqa: E501
-    withdrawal_id: UUID = Field(description="The withdrawal this quote was issued for. The quote token is bound to it and cannot be redeemed against any other withdrawal.")
-    to: StrictStr = Field(description="The withdrawal destination address, read from the withdrawal row.")
-    quantity: StrictStr = Field(description="Human-decimal USDC withdrawal quantity, read from the withdrawal row.")
-    fee: StrictStr = Field(description="The estimated network fee, in human USDC.")
-    fee_base_units: StrictStr = Field(description="The estimated network fee, in micro-USDC base units.")
-    chain_id: StrictStr = Field(description="EVM chain ID the quote was computed for.")
-    quote_token: StrictStr = Field(description="Signed, TTL-bound quote token to submit to PUT /v1/web3/withdrawals/{withdrawal_id} so the server can validate the fee it quoted. It names the withdrawal it was issued for.")
-    expires_at: datetime = Field(description="When the quote token expires.")
-    __properties: ClassVar[List[str]] = ["withdrawal_id", "to", "quantity", "fee", "fee_base_units", "chain_id", "quote_token", "expires_at"]
+    data: Optional[TenantGuaranteeFundHistory] = None
+    error: Optional[StrictStr] = Field(default=None, description="The error message. Present for error (non-2xx) responses.")
+    metadata: Metadata = Field(description="Metadata about the response, including status code and trace information.")
+    __properties: ClassVar[List[str]] = ["data", "error", "metadata"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -57,7 +52,7 @@ class FeeQuoteResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of FeeQuoteResponse from a JSON string"""
+        """Create an instance of TenantGuaranteeFundHistoryResponseEnvelope from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -78,11 +73,17 @@ class FeeQuoteResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of data
+        if self.data:
+            _dict['data'] = self.data.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of metadata
+        if self.metadata:
+            _dict['metadata'] = self.metadata.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of FeeQuoteResponse from a dict"""
+        """Create an instance of TenantGuaranteeFundHistoryResponseEnvelope from a dict"""
         if obj is None:
             return None
 
@@ -90,14 +91,9 @@ class FeeQuoteResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "withdrawal_id": obj.get("withdrawal_id"),
-            "to": obj.get("to"),
-            "quantity": obj.get("quantity"),
-            "fee": obj.get("fee"),
-            "fee_base_units": obj.get("fee_base_units"),
-            "chain_id": obj.get("chain_id"),
-            "quote_token": obj.get("quote_token"),
-            "expires_at": obj.get("expires_at")
+            "data": TenantGuaranteeFundHistory.from_dict(obj["data"]) if obj.get("data") is not None else None,
+            "error": obj.get("error"),
+            "metadata": Metadata.from_dict(obj["metadata"]) if obj.get("metadata") is not None else None
         })
         return _obj
 

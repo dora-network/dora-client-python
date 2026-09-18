@@ -96,6 +96,7 @@ from dora_client.models.list_transactions_response_envelope import ListTransacti
 from dora_client.models.list_users_response_envelope import ListUsersResponseEnvelope
 from dora_client.models.list_withdrawals_response_envelope import ListWithdrawalsResponseEnvelope
 from dora_client.models.live_orderbook import LiveOrderbook
+from dora_client.models.lock_withdrawal_fee_request import LockWithdrawalFeeRequest
 from dora_client.models.order_book_response_envelope import OrderBookResponseEnvelope
 from dora_client.models.order_book_status import OrderBookStatus
 from dora_client.models.order_book_summary_response_envelope import OrderBookSummaryResponseEnvelope
@@ -137,6 +138,7 @@ from dora_client.models.stream_transactions_entry import StreamTransactionsEntry
 from dora_client.models.stream_user_coupon_payments_response import StreamUserCouponPaymentsResponse
 from dora_client.models.supply_request import SupplyRequest
 from dora_client.models.supply_response_envelope import SupplyResponseEnvelope
+from dora_client.models.tenant_guarantee_fund_history_response_envelope import TenantGuaranteeFundHistoryResponseEnvelope
 from dora_client.models.terminate_trading_challenge_response_envelope import TerminateTradingChallengeResponseEnvelope
 from dora_client.models.trade_response_envelope import TradeResponseEnvelope
 from dora_client.models.trading_challenge_all_results_response_envelope import TradingChallengeAllResultsResponseEnvelope
@@ -8384,7 +8386,7 @@ class DefaultApi:
     ) -> ListAssetYieldResponseEnvelope:
         """Get yield chart data for an asset
 
-        Returns complete yield buckets starting at `start`; `end` is exclusive and a trailing partial bucket is omitted. Requests are limited to 10,000 complete buckets.
+        Returns complete yield buckets starting at `start`; `end` is exclusive and a trailing partial bucket is omitted. Requests are limited to 10,000 complete buckets. Public callers may query only the last month. Authenticated callers may query up to the last six months. If credentials are supplied but invalid, the request is rejected as unauthorized.
 
         :param asset_id: (required)
         :type asset_id: UUID
@@ -8467,7 +8469,7 @@ class DefaultApi:
     ) -> ApiResponse[ListAssetYieldResponseEnvelope]:
         """Get yield chart data for an asset
 
-        Returns complete yield buckets starting at `start`; `end` is exclusive and a trailing partial bucket is omitted. Requests are limited to 10,000 complete buckets.
+        Returns complete yield buckets starting at `start`; `end` is exclusive and a trailing partial bucket is omitted. Requests are limited to 10,000 complete buckets. Public callers may query only the last month. Authenticated callers may query up to the last six months. If credentials are supplied but invalid, the request is rejected as unauthorized.
 
         :param asset_id: (required)
         :type asset_id: UUID
@@ -8550,7 +8552,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Get yield chart data for an asset
 
-        Returns complete yield buckets starting at `start`; `end` is exclusive and a trailing partial bucket is omitted. Requests are limited to 10,000 complete buckets.
+        Returns complete yield buckets starting at `start`; `end` is exclusive and a trailing partial bucket is omitted. Requests are limited to 10,000 complete buckets. Public callers may query only the last month. Authenticated callers may query up to the last six months. If credentials are supplied but invalid, the request is rejected as unauthorized.
 
         :param asset_id: (required)
         :type asset_id: UUID
@@ -8683,6 +8685,8 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'apiKeyAuthHeader', 
+            'bearerAuth'
         ]
 
         return self.api_client.param_serialize(
@@ -9291,7 +9295,7 @@ class DefaultApi:
     ) -> ListCandlesResponseEnvelope:
         """Get candlestick data for an orderbook
 
-        Returns candle data in the requested [start, end) range for the selected resolution. Responses are capped to the most recent 5,000 candles per request.
+        Returns candle data in the requested [start, end) range for the selected resolution, capped to the most recent 5,000 candles per request. Public callers may query data from up to the last month, while authenticated callers may query up to the last six months (requests with invalid credentials will be rejected as unauthorized).
 
         :param order_book_id: (required)
         :type order_book_id: str
@@ -9373,7 +9377,7 @@ class DefaultApi:
     ) -> ApiResponse[ListCandlesResponseEnvelope]:
         """Get candlestick data for an orderbook
 
-        Returns candle data in the requested [start, end) range for the selected resolution. Responses are capped to the most recent 5,000 candles per request.
+        Returns candle data in the requested [start, end) range for the selected resolution, capped to the most recent 5,000 candles per request. Public callers may query data from up to the last month, while authenticated callers may query up to the last six months (requests with invalid credentials will be rejected as unauthorized).
 
         :param order_book_id: (required)
         :type order_book_id: str
@@ -9455,7 +9459,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Get candlestick data for an orderbook
 
-        Returns candle data in the requested [start, end) range for the selected resolution. Responses are capped to the most recent 5,000 candles per request.
+        Returns candle data in the requested [start, end) range for the selected resolution, capped to the most recent 5,000 candles per request. Public callers may query data from up to the last month, while authenticated callers may query up to the last six months (requests with invalid credentials will be rejected as unauthorized).
 
         :param order_book_id: (required)
         :type order_book_id: str
@@ -9587,6 +9591,8 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'apiKeyAuthHeader', 
+            'bearerAuth'
         ]
 
         return self.api_client.param_serialize(
@@ -18170,6 +18176,7 @@ class DefaultApi:
     ) -> ListTradeResponseEnvelope:
         """Get a filtered, paginated list of trades
 
+        Role-based date window: public callers are limited to the last month; authenticated callers may query up to the last six months. If `start` is omitted it defaults to the role-based minimum. If credentials are supplied but invalid, the request is rejected as unauthorized.
 
         :param order_book_ids:
         :type order_book_ids: List[str]
@@ -18259,6 +18266,7 @@ class DefaultApi:
     ) -> ApiResponse[ListTradeResponseEnvelope]:
         """Get a filtered, paginated list of trades
 
+        Role-based date window: public callers are limited to the last month; authenticated callers may query up to the last six months. If `start` is omitted it defaults to the role-based minimum. If credentials are supplied but invalid, the request is rejected as unauthorized.
 
         :param order_book_ids:
         :type order_book_ids: List[str]
@@ -18348,6 +18356,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Get a filtered, paginated list of trades
 
+        Role-based date window: public callers are limited to the last month; authenticated callers may query up to the last six months. If `start` is omitted it defaults to the role-based minimum. If credentials are supplied but invalid, the request is rejected as unauthorized.
 
         :param order_book_ids:
         :type order_book_ids: List[str]
@@ -19984,6 +19993,7 @@ class DefaultApi:
     ) -> ListTransactionsResponseEnvelope:
         """Get a filtered, paginated list of transactions
 
+        Role-based date window: public callers are limited to the last month; authenticated callers may query up to the last six months. If `start` is omitted it defaults to the role-based minimum. If credentials are supplied but invalid, the request is rejected as unauthorized.
 
         :param pools:
         :type pools: List[str]
@@ -20080,6 +20090,7 @@ class DefaultApi:
     ) -> ApiResponse[ListTransactionsResponseEnvelope]:
         """Get a filtered, paginated list of transactions
 
+        Role-based date window: public callers are limited to the last month; authenticated callers may query up to the last six months. If `start` is omitted it defaults to the role-based minimum. If credentials are supplied but invalid, the request is rejected as unauthorized.
 
         :param pools:
         :type pools: List[str]
@@ -20176,6 +20187,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Get a filtered, paginated list of transactions
 
+        Role-based date window: public callers are limited to the last month; authenticated callers may query up to the last six months. If `start` is omitted it defaults to the role-based minimum. If credentials are supplied but invalid, the request is rejected as unauthorized.
 
         :param pools:
         :type pools: List[str]
@@ -20343,6 +20355,8 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'apiKeyAuthHeader', 
+            'bearerAuth'
         ]
 
         return self.api_client.param_serialize(
@@ -24480,8 +24494,7 @@ class DefaultApi:
     @validate_call
     async def get_withdrawal_fee_quote(
         self,
-        to: Annotated[StrictStr, Field(description="The destination wallet address as a 0x-prefixed 20-byte hex string. Must not be the zero address.")],
-        quantity: Annotated[StrictStr, Field(description="Human-decimal USDC quantity to withdraw, e.g. '100.50'. Must be positive.")],
+        withdrawal_id: Annotated[UUID, Field(description="The withdrawal to quote a fee for. It must belong to the caller and be in status APPROVED_WITHOUT_FEE; the destination and quantity are read from it rather than supplied here.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -24497,12 +24510,10 @@ class DefaultApi:
     ) -> FeeQuoteResponseEnvelope:
         """Estimate the network fee to withdraw USDC via web3
 
-        Examines on-chain conditions and simulates a withdrawal transaction to estimate the fee a user needs to pay for a withdrawal. The fee is not charged when the withdrawal is requested; the quote is redeemed later, when the fee is locked as part of approval. Restricted to DORA tenant users whose native asset is USDC.
+        Examines on-chain conditions and simulates the named withdrawal to estimate the network fee the user must reserve before it can be submitted on-chain. The withdrawal must already exist, belong to the caller, and have been approved by an admin (status APPROVED_WITHOUT_FEE); its destination and quantity are read from the row, not taken from the request. The returned quote token is bound to that one withdrawal and is redeemed at PUT /v1/web3/withdrawals/{withdrawal_id}, which reserves the fee and moves the withdrawal to APPROVED. Restricted to DORA tenant users whose native asset is USDC.
 
-        :param to: The destination wallet address as a 0x-prefixed 20-byte hex string. Must not be the zero address. (required)
-        :type to: str
-        :param quantity: Human-decimal USDC quantity to withdraw, e.g. '100.50'. Must be positive. (required)
-        :type quantity: str
+        :param withdrawal_id: The withdrawal to quote a fee for. It must belong to the caller and be in status APPROVED_WITHOUT_FEE; the destination and quantity are read from it rather than supplied here. (required)
+        :type withdrawal_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -24526,8 +24537,7 @@ class DefaultApi:
         """ # noqa: E501
 
         _param = self._get_withdrawal_fee_quote_serialize(
-            to=to,
-            quantity=quantity,
+            withdrawal_id=withdrawal_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -24539,6 +24549,8 @@ class DefaultApi:
             '400': "ResponseEnvelope",
             '401': "ResponseEnvelope",
             '403': "ResponseEnvelope",
+            '404': "ResponseEnvelope",
+            '409': "ResponseEnvelope",
             '429': "ResponseEnvelope",
             '500': "ResponseEnvelope",
             '502': "ResponseEnvelope",
@@ -24558,8 +24570,7 @@ class DefaultApi:
     @validate_call
     async def get_withdrawal_fee_quote_with_http_info(
         self,
-        to: Annotated[StrictStr, Field(description="The destination wallet address as a 0x-prefixed 20-byte hex string. Must not be the zero address.")],
-        quantity: Annotated[StrictStr, Field(description="Human-decimal USDC quantity to withdraw, e.g. '100.50'. Must be positive.")],
+        withdrawal_id: Annotated[UUID, Field(description="The withdrawal to quote a fee for. It must belong to the caller and be in status APPROVED_WITHOUT_FEE; the destination and quantity are read from it rather than supplied here.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -24575,12 +24586,10 @@ class DefaultApi:
     ) -> ApiResponse[FeeQuoteResponseEnvelope]:
         """Estimate the network fee to withdraw USDC via web3
 
-        Examines on-chain conditions and simulates a withdrawal transaction to estimate the fee a user needs to pay for a withdrawal. The fee is not charged when the withdrawal is requested; the quote is redeemed later, when the fee is locked as part of approval. Restricted to DORA tenant users whose native asset is USDC.
+        Examines on-chain conditions and simulates the named withdrawal to estimate the network fee the user must reserve before it can be submitted on-chain. The withdrawal must already exist, belong to the caller, and have been approved by an admin (status APPROVED_WITHOUT_FEE); its destination and quantity are read from the row, not taken from the request. The returned quote token is bound to that one withdrawal and is redeemed at PUT /v1/web3/withdrawals/{withdrawal_id}, which reserves the fee and moves the withdrawal to APPROVED. Restricted to DORA tenant users whose native asset is USDC.
 
-        :param to: The destination wallet address as a 0x-prefixed 20-byte hex string. Must not be the zero address. (required)
-        :type to: str
-        :param quantity: Human-decimal USDC quantity to withdraw, e.g. '100.50'. Must be positive. (required)
-        :type quantity: str
+        :param withdrawal_id: The withdrawal to quote a fee for. It must belong to the caller and be in status APPROVED_WITHOUT_FEE; the destination and quantity are read from it rather than supplied here. (required)
+        :type withdrawal_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -24604,8 +24613,7 @@ class DefaultApi:
         """ # noqa: E501
 
         _param = self._get_withdrawal_fee_quote_serialize(
-            to=to,
-            quantity=quantity,
+            withdrawal_id=withdrawal_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -24617,6 +24625,8 @@ class DefaultApi:
             '400': "ResponseEnvelope",
             '401': "ResponseEnvelope",
             '403': "ResponseEnvelope",
+            '404': "ResponseEnvelope",
+            '409': "ResponseEnvelope",
             '429': "ResponseEnvelope",
             '500': "ResponseEnvelope",
             '502': "ResponseEnvelope",
@@ -24636,8 +24646,7 @@ class DefaultApi:
     @validate_call
     async def get_withdrawal_fee_quote_without_preload_content(
         self,
-        to: Annotated[StrictStr, Field(description="The destination wallet address as a 0x-prefixed 20-byte hex string. Must not be the zero address.")],
-        quantity: Annotated[StrictStr, Field(description="Human-decimal USDC quantity to withdraw, e.g. '100.50'. Must be positive.")],
+        withdrawal_id: Annotated[UUID, Field(description="The withdrawal to quote a fee for. It must belong to the caller and be in status APPROVED_WITHOUT_FEE; the destination and quantity are read from it rather than supplied here.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -24653,12 +24662,10 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Estimate the network fee to withdraw USDC via web3
 
-        Examines on-chain conditions and simulates a withdrawal transaction to estimate the fee a user needs to pay for a withdrawal. The fee is not charged when the withdrawal is requested; the quote is redeemed later, when the fee is locked as part of approval. Restricted to DORA tenant users whose native asset is USDC.
+        Examines on-chain conditions and simulates the named withdrawal to estimate the network fee the user must reserve before it can be submitted on-chain. The withdrawal must already exist, belong to the caller, and have been approved by an admin (status APPROVED_WITHOUT_FEE); its destination and quantity are read from the row, not taken from the request. The returned quote token is bound to that one withdrawal and is redeemed at PUT /v1/web3/withdrawals/{withdrawal_id}, which reserves the fee and moves the withdrawal to APPROVED. Restricted to DORA tenant users whose native asset is USDC.
 
-        :param to: The destination wallet address as a 0x-prefixed 20-byte hex string. Must not be the zero address. (required)
-        :type to: str
-        :param quantity: Human-decimal USDC quantity to withdraw, e.g. '100.50'. Must be positive. (required)
-        :type quantity: str
+        :param withdrawal_id: The withdrawal to quote a fee for. It must belong to the caller and be in status APPROVED_WITHOUT_FEE; the destination and quantity are read from it rather than supplied here. (required)
+        :type withdrawal_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -24682,8 +24689,7 @@ class DefaultApi:
         """ # noqa: E501
 
         _param = self._get_withdrawal_fee_quote_serialize(
-            to=to,
-            quantity=quantity,
+            withdrawal_id=withdrawal_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -24695,6 +24701,8 @@ class DefaultApi:
             '400': "ResponseEnvelope",
             '401': "ResponseEnvelope",
             '403': "ResponseEnvelope",
+            '404': "ResponseEnvelope",
+            '409': "ResponseEnvelope",
             '429': "ResponseEnvelope",
             '500': "ResponseEnvelope",
             '502': "ResponseEnvelope",
@@ -24709,8 +24717,7 @@ class DefaultApi:
 
     def _get_withdrawal_fee_quote_serialize(
         self,
-        to,
-        quantity,
+        withdrawal_id,
         _request_auth,
         _content_type,
         _headers,
@@ -24733,13 +24740,9 @@ class DefaultApi:
 
         # process the path parameters
         # process the query parameters
-        if to is not None:
+        if withdrawal_id is not None:
             
-            _query_params.append(('to', to))
-            
-        if quantity is not None:
-            
-            _query_params.append(('quantity', quantity))
+            _query_params.append(('withdrawal_id', withdrawal_id))
             
         # process the header parameters
         # process the form parameters
@@ -34614,6 +34617,320 @@ class DefaultApi:
 
 
     @validate_call
+    async def lock_withdrawal_fee(
+        self,
+        withdrawal_id: Annotated[UUID, Field(description="The withdrawal to redeem the quote against. It must be owned by the caller and be in status APPROVED_WITHOUT_FEE.")],
+        lock_withdrawal_fee_request: LockWithdrawalFeeRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> WithdrawalResponseEnvelope:
+        """Lock the network fee for an approved USDC withdrawal
+
+        Redeems a fee quote against a withdrawal an admin has approved. The quoted fee is reserved on top of the quantity reserved when the request was created, so the same risk checks the request cleared are run again for it: an active trading challenge, a deactivated account, account health, the minimum cash reserve, and overdue coupon payments. A fee that would take the caller below the minimum cash reserve is refused and nothing is reserved.
+
+        :param withdrawal_id: The withdrawal to redeem the quote against. It must be owned by the caller and be in status APPROVED_WITHOUT_FEE. (required)
+        :type withdrawal_id: UUID
+        :param lock_withdrawal_fee_request: (required)
+        :type lock_withdrawal_fee_request: LockWithdrawalFeeRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._lock_withdrawal_fee_serialize(
+            withdrawal_id=withdrawal_id,
+            lock_withdrawal_fee_request=lock_withdrawal_fee_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "WithdrawalResponseEnvelope",
+            '400': "ResponseEnvelope",
+            '401': "ResponseEnvelope",
+            '403': "ResponseEnvelope",
+            '404': "ResponseEnvelope",
+            '409': "ResponseEnvelope",
+            '410': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+            '503': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    async def lock_withdrawal_fee_with_http_info(
+        self,
+        withdrawal_id: Annotated[UUID, Field(description="The withdrawal to redeem the quote against. It must be owned by the caller and be in status APPROVED_WITHOUT_FEE.")],
+        lock_withdrawal_fee_request: LockWithdrawalFeeRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[WithdrawalResponseEnvelope]:
+        """Lock the network fee for an approved USDC withdrawal
+
+        Redeems a fee quote against a withdrawal an admin has approved. The quoted fee is reserved on top of the quantity reserved when the request was created, so the same risk checks the request cleared are run again for it: an active trading challenge, a deactivated account, account health, the minimum cash reserve, and overdue coupon payments. A fee that would take the caller below the minimum cash reserve is refused and nothing is reserved.
+
+        :param withdrawal_id: The withdrawal to redeem the quote against. It must be owned by the caller and be in status APPROVED_WITHOUT_FEE. (required)
+        :type withdrawal_id: UUID
+        :param lock_withdrawal_fee_request: (required)
+        :type lock_withdrawal_fee_request: LockWithdrawalFeeRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._lock_withdrawal_fee_serialize(
+            withdrawal_id=withdrawal_id,
+            lock_withdrawal_fee_request=lock_withdrawal_fee_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "WithdrawalResponseEnvelope",
+            '400': "ResponseEnvelope",
+            '401': "ResponseEnvelope",
+            '403': "ResponseEnvelope",
+            '404': "ResponseEnvelope",
+            '409': "ResponseEnvelope",
+            '410': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+            '503': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    async def lock_withdrawal_fee_without_preload_content(
+        self,
+        withdrawal_id: Annotated[UUID, Field(description="The withdrawal to redeem the quote against. It must be owned by the caller and be in status APPROVED_WITHOUT_FEE.")],
+        lock_withdrawal_fee_request: LockWithdrawalFeeRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Lock the network fee for an approved USDC withdrawal
+
+        Redeems a fee quote against a withdrawal an admin has approved. The quoted fee is reserved on top of the quantity reserved when the request was created, so the same risk checks the request cleared are run again for it: an active trading challenge, a deactivated account, account health, the minimum cash reserve, and overdue coupon payments. A fee that would take the caller below the minimum cash reserve is refused and nothing is reserved.
+
+        :param withdrawal_id: The withdrawal to redeem the quote against. It must be owned by the caller and be in status APPROVED_WITHOUT_FEE. (required)
+        :type withdrawal_id: UUID
+        :param lock_withdrawal_fee_request: (required)
+        :type lock_withdrawal_fee_request: LockWithdrawalFeeRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._lock_withdrawal_fee_serialize(
+            withdrawal_id=withdrawal_id,
+            lock_withdrawal_fee_request=lock_withdrawal_fee_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "WithdrawalResponseEnvelope",
+            '400': "ResponseEnvelope",
+            '401': "ResponseEnvelope",
+            '403': "ResponseEnvelope",
+            '404': "ResponseEnvelope",
+            '409': "ResponseEnvelope",
+            '410': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+            '503': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _lock_withdrawal_fee_serialize(
+        self,
+        withdrawal_id,
+        lock_withdrawal_fee_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if withdrawal_id is not None:
+            _path_params['withdrawal_id'] = withdrawal_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if lock_withdrawal_fee_request is not None:
+            _body_params = lock_withdrawal_fee_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyAuthHeader', 
+            'bearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/v1/web3/withdrawals/{withdrawal_id}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     async def lookup_affiliate_code(
         self,
         code: Annotated[str, Field(strict=True)],
@@ -40380,6 +40697,349 @@ class DefaultApi:
         return self.api_client.param_serialize(
             method='GET',
             resource_path='/v1/trades/{order_book_id}/stream',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    async def tenant_guarantee_fund_history(
+        self,
+        tenant_id: StrictStr,
+        start_date: Annotated[Optional[datetime], Field(description="Optional inclusive lower bound for updated_at (RFC3339).")] = None,
+        end_date: Annotated[Optional[datetime], Field(description="Optional inclusive upper bound for updated_at (RFC3339).")] = None,
+        tx_kind: Annotated[Optional[StrictStr], Field(description="Optional transaction kind filter.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> TenantGuaranteeFundHistoryResponseEnvelope:
+        """List guarantee fund ledger rows and totals by transaction kind for a tenant.
+
+        Returns guarantee fund ledger rows for a tenant filtered by updated_at range and tx_kind, with totals_by_tx_kind summary.
+
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param start_date: Optional inclusive lower bound for updated_at (RFC3339).
+        :type start_date: datetime
+        :param end_date: Optional inclusive upper bound for updated_at (RFC3339).
+        :type end_date: datetime
+        :param tx_kind: Optional transaction kind filter.
+        :type tx_kind: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._tenant_guarantee_fund_history_serialize(
+            tenant_id=tenant_id,
+            start_date=start_date,
+            end_date=end_date,
+            tx_kind=tx_kind,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "TenantGuaranteeFundHistoryResponseEnvelope",
+            '400': "ResponseEnvelope",
+            '401': "ResponseEnvelope",
+            '403': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    async def tenant_guarantee_fund_history_with_http_info(
+        self,
+        tenant_id: StrictStr,
+        start_date: Annotated[Optional[datetime], Field(description="Optional inclusive lower bound for updated_at (RFC3339).")] = None,
+        end_date: Annotated[Optional[datetime], Field(description="Optional inclusive upper bound for updated_at (RFC3339).")] = None,
+        tx_kind: Annotated[Optional[StrictStr], Field(description="Optional transaction kind filter.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[TenantGuaranteeFundHistoryResponseEnvelope]:
+        """List guarantee fund ledger rows and totals by transaction kind for a tenant.
+
+        Returns guarantee fund ledger rows for a tenant filtered by updated_at range and tx_kind, with totals_by_tx_kind summary.
+
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param start_date: Optional inclusive lower bound for updated_at (RFC3339).
+        :type start_date: datetime
+        :param end_date: Optional inclusive upper bound for updated_at (RFC3339).
+        :type end_date: datetime
+        :param tx_kind: Optional transaction kind filter.
+        :type tx_kind: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._tenant_guarantee_fund_history_serialize(
+            tenant_id=tenant_id,
+            start_date=start_date,
+            end_date=end_date,
+            tx_kind=tx_kind,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "TenantGuaranteeFundHistoryResponseEnvelope",
+            '400': "ResponseEnvelope",
+            '401': "ResponseEnvelope",
+            '403': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    async def tenant_guarantee_fund_history_without_preload_content(
+        self,
+        tenant_id: StrictStr,
+        start_date: Annotated[Optional[datetime], Field(description="Optional inclusive lower bound for updated_at (RFC3339).")] = None,
+        end_date: Annotated[Optional[datetime], Field(description="Optional inclusive upper bound for updated_at (RFC3339).")] = None,
+        tx_kind: Annotated[Optional[StrictStr], Field(description="Optional transaction kind filter.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """List guarantee fund ledger rows and totals by transaction kind for a tenant.
+
+        Returns guarantee fund ledger rows for a tenant filtered by updated_at range and tx_kind, with totals_by_tx_kind summary.
+
+        :param tenant_id: (required)
+        :type tenant_id: str
+        :param start_date: Optional inclusive lower bound for updated_at (RFC3339).
+        :type start_date: datetime
+        :param end_date: Optional inclusive upper bound for updated_at (RFC3339).
+        :type end_date: datetime
+        :param tx_kind: Optional transaction kind filter.
+        :type tx_kind: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._tenant_guarantee_fund_history_serialize(
+            tenant_id=tenant_id,
+            start_date=start_date,
+            end_date=end_date,
+            tx_kind=tx_kind,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "TenantGuaranteeFundHistoryResponseEnvelope",
+            '400': "ResponseEnvelope",
+            '401': "ResponseEnvelope",
+            '403': "ResponseEnvelope",
+            '500': "ResponseEnvelope",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _tenant_guarantee_fund_history_serialize(
+        self,
+        tenant_id,
+        start_date,
+        end_date,
+        tx_kind,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if tenant_id is not None:
+            _path_params['tenant_id'] = tenant_id
+        # process the query parameters
+        if start_date is not None:
+            if isinstance(start_date, datetime):
+                _query_params.append(
+                    (
+                        'start_date',
+                        start_date.strftime(
+                            self.api_client.configuration.datetime_format
+                        )
+                    )
+                )
+            else:
+                _query_params.append(('start_date', start_date))
+            
+        if end_date is not None:
+            if isinstance(end_date, datetime):
+                _query_params.append(
+                    (
+                        'end_date',
+                        end_date.strftime(
+                            self.api_client.configuration.datetime_format
+                        )
+                    )
+                )
+            else:
+                _query_params.append(('end_date', end_date))
+            
+        if tx_kind is not None:
+            
+            _query_params.append(('tx_kind', tx_kind))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyAuthHeader', 
+            'bearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/v1/tenants/{tenant_id}/guarantee_fund',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,

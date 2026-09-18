@@ -845,6 +845,13 @@ class TestDefaultApi(unittest.IsolatedAsyncioTestCase):
         """
         pass
 
+    async def test_lock_withdrawal_fee(self) -> None:
+        """Test case for lock_withdrawal_fee
+
+        Lock the network fee for an approved USDC withdrawal
+        """
+        pass
+
     async def test_lookup_affiliate_code(self) -> None:
         """Test case for lookup_affiliate_code
 
@@ -982,6 +989,13 @@ class TestDefaultApi(unittest.IsolatedAsyncioTestCase):
         """Test case for stream_trades
 
         Get a snapshot of trades executed on the given order book from a specific date and open a stream for real-time updates
+        """
+        pass
+
+    async def test_tenant_guarantee_fund_history(self) -> None:
+        """Test case for tenant_guarantee_fund_history
+
+        List guarantee fund ledger rows and totals by transaction kind for a tenant.
         """
         pass
 

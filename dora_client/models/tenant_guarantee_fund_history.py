@@ -17,27 +17,21 @@ import pprint
 import re  # noqa: F401
 import json
 
-from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List
-from uuid import UUID
+from dora_client.models.tenant_guarantee_fund_row import TenantGuaranteeFundRow
+from dora_client.models.tenant_guarantee_fund_summary import TenantGuaranteeFundSummary
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
 
-class FeeQuoteResponse(BaseModel):
+class TenantGuaranteeFundHistory(BaseModel):
     """
-    The estimated network fee for one approved USDC withdrawal, alongside a signed, TTL-bound quote token bound to that withdrawal. Submit the token to PUT /v1/web3/withdrawals/{withdrawal_id} to reserve the quoted fee.
+    TenantGuaranteeFundHistory
     """ # noqa: E501
-    withdrawal_id: UUID = Field(description="The withdrawal this quote was issued for. The quote token is bound to it and cannot be redeemed against any other withdrawal.")
-    to: StrictStr = Field(description="The withdrawal destination address, read from the withdrawal row.")
-    quantity: StrictStr = Field(description="Human-decimal USDC withdrawal quantity, read from the withdrawal row.")
-    fee: StrictStr = Field(description="The estimated network fee, in human USDC.")
-    fee_base_units: StrictStr = Field(description="The estimated network fee, in micro-USDC base units.")
-    chain_id: StrictStr = Field(description="EVM chain ID the quote was computed for.")
-    quote_token: StrictStr = Field(description="Signed, TTL-bound quote token to submit to PUT /v1/web3/withdrawals/{withdrawal_id} so the server can validate the fee it quoted. It names the withdrawal it was issued for.")
-    expires_at: datetime = Field(description="When the quote token expires.")
-    __properties: ClassVar[List[str]] = ["withdrawal_id", "to", "quantity", "fee", "fee_base_units", "chain_id", "quote_token", "expires_at"]
+    rows: List[TenantGuaranteeFundRow]
+    summary: TenantGuaranteeFundSummary
+    __properties: ClassVar[List[str]] = ["rows", "summary"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -57,7 +51,7 @@ class FeeQuoteResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of FeeQuoteResponse from a JSON string"""
+        """Create an instance of TenantGuaranteeFundHistory from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -78,11 +72,21 @@ class FeeQuoteResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in rows (list)
+        _items = []
+        if self.rows:
+            for _item_rows in self.rows:
+                if _item_rows:
+                    _items.append(_item_rows.to_dict())
+            _dict['rows'] = _items
+        # override the default output from pydantic by calling `to_dict()` of summary
+        if self.summary:
+            _dict['summary'] = self.summary.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of FeeQuoteResponse from a dict"""
+        """Create an instance of TenantGuaranteeFundHistory from a dict"""
         if obj is None:
             return None
 
@@ -90,14 +94,8 @@ class FeeQuoteResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "withdrawal_id": obj.get("withdrawal_id"),
-            "to": obj.get("to"),
-            "quantity": obj.get("quantity"),
-            "fee": obj.get("fee"),
-            "fee_base_units": obj.get("fee_base_units"),
-            "chain_id": obj.get("chain_id"),
-            "quote_token": obj.get("quote_token"),
-            "expires_at": obj.get("expires_at")
+            "rows": [TenantGuaranteeFundRow.from_dict(_item) for _item in obj["rows"]] if obj.get("rows") is not None else None,
+            "summary": TenantGuaranteeFundSummary.from_dict(obj["summary"]) if obj.get("summary") is not None else None
         })
         return _obj
 

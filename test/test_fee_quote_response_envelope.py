@@ -36,6 +36,7 @@ class TestFeeQuoteResponseEnvelope(unittest.TestCase):
         if include_optional:
             return FeeQuoteResponseEnvelope(
                 data = dora_client.models.fee_quote_response.FeeQuoteResponse(
+                    withdrawal_id = '', 
                     to = '', 
                     quantity = '', 
                     fee = '', 

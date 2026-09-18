@@ -35,6 +35,7 @@ class TestFeeQuoteResponse(unittest.TestCase):
         model = FeeQuoteResponse()
         if include_optional:
             return FeeQuoteResponse(
+                withdrawal_id = '',
                 to = '',
                 quantity = '',
                 fee = '',
@@ -45,6 +46,7 @@ class TestFeeQuoteResponse(unittest.TestCase):
             )
         else:
             return FeeQuoteResponse(
+                withdrawal_id = '',
                 to = '',
                 quantity = '',
                 fee = '',

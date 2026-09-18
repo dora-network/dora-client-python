@@ -169,6 +169,7 @@ __all__ = [
     "ListUsersResponseEnvelope",
     "ListWithdrawalsResponseEnvelope",
     "LiveOrderbook",
+    "LockWithdrawalFeeRequest",
     "Margin",
     "Metadata",
     "ModuleBalance",
@@ -266,6 +267,10 @@ __all__ = [
     "Supply",
     "SupplyRequest",
     "SupplyResponseEnvelope",
+    "TenantGuaranteeFundHistory",
+    "TenantGuaranteeFundHistoryResponseEnvelope",
+    "TenantGuaranteeFundRow",
+    "TenantGuaranteeFundSummary",
     "TenantRestrictions",
     "TerminateTradingChallengeResponse",
     "TerminateTradingChallengeResponseEnvelope",
@@ -513,6 +518,7 @@ from dora_client.models.list_user_coupon_payments_response_envelope import ListU
 from dora_client.models.list_users_response_envelope import ListUsersResponseEnvelope as ListUsersResponseEnvelope
 from dora_client.models.list_withdrawals_response_envelope import ListWithdrawalsResponseEnvelope as ListWithdrawalsResponseEnvelope
 from dora_client.models.live_orderbook import LiveOrderbook as LiveOrderbook
+from dora_client.models.lock_withdrawal_fee_request import LockWithdrawalFeeRequest as LockWithdrawalFeeRequest
 from dora_client.models.margin import Margin as Margin
 from dora_client.models.metadata import Metadata as Metadata
 from dora_client.models.module_balance import ModuleBalance as ModuleBalance
@@ -610,6 +616,10 @@ from dora_client.models.stream_user_coupon_payments_response import StreamUserCo
 from dora_client.models.supply import Supply as Supply
 from dora_client.models.supply_request import SupplyRequest as SupplyRequest
 from dora_client.models.supply_response_envelope import SupplyResponseEnvelope as SupplyResponseEnvelope
+from dora_client.models.tenant_guarantee_fund_history import TenantGuaranteeFundHistory as TenantGuaranteeFundHistory
+from dora_client.models.tenant_guarantee_fund_history_response_envelope import TenantGuaranteeFundHistoryResponseEnvelope as TenantGuaranteeFundHistoryResponseEnvelope
+from dora_client.models.tenant_guarantee_fund_row import TenantGuaranteeFundRow as TenantGuaranteeFundRow
+from dora_client.models.tenant_guarantee_fund_summary import TenantGuaranteeFundSummary as TenantGuaranteeFundSummary
 from dora_client.models.tenant_restrictions import TenantRestrictions as TenantRestrictions
 from dora_client.models.terminate_trading_challenge_response import TerminateTradingChallengeResponse as TerminateTradingChallengeResponse
 from dora_client.models.terminate_trading_challenge_response_envelope import TerminateTradingChallengeResponseEnvelope as TerminateTradingChallengeResponseEnvelope
