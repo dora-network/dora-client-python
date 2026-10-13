@@ -40,7 +40,8 @@ class TestAffiliateReferrer(unittest.TestCase):
                 tenant_id = '0',
                 user_id = '',
                 referral_code = 'WXBU5JLXPXUUB-3',
-                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f')
+                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                customized_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f')
             )
         else:
             return AffiliateReferrer(
@@ -50,6 +51,7 @@ class TestAffiliateReferrer(unittest.TestCase):
                 user_id = '',
                 referral_code = 'WXBU5JLXPXUUB-3',
                 created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                customized_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
         )
         """
 

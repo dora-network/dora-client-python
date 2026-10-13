@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **tenant_id** | **str** |  | 
 **signup_source** | **str** | Signup hostname when assigned at signup; empty for an assignment made later. | 
 **created_at** | **datetime** | Immutable assignment time; activity begins counting from this timestamp. | 
-**referral_code** | **str** |  | 
+**referral_code** | **str** | Exact code the user entered, retained when the referrer changes their primary code. | 
 
 ## Example
 

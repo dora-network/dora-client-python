@@ -75,6 +75,13 @@ class TestDefaultApi(unittest.IsolatedAsyncioTestCase):
         """
         pass
 
+    async def test_cancel_withdrawal(self) -> None:
+        """Test case for cancel_withdrawal
+
+        Cancel the caller's own USDC withdrawal
+        """
+        pass
+
     async def test_claim_leverage_get_accrued_interest(self) -> None:
         """Test case for claim_leverage_get_accrued_interest
 
@@ -93,6 +100,13 @@ class TestDefaultApi(unittest.IsolatedAsyncioTestCase):
         """Test case for claim_trading_challenge_prize
 
         Claim challenge prize
+        """
+        pass
+
+    async def test_close_all_isolated_positions(self) -> None:
+        """Test case for close_all_isolated_positions
+
+        Close all open isolated positions in one request
         """
         pass
 
@@ -163,6 +177,13 @@ class TestDefaultApi(unittest.IsolatedAsyncioTestCase):
         """Test case for create_withdrawal
 
         Create a USDC withdrawal request
+        """
+        pass
+
+    async def test_customize_affiliate_referrer_code(self) -> None:
+        """Test case for customize_affiliate_referrer_code
+
+        Change an affiliate referral code
         """
         pass
 
@@ -250,6 +271,13 @@ class TestDefaultApi(unittest.IsolatedAsyncioTestCase):
         """
         pass
 
+    async def test_get_auto_rebalance_account_status_v2(self) -> None:
+        """Test case for get_auto_rebalance_account_status_v2
+
+        Get auto-rebalance configuration and live status for one isolated account
+        """
+        pass
+
     async def test_get_candle_data(self) -> None:
         """Test case for get_candle_data
 
@@ -289,6 +317,13 @@ class TestDefaultApi(unittest.IsolatedAsyncioTestCase):
         """Test case for get_deposit_instructions
 
         Get per-chain instructions for depositing USDC into the Dora vault
+        """
+        pass
+
+    async def test_get_global_leaderboard(self) -> None:
+        """Test case for get_global_leaderboard
+
+        Get global leaderboard
         """
         pass
 
@@ -453,6 +488,13 @@ class TestDefaultApi(unittest.IsolatedAsyncioTestCase):
         """
         pass
 
+    async def test_get_qr_reward_preview(self) -> None:
+        """Test case for get_qr_reward_preview
+
+        Preview QR reward eligibility
+        """
+        pass
+
     async def test_get_realized_pnl_settlements(self) -> None:
         """Test case for get_realized_pnl_settlements
 
@@ -478,13 +520,6 @@ class TestDefaultApi(unittest.IsolatedAsyncioTestCase):
         """Test case for get_trades
 
         Get a filtered, paginated list of trades
-        """
-        pass
-
-    async def test_get_trading_challenge_all_results(self) -> None:
-        """Test case for get_trading_challenge_all_results
-
-        Get combined results across all trading challenge
         """
         pass
 
@@ -765,6 +800,20 @@ class TestDefaultApi(unittest.IsolatedAsyncioTestCase):
         """Test case for list_assets
 
         List assets
+        """
+        pass
+
+    async def test_list_auto_rebalance_configs_v2(self) -> None:
+        """Test case for list_auto_rebalance_configs_v2
+
+        List auto-rebalance configuration for the authenticated user's isolated accounts
+        """
+        pass
+
+    async def test_list_auto_rebalance_statuses_v2(self) -> None:
+        """Test case for list_auto_rebalance_statuses_v2
+
+        List auto-rebalance status for the authenticated user's isolated accounts, including disabled configs
         """
         pass
 
@@ -1059,6 +1108,13 @@ class TestDefaultApi(unittest.IsolatedAsyncioTestCase):
         """Test case for update_user_kyc
 
         Set or clear a user's KYC completion timestamp
+        """
+        pass
+
+    async def test_upsert_auto_rebalance_configs_v2(self) -> None:
+        """Test case for upsert_auto_rebalance_configs_v2
+
+        Create or update auto-rebalance configuration for one or more isolated accounts
         """
         pass
 

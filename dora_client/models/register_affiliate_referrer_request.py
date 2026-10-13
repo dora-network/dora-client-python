@@ -29,7 +29,7 @@ class RegisterAffiliateReferrerRequest(BaseModel):
     RegisterAffiliateReferrerRequest
     """ # noqa: E501
     user_id: UUID = Field(description="Existing, nonzero DORA user ID in the program owning tenant.")
-    referral_code: Optional[StrictStr] = Field(default=None, description="Optional custom code: 3 to 64 letters, digits, hyphens or underscores after trimming, starting with a letter or digit. Stored uppercase and unique across all programs and tenants. Omitted, null or empty generates a random code.", json_schema_extra={"examples": ["TEAM-42"]})
+    referral_code: Optional[StrictStr] = Field(default=None, description="Optional custom code: 3 to 64 letters, digits, hyphens or underscores after trimming, starting with a letter or digit. Stored uppercase and unique across all programs and tenants. Omitted, null or empty generates a random 12-character code.", json_schema_extra={"examples": ["TEAM-42"]})
     __properties: ClassVar[List[str]] = ["user_id", "referral_code"]
 
     model_config = ConfigDict(

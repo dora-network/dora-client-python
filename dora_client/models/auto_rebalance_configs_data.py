@@ -17,26 +17,19 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
-from uuid import UUID
+from pydantic import BaseModel, ConfigDict
+from typing import Any, ClassVar, Dict, List
+from dora_client.models.auto_rebalance_config_status import AutoRebalanceConfigStatus
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
 
-class TradingChallengeAllResult(BaseModel):
+class AutoRebalanceConfigsData(BaseModel):
     """
-    TradingChallengeAllResult
+    AutoRebalanceConfigsData
     """ # noqa: E501
-    user_id: Optional[UUID] = None
-    user_name: Optional[StrictStr] = None
-    cum_volume: Optional[StrictStr] = None
-    cum_pnl: Optional[StrictStr] = None
-    active_days: Optional[StrictInt] = None
-    cum_trades: Optional[StrictInt] = None
-    account_value: Optional[StrictStr] = None
-    pnl_pct: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["user_id", "user_name", "cum_volume", "cum_pnl", "active_days", "cum_trades", "account_value", "pnl_pct"]
+    configs: List[AutoRebalanceConfigStatus]
+    __properties: ClassVar[List[str]] = ["configs"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -56,7 +49,7 @@ class TradingChallengeAllResult(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of TradingChallengeAllResult from a JSON string"""
+        """Create an instance of AutoRebalanceConfigsData from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -77,11 +70,18 @@ class TradingChallengeAllResult(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in configs (list)
+        _items = []
+        if self.configs:
+            for _item_configs in self.configs:
+                if _item_configs:
+                    _items.append(_item_configs.to_dict())
+            _dict['configs'] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of TradingChallengeAllResult from a dict"""
+        """Create an instance of AutoRebalanceConfigsData from a dict"""
         if obj is None:
             return None
 
@@ -89,14 +89,7 @@ class TradingChallengeAllResult(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "user_id": obj.get("user_id"),
-            "user_name": obj.get("user_name"),
-            "cum_volume": obj.get("cum_volume"),
-            "cum_pnl": obj.get("cum_pnl"),
-            "active_days": obj.get("active_days"),
-            "cum_trades": obj.get("cum_trades"),
-            "account_value": obj.get("account_value"),
-            "pnl_pct": obj.get("pnl_pct")
+            "configs": [AutoRebalanceConfigStatus.from_dict(_item) for _item in obj["configs"]] if obj.get("configs") is not None else None
         })
         return _obj
 

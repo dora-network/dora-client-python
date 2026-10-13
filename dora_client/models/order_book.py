@@ -39,7 +39,7 @@ class OrderBook(BaseModel):
     display_name: StrictStr
     base_asset_fractionalized_units: Annotated[int, Field(strict=True, ge=0)]
     quote_asset_fractionalized_units: Annotated[int, Field(strict=True, ge=0)]
-    fee_factor: Union[Annotated[float, Field(le=1, strict=True, ge=0)], Annotated[int, Field(le=1, strict=True, ge=0)]]
+    fee_factor: Union[Annotated[float, Field(le=1, strict=True, ge=0.9)], Annotated[int, Field(le=1, strict=True, ge=1)]]
     initial_assets_ratio: Union[Annotated[float, Field(le=1, strict=True, ge=0)], Annotated[int, Field(le=1, strict=True, ge=0)]]
     maturity_at: datetime
     quote_quantity: Union[Annotated[float, Field(strict=True, ge=0)], Annotated[int, Field(strict=True, ge=0)]]

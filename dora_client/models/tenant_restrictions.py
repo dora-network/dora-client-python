@@ -29,7 +29,7 @@ class TenantRestrictions(BaseModel):
     TenantRestrictions
     """ # noqa: E501
     tenant_id: StrictStr = Field(description="Tenant ID")
-    daily_deposit_limit: StrictStr = Field(description="Maximum allowed deposit for the tenant per day.")
+    daily_deposit_limit: StrictStr = Field(description="Maximum allowed USD deposit per user per day for this tenant.")
     trade_limit: StrictStr = Field(description="Maximum allowed trade amount for the tenant.")
     updated_at: datetime = Field(description="Last update timestamp for the restrictions.")
     __properties: ClassVar[List[str]] = ["tenant_id", "daily_deposit_limit", "trade_limit", "updated_at"]

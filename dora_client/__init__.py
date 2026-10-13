@@ -67,6 +67,9 @@ __all__ = [
     "AssetYield",
     "AssetYieldResolution",
     "AssignAffiliateReferralRequest",
+    "AutoRebalanceConfigStatus",
+    "AutoRebalanceConfigUpsert",
+    "AutoRebalanceConfigsData",
     "BalanceTransfer",
     "BalancesResponse",
     "Bond",
@@ -85,6 +88,8 @@ __all__ = [
     "ClaimTradingChallengeResponse",
     "ClaimTradingChallengeResponseEnvelope",
     "CloseAccountRequest",
+    "CloseAllPositionsItem",
+    "CloseAllPositionsResponseEnvelope",
     "ClosePositionRequest",
     "ClosePositionResp",
     "ClosePositionResponseEnvelope",
@@ -110,6 +115,7 @@ __all__ = [
     "CreditRating",
     "CurrentLeverageAccruedInterest",
     "CurrentLeverageAccruedInterestResponseEnvelope",
+    "CustomizeAffiliateReferrerCodeRequest",
     "DefundUserRequest",
     "DepositArgs",
     "DepositCall",
@@ -124,10 +130,13 @@ __all__ = [
     "FundUserResponseEnvelope",
     "GetAssetByIDResponseEnvelope",
     "GetAssetYTMByIDResponseEnvelope",
+    "GetAutoRebalanceAccountStatusResponseEnvelope",
     "GetCopyTradersResponse",
     "GetPnLRankingResponse",
     "GetRealizedPnlSettlementsResponseEnvelope",
     "GetTopOfBookResponseEnvelope",
+    "GlobalLeaderboardResponseEnvelope",
+    "GlobalLeaderboardResult",
     "HistoricalLeverageInterestRate",
     "HistoricalLeverageInterestRates",
     "HistoricalLeverageInterestRatesResponseEnvelope",
@@ -155,6 +164,7 @@ __all__ = [
     "ListAccountsResponseV2Envelope",
     "ListAssetPriceResponseEnvelope",
     "ListAssetYieldResponseEnvelope",
+    "ListAutoRebalanceConfigsResponseEnvelope",
     "ListCandlesResponseEnvelope",
     "ListCouponPaymentsResponseEnvelope",
     "ListDepositsResponseEnvelope",
@@ -232,6 +242,8 @@ __all__ = [
     "PromoLinkListResponseAllOfData",
     "PromoLinkStatus",
     "PromoSourceType",
+    "QRRewardPreview",
+    "QRRewardPreviewEnvelope",
     "RealizedPnlSettlement",
     "RealizedPnlSettlements",
     "RegisterAffiliateReferrerRequest",
@@ -278,8 +290,6 @@ __all__ = [
     "TradeRequestError",
     "TradeResponseEnvelope",
     "TradingChallenge",
-    "TradingChallengeAllResult",
-    "TradingChallengeAllResultsResponseEnvelope",
     "TradingChallengeDailySnapshot",
     "TradingChallengeDailySnapshotsResponseEnvelope",
     "TradingChallengeListResponseEnvelope",
@@ -326,6 +336,8 @@ __all__ = [
     "UpdateUserKYCRequest",
     "UpdateUserKYCResponse",
     "UpdateUserKYCResponseEnvelope",
+    "UpsertAutoRebalanceConfigsRequest",
+    "UpsertAutoRebalanceConfigsResponseEnvelope",
     "User",
     "UserBalanceResponseEnvelope",
     "UserConfig",
@@ -347,6 +359,7 @@ __all__ = [
     "UserUpdatedResponseEnvelope",
     "UserValue",
     "UserValueResponseEnvelope",
+    "UsersTag",
     "ValidateSubmitOrderRequest",
     "ValidateSubmitOrderResponse",
     "Web3EventStatus",
@@ -416,6 +429,9 @@ from dora_client.models.asset_ytm import AssetYTM as AssetYTM
 from dora_client.models.asset_yield import AssetYield as AssetYield
 from dora_client.models.asset_yield_resolution import AssetYieldResolution as AssetYieldResolution
 from dora_client.models.assign_affiliate_referral_request import AssignAffiliateReferralRequest as AssignAffiliateReferralRequest
+from dora_client.models.auto_rebalance_config_status import AutoRebalanceConfigStatus as AutoRebalanceConfigStatus
+from dora_client.models.auto_rebalance_config_upsert import AutoRebalanceConfigUpsert as AutoRebalanceConfigUpsert
+from dora_client.models.auto_rebalance_configs_data import AutoRebalanceConfigsData as AutoRebalanceConfigsData
 from dora_client.models.balance_transfer import BalanceTransfer as BalanceTransfer
 from dora_client.models.balances_response import BalancesResponse as BalancesResponse
 from dora_client.models.bond import Bond as Bond
@@ -434,6 +450,8 @@ from dora_client.models.claim_promo_link_request import ClaimPromoLinkRequest as
 from dora_client.models.claim_trading_challenge_response import ClaimTradingChallengeResponse as ClaimTradingChallengeResponse
 from dora_client.models.claim_trading_challenge_response_envelope import ClaimTradingChallengeResponseEnvelope as ClaimTradingChallengeResponseEnvelope
 from dora_client.models.close_account_request import CloseAccountRequest as CloseAccountRequest
+from dora_client.models.close_all_positions_item import CloseAllPositionsItem as CloseAllPositionsItem
+from dora_client.models.close_all_positions_response_envelope import CloseAllPositionsResponseEnvelope as CloseAllPositionsResponseEnvelope
 from dora_client.models.close_position_request import ClosePositionRequest as ClosePositionRequest
 from dora_client.models.close_position_resp import ClosePositionResp as ClosePositionResp
 from dora_client.models.close_position_response_envelope import ClosePositionResponseEnvelope as ClosePositionResponseEnvelope
@@ -459,6 +477,7 @@ from dora_client.models.create_withdrawal_request import CreateWithdrawalRequest
 from dora_client.models.credit_rating import CreditRating as CreditRating
 from dora_client.models.current_leverage_accrued_interest import CurrentLeverageAccruedInterest as CurrentLeverageAccruedInterest
 from dora_client.models.current_leverage_accrued_interest_response_envelope import CurrentLeverageAccruedInterestResponseEnvelope as CurrentLeverageAccruedInterestResponseEnvelope
+from dora_client.models.customize_affiliate_referrer_code_request import CustomizeAffiliateReferrerCodeRequest as CustomizeAffiliateReferrerCodeRequest
 from dora_client.models.defund_user_request import DefundUserRequest as DefundUserRequest
 from dora_client.models.deposit_args import DepositArgs as DepositArgs
 from dora_client.models.deposit_call import DepositCall as DepositCall
@@ -473,10 +492,13 @@ from dora_client.models.fund_user_request import FundUserRequest as FundUserRequ
 from dora_client.models.fund_user_response_envelope import FundUserResponseEnvelope as FundUserResponseEnvelope
 from dora_client.models.get_asset_by_id_response_envelope import GetAssetByIDResponseEnvelope as GetAssetByIDResponseEnvelope
 from dora_client.models.get_asset_ytmby_id_response_envelope import GetAssetYTMByIDResponseEnvelope as GetAssetYTMByIDResponseEnvelope
+from dora_client.models.get_auto_rebalance_account_status_response_envelope import GetAutoRebalanceAccountStatusResponseEnvelope as GetAutoRebalanceAccountStatusResponseEnvelope
 from dora_client.models.get_copy_traders_response import GetCopyTradersResponse as GetCopyTradersResponse
 from dora_client.models.get_pn_l_ranking_response import GetPnLRankingResponse as GetPnLRankingResponse
 from dora_client.models.get_realized_pnl_settlements_response_envelope import GetRealizedPnlSettlementsResponseEnvelope as GetRealizedPnlSettlementsResponseEnvelope
 from dora_client.models.get_top_of_book_response_envelope import GetTopOfBookResponseEnvelope as GetTopOfBookResponseEnvelope
+from dora_client.models.global_leaderboard_response_envelope import GlobalLeaderboardResponseEnvelope as GlobalLeaderboardResponseEnvelope
+from dora_client.models.global_leaderboard_result import GlobalLeaderboardResult as GlobalLeaderboardResult
 from dora_client.models.historical_leverage_interest_rate import HistoricalLeverageInterestRate as HistoricalLeverageInterestRate
 from dora_client.models.historical_leverage_interest_rates import HistoricalLeverageInterestRates as HistoricalLeverageInterestRates
 from dora_client.models.historical_leverage_interest_rates_response_envelope import HistoricalLeverageInterestRatesResponseEnvelope as HistoricalLeverageInterestRatesResponseEnvelope
@@ -504,6 +526,7 @@ from dora_client.models.liquidity_response_envelope import LiquidityResponseEnve
 from dora_client.models.list_accounts_response_v2_envelope import ListAccountsResponseV2Envelope as ListAccountsResponseV2Envelope
 from dora_client.models.list_asset_price_response_envelope import ListAssetPriceResponseEnvelope as ListAssetPriceResponseEnvelope
 from dora_client.models.list_asset_yield_response_envelope import ListAssetYieldResponseEnvelope as ListAssetYieldResponseEnvelope
+from dora_client.models.list_auto_rebalance_configs_response_envelope import ListAutoRebalanceConfigsResponseEnvelope as ListAutoRebalanceConfigsResponseEnvelope
 from dora_client.models.list_candles_response_envelope import ListCandlesResponseEnvelope as ListCandlesResponseEnvelope
 from dora_client.models.list_coupon_payments_response_envelope import ListCouponPaymentsResponseEnvelope as ListCouponPaymentsResponseEnvelope
 from dora_client.models.list_deposits_response_envelope import ListDepositsResponseEnvelope as ListDepositsResponseEnvelope
@@ -581,6 +604,8 @@ from dora_client.models.promo_link_list_response import PromoLinkListResponse as
 from dora_client.models.promo_link_list_response_all_of_data import PromoLinkListResponseAllOfData as PromoLinkListResponseAllOfData
 from dora_client.models.promo_link_status import PromoLinkStatus as PromoLinkStatus
 from dora_client.models.promo_source_type import PromoSourceType as PromoSourceType
+from dora_client.models.qr_reward_preview import QRRewardPreview as QRRewardPreview
+from dora_client.models.qr_reward_preview_envelope import QRRewardPreviewEnvelope as QRRewardPreviewEnvelope
 from dora_client.models.realized_pnl_settlement import RealizedPnlSettlement as RealizedPnlSettlement
 from dora_client.models.realized_pnl_settlements import RealizedPnlSettlements as RealizedPnlSettlements
 from dora_client.models.register_affiliate_referrer_request import RegisterAffiliateReferrerRequest as RegisterAffiliateReferrerRequest
@@ -627,8 +652,6 @@ from dora_client.models.trade import Trade as Trade
 from dora_client.models.trade_request_error import TradeRequestError as TradeRequestError
 from dora_client.models.trade_response_envelope import TradeResponseEnvelope as TradeResponseEnvelope
 from dora_client.models.trading_challenge import TradingChallenge as TradingChallenge
-from dora_client.models.trading_challenge_all_result import TradingChallengeAllResult as TradingChallengeAllResult
-from dora_client.models.trading_challenge_all_results_response_envelope import TradingChallengeAllResultsResponseEnvelope as TradingChallengeAllResultsResponseEnvelope
 from dora_client.models.trading_challenge_daily_snapshot import TradingChallengeDailySnapshot as TradingChallengeDailySnapshot
 from dora_client.models.trading_challenge_daily_snapshots_response_envelope import TradingChallengeDailySnapshotsResponseEnvelope as TradingChallengeDailySnapshotsResponseEnvelope
 from dora_client.models.trading_challenge_list_response_envelope import TradingChallengeListResponseEnvelope as TradingChallengeListResponseEnvelope
@@ -675,6 +698,8 @@ from dora_client.models.update_user_config_request import UpdateUserConfigReques
 from dora_client.models.update_user_kyc_request import UpdateUserKYCRequest as UpdateUserKYCRequest
 from dora_client.models.update_user_kyc_response import UpdateUserKYCResponse as UpdateUserKYCResponse
 from dora_client.models.update_user_kyc_response_envelope import UpdateUserKYCResponseEnvelope as UpdateUserKYCResponseEnvelope
+from dora_client.models.upsert_auto_rebalance_configs_request import UpsertAutoRebalanceConfigsRequest as UpsertAutoRebalanceConfigsRequest
+from dora_client.models.upsert_auto_rebalance_configs_response_envelope import UpsertAutoRebalanceConfigsResponseEnvelope as UpsertAutoRebalanceConfigsResponseEnvelope
 from dora_client.models.user import User as User
 from dora_client.models.user_balance_response_envelope import UserBalanceResponseEnvelope as UserBalanceResponseEnvelope
 from dora_client.models.user_config import UserConfig as UserConfig
@@ -696,6 +721,7 @@ from dora_client.models.user_role import UserRole as UserRole
 from dora_client.models.user_updated_response_envelope import UserUpdatedResponseEnvelope as UserUpdatedResponseEnvelope
 from dora_client.models.user_value import UserValue as UserValue
 from dora_client.models.user_value_response_envelope import UserValueResponseEnvelope as UserValueResponseEnvelope
+from dora_client.models.users_tag import UsersTag as UsersTag
 from dora_client.models.validate_submit_order_request import ValidateSubmitOrderRequest as ValidateSubmitOrderRequest
 from dora_client.models.validate_submit_order_response import ValidateSubmitOrderResponse as ValidateSubmitOrderResponse
 from dora_client.models.web3_event_status import Web3EventStatus as Web3EventStatus

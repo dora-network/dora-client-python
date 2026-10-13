@@ -14,10 +14,10 @@
 
 import unittest
 
-from dora_client.models.trading_challenge_all_result import TradingChallengeAllResult
+from dora_client.models.global_leaderboard_result import GlobalLeaderboardResult
 
-class TestTradingChallengeAllResult(unittest.TestCase):
-    """TradingChallengeAllResult unit test stubs"""
+class TestGlobalLeaderboardResult(unittest.TestCase):
+    """GlobalLeaderboardResult unit test stubs"""
 
     def setUp(self):
         pass
@@ -25,16 +25,16 @@ class TestTradingChallengeAllResult(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> TradingChallengeAllResult:
-        """Test TradingChallengeAllResult
+    def make_instance(self, include_optional) -> GlobalLeaderboardResult:
+        """Test GlobalLeaderboardResult
             include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `TradingChallengeAllResult`
+        # uncomment below to create an instance of `GlobalLeaderboardResult`
         """
-        model = TradingChallengeAllResult()
+        model = GlobalLeaderboardResult()
         if include_optional:
-            return TradingChallengeAllResult(
+            return GlobalLeaderboardResult(
                 user_id = '',
                 user_name = '',
                 cum_volume = '',
@@ -45,12 +45,12 @@ class TestTradingChallengeAllResult(unittest.TestCase):
                 pnl_pct = ''
             )
         else:
-            return TradingChallengeAllResult(
+            return GlobalLeaderboardResult(
         )
         """
 
-    def testTradingChallengeAllResult(self):
-        """Test TradingChallengeAllResult"""
+    def testGlobalLeaderboardResult(self):
+        """Test GlobalLeaderboardResult"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

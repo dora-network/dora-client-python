@@ -36,7 +36,7 @@ class CreateIntegratorUserRequest(BaseModel):
     last_name: Optional[StrictStr] = None
     user_name: Optional[StrictStr] = None
     country_of_domicile: Optional[CountryCode] = None
-    native_asset_id: Optional[UUID] = Field(default=None, description="Optional: the user's native asset ID. Must be a CURRENCY asset; defaults to USD. The USDC asset is never allowed for integrator-created users.")
+    native_asset_id: Optional[UUID] = Field(default=None, description="Optional: the user's native asset ID. Must be a CURRENCY asset; defaults to USD. The USDC asset is only allowed for users created under a tenant with is_web3_enabled set, and their accounts and positions still use the USD asset.")
     photo_url: Optional[StrictStr] = None
     provider: Optional[StrictStr] = None
     provider_id: Optional[UUID] = None

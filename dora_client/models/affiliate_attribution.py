@@ -37,7 +37,7 @@ class AffiliateAttribution(BaseModel):
     tenant_id: StrictStr
     signup_source: StrictStr = Field(description="Signup hostname when assigned at signup; empty for an assignment made later.")
     created_at: datetime = Field(description="Immutable assignment time; activity begins counting from this timestamp.")
-    referral_code: Annotated[str, Field(strict=True)]
+    referral_code: Annotated[str, Field(strict=True)] = Field(description="Exact code the user entered, retained when the referrer changes their primary code.")
     __properties: ClassVar[List[str]] = ["referred_user_id", "program_id", "referrer_id", "referrer_user_id", "tenant_id", "signup_source", "created_at", "referral_code"]
 
     @field_validator('referral_code')

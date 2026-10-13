@@ -42,7 +42,9 @@ class TestAffiliateMembership(unittest.TestCase):
                 referral_code = 'WXBU5JLXPXUUB-3',
                 created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 program_name = '',
-                is_active = True
+                is_active = True,
+                customized_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                can_customize = True
             )
         else:
             return AffiliateMembership(
@@ -54,6 +56,8 @@ class TestAffiliateMembership(unittest.TestCase):
                 created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 program_name = '',
                 is_active = True,
+                customized_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                can_customize = True,
         )
         """
 

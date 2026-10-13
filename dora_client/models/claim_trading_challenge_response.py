@@ -17,8 +17,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictStr
-from typing import Any, ClassVar, Dict, List
+from datetime import datetime
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
 from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
@@ -31,7 +32,10 @@ class ClaimTradingChallengeResponse(BaseModel):
     trading_challenge_id: UUID
     user_id: UUID
     status: StrictStr
-    __properties: ClassVar[List[str]] = ["trading_challenge_id", "user_id", "status"]
+    reward_amount: Optional[StrictStr] = Field(default=None, description="Fixed QR reward, present for REWARD_PENDING_KYC.")
+    kyc_url: Optional[StrictStr] = None
+    reward_deadline_at: Optional[datetime] = None
+    __properties: ClassVar[List[str]] = ["trading_challenge_id", "user_id", "status", "reward_amount", "kyc_url", "reward_deadline_at"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -86,7 +90,10 @@ class ClaimTradingChallengeResponse(BaseModel):
         _obj = cls.model_validate({
             "trading_challenge_id": obj.get("trading_challenge_id"),
             "user_id": obj.get("user_id"),
-            "status": obj.get("status")
+            "status": obj.get("status"),
+            "reward_amount": obj.get("reward_amount"),
+            "kyc_url": obj.get("kyc_url"),
+            "reward_deadline_at": obj.get("reward_deadline_at")
         })
         return _obj
 

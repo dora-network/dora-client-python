@@ -19,17 +19,17 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from dora_client.models.close_all_positions_item import CloseAllPositionsItem
 from dora_client.models.metadata import Metadata
-from dora_client.models.trading_challenge_all_result import TradingChallengeAllResult
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
 
-class TradingChallengeAllResultsResponseEnvelope(BaseModel):
+class CloseAllPositionsResponseEnvelope(BaseModel):
     """
-    TradingChallengeAllResultsResponseEnvelope
+    CloseAllPositionsResponseEnvelope
     """ # noqa: E501
-    data: Optional[List[TradingChallengeAllResult]] = None
+    data: Optional[List[CloseAllPositionsItem]] = None
     error: Optional[StrictStr] = Field(default=None, description="The error message. Present for error (non-2xx) responses.")
     metadata: Metadata = Field(description="Metadata about the response, including status code and trace information.")
     __properties: ClassVar[List[str]] = ["data", "error", "metadata"]
@@ -52,7 +52,7 @@ class TradingChallengeAllResultsResponseEnvelope(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of TradingChallengeAllResultsResponseEnvelope from a JSON string"""
+        """Create an instance of CloseAllPositionsResponseEnvelope from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -87,7 +87,7 @@ class TradingChallengeAllResultsResponseEnvelope(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of TradingChallengeAllResultsResponseEnvelope from a dict"""
+        """Create an instance of CloseAllPositionsResponseEnvelope from a dict"""
         if obj is None:
             return None
 
@@ -95,7 +95,7 @@ class TradingChallengeAllResultsResponseEnvelope(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "data": [TradingChallengeAllResult.from_dict(_item) for _item in obj["data"]] if obj.get("data") is not None else None,
+            "data": [CloseAllPositionsItem.from_dict(_item) for _item in obj["data"]] if obj.get("data") is not None else None,
             "error": obj.get("error"),
             "metadata": Metadata.from_dict(obj["metadata"]) if obj.get("metadata") is not None else None
         })

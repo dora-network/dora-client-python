@@ -14,10 +14,10 @@
 
 import unittest
 
-from dora_client.models.trading_challenge_all_results_response_envelope import TradingChallengeAllResultsResponseEnvelope
+from dora_client.models.close_all_positions_response_envelope import CloseAllPositionsResponseEnvelope
 
-class TestTradingChallengeAllResultsResponseEnvelope(unittest.TestCase):
-    """TradingChallengeAllResultsResponseEnvelope unit test stubs"""
+class TestCloseAllPositionsResponseEnvelope(unittest.TestCase):
+    """CloseAllPositionsResponseEnvelope unit test stubs"""
 
     def setUp(self):
         pass
@@ -25,26 +25,20 @@ class TestTradingChallengeAllResultsResponseEnvelope(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> TradingChallengeAllResultsResponseEnvelope:
-        """Test TradingChallengeAllResultsResponseEnvelope
+    def make_instance(self, include_optional) -> CloseAllPositionsResponseEnvelope:
+        """Test CloseAllPositionsResponseEnvelope
             include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `TradingChallengeAllResultsResponseEnvelope`
+        # uncomment below to create an instance of `CloseAllPositionsResponseEnvelope`
         """
-        model = TradingChallengeAllResultsResponseEnvelope()
+        model = CloseAllPositionsResponseEnvelope()
         if include_optional:
-            return TradingChallengeAllResultsResponseEnvelope(
+            return CloseAllPositionsResponseEnvelope(
                 data = [
-                    dora_client.models.trading_challenge_all_result.TradingChallengeAllResult(
-                        user_id = '', 
-                        user_name = '', 
-                        cum_volume = '', 
-                        cum_pnl = '', 
-                        active_days = 56, 
-                        cum_trades = 56, 
-                        account_value = '', 
-                        pnl_pct = '', )
+                    dora_client.models.close_all_positions_item.CloseAllPositionsItem(
+                        account_id = '', 
+                        order_id = '', )
                     ],
                 error = '',
                 metadata = dora_client.models.metadata.Metadata(
@@ -53,7 +47,7 @@ class TestTradingChallengeAllResultsResponseEnvelope(unittest.TestCase):
                     request_id = '', )
             )
         else:
-            return TradingChallengeAllResultsResponseEnvelope(
+            return CloseAllPositionsResponseEnvelope(
                 metadata = dora_client.models.metadata.Metadata(
                     status_code = 56, 
                     trace_id = '', 
@@ -61,8 +55,8 @@ class TestTradingChallengeAllResultsResponseEnvelope(unittest.TestCase):
         )
         """
 
-    def testTradingChallengeAllResultsResponseEnvelope(self):
-        """Test TradingChallengeAllResultsResponseEnvelope"""
+    def testCloseAllPositionsResponseEnvelope(self):
+        """Test CloseAllPositionsResponseEnvelope"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

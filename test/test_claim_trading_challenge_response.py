@@ -37,7 +37,10 @@ class TestClaimTradingChallengeResponse(unittest.TestCase):
             return ClaimTradingChallengeResponse(
                 trading_challenge_id = '',
                 user_id = '',
-                status = ''
+                status = '',
+                reward_amount = '',
+                kyc_url = '',
+                reward_deadline_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f')
             )
         else:
             return ClaimTradingChallengeResponse(

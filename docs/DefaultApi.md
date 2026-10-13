@@ -11,9 +11,11 @@ Method | HTTP request | Description
 [**cancel_all_open_orders**](DefaultApi.md#cancel_all_open_orders) | **DELETE** /v1/orders | Cancel all open orders, if user passes orderbook or account_id on query params it will cancel all orders on specific orderbook or account, admin can cancel user&#39;s orders on specific orderbook
 [**cancel_ledger_withdraw_request**](DefaultApi.md#cancel_ledger_withdraw_request) | **POST** /v1/ledger/withdraw/requests/{withdrawal_id}/cancel | Cancel a pending withdrawal request
 [**cancel_order_by_id**](DefaultApi.md#cancel_order_by_id) | **DELETE** /v1/orders/{order_id} | Cancel an order by ID
+[**cancel_withdrawal**](DefaultApi.md#cancel_withdrawal) | **DELETE** /v1/web3/withdrawals/{withdrawal_id} | Cancel the caller&#39;s own USDC withdrawal
 [**claim_leverage_get_accrued_interest**](DefaultApi.md#claim_leverage_get_accrued_interest) | **POST** /v1/leverage/accrued_interest/claim | Claim current accrued leverage interest for a specific user
 [**claim_promo_link**](DefaultApi.md#claim_promo_link) | **POST** /v1/promo/claim/{token} | Claim a public QR promotion link
 [**claim_trading_challenge_prize**](DefaultApi.md#claim_trading_challenge_prize) | **POST** /v1/trading_challenges/{trading_challenge_id}/claim | Claim challenge prize
+[**close_all_isolated_positions**](DefaultApi.md#close_all_isolated_positions) | **POST** /v1/positions/close/all | Close all open isolated positions in one request
 [**close_isolated_account_v2**](DefaultApi.md#close_isolated_account_v2) | **POST** /v2/accounts/close | Close an isolated account, repaying the borrowed
 [**close_isolated_position**](DefaultApi.md#close_isolated_position) | **POST** /v1/positions/close | Close isolated positions, repaying the borrowed
 [**create_affiliate_program**](DefaultApi.md#create_affiliate_program) | **POST** /v1/affiliate_programs | Create an affiliate program
@@ -24,6 +26,7 @@ Method | HTTP request | Description
 [**create_trading_challenge**](DefaultApi.md#create_trading_challenge) | **POST** /v1/trading_challenges | Create a trading challenge
 [**create_user**](DefaultApi.md#create_user) | **POST** /v1/integrators/user | Create a new user
 [**create_withdrawal**](DefaultApi.md#create_withdrawal) | **POST** /v1/web3/withdrawals | Create a USDC withdrawal request
+[**customize_affiliate_referrer_code**](DefaultApi.md#customize_affiliate_referrer_code) | **PUT** /v1/affiliate_referrers/{referrer_id}/code | Change an affiliate referral code
 [**delete_user**](DefaultApi.md#delete_user) | **DELETE** /v1/user/{user_id} | Delete user by ID
 [**export_promo_links_csv**](DefaultApi.md#export_promo_links_csv) | **GET** /v1/link_batches/{batch_id}/links.csv | Export promotional links as CSV
 [**get_affiliate_program**](DefaultApi.md#get_affiliate_program) | **GET** /v1/affiliate_programs/{program_id} | Get an affiliate program
@@ -36,12 +39,14 @@ Method | HTTP request | Description
 [**get_asset_yield_data**](DefaultApi.md#get_asset_yield_data) | **GET** /v1/charts/{asset_id}/yield | Get yield chart data for an asset
 [**get_asset_ytmby_id**](DefaultApi.md#get_asset_ytmby_id) | **GET** /v1/assets/{asset_id}/ytm | Get annualized yield to maturity for a bond asset
 [**get_assets_stream**](DefaultApi.md#get_assets_stream) | **GET** /v1/assets/stream | Get all inserts or updates for assets
+[**get_auto_rebalance_account_status_v2**](DefaultApi.md#get_auto_rebalance_account_status_v2) | **GET** /v2/accounts/auto_rebalance/config/{account_id} | Get auto-rebalance configuration and live status for one isolated account
 [**get_candle_data**](DefaultApi.md#get_candle_data) | **GET** /v1/charts/{order_book_id}/candle | Get candlestick data for an orderbook
 [**get_cash_reserve_by_user_id**](DefaultApi.md#get_cash_reserve_by_user_id) | **GET** /v1/accounts/{user_id}/cash_reserve | Get the minimum USD cash reserve requirement for the given user
 [**get_cash_reserve_self**](DefaultApi.md#get_cash_reserve_self) | **GET** /v1/accounts/self/cash_reserve | Get the minimum USD cash reserve requirement for the logged in user
 [**get_copy_traders**](DefaultApi.md#get_copy_traders) | **GET** /v1/user/copy_traders | Get list of users with copy trading enabled
 [**get_coupon_payments_by_asset_id**](DefaultApi.md#get_coupon_payments_by_asset_id) | **GET** /v1/assets/{asset_id}/coupon_payments | Get coupon payments for a bond asset
 [**get_deposit_instructions**](DefaultApi.md#get_deposit_instructions) | **GET** /v1/web3/deposit-instructions | Get per-chain instructions for depositing USDC into the Dora vault
+[**get_global_leaderboard**](DefaultApi.md#get_global_leaderboard) | **GET** /v1/trading/global_leaderboard | Get global leaderboard
 [**get_l1_depth**](DefaultApi.md#get_l1_depth) | **GET** /v1/orderbooks/{order_book_id}/L1 | Get the top price levels for a specific orderbook (L1 market depth)
 [**get_l2_depth**](DefaultApi.md#get_l2_depth) | **GET** /v1/orderbooks/{order_book_id}/L2 | Get the aggregated price levels for a specific orderbook (L2 market depth)
 [**get_l3_depth**](DefaultApi.md#get_l3_depth) | **GET** /v1/orderbooks/{order_book_id}/L3 | Get all open orders for a specific orderbook (L3 market depth)
@@ -65,11 +70,11 @@ Method | HTTP request | Description
 [**get_pl_for_self_by_account**](DefaultApi.md#get_pl_for_self_by_account) | **GET** /v1/pl/self | Get account-by-account PL breakdown for the logged in user
 [**get_pool_price**](DefaultApi.md#get_pool_price) | **GET** /v1/price/pool/{pool_id} | Get the current price of a pool
 [**get_promo_attribution**](DefaultApi.md#get_promo_attribution) | **GET** /v1/trading_challenges/{trading_challenge_id}/attribution | Get promotional source attribution
+[**get_qr_reward_preview**](DefaultApi.md#get_qr_reward_preview) | **GET** /v1/trading_challenges/{trading_challenge_id}/reward | Preview QR reward eligibility
 [**get_realized_pnl_settlements**](DefaultApi.md#get_realized_pnl_settlements) | **GET** /v1/realized_pnl_settlements | Get realized P&amp;L settlements with filters
 [**get_top_traders_by_pn_l**](DefaultApi.md#get_top_traders_by_pn_l) | **GET** /v1/user/ranking | Get top traders by PnL
 [**get_trade_by_id**](DefaultApi.md#get_trade_by_id) | **GET** /v1/trades/{trade_id} | Get a trade by ID
 [**get_trades**](DefaultApi.md#get_trades) | **GET** /v1/trades | Get a filtered, paginated list of trades
-[**get_trading_challenge_all_results**](DefaultApi.md#get_trading_challenge_all_results) | **GET** /v1/trading_challenges/all/results | Get combined results across all trading challenge
 [**get_trading_challenge_by_id**](DefaultApi.md#get_trading_challenge_by_id) | **GET** /v1/trading_challenges/{trading_challenge_id} | Get trading challenge by ID
 [**get_trading_challenge_daily_snapshots**](DefaultApi.md#get_trading_challenge_daily_snapshots) | **GET** /v1/trading_challenges/{trading_challenge_id}/daily_snapshots | Get trading challenge daily snapshots
 [**get_trading_challenge_results**](DefaultApi.md#get_trading_challenge_results) | **GET** /v1/trading_challenges/{trading_challenge_id}/results | Get trading challenge results
@@ -110,6 +115,8 @@ Method | HTTP request | Description
 [**list_affiliate_referrals**](DefaultApi.md#list_affiliate_referrals) | **GET** /v1/affiliate_programs/{program_id}/referrals | List referred users and activity
 [**list_affiliate_referrers**](DefaultApi.md#list_affiliate_referrers) | **GET** /v1/affiliate_programs/{program_id}/referrers | List program referrers
 [**list_assets**](DefaultApi.md#list_assets) | **GET** /v1/assets | List assets
+[**list_auto_rebalance_configs_v2**](DefaultApi.md#list_auto_rebalance_configs_v2) | **GET** /v2/accounts/auto_rebalance/config | List auto-rebalance configuration for the authenticated user&#39;s isolated accounts
+[**list_auto_rebalance_statuses_v2**](DefaultApi.md#list_auto_rebalance_statuses_v2) | **GET** /v2/accounts/auto_rebalance/status | List auto-rebalance status for the authenticated user&#39;s isolated accounts, including disabled configs
 [**list_deposits**](DefaultApi.md#list_deposits) | **GET** /v1/web3/deposits | List USDC deposits
 [**list_order_books**](DefaultApi.md#list_order_books) | **GET** /v1/orderbooks | List order books
 [**list_orders**](DefaultApi.md#list_orders) | **GET** /v1/orders | List all orders
@@ -152,6 +159,7 @@ Method | HTTP request | Description
 [**update_user_config**](DefaultApi.md#update_user_config) | **PUT** /v1/user/{user_id}/config | Update user configuration by ID
 [**update_user_config_self**](DefaultApi.md#update_user_config_self) | **PUT** /v1/user/config/self | Update user configuration for the authenticated user
 [**update_user_kyc**](DefaultApi.md#update_user_kyc) | **POST** /v1/integrators/user/{user_id}/kyc | Set or clear a user&#39;s KYC completion timestamp
+[**upsert_auto_rebalance_configs_v2**](DefaultApi.md#upsert_auto_rebalance_configs_v2) | **PUT** /v2/accounts/auto_rebalance/config | Create or update auto-rebalance configuration for one or more isolated accounts
 [**validate_submit_order**](DefaultApi.md#validate_submit_order) | **POST** /v1/orders/validate | Validate submit order request data
 [**verify_user**](DefaultApi.md#verify_user) | **PUT** /v1/user/{user_id}/verify | Verify a user by ID
 
@@ -795,6 +803,98 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **cancel_withdrawal**
+> WithdrawalResponseEnvelope cancel_withdrawal(withdrawal_id)
+
+Cancel the caller's own USDC withdrawal
+
+Cancels the caller's own withdrawal and returns its held quantity to their available balance. Only PENDING or APPROVED_WITHOUT_FEE withdrawals can be cancelled. Restricted to users whose native asset is USDC.
+
+### Example
+
+* Api Key Authentication (apiKeyAuthHeader):
+* Bearer (JWT) Authentication (bearerAuth):
+
+```python
+import dora_client
+from dora_client.models.withdrawal_response_envelope import WithdrawalResponseEnvelope
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging.dora.co
+# See configuration.py for a list of all supported configuration parameters.
+configuration = dora_client.Configuration(
+    host = "https://staging.dora.co"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration.api_key['apiKeyAuthHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyAuthHeader'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = dora_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+async with dora_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = dora_client.DefaultApi(api_client)
+    withdrawal_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | The withdrawal to cancel. It must be owned by the caller and be in status PENDING or APPROVED_WITHOUT_FEE.
+
+    try:
+        # Cancel the caller's own USDC withdrawal
+        api_response = await api_instance.cancel_withdrawal(withdrawal_id)
+        print("The response of DefaultApi->cancel_withdrawal:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->cancel_withdrawal: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **withdrawal_id** | **UUID**| The withdrawal to cancel. It must be owned by the caller and be in status PENDING or APPROVED_WITHOUT_FEE. | 
+
+### Return type
+
+[**WithdrawalResponseEnvelope**](WithdrawalResponseEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Withdrawal cancelled; it is now REJECTED and its reservation is back in available |  -  |
+**400** | Bad request: withdrawal_id is not a valid UUID |  -  |
+**401** | Unauthorized, user not logged in |  -  |
+**403** | Forbidden: access is restricted to users whose native asset is USDC (admin and indexer API keys have no native asset and are also denied) |  -  |
+**404** | Withdrawal not found, or it belongs to another user |  -  |
+**409** | Conflict: the withdrawal is not PENDING or APPROVED_WITHOUT_FEE. It has either already been approved for on-chain submission (a fee is locked, or a transaction is in flight) or already finished, and in neither case can it be cancelled |  -  |
+**429** | Too many requests: this route is rate limited per user |  -  |
+**500** | Internal server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **claim_leverage_get_accrued_interest**
 > ClaimLeverageAccruedInterestResponseEnvelope claim_leverage_get_accrued_interest(claim_leverage_accrued_interest_request)
 
@@ -963,7 +1063,7 @@ No authorization required
 
 Claim challenge prize
 
-Claim the prize of a challenge the caller is eligible for. A TOURNAMENT claim credits the prize matching the crown and reactivates the account. A CASH claim winds the account down, sweeps every remaining challenge credit and awards the CASH_CROWN: the account is left deactivated with a zero balance, and the reward is redeemed out of band. Both mark the participation PRIZE_CLAIMED.
+Claim an eligible trading challenge prize. TOURNAMENT requires completed KYC, credits the crown prize, reactivates the account, and marks the result PRIZE_CLAIMED. CASH requires completed KYC, winds down the account, sweeps remaining challenge credit, awards CASH_CROWN, and marks the result PRIZE_CLAIMED; the account stays deactivated with a zero balance. QR_PROMO accepts an eligible reward request before KYC, winds down the account, fixes the capped reward, queues a KYC email, and records REWARD_PENDING_KYC without paying the reward or reactivating the account.
 
 ### Example
 
@@ -1039,9 +1139,94 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Prize claimed |  -  |
+**200** | Prize claimed or QR reward fixed pending KYC |  -  |
 **403** | Forbidden |  -  |
-**409** | Conflict |  -  |
+**409** | Conflict, including when another funded challenge may contribute to account equity or when the reward request account lock was released; retry the request after the latter |  -  |
+**500** | Internal server error |  -  |
+**410** | QR reward deadline passed |  -  |
+**504** | Wind-down timed out |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **close_all_isolated_positions**
+> CloseAllPositionsResponseEnvelope close_all_isolated_positions()
+
+Close all open isolated positions in one request
+
+### Example
+
+* Api Key Authentication (apiKeyAuthHeader):
+* Bearer (JWT) Authentication (bearerAuth):
+
+```python
+import dora_client
+from dora_client.models.close_all_positions_response_envelope import CloseAllPositionsResponseEnvelope
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging.dora.co
+# See configuration.py for a list of all supported configuration parameters.
+configuration = dora_client.Configuration(
+    host = "https://staging.dora.co"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration.api_key['apiKeyAuthHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyAuthHeader'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = dora_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+async with dora_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = dora_client.DefaultApi(api_client)
+
+    try:
+        # Close all open isolated positions in one request
+        api_response = await api_instance.close_all_isolated_positions()
+        print("The response of DefaultApi->close_all_isolated_positions:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->close_all_isolated_positions: %s\n" % e)
+```
+
+
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**CloseAllPositionsResponseEnvelope**](CloseAllPositionsResponseEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | All open isolated positions are queued for close |  -  |
+**401** | Unauthorized, user not logged in or does not have access to this route |  -  |
+**400** | Bad request, e.g. invalid isolated position shape |  -  |
+**404** | Not found, e.g. an isolated position has no matching order book |  -  |
 **500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1842,7 +2027,7 @@ Name | Type | Description  | Notes
 
 Create a USDC withdrawal request
 
-Reserves the requested quantity against the caller's available balance (moving it to pending_withdrawal) and creates a PENDING withdrawal. No fee quote is required and no fee is reserved: the withdrawal's fee is quoted and locked later, as part of approval. Idempotent on withdrawal_id: a repeat request carrying the same to_address and quantity reserves nothing further and returns the existing withdrawal with 200. Reusing a withdrawal_id with a different to_address or quantity is a conflict (409), not a replay, and reserves nothing. Restricted to DORA tenant users whose native asset is USDC.
+Requests a USDC withdrawal, holding the quantity from the caller's available balance until it completes or is cancelled. The fee is quoted and locked after admin approval. Idempotent on withdrawal_id; only one withdrawal may be in progress at a time. Restricted to users whose native asset is USDC.
 
 ### Example
 
@@ -1923,8 +2108,102 @@ Name | Type | Description  | Notes
 **200** | Idempotent replay: a request with the same withdrawal_id, to_address and quantity; the existing withdrawal is returned unchanged |  -  |
 **400** | Bad request, e.g. an invalid body, destination address, or quantity |  -  |
 **401** | Unauthorized, user not logged in |  -  |
-**403** | Forbidden: access is restricted to DORA tenant users whose native asset is USDC (admin and indexer API keys have no native asset and are also denied); the caller is taking part in an active trading challenge; the caller&#39;s account is deactivated or being deactivated; or the withdrawal would leave the caller below the minimum cash reserve. |  -  |
-**409** | Conflict, e.g. insufficient available balance, no USD ledger account to withdraw from, an unhealthy account, overdue coupon payments, a withdrawal_id already in use by another user, or a withdrawal_id reused with a to_address or quantity that does not match the existing withdrawal |  -  |
+**403** | Forbidden: access is restricted to users whose native asset is USDC (admin and indexer API keys have no native asset and are also denied); the caller is taking part in an active trading challenge; the caller&#39;s account is deactivated or being deactivated; or the withdrawal would leave the caller below the minimum cash reserve. |  -  |
+**409** | Conflict, e.g. insufficient available balance, no USD ledger account to withdraw from, an unhealthy account, overdue coupon payments, a withdrawal_id already in use by another user, a withdrawal_id reused with a to_address or quantity that does not match the existing withdrawal, or the caller already having another withdrawal still in progress (only one at a time is allowed; the error names the withdrawal that is in the way) |  -  |
+**500** | Internal server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **customize_affiliate_referrer_code**
+> AffiliateReferrerEnvelope customize_affiliate_referrer_code(referrer_id, customize_affiliate_referrer_code_request)
+
+Change an affiliate referral code
+
+The owner of this affiliate membership may change its primary code once. ADMIN callers may change any membership's code repeatedly across tenants. Admin changes preserve the owner's remaining one-time change. Changes are allowed while the program is inactive. Its initial code, whether generated or chosen by an admin, does not count as the change. Previous codes remain aliases and cannot be reused; codes resolve only while the program is active. Codes are unique across all programs and tenants, including for admins.
+
+### Example
+
+* Api Key Authentication (apiKeyAuthHeader):
+* Bearer (JWT) Authentication (bearerAuth):
+
+```python
+import dora_client
+from dora_client.models.affiliate_referrer_envelope import AffiliateReferrerEnvelope
+from dora_client.models.customize_affiliate_referrer_code_request import CustomizeAffiliateReferrerCodeRequest
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging.dora.co
+# See configuration.py for a list of all supported configuration parameters.
+configuration = dora_client.Configuration(
+    host = "https://staging.dora.co"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration.api_key['apiKeyAuthHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyAuthHeader'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = dora_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+async with dora_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = dora_client.DefaultApi(api_client)
+    referrer_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
+    customize_affiliate_referrer_code_request = dora_client.CustomizeAffiliateReferrerCodeRequest() # CustomizeAffiliateReferrerCodeRequest | 
+
+    try:
+        # Change an affiliate referral code
+        api_response = await api_instance.customize_affiliate_referrer_code(referrer_id, customize_affiliate_referrer_code_request)
+        print("The response of DefaultApi->customize_affiliate_referrer_code:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->customize_affiliate_referrer_code: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **referrer_id** | **UUID**|  | 
+ **customize_affiliate_referrer_code_request** | [**CustomizeAffiliateReferrerCodeRequest**](CustomizeAffiliateReferrerCodeRequest.md)|  | 
+
+### Return type
+
+[**AffiliateReferrerEnvelope**](AffiliateReferrerEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Updated affiliate membership |  -  |
+**400** | Invalid referral code or request |  -  |
+**401** | Authentication required |  -  |
+**403** | User or tenant context required |  -  |
+**404** | Affiliate membership not found or not owned by a non-admin caller |  -  |
+**409** | Code already in use or unchanged, or membership already customized |  -  |
 **500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -2911,6 +3190,93 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_auto_rebalance_account_status_v2**
+> GetAutoRebalanceAccountStatusResponseEnvelope get_auto_rebalance_account_status_v2(account_id)
+
+Get auto-rebalance configuration and live status for one isolated account
+
+### Example
+
+* Api Key Authentication (apiKeyAuthHeader):
+* Bearer (JWT) Authentication (bearerAuth):
+
+```python
+import dora_client
+from dora_client.models.get_auto_rebalance_account_status_response_envelope import GetAutoRebalanceAccountStatusResponseEnvelope
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging.dora.co
+# See configuration.py for a list of all supported configuration parameters.
+configuration = dora_client.Configuration(
+    host = "https://staging.dora.co"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration.api_key['apiKeyAuthHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyAuthHeader'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = dora_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+async with dora_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = dora_client.DefaultApi(api_client)
+    account_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
+
+    try:
+        # Get auto-rebalance configuration and live status for one isolated account
+        api_response = await api_instance.get_auto_rebalance_account_status_v2(account_id)
+        print("The response of DefaultApi->get_auto_rebalance_account_status_v2:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->get_auto_rebalance_account_status_v2: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **account_id** | **UUID**|  | 
+
+### Return type
+
+[**GetAutoRebalanceAccountStatusResponseEnvelope**](GetAutoRebalanceAccountStatusResponseEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Auto-rebalance configuration with current collateral status |  -  |
+**400** | Bad request, e.g. invalid account ID |  -  |
+**401** | Unauthorized, user not logged in or does not have access to this route |  -  |
+**404** | Auto-rebalance config was not found for this account or caller |  -  |
+**500** | Internal server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_candle_data**
 > ListCandlesResponseEnvelope get_candle_data(order_book_id, start, end, resolution=resolution)
 
@@ -3340,7 +3706,7 @@ No authorization required
 
 Get per-chain instructions for depositing USDC into the Dora vault
 
-Returns everything the caller needs to deposit USDC into the Dora vault with a single signature and a single transaction: an EIP-712 (EIP-2612 permit) typed-data payload to sign with eth_signTypedData_v4, and the descriptor of the vault deposit() call. The client splits the permit signature into v/r/s and ABI-encodes the deposit function with the returned args plus (v, r, s); no separate approve transaction is needed. Only a single chain is currently supported: the provided nonce belongs to it, and the chains array holds at most one entry. Restricted to DORA tenant users whose native asset is USDC.
+Returns everything the caller needs to deposit USDC into the Dora vault with a single signature and a single transaction: an EIP-712 (EIP-2612 permit) typed-data payload to sign with eth_signTypedData_v4, and the descriptor of the vault deposit() call. The client splits the permit signature into v/r/s and ABI-encodes the deposit function with the returned args plus (v, r, s); no separate approve transaction is needed. Only a single chain is currently supported: the provided nonce belongs to it, and the chains array holds at most one entry. Restricted to users whose native asset is USDC, under a tenant with web3 enabled.
 
 ### Example
 
@@ -3425,7 +3791,81 @@ Name | Type | Description  | Notes
 **200** | Per-chain deposit instructions for the authenticated user |  -  |
 **400** | Bad request, e.g. invalid or missing quantity, owner_address, or nonce, or an invalid client_reference_id |  -  |
 **401** | Unauthorized, user not logged in |  -  |
-**403** | Forbidden: access is restricted to DORA tenant users whose native asset is USDC. Admin and indexer API keys have no native asset and are also denied. |  -  |
+**403** | Forbidden: access is restricted to users whose native asset is USDC, under a tenant with web3 enabled. Admin and indexer API keys have no native asset and are also denied. |  -  |
+**500** | Internal server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_global_leaderboard**
+> GlobalLeaderboardResponseEnvelope get_global_leaderboard(start, end, limit=limit, offset=offset)
+
+Get global leaderboard
+
+### Example
+
+
+```python
+import dora_client
+from dora_client.models.global_leaderboard_response_envelope import GlobalLeaderboardResponseEnvelope
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging.dora.co
+# See configuration.py for a list of all supported configuration parameters.
+configuration = dora_client.Configuration(
+    host = "https://staging.dora.co"
+)
+
+
+# Enter a context with an instance of the API client
+async with dora_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = dora_client.DefaultApi(api_client)
+    start = '2013-10-20' # date | Inclusive start date in YYYY-MM-DD format.
+    end = '2013-10-20' # date | Inclusive end date in YYYY-MM-DD format.
+    limit = 100 # int | Maximum number of rows to return. Defaults to 100. (optional) (default to 100)
+    offset = 0 # int | Number of rows to skip before collecting the result set. (optional) (default to 0)
+
+    try:
+        # Get global leaderboard
+        api_response = await api_instance.get_global_leaderboard(start, end, limit=limit, offset=offset)
+        print("The response of DefaultApi->get_global_leaderboard:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->get_global_leaderboard: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **start** | **date**| Inclusive start date in YYYY-MM-DD format. | 
+ **end** | **date**| Inclusive end date in YYYY-MM-DD format. | 
+ **limit** | **int**| Maximum number of rows to return. Defaults to 100. | [optional] [default to 100]
+ **offset** | **int**| Number of rows to skip before collecting the result set. | [optional] [default to 0]
+
+### Return type
+
+[**GlobalLeaderboardResponseEnvelope**](GlobalLeaderboardResponseEnvelope.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Global leaderboard results |  -  |
+**400** | Bad request |  -  |
 **500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -5270,6 +5710,96 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_qr_reward_preview**
+> QRRewardPreviewEnvelope get_qr_reward_preview(trading_challenge_id)
+
+Preview QR reward eligibility
+
+Read-only projection for the authenticated QR participant. Request recomputes eligibility after wind-down; KYC is not a request blocker.
+
+### Example
+
+* Api Key Authentication (apiKeyAuthHeader):
+* Bearer (JWT) Authentication (bearerAuth):
+
+```python
+import dora_client
+from dora_client.models.qr_reward_preview_envelope import QRRewardPreviewEnvelope
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging.dora.co
+# See configuration.py for a list of all supported configuration parameters.
+configuration = dora_client.Configuration(
+    host = "https://staging.dora.co"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration.api_key['apiKeyAuthHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyAuthHeader'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = dora_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+async with dora_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = dora_client.DefaultApi(api_client)
+    trading_challenge_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
+
+    try:
+        # Preview QR reward eligibility
+        api_response = await api_instance.get_qr_reward_preview(trading_challenge_id)
+        print("The response of DefaultApi->get_qr_reward_preview:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->get_qr_reward_preview: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **trading_challenge_id** | **UUID**|  | 
+
+### Return type
+
+[**QRRewardPreviewEnvelope**](QRRewardPreviewEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Live eligibility or fixed reward state |  -  |
+**400** | Reward preview is available only for QR challenges |  -  |
+**401** | Unauthorized |  -  |
+**403** | Not a participant |  -  |
+**404** | Challenge not found |  -  |
+**500** | Internal server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_realized_pnl_settlements**
 > GetRealizedPnlSettlementsResponseEnvelope get_realized_pnl_settlements(user_id=user_id, tenant_id=tenant_id, position_id=position_id, created_after=created_after, created_before=created_before, settled_after=settled_after, settled_before=settled_before, is_settled=is_settled)
 
@@ -5630,83 +6160,6 @@ Name | Type | Description  | Notes
 **200** | List of trades |  -  |
 **400** | Bad request, e.g. invalid parameters |  -  |
 **404** | No trades found |  -  |
-**500** | Internal server error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **get_trading_challenge_all_results**
-> TradingChallengeAllResultsResponseEnvelope get_trading_challenge_all_results(board, start, end, trading_challenge_type)
-
-Get combined results across all trading challenge
-
-List trading challenge leaderboard/results filtered by board, trading_challenge_type, start date and end date across all challenges.
-
-### Example
-
-
-```python
-import dora_client
-from dora_client.models.trading_challenge_all_results_response_envelope import TradingChallengeAllResultsResponseEnvelope
-from dora_client.models.trading_challenge_type import TradingChallengeType
-from dora_client.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://staging.dora.co
-# See configuration.py for a list of all supported configuration parameters.
-configuration = dora_client.Configuration(
-    host = "https://staging.dora.co"
-)
-
-
-# Enter a context with an instance of the API client
-async with dora_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = dora_client.DefaultApi(api_client)
-    board = 'board_example' # str | Leaderboard board selector.
-    start = '2013-10-20' # date | Inclusive start date in YYYY-MM-DD format.
-    end = '2013-10-20' # date | Inclusive end date in YYYY-MM-DD format.
-    trading_challenge_type = dora_client.TradingChallengeType() # TradingChallengeType | Challenge type to include in aggregation.
-
-    try:
-        # Get combined results across all trading challenge
-        api_response = await api_instance.get_trading_challenge_all_results(board, start, end, trading_challenge_type)
-        print("The response of DefaultApi->get_trading_challenge_all_results:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling DefaultApi->get_trading_challenge_all_results: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **board** | **str**| Leaderboard board selector. | 
- **start** | **date**| Inclusive start date in YYYY-MM-DD format. | 
- **end** | **date**| Inclusive end date in YYYY-MM-DD format. | 
- **trading_challenge_type** | [**TradingChallengeType**](.md)| Challenge type to include in aggregation. | 
-
-### Return type
-
-[**TradingChallengeAllResultsResponseEnvelope**](TradingChallengeAllResultsResponseEnvelope.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | All trading challenge results |  -  |
-**400** | Bad request |  -  |
 **500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -7326,7 +7779,7 @@ Name | Type | Description  | Notes
 
 Estimate the network fee to withdraw USDC via web3
 
-Examines on-chain conditions and simulates the named withdrawal to estimate the network fee the user must reserve before it can be submitted on-chain. The withdrawal must already exist, belong to the caller, and have been approved by an admin (status APPROVED_WITHOUT_FEE); its destination and quantity are read from the row, not taken from the request. The returned quote token is bound to that one withdrawal and is redeemed at PUT /v1/web3/withdrawals/{withdrawal_id}, which reserves the fee and moves the withdrawal to APPROVED. Restricted to DORA tenant users whose native asset is USDC.
+Estimates the network fee for an existing, admin-approved (APPROVED_WITHOUT_FEE) withdrawal owned by the caller. Redeem the returned quote token at PUT /v1/web3/withdrawals/{withdrawal_id} to reserve the fee. Restricted to USDC native-asset users.
 
 ### Example
 
@@ -7405,7 +7858,7 @@ Name | Type | Description  | Notes
 **200** | Fee quote for the requested withdrawal |  -  |
 **400** | Bad request: the withdrawal_id query parameter is missing or is not a UUID |  -  |
 **401** | Unauthorized, user not logged in |  -  |
-**403** | Forbidden: access is restricted to DORA tenant users whose native asset is USDC. Admin and indexer API keys have no native asset and are also denied. |  -  |
+**403** | Forbidden: access is restricted to users whose native asset is USDC. Admin and indexer API keys have no native asset and are also denied. |  -  |
 **404** | Withdrawal not found, or it belongs to another user |  -  |
 **409** | Conflict: the withdrawal is not APPROVED_WITHOUT_FEE (not yet approved, already paid for, or terminal), or it is bound to a chain other than the registered one |  -  |
 **429** | Rate limit exceeded; this endpoint is limited to 1 request per minute per user |  -  |
@@ -9232,6 +9685,168 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **list_auto_rebalance_configs_v2**
+> ListAutoRebalanceConfigsResponseEnvelope list_auto_rebalance_configs_v2()
+
+List auto-rebalance configuration for the authenticated user's isolated accounts
+
+### Example
+
+* Api Key Authentication (apiKeyAuthHeader):
+* Bearer (JWT) Authentication (bearerAuth):
+
+```python
+import dora_client
+from dora_client.models.list_auto_rebalance_configs_response_envelope import ListAutoRebalanceConfigsResponseEnvelope
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging.dora.co
+# See configuration.py for a list of all supported configuration parameters.
+configuration = dora_client.Configuration(
+    host = "https://staging.dora.co"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration.api_key['apiKeyAuthHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyAuthHeader'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = dora_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+async with dora_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = dora_client.DefaultApi(api_client)
+
+    try:
+        # List auto-rebalance configuration for the authenticated user's isolated accounts
+        api_response = await api_instance.list_auto_rebalance_configs_v2()
+        print("The response of DefaultApi->list_auto_rebalance_configs_v2:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->list_auto_rebalance_configs_v2: %s\n" % e)
+```
+
+
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**ListAutoRebalanceConfigsResponseEnvelope**](ListAutoRebalanceConfigsResponseEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Persisted auto-rebalance configurations |  -  |
+**401** | Unauthorized, user not logged in or does not have access to this route |  -  |
+**500** | Internal server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **list_auto_rebalance_statuses_v2**
+> ListAutoRebalanceConfigsResponseEnvelope list_auto_rebalance_statuses_v2()
+
+List auto-rebalance status for the authenticated user's isolated accounts, including disabled configs
+
+### Example
+
+* Api Key Authentication (apiKeyAuthHeader):
+* Bearer (JWT) Authentication (bearerAuth):
+
+```python
+import dora_client
+from dora_client.models.list_auto_rebalance_configs_response_envelope import ListAutoRebalanceConfigsResponseEnvelope
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging.dora.co
+# See configuration.py for a list of all supported configuration parameters.
+configuration = dora_client.Configuration(
+    host = "https://staging.dora.co"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration.api_key['apiKeyAuthHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyAuthHeader'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = dora_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+async with dora_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = dora_client.DefaultApi(api_client)
+
+    try:
+        # List auto-rebalance status for the authenticated user's isolated accounts, including disabled configs
+        api_response = await api_instance.list_auto_rebalance_statuses_v2()
+        print("The response of DefaultApi->list_auto_rebalance_statuses_v2:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->list_auto_rebalance_statuses_v2: %s\n" % e)
+```
+
+
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**ListAutoRebalanceConfigsResponseEnvelope**](ListAutoRebalanceConfigsResponseEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Auto-rebalance configurations with current collateral status |  -  |
+**401** | Unauthorized, user not logged in or does not have access to this route |  -  |
+**500** | Internal server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **list_deposits**
 > ListDepositsResponseEnvelope list_deposits(user_id=user_id, page=page, limit=limit)
 
@@ -10280,7 +10895,7 @@ Name | Type | Description  | Notes
 
 Lock the network fee for an approved USDC withdrawal
 
-Redeems a fee quote against a withdrawal an admin has approved. The quoted fee is reserved on top of the quantity reserved when the request was created, so the same risk checks the request cleared are run again for it: an active trading challenge, a deactivated account, account health, the minimum cash reserve, and overdue coupon payments. A fee that would take the caller below the minimum cash reserve is refused and nothing is reserved.
+Redeems a fee quote from GET /v1/web3/withdrawals/fee-quote against an admin-approved withdrawal, holding the quoted fee from the caller's available balance and making the withdrawal eligible for on-chain submission. Restricted to users whose native asset is USDC.
 
 ### Example
 
@@ -10362,7 +10977,7 @@ Name | Type | Description  | Notes
 **200** | Fee reserved; the withdrawal is now APPROVED and eligible for submission |  -  |
 **400** | Bad request, e.g. an invalid body or withdrawal_id, an unparseable or unauthentic quote token, or a quote issued for a different destination, quantity, or chain |  -  |
 **401** | Unauthorized, user not logged in |  -  |
-**403** | Forbidden: access is restricted to DORA tenant users whose native asset is USDC (admin and indexer API keys have no native asset and are also denied); the caller is taking part in an active trading challenge; the caller&#39;s account is deactivated or being deactivated; or reserving the fee would leave the caller below the minimum cash reserve. |  -  |
+**403** | Forbidden: access is restricted to users whose native asset is USDC (admin and indexer API keys have no native asset and are also denied); the caller is taking part in an active trading challenge; the caller&#39;s account is deactivated or being deactivated; or reserving the fee would leave the caller below the minimum cash reserve. |  -  |
 **404** | Withdrawal not found, or it belongs to another user |  -  |
 **409** | Conflict, e.g. the withdrawal is not APPROVED_WITHOUT_FEE (not yet approved, already paid for, or terminal), the available balance cannot cover the fee, there is no USD ledger account to reserve the fee from, an unhealthy account, overdue coupon payments, or a concurrent balance change kept the reservation from being recorded |  -  |
 **410** | The quote token has expired; request a new fee quote |  -  |
@@ -12953,6 +13568,94 @@ Name | Type | Description  | Notes
 **401** | Unauthorized |  -  |
 **403** | Forbidden |  -  |
 **404** | User not found |  -  |
+**500** | Internal server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **upsert_auto_rebalance_configs_v2**
+> UpsertAutoRebalanceConfigsResponseEnvelope upsert_auto_rebalance_configs_v2(upsert_auto_rebalance_configs_request)
+
+Create or update auto-rebalance configuration for one or more isolated accounts
+
+### Example
+
+* Api Key Authentication (apiKeyAuthHeader):
+* Bearer (JWT) Authentication (bearerAuth):
+
+```python
+import dora_client
+from dora_client.models.upsert_auto_rebalance_configs_request import UpsertAutoRebalanceConfigsRequest
+from dora_client.models.upsert_auto_rebalance_configs_response_envelope import UpsertAutoRebalanceConfigsResponseEnvelope
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging.dora.co
+# See configuration.py for a list of all supported configuration parameters.
+configuration = dora_client.Configuration(
+    host = "https://staging.dora.co"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration.api_key['apiKeyAuthHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyAuthHeader'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = dora_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+async with dora_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = dora_client.DefaultApi(api_client)
+    upsert_auto_rebalance_configs_request = dora_client.UpsertAutoRebalanceConfigsRequest() # UpsertAutoRebalanceConfigsRequest | 
+
+    try:
+        # Create or update auto-rebalance configuration for one or more isolated accounts
+        api_response = await api_instance.upsert_auto_rebalance_configs_v2(upsert_auto_rebalance_configs_request)
+        print("The response of DefaultApi->upsert_auto_rebalance_configs_v2:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->upsert_auto_rebalance_configs_v2: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **upsert_auto_rebalance_configs_request** | [**UpsertAutoRebalanceConfigsRequest**](UpsertAutoRebalanceConfigsRequest.md)|  | 
+
+### Return type
+
+[**UpsertAutoRebalanceConfigsResponseEnvelope**](UpsertAutoRebalanceConfigsResponseEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Updated auto-rebalance configurations |  -  |
+**400** | Bad request, e.g. invalid thresholds or duplicate account IDs |  -  |
+**401** | Unauthorized, user not logged in or does not have access to this route |  -  |
+**404** | One or more accounts were not found or are not isolated accounts |  -  |
 **500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

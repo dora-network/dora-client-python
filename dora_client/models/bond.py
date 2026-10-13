@@ -18,8 +18,8 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing_extensions import Annotated
 from uuid import UUID
 from dora_client.models.bond_kind import BondKind
@@ -47,11 +47,12 @@ class Bond(BaseModel):
     issued_at: datetime
     issuer: StrictStr
     maturity_at: datetime
+    tenor: Union[StrictFloat, StrictInt] = Field(description="Years until maturity from the current date (negative for matured bonds)")
     principal_value: StrictStr
     payments_per_year: Annotated[int, Field(strict=True, ge=0)]
     payments_every: Optional[Annotated[int, Field(strict=True, ge=1000)]] = Field(default=None, description="Coupon payment frequency in nanoseconds (minimum 1000 i.e. 1 microsecond)")
     next_coupon_payment: Optional[datetime] = None
-    __properties: ClassVar[List[str]] = ["id", "kind", "coupon_kind", "bond_kind", "bond_run_status", "credit_rating", "coupon_start_at", "created_at", "final_coupon_at", "isin", "issued_at", "issuer", "maturity_at", "principal_value", "payments_per_year", "payments_every", "next_coupon_payment"]
+    __properties: ClassVar[List[str]] = ["id", "kind", "coupon_kind", "bond_kind", "bond_run_status", "credit_rating", "coupon_start_at", "created_at", "final_coupon_at", "isin", "issued_at", "issuer", "maturity_at", "tenor", "principal_value", "payments_per_year", "payments_every", "next_coupon_payment"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -117,6 +118,7 @@ class Bond(BaseModel):
             "issued_at": obj.get("issued_at"),
             "issuer": obj.get("issuer"),
             "maturity_at": obj.get("maturity_at"),
+            "tenor": obj.get("tenor"),
             "principal_value": obj.get("principal_value"),
             "payments_per_year": obj.get("payments_per_year"),
             "payments_every": obj.get("payments_every"),

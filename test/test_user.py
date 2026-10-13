@@ -59,12 +59,16 @@ class TestUser(unittest.TestCase):
                 show_tutorial_cards = True,
                 notifications_enabled = True,
                 tenant_id = '',
+                used_referral_code = '',
                 allow_email_notifications = True,
                 allow_liquidations_notifications = True,
                 allow_deposit_withdrawal_notifications = True,
                 allow_orders_notifications = True,
                 allow_copy_trading = True,
-                kyc_completed_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f')
+                kyc_completed_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                tag = [
+                    'MARKET_MAKER'
+                    ]
             )
         else:
             return User(
@@ -81,6 +85,7 @@ class TestUser(unittest.TestCase):
                 show_tutorial_cards = True,
                 notifications_enabled = True,
                 tenant_id = '',
+                used_referral_code = '',
                 allow_email_notifications = True,
                 allow_liquidations_notifications = True,
                 allow_deposit_withdrawal_notifications = True,

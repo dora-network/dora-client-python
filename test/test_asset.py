@@ -73,6 +73,7 @@ class TestAsset(unittest.TestCase):
                     issued_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                     issuer = '', 
                     maturity_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                    tenor = 1.337, 
                     principal_value = '', 
                     payments_per_year = 0, 
                     payments_every = 1000, 

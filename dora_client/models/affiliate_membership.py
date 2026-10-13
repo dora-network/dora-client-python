@@ -19,7 +19,7 @@ import json
 
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from uuid import UUID
 from typing import Optional, Set
@@ -34,11 +34,13 @@ class AffiliateMembership(BaseModel):
     program_id: UUID
     tenant_id: Annotated[str, Field(min_length=1, strict=True, max_length=256)] = Field(description="Owning tenant for administration. This does not define a referral destination.")
     user_id: UUID
-    referral_code: Annotated[str, Field(strict=True)] = Field(description="Reusable referral code, stored uppercase. Letters, digits, hyphens and underscores are accepted; the first character must be a letter or digit. Matching is case-insensitive. Separate from QR claim tokens.")
+    referral_code: Annotated[str, Field(strict=True)] = Field(description="Current code to share; previously issued codes remain valid.")
     created_at: datetime
     program_name: StrictStr
     is_active: StrictBool
-    __properties: ClassVar[List[str]] = ["id", "program_id", "tenant_id", "user_id", "referral_code", "created_at", "program_name", "is_active"]
+    customized_at: Optional[datetime]
+    can_customize: StrictBool = Field(description="True when this membership has not used its one-time code change, including while the program is inactive.")
+    __properties: ClassVar[List[str]] = ["id", "program_id", "tenant_id", "user_id", "referral_code", "created_at", "program_name", "is_active", "customized_at", "can_customize"]
 
     @field_validator('referral_code')
     def referral_code_validate_regular_expression(cls, value):
@@ -89,6 +91,11 @@ class AffiliateMembership(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if customized_at (nullable) is None
+        # and model_fields_set contains the field
+        if self.customized_at is None and "customized_at" in self.model_fields_set:
+            _dict['customized_at'] = None
+
         return _dict
 
     @classmethod
@@ -108,7 +115,9 @@ class AffiliateMembership(BaseModel):
             "referral_code": obj.get("referral_code"),
             "created_at": obj.get("created_at"),
             "program_name": obj.get("program_name"),
-            "is_active": obj.get("is_active")
+            "is_active": obj.get("is_active"),
+            "customized_at": obj.get("customized_at"),
+            "can_customize": obj.get("can_customize")
         })
         return _obj
 

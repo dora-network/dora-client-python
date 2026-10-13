@@ -19,7 +19,7 @@ import json
 
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, field_validator
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from uuid import UUID
 from typing import Optional, Set
@@ -34,9 +34,10 @@ class AffiliateReferrer(BaseModel):
     program_id: UUID
     tenant_id: Annotated[str, Field(min_length=1, strict=True, max_length=256)] = Field(description="Owning tenant for administration. This does not define a referral destination.")
     user_id: UUID
-    referral_code: Annotated[str, Field(strict=True)] = Field(description="Reusable referral code, stored uppercase. Letters, digits, hyphens and underscores are accepted; the first character must be a letter or digit. Matching is case-insensitive. Separate from QR claim tokens.")
+    referral_code: Annotated[str, Field(strict=True)] = Field(description="Current code to share; previously issued codes remain valid. Stored uppercase and unique across all programs and tenants.")
     created_at: datetime
-    __properties: ClassVar[List[str]] = ["id", "program_id", "tenant_id", "user_id", "referral_code", "created_at"]
+    customized_at: Optional[datetime] = Field(description="When the owner used their one code change; null until then.")
+    __properties: ClassVar[List[str]] = ["id", "program_id", "tenant_id", "user_id", "referral_code", "created_at", "customized_at"]
 
     @field_validator('referral_code')
     def referral_code_validate_regular_expression(cls, value):
@@ -87,6 +88,11 @@ class AffiliateReferrer(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if customized_at (nullable) is None
+        # and model_fields_set contains the field
+        if self.customized_at is None and "customized_at" in self.model_fields_set:
+            _dict['customized_at'] = None
+
         return _dict
 
     @classmethod
@@ -104,7 +110,8 @@ class AffiliateReferrer(BaseModel):
             "tenant_id": obj.get("tenant_id"),
             "user_id": obj.get("user_id"),
             "referral_code": obj.get("referral_code"),
-            "created_at": obj.get("created_at")
+            "created_at": obj.get("created_at"),
+            "customized_at": obj.get("customized_at")
         })
         return _obj
 

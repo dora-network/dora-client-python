@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **issued_at** | **datetime** |  | 
 **issuer** | **str** |  | 
 **maturity_at** | **datetime** |  | 
+**tenor** | **float** | Years until maturity from the current date (negative for matured bonds) | 
 **principal_value** | **str** |  | 
 **payments_per_year** | **int** |  | 
 **payments_every** | **int** | Coupon payment frequency in nanoseconds (minimum 1000 i.e. 1 microsecond) | [optional] 

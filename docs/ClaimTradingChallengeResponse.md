@@ -8,6 +8,9 @@ Name | Type | Description | Notes
 **trading_challenge_id** | **UUID** |  | 
 **user_id** | **UUID** |  | 
 **status** | **str** |  | 
+**reward_amount** | **str** | Fixed QR reward, present for REWARD_PENDING_KYC. | [optional] 
+**kyc_url** | **str** |  | [optional] 
+**reward_deadline_at** | **datetime** |  | [optional] 
 
 ## Example
 

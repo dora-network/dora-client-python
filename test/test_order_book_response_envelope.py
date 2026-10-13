@@ -44,7 +44,7 @@ class TestOrderBookResponseEnvelope(unittest.TestCase):
                     display_name = '', 
                     base_asset_fractionalized_units = 0, 
                     quote_asset_fractionalized_units = 0, 
-                    fee_factor = 0, 
+                    fee_factor = 0.9, 
                     initial_assets_ratio = 0, 
                     maturity_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                     quote_quantity = 0, 

@@ -9,10 +9,12 @@ Name | Type | Description | Notes
 **program_id** | **UUID** |  | 
 **tenant_id** | **str** | Owning tenant for administration. This does not define a referral destination. | 
 **user_id** | **UUID** |  | 
-**referral_code** | **str** | Reusable referral code, stored uppercase. Letters, digits, hyphens and underscores are accepted; the first character must be a letter or digit. Matching is case-insensitive. Separate from QR claim tokens. | 
+**referral_code** | **str** | Current code to share; previously issued codes remain valid. | 
 **created_at** | **datetime** |  | 
 **program_name** | **str** |  | 
 **is_active** | **bool** |  | 
+**customized_at** | **datetime** |  | 
+**can_customize** | **bool** | True when this membership has not used its one-time code change, including while the program is inactive. | 
 
 ## Example
 

@@ -23,6 +23,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from uuid import UUID
 from dora_client.models.country_code import CountryCode
 from dora_client.models.user_role import UserRole
+from dora_client.models.users_tag import UsersTag
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -51,13 +52,15 @@ class User(BaseModel):
     show_tutorial_cards: StrictBool
     notifications_enabled: StrictBool
     tenant_id: StrictStr
+    used_referral_code: StrictStr = Field(description="Exact affiliate code this user applied at signup or later. Empty when no code has been applied; distinct from codes the user owns.")
     allow_email_notifications: StrictBool
     allow_liquidations_notifications: StrictBool
     allow_deposit_withdrawal_notifications: StrictBool
     allow_orders_notifications: StrictBool
     allow_copy_trading: StrictBool
     kyc_completed_at: Optional[datetime] = Field(default=None, description="When the user completed KYC. Omitted/null if KYC has not been completed. Set via POST /v1/integrators/user/{user_id}/kyc.")
-    __properties: ClassVar[List[str]] = ["id", "closed_at", "disabled_at", "email", "first_name", "last_name", "user_name", "country_of_domicile", "native_asset_id", "photo_url", "provider", "provider_id", "roles", "managed_competition_ids", "timezone", "timezone_offset", "verified_at", "show_tutorial_cards", "notifications_enabled", "tenant_id", "allow_email_notifications", "allow_liquidations_notifications", "allow_deposit_withdrawal_notifications", "allow_orders_notifications", "allow_copy_trading", "kyc_completed_at"]
+    tag: Optional[List[UsersTag]] = Field(default=None, description="Tags assigned to the user by an admin. Set via PUT /v1/users/{user_id}/tag.")
+    __properties: ClassVar[List[str]] = ["id", "closed_at", "disabled_at", "email", "first_name", "last_name", "user_name", "country_of_domicile", "native_asset_id", "photo_url", "provider", "provider_id", "roles", "managed_competition_ids", "timezone", "timezone_offset", "verified_at", "show_tutorial_cards", "notifications_enabled", "tenant_id", "used_referral_code", "allow_email_notifications", "allow_liquidations_notifications", "allow_deposit_withdrawal_notifications", "allow_orders_notifications", "allow_copy_trading", "kyc_completed_at", "tag"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -130,12 +133,14 @@ class User(BaseModel):
             "show_tutorial_cards": obj.get("show_tutorial_cards"),
             "notifications_enabled": obj.get("notifications_enabled"),
             "tenant_id": obj.get("tenant_id"),
+            "used_referral_code": obj.get("used_referral_code"),
             "allow_email_notifications": obj.get("allow_email_notifications"),
             "allow_liquidations_notifications": obj.get("allow_liquidations_notifications"),
             "allow_deposit_withdrawal_notifications": obj.get("allow_deposit_withdrawal_notifications"),
             "allow_orders_notifications": obj.get("allow_orders_notifications"),
             "allow_copy_trading": obj.get("allow_copy_trading"),
-            "kyc_completed_at": obj.get("kyc_completed_at")
+            "kyc_completed_at": obj.get("kyc_completed_at"),
+            "tag": obj.get("tag")
         })
         return _obj
 
