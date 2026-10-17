@@ -60,6 +60,7 @@ from dora_client.models.balances_response import BalancesResponse
 from dora_client.models.bond import Bond
 from dora_client.models.bond_kind import BondKind
 from dora_client.models.bond_run_status import BondRunStatus
+from dora_client.models.bulk_order_result import BulkOrderResult
 from dora_client.models.cancel_order_response_envelope import CancelOrderResponseEnvelope
 from dora_client.models.candle import Candle
 from dora_client.models.candle_resolution import CandleResolution
@@ -94,6 +95,9 @@ from dora_client.models.create_integrator_user_request import CreateIntegratorUs
 from dora_client.models.create_or_update_user_response import CreateOrUpdateUserResponse
 from dora_client.models.create_order_request import CreateOrderRequest
 from dora_client.models.create_order_response_envelope import CreateOrderResponseEnvelope
+from dora_client.models.create_orders_bulk_request import CreateOrdersBulkRequest
+from dora_client.models.create_orders_bulk_response import CreateOrdersBulkResponse
+from dora_client.models.create_orders_bulk_response_all_of_data import CreateOrdersBulkResponseAllOfData
 from dora_client.models.create_trading_challenge_qr_request import CreateTradingChallengeQRRequest
 from dora_client.models.create_trading_challenge_request import CreateTradingChallengeRequest
 from dora_client.models.create_withdrawal_request import CreateWithdrawalRequest

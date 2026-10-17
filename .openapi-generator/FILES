@@ -50,6 +50,7 @@ docs/BalancesResponse.md
 docs/Bond.md
 docs/BondKind.md
 docs/BondRunStatus.md
+docs/BulkOrderResult.md
 docs/CancelOrderResponseEnvelope.md
 docs/Candle.md
 docs/CandleResolution.md
@@ -84,6 +85,9 @@ docs/CreateIntegratorUserRequest.md
 docs/CreateOrUpdateUserResponse.md
 docs/CreateOrderRequest.md
 docs/CreateOrderResponseEnvelope.md
+docs/CreateOrdersBulkRequest.md
+docs/CreateOrdersBulkResponse.md
+docs/CreateOrdersBulkResponseAllOfData.md
 docs/CreateTradingChallengeQRRequest.md
 docs/CreateTradingChallengeRequest.md
 docs/CreateWithdrawalRequest.md
@@ -404,6 +408,7 @@ dora_client/models/balances_response.py
 dora_client/models/bond.py
 dora_client/models/bond_kind.py
 dora_client/models/bond_run_status.py
+dora_client/models/bulk_order_result.py
 dora_client/models/cancel_order_response_envelope.py
 dora_client/models/candle.py
 dora_client/models/candle_resolution.py
@@ -438,6 +443,9 @@ dora_client/models/create_integrator_user_request.py
 dora_client/models/create_or_update_user_response.py
 dora_client/models/create_order_request.py
 dora_client/models/create_order_response_envelope.py
+dora_client/models/create_orders_bulk_request.py
+dora_client/models/create_orders_bulk_response.py
+dora_client/models/create_orders_bulk_response_all_of_data.py
 dora_client/models/create_trading_challenge_qr_request.py
 dora_client/models/create_trading_challenge_request.py
 dora_client/models/create_withdrawal_request.py
@@ -758,6 +766,7 @@ test/test_balances_response.py
 test/test_bond.py
 test/test_bond_kind.py
 test/test_bond_run_status.py
+test/test_bulk_order_result.py
 test/test_cancel_order_response_envelope.py
 test/test_candle.py
 test/test_candle_resolution.py
@@ -792,6 +801,9 @@ test/test_create_integrator_user_request.py
 test/test_create_or_update_user_response.py
 test/test_create_order_request.py
 test/test_create_order_response_envelope.py
+test/test_create_orders_bulk_request.py
+test/test_create_orders_bulk_response.py
+test/test_create_orders_bulk_response_all_of_data.py
 test/test_create_trading_challenge_qr_request.py
 test/test_create_trading_challenge_request.py
 test/test_create_withdrawal_request.py

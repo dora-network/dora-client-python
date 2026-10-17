@@ -23,6 +23,7 @@ Method | HTTP request | Description
 [**create_api_key_for_user_id**](DefaultApi.md#create_api_key_for_user_id) | **POST** /v1/user/{user_id}/apikey | Create apikey for a user
 [**create_conditional_order**](DefaultApi.md#create_conditional_order) | **POST** /v1/orders/conditional | Create a new conditional orders
 [**create_order**](DefaultApi.md#create_order) | **POST** /v1/orders | Create a new order
+[**create_orders_bulk**](DefaultApi.md#create_orders_bulk) | **POST** /v1/orders/bulk | Create many orders at once
 [**create_trading_challenge**](DefaultApi.md#create_trading_challenge) | **POST** /v1/trading_challenges | Create a trading challenge
 [**create_user**](DefaultApi.md#create_user) | **POST** /v1/integrators/user | Create a new user
 [**create_withdrawal**](DefaultApi.md#create_withdrawal) | **POST** /v1/web3/withdrawals | Create a USDC withdrawal request
@@ -30,6 +31,7 @@ Method | HTTP request | Description
 [**delete_user**](DefaultApi.md#delete_user) | **DELETE** /v1/user/{user_id} | Delete user by ID
 [**export_promo_links_csv**](DefaultApi.md#export_promo_links_csv) | **GET** /v1/link_batches/{batch_id}/links.csv | Export promotional links as CSV
 [**get_affiliate_program**](DefaultApi.md#get_affiliate_program) | **GET** /v1/affiliate_programs/{program_id} | Get an affiliate program
+[**get_affiliate_referrer_code**](DefaultApi.md#get_affiliate_referrer_code) | **GET** /v1/affiliate_referrers/{referrer_id}/code | Get a referrer&#39;s current code
 [**get_all_asset_prices**](DefaultApi.md#get_all_asset_prices) | **GET** /v1/price | Get the current price of all assets
 [**get_all_positions**](DefaultApi.md#get_all_positions) | **GET** /v1/ledger/positions | Get all users&#39; positions
 [**get_all_withdrawal_requests**](DefaultApi.md#get_all_withdrawal_requests) | **GET** /v1/ledger/withdraw/requests | Get all withdrawal requests
@@ -134,6 +136,7 @@ Method | HTTP request | Description
 [**register_affiliate_referrer**](DefaultApi.md#register_affiliate_referrer) | **POST** /v1/affiliate_programs/{program_id}/referrers | Register an existing user as a referrer
 [**reject_ledger_withdraw_request**](DefaultApi.md#reject_ledger_withdraw_request) | **POST** /v1/ledger/withdraw/requests/{withdrawal_id}/reject | Reject a pending withdrawal request
 [**reject_trading_challenge_registration_request**](DefaultApi.md#reject_trading_challenge_registration_request) | **POST** /v1/trading_challenges/registration_requests/{request_id}/reject | Reject a trading challenge registration request
+[**remove_affiliate_referrer**](DefaultApi.md#remove_affiliate_referrer) | **DELETE** /v1/affiliate_programs/{program_id}/referrers/{referrer_id} | Remove a referrer from a program
 [**remove_trading_challenge_users**](DefaultApi.md#remove_trading_challenge_users) | **PUT** /v1/trading_challenges/remove_users | Remove users from a trading challenge
 [**render_promo_link_qr**](DefaultApi.md#render_promo_link_qr) | **GET** /v1/promo_links/{link_id}/qr | Render a promotional link QR code
 [**repay_usd**](DefaultApi.md#repay_usd) | **POST** /v1/positions/repay_usd | Repay borrowed USD, then accrue and pay leverage interest
@@ -444,7 +447,7 @@ Name | Type | Description  | Notes
 
 Assign your affiliate referrer
 
-Authenticated existing users may assign a referral code once, within their own tenant. No user_id or tenant_id override is accepted. New assignments reject self-referral and require an active program. Repeating the same code returns the original assignment without changing its timestamp; changing the code returns 409. Only activity from assignment onward counts. This does not change signup_source.
+Authenticated existing users may assign a referral code once. The code must belong to their own tenant or to a global tenant, whose referrers serve every tenant. No user_id or tenant_id override is accepted. New assignments reject self-referral and require an active program. Repeating the same code returns the original assignment without changing its timestamp; changing the code returns 409. Only activity from assignment onward counts. This does not change signup_source.
 
 ### Example
 
@@ -1846,6 +1849,98 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **create_orders_bulk**
+> CreateOrdersBulkResponse create_orders_bulk(create_orders_bulk_request)
+
+Create many orders at once
+
+Submits up to `matching.bulk_order_max_orders` orders (default 20) on a single order book for the logged in user. Every order must have the same `order_book_id`. By default each order is validated, locked and inserted independently, so a rejected order does not affect the others; `results` reports the outcome of every order in request order. Atomic submission (`atomic: true`) is not currently supported and is rejected with 400. Global-position orders and isolated orders are each processed sequentially in request order. `client_order_id` must be unique within a request.
+
+### Example
+
+* Api Key Authentication (apiKeyAuthHeader):
+* Bearer (JWT) Authentication (bearerAuth):
+
+```python
+import dora_client
+from dora_client.models.create_orders_bulk_request import CreateOrdersBulkRequest
+from dora_client.models.create_orders_bulk_response import CreateOrdersBulkResponse
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging.dora.co
+# See configuration.py for a list of all supported configuration parameters.
+configuration = dora_client.Configuration(
+    host = "https://staging.dora.co"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration.api_key['apiKeyAuthHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyAuthHeader'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = dora_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+async with dora_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = dora_client.DefaultApi(api_client)
+    create_orders_bulk_request = dora_client.CreateOrdersBulkRequest() # CreateOrdersBulkRequest | 
+
+    try:
+        # Create many orders at once
+        api_response = await api_instance.create_orders_bulk(create_orders_bulk_request)
+        print("The response of DefaultApi->create_orders_bulk:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->create_orders_bulk: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **create_orders_bulk_request** | [**CreateOrdersBulkRequest**](CreateOrdersBulkRequest.md)|  | 
+
+### Return type
+
+[**CreateOrdersBulkResponse**](CreateOrdersBulkResponse.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Every order was processed; see each result&#39;s status |  -  |
+**400** | Bad request, e.g. no orders, more orders than the configured maximum, orders on different order books, or &#x60;atomic: true&#x60; (not currently supported) |  -  |
+**401** | Unauthorized, user not logged in |  -  |
+**403** | Forbidden, e.g. the user&#39;s account is deactivated |  -  |
+**413** | Request body too large |  -  |
+**429** | Too many bulk requests from this user |  -  |
+**500** | Internal server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **create_trading_challenge**
 > TradingChallengeResponseEnvelope create_trading_challenge(create_trading_challenge_request)
 
@@ -2468,6 +2563,96 @@ Name | Type | Description  | Notes
 **401** | Authentication required |  -  |
 **403** | Role or requested tenant is forbidden |  -  |
 **404** | Resource not found within tenant permissions |  -  |
+**500** | Internal server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_affiliate_referrer_code**
+> AffiliateReferrerEnvelope get_affiliate_referrer_code(referrer_id)
+
+Get a referrer's current code
+
+ADMIN, INTEGRATOR, or AFFILIATE_MANAGER required within tenant and assignment scope.
+
+### Example
+
+* Api Key Authentication (apiKeyAuthHeader):
+* Bearer (JWT) Authentication (bearerAuth):
+
+```python
+import dora_client
+from dora_client.models.affiliate_referrer_envelope import AffiliateReferrerEnvelope
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging.dora.co
+# See configuration.py for a list of all supported configuration parameters.
+configuration = dora_client.Configuration(
+    host = "https://staging.dora.co"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration.api_key['apiKeyAuthHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyAuthHeader'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = dora_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+async with dora_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = dora_client.DefaultApi(api_client)
+    referrer_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
+
+    try:
+        # Get a referrer's current code
+        api_response = await api_instance.get_affiliate_referrer_code(referrer_id)
+        print("The response of DefaultApi->get_affiliate_referrer_code:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->get_affiliate_referrer_code: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **referrer_id** | **UUID**|  | 
+
+### Return type
+
+[**AffiliateReferrerEnvelope**](AffiliateReferrerEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Affiliate referrer code details |  -  |
+**400** | Invalid request |  -  |
+**401** | Authentication required |  -  |
+**403** | Forbidden by role, tenant, or program assignment |  -  |
+**404** | Referrer not found within scope |  -  |
 **500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -6067,7 +6252,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_trades**
-> ListTradeResponseEnvelope get_trades(order_book_ids=order_book_ids, user_ids=user_ids, start=start, end=end, page=page, limit=limit)
+> ListTradeResponseEnvelope get_trades(order_book_ids=order_book_ids, user_ids=user_ids, exclude_user_ids=exclude_user_ids, start=start, end=end, page=page, limit=limit)
 
 Get a filtered, paginated list of trades
 
@@ -6112,6 +6297,7 @@ async with dora_client.ApiClient(configuration) as api_client:
     api_instance = dora_client.DefaultApi(api_client)
     order_book_ids = ['order_book_ids_example'] # List[str] |  (optional)
     user_ids = None # List[UUID] |  (optional)
+    exclude_user_ids = None # List[UUID] | Leave out the trades of these users. Requires order_book_ids, and may not be combined with user_ids; a request that breaks either rule is rejected rather than served without the exclusion. (optional)
     start = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
     end = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
     page = 1 # int |  (optional) (default to 1)
@@ -6119,7 +6305,7 @@ async with dora_client.ApiClient(configuration) as api_client:
 
     try:
         # Get a filtered, paginated list of trades
-        api_response = await api_instance.get_trades(order_book_ids=order_book_ids, user_ids=user_ids, start=start, end=end, page=page, limit=limit)
+        api_response = await api_instance.get_trades(order_book_ids=order_book_ids, user_ids=user_ids, exclude_user_ids=exclude_user_ids, start=start, end=end, page=page, limit=limit)
         print("The response of DefaultApi->get_trades:\n")
         pprint(api_response)
     except Exception as e:
@@ -6135,6 +6321,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **order_book_ids** | [**List[str]**](str.md)|  | [optional] 
  **user_ids** | [**List[UUID]**](UUID.md)|  | [optional] 
+ **exclude_user_ids** | [**List[UUID]**](UUID.md)| Leave out the trades of these users. Requires order_book_ids, and may not be combined with user_ids; a request that breaks either rule is rejected rather than served without the exclusion. | [optional] 
  **start** | **datetime**|  | [optional] 
  **end** | **datetime**|  | [optional] 
  **page** | **int**|  | [optional] [default to 1]
@@ -11441,6 +11628,98 @@ Name | Type | Description  | Notes
 **403** | Forbidden: the caller may not administer this challenge |  -  |
 **404** | Registration request not found |  -  |
 **409** | The request was already settled, or the challenge cannot take the user |  -  |
+**500** | Internal server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **remove_affiliate_referrer**
+> AffiliateReferrerEnvelope remove_affiliate_referrer(program_id, referrer_id)
+
+Remove a referrer from a program
+
+ADMIN, INTEGRATOR, or AFFILIATE_MANAGER required within tenant and assignment scope. Disables the referrer's code for new attributions while preserving historical attribution and reporting.
+
+### Example
+
+* Api Key Authentication (apiKeyAuthHeader):
+* Bearer (JWT) Authentication (bearerAuth):
+
+```python
+import dora_client
+from dora_client.models.affiliate_referrer_envelope import AffiliateReferrerEnvelope
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging.dora.co
+# See configuration.py for a list of all supported configuration parameters.
+configuration = dora_client.Configuration(
+    host = "https://staging.dora.co"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration.api_key['apiKeyAuthHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyAuthHeader'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = dora_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+async with dora_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = dora_client.DefaultApi(api_client)
+    program_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
+    referrer_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
+
+    try:
+        # Remove a referrer from a program
+        api_response = await api_instance.remove_affiliate_referrer(program_id, referrer_id)
+        print("The response of DefaultApi->remove_affiliate_referrer:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->remove_affiliate_referrer: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **program_id** | **UUID**|  | 
+ **referrer_id** | **UUID**|  | 
+
+### Return type
+
+[**AffiliateReferrerEnvelope**](AffiliateReferrerEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Removed affiliate referrer |  -  |
+**400** | Invalid request |  -  |
+**401** | Authentication required |  -  |
+**403** | Forbidden by role, tenant, or program assignment |  -  |
+**404** | Program or active referrer not found within scope |  -  |
 **500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

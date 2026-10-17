@@ -40,6 +40,7 @@ class TestAffiliateAttribution(unittest.TestCase):
                 referrer_id = '',
                 referrer_user_id = '',
                 tenant_id = '',
+                referred_tenant_id = '',
                 signup_source = '',
                 created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 referral_code = 'WXBU5JLXPXUUB-3'
@@ -51,6 +52,7 @@ class TestAffiliateAttribution(unittest.TestCase):
                 referrer_id = '',
                 referrer_user_id = '',
                 tenant_id = '',
+                referred_tenant_id = '',
                 signup_source = '',
                 created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 referral_code = 'WXBU5JLXPXUUB-3',

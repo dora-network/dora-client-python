@@ -46,6 +46,7 @@ class User(BaseModel):
     provider_id: Optional[UUID] = None
     roles: List[UserRole]
     managed_competition_ids: Optional[List[UUID]] = Field(default=None, description="Competition IDs this user is explicitly allowed to manage when they have COMPETITION_MANAGER role. Empty means no competition-management access.")
+    managed_affiliate_program_ids: Optional[List[UUID]] = Field(default=None, description="Affiliate program IDs this user is explicitly allowed to manage when they have AFFILIATE_MANAGER role. Empty means no affiliate-management access.")
     timezone: Optional[StrictStr] = Field(default=None, description="User's timezone, e.g., 'America/New_York', or an offset.")
     timezone_offset: Optional[StrictInt] = Field(default=None, description="timezone offset in seconds")
     verified_at: Optional[datetime] = None
@@ -60,7 +61,7 @@ class User(BaseModel):
     allow_copy_trading: StrictBool
     kyc_completed_at: Optional[datetime] = Field(default=None, description="When the user completed KYC. Omitted/null if KYC has not been completed. Set via POST /v1/integrators/user/{user_id}/kyc.")
     tag: Optional[List[UsersTag]] = Field(default=None, description="Tags assigned to the user by an admin. Set via PUT /v1/users/{user_id}/tag.")
-    __properties: ClassVar[List[str]] = ["id", "closed_at", "disabled_at", "email", "first_name", "last_name", "user_name", "country_of_domicile", "native_asset_id", "photo_url", "provider", "provider_id", "roles", "managed_competition_ids", "timezone", "timezone_offset", "verified_at", "show_tutorial_cards", "notifications_enabled", "tenant_id", "used_referral_code", "allow_email_notifications", "allow_liquidations_notifications", "allow_deposit_withdrawal_notifications", "allow_orders_notifications", "allow_copy_trading", "kyc_completed_at", "tag"]
+    __properties: ClassVar[List[str]] = ["id", "closed_at", "disabled_at", "email", "first_name", "last_name", "user_name", "country_of_domicile", "native_asset_id", "photo_url", "provider", "provider_id", "roles", "managed_competition_ids", "managed_affiliate_program_ids", "timezone", "timezone_offset", "verified_at", "show_tutorial_cards", "notifications_enabled", "tenant_id", "used_referral_code", "allow_email_notifications", "allow_liquidations_notifications", "allow_deposit_withdrawal_notifications", "allow_orders_notifications", "allow_copy_trading", "kyc_completed_at", "tag"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -127,6 +128,7 @@ class User(BaseModel):
             "provider_id": obj.get("provider_id"),
             "roles": obj.get("roles"),
             "managed_competition_ids": obj.get("managed_competition_ids"),
+            "managed_affiliate_program_ids": obj.get("managed_affiliate_program_ids"),
             "timezone": obj.get("timezone"),
             "timezone_offset": obj.get("timezone_offset"),
             "verified_at": obj.get("verified_at"),

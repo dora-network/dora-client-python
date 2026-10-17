@@ -36,12 +36,16 @@ class TestPnLRankingSummary(unittest.TestCase):
         if include_optional:
             return PnLRankingSummary(
                 all_users_daily_trading_volume = '',
-                all_users_total_trading_volume = ''
+                all_users_total_trading_volume = '',
+                all_users_avg_daily_trading_volume = '',
+                all_users_avg_daily_trading_volume_on_n_days = ''
             )
         else:
             return PnLRankingSummary(
                 all_users_daily_trading_volume = '',
                 all_users_total_trading_volume = '',
+                all_users_avg_daily_trading_volume = '',
+                all_users_avg_daily_trading_volume_on_n_days = '',
         )
         """
 

@@ -119,6 +119,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**create_api_key_for_user_id**](docs/DefaultApi.md#create_api_key_for_user_id) | **POST** /v1/user/{user_id}/apikey | Create apikey for a user
 *DefaultApi* | [**create_conditional_order**](docs/DefaultApi.md#create_conditional_order) | **POST** /v1/orders/conditional | Create a new conditional orders
 *DefaultApi* | [**create_order**](docs/DefaultApi.md#create_order) | **POST** /v1/orders | Create a new order
+*DefaultApi* | [**create_orders_bulk**](docs/DefaultApi.md#create_orders_bulk) | **POST** /v1/orders/bulk | Create many orders at once
 *DefaultApi* | [**create_trading_challenge**](docs/DefaultApi.md#create_trading_challenge) | **POST** /v1/trading_challenges | Create a trading challenge
 *DefaultApi* | [**create_user**](docs/DefaultApi.md#create_user) | **POST** /v1/integrators/user | Create a new user
 *DefaultApi* | [**create_withdrawal**](docs/DefaultApi.md#create_withdrawal) | **POST** /v1/web3/withdrawals | Create a USDC withdrawal request
@@ -126,6 +127,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**delete_user**](docs/DefaultApi.md#delete_user) | **DELETE** /v1/user/{user_id} | Delete user by ID
 *DefaultApi* | [**export_promo_links_csv**](docs/DefaultApi.md#export_promo_links_csv) | **GET** /v1/link_batches/{batch_id}/links.csv | Export promotional links as CSV
 *DefaultApi* | [**get_affiliate_program**](docs/DefaultApi.md#get_affiliate_program) | **GET** /v1/affiliate_programs/{program_id} | Get an affiliate program
+*DefaultApi* | [**get_affiliate_referrer_code**](docs/DefaultApi.md#get_affiliate_referrer_code) | **GET** /v1/affiliate_referrers/{referrer_id}/code | Get a referrer&#39;s current code
 *DefaultApi* | [**get_all_asset_prices**](docs/DefaultApi.md#get_all_asset_prices) | **GET** /v1/price | Get the current price of all assets
 *DefaultApi* | [**get_all_positions**](docs/DefaultApi.md#get_all_positions) | **GET** /v1/ledger/positions | Get all users&#39; positions
 *DefaultApi* | [**get_all_withdrawal_requests**](docs/DefaultApi.md#get_all_withdrawal_requests) | **GET** /v1/ledger/withdraw/requests | Get all withdrawal requests
@@ -230,6 +232,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**register_affiliate_referrer**](docs/DefaultApi.md#register_affiliate_referrer) | **POST** /v1/affiliate_programs/{program_id}/referrers | Register an existing user as a referrer
 *DefaultApi* | [**reject_ledger_withdraw_request**](docs/DefaultApi.md#reject_ledger_withdraw_request) | **POST** /v1/ledger/withdraw/requests/{withdrawal_id}/reject | Reject a pending withdrawal request
 *DefaultApi* | [**reject_trading_challenge_registration_request**](docs/DefaultApi.md#reject_trading_challenge_registration_request) | **POST** /v1/trading_challenges/registration_requests/{request_id}/reject | Reject a trading challenge registration request
+*DefaultApi* | [**remove_affiliate_referrer**](docs/DefaultApi.md#remove_affiliate_referrer) | **DELETE** /v1/affiliate_programs/{program_id}/referrers/{referrer_id} | Remove a referrer from a program
 *DefaultApi* | [**remove_trading_challenge_users**](docs/DefaultApi.md#remove_trading_challenge_users) | **PUT** /v1/trading_challenges/remove_users | Remove users from a trading challenge
 *DefaultApi* | [**render_promo_link_qr**](docs/DefaultApi.md#render_promo_link_qr) | **GET** /v1/promo_links/{link_id}/qr | Render a promotional link QR code
 *DefaultApi* | [**repay_usd**](docs/DefaultApi.md#repay_usd) | **POST** /v1/positions/repay_usd | Repay borrowed USD, then accrue and pay leverage interest
@@ -309,6 +312,7 @@ Class | Method | HTTP request | Description
  - [Bond](docs/Bond.md)
  - [BondKind](docs/BondKind.md)
  - [BondRunStatus](docs/BondRunStatus.md)
+ - [BulkOrderResult](docs/BulkOrderResult.md)
  - [CancelOrderResponseEnvelope](docs/CancelOrderResponseEnvelope.md)
  - [Candle](docs/Candle.md)
  - [CandleResolution](docs/CandleResolution.md)
@@ -343,6 +347,9 @@ Class | Method | HTTP request | Description
  - [CreateOrUpdateUserResponse](docs/CreateOrUpdateUserResponse.md)
  - [CreateOrderRequest](docs/CreateOrderRequest.md)
  - [CreateOrderResponseEnvelope](docs/CreateOrderResponseEnvelope.md)
+ - [CreateOrdersBulkRequest](docs/CreateOrdersBulkRequest.md)
+ - [CreateOrdersBulkResponse](docs/CreateOrdersBulkResponse.md)
+ - [CreateOrdersBulkResponseAllOfData](docs/CreateOrdersBulkResponseAllOfData.md)
  - [CreateTradingChallengeQRRequest](docs/CreateTradingChallengeQRRequest.md)
  - [CreateTradingChallengeRequest](docs/CreateTradingChallengeRequest.md)
  - [CreateWithdrawalRequest](docs/CreateWithdrawalRequest.md)

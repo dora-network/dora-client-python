@@ -33,9 +33,10 @@ class TenantGuaranteeFundRow(BaseModel):
     tenant_id: StrictStr
     seq: StrictInt
     available: StrictStr
+    transaction_amount: StrictStr
     tx_kind: StrictStr
     updated_at: datetime
-    __properties: ClassVar[List[str]] = ["id", "tenant_id", "seq", "available", "tx_kind", "updated_at"]
+    __properties: ClassVar[List[str]] = ["id", "tenant_id", "seq", "available", "transaction_amount", "tx_kind", "updated_at"]
 
     @field_validator('tx_kind')
     def tx_kind_validate_enum(cls, value):
@@ -99,6 +100,7 @@ class TenantGuaranteeFundRow(BaseModel):
             "tenant_id": obj.get("tenant_id"),
             "seq": obj.get("seq"),
             "available": obj.get("available"),
+            "transaction_amount": obj.get("transaction_amount"),
             "tx_kind": obj.get("tx_kind"),
             "updated_at": obj.get("updated_at")
         })

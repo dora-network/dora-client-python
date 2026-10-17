@@ -75,6 +75,7 @@ __all__ = [
     "Bond",
     "BondKind",
     "BondRunStatus",
+    "BulkOrderResult",
     "CancelOrderResponseEnvelope",
     "Candle",
     "CandleResolution",
@@ -109,6 +110,9 @@ __all__ = [
     "CreateOrUpdateUserResponse",
     "CreateOrderRequest",
     "CreateOrderResponseEnvelope",
+    "CreateOrdersBulkRequest",
+    "CreateOrdersBulkResponse",
+    "CreateOrdersBulkResponseAllOfData",
     "CreateTradingChallengeQRRequest",
     "CreateTradingChallengeRequest",
     "CreateWithdrawalRequest",
@@ -437,6 +441,7 @@ from dora_client.models.balances_response import BalancesResponse as BalancesRes
 from dora_client.models.bond import Bond as Bond
 from dora_client.models.bond_kind import BondKind as BondKind
 from dora_client.models.bond_run_status import BondRunStatus as BondRunStatus
+from dora_client.models.bulk_order_result import BulkOrderResult as BulkOrderResult
 from dora_client.models.cancel_order_response_envelope import CancelOrderResponseEnvelope as CancelOrderResponseEnvelope
 from dora_client.models.candle import Candle as Candle
 from dora_client.models.candle_resolution import CandleResolution as CandleResolution
@@ -471,6 +476,9 @@ from dora_client.models.create_integrator_user_request import CreateIntegratorUs
 from dora_client.models.create_or_update_user_response import CreateOrUpdateUserResponse as CreateOrUpdateUserResponse
 from dora_client.models.create_order_request import CreateOrderRequest as CreateOrderRequest
 from dora_client.models.create_order_response_envelope import CreateOrderResponseEnvelope as CreateOrderResponseEnvelope
+from dora_client.models.create_orders_bulk_request import CreateOrdersBulkRequest as CreateOrdersBulkRequest
+from dora_client.models.create_orders_bulk_response import CreateOrdersBulkResponse as CreateOrdersBulkResponse
+from dora_client.models.create_orders_bulk_response_all_of_data import CreateOrdersBulkResponseAllOfData as CreateOrdersBulkResponseAllOfData
 from dora_client.models.create_trading_challenge_qr_request import CreateTradingChallengeQRRequest as CreateTradingChallengeQRRequest
 from dora_client.models.create_trading_challenge_request import CreateTradingChallengeRequest as CreateTradingChallengeRequest
 from dora_client.models.create_withdrawal_request import CreateWithdrawalRequest as CreateWithdrawalRequest

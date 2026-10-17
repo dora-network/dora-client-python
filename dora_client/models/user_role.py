@@ -35,6 +35,7 @@ class UserRole(str, Enum):
     INTEGRATOR = 'INTEGRATOR'
     INDEXER = 'INDEXER'
     COMPETITION_MANAGER = 'COMPETITION_MANAGER'
+    AFFILIATE_MANAGER = 'AFFILIATE_MANAGER'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

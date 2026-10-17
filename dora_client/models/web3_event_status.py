@@ -31,6 +31,7 @@ class Web3EventStatus(str, Enum):
     ORPHANED = 'ORPHANED'
     USER_NOT_EXIST = 'USER_NOT_EXIST'
     DUST = 'DUST'
+    UNMATCHED = 'UNMATCHED'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

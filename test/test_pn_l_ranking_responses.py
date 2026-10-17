@@ -37,7 +37,9 @@ class TestPnLRankingResponses(unittest.TestCase):
             return PnLRankingResponses(
                 summary = dora_client.models.pn_l_ranking_summary.PnLRankingSummary(
                     all_users_daily_trading_volume = '', 
-                    all_users_total_trading_volume = '', ),
+                    all_users_total_trading_volume = '', 
+                    all_users_avg_daily_trading_volume = '', 
+                    all_users_avg_daily_trading_volume_on_n_days = '', ),
                 rankings = [
                     dora_client.models.pn_l_ranking_response.PnLRankingResponse(
                         user_id = '', 
@@ -50,6 +52,8 @@ class TestPnLRankingResponses(unittest.TestCase):
                         win_rate = '', 
                         daily_trading_volume = '', 
                         total_trading_volume = '', 
+                        avg_daily_volume = '', 
+                        avg_daily_volume_on_n_days = '', 
                         active_trading_days = 56, 
                         activated = True, 
                         kyc_approved = True, )
@@ -59,7 +63,9 @@ class TestPnLRankingResponses(unittest.TestCase):
             return PnLRankingResponses(
                 summary = dora_client.models.pn_l_ranking_summary.PnLRankingSummary(
                     all_users_daily_trading_volume = '', 
-                    all_users_total_trading_volume = '', ),
+                    all_users_total_trading_volume = '', 
+                    all_users_avg_daily_trading_volume = '', 
+                    all_users_avg_daily_trading_volume_on_n_days = '', ),
                 rankings = [
                     dora_client.models.pn_l_ranking_response.PnLRankingResponse(
                         user_id = '', 
@@ -72,6 +78,8 @@ class TestPnLRankingResponses(unittest.TestCase):
                         win_rate = '', 
                         daily_trading_volume = '', 
                         total_trading_volume = '', 
+                        avg_daily_volume = '', 
+                        avg_daily_volume_on_n_days = '', 
                         active_trading_days = 56, 
                         activated = True, 
                         kyc_approved = True, )

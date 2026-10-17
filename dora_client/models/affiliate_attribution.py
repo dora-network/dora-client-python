@@ -34,11 +34,12 @@ class AffiliateAttribution(BaseModel):
     program_id: UUID
     referrer_id: UUID
     referrer_user_id: UUID
-    tenant_id: StrictStr
+    tenant_id: StrictStr = Field(description="Tenant that owns the referrer and the program. A referrer in a global tenant may refer users of any tenant.")
+    referred_tenant_id: StrictStr = Field(description="Tenant that owns the referred user. Differs from tenant_id only when a global tenant's referrer referred the user.")
     signup_source: StrictStr = Field(description="Signup hostname when assigned at signup; empty for an assignment made later.")
     created_at: datetime = Field(description="Immutable assignment time; activity begins counting from this timestamp.")
     referral_code: Annotated[str, Field(strict=True)] = Field(description="Exact code the user entered, retained when the referrer changes their primary code.")
-    __properties: ClassVar[List[str]] = ["referred_user_id", "program_id", "referrer_id", "referrer_user_id", "tenant_id", "signup_source", "created_at", "referral_code"]
+    __properties: ClassVar[List[str]] = ["referred_user_id", "program_id", "referrer_id", "referrer_user_id", "tenant_id", "referred_tenant_id", "signup_source", "created_at", "referral_code"]
 
     @field_validator('referral_code')
     def referral_code_validate_regular_expression(cls, value):
@@ -106,6 +107,7 @@ class AffiliateAttribution(BaseModel):
             "referrer_id": obj.get("referrer_id"),
             "referrer_user_id": obj.get("referrer_user_id"),
             "tenant_id": obj.get("tenant_id"),
+            "referred_tenant_id": obj.get("referred_tenant_id"),
             "signup_source": obj.get("signup_source"),
             "created_at": obj.get("created_at"),
             "referral_code": obj.get("referral_code")

@@ -45,6 +45,8 @@ class TestPnLRankingResponse(unittest.TestCase):
                 win_rate = '',
                 daily_trading_volume = '',
                 total_trading_volume = '',
+                avg_daily_volume = '',
+                avg_daily_volume_on_n_days = '',
                 active_trading_days = 56,
                 activated = True,
                 kyc_approved = True
@@ -61,6 +63,8 @@ class TestPnLRankingResponse(unittest.TestCase):
                 win_rate = '',
                 daily_trading_volume = '',
                 total_trading_volume = '',
+                avg_daily_volume = '',
+                avg_daily_volume_on_n_days = '',
                 active_trading_days = 56,
                 activated = True,
                 kyc_approved = True,

@@ -9,7 +9,8 @@ Name | Type | Description | Notes
 **program_id** | **UUID** |  | 
 **referrer_id** | **UUID** |  | 
 **referrer_user_id** | **UUID** |  | 
-**tenant_id** | **str** |  | 
+**tenant_id** | **str** | Tenant that owns the referrer and the program. A referrer in a global tenant may refer users of any tenant. | 
+**referred_tenant_id** | **str** | Tenant that owns the referred user. Differs from tenant_id only when a global tenant&#39;s referrer referred the user. | 
 **signup_source** | **str** | Signup hostname when assigned at signup; empty for an assignment made later. | 
 **created_at** | **datetime** | Immutable assignment time; activity begins counting from this timestamp. | 
 **referral_code** | **str** | Exact code the user entered, retained when the referrer changes their primary code. | 

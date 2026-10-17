@@ -14,6 +14,8 @@ Processing status of an observed on-chain event.
 
 * `DUST` (value: `'DUST'`)
 
+* `UNMATCHED` (value: `'UNMATCHED'`)
+
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

@@ -54,6 +54,9 @@ class TestUserEnvelope(unittest.TestCase):
                     managed_competition_ids = [
                         ''
                         ], 
+                    managed_affiliate_program_ids = [
+                        ''
+                        ], 
                     timezone = '', 
                     timezone_offset = 56, 
                     verified_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 

@@ -38,10 +38,12 @@ class PnLRankingResponse(BaseModel):
     win_rate: StrictStr
     daily_trading_volume: StrictStr = Field(description="Executed trading volume for the current UTC day.")
     total_trading_volume: StrictStr = Field(description="Cumulative executed trading volume across all UTC trading days.")
+    avg_daily_volume: StrictStr = Field(description="total_trading_volume divided by active_trading_days. 0 if the user has no active trading days.")
+    avg_daily_volume_on_n_days: StrictStr = Field(description="Executed trading volume within [start, end) divided by the number of requested days elapsed so far (end clamped to now, partial days rounded up). 0 if start is in the future.")
     active_trading_days: StrictInt = Field(description="Number of distinct UTC days on which the user has at least one executed fill.")
     activated: StrictBool = Field(description="True once the user has traded on at least 5 distinct UTC days.")
     kyc_approved: StrictBool = Field(description="Whether the user is currently considered KYC/verification approved.")
-    __properties: ClassVar[List[str]] = ["user_id", "first_name", "total_pnl", "realized_pnl", "total_trades", "winning_trades", "losing_trades", "win_rate", "daily_trading_volume", "total_trading_volume", "active_trading_days", "activated", "kyc_approved"]
+    __properties: ClassVar[List[str]] = ["user_id", "first_name", "total_pnl", "realized_pnl", "total_trades", "winning_trades", "losing_trades", "win_rate", "daily_trading_volume", "total_trading_volume", "avg_daily_volume", "avg_daily_volume_on_n_days", "active_trading_days", "activated", "kyc_approved"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -104,6 +106,8 @@ class PnLRankingResponse(BaseModel):
             "win_rate": obj.get("win_rate"),
             "daily_trading_volume": obj.get("daily_trading_volume"),
             "total_trading_volume": obj.get("total_trading_volume"),
+            "avg_daily_volume": obj.get("avg_daily_volume"),
+            "avg_daily_volume_on_n_days": obj.get("avg_daily_volume_on_n_days"),
             "active_trading_days": obj.get("active_trading_days"),
             "activated": obj.get("activated"),
             "kyc_approved": obj.get("kyc_approved")

@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **tenant_id** | **str** |  | 
 **seq** | **int** |  | 
 **available** | **str** |  | 
+**transaction_amount** | **str** |  | 
 **tx_kind** | **str** |  | 
 **updated_at** | **datetime** |  | 
 

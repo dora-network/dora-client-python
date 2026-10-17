@@ -42,6 +42,7 @@ class TestTenantGuaranteeFundHistoryResponseEnvelope(unittest.TestCase):
                             tenant_id = '', 
                             seq = 56, 
                             available = '', 
+                            transaction_amount = '', 
                             tx_kind = 'DEPOSIT', 
                             updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
                         ], 

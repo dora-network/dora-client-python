@@ -159,6 +159,13 @@ class TestDefaultApi(unittest.IsolatedAsyncioTestCase):
         """
         pass
 
+    async def test_create_orders_bulk(self) -> None:
+        """Test case for create_orders_bulk
+
+        Create many orders at once
+        """
+        pass
+
     async def test_create_trading_challenge(self) -> None:
         """Test case for create_trading_challenge
 
@@ -205,6 +212,13 @@ class TestDefaultApi(unittest.IsolatedAsyncioTestCase):
         """Test case for get_affiliate_program
 
         Get an affiliate program
+        """
+        pass
+
+    async def test_get_affiliate_referrer_code(self) -> None:
+        """Test case for get_affiliate_referrer_code
+
+        Get a referrer's current code
         """
         pass
 
@@ -933,6 +947,13 @@ class TestDefaultApi(unittest.IsolatedAsyncioTestCase):
         """Test case for reject_trading_challenge_registration_request
 
         Reject a trading challenge registration request
+        """
+        pass
+
+    async def test_remove_affiliate_referrer(self) -> None:
+        """Test case for remove_affiliate_referrer
+
+        Remove a referrer from a program
         """
         pass
 
