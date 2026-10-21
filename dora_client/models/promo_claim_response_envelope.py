@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from dora_client.models.metadata import Metadata
-from dora_client.models.promo_claim_response_envelope_all_of_data import PromoClaimResponseEnvelopeAllOfData
+from dora_client.models.promo_claim_response_envelope_data import PromoClaimResponseEnvelopeData
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -29,7 +29,7 @@ class PromoClaimResponseEnvelope(BaseModel):
     """
     PromoClaimResponseEnvelope
     """ # noqa: E501
-    data: Optional[PromoClaimResponseEnvelopeAllOfData] = None
+    data: Optional[PromoClaimResponseEnvelopeData] = None
     error: Optional[StrictStr] = Field(default=None, description="The error message. Present for error (non-2xx) responses.")
     metadata: Metadata = Field(description="Metadata about the response, including status code and trace information.")
     __properties: ClassVar[List[str]] = ["data", "error", "metadata"]
@@ -91,7 +91,7 @@ class PromoClaimResponseEnvelope(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "data": PromoClaimResponseEnvelopeAllOfData.from_dict(obj["data"]) if obj.get("data") is not None else None,
+            "data": PromoClaimResponseEnvelopeData.from_dict(obj["data"]) if obj.get("data") is not None else None,
             "error": obj.get("error"),
             "metadata": Metadata.from_dict(obj["metadata"]) if obj.get("metadata") is not None else None
         })

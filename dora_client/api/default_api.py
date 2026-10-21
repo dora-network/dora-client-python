@@ -117,10 +117,10 @@ from dora_client.models.pay_leverage_accrued_interest_request import PayLeverage
 from dora_client.models.pay_leverage_accrued_interest_response_envelope import PayLeverageAccruedInterestResponseEnvelope
 from dora_client.models.pool_price_response_envelope import PoolPriceResponseEnvelope
 from dora_client.models.promo_attribution_response import PromoAttributionResponse
+from dora_client.models.promo_campaign_selector_response import PromoCampaignSelectorResponse
 from dora_client.models.promo_claim_response_envelope import PromoClaimResponseEnvelope
 from dora_client.models.promo_link_batch_list_response import PromoLinkBatchListResponse
 from dora_client.models.promo_link_list_response import PromoLinkListResponse
-from dora_client.models.promo_link_status import PromoLinkStatus
 from dora_client.models.qr_reward_preview_envelope import QRRewardPreviewEnvelope
 from dora_client.models.register_affiliate_referrer_request import RegisterAffiliateReferrerRequest
 from dora_client.models.remove_trading_challenge_users_request import RemoveTradingChallengeUsersRequest
@@ -2877,6 +2877,7 @@ class DefaultApi:
     ) -> PromoClaimResponseEnvelope:
         """Claim a public QR promotion link
 
+        New users only. Send email only; campaign/link/source and affiliate selection are server-bound. Creates account, enrollment, referral attribution and encrypted delivery transactionally. One eligible account/email per campaign across all link types; existing accounts remain excluded. This does not guarantee a unique human across mailboxes. Successful reusable claims leave the link active. Permanent affiliate attribution is separate from originating link identity. Reusable failures have a per-link/email limit with a 15-minute inactivity reset, plus the route IP limit.
 
         :param token: Opaque bearer claim token (required)
         :type token: str
@@ -2954,6 +2955,7 @@ class DefaultApi:
     ) -> ApiResponse[PromoClaimResponseEnvelope]:
         """Claim a public QR promotion link
 
+        New users only. Send email only; campaign/link/source and affiliate selection are server-bound. Creates account, enrollment, referral attribution and encrypted delivery transactionally. One eligible account/email per campaign across all link types; existing accounts remain excluded. This does not guarantee a unique human across mailboxes. Successful reusable claims leave the link active. Permanent affiliate attribution is separate from originating link identity. Reusable failures have a per-link/email limit with a 15-minute inactivity reset, plus the route IP limit.
 
         :param token: Opaque bearer claim token (required)
         :type token: str
@@ -3031,6 +3033,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Claim a public QR promotion link
 
+        New users only. Send email only; campaign/link/source and affiliate selection are server-bound. Creates account, enrollment, referral attribution and encrypted delivery transactionally. One eligible account/email per campaign across all link types; existing accounts remain excluded. This does not guarantee a unique human across mailboxes. Successful reusable claims leave the link active. Permanent affiliate attribution is separate from originating link identity. Reusable failures have a per-link/email limit with a 15-minute inactivity reset, plus the route IP limit.
 
         :param token: Opaque bearer claim token (required)
         :type token: str
@@ -7415,6 +7418,298 @@ class DefaultApi:
 
 
     @validate_call
+    async def enable_affiliate_referrer(
+        self,
+        program_id: UUID,
+        referrer_id: UUID,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> AffiliateReferrerEnvelope:
+        """Re-enable an existing referrer
+
+        Uses the same ADMIN, tenant INTEGRATOR, and assigned-program AFFILIATE_MANAGER permissions as disabling. Clears disabled_at and disabled_by on the existing membership, preserving its ID, user, program, codes, customization, and attribution history. Already enabled returns 200 unchanged. Unknown or wrong-program members return 404. Does not unpause the program or change independent signup, account, tenant, or campaign rules.
+
+        :param program_id: (required)
+        :type program_id: UUID
+        :param referrer_id: (required)
+        :type referrer_id: UUID
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._enable_affiliate_referrer_serialize(
+            program_id=program_id,
+            referrer_id=referrer_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AffiliateReferrerEnvelope",
+            '400': "AffiliateError",
+            '401': "AffiliateError",
+            '403': "AffiliateError",
+            '404': "AffiliateError",
+            '500': "AffiliateError",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    async def enable_affiliate_referrer_with_http_info(
+        self,
+        program_id: UUID,
+        referrer_id: UUID,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[AffiliateReferrerEnvelope]:
+        """Re-enable an existing referrer
+
+        Uses the same ADMIN, tenant INTEGRATOR, and assigned-program AFFILIATE_MANAGER permissions as disabling. Clears disabled_at and disabled_by on the existing membership, preserving its ID, user, program, codes, customization, and attribution history. Already enabled returns 200 unchanged. Unknown or wrong-program members return 404. Does not unpause the program or change independent signup, account, tenant, or campaign rules.
+
+        :param program_id: (required)
+        :type program_id: UUID
+        :param referrer_id: (required)
+        :type referrer_id: UUID
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._enable_affiliate_referrer_serialize(
+            program_id=program_id,
+            referrer_id=referrer_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AffiliateReferrerEnvelope",
+            '400': "AffiliateError",
+            '401': "AffiliateError",
+            '403': "AffiliateError",
+            '404': "AffiliateError",
+            '500': "AffiliateError",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    async def enable_affiliate_referrer_without_preload_content(
+        self,
+        program_id: UUID,
+        referrer_id: UUID,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Re-enable an existing referrer
+
+        Uses the same ADMIN, tenant INTEGRATOR, and assigned-program AFFILIATE_MANAGER permissions as disabling. Clears disabled_at and disabled_by on the existing membership, preserving its ID, user, program, codes, customization, and attribution history. Already enabled returns 200 unchanged. Unknown or wrong-program members return 404. Does not unpause the program or change independent signup, account, tenant, or campaign rules.
+
+        :param program_id: (required)
+        :type program_id: UUID
+        :param referrer_id: (required)
+        :type referrer_id: UUID
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._enable_affiliate_referrer_serialize(
+            program_id=program_id,
+            referrer_id=referrer_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AffiliateReferrerEnvelope",
+            '400': "AffiliateError",
+            '401': "AffiliateError",
+            '403': "AffiliateError",
+            '404': "AffiliateError",
+            '500': "AffiliateError",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _enable_affiliate_referrer_serialize(
+        self,
+        program_id,
+        referrer_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if program_id is not None:
+            _path_params['program_id'] = program_id
+        if referrer_id is not None:
+            _path_params['referrer_id'] = referrer_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyAuthHeader', 
+            'bearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/v1/affiliate_programs/{program_id}/referrers/{referrer_id}/enable',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     async def export_promo_links_csv(
         self,
         batch_id: UUID,
@@ -7433,7 +7728,7 @@ class DefaultApi:
     ) -> str:
         """Export promotional links as CSV
 
-        Stream private claim URLs with Cache-Control private, no-store. ADMIN and same-tenant INTEGRATOR only.
+        Export saved links. Reusable CSV includes link_id, link_type, campaign_id, affiliate_program_id, affiliate_member_id, referral_code, url, status, expires_at and created_at, with no claimant columns. Check X-Promo-Export-Status trailer for complete. ADMIN, same-tenant INTEGRATOR, or AFFILIATE_MANAGER explicitly assigned to the owning QR campaign (including across tenants). Grants are checked on every request; tenant filters do not confer access.
 
         :param batch_id: (required)
         :type batch_id: UUID
@@ -7473,6 +7768,7 @@ class DefaultApi:
             '403': None,
             '404': None,
             '500': None,
+            '401': None,
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -7504,7 +7800,7 @@ class DefaultApi:
     ) -> ApiResponse[str]:
         """Export promotional links as CSV
 
-        Stream private claim URLs with Cache-Control private, no-store. ADMIN and same-tenant INTEGRATOR only.
+        Export saved links. Reusable CSV includes link_id, link_type, campaign_id, affiliate_program_id, affiliate_member_id, referral_code, url, status, expires_at and created_at, with no claimant columns. Check X-Promo-Export-Status trailer for complete. ADMIN, same-tenant INTEGRATOR, or AFFILIATE_MANAGER explicitly assigned to the owning QR campaign (including across tenants). Grants are checked on every request; tenant filters do not confer access.
 
         :param batch_id: (required)
         :type batch_id: UUID
@@ -7544,6 +7840,7 @@ class DefaultApi:
             '403': None,
             '404': None,
             '500': None,
+            '401': None,
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -7575,7 +7872,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Export promotional links as CSV
 
-        Stream private claim URLs with Cache-Control private, no-store. ADMIN and same-tenant INTEGRATOR only.
+        Export saved links. Reusable CSV includes link_id, link_type, campaign_id, affiliate_program_id, affiliate_member_id, referral_code, url, status, expires_at and created_at, with no claimant columns. Check X-Promo-Export-Status trailer for complete. ADMIN, same-tenant INTEGRATOR, or AFFILIATE_MANAGER explicitly assigned to the owning QR campaign (including across tenants). Grants are checked on every request; tenant filters do not confer access.
 
         :param batch_id: (required)
         :type batch_id: UUID
@@ -7615,6 +7912,7 @@ class DefaultApi:
             '403': None,
             '404': None,
             '500': None,
+            '401': None,
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -26778,6 +27076,291 @@ class DefaultApi:
 
 
     @validate_call
+    async def grant_promo_campaign_manager(
+        self,
+        trading_challenge_id: UUID,
+        manager_id: UUID,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> None:
+        """Grant QR campaign access for an Affiliate Manager
+
+        ADMIN only. Idempotent PUT with no body. QR campaign grants are independent of home tenant and affiliate programs. Removal takes effect on the next protected request after commit; already authorized reads/downloads may finish. Batch issuance and removal serialize on the campaign lock.
+
+        :param trading_challenge_id: (required)
+        :type trading_challenge_id: UUID
+        :param manager_id: (required)
+        :type manager_id: UUID
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._grant_promo_campaign_manager_serialize(
+            trading_challenge_id=trading_challenge_id,
+            manager_id=manager_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '204': None,
+            '400': None,
+            '401': None,
+            '403': None,
+            '404': None,
+            '500': None,
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    async def grant_promo_campaign_manager_with_http_info(
+        self,
+        trading_challenge_id: UUID,
+        manager_id: UUID,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[None]:
+        """Grant QR campaign access for an Affiliate Manager
+
+        ADMIN only. Idempotent PUT with no body. QR campaign grants are independent of home tenant and affiliate programs. Removal takes effect on the next protected request after commit; already authorized reads/downloads may finish. Batch issuance and removal serialize on the campaign lock.
+
+        :param trading_challenge_id: (required)
+        :type trading_challenge_id: UUID
+        :param manager_id: (required)
+        :type manager_id: UUID
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._grant_promo_campaign_manager_serialize(
+            trading_challenge_id=trading_challenge_id,
+            manager_id=manager_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '204': None,
+            '400': None,
+            '401': None,
+            '403': None,
+            '404': None,
+            '500': None,
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    async def grant_promo_campaign_manager_without_preload_content(
+        self,
+        trading_challenge_id: UUID,
+        manager_id: UUID,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Grant QR campaign access for an Affiliate Manager
+
+        ADMIN only. Idempotent PUT with no body. QR campaign grants are independent of home tenant and affiliate programs. Removal takes effect on the next protected request after commit; already authorized reads/downloads may finish. Batch issuance and removal serialize on the campaign lock.
+
+        :param trading_challenge_id: (required)
+        :type trading_challenge_id: UUID
+        :param manager_id: (required)
+        :type manager_id: UUID
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._grant_promo_campaign_manager_serialize(
+            trading_challenge_id=trading_challenge_id,
+            manager_id=manager_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '204': None,
+            '400': None,
+            '401': None,
+            '403': None,
+            '404': None,
+            '500': None,
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _grant_promo_campaign_manager_serialize(
+        self,
+        trading_challenge_id,
+        manager_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if trading_challenge_id is not None:
+            _path_params['trading_challenge_id'] = trading_challenge_id
+        if manager_id is not None:
+            _path_params['manager_id'] = manager_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyAuthHeader', 
+            'bearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/v1/promo_campaigns/{trading_challenge_id}/managers/{manager_id}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     async def issue_promo_link_batch(
         self,
         trading_challenge_id: UUID,
@@ -26798,7 +27381,7 @@ class DefaultApi:
     ) -> IssuePromoLinkBatchResponse:
         """Issue a promotional link batch
 
-        Atomically reserve QR campaign capacity and create opaque, encrypted promotional links. ADMIN and same-tenant INTEGRATOR only. Exact idempotent replays return 200; first creation returns 201; key reuse with another payload returns 409.
+        Mint single-use links or one reusable link bound to an existing affiliate program/member/code. Requires Idempotency-Key. Only committed new-user signups consume the shared campaign max_users limit; unused single-use links have no reserved place. Uses DORA-6544 campaign-grant authorization. Affiliate selection also requires independent access to the selected program. Migration 208 must precede reusable-link migration 209. Enable reusable creation in FE after all API replicas and reward-settlement daemon processes support this contract; older replicas fail closed instead of consuming reusable links. No program-only codes or landing-page selector. ADMIN, same-tenant INTEGRATOR, or AFFILIATE_MANAGER explicitly assigned to the owning QR campaign (including across tenants). Grants are checked on every request; tenant filters do not confer access. Exact idempotent replays return 200; first creation returns 201; key reuse with another payload returns 409.
 
         :param trading_challenge_id: (required)
         :type trading_challenge_id: UUID
@@ -26846,6 +27429,7 @@ class DefaultApi:
             '404': None,
             '409': None,
             '500': None,
+            '401': None,
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -26879,7 +27463,7 @@ class DefaultApi:
     ) -> ApiResponse[IssuePromoLinkBatchResponse]:
         """Issue a promotional link batch
 
-        Atomically reserve QR campaign capacity and create opaque, encrypted promotional links. ADMIN and same-tenant INTEGRATOR only. Exact idempotent replays return 200; first creation returns 201; key reuse with another payload returns 409.
+        Mint single-use links or one reusable link bound to an existing affiliate program/member/code. Requires Idempotency-Key. Only committed new-user signups consume the shared campaign max_users limit; unused single-use links have no reserved place. Uses DORA-6544 campaign-grant authorization. Affiliate selection also requires independent access to the selected program. Migration 208 must precede reusable-link migration 209. Enable reusable creation in FE after all API replicas and reward-settlement daemon processes support this contract; older replicas fail closed instead of consuming reusable links. No program-only codes or landing-page selector. ADMIN, same-tenant INTEGRATOR, or AFFILIATE_MANAGER explicitly assigned to the owning QR campaign (including across tenants). Grants are checked on every request; tenant filters do not confer access. Exact idempotent replays return 200; first creation returns 201; key reuse with another payload returns 409.
 
         :param trading_challenge_id: (required)
         :type trading_challenge_id: UUID
@@ -26927,6 +27511,7 @@ class DefaultApi:
             '404': None,
             '409': None,
             '500': None,
+            '401': None,
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -26960,7 +27545,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Issue a promotional link batch
 
-        Atomically reserve QR campaign capacity and create opaque, encrypted promotional links. ADMIN and same-tenant INTEGRATOR only. Exact idempotent replays return 200; first creation returns 201; key reuse with another payload returns 409.
+        Mint single-use links or one reusable link bound to an existing affiliate program/member/code. Requires Idempotency-Key. Only committed new-user signups consume the shared campaign max_users limit; unused single-use links have no reserved place. Uses DORA-6544 campaign-grant authorization. Affiliate selection also requires independent access to the selected program. Migration 208 must precede reusable-link migration 209. Enable reusable creation in FE after all API replicas and reward-settlement daemon processes support this contract; older replicas fail closed instead of consuming reusable links. No program-only codes or landing-page selector. ADMIN, same-tenant INTEGRATOR, or AFFILIATE_MANAGER explicitly assigned to the owning QR campaign (including across tenants). Grants are checked on every request; tenant filters do not confer access. Exact idempotent replays return 200; first creation returns 201; key reuse with another payload returns 409.
 
         :param trading_challenge_id: (required)
         :type trading_challenge_id: UUID
@@ -27008,6 +27593,7 @@ class DefaultApi:
             '404': None,
             '409': None,
             '500': None,
+            '401': None,
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -32241,6 +32827,7 @@ class DefaultApi:
         program_id: UUID,
         limit: Optional[Annotated[int, Field(le=100, strict=True, ge=1)]] = None,
         page: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="One-based page; the resulting offset must not exceed 2147483647. Results sort by created_at then id descending.")] = None,
+        include_disabled: Annotated[Optional[StrictBool], Field(description="Include disabled memberships for management. Disabled codes remain ineligible for new referrals.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -32256,7 +32843,7 @@ class DefaultApi:
     ) -> AffiliateReferrerListEnvelope:
         """List program referrers
 
-        ADMIN or INTEGRATOR required. Integrators are restricted to their own tenant; ADMIN overrides other roles. Includes registrations in inactive programs.
+        ADMIN, INTEGRATOR, or AFFILIATE_MANAGER required within the same tenant and assigned-program scope as disabling. Active memberships only by default; include_disabled=true also returns disabled memberships. Includes memberships in paused programs.
 
         :param program_id: (required)
         :type program_id: UUID
@@ -32264,6 +32851,8 @@ class DefaultApi:
         :type limit: int
         :param page: One-based page; the resulting offset must not exceed 2147483647. Results sort by created_at then id descending.
         :type page: int
+        :param include_disabled: Include disabled memberships for management. Disabled codes remain ineligible for new referrals.
+        :type include_disabled: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -32290,6 +32879,7 @@ class DefaultApi:
             program_id=program_id,
             limit=limit,
             page=page,
+            include_disabled=include_disabled,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -32321,6 +32911,7 @@ class DefaultApi:
         program_id: UUID,
         limit: Optional[Annotated[int, Field(le=100, strict=True, ge=1)]] = None,
         page: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="One-based page; the resulting offset must not exceed 2147483647. Results sort by created_at then id descending.")] = None,
+        include_disabled: Annotated[Optional[StrictBool], Field(description="Include disabled memberships for management. Disabled codes remain ineligible for new referrals.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -32336,7 +32927,7 @@ class DefaultApi:
     ) -> ApiResponse[AffiliateReferrerListEnvelope]:
         """List program referrers
 
-        ADMIN or INTEGRATOR required. Integrators are restricted to their own tenant; ADMIN overrides other roles. Includes registrations in inactive programs.
+        ADMIN, INTEGRATOR, or AFFILIATE_MANAGER required within the same tenant and assigned-program scope as disabling. Active memberships only by default; include_disabled=true also returns disabled memberships. Includes memberships in paused programs.
 
         :param program_id: (required)
         :type program_id: UUID
@@ -32344,6 +32935,8 @@ class DefaultApi:
         :type limit: int
         :param page: One-based page; the resulting offset must not exceed 2147483647. Results sort by created_at then id descending.
         :type page: int
+        :param include_disabled: Include disabled memberships for management. Disabled codes remain ineligible for new referrals.
+        :type include_disabled: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -32370,6 +32963,7 @@ class DefaultApi:
             program_id=program_id,
             limit=limit,
             page=page,
+            include_disabled=include_disabled,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -32401,6 +32995,7 @@ class DefaultApi:
         program_id: UUID,
         limit: Optional[Annotated[int, Field(le=100, strict=True, ge=1)]] = None,
         page: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="One-based page; the resulting offset must not exceed 2147483647. Results sort by created_at then id descending.")] = None,
+        include_disabled: Annotated[Optional[StrictBool], Field(description="Include disabled memberships for management. Disabled codes remain ineligible for new referrals.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -32416,7 +33011,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """List program referrers
 
-        ADMIN or INTEGRATOR required. Integrators are restricted to their own tenant; ADMIN overrides other roles. Includes registrations in inactive programs.
+        ADMIN, INTEGRATOR, or AFFILIATE_MANAGER required within the same tenant and assigned-program scope as disabling. Active memberships only by default; include_disabled=true also returns disabled memberships. Includes memberships in paused programs.
 
         :param program_id: (required)
         :type program_id: UUID
@@ -32424,6 +33019,8 @@ class DefaultApi:
         :type limit: int
         :param page: One-based page; the resulting offset must not exceed 2147483647. Results sort by created_at then id descending.
         :type page: int
+        :param include_disabled: Include disabled memberships for management. Disabled codes remain ineligible for new referrals.
+        :type include_disabled: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -32450,6 +33047,7 @@ class DefaultApi:
             program_id=program_id,
             limit=limit,
             page=page,
+            include_disabled=include_disabled,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -32476,6 +33074,7 @@ class DefaultApi:
         program_id,
         limit,
         page,
+        include_disabled,
         _request_auth,
         _content_type,
         _headers,
@@ -32507,6 +33106,10 @@ class DefaultApi:
         if page is not None:
             
             _query_params.append(('page', page))
+            
+        if include_disabled is not None:
+            
+            _query_params.append(('include_disabled', include_disabled))
             
         # process the header parameters
         # process the form parameters
@@ -33777,6 +34380,282 @@ class DefaultApi:
         return self.api_client.param_serialize(
             method='GET',
             resource_path='/v1/web3/deposits',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    async def list_managed_promo_campaigns(
+        self,
+        tenant_id: Annotated[Optional[StrictStr], Field(description="Optional filter within the authorized campaign set; authenticate as the home-tenant account.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> PromoCampaignSelectorResponse:
+        """List accessible Campaign Links campaigns
+
+        Authenticated QR campaign selector. ADMIN, same-tenant INTEGRATOR, or AFFILIATE_MANAGER explicitly assigned to the owning QR campaign (including across tenants). Grants are checked on every request; tenant filters do not confer access. Managers with no grants receive an empty campaigns array. Returns all assigned tenants unless tenant_id narrows the set. Public challenge listing is unchanged.
+
+        :param tenant_id: Optional filter within the authorized campaign set; authenticate as the home-tenant account.
+        :type tenant_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._list_managed_promo_campaigns_serialize(
+            tenant_id=tenant_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "PromoCampaignSelectorResponse",
+            '400': None,
+            '401': None,
+            '403': None,
+            '500': None,
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    async def list_managed_promo_campaigns_with_http_info(
+        self,
+        tenant_id: Annotated[Optional[StrictStr], Field(description="Optional filter within the authorized campaign set; authenticate as the home-tenant account.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[PromoCampaignSelectorResponse]:
+        """List accessible Campaign Links campaigns
+
+        Authenticated QR campaign selector. ADMIN, same-tenant INTEGRATOR, or AFFILIATE_MANAGER explicitly assigned to the owning QR campaign (including across tenants). Grants are checked on every request; tenant filters do not confer access. Managers with no grants receive an empty campaigns array. Returns all assigned tenants unless tenant_id narrows the set. Public challenge listing is unchanged.
+
+        :param tenant_id: Optional filter within the authorized campaign set; authenticate as the home-tenant account.
+        :type tenant_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._list_managed_promo_campaigns_serialize(
+            tenant_id=tenant_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "PromoCampaignSelectorResponse",
+            '400': None,
+            '401': None,
+            '403': None,
+            '500': None,
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    async def list_managed_promo_campaigns_without_preload_content(
+        self,
+        tenant_id: Annotated[Optional[StrictStr], Field(description="Optional filter within the authorized campaign set; authenticate as the home-tenant account.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """List accessible Campaign Links campaigns
+
+        Authenticated QR campaign selector. ADMIN, same-tenant INTEGRATOR, or AFFILIATE_MANAGER explicitly assigned to the owning QR campaign (including across tenants). Grants are checked on every request; tenant filters do not confer access. Managers with no grants receive an empty campaigns array. Returns all assigned tenants unless tenant_id narrows the set. Public challenge listing is unchanged.
+
+        :param tenant_id: Optional filter within the authorized campaign set; authenticate as the home-tenant account.
+        :type tenant_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._list_managed_promo_campaigns_serialize(
+            tenant_id=tenant_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "PromoCampaignSelectorResponse",
+            '400': None,
+            '401': None,
+            '403': None,
+            '500': None,
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _list_managed_promo_campaigns_serialize(
+        self,
+        tenant_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        if tenant_id is not None:
+            
+            _query_params.append(('tenant_id', tenant_id))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyAuthHeader', 
+            'bearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/v1/promo_campaigns',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -35143,7 +36022,7 @@ class DefaultApi:
     ) -> PromoLinkBatchListResponse:
         """List promotional link batches
 
-        Return source metadata and ISSUED, CLAIMED, and REVOKED counts for each batch. ADMIN and same-tenant INTEGRATOR only.
+        Retrieve saved Campaign Links with campaign, link_type, affiliate selection, creation date and signups. Reusable entries omit allocation/issued/claimed/revoked counts. The same member can have many links/campaigns; separate link IDs preserve origin identity for future landing pages. Landing-page selection is out of scope. ADMIN, same-tenant INTEGRATOR, or AFFILIATE_MANAGER explicitly assigned to the owning QR campaign (including across tenants). Grants are checked on every request; tenant filters do not confer access.
 
         :param trading_challenge_id: (required)
         :type trading_challenge_id: UUID
@@ -35183,6 +36062,7 @@ class DefaultApi:
             '403': None,
             '404': None,
             '500': None,
+            '401': None,
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -35214,7 +36094,7 @@ class DefaultApi:
     ) -> ApiResponse[PromoLinkBatchListResponse]:
         """List promotional link batches
 
-        Return source metadata and ISSUED, CLAIMED, and REVOKED counts for each batch. ADMIN and same-tenant INTEGRATOR only.
+        Retrieve saved Campaign Links with campaign, link_type, affiliate selection, creation date and signups. Reusable entries omit allocation/issued/claimed/revoked counts. The same member can have many links/campaigns; separate link IDs preserve origin identity for future landing pages. Landing-page selection is out of scope. ADMIN, same-tenant INTEGRATOR, or AFFILIATE_MANAGER explicitly assigned to the owning QR campaign (including across tenants). Grants are checked on every request; tenant filters do not confer access.
 
         :param trading_challenge_id: (required)
         :type trading_challenge_id: UUID
@@ -35254,6 +36134,7 @@ class DefaultApi:
             '403': None,
             '404': None,
             '500': None,
+            '401': None,
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -35285,7 +36166,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """List promotional link batches
 
-        Return source metadata and ISSUED, CLAIMED, and REVOKED counts for each batch. ADMIN and same-tenant INTEGRATOR only.
+        Retrieve saved Campaign Links with campaign, link_type, affiliate selection, creation date and signups. Reusable entries omit allocation/issued/claimed/revoked counts. The same member can have many links/campaigns; separate link IDs preserve origin identity for future landing pages. Landing-page selection is out of scope. ADMIN, same-tenant INTEGRATOR, or AFFILIATE_MANAGER explicitly assigned to the owning QR campaign (including across tenants). Grants are checked on every request; tenant filters do not confer access.
 
         :param trading_challenge_id: (required)
         :type trading_challenge_id: UUID
@@ -35325,6 +36206,7 @@ class DefaultApi:
             '403': None,
             '404': None,
             '500': None,
+            '401': None,
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -35404,7 +36286,7 @@ class DefaultApi:
         batch_id: UUID,
         limit: Optional[Annotated[int, Field(le=500, strict=True, ge=1)]] = None,
         cursor: Optional[StrictStr] = None,
-        status: Optional[PromoLinkStatus] = None,
+        status: Annotated[Optional[StrictStr], Field(description="ACTIVE selects active reusable links. Single-use links retain ISSUED/CLAIMED/REVOKED.")] = None,
         reveal: Optional[StrictBool] = None,
         _request_timeout: Union[
             None,
@@ -35421,7 +36303,7 @@ class DefaultApi:
     ) -> PromoLinkListResponse:
         """List promotional links
 
-        Keyset-paginated batch links. URLs are omitted by default and decrypted only when reveal=true. ADMIN and same-tenant INTEGRATOR only.
+        Use reveal=true to copy a saved private URL. Reusable entries show ACTIVE or REVOKED and have no single claimant. Treat URLs as private and do not cache/log them. ADMIN, same-tenant INTEGRATOR, or AFFILIATE_MANAGER explicitly assigned to the owning QR campaign (including across tenants). Grants are checked on every request; tenant filters do not confer access.
 
         :param batch_id: (required)
         :type batch_id: UUID
@@ -35429,8 +36311,8 @@ class DefaultApi:
         :type limit: int
         :param cursor:
         :type cursor: str
-        :param status:
-        :type status: PromoLinkStatus
+        :param status: ACTIVE selects active reusable links. Single-use links retain ISSUED/CLAIMED/REVOKED.
+        :type status: str
         :param reveal:
         :type reveal: bool
         :param _request_timeout: timeout setting for this request. If one
@@ -35473,6 +36355,7 @@ class DefaultApi:
             '403': None,
             '404': None,
             '500': None,
+            '401': None,
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -35491,7 +36374,7 @@ class DefaultApi:
         batch_id: UUID,
         limit: Optional[Annotated[int, Field(le=500, strict=True, ge=1)]] = None,
         cursor: Optional[StrictStr] = None,
-        status: Optional[PromoLinkStatus] = None,
+        status: Annotated[Optional[StrictStr], Field(description="ACTIVE selects active reusable links. Single-use links retain ISSUED/CLAIMED/REVOKED.")] = None,
         reveal: Optional[StrictBool] = None,
         _request_timeout: Union[
             None,
@@ -35508,7 +36391,7 @@ class DefaultApi:
     ) -> ApiResponse[PromoLinkListResponse]:
         """List promotional links
 
-        Keyset-paginated batch links. URLs are omitted by default and decrypted only when reveal=true. ADMIN and same-tenant INTEGRATOR only.
+        Use reveal=true to copy a saved private URL. Reusable entries show ACTIVE or REVOKED and have no single claimant. Treat URLs as private and do not cache/log them. ADMIN, same-tenant INTEGRATOR, or AFFILIATE_MANAGER explicitly assigned to the owning QR campaign (including across tenants). Grants are checked on every request; tenant filters do not confer access.
 
         :param batch_id: (required)
         :type batch_id: UUID
@@ -35516,8 +36399,8 @@ class DefaultApi:
         :type limit: int
         :param cursor:
         :type cursor: str
-        :param status:
-        :type status: PromoLinkStatus
+        :param status: ACTIVE selects active reusable links. Single-use links retain ISSUED/CLAIMED/REVOKED.
+        :type status: str
         :param reveal:
         :type reveal: bool
         :param _request_timeout: timeout setting for this request. If one
@@ -35560,6 +36443,7 @@ class DefaultApi:
             '403': None,
             '404': None,
             '500': None,
+            '401': None,
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -35578,7 +36462,7 @@ class DefaultApi:
         batch_id: UUID,
         limit: Optional[Annotated[int, Field(le=500, strict=True, ge=1)]] = None,
         cursor: Optional[StrictStr] = None,
-        status: Optional[PromoLinkStatus] = None,
+        status: Annotated[Optional[StrictStr], Field(description="ACTIVE selects active reusable links. Single-use links retain ISSUED/CLAIMED/REVOKED.")] = None,
         reveal: Optional[StrictBool] = None,
         _request_timeout: Union[
             None,
@@ -35595,7 +36479,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """List promotional links
 
-        Keyset-paginated batch links. URLs are omitted by default and decrypted only when reveal=true. ADMIN and same-tenant INTEGRATOR only.
+        Use reveal=true to copy a saved private URL. Reusable entries show ACTIVE or REVOKED and have no single claimant. Treat URLs as private and do not cache/log them. ADMIN, same-tenant INTEGRATOR, or AFFILIATE_MANAGER explicitly assigned to the owning QR campaign (including across tenants). Grants are checked on every request; tenant filters do not confer access.
 
         :param batch_id: (required)
         :type batch_id: UUID
@@ -35603,8 +36487,8 @@ class DefaultApi:
         :type limit: int
         :param cursor:
         :type cursor: str
-        :param status:
-        :type status: PromoLinkStatus
+        :param status: ACTIVE selects active reusable links. Single-use links retain ISSUED/CLAIMED/REVOKED.
+        :type status: str
         :param reveal:
         :type reveal: bool
         :param _request_timeout: timeout setting for this request. If one
@@ -35647,6 +36531,7 @@ class DefaultApi:
             '403': None,
             '404': None,
             '500': None,
+            '401': None,
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -35696,7 +36581,7 @@ class DefaultApi:
             
         if status is not None:
             
-            _query_params.append(('status', status.value))
+            _query_params.append(('status', status))
             
         if reveal is not None:
             
@@ -39211,6 +40096,291 @@ class DefaultApi:
 
 
     @validate_call
+    async def remove_promo_campaign_manager(
+        self,
+        trading_challenge_id: UUID,
+        manager_id: UUID,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> None:
+        """Remove QR campaign access for an Affiliate Manager
+
+        ADMIN only. Idempotent DELETE with no body. QR campaign grants are independent of home tenant and affiliate programs. Removal takes effect on the next protected request after commit; already authorized reads/downloads may finish. Batch issuance and removal serialize on the campaign lock.
+
+        :param trading_challenge_id: (required)
+        :type trading_challenge_id: UUID
+        :param manager_id: (required)
+        :type manager_id: UUID
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._remove_promo_campaign_manager_serialize(
+            trading_challenge_id=trading_challenge_id,
+            manager_id=manager_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '204': None,
+            '400': None,
+            '401': None,
+            '403': None,
+            '404': None,
+            '500': None,
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    async def remove_promo_campaign_manager_with_http_info(
+        self,
+        trading_challenge_id: UUID,
+        manager_id: UUID,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[None]:
+        """Remove QR campaign access for an Affiliate Manager
+
+        ADMIN only. Idempotent DELETE with no body. QR campaign grants are independent of home tenant and affiliate programs. Removal takes effect on the next protected request after commit; already authorized reads/downloads may finish. Batch issuance and removal serialize on the campaign lock.
+
+        :param trading_challenge_id: (required)
+        :type trading_challenge_id: UUID
+        :param manager_id: (required)
+        :type manager_id: UUID
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._remove_promo_campaign_manager_serialize(
+            trading_challenge_id=trading_challenge_id,
+            manager_id=manager_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '204': None,
+            '400': None,
+            '401': None,
+            '403': None,
+            '404': None,
+            '500': None,
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    async def remove_promo_campaign_manager_without_preload_content(
+        self,
+        trading_challenge_id: UUID,
+        manager_id: UUID,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Remove QR campaign access for an Affiliate Manager
+
+        ADMIN only. Idempotent DELETE with no body. QR campaign grants are independent of home tenant and affiliate programs. Removal takes effect on the next protected request after commit; already authorized reads/downloads may finish. Batch issuance and removal serialize on the campaign lock.
+
+        :param trading_challenge_id: (required)
+        :type trading_challenge_id: UUID
+        :param manager_id: (required)
+        :type manager_id: UUID
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._remove_promo_campaign_manager_serialize(
+            trading_challenge_id=trading_challenge_id,
+            manager_id=manager_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '204': None,
+            '400': None,
+            '401': None,
+            '403': None,
+            '404': None,
+            '500': None,
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _remove_promo_campaign_manager_serialize(
+        self,
+        trading_challenge_id,
+        manager_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if trading_challenge_id is not None:
+            _path_params['trading_challenge_id'] = trading_challenge_id
+        if manager_id is not None:
+            _path_params['manager_id'] = manager_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyAuthHeader', 
+            'bearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='DELETE',
+            resource_path='/v1/promo_campaigns/{trading_challenge_id}/managers/{manager_id}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     async def remove_trading_challenge_users(
         self,
         remove_trading_challenge_users_request: Optional[RemoveTradingChallengeUsersRequest],
@@ -39516,7 +40686,7 @@ class DefaultApi:
     ) -> str:
         """Render a promotional link QR code
 
-        Render the exact private claim URL as PNG with Cache-Control private, no-store. ADMIN and same-tenant INTEGRATOR only.
+        Download private QR PNG with Content-Disposition filename promo-link-{link_id}.png; the same link_id is in saved links and CSV. ADMIN, same-tenant INTEGRATOR, or AFFILIATE_MANAGER explicitly assigned to the owning QR campaign (including across tenants). Grants are checked on every request; tenant filters do not confer access.
 
         :param link_id: (required)
         :type link_id: UUID
@@ -39565,6 +40735,7 @@ class DefaultApi:
             '403': None,
             '404': None,
             '500': None,
+            '401': None,
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -39599,7 +40770,7 @@ class DefaultApi:
     ) -> ApiResponse[str]:
         """Render a promotional link QR code
 
-        Render the exact private claim URL as PNG with Cache-Control private, no-store. ADMIN and same-tenant INTEGRATOR only.
+        Download private QR PNG with Content-Disposition filename promo-link-{link_id}.png; the same link_id is in saved links and CSV. ADMIN, same-tenant INTEGRATOR, or AFFILIATE_MANAGER explicitly assigned to the owning QR campaign (including across tenants). Grants are checked on every request; tenant filters do not confer access.
 
         :param link_id: (required)
         :type link_id: UUID
@@ -39648,6 +40819,7 @@ class DefaultApi:
             '403': None,
             '404': None,
             '500': None,
+            '401': None,
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -39682,7 +40854,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Render a promotional link QR code
 
-        Render the exact private claim URL as PNG with Cache-Control private, no-store. ADMIN and same-tenant INTEGRATOR only.
+        Download private QR PNG with Content-Disposition filename promo-link-{link_id}.png; the same link_id is in saved links and CSV. ADMIN, same-tenant INTEGRATOR, or AFFILIATE_MANAGER explicitly assigned to the owning QR campaign (including across tenants). Grants are checked on every request; tenant filters do not confer access.
 
         :param link_id: (required)
         :type link_id: UUID
@@ -39731,6 +40903,7 @@ class DefaultApi:
             '403': None,
             '404': None,
             '500': None,
+            '401': None,
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -40934,7 +42107,7 @@ class DefaultApi:
     ) -> RevokePromoLinkResponse:
         """Revoke a promotional link
 
-        Revoke an unclaimed link and return one unit of QR campaign capacity. Repeating an already-revoked request is idempotent; claimed links return 409.
+        Revoke an active promo link. Revoking a reusable link prevents new signups and preserves existing participants. Does not release a successful signup place.
 
         :param link_id: (required)
         :type link_id: UUID
@@ -41010,7 +42183,7 @@ class DefaultApi:
     ) -> ApiResponse[RevokePromoLinkResponse]:
         """Revoke a promotional link
 
-        Revoke an unclaimed link and return one unit of QR campaign capacity. Repeating an already-revoked request is idempotent; claimed links return 409.
+        Revoke an active promo link. Revoking a reusable link prevents new signups and preserves existing participants. Does not release a successful signup place.
 
         :param link_id: (required)
         :type link_id: UUID
@@ -41086,7 +42259,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Revoke a promotional link
 
-        Revoke an unclaimed link and return one unit of QR campaign capacity. Repeating an already-revoked request is idempotent; claimed links return 409.
+        Revoke an active promo link. Revoking a reusable link prevents new signups and preserves existing participants. Does not release a successful signup place.
 
         :param link_id: (required)
         :type link_id: UUID

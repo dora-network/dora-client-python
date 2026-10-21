@@ -35,7 +35,7 @@ class TestCreateOrdersBulkResponse(unittest.TestCase):
         model = CreateOrdersBulkResponse()
         if include_optional:
             return CreateOrdersBulkResponse(
-                data = dora_client.models.create_orders_bulk_response_all_of_data.CreateOrdersBulkResponse_allOf_data(
+                data = dora_client.models.create_orders_bulk_response_data.CreateOrdersBulkResponseData(
                     created = 56, 
                     rejected = 56, 
                     results = [

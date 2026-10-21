@@ -43,7 +43,13 @@ class TestPromoLinkBatchSummary(unittest.TestCase):
                 issued = 56,
                 claimed = 56,
                 revoked = 56,
-                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f')
+                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                link_type = 'SINGLE_USE',
+                affiliate_program_id = '',
+                affiliate_member_id = '',
+                referral_code = '',
+                campaign_id = '',
+                signups = 56
             )
         else:
             return PromoLinkBatchSummary(
@@ -51,10 +57,6 @@ class TestPromoLinkBatchSummary(unittest.TestCase):
                 source_type = 'KOL',
                 source_id = '',
                 source_name = '',
-                allocation = 56,
-                issued = 56,
-                claimed = 56,
-                revoked = 56,
                 created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
         )
         """

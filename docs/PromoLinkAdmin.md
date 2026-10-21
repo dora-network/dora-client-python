@@ -8,11 +8,12 @@ Name | Type | Description | Notes
 **id** | **UUID** |  | 
 **token_prefix** | **str** |  | 
 **url** | **str** | Only present when reveal&#x3D;true. Private; do not log or cache. | [optional] 
-**status** | [**PromoLinkStatus**](PromoLinkStatus.md) |  | 
+**status** | **str** | Reusable links use ACTIVE or REVOKED and have no single claimant. | 
 **expires_at** | **datetime** |  | 
 **claimed_at** | **datetime** |  | [optional] 
 **claimed_email** | **str** | Masked as the first character, three asterisks, and domain. | [optional] 
 **user_id** | **UUID** |  | [optional] 
+**link_type** | **str** | Defaults to SINGLE_USE for existing clients. REUSABLE creates one tracked link without a quantity. | [optional] 
 
 ## Example
 

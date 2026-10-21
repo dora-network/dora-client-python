@@ -9,11 +9,17 @@ Name | Type | Description | Notes
 **source_type** | [**PromoSourceType**](PromoSourceType.md) |  | 
 **source_id** | **str** |  | 
 **source_name** | **str** |  | 
-**allocation** | **int** |  | 
-**issued** | **int** |  | 
-**claimed** | **int** |  | 
-**revoked** | **int** |  | 
+**allocation** | **int** |  | [optional] 
+**issued** | **int** |  | [optional] 
+**claimed** | **int** |  | [optional] 
+**revoked** | **int** |  | [optional] 
 **created_at** | **datetime** |  | 
+**link_type** | **str** | Defaults to SINGLE_USE for existing clients. REUSABLE creates one tracked link without a quantity. | [optional] 
+**affiliate_program_id** | **UUID** |  | [optional] 
+**affiliate_member_id** | **UUID** | Existing affiliate referrer/member ID, not user ID. | [optional] 
+**referral_code** | **str** | An existing code belonging to the selected member. Required with both IDs for reusable links; bound on the server and revalidated at claim time. | [optional] 
+**campaign_id** | **UUID** |  | [optional] 
+**signups** | **int** | Successful signups; reusable links omit allocation/issued/claimed/revoked counts. | [optional] 
 
 ## Example
 

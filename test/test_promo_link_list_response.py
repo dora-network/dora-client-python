@@ -35,7 +35,7 @@ class TestPromoLinkListResponse(unittest.TestCase):
         model = PromoLinkListResponse()
         if include_optional:
             return PromoLinkListResponse(
-                data = dora_client.models.promo_link_list_response_all_of_data.PromoLinkListResponse_allOf_data(
+                data = dora_client.models.promo_link_list_response_data.PromoLinkListResponseData(
                     links = [
                         dora_client.models.promo_link_admin.PromoLinkAdmin(
                             id = '', 
@@ -45,7 +45,8 @@ class TestPromoLinkListResponse(unittest.TestCase):
                             expires_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                             claimed_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                             claimed_email = '', 
-                            user_id = '', )
+                            user_id = '', 
+                            link_type = 'SINGLE_USE', )
                         ], 
                     next_cursor = '', ),
                 error = '',

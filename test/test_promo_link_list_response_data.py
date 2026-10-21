@@ -14,10 +14,10 @@
 
 import unittest
 
-from dora_client.models.promo_link_list_response_all_of_data import PromoLinkListResponseAllOfData
+from dora_client.models.promo_link_list_response_data import PromoLinkListResponseData
 
-class TestPromoLinkListResponseAllOfData(unittest.TestCase):
-    """PromoLinkListResponseAllOfData unit test stubs"""
+class TestPromoLinkListResponseData(unittest.TestCase):
+    """PromoLinkListResponseData unit test stubs"""
 
     def setUp(self):
         pass
@@ -25,16 +25,16 @@ class TestPromoLinkListResponseAllOfData(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> PromoLinkListResponseAllOfData:
-        """Test PromoLinkListResponseAllOfData
+    def make_instance(self, include_optional) -> PromoLinkListResponseData:
+        """Test PromoLinkListResponseData
             include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `PromoLinkListResponseAllOfData`
+        # uncomment below to create an instance of `PromoLinkListResponseData`
         """
-        model = PromoLinkListResponseAllOfData()
+        model = PromoLinkListResponseData()
         if include_optional:
-            return PromoLinkListResponseAllOfData(
+            return PromoLinkListResponseData(
                 links = [
                     dora_client.models.promo_link_admin.PromoLinkAdmin(
                         id = '', 
@@ -44,12 +44,13 @@ class TestPromoLinkListResponseAllOfData(unittest.TestCase):
                         expires_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         claimed_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         claimed_email = '', 
-                        user_id = '', )
+                        user_id = '', 
+                        link_type = 'SINGLE_USE', )
                     ],
                 next_cursor = ''
             )
         else:
-            return PromoLinkListResponseAllOfData(
+            return PromoLinkListResponseData(
                 links = [
                     dora_client.models.promo_link_admin.PromoLinkAdmin(
                         id = '', 
@@ -59,13 +60,14 @@ class TestPromoLinkListResponseAllOfData(unittest.TestCase):
                         expires_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         claimed_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         claimed_email = '', 
-                        user_id = '', )
+                        user_id = '', 
+                        link_type = 'SINGLE_USE', )
                     ],
         )
         """
 
-    def testPromoLinkListResponseAllOfData(self):
-        """Test PromoLinkListResponseAllOfData"""
+    def testPromoLinkListResponseData(self):
+        """Test PromoLinkListResponseData"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

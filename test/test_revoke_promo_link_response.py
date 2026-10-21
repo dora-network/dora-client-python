@@ -35,7 +35,7 @@ class TestRevokePromoLinkResponse(unittest.TestCase):
         model = RevokePromoLinkResponse()
         if include_optional:
             return RevokePromoLinkResponse(
-                data = dora_client.models.revoke_promo_link_response_all_of_data.RevokePromoLinkResponse_allOf_data(
+                data = dora_client.models.revoke_promo_link_response_data.RevokePromoLinkResponseData(
                     id = '', 
                     status = 'REVOKED', 
                     repeated = True, ),

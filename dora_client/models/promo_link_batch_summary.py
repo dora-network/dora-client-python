@@ -18,8 +18,8 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
+from typing import Any, ClassVar, Dict, List, Optional
 from uuid import UUID
 from dora_client.models.promo_source_type import PromoSourceType
 from typing import Optional, Set
@@ -34,12 +34,28 @@ class PromoLinkBatchSummary(BaseModel):
     source_type: PromoSourceType
     source_id: StrictStr
     source_name: StrictStr
-    allocation: StrictInt
-    issued: StrictInt
-    claimed: StrictInt
-    revoked: StrictInt
+    allocation: Optional[StrictInt] = None
+    issued: Optional[StrictInt] = None
+    claimed: Optional[StrictInt] = None
+    revoked: Optional[StrictInt] = None
     created_at: datetime
-    __properties: ClassVar[List[str]] = ["id", "source_type", "source_id", "source_name", "allocation", "issued", "claimed", "revoked", "created_at"]
+    link_type: Optional[StrictStr] = Field(default=None, description="Defaults to SINGLE_USE for existing clients. REUSABLE creates one tracked link without a quantity.")
+    affiliate_program_id: Optional[UUID] = None
+    affiliate_member_id: Optional[UUID] = Field(default=None, description="Existing affiliate referrer/member ID, not user ID.")
+    referral_code: Optional[StrictStr] = Field(default=None, description="An existing code belonging to the selected member. Required with both IDs for reusable links; bound on the server and revalidated at claim time.")
+    campaign_id: Optional[UUID] = None
+    signups: Optional[StrictInt] = Field(default=None, description="Successful signups; reusable links omit allocation/issued/claimed/revoked counts.")
+    __properties: ClassVar[List[str]] = ["id", "source_type", "source_id", "source_name", "allocation", "issued", "claimed", "revoked", "created_at", "link_type", "affiliate_program_id", "affiliate_member_id", "referral_code", "campaign_id", "signups"]
+
+    @field_validator('link_type')
+    def link_type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['SINGLE_USE', 'REUSABLE']):
+            raise ValueError("must be one of enum values ('SINGLE_USE', 'REUSABLE')")
+        return value
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -100,7 +116,13 @@ class PromoLinkBatchSummary(BaseModel):
             "issued": obj.get("issued"),
             "claimed": obj.get("claimed"),
             "revoked": obj.get("revoked"),
-            "created_at": obj.get("created_at")
+            "created_at": obj.get("created_at"),
+            "link_type": obj.get("link_type"),
+            "affiliate_program_id": obj.get("affiliate_program_id"),
+            "affiliate_member_id": obj.get("affiliate_member_id"),
+            "referral_code": obj.get("referral_code"),
+            "campaign_id": obj.get("campaign_id"),
+            "signups": obj.get("signups")
         })
         return _obj
 

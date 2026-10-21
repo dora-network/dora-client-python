@@ -40,13 +40,16 @@ class TestIssuePromoLinkBatchRequest(unittest.TestCase):
                 source_name = '',
                 allocation = 1,
                 note = '',
-                expires_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f')
+                expires_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                link_type = 'SINGLE_USE',
+                affiliate_program_id = '',
+                affiliate_member_id = '',
+                referral_code = ''
             )
         else:
             return IssuePromoLinkBatchRequest(
                 source_type = 'KOL',
                 source_id = 'WXBU5JLXPXUUB-3NI2MDBGRX3_IFTFI16NDLXRBPU6282Y4WI6XU7DHE04E0HV12',
-                allocation = 1,
         )
         """
 

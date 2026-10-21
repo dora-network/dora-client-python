@@ -13,99 +13,124 @@
 
 
 from __future__ import annotations
-import pprint
-import re  # noqa: F401
 import json
+import pprint
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, ValidationError, field_validator
+from typing import Any, List, Optional
+from dora_client.models.issue_promo_link_batch_request_single_use import IssuePromoLinkBatchRequestSingleUse
+from pydantic import StrictStr, Field
+from typing import Union, List, Set, Optional, Dict
+from typing_extensions import Literal, Self
 
-from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
-from typing_extensions import Annotated
-from dora_client.models.promo_source_type import PromoSourceType
-from typing import Optional, Set
-from typing_extensions import Self
-from pydantic_core import to_jsonable_python
+ISSUEPROMOLINKBATCHREQUEST_ONE_OF_SCHEMAS = ["IssuePromoLinkBatchRequestSingleUse"]
 
 class IssuePromoLinkBatchRequest(BaseModel):
     """
     IssuePromoLinkBatchRequest
-    """ # noqa: E501
-    source_type: PromoSourceType
-    source_id: Annotated[str, Field(strict=True)]
-    source_name: Optional[Annotated[str, Field(strict=True, max_length=256)]] = None
-    allocation: Annotated[int, Field(strict=True, ge=1)] = Field(description="Cannot exceed the configured max_links_per_batch or remaining campaign capacity.")
-    note: Optional[Annotated[str, Field(strict=True, max_length=512)]] = None
-    expires_at: Optional[datetime] = Field(default=None, description="Defaults to challenge end and must fall between challenge start and end in the future.")
-    __properties: ClassVar[List[str]] = ["source_type", "source_id", "source_name", "allocation", "note", "expires_at"]
-
-    @field_validator('source_id')
-    def source_id_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if not isinstance(value, str):
-            value = str(value)
-
-        if not re.match(r"^[A-Z0-9][A-Z0-9_-]{0,63}$", value):
-            raise ValueError(r"must validate the regular expression /^[A-Z0-9][A-Z0-9_-]{0,63}$/")
-        return value
+    """
+    # data type: IssuePromoLinkBatchRequestSingleUse
+    oneof_schema_1_validator: Optional[IssuePromoLinkBatchRequestSingleUse] = None
+    # data type: IssuePromoLinkBatchRequestSingleUse
+    oneof_schema_2_validator: Optional[IssuePromoLinkBatchRequestSingleUse] = None
+    actual_instance: Optional[Union[IssuePromoLinkBatchRequestSingleUse]] = None
+    one_of_schemas: Set[str] = { "IssuePromoLinkBatchRequestSingleUse" }
 
     model_config = ConfigDict(
-        validate_by_name=True,
-        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
 
 
-    def to_str(self) -> str:
-        """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.model_dump(by_alias=True))
+    def __init__(self, *args, **kwargs) -> None:
+        if args:
+            if len(args) > 1:
+                raise ValueError("If a position argument is used, only 1 is allowed to set `actual_instance`")
+            if kwargs:
+                raise ValueError("If a position argument is used, keyword arguments cannot be used.")
+            super().__init__(actual_instance=args[0])
+        else:
+            super().__init__(**kwargs)
+
+    @field_validator('actual_instance')
+    def actual_instance_must_validate_oneof(cls, v):
+        instance = IssuePromoLinkBatchRequest.model_construct()
+        error_messages = []
+        match = 0
+        # validate data type: IssuePromoLinkBatchRequestSingleUse
+        if not isinstance(v, IssuePromoLinkBatchRequestSingleUse):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `IssuePromoLinkBatchRequestSingleUse`")
+        else:
+            match += 1
+        # validate data type: IssuePromoLinkBatchRequestSingleUse
+        if not isinstance(v, IssuePromoLinkBatchRequestSingleUse):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `IssuePromoLinkBatchRequestSingleUse`")
+        else:
+            match += 1
+        if match > 1:
+            # more than 1 match
+            raise ValueError("Multiple matches found when setting `actual_instance` in IssuePromoLinkBatchRequest with oneOf schemas: IssuePromoLinkBatchRequestSingleUse. Details: " + ", ".join(error_messages))
+        elif match == 0:
+            # no match
+            raise ValueError("No match found when setting `actual_instance` in IssuePromoLinkBatchRequest with oneOf schemas: IssuePromoLinkBatchRequestSingleUse. Details: " + ", ".join(error_messages))
+        else:
+            return v
+
+    @classmethod
+    def from_dict(cls, obj: Union[str, Dict[str, Any]]) -> Self:
+        return cls.from_json(json.dumps(obj))
+
+    @classmethod
+    def from_json(cls, json_str: str) -> Self:
+        """Returns the object represented by the json string"""
+        instance = cls.model_construct()
+        error_messages = []
+        match = 0
+
+        # deserialize data into IssuePromoLinkBatchRequestSingleUse
+        try:
+            instance.actual_instance = IssuePromoLinkBatchRequestSingleUse.from_json(json_str)
+            match += 1
+        except (ValidationError, ValueError) as e:
+            error_messages.append(str(e))
+        # deserialize data into IssuePromoLinkBatchRequestSingleUse
+        try:
+            instance.actual_instance = IssuePromoLinkBatchRequestSingleUse.from_json(json_str)
+            match += 1
+        except (ValidationError, ValueError) as e:
+            error_messages.append(str(e))
+
+        if match > 1:
+            # more than 1 match
+            raise ValueError("Multiple matches found when deserializing the JSON string into IssuePromoLinkBatchRequest with oneOf schemas: IssuePromoLinkBatchRequestSingleUse. Details: " + ", ".join(error_messages))
+        elif match == 0:
+            # no match
+            raise ValueError("No match found when deserializing the JSON string into IssuePromoLinkBatchRequest with oneOf schemas: IssuePromoLinkBatchRequestSingleUse. Details: " + ", ".join(error_messages))
+        else:
+            return instance
 
     def to_json(self) -> str:
-        """Returns the JSON representation of the model using alias"""
-        return json.dumps(to_jsonable_python(self.to_dict()))
+        """Returns the JSON representation of the actual instance"""
+        if self.actual_instance is None:
+            return "null"
 
-    @classmethod
-    def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of IssuePromoLinkBatchRequest from a JSON string"""
-        return cls.from_dict(json.loads(json_str))
+        if hasattr(self.actual_instance, "to_json") and callable(self.actual_instance.to_json):
+            return self.actual_instance.to_json()
+        else:
+            return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> Dict[str, Any]:
-        """Return the dictionary representation of the model using alias.
-
-        This has the following differences from calling pydantic's
-        `self.model_dump(by_alias=True)`:
-
-        * `None` is only added to the output dict for nullable fields that
-          were set at model initialization. Other fields with value `None`
-          are ignored.
-        """
-        excluded_fields: Set[str] = set([
-        ])
-
-        _dict = self.model_dump(
-            by_alias=True,
-            exclude=excluded_fields,
-            exclude_none=True,
-        )
-        return _dict
-
-    @classmethod
-    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of IssuePromoLinkBatchRequest from a dict"""
-        if obj is None:
+    def to_dict(self) -> Optional[Union[Dict[str, Any], IssuePromoLinkBatchRequestSingleUse]]:
+        """Returns the dict representation of the actual instance"""
+        if self.actual_instance is None:
             return None
 
-        if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+        if hasattr(self.actual_instance, "to_dict") and callable(self.actual_instance.to_dict):
+            return self.actual_instance.to_dict()
+        else:
+            # primitive type
+            return self.actual_instance
 
-        _obj = cls.model_validate({
-            "source_type": obj.get("source_type"),
-            "source_id": obj.get("source_id"),
-            "source_name": obj.get("source_name"),
-            "allocation": obj.get("allocation"),
-            "note": obj.get("note"),
-            "expires_at": obj.get("expires_at")
-        })
-        return _obj
+    def to_str(self) -> str:
+        """Returns the string representation of the actual instance"""
+        return pprint.pformat(self.model_dump())
 
 

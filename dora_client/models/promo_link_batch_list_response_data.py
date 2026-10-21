@@ -17,21 +17,19 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictInt
-from typing import Any, ClassVar, Dict, List, Optional
-from dora_client.models.bulk_order_result import BulkOrderResult
+from pydantic import BaseModel, ConfigDict
+from typing import Any, ClassVar, Dict, List
+from dora_client.models.promo_link_batch_summary import PromoLinkBatchSummary
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
 
-class CreateOrdersBulkResponseAllOfData(BaseModel):
+class PromoLinkBatchListResponseData(BaseModel):
     """
-    CreateOrdersBulkResponseAllOfData
+    PromoLinkBatchListResponseData
     """ # noqa: E501
-    created: Optional[StrictInt] = None
-    rejected: Optional[StrictInt] = None
-    results: Optional[List[BulkOrderResult]] = None
-    __properties: ClassVar[List[str]] = ["created", "rejected", "results"]
+    batches: List[PromoLinkBatchSummary]
+    __properties: ClassVar[List[str]] = ["batches"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -51,7 +49,7 @@ class CreateOrdersBulkResponseAllOfData(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of CreateOrdersBulkResponseAllOfData from a JSON string"""
+        """Create an instance of PromoLinkBatchListResponseData from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -72,18 +70,18 @@ class CreateOrdersBulkResponseAllOfData(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in results (list)
+        # override the default output from pydantic by calling `to_dict()` of each item in batches (list)
         _items = []
-        if self.results:
-            for _item_results in self.results:
-                if _item_results:
-                    _items.append(_item_results.to_dict())
-            _dict['results'] = _items
+        if self.batches:
+            for _item_batches in self.batches:
+                if _item_batches:
+                    _items.append(_item_batches.to_dict())
+            _dict['batches'] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of CreateOrdersBulkResponseAllOfData from a dict"""
+        """Create an instance of PromoLinkBatchListResponseData from a dict"""
         if obj is None:
             return None
 
@@ -91,9 +89,7 @@ class CreateOrdersBulkResponseAllOfData(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "created": obj.get("created"),
-            "rejected": obj.get("rejected"),
-            "results": [BulkOrderResult.from_dict(_item) for _item in obj["results"]] if obj.get("results") is not None else None
+            "batches": [PromoLinkBatchSummary.from_dict(_item) for _item in obj["batches"]] if obj.get("batches") is not None else None
         })
         return _obj
 

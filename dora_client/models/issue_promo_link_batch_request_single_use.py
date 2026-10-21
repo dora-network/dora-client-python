@@ -17,28 +17,18 @@ import pprint
 import re  # noqa: F401
 import json
 
-from datetime import datetime
-from pydantic import BaseModel, ConfigDict, StrictStr
+from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List, Optional
-from dora_client.models.promo_claim_state import PromoClaimState
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
 
-class PromoClaimResponseEnvelopeAllOfData(BaseModel):
+class IssuePromoLinkBatchRequestSingleUse(BaseModel):
     """
-    PromoClaimResponseEnvelopeAllOfData
+    IssuePromoLinkBatchRequestSingleUse
     """ # noqa: E501
-    state: PromoClaimState
-    email: Optional[StrictStr] = None
-    campaign_name: Optional[StrictStr] = None
-    promo_credit: Optional[StrictStr] = None
-    min_reward_amount: Optional[StrictStr] = None
-    max_reward_amount: Optional[StrictStr] = None
-    target_equity: Optional[StrictStr] = None
-    expires_at: Optional[datetime] = None
-    source_name: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["state", "email", "campaign_name", "promo_credit", "min_reward_amount", "max_reward_amount", "target_equity", "expires_at", "source_name"]
+    link_type: Optional[Any]
+    __properties: ClassVar[List[str]] = ["link_type"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -58,7 +48,7 @@ class PromoClaimResponseEnvelopeAllOfData(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of PromoClaimResponseEnvelopeAllOfData from a JSON string"""
+        """Create an instance of IssuePromoLinkBatchRequestSingleUse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -79,11 +69,16 @@ class PromoClaimResponseEnvelopeAllOfData(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if link_type (nullable) is None
+        # and model_fields_set contains the field
+        if self.link_type is None and "link_type" in self.model_fields_set:
+            _dict['link_type'] = None
+
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of PromoClaimResponseEnvelopeAllOfData from a dict"""
+        """Create an instance of IssuePromoLinkBatchRequestSingleUse from a dict"""
         if obj is None:
             return None
 
@@ -91,15 +86,7 @@ class PromoClaimResponseEnvelopeAllOfData(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "state": obj.get("state"),
-            "email": obj.get("email"),
-            "campaign_name": obj.get("campaign_name"),
-            "promo_credit": obj.get("promo_credit"),
-            "min_reward_amount": obj.get("min_reward_amount"),
-            "max_reward_amount": obj.get("max_reward_amount"),
-            "target_equity": obj.get("target_equity"),
-            "expires_at": obj.get("expires_at"),
-            "source_name": obj.get("source_name")
+            "link_type": obj.get("link_type")
         })
         return _obj
 

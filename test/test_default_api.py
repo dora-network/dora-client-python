@@ -201,6 +201,13 @@ class TestDefaultApi(unittest.IsolatedAsyncioTestCase):
         """
         pass
 
+    async def test_enable_affiliate_referrer(self) -> None:
+        """Test case for enable_affiliate_referrer
+
+        Re-enable an existing referrer
+        """
+        pass
+
     async def test_export_promo_links_csv(self) -> None:
         """Test case for export_promo_links_csv
 
@@ -677,6 +684,13 @@ class TestDefaultApi(unittest.IsolatedAsyncioTestCase):
         """
         pass
 
+    async def test_grant_promo_campaign_manager(self) -> None:
+        """Test case for grant_promo_campaign_manager
+
+        Grant QR campaign access for an Affiliate Manager
+        """
+        pass
+
     async def test_issue_promo_link_batch(self) -> None:
         """Test case for issue_promo_link_batch
 
@@ -838,6 +852,13 @@ class TestDefaultApi(unittest.IsolatedAsyncioTestCase):
         """
         pass
 
+    async def test_list_managed_promo_campaigns(self) -> None:
+        """Test case for list_managed_promo_campaigns
+
+        List accessible Campaign Links campaigns
+        """
+        pass
+
     async def test_list_order_books(self) -> None:
         """Test case for list_order_books
 
@@ -954,6 +975,13 @@ class TestDefaultApi(unittest.IsolatedAsyncioTestCase):
         """Test case for remove_affiliate_referrer
 
         Remove a referrer from a program
+        """
+        pass
+
+    async def test_remove_promo_campaign_manager(self) -> None:
+        """Test case for remove_promo_campaign_manager
+
+        Remove QR campaign access for an Affiliate Manager
         """
         pass
 

@@ -14,10 +14,10 @@
 
 import unittest
 
-from dora_client.models.issue_promo_link_batch_response_all_of_data import IssuePromoLinkBatchResponseAllOfData
+from dora_client.models.issue_promo_link_batch_response_data import IssuePromoLinkBatchResponseData
 
-class TestIssuePromoLinkBatchResponseAllOfData(unittest.TestCase):
-    """IssuePromoLinkBatchResponseAllOfData unit test stubs"""
+class TestIssuePromoLinkBatchResponseData(unittest.TestCase):
+    """IssuePromoLinkBatchResponseData unit test stubs"""
 
     def setUp(self):
         pass
@@ -25,30 +25,16 @@ class TestIssuePromoLinkBatchResponseAllOfData(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> IssuePromoLinkBatchResponseAllOfData:
-        """Test IssuePromoLinkBatchResponseAllOfData
+    def make_instance(self, include_optional) -> IssuePromoLinkBatchResponseData:
+        """Test IssuePromoLinkBatchResponseData
             include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `IssuePromoLinkBatchResponseAllOfData`
+        # uncomment below to create an instance of `IssuePromoLinkBatchResponseData`
         """
-        model = IssuePromoLinkBatchResponseAllOfData()
+        model = IssuePromoLinkBatchResponseData()
         if include_optional:
-            return IssuePromoLinkBatchResponseAllOfData(
-                batch_id = '',
-                source_id = '',
-                allocation = 56,
-                links = [
-                    dora_client.models.issued_promo_link.IssuedPromoLink(
-                        id = '', 
-                        token_prefix = '', 
-                        url = '', 
-                        qr_url = '', 
-                        expires_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
-                    ]
-            )
-        else:
-            return IssuePromoLinkBatchResponseAllOfData(
+            return IssuePromoLinkBatchResponseData(
                 batch_id = '',
                 source_id = '',
                 allocation = 56,
@@ -60,11 +46,28 @@ class TestIssuePromoLinkBatchResponseAllOfData(unittest.TestCase):
                         qr_url = '', 
                         expires_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
                     ],
+                link_type = 'SINGLE_USE',
+                affiliate_program_id = '',
+                affiliate_member_id = '',
+                referral_code = ''
+            )
+        else:
+            return IssuePromoLinkBatchResponseData(
+                batch_id = '',
+                source_id = '',
+                links = [
+                    dora_client.models.issued_promo_link.IssuedPromoLink(
+                        id = '', 
+                        token_prefix = '', 
+                        url = '', 
+                        qr_url = '', 
+                        expires_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
+                    ],
         )
         """
 
-    def testIssuePromoLinkBatchResponseAllOfData(self):
-        """Test IssuePromoLinkBatchResponseAllOfData"""
+    def testIssuePromoLinkBatchResponseData(self):
+        """Test IssuePromoLinkBatchResponseData"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

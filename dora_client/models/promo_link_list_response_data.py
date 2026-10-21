@@ -17,19 +17,20 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict
-from typing import Any, ClassVar, Dict, List
-from dora_client.models.promo_attribution_source import PromoAttributionSource
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
+from dora_client.models.promo_link_admin import PromoLinkAdmin
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
 
-class PromoAttributionResponseAllOfData(BaseModel):
+class PromoLinkListResponseData(BaseModel):
     """
-    PromoAttributionResponseAllOfData
+    PromoLinkListResponseData
     """ # noqa: E501
-    sources: List[PromoAttributionSource]
-    __properties: ClassVar[List[str]] = ["sources"]
+    links: List[PromoLinkAdmin]
+    next_cursor: Optional[StrictStr] = Field(default=None, description="Opaque unpadded base64url keyset cursor.")
+    __properties: ClassVar[List[str]] = ["links", "next_cursor"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -49,7 +50,7 @@ class PromoAttributionResponseAllOfData(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of PromoAttributionResponseAllOfData from a JSON string"""
+        """Create an instance of PromoLinkListResponseData from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -70,18 +71,18 @@ class PromoAttributionResponseAllOfData(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in sources (list)
+        # override the default output from pydantic by calling `to_dict()` of each item in links (list)
         _items = []
-        if self.sources:
-            for _item_sources in self.sources:
-                if _item_sources:
-                    _items.append(_item_sources.to_dict())
-            _dict['sources'] = _items
+        if self.links:
+            for _item_links in self.links:
+                if _item_links:
+                    _items.append(_item_links.to_dict())
+            _dict['links'] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of PromoAttributionResponseAllOfData from a dict"""
+        """Create an instance of PromoLinkListResponseData from a dict"""
         if obj is None:
             return None
 
@@ -89,7 +90,8 @@ class PromoAttributionResponseAllOfData(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "sources": [PromoAttributionSource.from_dict(_item) for _item in obj["sources"]] if obj.get("sources") is not None else None
+            "links": [PromoLinkAdmin.from_dict(_item) for _item in obj["links"]] if obj.get("links") is not None else None,
+            "next_cursor": obj.get("next_cursor")
         })
         return _obj
 

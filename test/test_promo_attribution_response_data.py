@@ -14,10 +14,10 @@
 
 import unittest
 
-from dora_client.models.promo_attribution_response_all_of_data import PromoAttributionResponseAllOfData
+from dora_client.models.promo_attribution_response_data import PromoAttributionResponseData
 
-class TestPromoAttributionResponseAllOfData(unittest.TestCase):
-    """PromoAttributionResponseAllOfData unit test stubs"""
+class TestPromoAttributionResponseData(unittest.TestCase):
+    """PromoAttributionResponseData unit test stubs"""
 
     def setUp(self):
         pass
@@ -25,16 +25,16 @@ class TestPromoAttributionResponseAllOfData(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> PromoAttributionResponseAllOfData:
-        """Test PromoAttributionResponseAllOfData
+    def make_instance(self, include_optional) -> PromoAttributionResponseData:
+        """Test PromoAttributionResponseData
             include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `PromoAttributionResponseAllOfData`
+        # uncomment below to create an instance of `PromoAttributionResponseData`
         """
-        model = PromoAttributionResponseAllOfData()
+        model = PromoAttributionResponseData()
         if include_optional:
-            return PromoAttributionResponseAllOfData(
+            return PromoAttributionResponseData(
                 sources = [
                     dora_client.models.promo_attribution_source.PromoAttributionSource(
                         source_type = 'KOL', 
@@ -54,7 +54,7 @@ class TestPromoAttributionResponseAllOfData(unittest.TestCase):
                     ]
             )
         else:
-            return PromoAttributionResponseAllOfData(
+            return PromoAttributionResponseData(
                 sources = [
                     dora_client.models.promo_attribution_source.PromoAttributionSource(
                         source_type = 'KOL', 
@@ -75,8 +75,8 @@ class TestPromoAttributionResponseAllOfData(unittest.TestCase):
         )
         """
 
-    def testPromoAttributionResponseAllOfData(self):
-        """Test PromoAttributionResponseAllOfData"""
+    def testPromoAttributionResponseData(self):
+        """Test PromoAttributionResponseData"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

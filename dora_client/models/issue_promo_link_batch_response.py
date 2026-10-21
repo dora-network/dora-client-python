@@ -19,7 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from dora_client.models.issue_promo_link_batch_response_all_of_data import IssuePromoLinkBatchResponseAllOfData
+from dora_client.models.issue_promo_link_batch_response_data import IssuePromoLinkBatchResponseData
 from dora_client.models.metadata import Metadata
 from typing import Optional, Set
 from typing_extensions import Self
@@ -29,7 +29,7 @@ class IssuePromoLinkBatchResponse(BaseModel):
     """
     IssuePromoLinkBatchResponse
     """ # noqa: E501
-    data: Optional[IssuePromoLinkBatchResponseAllOfData] = None
+    data: Optional[IssuePromoLinkBatchResponseData] = None
     error: Optional[StrictStr] = Field(default=None, description="The error message. Present for error (non-2xx) responses.")
     metadata: Metadata = Field(description="Metadata about the response, including status code and trace information.")
     __properties: ClassVar[List[str]] = ["data", "error", "metadata"]
@@ -91,7 +91,7 @@ class IssuePromoLinkBatchResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "data": IssuePromoLinkBatchResponseAllOfData.from_dict(obj["data"]) if obj.get("data") is not None else None,
+            "data": IssuePromoLinkBatchResponseData.from_dict(obj["data"]) if obj.get("data") is not None else None,
             "error": obj.get("error"),
             "metadata": Metadata.from_dict(obj["metadata"]) if obj.get("metadata") is not None else None
         })

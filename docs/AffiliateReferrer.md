@@ -12,6 +12,8 @@ Name | Type | Description | Notes
 **referral_code** | **str** | Current code to share; previously issued codes remain valid. Stored uppercase and unique across all programs and tenants. | 
 **created_at** | **datetime** |  | 
 **customized_at** | **datetime** | When the owner used their one code change; null until then. | 
+**disabled_at** | **datetime** | When this membership was disabled; null while enabled. | 
+**disabled_by** | **UUID** | Actor who disabled this membership; null while enabled. | 
 
 ## Example
 

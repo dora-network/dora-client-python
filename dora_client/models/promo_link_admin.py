@@ -18,10 +18,9 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from uuid import UUID
-from dora_client.models.promo_link_status import PromoLinkStatus
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -33,12 +32,30 @@ class PromoLinkAdmin(BaseModel):
     id: UUID
     token_prefix: StrictStr
     url: Optional[StrictStr] = Field(default=None, description="Only present when reveal=true. Private; do not log or cache.")
-    status: PromoLinkStatus
+    status: StrictStr = Field(description="Reusable links use ACTIVE or REVOKED and have no single claimant.")
     expires_at: datetime
     claimed_at: Optional[datetime] = None
     claimed_email: Optional[StrictStr] = Field(default=None, description="Masked as the first character, three asterisks, and domain.")
     user_id: Optional[UUID] = None
-    __properties: ClassVar[List[str]] = ["id", "token_prefix", "url", "status", "expires_at", "claimed_at", "claimed_email", "user_id"]
+    link_type: Optional[StrictStr] = Field(default=None, description="Defaults to SINGLE_USE for existing clients. REUSABLE creates one tracked link without a quantity.")
+    __properties: ClassVar[List[str]] = ["id", "token_prefix", "url", "status", "expires_at", "claimed_at", "claimed_email", "user_id", "link_type"]
+
+    @field_validator('status')
+    def status_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(['ISSUED', 'CLAIMED', 'REVOKED', 'ACTIVE']):
+            raise ValueError("must be one of enum values ('ISSUED', 'CLAIMED', 'REVOKED', 'ACTIVE')")
+        return value
+
+    @field_validator('link_type')
+    def link_type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['SINGLE_USE', 'REUSABLE']):
+            raise ValueError("must be one of enum values ('SINGLE_USE', 'REUSABLE')")
+        return value
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -98,7 +115,8 @@ class PromoLinkAdmin(BaseModel):
             "expires_at": obj.get("expires_at"),
             "claimed_at": obj.get("claimed_at"),
             "claimed_email": obj.get("claimed_email"),
-            "user_id": obj.get("user_id")
+            "user_id": obj.get("user_id"),
+            "link_type": obj.get("link_type")
         })
         return _obj
 

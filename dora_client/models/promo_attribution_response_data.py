@@ -17,28 +17,19 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictBool, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List
-from uuid import UUID
+from dora_client.models.promo_attribution_source import PromoAttributionSource
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
 
-class RevokePromoLinkResponseAllOfData(BaseModel):
+class PromoAttributionResponseData(BaseModel):
     """
-    RevokePromoLinkResponseAllOfData
+    PromoAttributionResponseData
     """ # noqa: E501
-    id: UUID
-    status: StrictStr
-    repeated: StrictBool
-    __properties: ClassVar[List[str]] = ["id", "status", "repeated"]
-
-    @field_validator('status')
-    def status_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(['REVOKED']):
-            raise ValueError("must be one of enum values ('REVOKED')")
-        return value
+    sources: List[PromoAttributionSource]
+    __properties: ClassVar[List[str]] = ["sources"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -58,7 +49,7 @@ class RevokePromoLinkResponseAllOfData(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of RevokePromoLinkResponseAllOfData from a JSON string"""
+        """Create an instance of PromoAttributionResponseData from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -79,11 +70,18 @@ class RevokePromoLinkResponseAllOfData(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in sources (list)
+        _items = []
+        if self.sources:
+            for _item_sources in self.sources:
+                if _item_sources:
+                    _items.append(_item_sources.to_dict())
+            _dict['sources'] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of RevokePromoLinkResponseAllOfData from a dict"""
+        """Create an instance of PromoAttributionResponseData from a dict"""
         if obj is None:
             return None
 
@@ -91,9 +89,7 @@ class RevokePromoLinkResponseAllOfData(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "id": obj.get("id"),
-            "status": obj.get("status"),
-            "repeated": obj.get("repeated")
+            "sources": [PromoAttributionSource.from_dict(_item) for _item in obj["sources"]] if obj.get("sources") is not None else None
         })
         return _obj
 

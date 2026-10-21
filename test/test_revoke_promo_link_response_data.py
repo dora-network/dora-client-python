@@ -14,10 +14,10 @@
 
 import unittest
 
-from dora_client.models.revoke_promo_link_response_all_of_data import RevokePromoLinkResponseAllOfData
+from dora_client.models.revoke_promo_link_response_data import RevokePromoLinkResponseData
 
-class TestRevokePromoLinkResponseAllOfData(unittest.TestCase):
-    """RevokePromoLinkResponseAllOfData unit test stubs"""
+class TestRevokePromoLinkResponseData(unittest.TestCase):
+    """RevokePromoLinkResponseData unit test stubs"""
 
     def setUp(self):
         pass
@@ -25,30 +25,30 @@ class TestRevokePromoLinkResponseAllOfData(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> RevokePromoLinkResponseAllOfData:
-        """Test RevokePromoLinkResponseAllOfData
+    def make_instance(self, include_optional) -> RevokePromoLinkResponseData:
+        """Test RevokePromoLinkResponseData
             include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `RevokePromoLinkResponseAllOfData`
+        # uncomment below to create an instance of `RevokePromoLinkResponseData`
         """
-        model = RevokePromoLinkResponseAllOfData()
+        model = RevokePromoLinkResponseData()
         if include_optional:
-            return RevokePromoLinkResponseAllOfData(
+            return RevokePromoLinkResponseData(
                 id = '',
                 status = 'REVOKED',
                 repeated = True
             )
         else:
-            return RevokePromoLinkResponseAllOfData(
+            return RevokePromoLinkResponseData(
                 id = '',
                 status = 'REVOKED',
                 repeated = True,
         )
         """
 
-    def testRevokePromoLinkResponseAllOfData(self):
-        """Test RevokePromoLinkResponseAllOfData"""
+    def testRevokePromoLinkResponseData(self):
+        """Test RevokePromoLinkResponseData"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

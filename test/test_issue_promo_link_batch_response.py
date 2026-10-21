@@ -35,7 +35,7 @@ class TestIssuePromoLinkBatchResponse(unittest.TestCase):
         model = IssuePromoLinkBatchResponse()
         if include_optional:
             return IssuePromoLinkBatchResponse(
-                data = dora_client.models.issue_promo_link_batch_response_all_of_data.IssuePromoLinkBatchResponse_allOf_data(
+                data = dora_client.models.issue_promo_link_batch_response_data.IssuePromoLinkBatchResponseData(
                     batch_id = '', 
                     source_id = '', 
                     allocation = 56, 
@@ -46,7 +46,11 @@ class TestIssuePromoLinkBatchResponse(unittest.TestCase):
                             url = '', 
                             qr_url = '', 
                             expires_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
-                        ], ),
+                        ], 
+                    link_type = 'SINGLE_USE', 
+                    affiliate_program_id = '', 
+                    affiliate_member_id = '', 
+                    referral_code = '', ),
                 error = '',
                 metadata = dora_client.models.metadata.Metadata(
                     status_code = 56, 

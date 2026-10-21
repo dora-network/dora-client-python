@@ -14,10 +14,10 @@
 
 import unittest
 
-from dora_client.models.promo_claim_response_envelope_all_of_data import PromoClaimResponseEnvelopeAllOfData
+from dora_client.models.promo_claim_response_envelope_data import PromoClaimResponseEnvelopeData
 
-class TestPromoClaimResponseEnvelopeAllOfData(unittest.TestCase):
-    """PromoClaimResponseEnvelopeAllOfData unit test stubs"""
+class TestPromoClaimResponseEnvelopeData(unittest.TestCase):
+    """PromoClaimResponseEnvelopeData unit test stubs"""
 
     def setUp(self):
         pass
@@ -25,16 +25,16 @@ class TestPromoClaimResponseEnvelopeAllOfData(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> PromoClaimResponseEnvelopeAllOfData:
-        """Test PromoClaimResponseEnvelopeAllOfData
+    def make_instance(self, include_optional) -> PromoClaimResponseEnvelopeData:
+        """Test PromoClaimResponseEnvelopeData
             include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `PromoClaimResponseEnvelopeAllOfData`
+        # uncomment below to create an instance of `PromoClaimResponseEnvelopeData`
         """
-        model = PromoClaimResponseEnvelopeAllOfData()
+        model = PromoClaimResponseEnvelopeData()
         if include_optional:
-            return PromoClaimResponseEnvelopeAllOfData(
+            return PromoClaimResponseEnvelopeData(
                 state = 'NOT_FOUND',
                 email = '',
                 campaign_name = '',
@@ -43,16 +43,23 @@ class TestPromoClaimResponseEnvelopeAllOfData(unittest.TestCase):
                 max_reward_amount = '',
                 target_equity = '',
                 expires_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                source_name = ''
+                source_name = '',
+                link_type = 'SINGLE_USE',
+                affiliate_program_id = '',
+                affiliate_member_id = '',
+                referral_code = '',
+                campaign_id = '',
+                link_id = '',
+                source_id = ''
             )
         else:
-            return PromoClaimResponseEnvelopeAllOfData(
+            return PromoClaimResponseEnvelopeData(
                 state = 'NOT_FOUND',
         )
         """
 
-    def testPromoClaimResponseEnvelopeAllOfData(self):
-        """Test PromoClaimResponseEnvelopeAllOfData"""
+    def testPromoClaimResponseEnvelopeData(self):
+        """Test PromoClaimResponseEnvelopeData"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

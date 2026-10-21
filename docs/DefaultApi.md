@@ -29,6 +29,7 @@ Method | HTTP request | Description
 [**create_withdrawal**](DefaultApi.md#create_withdrawal) | **POST** /v1/web3/withdrawals | Create a USDC withdrawal request
 [**customize_affiliate_referrer_code**](DefaultApi.md#customize_affiliate_referrer_code) | **PUT** /v1/affiliate_referrers/{referrer_id}/code | Change an affiliate referral code
 [**delete_user**](DefaultApi.md#delete_user) | **DELETE** /v1/user/{user_id} | Delete user by ID
+[**enable_affiliate_referrer**](DefaultApi.md#enable_affiliate_referrer) | **POST** /v1/affiliate_programs/{program_id}/referrers/{referrer_id}/enable | Re-enable an existing referrer
 [**export_promo_links_csv**](DefaultApi.md#export_promo_links_csv) | **GET** /v1/link_batches/{batch_id}/links.csv | Export promotional links as CSV
 [**get_affiliate_program**](DefaultApi.md#get_affiliate_program) | **GET** /v1/affiliate_programs/{program_id} | Get an affiliate program
 [**get_affiliate_referrer_code**](DefaultApi.md#get_affiliate_referrer_code) | **GET** /v1/affiliate_referrers/{referrer_id}/code | Get a referrer&#39;s current code
@@ -97,6 +98,7 @@ Method | HTTP request | Description
 [**get_users_api_keys**](DefaultApi.md#get_users_api_keys) | **GET** /v1/user/apikey | Get user&#39;s api keys
 [**get_withdrawal**](DefaultApi.md#get_withdrawal) | **GET** /v1/web3/withdrawals/{withdrawal_id} | Get a USDC withdrawal by ID
 [**get_withdrawal_fee_quote**](DefaultApi.md#get_withdrawal_fee_quote) | **GET** /v1/web3/withdrawals/fee-quote | Estimate the network fee to withdraw USDC via web3
+[**grant_promo_campaign_manager**](DefaultApi.md#grant_promo_campaign_manager) | **PUT** /v1/promo_campaigns/{trading_challenge_id}/managers/{manager_id} | Grant QR campaign access for an Affiliate Manager
 [**issue_promo_link_batch**](DefaultApi.md#issue_promo_link_batch) | **POST** /v1/trading_challenges/{trading_challenge_id}/link_batches | Issue a promotional link batch
 [**ledger_deposit**](DefaultApi.md#ledger_deposit) | **POST** /v1/ledger/deposit/{user_id} | Deposit assets into this user&#39;s account from the outside world
 [**ledger_withdraw**](DefaultApi.md#ledger_withdraw) | **POST** /v1/ledger/withdraw/{user_id} | Withdraw assets from this user to the outside world
@@ -120,6 +122,7 @@ Method | HTTP request | Description
 [**list_auto_rebalance_configs_v2**](DefaultApi.md#list_auto_rebalance_configs_v2) | **GET** /v2/accounts/auto_rebalance/config | List auto-rebalance configuration for the authenticated user&#39;s isolated accounts
 [**list_auto_rebalance_statuses_v2**](DefaultApi.md#list_auto_rebalance_statuses_v2) | **GET** /v2/accounts/auto_rebalance/status | List auto-rebalance status for the authenticated user&#39;s isolated accounts, including disabled configs
 [**list_deposits**](DefaultApi.md#list_deposits) | **GET** /v1/web3/deposits | List USDC deposits
+[**list_managed_promo_campaigns**](DefaultApi.md#list_managed_promo_campaigns) | **GET** /v1/promo_campaigns | List accessible Campaign Links campaigns
 [**list_order_books**](DefaultApi.md#list_order_books) | **GET** /v1/orderbooks | List order books
 [**list_orders**](DefaultApi.md#list_orders) | **GET** /v1/orders | List all orders
 [**list_own_affiliate_memberships**](DefaultApi.md#list_own_affiliate_memberships) | **GET** /v1/affiliate_referrers/self | List your affiliate memberships
@@ -137,6 +140,7 @@ Method | HTTP request | Description
 [**reject_ledger_withdraw_request**](DefaultApi.md#reject_ledger_withdraw_request) | **POST** /v1/ledger/withdraw/requests/{withdrawal_id}/reject | Reject a pending withdrawal request
 [**reject_trading_challenge_registration_request**](DefaultApi.md#reject_trading_challenge_registration_request) | **POST** /v1/trading_challenges/registration_requests/{request_id}/reject | Reject a trading challenge registration request
 [**remove_affiliate_referrer**](DefaultApi.md#remove_affiliate_referrer) | **DELETE** /v1/affiliate_programs/{program_id}/referrers/{referrer_id} | Remove a referrer from a program
+[**remove_promo_campaign_manager**](DefaultApi.md#remove_promo_campaign_manager) | **DELETE** /v1/promo_campaigns/{trading_challenge_id}/managers/{manager_id} | Remove QR campaign access for an Affiliate Manager
 [**remove_trading_challenge_users**](DefaultApi.md#remove_trading_challenge_users) | **PUT** /v1/trading_challenges/remove_users | Remove users from a trading challenge
 [**render_promo_link_qr**](DefaultApi.md#render_promo_link_qr) | **GET** /v1/promo_links/{link_id}/qr | Render a promotional link QR code
 [**repay_usd**](DefaultApi.md#repay_usd) | **POST** /v1/positions/repay_usd | Repay borrowed USD, then accrue and pay leverage interest
@@ -990,6 +994,8 @@ Name | Type | Description  | Notes
 
 Claim a public QR promotion link
 
+New users only. Send email only; campaign/link/source and affiliate selection are server-bound. Creates account, enrollment, referral attribution and encrypted delivery transactionally. One eligible account/email per campaign across all link types; existing accounts remain excluded. This does not guarantee a unique human across mailboxes. Successful reusable claims leave the link active. Permanent affiliate attribution is separate from originating link identity. Reusable failures have a per-link/email limit with a 15-minute inactivity reset, plus the route IP limit.
+
 ### Example
 
 
@@ -1053,7 +1059,7 @@ No authorization required
 **201** | Claim accepted and a pending challenge account created |  * Cache-Control -  <br>  |
 **400** | Invalid or non-email-only request |  -  |
 **404** | Claim link not found or not yet safely disclosable |  -  |
-**409** | Link, campaign, or email can no longer be claimed |  -  |
+**409** | Campaign full, email already registered/claimed, link already claimed, or saved affiliate selection inactive (AFFILIATE_UNAVAILABLE). No additional campaign place is consumed. |  -  |
 **410** | Link revoked or campaign ended |  -  |
 **429** | Per-IP or durable per-token attempt limit exceeded |  -  |
 **500** | Claim processing failed without committing account state |  -  |
@@ -2389,12 +2395,104 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **enable_affiliate_referrer**
+> AffiliateReferrerEnvelope enable_affiliate_referrer(program_id, referrer_id)
+
+Re-enable an existing referrer
+
+Uses the same ADMIN, tenant INTEGRATOR, and assigned-program AFFILIATE_MANAGER permissions as disabling. Clears disabled_at and disabled_by on the existing membership, preserving its ID, user, program, codes, customization, and attribution history. Already enabled returns 200 unchanged. Unknown or wrong-program members return 404. Does not unpause the program or change independent signup, account, tenant, or campaign rules.
+
+### Example
+
+* Api Key Authentication (apiKeyAuthHeader):
+* Bearer (JWT) Authentication (bearerAuth):
+
+```python
+import dora_client
+from dora_client.models.affiliate_referrer_envelope import AffiliateReferrerEnvelope
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging.dora.co
+# See configuration.py for a list of all supported configuration parameters.
+configuration = dora_client.Configuration(
+    host = "https://staging.dora.co"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration.api_key['apiKeyAuthHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyAuthHeader'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = dora_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+async with dora_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = dora_client.DefaultApi(api_client)
+    program_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
+    referrer_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
+
+    try:
+        # Re-enable an existing referrer
+        api_response = await api_instance.enable_affiliate_referrer(program_id, referrer_id)
+        print("The response of DefaultApi->enable_affiliate_referrer:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->enable_affiliate_referrer: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **program_id** | **UUID**|  | 
+ **referrer_id** | **UUID**|  | 
+
+### Return type
+
+[**AffiliateReferrerEnvelope**](AffiliateReferrerEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Existing enabled affiliate referrer |  -  |
+**400** | Invalid request |  -  |
+**401** | Authentication required |  -  |
+**403** | Forbidden by role, tenant, or program assignment |  -  |
+**404** | Program or referrer not found within scope |  -  |
+**500** | Internal server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **export_promo_links_csv**
 > str export_promo_links_csv(batch_id)
 
 Export promotional links as CSV
 
-Stream private claim URLs with Cache-Control private, no-store. ADMIN and same-tenant INTEGRATOR only.
+Export saved links. Reusable CSV includes link_id, link_type, campaign_id, affiliate_program_id, affiliate_member_id, referral_code, url, status, expires_at and created_at, with no claimant columns. Check X-Promo-Export-Status trailer for complete. ADMIN, same-tenant INTEGRATOR, or AFFILIATE_MANAGER explicitly assigned to the owning QR campaign (including across tenants). Grants are checked on every request; tenant filters do not confer access.
 
 ### Example
 
@@ -2471,9 +2569,10 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | CSV stream. Read the X-Promo-Export-Status trailer after consuming the body; only complete confirms a full export. HTTP 200 alone does not indicate success. |  * Cache-Control -  <br>  * Trailer - Declares the export-status trailer before streaming starts. <br>  * X-Promo-Export-Status - HTTP trailer sent after the CSV body, not an initial response header. complete means the full export was written; error means the stream failed. A missing trailer must not be treated as success. <br>  |
 **400** | Malformed request |  -  |
-**403** | Caller cannot administer this tenant |  -  |
+**403** | No Campaign Links permission for the owning campaign; no asset data is returned |  -  |
 **404** | Batch not found |  -  |
 **500** | Internal server error |  -  |
+**401** | Authentication required |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -8055,12 +8154,101 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **grant_promo_campaign_manager**
+> grant_promo_campaign_manager(trading_challenge_id, manager_id)
+
+Grant QR campaign access for an Affiliate Manager
+
+ADMIN only. Idempotent PUT with no body. QR campaign grants are independent of home tenant and affiliate programs. Removal takes effect on the next protected request after commit; already authorized reads/downloads may finish. Batch issuance and removal serialize on the campaign lock.
+
+### Example
+
+* Api Key Authentication (apiKeyAuthHeader):
+* Bearer (JWT) Authentication (bearerAuth):
+
+```python
+import dora_client
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging.dora.co
+# See configuration.py for a list of all supported configuration parameters.
+configuration = dora_client.Configuration(
+    host = "https://staging.dora.co"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration.api_key['apiKeyAuthHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyAuthHeader'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = dora_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+async with dora_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = dora_client.DefaultApi(api_client)
+    trading_challenge_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
+    manager_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
+
+    try:
+        # Grant QR campaign access for an Affiliate Manager
+        await api_instance.grant_promo_campaign_manager(trading_challenge_id, manager_id)
+    except Exception as e:
+        print("Exception when calling DefaultApi->grant_promo_campaign_manager: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **trading_challenge_id** | **UUID**|  | 
+ **manager_id** | **UUID**|  | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | Grant present |  -  |
+**400** | Malformed UUID or recipient is not an active Affiliate Manager |  -  |
+**401** | Authentication required |  -  |
+**403** | ADMIN role required |  -  |
+**404** | Unknown manager or unknown/non-QR campaign |  -  |
+**500** | Internal server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **issue_promo_link_batch**
 > IssuePromoLinkBatchResponse issue_promo_link_batch(trading_challenge_id, idempotency_key, issue_promo_link_batch_request)
 
 Issue a promotional link batch
 
-Atomically reserve QR campaign capacity and create opaque, encrypted promotional links. ADMIN and same-tenant INTEGRATOR only. Exact idempotent replays return 200; first creation returns 201; key reuse with another payload returns 409.
+Mint single-use links or one reusable link bound to an existing affiliate program/member/code. Requires Idempotency-Key. Only committed new-user signups consume the shared campaign max_users limit; unused single-use links have no reserved place. Uses DORA-6544 campaign-grant authorization. Affiliate selection also requires independent access to the selected program. Migration 208 must precede reusable-link migration 209. Enable reusable creation in FE after all API replicas and reward-settlement daemon processes support this contract; older replicas fail closed instead of consuming reusable links. No program-only codes or landing-page selector. ADMIN, same-tenant INTEGRATOR, or AFFILIATE_MANAGER explicitly assigned to the owning QR campaign (including across tenants). Grants are checked on every request; tenant filters do not confer access. Exact idempotent replays return 200; first creation returns 201; key reuse with another payload returns 409.
 
 ### Example
 
@@ -8102,7 +8290,7 @@ async with dora_client.ApiClient(configuration) as api_client:
     api_instance = dora_client.DefaultApi(api_client)
     trading_challenge_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
     idempotency_key = 'idempotency_key_example' # str | 
-    issue_promo_link_batch_request = dora_client.IssuePromoLinkBatchRequest() # IssuePromoLinkBatchRequest | 
+    issue_promo_link_batch_request = {"link_type":"REUSABLE","source_type":"DORA","source_id":"NIGERIA","source_name":"Nigeria campaign","affiliate_program_id":"00000000-0000-0000-0000-000000000001","affiliate_member_id":"00000000-0000-0000-0000-000000000002","referral_code":"MEMBER_CODE"} # IssuePromoLinkBatchRequest | 
 
     try:
         # Issue a promotional link batch
@@ -8144,10 +8332,11 @@ Name | Type | Description  | Notes
 **200** | Exact idempotent replay |  -  |
 **201** | Batch and links created |  -  |
 **400** | Malformed request or missing/duplicate idempotency key |  -  |
-**403** | Caller cannot administer this tenant |  -  |
+**403** | No Campaign Links permission for the owning campaign; no asset data is returned |  -  |
 **404** | QR campaign not found |  -  |
 **409** | Capacity exceeded, campaign completed, or idempotency key reused with a different payload |  -  |
 **500** | Internal server error |  -  |
+**401** | Authentication required |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -9692,11 +9881,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_affiliate_referrers**
-> AffiliateReferrerListEnvelope list_affiliate_referrers(program_id, limit=limit, page=page)
+> AffiliateReferrerListEnvelope list_affiliate_referrers(program_id, limit=limit, page=page, include_disabled=include_disabled)
 
 List program referrers
 
-ADMIN or INTEGRATOR required. Integrators are restricted to their own tenant; ADMIN overrides other roles. Includes registrations in inactive programs.
+ADMIN, INTEGRATOR, or AFFILIATE_MANAGER required within the same tenant and assigned-program scope as disabling. Active memberships only by default; include_disabled=true also returns disabled memberships. Includes memberships in paused programs.
 
 ### Example
 
@@ -9738,10 +9927,11 @@ async with dora_client.ApiClient(configuration) as api_client:
     program_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
     limit = 100 # int |  (optional) (default to 100)
     page = 1 # int | One-based page; the resulting offset must not exceed 2147483647. Results sort by created_at then id descending. (optional) (default to 1)
+    include_disabled = False # bool | Include disabled memberships for management. Disabled codes remain ineligible for new referrals. (optional) (default to False)
 
     try:
         # List program referrers
-        api_response = await api_instance.list_affiliate_referrers(program_id, limit=limit, page=page)
+        api_response = await api_instance.list_affiliate_referrers(program_id, limit=limit, page=page, include_disabled=include_disabled)
         print("The response of DefaultApi->list_affiliate_referrers:\n")
         pprint(api_response)
     except Exception as e:
@@ -9758,6 +9948,7 @@ Name | Type | Description  | Notes
  **program_id** | **UUID**|  | 
  **limit** | **int**|  | [optional] [default to 100]
  **page** | **int**| One-based page; the resulting offset must not exceed 2147483647. Results sort by created_at then id descending. | [optional] [default to 1]
+ **include_disabled** | **bool**| Include disabled memberships for management. Disabled codes remain ineligible for new referrals. | [optional] [default to False]
 
 ### Return type
 
@@ -10123,6 +10314,95 @@ Name | Type | Description  | Notes
 **400** | Bad request, e.g. invalid query parameters |  -  |
 **401** | Unauthorized, user not logged in |  -  |
 **403** | Forbidden, e.g. a non-admin user requesting another user&#39;s deposits |  -  |
+**500** | Internal server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **list_managed_promo_campaigns**
+> PromoCampaignSelectorResponse list_managed_promo_campaigns(tenant_id=tenant_id)
+
+List accessible Campaign Links campaigns
+
+Authenticated QR campaign selector. ADMIN, same-tenant INTEGRATOR, or AFFILIATE_MANAGER explicitly assigned to the owning QR campaign (including across tenants). Grants are checked on every request; tenant filters do not confer access. Managers with no grants receive an empty campaigns array. Returns all assigned tenants unless tenant_id narrows the set. Public challenge listing is unchanged.
+
+### Example
+
+* Api Key Authentication (apiKeyAuthHeader):
+* Bearer (JWT) Authentication (bearerAuth):
+
+```python
+import dora_client
+from dora_client.models.promo_campaign_selector_response import PromoCampaignSelectorResponse
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging.dora.co
+# See configuration.py for a list of all supported configuration parameters.
+configuration = dora_client.Configuration(
+    host = "https://staging.dora.co"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration.api_key['apiKeyAuthHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyAuthHeader'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = dora_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+async with dora_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = dora_client.DefaultApi(api_client)
+    tenant_id = 'tenant_id_example' # str | Optional filter within the authorized campaign set; authenticate as the home-tenant account. (optional)
+
+    try:
+        # List accessible Campaign Links campaigns
+        api_response = await api_instance.list_managed_promo_campaigns(tenant_id=tenant_id)
+        print("The response of DefaultApi->list_managed_promo_campaigns:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DefaultApi->list_managed_promo_campaigns: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **tenant_id** | **str**| Optional filter within the authorized campaign set; authenticate as the home-tenant account. | [optional] 
+
+### Return type
+
+[**PromoCampaignSelectorResponse**](PromoCampaignSelectorResponse.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Authorized QR campaigns |  * Cache-Control -  <br>  |
+**400** | Malformed or repeated query parameters |  -  |
+**401** | Authentication required |  -  |
+**403** | Campaign Links management role required |  -  |
 **500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -10508,7 +10788,7 @@ This endpoint does not need any parameter.
 
 List promotional link batches
 
-Return source metadata and ISSUED, CLAIMED, and REVOKED counts for each batch. ADMIN and same-tenant INTEGRATOR only.
+Retrieve saved Campaign Links with campaign, link_type, affiliate selection, creation date and signups. Reusable entries omit allocation/issued/claimed/revoked counts. The same member can have many links/campaigns; separate link IDs preserve origin identity for future landing pages. Landing-page selection is out of scope. ADMIN, same-tenant INTEGRATOR, or AFFILIATE_MANAGER explicitly assigned to the owning QR campaign (including across tenants). Grants are checked on every request; tenant filters do not confer access.
 
 ### Example
 
@@ -10586,9 +10866,10 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | Promotional link batches |  -  |
 **400** | Malformed request |  -  |
-**403** | Caller cannot administer this tenant |  -  |
+**403** | No Campaign Links permission for the owning campaign; no asset data is returned |  -  |
 **404** | QR campaign not found |  -  |
 **500** | Internal server error |  -  |
+**401** | Authentication required |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -10597,7 +10878,7 @@ Name | Type | Description  | Notes
 
 List promotional links
 
-Keyset-paginated batch links. URLs are omitted by default and decrypted only when reveal=true. ADMIN and same-tenant INTEGRATOR only.
+Use reveal=true to copy a saved private URL. Reusable entries show ACTIVE or REVOKED and have no single claimant. Treat URLs as private and do not cache/log them. ADMIN, same-tenant INTEGRATOR, or AFFILIATE_MANAGER explicitly assigned to the owning QR campaign (including across tenants). Grants are checked on every request; tenant filters do not confer access.
 
 ### Example
 
@@ -10607,7 +10888,6 @@ Keyset-paginated batch links. URLs are omitted by default and decrypted only whe
 ```python
 import dora_client
 from dora_client.models.promo_link_list_response import PromoLinkListResponse
-from dora_client.models.promo_link_status import PromoLinkStatus
 from dora_client.rest import ApiException
 from pprint import pprint
 
@@ -10640,7 +10920,7 @@ async with dora_client.ApiClient(configuration) as api_client:
     batch_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
     limit = 100 # int |  (optional) (default to 100)
     cursor = 'cursor_example' # str |  (optional)
-    status = dora_client.PromoLinkStatus() # PromoLinkStatus |  (optional)
+    status = 'status_example' # str | ACTIVE selects active reusable links. Single-use links retain ISSUED/CLAIMED/REVOKED. (optional)
     reveal = False # bool |  (optional) (default to False)
 
     try:
@@ -10662,7 +10942,7 @@ Name | Type | Description  | Notes
  **batch_id** | **UUID**|  | 
  **limit** | **int**|  | [optional] [default to 100]
  **cursor** | **str**|  | [optional] 
- **status** | [**PromoLinkStatus**](.md)|  | [optional] 
+ **status** | **str**| ACTIVE selects active reusable links. Single-use links retain ISSUED/CLAIMED/REVOKED. | [optional] 
  **reveal** | **bool**|  | [optional] [default to False]
 
 ### Return type
@@ -10684,9 +10964,10 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | Promotional links |  -  |
 **400** | Malformed filter or cursor |  -  |
-**403** | Caller cannot administer this tenant |  -  |
+**403** | No Campaign Links permission for the owning campaign; no asset data is returned |  -  |
 **404** | Batch not found |  -  |
 **500** | Internal server error |  -  |
+**401** | Authentication required |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -11724,6 +12005,95 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **remove_promo_campaign_manager**
+> remove_promo_campaign_manager(trading_challenge_id, manager_id)
+
+Remove QR campaign access for an Affiliate Manager
+
+ADMIN only. Idempotent DELETE with no body. QR campaign grants are independent of home tenant and affiliate programs. Removal takes effect on the next protected request after commit; already authorized reads/downloads may finish. Batch issuance and removal serialize on the campaign lock.
+
+### Example
+
+* Api Key Authentication (apiKeyAuthHeader):
+* Bearer (JWT) Authentication (bearerAuth):
+
+```python
+import dora_client
+from dora_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging.dora.co
+# See configuration.py for a list of all supported configuration parameters.
+configuration = dora_client.Configuration(
+    host = "https://staging.dora.co"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apiKeyAuthHeader
+configuration.api_key['apiKeyAuthHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apiKeyAuthHeader'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): bearerAuth
+configuration = dora_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+async with dora_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = dora_client.DefaultApi(api_client)
+    trading_challenge_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
+    manager_id = UUID('38400000-8cf0-11bd-b23e-10b96e4ef00d') # UUID | 
+
+    try:
+        # Remove QR campaign access for an Affiliate Manager
+        await api_instance.remove_promo_campaign_manager(trading_challenge_id, manager_id)
+    except Exception as e:
+        print("Exception when calling DefaultApi->remove_promo_campaign_manager: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **trading_challenge_id** | **UUID**|  | 
+ **manager_id** | **UUID**|  | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | Grant absent |  -  |
+**400** | Malformed UUID |  -  |
+**401** | Authentication required |  -  |
+**403** | ADMIN role required |  -  |
+**404** | Unknown manager or unknown/non-QR campaign |  -  |
+**500** | Internal server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **remove_trading_challenge_users**
 > TradingChallengeResponseEnvelope remove_trading_challenge_users(remove_trading_challenge_users_request)
 
@@ -11818,7 +12188,7 @@ Name | Type | Description  | Notes
 
 Render a promotional link QR code
 
-Render the exact private claim URL as PNG with Cache-Control private, no-store. ADMIN and same-tenant INTEGRATOR only.
+Download private QR PNG with Content-Disposition filename promo-link-{link_id}.png; the same link_id is in saved links and CSV. ADMIN, same-tenant INTEGRATOR, or AFFILIATE_MANAGER explicitly assigned to the owning QR campaign (including across tenants). Grants are checked on every request; tenant filters do not confer access.
 
 ### Example
 
@@ -11901,9 +12271,10 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | QR PNG |  * Cache-Control -  <br>  |
 **400** | Malformed QR parameter |  -  |
-**403** | Caller cannot administer this tenant |  -  |
+**403** | No Campaign Links permission for the owning campaign; no asset data is returned |  -  |
 **404** | Link not found |  -  |
 **500** | Internal server error |  -  |
+**401** | Authentication required |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -12241,7 +12612,7 @@ Name | Type | Description  | Notes
 
 Revoke a promotional link
 
-Revoke an unclaimed link and return one unit of QR campaign capacity. Repeating an already-revoked request is idempotent; claimed links return 409.
+Revoke an active promo link. Revoking a reusable link prevents new signups and preserves existing participants. Does not release a successful signup place.
 
 ### Example
 

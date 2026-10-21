@@ -112,7 +112,7 @@ __all__ = [
     "CreateOrderResponseEnvelope",
     "CreateOrdersBulkRequest",
     "CreateOrdersBulkResponse",
-    "CreateOrdersBulkResponseAllOfData",
+    "CreateOrdersBulkResponseData",
     "CreateTradingChallengeQRRequest",
     "CreateTradingChallengeRequest",
     "CreateWithdrawalRequest",
@@ -149,8 +149,9 @@ __all__ = [
     "IsolatedCollateral",
     "IsolatedPosition",
     "IssuePromoLinkBatchRequest",
+    "IssuePromoLinkBatchRequestSingleUse",
     "IssuePromoLinkBatchResponse",
-    "IssuePromoLinkBatchResponseAllOfData",
+    "IssuePromoLinkBatchResponseData",
     "IssuedPromoLink",
     "LedgerAccountsResponseV2Envelope",
     "LedgerModuleByAssetResponseEnvelope",
@@ -233,17 +234,20 @@ __all__ = [
     "PositionType",
     "PriceLevel",
     "PromoAttributionResponse",
-    "PromoAttributionResponseAllOfData",
+    "PromoAttributionResponseData",
     "PromoAttributionSource",
+    "PromoCampaignSelectorResponse",
+    "PromoCampaignSelectorResponseData",
+    "PromoCampaignSelectorResponseDataCampaigns",
     "PromoClaimResponseEnvelope",
-    "PromoClaimResponseEnvelopeAllOfData",
+    "PromoClaimResponseEnvelopeData",
     "PromoClaimState",
     "PromoLinkAdmin",
     "PromoLinkBatchListResponse",
-    "PromoLinkBatchListResponseAllOfData",
+    "PromoLinkBatchListResponseData",
     "PromoLinkBatchSummary",
     "PromoLinkListResponse",
-    "PromoLinkListResponseAllOfData",
+    "PromoLinkListResponseData",
     "PromoLinkStatus",
     "PromoSourceType",
     "QRRewardPreview",
@@ -262,7 +266,7 @@ __all__ = [
     "RevokeAPIKeyResponseEnvelope",
     "RevokePromoLinkRequest",
     "RevokePromoLinkResponse",
-    "RevokePromoLinkResponseAllOfData",
+    "RevokePromoLinkResponseData",
     "SettleLeverageAccruedInterest",
     "SettleLeverageAccruedInterestRequest",
     "SettleLeverageAccruedInterestResponseEnvelope",
@@ -478,7 +482,7 @@ from dora_client.models.create_order_request import CreateOrderRequest as Create
 from dora_client.models.create_order_response_envelope import CreateOrderResponseEnvelope as CreateOrderResponseEnvelope
 from dora_client.models.create_orders_bulk_request import CreateOrdersBulkRequest as CreateOrdersBulkRequest
 from dora_client.models.create_orders_bulk_response import CreateOrdersBulkResponse as CreateOrdersBulkResponse
-from dora_client.models.create_orders_bulk_response_all_of_data import CreateOrdersBulkResponseAllOfData as CreateOrdersBulkResponseAllOfData
+from dora_client.models.create_orders_bulk_response_data import CreateOrdersBulkResponseData as CreateOrdersBulkResponseData
 from dora_client.models.create_trading_challenge_qr_request import CreateTradingChallengeQRRequest as CreateTradingChallengeQRRequest
 from dora_client.models.create_trading_challenge_request import CreateTradingChallengeRequest as CreateTradingChallengeRequest
 from dora_client.models.create_withdrawal_request import CreateWithdrawalRequest as CreateWithdrawalRequest
@@ -515,8 +519,9 @@ from dora_client.models.isolate_collateral_response import IsolateCollateralResp
 from dora_client.models.isolated_collateral import IsolatedCollateral as IsolatedCollateral
 from dora_client.models.isolated_position import IsolatedPosition as IsolatedPosition
 from dora_client.models.issue_promo_link_batch_request import IssuePromoLinkBatchRequest as IssuePromoLinkBatchRequest
+from dora_client.models.issue_promo_link_batch_request_single_use import IssuePromoLinkBatchRequestSingleUse as IssuePromoLinkBatchRequestSingleUse
 from dora_client.models.issue_promo_link_batch_response import IssuePromoLinkBatchResponse as IssuePromoLinkBatchResponse
-from dora_client.models.issue_promo_link_batch_response_all_of_data import IssuePromoLinkBatchResponseAllOfData as IssuePromoLinkBatchResponseAllOfData
+from dora_client.models.issue_promo_link_batch_response_data import IssuePromoLinkBatchResponseData as IssuePromoLinkBatchResponseData
 from dora_client.models.issued_promo_link import IssuedPromoLink as IssuedPromoLink
 from dora_client.models.ledger_accounts_response_v2_envelope import LedgerAccountsResponseV2Envelope as LedgerAccountsResponseV2Envelope
 from dora_client.models.ledger_module_by_asset_response_envelope import LedgerModuleByAssetResponseEnvelope as LedgerModuleByAssetResponseEnvelope
@@ -599,17 +604,20 @@ from dora_client.models.position_side import PositionSide as PositionSide
 from dora_client.models.position_type import PositionType as PositionType
 from dora_client.models.price_level import PriceLevel as PriceLevel
 from dora_client.models.promo_attribution_response import PromoAttributionResponse as PromoAttributionResponse
-from dora_client.models.promo_attribution_response_all_of_data import PromoAttributionResponseAllOfData as PromoAttributionResponseAllOfData
+from dora_client.models.promo_attribution_response_data import PromoAttributionResponseData as PromoAttributionResponseData
 from dora_client.models.promo_attribution_source import PromoAttributionSource as PromoAttributionSource
+from dora_client.models.promo_campaign_selector_response import PromoCampaignSelectorResponse as PromoCampaignSelectorResponse
+from dora_client.models.promo_campaign_selector_response_data import PromoCampaignSelectorResponseData as PromoCampaignSelectorResponseData
+from dora_client.models.promo_campaign_selector_response_data_campaigns import PromoCampaignSelectorResponseDataCampaigns as PromoCampaignSelectorResponseDataCampaigns
 from dora_client.models.promo_claim_response_envelope import PromoClaimResponseEnvelope as PromoClaimResponseEnvelope
-from dora_client.models.promo_claim_response_envelope_all_of_data import PromoClaimResponseEnvelopeAllOfData as PromoClaimResponseEnvelopeAllOfData
+from dora_client.models.promo_claim_response_envelope_data import PromoClaimResponseEnvelopeData as PromoClaimResponseEnvelopeData
 from dora_client.models.promo_claim_state import PromoClaimState as PromoClaimState
 from dora_client.models.promo_link_admin import PromoLinkAdmin as PromoLinkAdmin
 from dora_client.models.promo_link_batch_list_response import PromoLinkBatchListResponse as PromoLinkBatchListResponse
-from dora_client.models.promo_link_batch_list_response_all_of_data import PromoLinkBatchListResponseAllOfData as PromoLinkBatchListResponseAllOfData
+from dora_client.models.promo_link_batch_list_response_data import PromoLinkBatchListResponseData as PromoLinkBatchListResponseData
 from dora_client.models.promo_link_batch_summary import PromoLinkBatchSummary as PromoLinkBatchSummary
 from dora_client.models.promo_link_list_response import PromoLinkListResponse as PromoLinkListResponse
-from dora_client.models.promo_link_list_response_all_of_data import PromoLinkListResponseAllOfData as PromoLinkListResponseAllOfData
+from dora_client.models.promo_link_list_response_data import PromoLinkListResponseData as PromoLinkListResponseData
 from dora_client.models.promo_link_status import PromoLinkStatus as PromoLinkStatus
 from dora_client.models.promo_source_type import PromoSourceType as PromoSourceType
 from dora_client.models.qr_reward_preview import QRRewardPreview as QRRewardPreview
@@ -628,7 +636,7 @@ from dora_client.models.revoke_api_key_data import RevokeAPIKeyData as RevokeAPI
 from dora_client.models.revoke_api_key_response_envelope import RevokeAPIKeyResponseEnvelope as RevokeAPIKeyResponseEnvelope
 from dora_client.models.revoke_promo_link_request import RevokePromoLinkRequest as RevokePromoLinkRequest
 from dora_client.models.revoke_promo_link_response import RevokePromoLinkResponse as RevokePromoLinkResponse
-from dora_client.models.revoke_promo_link_response_all_of_data import RevokePromoLinkResponseAllOfData as RevokePromoLinkResponseAllOfData
+from dora_client.models.revoke_promo_link_response_data import RevokePromoLinkResponseData as RevokePromoLinkResponseData
 from dora_client.models.settle_leverage_accrued_interest import SettleLeverageAccruedInterest as SettleLeverageAccruedInterest
 from dora_client.models.settle_leverage_accrued_interest_request import SettleLeverageAccruedInterestRequest as SettleLeverageAccruedInterestRequest
 from dora_client.models.settle_leverage_accrued_interest_response_envelope import SettleLeverageAccruedInterestResponseEnvelope as SettleLeverageAccruedInterestResponseEnvelope

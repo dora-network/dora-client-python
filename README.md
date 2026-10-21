@@ -125,6 +125,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**create_withdrawal**](docs/DefaultApi.md#create_withdrawal) | **POST** /v1/web3/withdrawals | Create a USDC withdrawal request
 *DefaultApi* | [**customize_affiliate_referrer_code**](docs/DefaultApi.md#customize_affiliate_referrer_code) | **PUT** /v1/affiliate_referrers/{referrer_id}/code | Change an affiliate referral code
 *DefaultApi* | [**delete_user**](docs/DefaultApi.md#delete_user) | **DELETE** /v1/user/{user_id} | Delete user by ID
+*DefaultApi* | [**enable_affiliate_referrer**](docs/DefaultApi.md#enable_affiliate_referrer) | **POST** /v1/affiliate_programs/{program_id}/referrers/{referrer_id}/enable | Re-enable an existing referrer
 *DefaultApi* | [**export_promo_links_csv**](docs/DefaultApi.md#export_promo_links_csv) | **GET** /v1/link_batches/{batch_id}/links.csv | Export promotional links as CSV
 *DefaultApi* | [**get_affiliate_program**](docs/DefaultApi.md#get_affiliate_program) | **GET** /v1/affiliate_programs/{program_id} | Get an affiliate program
 *DefaultApi* | [**get_affiliate_referrer_code**](docs/DefaultApi.md#get_affiliate_referrer_code) | **GET** /v1/affiliate_referrers/{referrer_id}/code | Get a referrer&#39;s current code
@@ -193,6 +194,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**get_users_api_keys**](docs/DefaultApi.md#get_users_api_keys) | **GET** /v1/user/apikey | Get user&#39;s api keys
 *DefaultApi* | [**get_withdrawal**](docs/DefaultApi.md#get_withdrawal) | **GET** /v1/web3/withdrawals/{withdrawal_id} | Get a USDC withdrawal by ID
 *DefaultApi* | [**get_withdrawal_fee_quote**](docs/DefaultApi.md#get_withdrawal_fee_quote) | **GET** /v1/web3/withdrawals/fee-quote | Estimate the network fee to withdraw USDC via web3
+*DefaultApi* | [**grant_promo_campaign_manager**](docs/DefaultApi.md#grant_promo_campaign_manager) | **PUT** /v1/promo_campaigns/{trading_challenge_id}/managers/{manager_id} | Grant QR campaign access for an Affiliate Manager
 *DefaultApi* | [**issue_promo_link_batch**](docs/DefaultApi.md#issue_promo_link_batch) | **POST** /v1/trading_challenges/{trading_challenge_id}/link_batches | Issue a promotional link batch
 *DefaultApi* | [**ledger_deposit**](docs/DefaultApi.md#ledger_deposit) | **POST** /v1/ledger/deposit/{user_id} | Deposit assets into this user&#39;s account from the outside world
 *DefaultApi* | [**ledger_withdraw**](docs/DefaultApi.md#ledger_withdraw) | **POST** /v1/ledger/withdraw/{user_id} | Withdraw assets from this user to the outside world
@@ -216,6 +218,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**list_auto_rebalance_configs_v2**](docs/DefaultApi.md#list_auto_rebalance_configs_v2) | **GET** /v2/accounts/auto_rebalance/config | List auto-rebalance configuration for the authenticated user&#39;s isolated accounts
 *DefaultApi* | [**list_auto_rebalance_statuses_v2**](docs/DefaultApi.md#list_auto_rebalance_statuses_v2) | **GET** /v2/accounts/auto_rebalance/status | List auto-rebalance status for the authenticated user&#39;s isolated accounts, including disabled configs
 *DefaultApi* | [**list_deposits**](docs/DefaultApi.md#list_deposits) | **GET** /v1/web3/deposits | List USDC deposits
+*DefaultApi* | [**list_managed_promo_campaigns**](docs/DefaultApi.md#list_managed_promo_campaigns) | **GET** /v1/promo_campaigns | List accessible Campaign Links campaigns
 *DefaultApi* | [**list_order_books**](docs/DefaultApi.md#list_order_books) | **GET** /v1/orderbooks | List order books
 *DefaultApi* | [**list_orders**](docs/DefaultApi.md#list_orders) | **GET** /v1/orders | List all orders
 *DefaultApi* | [**list_own_affiliate_memberships**](docs/DefaultApi.md#list_own_affiliate_memberships) | **GET** /v1/affiliate_referrers/self | List your affiliate memberships
@@ -233,6 +236,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**reject_ledger_withdraw_request**](docs/DefaultApi.md#reject_ledger_withdraw_request) | **POST** /v1/ledger/withdraw/requests/{withdrawal_id}/reject | Reject a pending withdrawal request
 *DefaultApi* | [**reject_trading_challenge_registration_request**](docs/DefaultApi.md#reject_trading_challenge_registration_request) | **POST** /v1/trading_challenges/registration_requests/{request_id}/reject | Reject a trading challenge registration request
 *DefaultApi* | [**remove_affiliate_referrer**](docs/DefaultApi.md#remove_affiliate_referrer) | **DELETE** /v1/affiliate_programs/{program_id}/referrers/{referrer_id} | Remove a referrer from a program
+*DefaultApi* | [**remove_promo_campaign_manager**](docs/DefaultApi.md#remove_promo_campaign_manager) | **DELETE** /v1/promo_campaigns/{trading_challenge_id}/managers/{manager_id} | Remove QR campaign access for an Affiliate Manager
 *DefaultApi* | [**remove_trading_challenge_users**](docs/DefaultApi.md#remove_trading_challenge_users) | **PUT** /v1/trading_challenges/remove_users | Remove users from a trading challenge
 *DefaultApi* | [**render_promo_link_qr**](docs/DefaultApi.md#render_promo_link_qr) | **GET** /v1/promo_links/{link_id}/qr | Render a promotional link QR code
 *DefaultApi* | [**repay_usd**](docs/DefaultApi.md#repay_usd) | **POST** /v1/positions/repay_usd | Repay borrowed USD, then accrue and pay leverage interest
@@ -349,7 +353,7 @@ Class | Method | HTTP request | Description
  - [CreateOrderResponseEnvelope](docs/CreateOrderResponseEnvelope.md)
  - [CreateOrdersBulkRequest](docs/CreateOrdersBulkRequest.md)
  - [CreateOrdersBulkResponse](docs/CreateOrdersBulkResponse.md)
- - [CreateOrdersBulkResponseAllOfData](docs/CreateOrdersBulkResponseAllOfData.md)
+ - [CreateOrdersBulkResponseData](docs/CreateOrdersBulkResponseData.md)
  - [CreateTradingChallengeQRRequest](docs/CreateTradingChallengeQRRequest.md)
  - [CreateTradingChallengeRequest](docs/CreateTradingChallengeRequest.md)
  - [CreateWithdrawalRequest](docs/CreateWithdrawalRequest.md)
@@ -386,8 +390,9 @@ Class | Method | HTTP request | Description
  - [IsolatedCollateral](docs/IsolatedCollateral.md)
  - [IsolatedPosition](docs/IsolatedPosition.md)
  - [IssuePromoLinkBatchRequest](docs/IssuePromoLinkBatchRequest.md)
+ - [IssuePromoLinkBatchRequestSingleUse](docs/IssuePromoLinkBatchRequestSingleUse.md)
  - [IssuePromoLinkBatchResponse](docs/IssuePromoLinkBatchResponse.md)
- - [IssuePromoLinkBatchResponseAllOfData](docs/IssuePromoLinkBatchResponseAllOfData.md)
+ - [IssuePromoLinkBatchResponseData](docs/IssuePromoLinkBatchResponseData.md)
  - [IssuedPromoLink](docs/IssuedPromoLink.md)
  - [LedgerAccountsResponseV2Envelope](docs/LedgerAccountsResponseV2Envelope.md)
  - [LedgerModuleByAssetResponseEnvelope](docs/LedgerModuleByAssetResponseEnvelope.md)
@@ -470,17 +475,20 @@ Class | Method | HTTP request | Description
  - [PositionType](docs/PositionType.md)
  - [PriceLevel](docs/PriceLevel.md)
  - [PromoAttributionResponse](docs/PromoAttributionResponse.md)
- - [PromoAttributionResponseAllOfData](docs/PromoAttributionResponseAllOfData.md)
+ - [PromoAttributionResponseData](docs/PromoAttributionResponseData.md)
  - [PromoAttributionSource](docs/PromoAttributionSource.md)
+ - [PromoCampaignSelectorResponse](docs/PromoCampaignSelectorResponse.md)
+ - [PromoCampaignSelectorResponseData](docs/PromoCampaignSelectorResponseData.md)
+ - [PromoCampaignSelectorResponseDataCampaigns](docs/PromoCampaignSelectorResponseDataCampaigns.md)
  - [PromoClaimResponseEnvelope](docs/PromoClaimResponseEnvelope.md)
- - [PromoClaimResponseEnvelopeAllOfData](docs/PromoClaimResponseEnvelopeAllOfData.md)
+ - [PromoClaimResponseEnvelopeData](docs/PromoClaimResponseEnvelopeData.md)
  - [PromoClaimState](docs/PromoClaimState.md)
  - [PromoLinkAdmin](docs/PromoLinkAdmin.md)
  - [PromoLinkBatchListResponse](docs/PromoLinkBatchListResponse.md)
- - [PromoLinkBatchListResponseAllOfData](docs/PromoLinkBatchListResponseAllOfData.md)
+ - [PromoLinkBatchListResponseData](docs/PromoLinkBatchListResponseData.md)
  - [PromoLinkBatchSummary](docs/PromoLinkBatchSummary.md)
  - [PromoLinkListResponse](docs/PromoLinkListResponse.md)
- - [PromoLinkListResponseAllOfData](docs/PromoLinkListResponseAllOfData.md)
+ - [PromoLinkListResponseData](docs/PromoLinkListResponseData.md)
  - [PromoLinkStatus](docs/PromoLinkStatus.md)
  - [PromoSourceType](docs/PromoSourceType.md)
  - [QRRewardPreview](docs/QRRewardPreview.md)
@@ -499,7 +507,7 @@ Class | Method | HTTP request | Description
  - [RevokeAPIKeyResponseEnvelope](docs/RevokeAPIKeyResponseEnvelope.md)
  - [RevokePromoLinkRequest](docs/RevokePromoLinkRequest.md)
  - [RevokePromoLinkResponse](docs/RevokePromoLinkResponse.md)
- - [RevokePromoLinkResponseAllOfData](docs/RevokePromoLinkResponseAllOfData.md)
+ - [RevokePromoLinkResponseData](docs/RevokePromoLinkResponseData.md)
  - [SettleLeverageAccruedInterest](docs/SettleLeverageAccruedInterest.md)
  - [SettleLeverageAccruedInterestRequest](docs/SettleLeverageAccruedInterestRequest.md)
  - [SettleLeverageAccruedInterestResponseEnvelope](docs/SettleLeverageAccruedInterestResponseEnvelope.md)

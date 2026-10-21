@@ -19,17 +19,17 @@ import json
 
 from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List
-from dora_client.models.promo_link_batch_summary import PromoLinkBatchSummary
+from dora_client.models.promo_campaign_selector_response_data_campaigns import PromoCampaignSelectorResponseDataCampaigns
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
 
-class PromoLinkBatchListResponseAllOfData(BaseModel):
+class PromoCampaignSelectorResponseData(BaseModel):
     """
-    PromoLinkBatchListResponseAllOfData
+    PromoCampaignSelectorResponseData
     """ # noqa: E501
-    batches: List[PromoLinkBatchSummary]
-    __properties: ClassVar[List[str]] = ["batches"]
+    campaigns: List[PromoCampaignSelectorResponseDataCampaigns]
+    __properties: ClassVar[List[str]] = ["campaigns"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -49,7 +49,7 @@ class PromoLinkBatchListResponseAllOfData(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of PromoLinkBatchListResponseAllOfData from a JSON string"""
+        """Create an instance of PromoCampaignSelectorResponseData from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -70,18 +70,18 @@ class PromoLinkBatchListResponseAllOfData(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in batches (list)
+        # override the default output from pydantic by calling `to_dict()` of each item in campaigns (list)
         _items = []
-        if self.batches:
-            for _item_batches in self.batches:
-                if _item_batches:
-                    _items.append(_item_batches.to_dict())
-            _dict['batches'] = _items
+        if self.campaigns:
+            for _item_campaigns in self.campaigns:
+                if _item_campaigns:
+                    _items.append(_item_campaigns.to_dict())
+            _dict['campaigns'] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of PromoLinkBatchListResponseAllOfData from a dict"""
+        """Create an instance of PromoCampaignSelectorResponseData from a dict"""
         if obj is None:
             return None
 
@@ -89,7 +89,7 @@ class PromoLinkBatchListResponseAllOfData(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "batches": [PromoLinkBatchSummary.from_dict(_item) for _item in obj["batches"]] if obj.get("batches") is not None else None
+            "campaigns": [PromoCampaignSelectorResponseDataCampaigns.from_dict(_item) for _item in obj["campaigns"]] if obj.get("campaigns") is not None else None
         })
         return _obj
 

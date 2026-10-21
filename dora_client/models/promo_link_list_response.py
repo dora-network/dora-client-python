@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from dora_client.models.metadata import Metadata
-from dora_client.models.promo_link_list_response_all_of_data import PromoLinkListResponseAllOfData
+from dora_client.models.promo_link_list_response_data import PromoLinkListResponseData
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -29,7 +29,7 @@ class PromoLinkListResponse(BaseModel):
     """
     PromoLinkListResponse
     """ # noqa: E501
-    data: Optional[PromoLinkListResponseAllOfData] = None
+    data: Optional[PromoLinkListResponseData] = None
     error: Optional[StrictStr] = Field(default=None, description="The error message. Present for error (non-2xx) responses.")
     metadata: Metadata = Field(description="Metadata about the response, including status code and trace information.")
     __properties: ClassVar[List[str]] = ["data", "error", "metadata"]
@@ -91,7 +91,7 @@ class PromoLinkListResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "data": PromoLinkListResponseAllOfData.from_dict(obj["data"]) if obj.get("data") is not None else None,
+            "data": PromoLinkListResponseData.from_dict(obj["data"]) if obj.get("data") is not None else None,
             "error": obj.get("error"),
             "metadata": Metadata.from_dict(obj["metadata"]) if obj.get("metadata") is not None else None
         })

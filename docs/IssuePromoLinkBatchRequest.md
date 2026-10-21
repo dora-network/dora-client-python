@@ -8,9 +8,13 @@ Name | Type | Description | Notes
 **source_type** | [**PromoSourceType**](PromoSourceType.md) |  | 
 **source_id** | **str** |  | 
 **source_name** | **str** |  | [optional] 
-**allocation** | **int** | Cannot exceed the configured max_links_per_batch or remaining campaign capacity. | 
+**allocation** | **int** | Required for SINGLE_USE; omit for REUSABLE. Bounded by max_links_per_batch. Minting reserves no campaign place. | [optional] 
 **note** | **str** |  | [optional] 
 **expires_at** | **datetime** | Defaults to challenge end and must fall between challenge start and end in the future. | [optional] 
+**link_type** | **str** | Defaults to SINGLE_USE for existing clients. REUSABLE creates one tracked link without a quantity. | [optional] 
+**affiliate_program_id** | **UUID** |  | [optional] 
+**affiliate_member_id** | **UUID** | Existing affiliate referrer/member ID, not user ID. | [optional] 
+**referral_code** | **str** | An existing code belonging to the selected member. Required with both IDs for reusable links; bound on the server and revalidated at claim time. | [optional] 
 
 ## Example
 

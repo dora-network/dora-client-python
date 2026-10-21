@@ -35,7 +35,7 @@ class TestPromoAttributionResponse(unittest.TestCase):
         model = PromoAttributionResponse()
         if include_optional:
             return PromoAttributionResponse(
-                data = dora_client.models.promo_attribution_response_all_of_data.PromoAttributionResponse_allOf_data(
+                data = dora_client.models.promo_attribution_response_data.PromoAttributionResponseData(
                     sources = [
                         dora_client.models.promo_attribution_source.PromoAttributionSource(
                             source_type = 'KOL', 

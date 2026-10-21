@@ -37,7 +37,9 @@ class AffiliateReferrer(BaseModel):
     referral_code: Annotated[str, Field(strict=True)] = Field(description="Current code to share; previously issued codes remain valid. Stored uppercase and unique across all programs and tenants.")
     created_at: datetime
     customized_at: Optional[datetime] = Field(description="When the owner used their one code change; null until then.")
-    __properties: ClassVar[List[str]] = ["id", "program_id", "tenant_id", "user_id", "referral_code", "created_at", "customized_at"]
+    disabled_at: Optional[datetime] = Field(description="When this membership was disabled; null while enabled.")
+    disabled_by: Optional[UUID] = Field(description="Actor who disabled this membership; null while enabled.")
+    __properties: ClassVar[List[str]] = ["id", "program_id", "tenant_id", "user_id", "referral_code", "created_at", "customized_at", "disabled_at", "disabled_by"]
 
     @field_validator('referral_code')
     def referral_code_validate_regular_expression(cls, value):
@@ -93,6 +95,16 @@ class AffiliateReferrer(BaseModel):
         if self.customized_at is None and "customized_at" in self.model_fields_set:
             _dict['customized_at'] = None
 
+        # set to None if disabled_at (nullable) is None
+        # and model_fields_set contains the field
+        if self.disabled_at is None and "disabled_at" in self.model_fields_set:
+            _dict['disabled_at'] = None
+
+        # set to None if disabled_by (nullable) is None
+        # and model_fields_set contains the field
+        if self.disabled_by is None and "disabled_by" in self.model_fields_set:
+            _dict['disabled_by'] = None
+
         return _dict
 
     @classmethod
@@ -111,7 +123,9 @@ class AffiliateReferrer(BaseModel):
             "user_id": obj.get("user_id"),
             "referral_code": obj.get("referral_code"),
             "created_at": obj.get("created_at"),
-            "customized_at": obj.get("customized_at")
+            "customized_at": obj.get("customized_at"),
+            "disabled_at": obj.get("disabled_at"),
+            "disabled_by": obj.get("disabled_by")
         })
         return _obj
 

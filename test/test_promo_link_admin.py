@@ -42,7 +42,8 @@ class TestPromoLinkAdmin(unittest.TestCase):
                 expires_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 claimed_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 claimed_email = '',
-                user_id = ''
+                user_id = '',
+                link_type = 'SINGLE_USE'
             )
         else:
             return PromoLinkAdmin(

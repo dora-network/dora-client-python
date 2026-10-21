@@ -35,7 +35,7 @@ class TestPromoClaimResponseEnvelope(unittest.TestCase):
         model = PromoClaimResponseEnvelope()
         if include_optional:
             return PromoClaimResponseEnvelope(
-                data = dora_client.models.promo_claim_response_envelope_all_of_data.PromoClaimResponseEnvelope_allOf_data(
+                data = dora_client.models.promo_claim_response_envelope_data.PromoClaimResponseEnvelopeData(
                     state = 'NOT_FOUND', 
                     email = '', 
                     campaign_name = '', 
@@ -44,7 +44,14 @@ class TestPromoClaimResponseEnvelope(unittest.TestCase):
                     max_reward_amount = '', 
                     target_equity = '', 
                     expires_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                    source_name = '', ),
+                    source_name = '', 
+                    link_type = 'SINGLE_USE', 
+                    affiliate_program_id = '', 
+                    affiliate_member_id = '', 
+                    referral_code = '', 
+                    campaign_id = '', 
+                    link_id = '', 
+                    source_id = '', ),
                 error = '',
                 metadata = dora_client.models.metadata.Metadata(
                     status_code = 56, 

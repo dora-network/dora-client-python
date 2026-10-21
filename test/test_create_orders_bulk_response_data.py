@@ -14,10 +14,10 @@
 
 import unittest
 
-from dora_client.models.create_orders_bulk_response_all_of_data import CreateOrdersBulkResponseAllOfData
+from dora_client.models.create_orders_bulk_response_data import CreateOrdersBulkResponseData
 
-class TestCreateOrdersBulkResponseAllOfData(unittest.TestCase):
-    """CreateOrdersBulkResponseAllOfData unit test stubs"""
+class TestCreateOrdersBulkResponseData(unittest.TestCase):
+    """CreateOrdersBulkResponseData unit test stubs"""
 
     def setUp(self):
         pass
@@ -25,16 +25,16 @@ class TestCreateOrdersBulkResponseAllOfData(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> CreateOrdersBulkResponseAllOfData:
-        """Test CreateOrdersBulkResponseAllOfData
+    def make_instance(self, include_optional) -> CreateOrdersBulkResponseData:
+        """Test CreateOrdersBulkResponseData
             include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `CreateOrdersBulkResponseAllOfData`
+        # uncomment below to create an instance of `CreateOrdersBulkResponseData`
         """
-        model = CreateOrdersBulkResponseAllOfData()
+        model = CreateOrdersBulkResponseData()
         if include_optional:
-            return CreateOrdersBulkResponseAllOfData(
+            return CreateOrdersBulkResponseData(
                 created = 56,
                 rejected = 56,
                 results = [
@@ -47,12 +47,12 @@ class TestCreateOrdersBulkResponseAllOfData(unittest.TestCase):
                     ]
             )
         else:
-            return CreateOrdersBulkResponseAllOfData(
+            return CreateOrdersBulkResponseData(
         )
         """
 
-    def testCreateOrdersBulkResponseAllOfData(self):
-        """Test CreateOrdersBulkResponseAllOfData"""
+    def testCreateOrdersBulkResponseData(self):
+        """Test CreateOrdersBulkResponseData"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

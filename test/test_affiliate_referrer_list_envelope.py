@@ -43,7 +43,9 @@ class TestAffiliateReferrerListEnvelope(unittest.TestCase):
                         user_id = '', 
                         referral_code = 'WXBU5JLXPXUUB-3', 
                         created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        customized_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
+                        customized_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        disabled_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        disabled_by = '', )
                     ],
                 metadata = dora_client.models.metadata.Metadata(
                     status_code = 56, 
@@ -60,7 +62,9 @@ class TestAffiliateReferrerListEnvelope(unittest.TestCase):
                         user_id = '', 
                         referral_code = 'WXBU5JLXPXUUB-3', 
                         created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        customized_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
+                        customized_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        disabled_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        disabled_by = '', )
                     ],
                 metadata = dora_client.models.metadata.Metadata(
                     status_code = 56, 

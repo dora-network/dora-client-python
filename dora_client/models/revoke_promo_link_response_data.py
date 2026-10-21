@@ -17,23 +17,28 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List
 from uuid import UUID
-from dora_client.models.issued_promo_link import IssuedPromoLink
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
 
-class IssuePromoLinkBatchResponseAllOfData(BaseModel):
+class RevokePromoLinkResponseData(BaseModel):
     """
-    IssuePromoLinkBatchResponseAllOfData
+    RevokePromoLinkResponseData
     """ # noqa: E501
-    batch_id: UUID
-    source_id: StrictStr
-    allocation: StrictInt
-    links: List[IssuedPromoLink]
-    __properties: ClassVar[List[str]] = ["batch_id", "source_id", "allocation", "links"]
+    id: UUID
+    status: StrictStr
+    repeated: StrictBool
+    __properties: ClassVar[List[str]] = ["id", "status", "repeated"]
+
+    @field_validator('status')
+    def status_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(['REVOKED']):
+            raise ValueError("must be one of enum values ('REVOKED')")
+        return value
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -53,7 +58,7 @@ class IssuePromoLinkBatchResponseAllOfData(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of IssuePromoLinkBatchResponseAllOfData from a JSON string"""
+        """Create an instance of RevokePromoLinkResponseData from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -74,18 +79,11 @@ class IssuePromoLinkBatchResponseAllOfData(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in links (list)
-        _items = []
-        if self.links:
-            for _item_links in self.links:
-                if _item_links:
-                    _items.append(_item_links.to_dict())
-            _dict['links'] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of IssuePromoLinkBatchResponseAllOfData from a dict"""
+        """Create an instance of RevokePromoLinkResponseData from a dict"""
         if obj is None:
             return None
 
@@ -93,10 +91,9 @@ class IssuePromoLinkBatchResponseAllOfData(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "batch_id": obj.get("batch_id"),
-            "source_id": obj.get("source_id"),
-            "allocation": obj.get("allocation"),
-            "links": [IssuedPromoLink.from_dict(_item) for _item in obj["links"]] if obj.get("links") is not None else None
+            "id": obj.get("id"),
+            "status": obj.get("status"),
+            "repeated": obj.get("repeated")
         })
         return _obj
 

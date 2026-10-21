@@ -14,10 +14,10 @@
 
 import unittest
 
-from dora_client.models.promo_link_batch_list_response_all_of_data import PromoLinkBatchListResponseAllOfData
+from dora_client.models.promo_link_batch_list_response_data import PromoLinkBatchListResponseData
 
-class TestPromoLinkBatchListResponseAllOfData(unittest.TestCase):
-    """PromoLinkBatchListResponseAllOfData unit test stubs"""
+class TestPromoLinkBatchListResponseData(unittest.TestCase):
+    """PromoLinkBatchListResponseData unit test stubs"""
 
     def setUp(self):
         pass
@@ -25,16 +25,16 @@ class TestPromoLinkBatchListResponseAllOfData(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> PromoLinkBatchListResponseAllOfData:
-        """Test PromoLinkBatchListResponseAllOfData
+    def make_instance(self, include_optional) -> PromoLinkBatchListResponseData:
+        """Test PromoLinkBatchListResponseData
             include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `PromoLinkBatchListResponseAllOfData`
+        # uncomment below to create an instance of `PromoLinkBatchListResponseData`
         """
-        model = PromoLinkBatchListResponseAllOfData()
+        model = PromoLinkBatchListResponseData()
         if include_optional:
-            return PromoLinkBatchListResponseAllOfData(
+            return PromoLinkBatchListResponseData(
                 batches = [
                     dora_client.models.promo_link_batch_summary.PromoLinkBatchSummary(
                         id = '', 
@@ -45,11 +45,17 @@ class TestPromoLinkBatchListResponseAllOfData(unittest.TestCase):
                         issued = 56, 
                         claimed = 56, 
                         revoked = 56, 
-                        created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
+                        created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        link_type = 'SINGLE_USE', 
+                        affiliate_program_id = '', 
+                        affiliate_member_id = '', 
+                        referral_code = '', 
+                        campaign_id = '', 
+                        signups = 56, )
                     ]
             )
         else:
-            return PromoLinkBatchListResponseAllOfData(
+            return PromoLinkBatchListResponseData(
                 batches = [
                     dora_client.models.promo_link_batch_summary.PromoLinkBatchSummary(
                         id = '', 
@@ -60,13 +66,19 @@ class TestPromoLinkBatchListResponseAllOfData(unittest.TestCase):
                         issued = 56, 
                         claimed = 56, 
                         revoked = 56, 
-                        created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
+                        created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        link_type = 'SINGLE_USE', 
+                        affiliate_program_id = '', 
+                        affiliate_member_id = '', 
+                        referral_code = '', 
+                        campaign_id = '', 
+                        signups = 56, )
                     ],
         )
         """
 
-    def testPromoLinkBatchListResponseAllOfData(self):
-        """Test PromoLinkBatchListResponseAllOfData"""
+    def testPromoLinkBatchListResponseData(self):
+        """Test PromoLinkBatchListResponseData"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

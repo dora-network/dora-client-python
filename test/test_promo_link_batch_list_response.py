@@ -35,7 +35,7 @@ class TestPromoLinkBatchListResponse(unittest.TestCase):
         model = PromoLinkBatchListResponse()
         if include_optional:
             return PromoLinkBatchListResponse(
-                data = dora_client.models.promo_link_batch_list_response_all_of_data.PromoLinkBatchListResponse_allOf_data(
+                data = dora_client.models.promo_link_batch_list_response_data.PromoLinkBatchListResponseData(
                     batches = [
                         dora_client.models.promo_link_batch_summary.PromoLinkBatchSummary(
                             id = '', 
@@ -46,7 +46,13 @@ class TestPromoLinkBatchListResponse(unittest.TestCase):
                             issued = 56, 
                             claimed = 56, 
                             revoked = 56, 
-                            created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
+                            created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                            link_type = 'SINGLE_USE', 
+                            affiliate_program_id = '', 
+                            affiliate_member_id = '', 
+                            referral_code = '', 
+                            campaign_id = '', 
+                            signups = 56, )
                         ], ),
                 error = '',
                 metadata = dora_client.models.metadata.Metadata(
